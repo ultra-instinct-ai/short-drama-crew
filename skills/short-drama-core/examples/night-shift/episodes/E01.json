@@ -1,0 +1,1883 @@
+{
+  "ep": 1,
+  "targetSeconds": 60,
+  "function": [
+    "开局钩子"
+  ],
+  "task": {
+    "goal": "把陌生人塞来的硬盘处理掉，让夜班回到平静",
+    "obstacle": "来人一句明天有人来拿，老陈伸手要拿",
+    "stake": "收下就卷进去，交出去可能害到老陈"
+  },
+  "change": "硬盘从陌生人手里到了小夏的抽屉里，老陈从常客变成知情人。",
+  "hookType": "身份",
+  "hook": "陌生人塞过来的硬盘里到底是什么——冷开场第一拍就是雨衣男把袋子塞进小夏手里",
+  "cliff": "老陈没看见门口，却知道那人穿雨衣；风铃响了一声，门外只有雨",
+  "beatsClaimed": [
+    "B01"
+  ],
+  "hookBeat": [
+    1,
+    1
+  ],
+  "satisfactionBeat": [
+    2,
+    9
+  ],
+  "scenes": [
+    {
+      "sceneId": "S02",
+      "lighting": "雨夜冷白灯",
+      "characters": [
+        "C01",
+        "C03"
+      ],
+      "props": [
+        "P01"
+      ],
+      "flow": [
+        {
+          "action": "雨夜的便利店门口，林小夏拎着垃圾袋刚推开门，一个穿雨衣的男人就把一个防静电袋塞进她手里。"
+        },
+        {
+          "speaker": "C03",
+          "line": "帮我收着。明天有人来拿。",
+          "delivery": "压着嗓子，说完就转身"
+        },
+        {
+          "speaker": "C01",
+          "line": "你是谁？我们不代收——",
+          "delivery": "话没说完，人已经走了"
+        },
+        {
+          "action": "男人没回头，走进雨里，雨衣很快和夜色融在一起。"
+        },
+        {
+          "action": "林小夏低头，隔着袋子摸出一块硬盘的形状。"
+        }
+      ]
+    },
+    {
+      "sceneId": "S01",
+      "lighting": "凌晨冷白光",
+      "characters": [
+        "C01",
+        "C02"
+      ],
+      "props": [
+        "P01"
+      ],
+      "flow": [
+        {
+          "action": "林小夏回到收银台，把防静电袋放在台面上。"
+        },
+        {
+          "action": "老陈端着一碗关东煮从货架后面走过来，在收银台前坐下。"
+        },
+        {
+          "speaker": "C02",
+          "line": "又是你值夜班。",
+          "delivery": "没抬头，先吃了一口"
+        },
+        {
+          "speaker": "C01",
+          "line": "陈叔，你怎么天天半夜来。",
+          "delivery": "顺口一问，眼睛还在袋子上"
+        },
+        {
+          "speaker": "C02",
+          "line": "老了，睡不着。",
+          "delivery": "笑，眼角全是褶子"
+        },
+        {
+          "action": "老陈的目光落在防静电袋上，筷子停了一下。",
+          "turn": true
+        },
+        {
+          "speaker": "C02",
+          "line": "这是什么？",
+          "delivery": "声音没变，筷子没动"
+        },
+        {
+          "speaker": "C01",
+          "line": "刚才一个人放这儿的，说明天有人来拿。",
+          "delivery": "耸肩"
+        },
+        {
+          "action": "老陈把碗放下，伸手想拿袋子，林小夏先一步把袋子收进红色抽屉。"
+        },
+        {
+          "speaker": "C01",
+          "line": "别人的东西。",
+          "delivery": "手按在抽屉上"
+        },
+        {
+          "speaker": "C02",
+          "line": "小夏，那个人穿雨衣？",
+          "delivery": "很轻，像随口一问",
+          "turn": true
+        },
+        {
+          "action": "林小夏抬头，老陈已经站起来，看着门外的雨。"
+        },
+        {
+          "speaker": "C02",
+          "line": "三年前，这店里丢过一样东西。",
+          "delivery": "背对着她",
+          "turn": true
+        },
+        {
+          "action": "他转过身，第一次正眼看林小夏。"
+        },
+        {
+          "speaker": "C02",
+          "line": "别把它交给任何人。",
+          "delivery": "一字一顿"
+        },
+        {
+          "action": "林小夏低头看抽屉，抽屉缝里露出袋子一角，老陈的碗还在冒热气。"
+        },
+        {
+          "speaker": "VO",
+          "line": "他怎么知道那人穿雨衣。",
+          "delivery": "林小夏的心声"
+        },
+        {
+          "action": "门口的风铃突然响了一声，两人同时转头，门外只有雨。"
+        },
+        {
+          "speaker": "C02",
+          "line": "锁上门。",
+          "delivery": "没有回头"
+        }
+      ]
+    }
+  ],
+  "storyboard": {
+    "visualPlans": [
+      {
+        "sceneIndex": 2,
+        "turn": "the bag goes from the counter into her drawer, and the old man goes from customer to the one who knows",
+        "alignment": "we start beside her, watching him; by the end we watch both, and he knows more than we do",
+        "pressure": "the counter is the line: he reaches across it once and loses, then he stands and takes the doors",
+        "progression": "the bag is shown in the open first, his eyes find it second, the hands cross third; the raincoat is named before the face turns",
+        "rhythm": "locked off through the ritual, one push on his eyes, one push on the question, one pan on the turn, locked again for the cliff",
+        "landing": "two heads turned to an empty door and a man who keeps his eyes on it",
+        "sound": "oden warmer and fluorescent buzz under everything; the drawer slam and the single chime are the two loud things; the cello only under the last two lines"
+      }
+    ],
+    "segments": [
+      {
+        "id": "E01-01",
+        "sceneIndex": 1,
+        "axis": {
+          "between": [
+            "C01",
+            "C03"
+          ],
+          "workingSide": "under the awning, camera on the door side looking out toward the street",
+          "screenLeft": "C01",
+          "screenRight": "C03"
+        },
+        "sound": {
+          "ambience": "heavy rain on the fabric awning and in the puddles, the street hiss beyond",
+          "sfx": [
+            {
+              "cut": 1,
+              "event": "the glass door hissing shut behind her"
+            },
+            {
+              "cut": 4,
+              "event": "wet footsteps receding into the street"
+            },
+            {
+              "cut": 5,
+              "event": "plastic crackling under her fingers"
+            }
+          ],
+          "music": "N/A"
+        },
+        "cuts": [
+          {
+            "beats": [
+              1,
+              1
+            ],
+            "seconds": 3,
+            "size": "medium",
+            "camera": "Tracking Shot",
+            "angle": "three-quarter",
+            "height": "eye",
+            "axisSide": "working",
+            "purpose": {
+              "kind": "establish",
+              "change": "the bag is in her hand before she can refuse; the audience knows she is now holding something"
+            },
+            "characters": [
+              "C01",
+              "C03"
+            ],
+            "props": [
+              "P01"
+            ],
+            "start": {
+              "positions": {
+                "C01": "in the glass doorway, one step out under the awning",
+                "C03": "under the awning at arm's length from her, screen right"
+              },
+              "facing": {
+                "C01": "screen-right",
+                "C03": "screen-left"
+              },
+              "gaze": {
+                "C01": "down at the trash bag",
+                "C03": "at her free hand"
+              },
+              "hands": {
+                "C01": "right hand holding a trash bag, left hand free",
+                "C03": "right hand holding the silver anti-static bag"
+              },
+              "heldProps": {
+                "C01": [],
+                "C03": [
+                  "P01"
+                ]
+              },
+              "state": [
+                "the door swinging shut"
+              ]
+            },
+            "end": {
+              "positions": {
+                "C01": "in the glass doorway, one step out under the awning",
+                "C03": "under the awning at arm's length from her, screen right"
+              },
+              "facing": {
+                "C01": "screen-right",
+                "C03": "screen-left"
+              },
+              "gaze": {
+                "C01": "at the bag now in her left hand",
+                "C03": "past her, at the door"
+              },
+              "hands": {
+                "C01": "right hand holding the trash bag, left hand closed around the anti-static bag",
+                "C03": "both hands empty, dropping to his sides"
+              },
+              "heldProps": {
+                "C01": [
+                  "P01"
+                ],
+                "C03": []
+              },
+              "state": [
+                "the door shut"
+              ]
+            },
+            "motion": {
+              "trigger": "the door swings shut behind her",
+              "action": "the tall man presses the silver bag into her free left hand and lets go before she can close her fingers",
+              "result": "the bag sits in her left hand; his hands drop to his sides"
+            },
+            "cameraNote": {
+              "motivation": "pressure",
+              "trigger": "as she steps out",
+              "path": "tracks half a step with her from the doorway",
+              "endFraming": "a medium two-shot with the bag between them"
+            },
+            "light": {
+              "direction": "back-left",
+              "note": "the store light behind her rims her shoulder and the falling rain; the street stays unlit, so she reads as a silhouette with a bright edge"
+            },
+            "foreground": "the dripping edge of the striped awning",
+            "background": "the rain-blurred street beyond the awning",
+            "frame": "medium shot under a dripping red-and-white striped awning at night in heavy rain, a young East Asian woman in a faded navy jacket over a store uniform stepping out of a glass door holding a trash bag, a tall man in a black hooded raincoat with the hood low pressing a silver anti-static bag into her free hand, cool white store light from behind her, blue-black rain beyond, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 40mm at T1.5, rim-lit from behind camera left, the store light behind her rims her shoulder and the falling rain; the street stays unlit, so she reads as a silhouette with a bright edge. the dripping edge of the striped awning sits in the immediate foreground, thrown well out of focus. 9:16 vertical, cinematic film still"
+          },
+          {
+            "beats": [
+              2,
+              2
+            ],
+            "seconds": 4,
+            "size": "close",
+            "camera": "Static Shot",
+            "angle": "three-quarter",
+            "height": "low",
+            "axisSide": "working",
+            "purpose": {
+              "kind": "performance",
+              "change": "he sets the rule of the game without showing his face"
+            },
+            "characters": [
+              "C03"
+            ],
+            "props": [],
+            "end": {
+              "positions": {
+                "C03": "under the awning at arm's length from her, screen right"
+              },
+              "facing": {
+                "C03": "screen-left"
+              },
+              "gaze": {
+                "C03": "at the street, not at her"
+              },
+              "hands": {
+                "C03": "both hands at his sides"
+              },
+              "heldProps": {
+                "C03": []
+              },
+              "state": [
+                "his head turned toward the street"
+              ]
+            },
+            "motion": {
+              "trigger": "his hands come off the bag",
+              "action": "his jaw works through the two sentences while his head turns a few degrees toward the street",
+              "result": "his mouth closes, his head already turned to go"
+            },
+            "cameraNote": {
+              "hold": "rain runs off the hood; only the jaw moves"
+            },
+            "light": {
+              "direction": "back-right",
+              "note": "the shop sign behind him picks out the wet plastic hood while his face stays in shadow, and the rim narrows as he leans in"
+            },
+            "foreground": "a curtain of rain off the awning lip",
+            "background": "",
+            "frame": "close-up of a man's stubbled jaw under a black raincoat hood at night, rain beading on the wet plastic, mouth mid-sentence, the rest of the face in shadow, cool white light from the store to one side, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 75mm at T1.5, rim-lit from behind camera right, the shop sign behind him picks out the wet plastic hood while his face stays in shadow, and the rim narrows as he leans in. a curtain of rain off the awning lip sits in the immediate foreground, thrown well out of focus. 9:16 vertical, cinematic film still"
+          },
+          {
+            "beats": [
+              3,
+              3
+            ],
+            "seconds": 3,
+            "size": "close",
+            "camera": "Push In",
+            "angle": "front",
+            "height": "eye",
+            "axisSide": "working",
+            "purpose": {
+              "kind": "reaction",
+              "change": "she has not accepted it; she is still asking who he is"
+            },
+            "characters": [
+              "C01"
+            ],
+            "props": [
+              "P01"
+            ],
+            "end": {
+              "positions": {
+                "C01": "in the doorway"
+              },
+              "facing": {
+                "C01": "screen-right"
+              },
+              "gaze": {
+                "C01": "after him, toward the street"
+              },
+              "hands": {
+                "C01": "the anti-static bag clutched to her chest in her left hand, the trash bag in her right"
+              },
+              "heldProps": {
+                "C01": [
+                  "P01"
+                ]
+              },
+              "state": [
+                "the bag against her chest"
+              ]
+            },
+            "motion": {
+              "trigger": "his back is already turning",
+              "action": "she pulls the bag against her chest and calls after him, the last word cut off",
+              "result": "her mouth stays open on the unfinished word"
+            },
+            "cameraNote": {
+              "motivation": "pressure",
+              "trigger": "as she calls out",
+              "path": "a slow push in",
+              "endFraming": "her face and the bag against her chest filling the frame"
+            },
+            "light": {
+              "direction": "front-left",
+              "note": "cold store light spills through the glass door onto the left of her face and dies off across her cheek"
+            },
+            "foreground": "the out-of-focus trash bag in her other hand",
+            "background": "the rain-streaked awning edge above",
+            "frame": "close-up of a young East Asian woman in a faded navy jacket standing in a store doorway at night, alert tired eyes, mouth open mid-question, a silver anti-static bag clutched against her chest, rain-streaked awning edge above, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 75mm at T1.5, keyed three-quarter from camera left, cold store light spills through the glass door onto the left of her face and dies off across her cheek. the out-of-focus trash bag in her other hand sits in the immediate foreground, thrown well out of focus. 9:16 vertical, cinematic film still"
+          },
+          {
+            "beats": [
+              4,
+              4
+            ],
+            "seconds": 2,
+            "size": "wide",
+            "camera": "Static Shot",
+            "angle": "back",
+            "height": "eye",
+            "axisSide": "working",
+            "purpose": {
+              "kind": "consequence",
+              "change": "he is gone; the bag is hers whether she wants it or not"
+            },
+            "characters": [
+              "C03"
+            ],
+            "props": [],
+            "end": {
+              "positions": {
+                "C03": "at the far edge of the light, walking away"
+              },
+              "facing": {
+                "C03": "away"
+              },
+              "gaze": {
+                "C03": "ahead into the rain"
+              },
+              "hands": {
+                "C03": "both hands at his sides"
+              },
+              "heldProps": {
+                "C03": []
+              },
+              "state": [
+                "his raincoat merged with the dark"
+              ]
+            },
+            "motion": {
+              "trigger": "her unfinished question",
+              "action": "he walks straight into the rain, past the puddles, until the raincoat is only a darker shape in the dark",
+              "result": "the frame holds on the empty wedge of light"
+            },
+            "cameraNote": {
+              "hold": "rain falls through the light; the figure shrinks and fades"
+            },
+            "light": {
+              "direction": "back-left",
+              "note": "the doorway is the only source, throwing a long wedge of light onto the wet pavement that the figure walks out of"
+            },
+            "foreground": "",
+            "background": "the wet street dissolving into blue-black rain",
+            "frame": "wide shot from the lit convenience store entrance looking out into a rainy night street, a tall figure in a black hooded raincoat walking away from the camera into blue-black darkness, puddles reflecting cool white light, a chipped green trash can by the door, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 25mm at T1.5, rim-lit from behind camera left, the doorway is the only source, throwing a long wedge of light onto the wet pavement that the figure walks out of. 9:16 vertical, cinematic film still"
+          },
+          {
+            "beats": [
+              5,
+              5
+            ],
+            "seconds": 3,
+            "size": "extreme-close",
+            "camera": "Push In",
+            "angle": "front",
+            "height": "high",
+            "axisSide": "neutral",
+            "purpose": {
+              "kind": "evidence",
+              "change": "the audience sees the shape under the plastic: a hard drive"
+            },
+            "characters": [
+              "C01"
+            ],
+            "props": [
+              "P01"
+            ],
+            "end": {
+              "positions": {
+                "C01": "in the doorway"
+              },
+              "facing": {
+                "C01": "camera"
+              },
+              "gaze": {
+                "C01": "down at her hands"
+              },
+              "hands": {
+                "C01": "both hands on the anti-static bag, thumbs pressing the plastic"
+              },
+              "heldProps": {
+                "C01": [
+                  "P01"
+                ]
+              },
+              "state": [
+                "a hard rectangle showing under the plastic"
+              ]
+            },
+            "motion": {
+              "trigger": "the street is empty",
+              "action": "she lowers her eyes and presses the plastic with both thumbs until a hard rectangle shows through",
+              "result": "her thumbs stop, the outline held under the plastic"
+            },
+            "cameraNote": {
+              "motivation": "reveal",
+              "trigger": "as her thumbs press",
+              "path": "a slow push in on her hands",
+              "endFraming": "the bag and the outline filling the frame"
+            },
+            "light": {
+              "direction": "top",
+              "note": "the awning tube light directly overhead skims the bag and leaves her knuckles in shadow"
+            },
+            "foreground": "the blurred store doorframe at the edge of the lens",
+            "background": "",
+            "frame": "extreme close-up of a young woman's hands holding a silver-grey translucent anti-static bag at night under an awning, fingers pressing the plastic to reveal the rectangular outline of a 3.5-inch hard drive, a half-torn white label faintly visible through the bag, cool white light, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 100mm macro at T1.5, keyed from directly above, the awning tube light directly overhead skims the bag and leaves her knuckles in shadow. the blurred store doorframe at the edge of the lens sits in the immediate foreground, thrown well out of focus. 9:16 vertical, cinematic film still",
+            "note": "the cut from his exit to her hands is the jump the cold open pays off: the street, then the thing he left"
+          }
+        ],
+        "prompt": "How the reference pictures align with the target video — @image1 (from Shot 1) aligns with the 0.00-second mark of the target video; @image2 (from Shot 2) aligns with the 3.00-second mark of the target video; @image3 (from Shot 3) aligns with the 7.00-second mark of the target video; @image4 (from Shot 4) aligns with the 10.00-second mark of the target video; @image5 (from Shot 5) aligns with the 12.00-second mark of the target video.\n@audio1 is the voice of the tall man in the black hooded raincoat — speak their lines in it, matching its timbre, pitch, pace and accent.\n@audio2 is the voice of the young woman in the faded navy jacket — speak their lines in it, matching its timbre, pitch, pace and accent.\n\nintegrated_multimodal_description:\n[Shot 1] Cinematic, live-action, cool blue-grey palette. The cold open follows @image1: under a dripping striped awning in heavy night rain, a young night-shift clerk in a faded navy jacket steps out of the glass door with a trash bag as a tall man in a black hooded raincoat presses a silver anti-static bag into her free hand; a tracking shot follows her from the doorway as the bag lands in her hand.\n[Shot 2] At 00:03.000, the camera cuts to the close-up of @image2: a static shot holds on the hooded man's stubbled jaw, and the man in the hooded raincoat, speaking in @audio1, hushed and fast with almost no pauses, flat and nasal, barely above a whisper, says without looking at her: <d>[Chinese] 帮我收着。明天有人来拿。</d>\n[Shot 3] At 00:07.000, the shot cuts to @image3: a slow push in toward the clerk's face as she clutches the bag to her chest, and the young woman in the navy jacket, speaking in @audio2, quiet and slightly fast, clipping the ends of phrases, flat and guarded, calls after him: <d>[Chinese] 你是谁？我们不代收——</d>\n[Shot 4] At 00:10.000, the camera cuts to the wide framing of @image4: a static shot from the lit doorway as the man walks away without turning, his black raincoat dissolving into the rain and darkness past the puddles.\n[Shot 5] At 00:12.000, the shot cuts to @image5: a slow push in on her hands as her fingers press the translucent bag and the rectangular outline of a hard drive shows through the plastic.\n\noverall_soundscape: All dialogue in standard Mandarin. Heavy rain drumming on the fabric awning and splashing in the puddles, the glass door hissing shut behind her, wet footsteps receding into the street, the faint crackle of plastic as her fingers press the bag. No subtitles, no captions, no on-screen dialogue text.\n\nnon_diegetic_music: N/A",
+        "wji": {
+          "datasetId": "",
+          "nodes": {
+            "keyframes": [],
+            "video": "",
+            "prompt": ""
+          },
+          "assets": {
+            "keyframes": [],
+            "video": ""
+          }
+        }
+      },
+      {
+        "id": "E01-02",
+        "sceneIndex": 2,
+        "axis": {
+          "between": [
+            "C01",
+            "C02"
+          ],
+          "workingSide": "the customer side of the counter, camera looking at the clerk over the oden warmer",
+          "screenLeft": "C02",
+          "screenRight": "C01"
+        },
+        "sound": {
+          "ambience": "the low hum of the oden warmer under a faint fluorescent buzz",
+          "sfx": [
+            {
+              "cut": 1,
+              "event": "the plastic bag crackling as it is set down"
+            },
+            {
+              "cut": 2,
+              "event": "the stool scraping on tile"
+            },
+            {
+              "cut": 3,
+              "event": "chopsticks tapping the ceramic bowl"
+            }
+          ],
+          "music": "N/A"
+        },
+        "cuts": [
+          {
+            "beats": [
+              1,
+              1
+            ],
+            "seconds": 2,
+            "size": "medium",
+            "camera": "Static Shot",
+            "angle": "three-quarter",
+            "height": "eye",
+            "axisSide": "working",
+            "purpose": {
+              "kind": "establish",
+              "change": "the bag is on the counter now, in the open, under the camera"
+            },
+            "characters": [
+              "C01"
+            ],
+            "props": [
+              "P01"
+            ],
+            "start": {
+              "positions": {
+                "C01": "stepping behind the checkout counter"
+              },
+              "facing": {
+                "C01": "screen-left"
+              },
+              "gaze": {
+                "C01": "at the counter top"
+              },
+              "hands": {
+                "C01": "the anti-static bag in her left hand"
+              },
+              "heldProps": {
+                "C01": [
+                  "P01"
+                ]
+              },
+              "state": []
+            },
+            "end": {
+              "positions": {
+                "C01": "behind the counter"
+              },
+              "facing": {
+                "C01": "screen-left"
+              },
+              "gaze": {
+                "C01": "at the bag"
+              },
+              "hands": {
+                "C01": "both hands empty on the counter edge"
+              },
+              "heldProps": {
+                "C01": []
+              },
+              "state": [
+                "the bag lying on the counter"
+              ]
+            },
+            "motion": {
+              "trigger": "she reaches the counter",
+              "action": "she sets the silver bag down on the counter and takes her hands off it",
+              "result": "the bag lies on the counter, her hands at the edge"
+            },
+            "cameraNote": {
+              "hold": "the CCTV monitor flickers green above her"
+            },
+            "light": {
+              "direction": "top",
+              "note": "the ceiling fluorescents drop straight down, hollowing her eyes and leaving a hard shadow under the counter lip"
+            },
+            "foreground": "a blurred rack of instant noodles in the near corner",
+            "background": "the blurred aisles behind her",
+            "frame": "medium shot inside a small convenience store at 2 a.m., a young East Asian woman in a faded navy jacket over a store uniform stepping behind the checkout counter and setting a silver anti-static bag down on the counter, a green-tinted CCTV monitor above her, harsh cool white fluorescent light, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 40mm at T1.5, keyed from directly above, the ceiling fluorescents drop straight down, hollowing her eyes and leaving a hard shadow under the counter lip. a blurred rack of instant noodles in the near corner sits in the immediate foreground, thrown well out of focus. 9:16 vertical, cinematic film still"
+          },
+          {
+            "beats": [
+              2,
+              2
+            ],
+            "seconds": 3,
+            "size": "wide",
+            "camera": "Static Shot",
+            "angle": "front",
+            "height": "eye",
+            "axisSide": "working",
+            "purpose": {
+              "kind": "establish",
+              "change": "the regular arrives on schedule: a face that belongs here"
+            },
+            "characters": [
+              "C02"
+            ],
+            "props": [],
+            "end": {
+              "positions": {
+                "C02": "on the stool at the customer side of the counter"
+              },
+              "facing": {
+                "C02": "screen-right"
+              },
+              "gaze": {
+                "C02": "at his bowl"
+              },
+              "hands": {
+                "C02": "both hands around a bowl of oden"
+              },
+              "heldProps": {
+                "C02": []
+              },
+              "state": [
+                "steam rising off the bowl"
+              ]
+            },
+            "motion": {
+              "trigger": "the bag is down",
+              "action": "the stocky man carries the bowl of oden up the aisle and sits on the stool in front of the counter",
+              "result": "he is seated, the bowl set in front of him"
+            },
+            "cameraNote": {
+              "hold": "he walks toward the lens up the aisle; nothing else moves"
+            },
+            "light": {
+              "direction": "top",
+              "note": "even overhead tubes flatten the whole aisle; the only modelling is the cold spill off the drinks cabinet"
+            },
+            "foreground": "the out-of-focus end of a shelf unit",
+            "background": "the aisle receding to the grey staff door",
+            "frame": "wide shot down a convenience store aisle at night, a stocky East Asian man in his sixties with a grey crew cut and a washed-out grey zip jacket carrying a bowl of oden toward the checkout counter and sitting down on a stool in front of it, the oden warmer with a flickering light panel on the right, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 25mm at T1.5, keyed from directly above, even overhead tubes flatten the whole aisle; the only modelling is the cold spill off the drinks cabinet. the out-of-focus end of a shelf unit sits in the immediate foreground, thrown well out of focus. 9:16 vertical, cinematic film still"
+          },
+          {
+            "beats": [
+              3,
+              4
+            ],
+            "seconds": 5,
+            "size": "medium",
+            "camera": "Static Shot",
+            "angle": "profile",
+            "height": "eye",
+            "axisSide": "working",
+            "purpose": {
+              "kind": "performance",
+              "change": "the nightly ritual: he keeps his head down, she keeps her eyes on the bag"
+            },
+            "characters": [
+              "C01",
+              "C02"
+            ],
+            "props": [],
+            "end": {
+              "positions": {
+                "C01": "behind the counter",
+                "C02": "on the stool"
+              },
+              "facing": {
+                "C01": "screen-left",
+                "C02": "screen-right"
+              },
+              "gaze": {
+                "C01": "down at the bag",
+                "C02": "at his bowl"
+              },
+              "hands": {
+                "C01": "both hands on the counter edge",
+                "C02": "chopsticks in his right hand over the bowl"
+              },
+              "heldProps": {
+                "C01": [],
+                "C02": []
+              },
+              "state": []
+            },
+            "motion": {
+              "trigger": "he lifts the first mouthful",
+              "action": "he eats with his head down and speaks; she answers with her eyes still on the bag",
+              "result": "both hold where they are, the bag between them"
+            },
+            "cameraNote": {
+              "hold": "chopsticks rise and fall; the steam drifts"
+            },
+            "light": {
+              "direction": "front-right",
+              "note": "the cabinet glow to camera right fills his face while the overheads pick out the crew cut"
+            },
+            "foreground": "the blurred lip of the counter",
+            "background": "the black night window reflecting the shelves",
+            "frame": "medium shot across a convenience store checkout counter at night, an older stocky man with a grey crew cut eating oden on the customer side, a young woman clerk in a navy jacket on the other side glancing down at the counter, harsh cool white fluorescent light, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 40mm at T1.5, keyed three-quarter from camera right, the cabinet glow to camera right fills his face while the overheads pick out the crew cut. the blurred lip of the counter sits in the immediate foreground, thrown well out of focus. 9:16 vertical, cinematic film still"
+          },
+          {
+            "beats": [
+              5,
+              5
+            ],
+            "seconds": 3,
+            "size": "close",
+            "camera": "Static Shot",
+            "angle": "three-quarter",
+            "height": "eye",
+            "axisSide": "working",
+            "purpose": {
+              "kind": "performance",
+              "change": "the smile is the only warmth in the store, and it costs nothing yet"
+            },
+            "characters": [
+              "C02"
+            ],
+            "props": [],
+            "end": {
+              "positions": {
+                "C02": "on the stool"
+              },
+              "facing": {
+                "C02": "screen-right"
+              },
+              "gaze": {
+                "C02": "at her"
+              },
+              "hands": {
+                "C02": "chopsticks in his right hand"
+              },
+              "heldProps": {
+                "C02": []
+              },
+              "state": [
+                "crow's feet deepened in a smile"
+              ]
+            },
+            "motion": {
+              "trigger": "her question",
+              "action": "he looks up at her and smiles as he answers",
+              "result": "the smile holds on his face"
+            },
+            "cameraNote": {
+              "hold": "only his face moves"
+            },
+            "light": {
+              "direction": "top",
+              "note": "the overhead tube catches the top of his cheekbones and the crow’s feet, the fill coming back off the white counter"
+            },
+            "foreground": "steam rising off an out-of-focus lunchbox",
+            "background": "shelves blurred behind him",
+            "frame": "close-up of a stocky East Asian man in his sixties smiling with deep crow's feet, chopsticks in hand, harsh cool fluorescent light from above, convenience store shelves blurred behind, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 75mm at T1.5, keyed from directly above, the overhead tube catches the top of his cheekbones and the crow’s feet, the fill coming back off the white counter. steam rising off an out-of-focus lunchbox sits in the immediate foreground, thrown well out of focus. 9:16 vertical, cinematic film still"
+          },
+          {
+            "beats": [
+              6,
+              6
+            ],
+            "seconds": 2,
+            "size": "close",
+            "camera": "Push In",
+            "angle": "rear-three-quarter",
+            "height": "high",
+            "axisSide": "working",
+            "purpose": {
+              "kind": "reveal",
+              "change": "his eyes have found the bag; he knows what it is"
+            },
+            "characters": [
+              "C02"
+            ],
+            "props": [
+              "P01"
+            ],
+            "end": {
+              "positions": {
+                "C02": "on the stool, leaning slightly toward the counter"
+              },
+              "facing": {
+                "C02": "screen-right"
+              },
+              "gaze": {
+                "C02": "on the bag"
+              },
+              "hands": {
+                "C02": "chopsticks frozen in mid-air in his right hand"
+              },
+              "heldProps": {
+                "C02": []
+              },
+              "state": [
+                "chopsticks stopped above the bowl"
+              ]
+            },
+            "motion": {
+              "trigger": "his eyes drop from her face to the counter",
+              "action": "his gaze lands on the silver bag and the chopsticks stop in mid-air",
+              "result": "chopsticks held still above the bowl, eyes on the bag"
+            },
+            "cameraNote": {
+              "motivation": "reveal",
+              "trigger": "as his eyes drop",
+              "path": "a slow push in over his shoulder",
+              "endFraming": "the bag sharp past his blurred chopsticks"
+            },
+            "light": {
+              "direction": "front-left",
+              "note": "the counter lamp from camera left rakes across the silver bag and makes its creases legible"
+            },
+            "foreground": "his blurred shoulder and chopsticks in the near frame",
+            "background": "the counter and the bag past his shoulder",
+            "frame": "close-up over an older man's shoulder of a silver anti-static bag lying on a convenience store counter, his chopsticks frozen just above a bowl of oden in the foreground, harsh cool white light, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 75mm at T1.5, keyed three-quarter from camera left, the counter lamp from camera left rakes across the silver bag and makes its creases legible. his blurred shoulder and chopsticks in the near frame sits in the immediate foreground, thrown well out of focus. 9:16 vertical, cinematic film still"
+          }
+        ],
+        "prompt": "How the reference pictures align with the target video — @image1 (from Shot 1) aligns with the 0.00-second mark of the target video; @image2 (from Shot 2) aligns with the 2.00-second mark of the target video; @image3 (from Shot 3) aligns with the 5.00-second mark of the target video; @image4 (from Shot 4) aligns with the 10.00-second mark of the target video; @image5 (from Shot 5) aligns with the 13.00-second mark of the target video.\n@audio1 is the voice of the stocky man in his sixties with a grey crew cut — speak their lines in it, matching its timbre, pitch, pace and accent.\n@audio2 is the voice of the young woman in the faded navy jacket — speak their lines in it, matching its timbre, pitch, pace and accent.\n\nintegrated_multimodal_description:\n[Shot 1] Cinematic, live-action, cool fluorescent palette. Following @image1, a static shot: the young clerk in the navy jacket steps behind the checkout counter and sets the silver anti-static bag down on the counter under the green CCTV monitor.\n[Shot 2] At 00:02.000, the camera cuts to the wide view of @image2: a static shot down the aisle as a stocky older man with a grey crew cut carries a bowl of oden to the counter and sits down on the stool.\n[Shot 3] At 00:05.000, the shot cuts to @image3: a static shot across the counter; the stocky man in his sixties, speaking in @audio1, slow and gravelly, low in the chest, pausing between clauses as if deciding, eats a mouthful without looking up and says <d>[Chinese] 又是你值夜班。</d> while she does not speak and her lips remain completely closed; then the young woman in the navy jacket, speaking in @audio2, quiet and slightly fast, clipping the ends of phrases, flat and guarded, answers, her eyes still on the bag: <d>[Chinese] 陈叔，你怎么天天半夜来。</d> while his lips remain completely closed\n[Shot 4] At 00:10.000, the camera cuts to the close-up of @image4: a static shot on the older man's face as he smiles, crow's feet deepening, and the stocky man in his sixties, speaking in @audio1, slow and gravelly, low in the chest, pausing between clauses as if deciding, says <d>[Chinese] 老了，睡不着。</d>\n[Shot 5] At 00:13.000, the shot cuts to @image5: a slow push in over his shoulder toward the anti-static bag on the counter as his chopsticks stop in mid-air above the bowl.\n\noverall_soundscape: All dialogue in standard Mandarin. The low hum of the oden warmer and a faint electrical buzz from the flickering light panel, a plastic bag crackling as it is set down, a stool scraping on tile, chopsticks tapping a ceramic bowl, quiet slurping. No subtitles, no captions, no on-screen dialogue text.\n\nnon_diegetic_music: N/A",
+        "wji": {
+          "datasetId": "",
+          "nodes": {
+            "keyframes": [],
+            "video": "",
+            "prompt": ""
+          },
+          "assets": {
+            "keyframes": [],
+            "video": ""
+          }
+        }
+      },
+      {
+        "id": "E01-03",
+        "sceneIndex": 2,
+        "axis": {
+          "between": [
+            "C01",
+            "C02"
+          ],
+          "workingSide": "the customer side of the counter, camera looking at the clerk over the oden warmer",
+          "screenLeft": "C02",
+          "screenRight": "C01"
+        },
+        "sound": {
+          "ambience": "the low hum of the oden warmer under a faint fluorescent buzz",
+          "sfx": [
+            {
+              "cut": 3,
+              "event": "the ceramic bowl set down, the bag sliding across laminate, the wooden drawer slamming shut"
+            }
+          ],
+          "music": "N/A"
+        },
+        "cuts": [
+          {
+            "beats": [
+              7,
+              7
+            ],
+            "seconds": 2,
+            "size": "close",
+            "camera": "Static Shot",
+            "angle": "front",
+            "height": "eye",
+            "axisSide": "working",
+            "purpose": {
+              "kind": "pressure",
+              "change": "the question, asked with no change of tone, is the first pressure on her"
+            },
+            "characters": [
+              "C02"
+            ],
+            "props": [],
+            "start": {
+              "positions": {
+                "C02": "on the stool, leaning slightly toward the counter"
+              },
+              "facing": {
+                "C02": "screen-right"
+              },
+              "gaze": {
+                "C02": "on the bag"
+              },
+              "hands": {
+                "C02": "chopsticks motionless in his right hand"
+              },
+              "heldProps": {
+                "C02": []
+              },
+              "state": [
+                "chopsticks stopped above the bowl"
+              ]
+            },
+            "end": {
+              "positions": {
+                "C02": "on the stool, leaning slightly toward the counter"
+              },
+              "facing": {
+                "C02": "screen-right"
+              },
+              "gaze": {
+                "C02": "on the bag"
+              },
+              "hands": {
+                "C02": "chopsticks motionless in his right hand"
+              },
+              "heldProps": {
+                "C02": []
+              },
+              "state": [
+                "chopsticks stopped above the bowl"
+              ]
+            },
+            "motion": {
+              "trigger": "the chopsticks have stopped",
+              "action": "with nothing moving but his mouth he asks what it is",
+              "result": "face still, eyes still on the bag"
+            },
+            "cameraNote": {
+              "hold": "nothing moves but his lips"
+            },
+            "light": {
+              "direction": "front-right",
+              "note": "the cabinet glow holds the right of his face; as he stops chewing nothing moves but the light on his jaw"
+            },
+            "foreground": "the blurred edge of an open lunchbox",
+            "background": "",
+            "frame": "close-up of a stocky East Asian man in his sixties at a convenience store counter, face still, chopsticks motionless, eyes on something below the frame, harsh cool fluorescent light, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 75mm at T1.5, keyed three-quarter from camera right, the cabinet glow holds the right of his face; as he stops chewing nothing moves but the light on his jaw. the blurred edge of an open lunchbox sits in the immediate foreground, thrown well out of focus. 9:16 vertical, cinematic film still"
+          },
+          {
+            "beats": [
+              8,
+              8
+            ],
+            "seconds": 5,
+            "size": "medium",
+            "camera": "Static Shot",
+            "angle": "three-quarter",
+            "height": "eye",
+            "axisSide": "working",
+            "purpose": {
+              "kind": "performance",
+              "change": "she gives the answer that gives nothing away"
+            },
+            "characters": [
+              "C01"
+            ],
+            "props": [
+              "P01"
+            ],
+            "end": {
+              "positions": {
+                "C01": "behind the counter"
+              },
+              "facing": {
+                "C01": "screen-left"
+              },
+              "gaze": {
+                "C01": "at him"
+              },
+              "hands": {
+                "C01": "both hands back on the counter edge"
+              },
+              "heldProps": {
+                "C01": []
+              },
+              "state": []
+            },
+            "motion": {
+              "trigger": "his question",
+              "action": "she shrugs one shoulder and answers, and puts her hands back on the counter",
+              "result": "hands on the counter edge, eyes on him"
+            },
+            "cameraNote": {
+              "hold": "the monitor flickers above her; she shrugs and settles"
+            },
+            "light": {
+              "direction": "top",
+              "note": "flat overhead light, no modelling — the shrug reads as posture, not expression"
+            },
+            "foreground": "the out-of-focus counter edge",
+            "background": "the green CCTV monitor above her",
+            "frame": "medium shot of a young East Asian woman clerk in a navy jacket behind a convenience store counter shrugging, a silver anti-static bag on the counter in front of her, the green CCTV monitor above, harsh cool white light, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 40mm at T1.5, keyed from directly above, flat overhead light, no modelling — the shrug reads as posture, not expression. the out-of-focus counter edge sits in the immediate foreground, thrown well out of focus. 9:16 vertical, cinematic film still"
+          },
+          {
+            "beats": [
+              9,
+              9
+            ],
+            "seconds": 3,
+            "size": "close",
+            "camera": "Static Shot",
+            "angle": "three-quarter",
+            "height": "high",
+            "axisSide": "working",
+            "purpose": {
+              "kind": "decision",
+              "change": "she gets there first; the bag is in her drawer and out of his reach"
+            },
+            "characters": [
+              "C01",
+              "C02"
+            ],
+            "props": [
+              "P01"
+            ],
+            "end": {
+              "positions": {
+                "C01": "behind the counter, crouched to the drawer",
+                "C02": "on the stool, leaning over the counter"
+              },
+              "facing": {
+                "C01": "screen-left",
+                "C02": "screen-right"
+              },
+              "gaze": {
+                "C01": "at the drawer",
+                "C02": "at the drawer"
+              },
+              "hands": {
+                "C01": "right hand pushing the red drawer shut",
+                "C02": "right hand open on the counter where the bag was"
+              },
+              "heldProps": {
+                "C01": [
+                  "P01"
+                ],
+                "C02": []
+              },
+              "state": [
+                "the bag inside the red drawer",
+                "the bowl set down on the counter"
+              ]
+            },
+            "motion": {
+              "trigger": "he sets the bowl down and reaches",
+              "action": "his thick hand comes across the counter for the bag; her hand sweeps it off the counter into the open red drawer below and pushes the drawer shut",
+              "result": "the drawer shut under her hand, his hand open on the empty counter"
+            },
+            "cameraNote": {
+              "hold": "two hands cross the frame; the drawer slides shut"
+            },
+            "light": {
+              "direction": "side-left",
+              "note": "the counter lamp skims low across the surface so the hand throws a long shadow toward the lens"
+            },
+            "foreground": "the blurred silver bag in the near foreground",
+            "background": "the counter top",
+            "frame": "close-up on a convenience store counter at night, an older man's thick hand reaching for a silver anti-static bag while a young woman's hand sweeps the bag off the counter into an open red drawer with worn corners below, harsh cool light, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 75mm at T1.5, keyed from hard camera left, across the face, the counter lamp skims low across the surface so the hand throws a long shadow toward the lens. the blurred silver bag in the near foreground sits in the immediate foreground, thrown well out of focus. 9:16 vertical, cinematic film still"
+          },
+          {
+            "beats": [
+              10,
+              10
+            ],
+            "seconds": 2,
+            "size": "close",
+            "camera": "Static Shot",
+            "angle": "front",
+            "height": "eye",
+            "axisSide": "working",
+            "purpose": {
+              "kind": "pressure",
+              "change": "her hand on the drawer is the answer: not yours"
+            },
+            "characters": [
+              "C01"
+            ],
+            "props": [],
+            "end": {
+              "positions": {
+                "C01": "behind the counter, standing"
+              },
+              "facing": {
+                "C01": "screen-left"
+              },
+              "gaze": {
+                "C01": "straight ahead at him"
+              },
+              "hands": {
+                "C01": "one hand pressed flat on the closed red drawer"
+              },
+              "heldProps": {
+                "C01": [
+                  "P01"
+                ]
+              },
+              "state": [
+                "the bag inside the red drawer"
+              ]
+            },
+            "motion": {
+              "trigger": "the drawer clicks shut",
+              "action": "she straightens with her hand still flat on the drawer and says it is someone else's",
+              "result": "hand flat on the drawer, jaw set"
+            },
+            "cameraNote": {
+              "hold": "her jaw sets; the hand stays where it is"
+            },
+            "light": {
+              "direction": "front-left",
+              "note": "the counter lamp picks out the tendons on the back of her hand and leaves her face half in shadow"
+            },
+            "foreground": "the blurred corner of the red drawer",
+            "background": "",
+            "frame": "close-up of a young East Asian woman in a navy jacket behind a counter, one hand pressed flat on a closed red drawer, jaw set, looking straight ahead, harsh cool fluorescent light, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 75mm at T1.5, keyed three-quarter from camera left, the counter lamp picks out the tendons on the back of her hand and leaves her face half in shadow. the blurred corner of the red drawer sits in the immediate foreground, thrown well out of focus. 9:16 vertical, cinematic film still"
+          },
+          {
+            "beats": [
+              11,
+              11
+            ],
+            "seconds": 3,
+            "size": "close",
+            "camera": "Push In",
+            "angle": "three-quarter",
+            "height": "eye",
+            "axisSide": "working",
+            "purpose": {
+              "kind": "reveal",
+              "change": "he names the raincoat he never saw"
+            },
+            "characters": [
+              "C02"
+            ],
+            "props": [],
+            "end": {
+              "positions": {
+                "C02": "standing between the stool and the glass doors, his back to the counter"
+              },
+              "facing": {
+                "C02": "away"
+              },
+              "gaze": {
+                "C02": "at the doors"
+              },
+              "hands": {
+                "C02": "both hands at his sides"
+              },
+              "heldProps": {
+                "C02": []
+              },
+              "state": []
+            },
+            "motion": {
+              "trigger": "her hand stays on the drawer",
+              "action": "he tilts his head a few degrees and asks, lightly, whether the man wore a raincoat; as the question lands he rises off the stool and turns toward the doors",
+              "result": "standing, his back to the counter, facing the glass doors"
+            },
+            "cameraNote": {
+              "motivation": "pressure",
+              "trigger": "as he starts the question",
+              "path": "a slow push in",
+              "endFraming": "his face filling the frame as he rises out of it"
+            },
+            "light": {
+              "direction": "front-right",
+              "note": "the drinks cabinet fills his face from camera right as he leans in, the fluorescents rimming the crew cut"
+            },
+            "foreground": "a blurred shelf edge across the lower frame",
+            "background": "the oden bowl steaming in front of him",
+            "frame": "close-up of a stocky older East Asian man with a grey crew cut at a convenience store counter, speaking quietly with his head slightly tilted, eyes on the clerk, oden bowl steaming in the foreground, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 75mm at T1.5, keyed three-quarter from camera right, the drinks cabinet fills his face from camera right as he leans in, the fluorescents rimming the crew cut. a blurred shelf edge across the lower frame sits in the immediate foreground, thrown well out of focus. 9:16 vertical, cinematic film still"
+          }
+        ],
+        "prompt": "How the reference pictures align with the target video — @image1 (from Shot 1) aligns with the 0.00-second mark of the target video; @image2 (from Shot 2) aligns with the 2.00-second mark of the target video; @image3 (from Shot 3) aligns with the 7.00-second mark of the target video; @image4 (from Shot 4) aligns with the 10.00-second mark of the target video; @image5 (from Shot 5) aligns with the 12.00-second mark of the target video.\n@audio1 is the voice of the stocky man in his sixties with a grey crew cut — speak their lines in it, matching its timbre, pitch, pace and accent.\n@audio2 is the voice of the young woman in the faded navy jacket — speak their lines in it, matching its timbre, pitch, pace and accent.\n\nintegrated_multimodal_description:\n[Shot 1] Cinematic, live-action, cool fluorescent palette. Following @image1, a static shot on the older man's still face, chopsticks motionless; the stocky man in his sixties, speaking in @audio1, slow and gravelly, low in the chest, pausing between clauses as if deciding, asks without changing tone: <d>[Chinese] 这是什么？</d>\n[Shot 2] At 00:02.000, the camera cuts to @image2: a static shot of the young clerk shrugging behind the counter, the bag in front of her, as the young woman in the navy jacket, speaking in @audio2, quiet and slightly fast, clipping the ends of phrases, flat and guarded, says <d>[Chinese] 刚才一个人放这儿的，说明天有人来拿。</d>\n[Shot 3] At 00:07.000, the shot cuts to the close-up of @image3: a static shot on the counter as the older man sets his bowl down and his thick hand reaches for the bag, and the clerk's hand gets there first, sweeping the bag into the red drawer and pushing it shut.\n[Shot 4] At 00:10.000, the camera cuts to @image4: a static shot on the clerk, one hand flat on the closed red drawer, and the young woman in the navy jacket, speaking in @audio2, quiet and slightly fast, clipping the ends of phrases, flat and guarded, says <d>[Chinese] 别人的东西。</d>\n[Shot 5] At 00:12.000, the shot cuts to @image5: a slow push in on the older man's face as he tilts his head slightly and the stocky man in his sixties, speaking in @audio1, slow and gravelly, low in the chest, pausing between clauses as if deciding, asks very lightly: <d>[Chinese] 小夏，那个人穿雨衣？</d>\n\noverall_soundscape: All dialogue in standard Mandarin. The hum of the oden warmer, a ceramic bowl set down on the counter, a plastic bag sliding across laminate, a wooden drawer slamming shut, then near silence under the fluorescent buzz. No subtitles, no captions, no on-screen dialogue text.\n\nnon_diegetic_music: N/A",
+        "wji": {
+          "datasetId": "",
+          "nodes": {
+            "keyframes": [],
+            "video": "",
+            "prompt": ""
+          },
+          "assets": {
+            "keyframes": [],
+            "video": ""
+          }
+        }
+      },
+      {
+        "id": "E01-04",
+        "sceneIndex": 2,
+        "axis": {
+          "between": [
+            "C01",
+            "C02"
+          ],
+          "workingSide": "the customer side of the counter, camera looking at the clerk over the oden warmer",
+          "screenLeft": "C02",
+          "screenRight": "C01"
+        },
+        "sound": {
+          "ambience": "the low hum of the oden warmer under a faint fluorescent buzz",
+          "sfx": [
+            {
+              "cut": 3,
+              "event": "his jacket rustling as he turns"
+            }
+          ],
+          "music": {
+            "intent": "a single sustained low cello note, barely audible",
+            "cues": [
+              {
+                "at": 4,
+                "do": "enter",
+                "note": "under the last line"
+              }
+            ]
+          }
+        },
+        "cuts": [
+          {
+            "beats": [
+              12,
+              12
+            ],
+            "seconds": 2,
+            "size": "wide",
+            "camera": "Static Shot",
+            "angle": "three-quarter",
+            "height": "eye",
+            "axisSide": "working",
+            "purpose": {
+              "kind": "reveal",
+              "change": "when she looks up he is already on his feet, facing the rain"
+            },
+            "characters": [
+              "C01",
+              "C02"
+            ],
+            "props": [],
+            "start": {
+              "positions": {
+                "C01": "behind the counter",
+                "C02": "standing between the stool and the glass doors, his back to the counter"
+              },
+              "facing": {
+                "C01": "screen-left",
+                "C02": "away"
+              },
+              "gaze": {
+                "C01": "down at the drawer",
+                "C02": "at the doors"
+              },
+              "hands": {
+                "C01": "one hand flat on the closed drawer",
+                "C02": "both hands at his sides"
+              },
+              "heldProps": {
+                "C01": [
+                  "P01"
+                ],
+                "C02": []
+              },
+              "state": [
+                "the bag inside the red drawer"
+              ]
+            },
+            "end": {
+              "positions": {
+                "C01": "behind the counter",
+                "C02": "standing between the stool and the glass doors, his back to the counter"
+              },
+              "facing": {
+                "C01": "screen-left",
+                "C02": "away"
+              },
+              "gaze": {
+                "C01": "up at his back",
+                "C02": "at the doors"
+              },
+              "hands": {
+                "C01": "hand lifting off the drawer",
+                "C02": "both hands at his sides"
+              },
+              "heldProps": {
+                "C01": [
+                  "P01"
+                ],
+                "C02": []
+              },
+              "state": [
+                "the bag inside the red drawer"
+              ]
+            },
+            "motion": {
+              "trigger": "his silence",
+              "action": "she looks up from the drawer and finds him standing with his back to her, facing the glass doors",
+              "result": "she looks at his back; he stays facing the doors"
+            },
+            "cameraNote": {
+              "hold": "rain streaks the glass; only her head lifts"
+            },
+            "light": {
+              "direction": "top",
+              "note": "the overheads split the room into two pools with the counter dark between them"
+            },
+            "foreground": "the blurred drinks cabinet in the near foreground",
+            "background": "the black glass doors streaked with rain",
+            "frame": "wide shot inside a convenience store at night, a young woman clerk in a navy jacket behind the checkout counter looking up, a stocky older man in a grey zip jacket standing with his back to her, facing the black glass doors streaked with rain, harsh cool fluorescent light, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 25mm at T1.5, keyed from directly above, the overheads split the room into two pools with the counter dark between them. the blurred drinks cabinet in the near foreground sits in the immediate foreground, thrown well out of focus. 9:16 vertical, cinematic film still"
+          },
+          {
+            "beats": [
+              13,
+              13
+            ],
+            "seconds": 4,
+            "size": "close",
+            "camera": "Static Shot",
+            "angle": "back",
+            "height": "eye",
+            "axisSide": "working",
+            "purpose": {
+              "kind": "reveal",
+              "change": "three years ago, this store, something lost: the first crack in the secret"
+            },
+            "characters": [
+              "C02"
+            ],
+            "props": [],
+            "end": {
+              "positions": {
+                "C02": "standing between the stool and the glass doors, his back to the counter"
+              },
+              "facing": {
+                "C02": "away"
+              },
+              "gaze": {
+                "C02": "at his own reflection in the glass"
+              },
+              "hands": {
+                "C02": "both hands at his sides"
+              },
+              "heldProps": {
+                "C02": []
+              },
+              "state": [
+                "his reflection faint in the glass"
+              ]
+            },
+            "motion": {
+              "trigger": "her eyes on his back",
+              "action": "with his back to her he speaks to the glass, slowly, the words spaced out",
+              "result": "he holds facing the door, the last word gone"
+            },
+            "cameraNote": {
+              "hold": "his reflection breathes in the glass; the rain moves"
+            },
+            "light": {
+              "direction": "backlight",
+              "note": "the window behind him turns him into a shape; only the reflection in the glass carries detail"
+            },
+            "foreground": "the out-of-focus counter surface",
+            "background": "his faint reflection in the black glass",
+            "frame": "close-up from behind of a stocky East Asian man in his sixties with a grey crew cut, his reflection faint in the black rain-streaked glass door of a convenience store, cool white light on the back of his head, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 75mm at T1.5, backlit from directly behind the subject, the window behind him turns him into a shape; only the reflection in the glass carries detail. the out-of-focus counter surface sits in the immediate foreground, thrown well out of focus. 9:16 vertical, cinematic film still"
+          },
+          {
+            "beats": [
+              14,
+              14
+            ],
+            "seconds": 3,
+            "size": "medium",
+            "camera": "Pan Left",
+            "angle": "three-quarter",
+            "height": "eye",
+            "axisSide": "working",
+            "purpose": {
+              "kind": "decision",
+              "change": "he turns and looks her in the eye for the first time; the secret is now between two people"
+            },
+            "characters": [
+              "C02",
+              "C01"
+            ],
+            "props": [],
+            "end": {
+              "positions": {
+                "C02": "standing facing the counter, two steps from it",
+                "C01": "behind the counter"
+              },
+              "facing": {
+                "C02": "screen-right",
+                "C01": "screen-left"
+              },
+              "gaze": {
+                "C02": "at her eyes",
+                "C01": "at his eyes"
+              },
+              "hands": {
+                "C02": "both hands at his sides",
+                "C01": "both hands on the counter edge"
+              },
+              "heldProps": {
+                "C02": [],
+                "C01": [
+                  "P01"
+                ]
+              },
+              "state": [
+                "the bag inside the red drawer"
+              ]
+            },
+            "motion": {
+              "trigger": "the last word to the glass",
+              "action": "he turns around to face her across the counter and holds her eyes",
+              "result": "the two of them looking directly at each other, still"
+            },
+            "cameraNote": {
+              "motivation": "relationship",
+              "trigger": "as he turns",
+              "path": "a slow pan left with his turn",
+              "endFraming": "a medium two-shot, the counter between them"
+            },
+            "light": {
+              "direction": "front-left",
+              "note": "the pan carries him out of the cabinet glow into the overheads, and the shadow under his brow deepens as he turns"
+            },
+            "foreground": "a blurred shelf of cup noodles sliding through frame",
+            "background": "the oden warmer glowing",
+            "frame": "medium shot inside a convenience store at night, a stocky older man in a grey zip jacket turning around to face the young woman clerk behind the counter, the two looking directly at each other for the first time, oden warmer glowing between them, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 40mm at T1.5, keyed three-quarter from camera left, the pan carries him out of the cabinet glow into the overheads, and the shadow under his brow deepens as he turns. a blurred shelf of cup noodles sliding through frame sits in the immediate foreground, thrown well out of focus. 9:16 vertical, cinematic film still"
+          },
+          {
+            "beats": [
+              15,
+              15
+            ],
+            "seconds": 3,
+            "size": "close",
+            "camera": "Push In",
+            "angle": "front",
+            "height": "low",
+            "axisSide": "working",
+            "purpose": {
+              "kind": "pressure",
+              "change": "the instruction lands: give it to no one"
+            },
+            "characters": [
+              "C02"
+            ],
+            "props": [],
+            "end": {
+              "positions": {
+                "C02": "standing facing the counter, two steps from it"
+              },
+              "facing": {
+                "C02": "camera"
+              },
+              "gaze": {
+                "C02": "into the lens"
+              },
+              "hands": {
+                "C02": "both hands at his sides"
+              },
+              "heldProps": {
+                "C02": []
+              },
+              "state": []
+            },
+            "motion": {
+              "trigger": "her eyes on his",
+              "action": "he says it one word at a time, straight into the lens",
+              "result": "his face held, grave, mouth closed"
+            },
+            "cameraNote": {
+              "motivation": "pressure",
+              "trigger": "on the first word",
+              "path": "a slow push in",
+              "endFraming": "his face filling the frame"
+            },
+            "light": {
+              "direction": "front-right",
+              "note": "the cabinet glow hits him three-quarter from camera right; as the lens pushes in the fill falls away and the grave look hardens"
+            },
+            "foreground": "",
+            "background": "",
+            "frame": "close-up of a stocky East Asian man in his sixties looking straight into the lens with a grave expression, deep crow's feet, grey crew cut, harsh cool fluorescent light from above, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 75mm at T1.5, keyed three-quarter from camera right, the cabinet glow hits him three-quarter from camera right; as the lens pushes in the fill falls away and the grave look hardens. 9:16 vertical, cinematic film still"
+          }
+        ],
+        "prompt": "How the reference pictures align with the target video — @image1 (from Shot 1) aligns with the 0.00-second mark of the target video; @image2 (from Shot 2) aligns with the 2.00-second mark of the target video; @image3 (from Shot 3) aligns with the 6.00-second mark of the target video; @image4 (from Shot 4) aligns with the 9.00-second mark of the target video.\n@audio1 is the voice of the stocky man in his sixties with a grey crew cut — speak their lines in it, matching its timbre, pitch, pace and accent.\n\nintegrated_multimodal_description:\n[Shot 1] Cinematic, live-action, cool fluorescent palette. Following @image1, a static shot: the young clerk looks up from the counter to find the older man already on his feet, standing with his back to her and facing the rain-streaked glass doors.\n[Shot 2] At 00:02.000, the camera cuts to @image2: a static shot from behind the older man, his faint reflection in the black glass, and the stocky man in his sixties, speaking in @audio1, slow and gravelly, low in the chest, pausing between clauses as if deciding, says with his back to her: <d>[Chinese] 三年前，这店里丢过一样东西。</d>\n[Shot 3] At 00:06.000, the shot cuts to @image3: a slow pan left follows him as he turns around and looks the clerk in the eye for the first time.\n[Shot 4] At 00:09.000, the camera cuts to the close-up of @image4: a slow push in on his grave face as the stocky man in his sixties, speaking in @audio1, slow and gravelly, low in the chest, pausing between clauses as if deciding, says one word at a time: <d>[Chinese] 别把它交给任何人。</d>\n\noverall_soundscape: All dialogue in standard Mandarin. Rain against the glass doors, the fluorescent buzz, a jacket rustling as he turns, the oden warmer humming; no other voices. No subtitles, no captions, no on-screen dialogue text.\n\nnon_diegetic_music: A single sustained low cello note, barely audible, entering under the last line.",
+        "wji": {
+          "datasetId": "",
+          "nodes": {
+            "keyframes": [],
+            "video": "",
+            "prompt": ""
+          },
+          "assets": {
+            "keyframes": [],
+            "video": ""
+          }
+        }
+      },
+      {
+        "id": "E01-05",
+        "sceneIndex": 2,
+        "axis": {
+          "between": [
+            "C01",
+            "C02"
+          ],
+          "workingSide": "the customer side of the counter, camera looking at the clerk over the oden warmer",
+          "screenLeft": "C02",
+          "screenRight": "C01"
+        },
+        "sound": {
+          "ambience": "the low hum of the oden warmer under a faint fluorescent buzz",
+          "sfx": [
+            {
+              "cut": 3,
+              "event": "a single ring of the brass wind chimes, rain hammering the glass"
+            }
+          ],
+          "music": {
+            "intent": "the low cello note",
+            "cues": [
+              {
+                "at": 1,
+                "do": "enter"
+              },
+              {
+                "at": 3,
+                "do": "swell",
+                "note": "on the chime"
+              },
+              {
+                "at": "10.5s",
+                "do": "silence",
+                "note": "cuts off with the last line"
+              }
+            ]
+          }
+        },
+        "cuts": [
+          {
+            "beats": [
+              16,
+              16
+            ],
+            "seconds": 3,
+            "size": "extreme-close",
+            "camera": "Tilt Up",
+            "angle": "front",
+            "height": "low",
+            "axisSide": "neutral",
+            "purpose": {
+              "kind": "evidence",
+              "change": "the drawer is not quite shut; the bag is still there, and the bowl is still steaming"
+            },
+            "characters": [
+              "C01"
+            ],
+            "props": [
+              "P01"
+            ],
+            "start": {
+              "positions": {
+                "C01": "behind the counter"
+              },
+              "facing": {
+                "C01": "screen-left"
+              },
+              "gaze": {
+                "C01": "down at the drawer"
+              },
+              "hands": {
+                "C01": "both hands on the counter edge"
+              },
+              "heldProps": {
+                "C01": [
+                  "P01"
+                ]
+              },
+              "state": [
+                "the bag inside the red drawer",
+                "the drawer slightly ajar"
+              ]
+            },
+            "end": {
+              "positions": {
+                "C01": "behind the counter"
+              },
+              "facing": {
+                "C01": "screen-left"
+              },
+              "gaze": {
+                "C01": "at the steaming bowl"
+              },
+              "hands": {
+                "C01": "both hands on the counter edge"
+              },
+              "heldProps": {
+                "C01": [
+                  "P01"
+                ]
+              },
+              "state": [
+                "the bag inside the red drawer",
+                "the drawer slightly ajar"
+              ]
+            },
+            "motion": {
+              "trigger": "she lowers her eyes",
+              "action": "the frame rises from the ajar drawer with the silver corner showing to the bowl of oden still steaming on the counter",
+              "result": "the bowl held in frame, steam rising"
+            },
+            "cameraNote": {
+              "motivation": "reveal",
+              "trigger": "from her lowered eyes",
+              "path": "a slow tilt up",
+              "endFraming": "the steaming bowl on the counter"
+            },
+            "light": {
+              "direction": "side-left",
+              "note": "the counter lamp rakes across the worn corners; the silver catches a hard specular line as the frame tilts up"
+            },
+            "foreground": "the blurred rim of the counter above the drawer",
+            "background": "",
+            "frame": "extreme close-up of a red convenience store drawer with worn corners slightly ajar, the silver corner of an anti-static bag showing in the gap, a steaming bowl of oden blurred on the counter above, harsh cool light, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 100mm macro at T1.5, keyed from hard camera left, across the face, the counter lamp rakes across the worn corners; the silver catches a hard specular line as the frame tilts up. the blurred rim of the counter above the drawer sits in the immediate foreground, thrown well out of focus. 9:16 vertical, cinematic film still"
+          },
+          {
+            "beats": [
+              17,
+              17
+            ],
+            "seconds": 3,
+            "size": "close",
+            "camera": "Static Shot",
+            "angle": "three-quarter",
+            "height": "eye",
+            "axisSide": "working",
+            "purpose": {
+              "kind": "performance",
+              "change": "the question she cannot ask out loud"
+            },
+            "characters": [
+              "C01"
+            ],
+            "props": [],
+            "end": {
+              "positions": {
+                "C01": "behind the counter"
+              },
+              "facing": {
+                "C01": "screen-left"
+              },
+              "gaze": {
+                "C01": "down"
+              },
+              "hands": {
+                "C01": "both hands on the counter edge"
+              },
+              "heldProps": {
+                "C01": [
+                  "P01"
+                ]
+              },
+              "state": [
+                "the bag inside the red drawer",
+                "the drawer slightly ajar"
+              ]
+            },
+            "motion": {
+              "trigger": "the steam",
+              "action": "she keeps her head down, lips closed, while the thought runs in voiceover",
+              "result": "head down, lips closed"
+            },
+            "cameraNote": {
+              "hold": "the monitor's green flickers on her cheek; her lips stay closed"
+            },
+            "light": {
+              "direction": "top",
+              "note": "the overhead tube leaves her lowered eyes completely in shadow"
+            },
+            "foreground": "a blurred stack of receipts on the counter",
+            "background": "the green CCTV glow behind her",
+            "frame": "close-up of a young East Asian woman in a navy jacket behind a counter at night, head lowered, eyes fixed downward, lips closed, the green glow of a CCTV monitor on her cheek, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 75mm at T1.5, keyed from directly above, the overhead tube leaves her lowered eyes completely in shadow. a blurred stack of receipts on the counter sits in the immediate foreground, thrown well out of focus. 9:16 vertical, cinematic film still"
+          },
+          {
+            "beats": [
+              18,
+              18
+            ],
+            "seconds": 3,
+            "size": "wide",
+            "camera": "Static Shot",
+            "angle": "three-quarter",
+            "height": "eye",
+            "axisSide": "working",
+            "purpose": {
+              "kind": "reveal",
+              "change": "the chime rings and there is no one at the door"
+            },
+            "characters": [
+              "C01",
+              "C02"
+            ],
+            "props": [],
+            "end": {
+              "positions": {
+                "C01": "behind the counter",
+                "C02": "standing near the aisle, facing the door"
+              },
+              "facing": {
+                "C01": "camera",
+                "C02": "away"
+              },
+              "gaze": {
+                "C01": "at the door",
+                "C02": "at the door"
+              },
+              "hands": {
+                "C01": "both hands on the counter edge",
+                "C02": "both hands at his sides"
+              },
+              "heldProps": {
+                "C01": [
+                  "P01"
+                ],
+                "C02": []
+              },
+              "state": [
+                "the wind chimes swinging"
+              ]
+            },
+            "motion": {
+              "trigger": "a single ring of the brass wind chimes",
+              "action": "both of them turn their heads to the glass entrance door at the same instant",
+              "result": "two heads turned to the door; outside only rain"
+            },
+            "cameraNote": {
+              "hold": "the chimes swing; rain hammers the glass; two heads turn"
+            },
+            "light": {
+              "direction": "top",
+              "note": "both pools of fluorescent light are even and cold; the two people sit in separate ones"
+            },
+            "foreground": "the out-of-focus drinks cabinet down the near side",
+            "background": "the empty rain beyond the glass door",
+            "frame": "wide shot inside a convenience store at night, a young woman clerk behind the counter and a stocky older man standing near the aisle both turning their heads toward the glass entrance door, brass wind chimes above the door, nothing but rain outside, harsh cool fluorescent light, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 25mm at T1.5, keyed from directly above, both pools of fluorescent light are even and cold; the two people sit in separate ones. the out-of-focus drinks cabinet down the near side sits in the immediate foreground, thrown well out of focus. 9:16 vertical, cinematic film still"
+          },
+          {
+            "beats": [
+              19,
+              19
+            ],
+            "seconds": 2,
+            "size": "close",
+            "camera": "Static Shot",
+            "angle": "profile",
+            "height": "eye",
+            "axisSide": "working",
+            "purpose": {
+              "kind": "pressure",
+              "change": "lock the door: he has decided the danger is real"
+            },
+            "characters": [
+              "C02"
+            ],
+            "props": [],
+            "end": {
+              "positions": {
+                "C02": "standing near the aisle, facing the door"
+              },
+              "facing": {
+                "C02": "screen-right"
+              },
+              "gaze": {
+                "C02": "at the door"
+              },
+              "hands": {
+                "C02": "both hands at his sides"
+              },
+              "heldProps": {
+                "C02": []
+              },
+              "state": []
+            },
+            "motion": {
+              "trigger": "the chime dies",
+              "action": "he keeps his eyes on the door and says the two words without turning to her",
+              "result": "profile held toward the door"
+            },
+            "cameraNote": {
+              "hold": "his profile; the rain on the glass behind"
+            },
+            "light": {
+              "direction": "back-right",
+              "note": "the rain-streaked window behind camera right rims his profile in cold blue while the store light fills the other side"
+            },
+            "foreground": "the blurred counter edge",
+            "background": "",
+            "frame": "close-up profile of a stocky East Asian man in his sixties with a grey crew cut looking toward a rain-streaked glass door, not turning back, cool white light on his face, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 75mm at T1.5, rim-lit from behind camera right, the rain-streaked window behind camera right rims his profile in cold blue while the store light fills the other side. the blurred counter edge sits in the immediate foreground, thrown well out of focus. 9:16 vertical, cinematic film still"
+          }
+        ],
+        "prompt": "How the reference pictures align with the target video — @image1 (from Shot 1) aligns with the 0.00-second mark of the target video; @image2 (from Shot 2) aligns with the 3.00-second mark of the target video; @image3 (from Shot 3) aligns with the 6.00-second mark of the target video; @image4 (from Shot 4) aligns with the 9.00-second mark of the target video.\n@audio1 is the voice of the stocky man in his sixties with a grey crew cut — speak their lines in it, matching its timbre, pitch, pace and accent.\n\nintegrated_multimodal_description:\n[Shot 1] Cinematic, live-action, cool fluorescent palette. Following @image1, a slow tilt up from the red drawer, ajar with the silver corner of the bag showing, to the steaming bowl of oden still on the counter.\n[Shot 2] At 00:03.000, the camera cuts to @image2: a static shot on the clerk's lowered face, lips completely closed, as the young woman, quiet and slightly fast, clipping the ends of phrases, flat and guarded, says in an off-screen voiceover while her lips remain completely closed: <d>[Chinese] 他怎么知道那人穿雨衣。</d>\n[Shot 3] At 00:06.000, the shot cuts to the wide view of @image3: a static shot as the brass wind chimes above the door ring once and both of them turn their heads toward the entrance at the same moment; outside there is only rain.\n[Shot 4] At 00:09.000, the camera cuts to @image4: a static shot on the older man's profile as he keeps looking at the door and the stocky man in his sixties, speaking in @audio1, slow and gravelly, low in the chest, pausing between clauses as if deciding, says without turning back: <d>[Chinese] 锁上门。</d>\n\noverall_soundscape: All dialogue in standard Mandarin. The fluorescent buzz and the oden warmer hum, a sudden single ring of brass wind chimes, rain hammering the glass, then a held silence. No subtitles, no captions, no on-screen dialogue text.\n\nnon_diegetic_music: The low cello note swells slightly on the chime and cuts off with the last line.",
+        "wji": {
+          "datasetId": "",
+          "nodes": {
+            "keyframes": [],
+            "video": "",
+            "prompt": ""
+          },
+          "assets": {
+            "keyframes": [],
+            "video": ""
+          }
+        }
+      }
+    ]
+  },
+  "wji": {
+    "screenplayDatasetId": "",
+    "canvasId": "",
+    "shotFolderId": "",
+    "displayNodes": {}
+  }
+}

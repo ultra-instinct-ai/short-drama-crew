@@ -1,0 +1,9 @@
+node_modules/
+.DS_Store
+*.log
+# generated per host by `wji crew install --from . --project .`
+.codex/
+openclaw/
+.claude/settings.local.json
+# grok export built by `wji crew install --for grok`
+*-export.zip

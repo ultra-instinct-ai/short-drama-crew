@@ -1,0 +1,9 @@
+{
+  "name": "short-drama-crew",
+  "version": "1.0.0",
+  "description": "Short-drama (短剧) production crew for WJI: 9 skills and 7 agent seats (Producer, Screenwriter, Art Director, Director, Sound Designer, WJI Operator, Proofreader).",
+  "author": { "name": "WJI AI" },
+  "keywords": ["wji", "short-drama", "短剧", "短劇", "ai-video"],
+  "skills": "./skills",
+  "agents": "./agents"
+}

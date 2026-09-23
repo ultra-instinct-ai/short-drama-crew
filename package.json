@@ -1,0 +1,16 @@
+{
+  "name": "short-drama-crew",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Short-drama (短剧) production crew for WJI: portable skills + agent seats for Claude Code, Codex, OpenClaw and Grok bot.",
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "test": "node skills/short-drama-core/scripts/selftest.mjs",
+    "validate": "node skills/short-drama-core/scripts/short-drama.mjs validate skills/short-drama-core/examples/night-shift",
+    "check": "scripts/check-clean.sh && wji crew check .",
+    "sync-wji": "scripts/sync-wji-skill.sh",
+    "install-crew": "wji crew install --from . --for all"
+  },
+  "license": "UNLICENSED"
+}

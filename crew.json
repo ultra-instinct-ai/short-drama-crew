@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "name": "short-drama-crew",
+  "title": "Short Drama Crew",
+  "description": "Seven seats that produce an AI short drama (短剧) on WJI: Producer, Screenwriter, Art Director, Director, Sound Designer, WJI Operator, Proofreader.",
+  "skillsDir": "skills",
+  "entry": "drama-producer",
+  "agents": {
+    "drama-producer": {
+      "name": "Drama Producer",
+      "prompt": "agents/drama-producer.md",
+      "skills": ["short-drama", "short-drama-core", "wji"],
+      "capabilities": { "read": true, "write": true, "exec": "engine", "network": false, "spend": false, "spawn": true },
+      "delegatesTo": ["screenwriter", "art-director", "director", "sound-designer", "wji-operator", "proofreader"],
+      "channels": ["short-drama-crew", "audio-desk"]
+    },
+    "screenwriter": {
+      "name": "Screenwriter",
+      "prompt": "agents/screenwriter.md",
+      "skills": ["short-drama-outline", "short-drama-characters", "short-drama-script", "short-drama-core"],
+      "capabilities": { "read": true, "write": true, "exec": "engine", "network": false, "spend": false, "spawn": false },
+      "delegatesTo": [],
+      "channels": ["short-drama-crew"]
+    },
+    "art-director": {
+      "name": "Art Director",
+      "prompt": "agents/art-director.md",
+      "skills": ["short-drama-art", "short-drama-characters", "short-drama-core"],
+      "capabilities": { "read": true, "write": true, "exec": "engine", "network": false, "spend": false, "spawn": false },
+      "delegatesTo": [],
+      "channels": ["short-drama-crew"]
+    },
+    "director": {
+      "name": "Director",
+      "prompt": "agents/director.md",
+      "skills": ["short-drama-storyboard", "short-drama-core"],
+      "capabilities": { "read": true, "write": true, "exec": "engine", "network": false, "spend": false, "spawn": false },
+      "delegatesTo": [],
+      "channels": ["short-drama-crew"]
+    },
+    "sound-designer": {
+      "name": "Sound Designer",
+      "prompt": "agents/sound-designer.md",
+      "skills": ["short-drama-sound", "short-drama-core", "wji"],
+      "capabilities": { "read": true, "write": true, "exec": "engine", "network": false, "spend": false, "spawn": false },
+      "delegatesTo": [],
+      "channels": ["audio-desk"]
+    },
+    "wji-operator": {
+      "name": "WJI Operator",
+      "prompt": "agents/wji-operator.md",
+      "skills": ["wji", "short-drama-core"],
+      "capabilities": { "read": true, "write": true, "exec": true, "network": true, "spend": true, "spawn": false },
+      "delegatesTo": [],
+      "channels": ["short-drama-crew", "audio-desk"]
+    },
+    "proofreader": {
+      "name": "Proofreader",
+      "prompt": "agents/proofreader.md",
+      "skills": ["short-drama-core", "short-drama-script", "short-drama-storyboard", "short-drama-sound"],
+      "capabilities": { "read": true, "write": false, "exec": "readonly", "network": false, "spend": false, "spawn": false },
+      "delegatesTo": [],
+      "channels": ["short-drama-crew", "audio-desk"]
+    }
+  },
+  "channels": {
+    "short-drama-crew": {
+      "name": "Short Drama Crew",
+      "purpose": "Main room: assignments, stage status, greenlights.",
+      "members": ["drama-producer", "screenwriter", "art-director", "director", "wji-operator", "proofreader"]
+    },
+    "audio-desk": {
+      "name": "Audio desk",
+      "purpose": "Dialogue / SFX / BGM sync between Producer, Sound Designer, Operator and Proofreader.",
+      "members": ["drama-producer", "sound-designer", "wji-operator", "proofreader"]
+    }
+  }
+}

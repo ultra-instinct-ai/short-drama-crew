@@ -1,0 +1,774 @@
+{
+  "version": 1,
+  "title": "夜班便利店",
+  "lang": "zh",
+  "params": {
+    "episodes": 3,
+    "minutesPerEpisode": 1,
+    "genre": "都市悬疑",
+    "adaptMode": "原创",
+    "ratio": "9:16",
+    "video": "h3",
+    "videoResolution": "768P",
+    "references": "keyframes",
+    "style": "realistic",
+    "register": "大陆普通话"
+  },
+  "source": {
+    "kind": "original",
+    "path": "",
+    "note": "Original micro-drama written as the skill's fixture."
+  },
+  "outline": {
+    "core": "一个雨夜塞进便利店店员手里的硬盘，把三年前店里失踪的一段监控和每晚来吃关东煮的老人重新绑在一起。",
+    "brief": {
+      "logline": "一个只想平安做到年底的便利店夜班店员，被陌生人塞了一块硬盘，硬盘里三年前的监控把每晚来吃关东煮的老人变成了她要保护还是要出卖的人。",
+      "audience": "都市悬疑观众：想看一个不起眼的小人物在信息不对等里翻身，得到的补偿是看穿别人以为她看不穿的事。",
+      "satisfactionEngine": "智商碾压（变奏：先被动接收，再主动把硬盘接上机器，最后由她决定硬盘归谁）",
+      "mainHook": "硬盘里到底录了什么，老陈为什么怕它。",
+      "protagonistPressure": "被一个不该由她管的东西困住：拒收会得罪来人，交出去可能害死老陈；她怕的是夜班的平静被打破，攒钱离开的计划泡汤。",
+      "antagonistPressure": "雨衣男用一句明天有人来拿把时限压在她头上；老陈用三年前的秘密把道德压在她头上，两边都不把话说完。",
+      "emotionalLine": "陌生人之间的信任：小夏与老陈每晚一碗关东煮换来的默契，被硬盘逼成选边。",
+      "promise": "她不再替别人收东西，而是自己决定把它交给谁；观众得到的是小人物拿回选择权的痛快。"
+    },
+    "structure": [
+      {
+        "phase": "golden",
+        "episodes": [
+          1,
+          1
+        ],
+        "task": "抓人：雨夜塞硬盘，老陈一句话说穿来人穿雨衣",
+        "satisfactionPlan": "悬念钩：陌生人一句话把硬盘和老陈绑在一起",
+        "hookPlan": "身份钩子：老陈没看见门口却知道来人穿雨衣"
+      },
+      {
+        "phase": "escalation",
+        "episodes": [
+          2,
+          2
+        ],
+        "task": "证明爽点：小夏自己把硬盘接上旧监控机",
+        "satisfactionPlan": "智商碾压：她不等来人，自己看",
+        "hookPlan": "反转钩子：画面里的夜班店员是老陈"
+      },
+      {
+        "phase": "climax",
+        "episodes": [
+          3,
+          3
+        ],
+        "task": "三人第一次同框，硬盘归谁由小夏决定",
+        "satisfactionPlan": "情感释放：她把硬盘交给老陈，不给雨衣男",
+        "hookPlan": "结果钩子：老陈没有接"
+      }
+    ],
+    "guideline": {
+      "tone": "冷、湿、安静的都市悬疑；三集一条线，不加支线。",
+      "emotionalIntensity": "压着来：没有大哭大喊，情绪只从手和眼睛漏出来；每集只在结尾放一次。",
+      "dialogueStyle": "短、准、不解释；大陆普通话，老陈带北方口音；一句台词不超过一口气，信息藏在动作里。",
+      "visualStyle": "9:16 竖屏，店内冷白荧光灯与门口雨夜蓝黑两种光；关东煮灯箱、红抽屉、风铃是反复使用的视觉锚点。",
+      "productionLimits": "只有便利店店内与门口雨棚两个场景，三个人物，一件道具；雨戏与肢体接触是生成风险，同框不超过两人正面。",
+      "forbidden": [
+        "不写小说式内心戏，心理全部落到动作",
+        "老陈不降智：他每一句话都知道自己在说什么",
+        "不解释硬盘里是什么，直到第二集画面亮起",
+        "小夏不主动向任何人求助"
+      ],
+      "priorities": [
+        "第 1 集 15 秒内硬盘必须在她手里",
+        "每集结尾停在一个没有答案的画面上",
+        "三集里硬盘只换三次手，每次换手都是一个爽点",
+        "老陈与小夏的信任只靠关东煮和眼神建立，不靠台词"
+      ]
+    },
+    "keep": [],
+    "cut": [],
+    "merge": [],
+    "risks": [
+      {
+        "what": "全剧困在便利店，画面容易单调",
+        "plan": "用雨棚门口作第二舞台，每集至少一次门外的雨打进来"
+      }
+    ],
+    "cutNote": "原创短篇，没有砍线；三集只跟一条线：硬盘是谁的、老陈为什么怕它。",
+    "mergeNote": "主角只有林小夏一人有完整转变弧——从替陌生人收东西到自己决定把它交给谁。",
+    "beats": [
+      {
+        "id": "B01",
+        "type": "悬念钩",
+        "weight": "minor",
+        "episode": 1,
+        "setup": "雨衣男把硬盘塞给小夏就走",
+        "payoff": "老陈一句话说穿来人穿雨衣，他早就知道"
+      },
+      {
+        "id": "B02",
+        "type": "揭破",
+        "weight": "major",
+        "episode": 2,
+        "setup": "小夏偷偷把硬盘接上店里的旧监控机",
+        "payoff": "画面里三年前的夜班店员是老陈自己"
+      },
+      {
+        "id": "B03",
+        "type": "反转",
+        "weight": "minor",
+        "episode": 3,
+        "setup": "雨衣男按约回来取硬盘",
+        "payoff": "小夏把硬盘交给了老陈，而不是雨衣男"
+      }
+    ],
+    "episodes": [
+      {
+        "ep": 1,
+        "function": [
+          "开局钩子"
+        ],
+        "task": {
+          "goal": "把陌生人塞来的硬盘处理掉，让夜班回到平静",
+          "obstacle": "来人一句明天有人来拿，老陈伸手要拿",
+          "stake": "收下就卷进去，交出去可能害到老陈"
+        },
+        "change": "硬盘从陌生人手里到了小夏的抽屉里，老陈从常客变成知情人。",
+        "satisfaction": {
+          "type": "智商碾压",
+          "action": "老陈伸手要拿袋子，小夏先一步把袋子收进红抽屉，手按在抽屉上。"
+        },
+        "hookType": "身份",
+        "synopsis": "雨夜，林小夏倒垃圾时被一个穿雨衣的男人塞了一个防静电袋，说明天有人来拿。她回到收银台，隔着袋子摸出一块硬盘。夜班常客老陈端着关东煮坐下，闲聊两句后目光停在袋子上，伸手想拿被小夏先一步收进抽屉。老陈却说出了来人穿雨衣，并提起三年前店里丢过一样东西，叮嘱她别把它交给任何人。门口风铃忽然响了一声，门外只有雨。",
+        "hook": "陌生人塞过来的硬盘里到底是什么",
+        "suspense": "老陈没看见门口，却知道那人穿雨衣",
+        "sceneIds": [
+          "S02",
+          "S01"
+        ],
+        "characterIds": [
+          "C01",
+          "C02",
+          "C03"
+        ],
+        "propIds": [
+          "P01"
+        ],
+        "crowdPlan": "三人不同框：雨衣男只在门口雨棚一场，老陈只在店内一场；小夏是两场的连接点。",
+        "warnings": [
+          "雨戏"
+        ]
+      },
+      {
+        "ep": 2,
+        "function": [
+          "冲突升级"
+        ],
+        "task": {
+          "goal": "自己看清硬盘里录了什么",
+          "obstacle": "没有人来取，老陈今晚没来，只有一台报废的旧监控机",
+          "stake": "看了就再也装不知道"
+        },
+        "change": "小夏从被动保管变成主动看；她知道了老陈三年前就在这家店。",
+        "satisfaction": {
+          "type": "智商碾压",
+          "action": "小夏翻出仓库里报废的旧监控主机，把硬盘接上去，画面亮起。"
+        },
+        "hookType": "反转",
+        "synopsis": "第二天夜班，没有人来取硬盘。小夏翻出仓库里报废的旧监控主机，把硬盘接上去。画面是三年前的这家店，同样的凌晨，收银台后站着一个年轻些的老陈。画面里一个穿雨衣的人走进来，两人争执，镜头到此中断。老陈这晚没来，关东煮的位置空着。",
+        "hook": "小夏决定自己看硬盘里的东西",
+        "suspense": "老陈三年前就在这家店，他和雨衣男早就认识",
+        "sceneIds": [
+          "S01"
+        ],
+        "characterIds": [
+          "C01",
+          "C02"
+        ],
+        "propIds": [
+          "P01"
+        ],
+        "warnings": []
+      },
+      {
+        "ep": 3,
+        "function": [
+          "大反转",
+          "清算收束"
+        ],
+        "task": {
+          "goal": "把硬盘交给该拿的人",
+          "obstacle": "雨衣男按约回来取，老陈第一次走出店门与他面对面",
+          "stake": "交错人，老陈回到牢里，或雨衣男脱身"
+        },
+        "change": "硬盘第三次换手：小夏把它交给老陈而不是雨衣男；老陈没有接。",
+        "satisfaction": {
+          "type": "情感释放",
+          "action": "小夏看着两个人，把硬盘从口袋里拿出来，递给老陈。"
+        },
+        "hookType": "结果",
+        "synopsis": "第三夜，雨衣男按约回来取硬盘。小夏在雨棚下把他拦住，问他三年前那晚发生了什么。老陈从店里走出来，第一次和雨衣男面对面。雨衣男说硬盘能让老陈回到牢里，也能让他自己脱身。小夏看着两个人，把硬盘从口袋里拿出来，交给了老陈。老陈没有接。",
+        "hook": "雨衣男回来了",
+        "suspense": "老陈没有接硬盘，他打算怎么办",
+        "sceneIds": [
+          "S02",
+          "S01"
+        ],
+        "characterIds": [
+          "C01",
+          "C02",
+          "C03"
+        ],
+        "propIds": [
+          "P01"
+        ],
+        "crowdPlan": "三人同框只在雨棚一场：小夏居中正面，老陈和雨衣男分居画面两侧，用过肩镜头交替，不给三人正面同框。",
+        "warnings": [
+          "雨戏",
+          "肢体接触"
+        ]
+      }
+    ]
+  },
+  "characters": [
+    {
+      "id": "C01",
+      "name": "林小夏",
+      "aliases": [
+        "小夏"
+      ],
+      "tier": "lead",
+      "role": "女主·便利店夜班店员",
+      "arc": "从替陌生人收东西的旁观者，到自己决定把硬盘交给谁",
+      "from": [
+        "原创"
+      ],
+      "oneLiner": "二十四岁的夜班店员，眼睛总在监控屏和门口之间来回。",
+      "profile": {
+        "gender": "女",
+        "ageRange": "二十四岁左右",
+        "identity": "便利店夜班店员",
+        "appearance": "瘦而挺拔，头发随手扎成低马尾，制服外套一件洗旧的深蓝色外套，眼下有熬夜的青影。",
+        "personality": [
+          "警觉",
+          "嘴硬",
+          "心软"
+        ],
+        "temperament": "说话短、不解释，习惯先动手再开口。",
+        "motivation": "把这份夜班平安做到年底，攒够钱离开这座城市。",
+        "relationships": [
+          {
+            "id": "C02",
+            "name": "老陈",
+            "surface": "每晚来吃关东煮的常客，唯一会和她说话的人",
+            "real": "三年前监控里的人，她要保护的对象",
+            "power": "表面上她是店员他是客人；知情上他压着她",
+            "secret": "他知道雨衣男是谁",
+            "turnEpisode": 2
+          },
+          {
+            "id": "C03",
+            "name": "穿雨衣的男人",
+            "surface": "雨夜把硬盘塞给她的陌生人",
+            "real": "用她来逼老陈的人",
+            "power": "他握着时限，她握着硬盘",
+            "secret": "",
+            "turnEpisode": 3
+          }
+        ],
+        "evidence": []
+      },
+      "image": {
+        "prompt": "Portrait of a young East Asian woman in her mid-twenties, contemporary 2020s Chinese city, night-shift convenience store clerk, slim and upright, hair pulled into a loose low ponytail, faded navy jacket over a striped store uniform, faint shadows under alert eyes, thin lips pressed together, three-quarter view bust, plain neutral background, soft directional key light from the upper left with a cool fill, shallow depth of field",
+        "negativePrompt": "plastic skin, over-smoothed face, perfectly symmetrical face, doll-like features, dead eyes without highlights, helmet hair, flat textureless fabric, stiff mannequin pose, logo, brand name, text, watermark",
+        "sheet": "Single character model sheet on ONE 16:9 landscape canvas, pure white background. semi-realistic character illustration, painterly rendering with soft blended edges and visible brush texture, anatomically grounded. LEFT ZONE (about 34% of the canvas width): one bust portrait, front view, head and shoulders, both shoulders complete, flat straight bottom edge. RIGHT-TOP ZONE: three FULL-BODY views side by side (front, side, back) on one shared ground line, same height, same head-to-body ratio, PROPORTIONS ARE CRITICAL, no stretching or squashing. RIGHT-BOTTOM ZONE: four small isolated close-up studies (low ponytail tie, jacket cuff wear, store name tag, worn canvas sneakers); the detail studies give way, not the figures. Thin hairline rules separate the zones. Subject: a young East Asian woman in her mid-twenties, contemporary Chinese night-shift convenience store clerk, faded navy jacket over a striped uniform, alert tired eyes; all views share the SAME face as the bust portrait. LIGHTING IN THE LEFT ZONE ONLY: soft directional key from the upper left with ambient occlusion under the chin. LIGHTING IN THE RIGHT ZONES: flat even orthographic lighting, no cast shadows. No text, no watermark.",
+        "tags": [
+          "semi-realistic",
+          "painterly",
+          "character sheet",
+          "contemporary",
+          "cool palette"
+        ]
+      },
+      "voice": {
+        "timbre": "偏干的年轻女中音，气声少",
+        "pitch": "中",
+        "pace": "偏快，句尾收得急",
+        "accent": "标准普通话，略带南方口音",
+        "emotion": "警觉、克制",
+        "prompt": "24-year-old female, dry light mezzo, mid pitch, little breathiness, narrow dynamic range. Quiet volume, slightly fast pace, clipped phrase endings. Standard Mandarin with a faint southern accent. Guarded and matter-of-fact.",
+        "sample": {
+          "line": "今晚也是我值班。",
+          "direction": "压着嗓子，像怕吵醒谁"
+        },
+        "videoDirection": "quiet and slightly fast, clipping the ends of phrases, flat and guarded"
+      },
+      "bible": {
+        "function": "主角",
+        "hookLine": "一个只想把夜班做到年底的店员，却成了唯一能决定一块硬盘归谁的人；选错了，害的是每晚陪她的那个老人。",
+        "want": "把硬盘处理掉，让夜班回到平静，攒够钱离开这座城市",
+        "need": "承认自己早已在乎老陈，并为此承担一次选择",
+        "misbelief": "不问、不管、不参与，就不会被牵连",
+        "contradiction": "嘴上说别人的东西与她无关，手却先一步把它收进自己的抽屉",
+        "wound": "十九岁那年她在老家的小超市打工，老板娘的儿子把一箱私烟藏进她管的仓库，警察来时她说了实话，儿子进去了，她被老板娘赶出来，全镇都说她多嘴。从那以后她相信一件事：看见了也当没看见，才不会被牵连。她换了城市，换了夜班，学会把眼睛放在监控屏和门口之间来回，却从不真的看进去。",
+        "pastChoices": [
+          {
+            "when": "十九岁，老家小超市",
+            "pressure": "老板娘的儿子把私烟藏进她管的仓库，警察上门",
+            "choice": "说了实话",
+            "gained": "一夜心安",
+            "lost": "工作和在镇上的名声",
+            "residue": "从此信奉不问不管"
+          },
+          {
+            "when": "两年前，刚到这座城市",
+            "pressure": "合租室友拖欠房租，房东要她作证",
+            "choice": "搬走，不作证",
+            "gained": "一间不用和人打交道的单间",
+            "lost": "城里唯一一个熟人",
+            "residue": "把夜班当成躲人的地方"
+          }
+        ],
+        "firstImpression": "警觉、嘴硬、不想惹事的小店员",
+        "finalUnderstanding": "她比谁都清楚该把东西交给谁，只是一直不肯承认自己在乎",
+        "pressureResponse": "手先动，话后说：先把东西收起来，再问你是谁；被逼急了会把手按在东西上不放",
+        "speech": {
+          "rhythm": "短句，一句话不超过一口气，句尾收得急",
+          "catchphrase": "",
+          "silence": "低头看别处，用手上的活代替回答",
+          "forbiddenWords": [
+            "其实",
+            "我觉得"
+          ],
+          "register": ""
+        },
+        "forbidden": [
+          "不会主动向任何人求助或报警",
+          "不会把硬盘交给第一个来要的人",
+          "不会当面说出她在乎老陈"
+        ],
+        "mustFace": [
+          "必须亲手看硬盘里的画面",
+          "必须在老陈和雨衣男之间当面选一个",
+          "必须承认不问不管保护不了任何人"
+        ],
+        "arc": [
+          {
+            "stage": "开场",
+            "episode": 1,
+            "state": "替陌生人收东西，把它当成别人的事",
+            "change": "手先一步把袋子收进抽屉，嘴上仍说与她无关"
+          },
+          {
+            "stage": "第一转折",
+            "episode": 2,
+            "state": "没有人来取，她决定自己看",
+            "change": "从保管人变成知情人"
+          },
+          {
+            "stage": "高潮选择",
+            "episode": 3,
+            "state": "两个人都要硬盘",
+            "change": "她把硬盘交给老陈，第一次为在乎的人做选择"
+          },
+          {
+            "stage": "结局",
+            "episode": 3,
+            "state": "老陈没有接",
+            "change": "她知道选择做了，后果还没来"
+          }
+        ]
+      },
+      "identityEn": "the young woman in the faded navy jacket",
+      "wji": {
+        "datasetId": "",
+        "nodes": {
+          "title": "",
+          "headshot": "",
+          "sheet": "",
+          "voice": ""
+        },
+        "assets": {
+          "headshot": "",
+          "sheet": "",
+          "voice": ""
+        }
+      }
+    },
+    {
+      "id": "C02",
+      "name": "老陈",
+      "aliases": [
+        "陈叔"
+      ],
+      "tier": "support",
+      "role": "关键配角·夜班常客",
+      "arc": "从每晚来吃关东煮的闲人，到承认自己就是三年前监控里的人",
+      "from": [
+        "原创"
+      ],
+      "oneLiner": "六十出头，每晚两点准时来吃一碗关东煮，从不问别人的事。",
+      "profile": {
+        "gender": "男",
+        "ageRange": "六十岁出头",
+        "identity": "退休保安，便利店夜班常客",
+        "appearance": "矮壮，背微驼，花白的平头，穿一件洗得发白的灰色夹克，手指粗，指甲缝里有洗不净的黑。",
+        "personality": [
+          "沉默",
+          "警惕",
+          "念旧"
+        ],
+        "temperament": "话少，开口前先看人一眼；笑起来眼角全是褶子。",
+        "motivation": "守住三年前那晚的秘密，不让它再牵连任何人。",
+        "relationships": [
+          {
+            "id": "C01",
+            "name": "林小夏",
+            "surface": "他每晚来看一眼的年轻店员",
+            "real": "他唯一还愿意保护的人",
+            "power": "他知道的多，她握着东西",
+            "secret": "他就是三年前的夜班店员",
+            "turnEpisode": 2
+          },
+          {
+            "id": "C03",
+            "name": "穿雨衣的男人",
+            "surface": "不认识的来人",
+            "real": "三年前那晚监控里的另一个人",
+            "power": "雨衣男握着能让他回牢里的证据",
+            "secret": "两人三年前的争执",
+            "turnEpisode": 3
+          }
+        ],
+        "evidence": []
+      },
+      "image": {
+        "prompt": "Portrait of an East Asian man in his early sixties, contemporary 2020s China, retired security guard, stocky build with a slight stoop, grey close-cropped crew cut, washed-out grey zip jacket, thick fingers, deep crow's feet, weathered skin with uneven tone and visible pores, three-quarter view bust, plain neutral background, soft directional key light from the upper left with a cool fill, shallow depth of field",
+        "negativePrompt": "plastic skin, over-smoothed face, perfectly symmetrical face, young face, dead eyes without highlights, helmet hair, flat textureless fabric, stiff mannequin pose, logo, brand name, text, watermark",
+        "sheet": "Single character model sheet on ONE 16:9 landscape canvas, pure white background. semi-realistic character illustration, painterly rendering with soft blended edges and visible brush texture, anatomically grounded. LEFT ZONE (about 34% of the canvas width): one bust portrait, front view, head and shoulders, both shoulders complete, flat straight bottom edge. RIGHT-TOP ZONE: three FULL-BODY views side by side (front, side, back) on one shared ground line, same height, same head-to-body ratio, PROPORTIONS ARE CRITICAL, no stretching or squashing. RIGHT-BOTTOM ZONE: four small isolated close-up studies (crew-cut hairline, jacket zipper pull, thick scarred knuckles, worn leather shoes); the detail studies give way, not the figures. Thin hairline rules separate the zones. Subject: a stocky East Asian man in his early sixties, contemporary retired security guard, grey crew cut, washed-out grey zip jacket, slight stoop; all views share the SAME face as the bust portrait. LIGHTING IN THE LEFT ZONE ONLY: soft directional key from the upper left with ambient occlusion under the chin. LIGHTING IN THE RIGHT ZONES: flat even orthographic lighting, no cast shadows. No text, no watermark.",
+        "tags": [
+          "semi-realistic",
+          "painterly",
+          "character sheet",
+          "contemporary",
+          "cool palette"
+        ]
+      },
+      "voice": {
+        "timbre": "沙哑的男低音，胸腔共鸣重",
+        "pitch": "低",
+        "pace": "慢，字与字之间有停顿",
+        "accent": "北方口音，尾音下沉",
+        "emotion": "平静、疲惫",
+        "prompt": "Male in his early sixties, hoarse bass-baritone, low pitch, heavy chest resonance, gravelly texture. Low volume, slow pace, deliberate pauses between words, falling intonation. Northern Mandarin accent. Calm and weary.",
+        "sample": {
+          "line": "这店里丢过东西。",
+          "direction": "一字一顿，不看对方"
+        },
+        "videoDirection": "slow and gravelly, low in the chest, pausing between clauses as if deciding"
+      },
+      "bible": {
+        "function": "压力测试者",
+        "hookLine": "一个每晚两点准时来吃关东煮、从不问别人的事的退休保安，其实就是三年前监控里丢东西那晚的人。",
+        "want": "守住三年前那晚的秘密，不让它再牵连任何人",
+        "need": "让那个秘密由别人来决定，而不是自己一个人扛",
+        "misbelief": "只要他不说，事情就过去了",
+        "contradiction": "嘴上说别把它交给任何人，眼睛却一直落在那个袋子上",
+        "pressureResponse": "筷子停一下，放下碗，站起来看门外；话更少，字更慢",
+        "speech": {
+          "rhythm": "慢，一字一顿，字与字之间有停顿",
+          "catchphrase": "",
+          "silence": "背对着人看门外的雨",
+          "forbiddenWords": [
+            "我告诉你"
+          ],
+          "register": ""
+        }
+      },
+      "identityEn": "the stocky man in his sixties with a grey crew cut",
+      "wji": {
+        "datasetId": "",
+        "nodes": {
+          "title": "",
+          "headshot": "",
+          "sheet": "",
+          "voice": ""
+        },
+        "assets": {
+          "headshot": "",
+          "sheet": "",
+          "voice": ""
+        }
+      }
+    },
+    {
+      "id": "C03",
+      "name": "穿雨衣的男人",
+      "aliases": [
+        "雨衣男"
+      ],
+      "tier": "functional",
+      "role": "送来硬盘的陌生人",
+      "from": [
+        "原创"
+      ],
+      "oneLiner": "雨夜里只露出半张脸的男人，把硬盘塞给小夏就走。",
+      "profile": {
+        "gender": "男",
+        "ageRange": "四十岁上下",
+        "identity": "身份不明的来客",
+        "appearance": "高瘦，黑色连帽雨衣一直拉到下巴，帽檐下只看得见一截下颌和没刮干净的胡茬。",
+        "personality": [
+          "急",
+          "冷",
+          "藏"
+        ],
+        "temperament": "说话不看人，说完就走。",
+        "motivation": "把硬盘留在一个老陈每晚都会来的地方。",
+        "relationships": [
+          {
+            "id": "C02",
+            "name": "老陈",
+            "surface": "三年前那晚监控里的另一个人",
+            "real": "他要逼出来的人",
+            "power": "他握着证据，老陈握着秘密",
+            "secret": "",
+            "turnEpisode": 3
+          }
+        ],
+        "evidence": []
+      },
+      "image": {
+        "prompt": "Portrait of a tall thin East Asian man around forty, contemporary 2020s Chinese city at night, black hooded raincoat zipped to the chin, hood pulled low so only the jaw and unshaven stubble show, rain beading on the wet plastic, three-quarter view bust, plain neutral background, hard cool rim light from behind and a dim key from the left, shallow depth of field",
+        "negativePrompt": "plastic skin, over-smoothed face, perfectly symmetrical face, full face clearly visible, dead eyes, dry raincoat, flat textureless fabric, stiff mannequin pose, logo, brand name, text, watermark",
+        "sheet": "Single character model sheet on ONE 16:9 landscape canvas, pure white background. semi-realistic character illustration, painterly rendering with soft blended edges and visible brush texture, anatomically grounded. LEFT ZONE (about 34% of the canvas width): one bust portrait, front view, head and shoulders, both shoulders complete, flat straight bottom edge. RIGHT-TOP ZONE: three FULL-BODY views side by side (front, side, back) on one shared ground line, same height, same head-to-body ratio, PROPORTIONS ARE CRITICAL, no stretching or squashing. RIGHT-BOTTOM ZONE: four small isolated close-up studies (raincoat hood seam, zipper pulled to the chin, wet rubber boots, stubbled jaw); the detail studies give way, not the figures. Thin hairline rules separate the zones. Subject: a tall thin East Asian man around forty, contemporary, black hooded raincoat with the hood low over the face, stubble; all views share the SAME face as the bust portrait. LIGHTING IN THE LEFT ZONE ONLY: dim key from the left with a cool rim light. LIGHTING IN THE RIGHT ZONES: flat even orthographic lighting, no cast shadows. No text, no watermark.",
+        "tags": [
+          "semi-realistic",
+          "painterly",
+          "character sheet",
+          "contemporary",
+          "cool palette"
+        ]
+      },
+      "voice": {
+        "timbre": "压低的男中音，带鼻音",
+        "pitch": "中低",
+        "pace": "快，几乎不停顿",
+        "accent": "普通话，口音模糊",
+        "emotion": "急促、警惕",
+        "prompt": "Male around forty, muted nasal baritone, mid-low pitch, tight throat support, narrow dynamic range. Hushed volume, fast pace with almost no pauses, flat intonation. Neutral Mandarin, accent hard to place. Urgent and wary.",
+        "sample": {
+          "line": "你们今天几点关门？",
+          "direction": "明知故问，带着笑"
+        },
+        "videoDirection": "hushed and fast with almost no pauses, flat and nasal, barely above a whisper"
+      },
+      "bible": {
+        "function": "反派"
+      },
+      "identityEn": "the tall man in the black hooded raincoat",
+      "wji": {
+        "datasetId": "",
+        "nodes": {
+          "title": "",
+          "headshot": "",
+          "sheet": "",
+          "voice": ""
+        },
+        "assets": {
+          "headshot": "",
+          "sheet": "",
+          "voice": ""
+        }
+      }
+    }
+  ],
+  "scenes": [
+    {
+      "id": "S01",
+      "name": "便利店店内",
+      "primary": true,
+      "reusePlan": "",
+      "summary": "凌晨两点的便利店：亮得刺眼、空得发冷，收银台是全店唯一有人气的地方，所有的戏都在那一米柜台前后发生。",
+      "anchors": [
+        {
+          "name": "关东煮灯箱",
+          "desc": "收银台右侧的关东煮保温柜，顶灯有一格闪烁"
+        },
+        {
+          "name": "监控屏",
+          "desc": "收银台上方吊着的四分格监控屏，画面偏绿"
+        },
+        {
+          "name": "红色抽屉",
+          "desc": "收银台下方唯一一个漆成红色的抽屉，边角磨白"
+        },
+        {
+          "name": "货架尽头的储物门",
+          "desc": "最里排货架尽头一扇贴着「仅限员工」的灰门"
+        }
+      ],
+      "lighting": [
+        {
+          "state": "凌晨冷白光",
+          "prompt": "harsh cool white fluorescent ceiling light, slightly green cast, deep black windows reflecting the shelves, one flickering panel above the oden warmer"
+        },
+        {
+          "state": "监控回放绿",
+          "prompt": "the store seen through a low-resolution CCTV monitor, green-tinted, scanlines, timestamp burn-in in the corner, slight fisheye"
+        }
+      ],
+      "image": {
+        "prompt": "Interior of a small Chinese convenience store at 2 a.m., empty scene with no people, view from the entrance toward the checkout counter, oden warmer with a flickering light panel on the right, a green-tinted four-way CCTV monitor hanging above the counter, a single red drawer under the counter with worn corners, aisles of snacks receding to a grey staff-only door, harsh cool white fluorescent light, black night windows, cinematic film still",
+        "negativePrompt": "people, person, figure, human, crowd, hands, warped perspective, melted geometry, text, watermark",
+        "sheet": "Environment design sheet on ONE 16:9 landscape canvas. semi-realistic character illustration, painterly rendering with soft blended edges and visible brush texture, anatomically grounded — applied to an environment: worn materials, scuffed tile, greasy steel. MAIN PANEL (top-left, about 72% width × 70% height): the master view of a small Chinese convenience store interior at night from the entrance toward the checkout counter, empty scene, absolutely no people anywhere, harsh cool white fluorescent light. RIGHT COLUMN (two panels) and BOTTOM ROW (three panels): close-up detail studies of the anchors — the oden warmer with its flickering light panel, the green four-way CCTV monitor, the red drawer with worn corners, the grey staff-only door, the black night window reflecting shelves. THE SPACE MUST BE IDENTICAL ACROSS ALL PANELS; nothing invented that is not present in the master view. Thin hairline rules between panels. No text, no watermark.",
+        "tags": [
+          "semi-realistic",
+          "environment sheet",
+          "night interior",
+          "fluorescent"
+        ]
+      },
+      "variantOf": "",
+      "changes": "",
+      "wji": {
+        "datasetId": "",
+        "nodes": {
+          "sheet": "",
+          "lighting": {}
+        },
+        "assets": {
+          "sheet": "",
+          "lighting": {}
+        }
+      }
+    },
+    {
+      "id": "S02",
+      "name": "便利店门口雨棚",
+      "primary": true,
+      "reusePlan": "",
+      "summary": "店门外一米宽的雨棚：里面是灯，外面是雨，站在这里的人一半亮一半黑——所有来历不明的人都从这里进出。",
+      "anchors": [
+        {
+          "name": "褪色的红白雨棚",
+          "desc": "红白条纹雨棚，红色已经褪成粉，边缘滴着水"
+        },
+        {
+          "name": "门口的垃圾桶",
+          "desc": "门左侧一只掉漆的绿色铁皮垃圾桶"
+        },
+        {
+          "name": "玻璃门上的风铃",
+          "desc": "推拉玻璃门顶端挂着一串黄铜风铃"
+        },
+        {
+          "name": "门外的积水",
+          "desc": "门前一块凹陷的人行道，积水映着店里的灯"
+        }
+      ],
+      "lighting": [
+        {
+          "state": "雨夜冷白灯",
+          "prompt": "night rain, the store's cool white light spilling out under the awning, wet pavement reflecting the glow, everything beyond the awning falling into blue-black darkness, rain streaks lit from behind"
+        }
+      ],
+      "image": {
+        "prompt": "Exterior of a small Chinese convenience store entrance at night in heavy rain, empty scene with no people, a faded red-and-white striped awning dripping water, a chipped green metal trash can left of the glass sliding door, a string of brass wind chimes above the door, a puddle in the sunken pavement reflecting the store light, cool white light spilling out into blue-black darkness, cinematic film still",
+        "negativePrompt": "people, person, figure, human, crowd, hands, warped perspective, melted geometry, text, watermark",
+        "sheet": "Environment design sheet on ONE 16:9 landscape canvas. semi-realistic character illustration, painterly rendering with soft blended edges and visible brush texture, anatomically grounded — applied to an environment: wet concrete, dripping fabric, chipped paint. MAIN PANEL (top-left, about 72% width × 70% height): the master view of a small Chinese convenience store entrance at night in heavy rain, seen from the pavement, empty scene, absolutely no people anywhere, cool white light spilling from inside. RIGHT COLUMN (two panels) and BOTTOM ROW (three panels): close-up detail studies of the anchors — the faded red-and-white awning edge dripping, the chipped green trash can, the brass wind chimes, the puddle reflecting the light, the glass door frame. THE SPACE MUST BE IDENTICAL ACROSS ALL PANELS; nothing invented that is not present in the master view. Thin hairline rules between panels. No text, no watermark.",
+        "tags": [
+          "semi-realistic",
+          "environment sheet",
+          "night exterior",
+          "rain"
+        ]
+      },
+      "variantOf": "",
+      "changes": "",
+      "wji": {
+        "datasetId": "",
+        "nodes": {
+          "sheet": "",
+          "lighting": {}
+        },
+        "assets": {
+          "sheet": "",
+          "lighting": {}
+        }
+      }
+    }
+  ],
+  "props": [
+    {
+      "id": "P01",
+      "name": "旧监控硬盘",
+      "function": "全剧悬念核心：三年前那晚的监控就在里面，谁拿到它谁就握着老陈的命",
+      "beatIds": [
+        "B01",
+        "B02",
+        "B03"
+      ],
+      "scale": "handheld",
+      "summary": "一块旧的 3.5 寸机械硬盘，装在防静电袋里，标签被撕掉一半。",
+      "anchors": [
+        {
+          "name": "撕掉一半的标签",
+          "desc": "正面的白色标签只剩左半，露出手写的一个「3」"
+        },
+        {
+          "name": "防静电袋",
+          "desc": "银灰色半透明防静电袋，封口处有一道褶"
+        },
+        {
+          "name": "接口处的锈",
+          "desc": "SATA 接口边缘一圈浅褐色锈迹"
+        }
+      ],
+      "states": [
+        {
+          "state": "封在防静电袋里",
+          "prompt": "the old 3.5-inch hard drive sealed inside a silver-grey translucent anti-static bag, half-torn label faintly visible through the plastic"
+        },
+        {
+          "state": "接在主机上",
+          "prompt": "the same hard drive out of its bag, lying on a counter with a SATA cable plugged into its rusty connector, a small green activity light blinking"
+        }
+      ],
+      "relatedScenes": [
+        "S01",
+        "S02"
+      ],
+      "carriedBy": [
+        "林小夏",
+        "穿雨衣的男人"
+      ],
+      "image": {
+        "prompt": "An old 3.5-inch mechanical hard drive at handheld scale, three-quarter view, sealed in a silver-grey translucent anti-static bag, a white label torn in half showing a handwritten 3, a ring of light brown rust around the SATA connector, isolated on a pure white background, no people, no hands, soft even studio light, cinematic film still",
+        "negativePrompt": "people, person, figure, human, hands, fingers, arm, cluttered background, coloured background, text overlay, watermark",
+        "sheet": "Prop design sheet on ONE 16:9 landscape canvas, pure white background in every panel. semi-realistic character illustration, painterly rendering with soft blended edges and visible brush texture, anatomically grounded — applied to an object: scratched metal, creased plastic. MAIN PANEL (top-left, about 72% width × 70% height): an old 3.5-inch mechanical hard drive at handheld scale, three-quarter view, sealed in a silver-grey translucent anti-static bag. RIGHT COLUMN (two panels): close-ups of the half-torn label with the handwritten 3 and of the rust ring on the SATA connector. BOTTOM ROW (three panels): the drive out of the bag with a SATA cable attached, a straight side orthographic view, the creased bag seal. No people, no hands anywhere. Thin hairline rules between panels. No text, no watermark.",
+        "tags": [
+          "semi-realistic",
+          "prop sheet",
+          "white background",
+          "handheld"
+        ]
+      },
+      "wji": {
+        "datasetId": "",
+        "nodes": {
+          "sheet": "",
+          "states": {}
+        },
+        "assets": {
+          "sheet": "",
+          "states": {}
+        }
+      }
+    }
+  ],
+  "wji": {
+    "workspaceId": "",
+    "datasetFolders": {},
+    "canvases": {
+      "episodes": {}
+    }
+  }
+}
