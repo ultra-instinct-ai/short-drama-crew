@@ -33,7 +33,9 @@ Read `reference/stage-characters.md`. The bible shape follows
 2. Two fields exist purely so a video prompt can talk about the person: **`identityEn`** is the
    name-free way to refer to them (`the woman in her mid thirties in headphones`) and
    **`voice.videoDirection`** is one English clause on how they speak, pasted beside every line
-   they say in every clip — written from `bible.speech`. Prompts never carry names.
+   they say in every clip — written from `bible.speech`. Prompts never carry names — and neither
+   do the drama-language voice fields (`timbre / pitch / pace / accent / emotion`, the sample
+   `direction`): a `wan` prompt pastes them beside the line. Write 对她说话时放轻, not 对晚晴….
 3. Sync each character to a `character/` dataset (Operator): description = `oneLiner`, content =
    `$SD render <project> character C01`, `image_prompt` = the sheet prompt, `audio_prompt` =
    `$SD prompt <project> voice C01`, metadata = the JSON.

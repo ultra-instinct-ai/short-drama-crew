@@ -10,10 +10,13 @@ shooting** — no shot numbers, no camera, no prompts here.
 $SD seed <project> script --ep 1
 ```
 
-`episodes/E01.json` now has `targetSeconds`, `hook`, `cliff`, `beatsClaimed`, `hookBeat: [1, 1]`,
+`episodes/E01.json` now has `targetSeconds`, an empty `hook` (the opening image — yours to write),
+`cliff` (seeded from the outline's `hook`: the question that makes them tap the next episode),
+`beatsClaimed`, `hookBeat: [1, 1]`,
 the episode design copied from the outline (`function`, `task`, `change`, `hookType`),
 `satisfactionBeat: null` (to be set) and a `seedNote` with the synopsis, the 爽点 to realise, the
-register, the guideline's priorities and forbidden rules, every speaker's `bible.speech`, the ids
+register, the outline's `suspense`, the guideline's priorities and forbidden rules, every speaker's
+`bible.speech` (under the disguise name before a `disguise.revealEpisode`), the ids
 allowed in this episode, the crowd plan, the warnings, the previous episode's cliff and the beat
 budget. **Before writing: `render guideline`, then the scene bibles (anchors, lighting states) and
 the speakers' `render character` — the bible's `speech` is where the lines come from** (see
@@ -26,7 +29,9 @@ the speakers' `render character` — the bible's `speech` is where the lines com
    Over: cut action beats first. Under: add conflict, never small talk.
 2. **One line, one breath**: ≤ 35 non-whitespace characters. Split long lines with a reaction
    beat in between.
-3. **Speakers are in the scene** (`characters`), or `VO` (inner voice — whose, in `delivery`).
+3. **Speakers are in the scene** (`characters`), or `VO` (inner voice — whose, in `delivery`, by
+   pronoun or role: 她的心声, never a name — in a Chinese (`wan`) prompt the delivery is pasted beside
+   the line, and `beat-flow` refuses a delivery that names anyone).
    VO is emphasis, not a crutch: two or three per episode at most.
 4. **Action beats: one thing each, narrative, common actions only, no quotation marks.** The video
    model performs actions it has seen a million times — walk in, sit down, hand over, nod, turn,

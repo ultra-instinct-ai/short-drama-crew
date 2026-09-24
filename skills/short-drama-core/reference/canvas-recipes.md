@@ -18,6 +18,10 @@ wji models list --feature image        # pick the image model once (GPT Image 2.
 wji models get "<image model>"         # confirm 1:1 and 16:9 ratios and the max reference count
 ```
 
+**Prompts as text nodes** (a plan the user will generate from, or a reference to read): text nodes
+are Markdown on the web, so pass `--plain` to keep the prompt's line breaks and `--size 600,900` so
+it reads without scrolling — `wji canvas add text -c CV -n "E01-01 影片提示词" --text-file /tmp/E01-01.txt --plain --size 620,1300`.
+
 ## 1. `characters` canvas
 
 ```bash

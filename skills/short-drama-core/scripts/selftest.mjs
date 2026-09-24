@@ -19,7 +19,7 @@ import {
   cutStart, segmentCharacters, keyScenes, shotTexts, motionSentence, cameraClause, PURPOSE_KINDS, ANGLES, HEIGHTS, NO_SUBTITLES, LIPS_CLOSED,
   audioPrompt, musicOf, cueSeconds, AUDIO_MODEL, AUDIO_MAX_CHARS,
   VIDEO_MODELS, VIDEO_MODES, DEFAULT_PARAMS, videoModel, videoResolutionFor, nearestResolution, segmentPlan, videoReferences,
-  formatGates,
+  formatGates, displayName,
 } from './short-drama.mjs';
 import { spawnSync } from 'node:child_process';
 import { copyFileSync, symlinkSync } from 'node:fs';
@@ -1289,7 +1289,11 @@ const breaks = (gateId, project, episode, needle) => {
   const s = seedScript(PROJECT, 2);
   eq(s.targetSeconds, 60, 'seed target seconds from params');
   eq(s.beatsClaimed.join(','), 'B02', 'seed claims the episode beats');
-  eq(s.seedNote.previousCliff, PROJECT.outline.episodes[0].suspense, 'seed carries the previous cliff');
+  eq(s.seedNote.previousCliff, PROJECT.outline.episodes[0].hook, 'seed carries the previous cliff (the outline hook of the episode before)');
+  eq(s.hook, '', 'seed leaves the opening hook for the writer');
+  eq(s.cliff, PROJECT.outline.episodes[1].hook, 'seed cliff is the outline hook (the question that makes them tap next)');
+  eq(s.seedNote.suspense, PROJECT.outline.episodes[1].suspense, 'seed note carries the outline suspense');
+  ok(s.seedNote.openingHook.includes('opens the episode'), 'seed note says the hook is the opening image');
   eq(s.scenes.length, 0, 'seed leaves scenes empty');
   assert.throws(() => seedScript(PROJECT, 9), /no episode 9/, 'seed refuses unknown episode');
   const sb = seedStoryboard(PROJECT, E01);
@@ -1552,6 +1556,52 @@ const breaks = (gateId, project, episode, needle) => {
   const bad = clone(PROJECT); bad.params.register = '';
   const red = formatGates(runGates(makeContext(bad, { 1: E01 })));
   ok(red.failed > 0 && red.summary.startsWith('✗') && red.text.includes('outline/params'), 'a broken register shows as a failed outline/params gate');
+}
+
+// ── names in the prompt-bound voice / delivery text; disguised characters ─────
+{
+  const p = clone(PROJECT);
+  p.characters[1].voice.emotion += '，对小夏说话时放轻';
+  breaks('voice', p, null, 'voice.emotion contains the name "小夏"');
+  const p2 = clone(PROJECT);
+  p2.characters[0].voice.sample.direction = '盯着老陈，压低声音';
+  breaks('voice', p2, null, 'voice.sample.direction contains the name "老陈"');
+  const p3 = clone(PROJECT);
+  p3.characters[0].voice.prompt += ' Speaks softly to Chen.';
+  passes('voice', p3);                                   // an English word that is no name of the cast
+  p3.characters[1].aliases.push('Uncle Chen');
+  p3.characters[0].voice.prompt += ' Warm with Uncle Chen.';
+  breaks('voice', p3, null, 'voice.prompt contains the name "Uncle Chen"');
+
+  const wan = clone(PROJECT); wan.params.video = 'wan';
+  passes('beat-flow', wan, E01);
+  const e = clone(E01);
+  e.scenes[0].flow[1].delivery = '压着嗓子，盯着林小夏';
+  breaks('beat-flow', wan, e, 'delivery names "林小夏"');
+  passes('beat-flow', PROJECT, e);                       // an English (h3) prompt never carries a Chinese delivery
+  const eEn = clone(E01);
+  eEn.scenes[0].flow[1].delivery = 'hisses it at Uncle Chen';
+  breaks('beat-flow', p3, eEn, 'delivery names "Uncle Chen"');
+
+  const d = clone(PROJECT);
+  d.characters[2].disguise = { name: '过路人', revealEpisode: 3 };
+  passes('tiers', d);
+  eq(displayName(d, 'C03', 1), '过路人', 'before the reveal the disguise name is shown');
+  eq(displayName(d, 'C03', 3), '穿雨衣的男人', 'from the reveal episode on the real name is shown');
+  eq(displayName(d, 'C03'), '穿雨衣的男人', 'without an episode the real name is shown');
+  eq(displayName(d, 'C01', 1), '林小夏', 'undisguised characters keep their name');
+  ok(forbiddenNames(d).includes('过路人'), 'a disguise name is a forbidden prompt name');
+  const script = renderScript(d, E01);
+  ok(script.includes('过路人（') && !script.includes('穿雨衣的男人（'), 'render script attributes lines to the disguise name');
+  ok(/人物：[^\n]*过路人/.test(script), 'render script lists the disguise name in the scene cast');
+  ok(renderDialogue(d, E01).includes('过路人（') && !renderDialogue(d, E01).includes('穿雨衣的男人（'), 'render dialogue uses the disguise name');
+  eq(seedScript(d, 1).seedNote.speech.C03.name, '过路人', 'seed note uses the disguise name');
+  const late = clone(E01); late.ep = 3;
+  ok(renderScript(d, late).includes('穿雨衣的男人（'), 'after the reveal the script uses the real name');
+  for (const [bad, needle] of [[{ name: '过路人', revealEpisode: 1 }, 'revealEpisode'], [{ name: '穿雨衣的男人', revealEpisode: 2 }, 'equals the real name'], [{ revealEpisode: 2 }, 'disguise.name is empty'], [{ name: '过路人', revealEpisode: 9 }, 'revealEpisode']]) {
+    const x = clone(PROJECT); x.characters[2].disguise = bad;
+    breaks('tiers', x, null, needle);
+  }
 }
 
 // ── the CLI entry point survives a symlink (realpath isMain) ──────────────────

@@ -25,6 +25,8 @@ episodes, sign-off between them.**
    `lead` (1–5, the protagonists and main antagonist, `arc` required), `support` (≤10, named
    secondary characters, `arc` required), `functional` (≤10, a role label as the name, no arc).
    Unnamed background people are not listed. Write `mergeNote`: why these are the leads.
+   A character who hides who they are until a reveal (the villain under a false name) gets
+   `disguise: { name, revealEpisode }` — the episode documents use the disguise name until then.
 3. **Collect scenes.** Primary scenes are capped at `4 + ⌈episodes/10⌉` (5–15) — generated scenes
    are cheap, but every extra one is another consistency asset to maintain. A scene used in only
    one episode needs a `reusePlan` (which existing environment it derives from, what changes) or

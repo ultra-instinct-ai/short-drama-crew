@@ -350,6 +350,8 @@ wji asset download <assetId…> -o <dir>   # then look at the images yourself
 wji canvas create E01 -w <workspaceId>  # new empty canvas; then --canvas <id>
 wji canvas add video --from <imgNode> <imgNode> -m <model> -r 16:9 -d 8 -p "@image1 … @image2 …"
 wji canvas add text -t "shot list…" --at 0,600
+wji canvas add text --text-file prompt.txt --plain --size 600,900   # plain text keeps its line breaks; node 600×900
+wji canvas set <nodeId> --text-file notes.md --size 520,700           # replace the text, resize
 wji canvas add image --asset <assetId> -n "Ada sheet"     # display node for an existing asset
 wji canvas add dataset --dataset <fsnodeId>                # card bound to a workspace dataset
 wji canvas set <nodeId> -p "new prompt"        # merges: other settings stay
@@ -399,6 +401,10 @@ wji canvas rm <nodeId…>                        # destructive — see Rules
 - Take new ids from the command's own output (`wji --json canvas add … | jq
   -r .id`), not by searching names — names repeat on a canvas. In zsh a
   variable holding several ids is not word-split; pass the ids literally.
+- Text, title and comment nodes are **Markdown** on the web: a single line break
+  joins the lines into one paragraph (the CLI warns). For prompts and other plain
+  text pass `--plain` (line breaks become Markdown hard breaks); `--size w,h`
+  sets the node's box so a long prompt is readable without scrolling.
 - Changes show up live in the user's open canvas; there's no need to ask them
   to reload.
 - `canvas gen` sends exactly what the canvas's own Generate button sends

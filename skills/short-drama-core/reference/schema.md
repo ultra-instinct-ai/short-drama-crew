@@ -156,7 +156,8 @@ Outline stage fills the first block; the characters stage fills the rest.
 | --- | --- | --- |
 | `tier` | — | `lead` (1–5, `arc` required) / `support` (≤10, `arc` required) / `functional` (≤10, `name` is a role label such as 急诊医生, `arc` optional) |
 | `from[]` | — | change record: source character, merges, or `["原创"]` |
-| `oneLiner`, `profile.*`, `voice.timbre…emotion` | `lang` | human-readable |
+| `disguise` | `lang` | optional `{ name, revealEpisode }` for a character who hides who they are (a villain under a false name, a secret identity): before `revealEpisode` every episode document — `render script` / `dialogue` / `segment`, the seed note — calls them `name` so the crew's scripts do not spoil the reveal. `name` is treated as an alias by the name gates. Gate `tiers`: `name` set and ≠ the real name, `revealEpisode` in 2–episodes |
+| `oneLiner`, `profile.*`, `voice.timbre…emotion` | `lang` | human-readable. **No names or aliases**: in a Chinese (`wan`) prompt `timbre / pace / accent / emotion` are pasted beside the character's first line, and all six go into the voice-sample prompt — gate `voice` |
 | `profile.evidence[]` | source | verbatim quotes, never translated |
 | `image.prompt` | **English** | portrait prompt; **no names or aliases**; must state ethnicity and era |
 | `image.negativePrompt` | English | style-dependent, see stage-characters |
@@ -256,14 +257,14 @@ prompt bans hands**). At most `thresholds.maxProps` (8).
 | Field | Rules |
 | --- | --- |
 | `targetSeconds` | seeded from `params`; the episode estimate must be within `± tolerance` |
-| `hook` / `cliff` | descriptions of the opening hook and closing suspense, not lines |
+| `hook` / `cliff` | descriptions of the opening hook and closing suspense, not lines. `seed script` leaves `hook` empty (the writer describes the opening image) and fills `cliff` from the outline episode's `hook` |
 | `beatsClaimed[]` | outline beat ids this episode realises; must equal the beats whose `episode` is this one |
 | `hookBeat` | `[sceneIndex, beatIndex]` (1-based) where the hook's concrete image lands — within the first `hookWindow` beats of the episode and by `hookSeconds` of cumulative time |
 | `function` / `task` / `change` / `hookType` | seeded from the outline episode and gated equal to it (`script-design`) |
 | `satisfactionBeat` | `[sceneIndex, beatIndex]` of the 爽点 — an action beat, or a line with an action beat beside it; after the hook, before the last beat |
 | `flow[].turn` | `true` on a beat that brings new information, an obstacle, a counter or a choice; the `rhythm` gate measures hook → turns → 爽点 → cliff against `turnSeconds` |
 | `scenes[].sceneId` / `lighting` / `characters` / `props` | must exist in `project.json`; `lighting` must be a state of that scene |
-| `flow[]` | alternating **action beats** `{action}` (narrative, one thing per beat, **common actions only**, no quotes) and **line beats** `{speaker, line, delivery?}`; `speaker` ∈ scene `characters` or `VO` (an off-screen voice: it gets no `@audio` reference, the prompt calls it off-screen and keeps every visible mouth closed while it speaks); `line` ≤ `maxLineChars` non-whitespace characters |
+| `flow[]` | alternating **action beats** `{action}` (narrative, one thing per beat, **common actions only**, no quotes) and **line beats** `{speaker, line, delivery?}`; `speaker` ∈ scene `characters` or `VO` (an off-screen voice: it gets no `@audio` reference, the prompt calls it off-screen and keeps every visible mouth closed while it speaks); `line` ≤ `maxLineChars` non-whitespace characters; `delivery` names nobody when the video prompt carries it (a Chinese `wan` prompt, or an English delivery) — gate `beat-flow` |
 
 Duration: `Σ lines (chars ÷ charsPerSecond) + Σ actions × actionSeconds`.
 

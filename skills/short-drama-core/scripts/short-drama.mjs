@@ -525,7 +525,7 @@ export function langTag(lang) {
 export function forbiddenNames(project) {
   const out = [];
   for (const c of project.characters || []) {
-    for (const n of [c.name, ...(c.aliases || [])]) if (n && String(n).trim().length >= 2) out.push(String(n).trim());
+    for (const n of [c.name, ...(c.aliases || []), c.disguise?.name]) if (n && String(n).trim().length >= 2) out.push(String(n).trim());
   }
   return uniq(out);
 }
@@ -558,6 +558,18 @@ function sceneById(project, id) {
 }
 function characterById(project, id) {
   return (project.characters || []).find((c) => c.id === id);
+}
+/**
+ * The name the drama's own documents use for a character in episode `ep`. A character with
+ * `disguise: {name, revealEpisode}` goes by the disguise name before the reveal, so an episode's
+ * script, polish sheet and segment sheet never spoil who they are. Without `ep` it is the real name.
+ */
+export function displayName(project, id, ep) {
+  const c = characterById(project, id);
+  if (!c) return id;
+  const d = c.disguise;
+  if (isObject(d) && String(d.name || '').trim() && ep != null && Number(ep) < Number(d.revealEpisode)) return String(d.name).trim();
+  return c.name || id;
 }
 function propById(project, id) {
   return (project.props || []).find((p) => p.id === id);
@@ -827,6 +839,13 @@ export const GATES = [
       if (!c.role) out.push(`${c.id}: role is required`);
       if (['lead', 'support'].includes(c.tier) && !c.arc) out.push(`${c.id}: ${c.tier} characters need an arc`);
       if (!Array.isArray(c.from) || !c.from.length) out.push(`${c.id}: from[] must record where the character comes from (or ["原创"])`);
+      if (c.disguise !== undefined) {
+        const d = isObject(c.disguise) ? c.disguise : {};
+        const rev = Number(d.revealEpisode);
+        if (!String(d.name || '').trim()) out.push(`${c.id}: disguise.name is empty — the name this character goes by before the reveal`);
+        else if (String(d.name).trim() === c.name) out.push(`${c.id}: disguise.name equals the real name`);
+        if (!(Number.isInteger(rev) && rev >= 2 && rev <= Number(params.episodes))) out.push(`${c.id}: disguise.revealEpisode must be an episode in 2–${params.episodes} (the first episode that uses the real name)`);
+      }
     }
     if (count.lead < 1 || count.lead > t.maxLeads) out.push(`lead characters: ${count.lead}, must be 1–${t.maxLeads}`);
     if (count.support > t.maxSupport) out.push(`support characters: ${count.support}, max ${t.maxSupport}`);
@@ -1084,7 +1103,13 @@ export const GATES = [
     const out = [];
     for (const c of project.characters || []) {
       const v = c.voice || {};
-      for (const key of ['timbre', 'pitch', 'pace', 'accent', 'emotion']) if (!String(v[key] || '').trim()) out.push(`${c.id}: voice.${key} is empty`);
+      for (const key of ['timbre', 'pitch', 'pace', 'accent', 'emotion']) {
+        const text = String(v[key] || '');
+        if (!text.trim()) { out.push(`${c.id}: voice.${key} is empty`); continue; }
+        // pasted verbatim beside the character's first line in every Chinese segment prompt, and into the voice-sample prompt
+        const nm = forbiddenNames(project).find((n) => containsName(text, n));
+        if (nm) out.push(`${c.id}: voice.${key} contains the name "${nm}" — it is pasted into prompts; say 对她 / 对他 or describe the person`);
+      }
       if (params.voiceSamples !== false) {
         const sample = v.sample || {};
         const line = String(sample.line || '').trim();
@@ -1097,6 +1122,10 @@ export const GATES = [
           if (QUOTE_RE.test(line)) out.push(`${c.id}: voice.sample.line must not carry quote marks — the engine reads them`);
         }
         if (!direction) out.push(`${c.id}: voice.sample.direction is empty — say how it is acted; it becomes the parenthetical the model obeys`);
+        else {
+          const nm = forbiddenNames(project).find((n) => containsName(direction, n));
+          if (nm) out.push(`${c.id}: voice.sample.direction contains the name "${nm}" — it goes into the voice-sample prompt`);
+        }
       }
       // The compact form the video prompt puts beside every line this character speaks.
       const vd = String(v.videoDirection || '').trim();
@@ -1113,6 +1142,8 @@ export const GATES = [
         if (!isEnglish(prompt)) out.push(`${c.id}: voice.prompt must be English`);
         if (prompt.length > 400) out.push(`${c.id}: voice.prompt is ${prompt.length} chars, max 400 — write a parameter string, not prose`);
         if (QUOTED_LINE_RE.test(prompt)) out.push(`${c.id}: voice.prompt contains a quoted line — engines read it aloud`);
+        const nm = forbiddenNames(project).find((n) => containsName(prompt, n));
+        if (nm) out.push(`${c.id}: voice.prompt contains the name "${nm}"`);
       }
     }
     return out;
@@ -1269,7 +1300,7 @@ export const GATES = [
     for (const [ep, e] of ctx.episodes) {
       if (Number(e.ep) !== Number(ep)) out.push(`E${pad2(ep)}: ep field is ${e.ep}`);
       if (!(Number(e.targetSeconds) > 0)) out.push(`E${pad2(ep)}: targetSeconds missing (run seed script)`);
-      if (!String(e.hook || '').trim()) out.push(`E${pad2(ep)}: hook is empty`);
+      if (!String(e.hook || '').trim()) out.push(`E${pad2(ep)}: hook is empty — describe the opening image (seed leaves it for you; the outline's hook is the cliff)`);
       if (!String(e.cliff || '').trim()) out.push(`E${pad2(ep)}: cliff is empty`);
       if (!Array.isArray(e.beatsClaimed)) out.push(`E${pad2(ep)}: beatsClaimed must be an array`);
       if (!Array.isArray(e.scenes) || !e.scenes.length) { out.push(`E${pad2(ep)}: scenes is empty`); continue; }
@@ -1285,9 +1316,11 @@ export const GATES = [
     }
     return out;
   }),
-  gate('beat-flow', 'script', 'beats: action ⇄ line, one kind each, no quotes in actions, speakers legal, line ≤ N chars', (ctx) => {
-    const { params } = ctx;
+  gate('beat-flow', 'script', 'beats: action ⇄ line, one kind each, no quotes in actions, speakers legal, line ≤ N chars, no names in a delivery the video prompt carries', (ctx) => {
+    const { project, params } = ctx;
     const out = [];
+    const names = forbiddenNames(project);
+    const promptLang = videoModel(params).promptLang;
     for (const [ep, e] of ctx.episodes) {
       (e.scenes || []).forEach((sc, i) => {
         const where = `E${pad2(ep)} scene ${i + 1}`;
@@ -1306,6 +1339,13 @@ export const GATES = [
             if (!String(b.line || '').trim()) out.push(`${where} beat ${k + 1}: line is empty`);
             if (nonWhitespace(b.line) > params.maxLineChars) out.push(`${where} beat ${k + 1}: line has ${nonWhitespace(b.line)} chars, max ${params.maxLineChars}`);
             if (b.speaker !== 'VO' && !(sc.characters || []).includes(b.speaker)) out.push(`${where} beat ${k + 1}: speaker ${b.speaker} is not in this scene (or VO)`);
+            // speechDirection pastes the delivery beside the line in a Chinese (wan) prompt, and an English
+            // delivery into any prompt — where a name fails the storyboard's no-names check much later.
+            const delivery = String(b.delivery || '');
+            if (delivery && beatDelivery(delivery, promptLang)) {
+              const nm = names.find((n) => containsName(delivery, n));
+              if (nm) out.push(`${where} beat ${k + 1}: delivery names "${nm}" — it goes into the video prompt beside the line; say 她 / 他 / 对方 or describe them`);
+            }
           }
         });
         if ((sc.flow || []).length && actions === 0) out.push(`${where}: no action beat — a scene of pure dialogue is a radio play`);
@@ -2356,7 +2396,7 @@ export function seedScript(project, ep) {
   for (const id of outlineEp.characterIds || []) {
     const c = characterById(project, id);
     const sp = c?.bible?.speech || {};
-    if (c) speech[id] = { name: c.name, rhythm: sp.rhythm || '', silence: sp.silence || '', catchphrase: sp.catchphrase || '', forbiddenWords: sp.forbiddenWords || [], register: sp.register || '', voice: c.voice?.pace || '' };
+    if (c) speech[id] = { name: displayName(project, id, ep), rhythm: sp.rhythm || '', silence: sp.silence || '', catchphrase: sp.catchphrase || '', forbiddenWords: sp.forbiddenWords || [], register: sp.register || '', voice: c.voice?.pace || '' };
   }
   return {
     ep: Number(ep),
@@ -2366,14 +2406,16 @@ export function seedScript(project, ep) {
     task: isObject(outlineEp.task) ? { ...outlineEp.task } : { goal: '', obstacle: '', stake: '' },
     change: outlineEp.change || '',
     hookType: outlineEp.hookType || '',
-    hook: outlineEp.hook || '',
-    cliff: outlineEp.suspense || '',
+    hook: '',
+    cliff: outlineEp.hook || '',
     beatsClaimed: beats.map((b) => b.id),
     hookBeat: [1, 1],
     satisfactionBeat: null,
     scenes: [],
     seedNote: {
       synopsis: outlineEp.synopsis || '',
+      openingHook: `write \`hook\` yourself: the concrete image, in motion, that opens the episode (on screen within the first ${params.hookWindow} beats and by ${params.hookSeconds} s). \`cliff\` is seeded from the outline's hook — the question that makes them tap the next episode`,
+      suspense: outlineEp.suspense || '',
       satisfaction: isObject(outlineEp.satisfaction) ? { ...outlineEp.satisfaction } : { type: '', action: '' },
       register: params.register,
       guidelinePriorities: asList(project.outline?.guideline?.priorities),
@@ -2386,7 +2428,7 @@ export function seedScript(project, ep) {
       crowdPlan: outlineEp.crowdPlan || '',
       warnings: outlineEp.warnings || [],
       beats: beats.map((b) => ({ id: b.id, type: b.type, weight: b.weight || 'minor', setup: b.setup, payoff: b.payoff })),
-      previousCliff: prev?.suspense || '',
+      previousCliff: prev?.hook || '',
       budget: `${Math.round(Number(params.minutesPerEpisode) * 60)} s ≈ ${Math.round((Number(params.minutesPerEpisode) * 60) / 3.3)} beats; lines at ${params.charsPerSecond} chars/s, actions ${params.actionSeconds} s each`,
     },
     storyboard: { segments: [] },
@@ -2903,7 +2945,7 @@ export function renderDialogue(project, episode) {
       if (b.line === undefined) return;
       const ch = characterById(project, b.speaker);
       const sp = ch?.bible?.speech || {};
-      const who = b.speaker === 'VO' ? 'VO' : ch?.name || b.speaker;
+      const who = b.speaker === 'VO' ? 'VO' : displayName(project, b.speaker, episode.ep);
       const hint = [sp.rhythm, sp.silence ? `沉默：${sp.silence}` : '', (sp.forbiddenWords || []).length ? `禁用：${sp.forbiddenWords.join('、')}` : ''].filter(Boolean).join('；');
       rows.push([`${who}${b.delivery ? `（${b.delivery}）` : ''}：${b.line}`, '', '', '', hint]);
     });
@@ -2998,12 +3040,12 @@ export function renderScript(project, episode) {
   const satRef = Array.isArray(episode.satisfactionBeat) ? episode.satisfactionBeat.map(Number) : null;
   (episode.scenes || []).forEach((sc, i) => {
     const scene = sceneById(project, sc.sceneId);
-    lines.push(`## ${i + 1}. ${scene?.name || sc.sceneId}${sc.lighting ? ` · ${sc.lighting}` : ''}`, '', `人物：${(sc.characters || []).map((id) => characterById(project, id)?.name || id).join('、')}${(sc.props || []).length ? ` · 道具：${sc.props.map((id) => propById(project, id)?.name || id).join('、')}` : ''}`, '');
+    lines.push(`## ${i + 1}. ${scene?.name || sc.sceneId}${sc.lighting ? ` · ${sc.lighting}` : ''}`, '', `人物：${(sc.characters || []).map((id) => displayName(project, id, episode.ep)).join('、')}${(sc.props || []).length ? ` · 道具：${sc.props.map((id) => propById(project, id)?.name || id).join('、')}` : ''}`, '');
     (sc.flow || []).forEach((b, k) => {
       const o = at(i + 1, k + 1);
       const span = o ? `（${Math.round(o.start)}-${Math.round(o.end)}秒）` : '';
       if (b.line !== undefined) {
-        const who = b.speaker === 'VO' ? 'VO' : characterById(project, b.speaker)?.name || b.speaker;
+        const who = b.speaker === 'VO' ? 'VO' : displayName(project, b.speaker, episode.ep);
         lines.push(`${who}${b.delivery ? `（${b.delivery}）` : ''}：${b.line}`);
       } else lines.push(`△${span}${b.action}${b.turn ? '　⟲' : ''}`);
       if (satRef && satRef[0] === i + 1 && satRef[1] === k + 1) lines.push('', `【爽点标记】${sat.action || sat.type || ''}`);
@@ -3024,7 +3066,7 @@ export function renderSegment(project, episode, segmentId) {
   const cuts = seg.cuts || [];
   const starts = cutStarts(cuts);
   const total = cuts.reduce((s, c) => s + (Number(c.seconds) || 0), 0);
-  const nameOf = (id) => characterById(project, id)?.name || id;
+  const nameOf = (id) => displayName(project, id, episode.ep);
   const lines = [`# ${seg.id}`, '', `${sceneById(project, scene.sceneId)?.name || scene.sceneId || ''}${scene.lighting ? ` · ${scene.lighting}` : ''} · ${round2(total)} s · ${params.video}`, ''];
   const kit = params.camera || DEFAULT_PARAMS.camera;
   lines.push(`镜头：${kit.body} + ${kit.lens}`, '');
