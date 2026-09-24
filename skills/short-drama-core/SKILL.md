@@ -129,7 +129,8 @@ validate, then quote, then generate.
    for on top of that (大光圈, 背景虛化, 前景模糊…) goes in `lookPhrase`.
 4. **Locate or create the project directory** (the user's choice, else next to the source):
    ```bash
-   $SD init <dir> --title "<title>" --episodes N --minutes M --genre "<genre>" --register 台湾国语 [--adapt 抽核] [--ratio 9:16] [--video h3|seedance|seedance2|seedance2fast|wan] [--resolution 480P|…] [--accent "台湾口音国语"] [--style photoreal|realistic|ghibli] [--references sheets|keyframes] [--duration auto|fixed] [--look "<lens phrase>"] [--lang zh]
+   $SD init <dir> --title "<title>" --episodes N --minutes M --genre "<genre>" --register 台湾国语 [--adapt 抽核] [--ratio 9:16] [--video h3|seedance|seedance2|seedance2fast|wan] [--resolution 480P|…] [--accent "台湾口音国语"] [--style photoreal|realistic|ghibli] [--references sheets|keyframes] [--duration auto|fixed] [--look "<lens phrase>"] [--lang zh] [--image-lang en|zh]
+   # --image-lang zh: character / scene / prop image prompts in Chinese (the default is English)
    # params.camera (body / lens / aperture) is edited in project.json
    ```
    An existing `project.json` means a resumed run: `validate` and `manifest` tell you where it stands.

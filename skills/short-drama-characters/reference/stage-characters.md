@@ -42,7 +42,17 @@ relationship carries a `secret` — that is where the reversals come from.
 `delivery` are written from `rhythm`, `silence` and `forbiddenWords`; `seed script` prints them in
 the `seedNote` and `render dialogue` puts them beside each line for the polish pass.
 
-## Image prompts (English, always)
+## Image prompts (English by default; Chinese with `params.imagePromptLang: zh`)
+
+`image.prompt`, `image.negativePrompt` and `image.sheet` are written in `params.imagePromptLang`
+(`init --image-lang zh`): English by default, Chinese when the image model takes Chinese and the
+crew wants to read and edit the prompts (简体 or 繁體 — the gates fold 繁體 to 简体). The rules
+below are the same in both; in Chinese the gates look for the ethnicity (东亚 / 汉族 …), a whole era
+word (当代 / 秦末汉初 / 唐代 — a bare 明 or 清 is not an era), `16:9`, the first words of the
+style's `renderZh` phrase (photoreal: 真人实拍参考摄影) and its Chinese negatives (photoreal must ban
+插画 / 动漫 / 卡通 and never 照片级). `identityEn`, `voice.prompt` and `voice.videoDirection` stay
+English either way. The node prompts themselves come from `$SD prompt <project> image C01 --asset
+headshot|sheet`.
 
 - **No names, aliases, author or title anywhere** — image models paint what they remember of a
   name. Describe the person.

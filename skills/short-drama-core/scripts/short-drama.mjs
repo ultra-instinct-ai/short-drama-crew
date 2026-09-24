@@ -8,6 +8,7 @@
 //            [--resolution 480P|…] [--accent "台灣口音國語"] [--style photoreal|realistic|ghibli]
 //            [--references sheets|keyframes] [--duration auto|fixed] [--look "shallow depth of field"] [--lang zh] [--adapt 原創]
 //            [--register 台湾国语]                                      (语体 — decides how lines are written and the accent spoken)
+//            [--image-lang en|zh]                                       (language of the character / scene / prop image prompts)
 //   validate <project> [--stage outline|characters|art|script|storyboard] [--ep 1-3]
 //   checkup  <project> [--stage …] [--ep …]            every gate with ✓/✗, exit 0
 //   seed     <project> script --ep N [--force]        episodes/E0N.json skeleton from the outline
@@ -15,6 +16,8 @@
 //   render   <project> outline | guideline | character C01 | scene S01 | prop P01 | script --ep N | dialogue --ep N | segment E01-01
 //   prompt   <project> segment E01-01                 derived video-prompt skeleton + keyframe reference plan
 //   prompt   <project> voice C01                       the acted sample text for the voice node
+//   prompt   <project> image C01|S01|P01 [--asset headshot|sheet|lighting:<state>|state:<state>] [--json]
+//                                                      the image node's prompt, in params.imagePromptLang (+ negative, ratio, reference)
 //   prompt   <project> audio E01-01 [--full]          the segment's Seed Audio soundtrack prompt (timecoded ambience / sfx / music, + lines with --full)
 //   manifest <project> [--stage …] [--ep N]           unbound WJI objects, in execution order
 //   bind     <project> [--ep N] <path> <value>        write a WJI id back (path segments may be entity ids)
@@ -55,6 +58,9 @@ export const DEFAULT_PARAMS = Object.freeze({
   videoDuration: 'auto',
   lookPhrase: '',
   lookPhraseZh: '',
+  // The language of the character / scene / prop image prompts (sheets, headshots, lighting and
+  // prop states): `en`, or `zh` when the image model takes Chinese and the crew wants to read them.
+  imagePromptLang: 'en',
   minCutSeconds: 2,
   maxCutSeconds: 5,
   maxOnScreen: 3,
@@ -163,6 +169,7 @@ export const DURATION_MODES = ['fixed', 'auto'];
  * move carry over instead of being re-invented per clip. `none` leaves the sheets to do that alone.
  */
 export const VIDEO_REFERENCE_MODES = ['none', 'previous'];
+export const IMAGE_PROMPT_LANGS = ['en', 'zh'];
 
 // ── screenplay craft (from the w-short-drama-editor / character-creator / dialogue-editor method) ──
 
@@ -245,6 +252,7 @@ export const NO_SUBTITLES = { en: 'no subtitles, no captions, no on-screen dialo
 export const LIPS_CLOSED = 'lips remain completely closed';
 export const WARNINGS = ['雨戏', '肢体接触', '人群', '手部特写'];
 export const PROP_SCALES = { handheld: 'handheld scale', tabletop: 'tabletop scale', furniture: 'furniture scale' };
+export const PROP_SCALES_ZH = { handheld: '手持尺寸', tabletop: '桌面尺寸', furniture: '大件尺寸' };
 export const SIZES = {
   'extreme-wide': 'extreme wide shot',
   wide: 'wide shot',
@@ -431,6 +439,10 @@ export const STYLE_PRESETS = {
     negativeMustNot: ['photorealistic', '3d render'],
     negativeMust: [],
     tags: ['semi-realistic', 'painterly', 'cinematic'],
+    renderZh: '半写实角色插画，绘画质感，笔触柔和融合并带可见的笔刷肌理，解剖结构扎实',
+    framePhraseZh: '电影剧照',
+    negativeMustNotZh: ['照片级', '真人', '3d渲染'],
+    negativeMustZh: [],
   },
   photoreal: {
     label: 'photographic live-action',
@@ -440,6 +452,10 @@ export const STYLE_PRESETS = {
     negativeMustNot: ['photorealistic', 'film grain', 'skin texture'],
     negativeMust: ['illustration', 'anime', 'cartoon'],
     tags: ['photoreal', 'live action', 'cinematic'],
+    renderZh: '真人实拍参考摄影，皮肤可见毛孔与细绒毛，布料有真实织纹与磨损，中性电影调色',
+    framePhraseZh: '照片级写实电影剧照',
+    negativeMustNotZh: ['照片级', '胶片颗粒', '皮肤纹理'],
+    negativeMustZh: ['插画', '动漫', '卡通'],
   },
   soft3d: {
     label: 'soft clay-toy 3D animation',
@@ -449,6 +465,10 @@ export const STYLE_PRESETS = {
     negativeMustNot: ['3d render', 'cgi', 'stylized', 'clay', 'matte', 'toy', 'simplified'],
     negativeMust: ['photorealistic'],
     tags: ['3d animation', 'clay render', 'soft toy style', 'kids tv'],
+    renderZh: '柔和哑光的黏土玩具风格三维渲染，表面光滑无毛孔，发型是一整块圆润的造型，五官极简，四肢圆胖，大头身比，柔和全局光',
+    framePhraseZh: '黏土动画电影剧照',
+    negativeMustNotZh: ['3d渲染', 'cg', '风格化', '黏土', '哑光', '玩具', '简化'],
+    negativeMustZh: ['照片级'],
   },
   disney3d: {
     label: 'Disney/Pixar-style 3D animation',
@@ -458,6 +478,10 @@ export const STYLE_PRESETS = {
     negativeMustNot: ['3d render', 'cgi', 'stylized', 'cartoon'],
     negativeMust: ['photorealistic'],
     tags: ['3d animation', 'disney pixar style', 'family', 'cinematic'],
+    renderZh: '迪士尼与皮克斯长片风格的三维动画，圆润讨喜的造型语言，大而传神的眼睛，次表面散射皮肤，温暖的电影主光与轮廓光',
+    framePhraseZh: '三维动画电影剧照',
+    negativeMustNotZh: ['3d渲染', 'cg', '风格化', '卡通'],
+    negativeMustZh: ['照片级'],
   },
   ghibli: {
     label: 'hand-painted anime',
@@ -467,8 +491,56 @@ export const STYLE_PRESETS = {
     negativeMustNot: [],
     negativeMust: ['photorealistic'],
     tags: ['anime', 'cel shading', 'hand-painted'],
+    renderZh: '日本经典动画电影风格的手绘赛璐璐动画，干净线稿，平涂色彩配柔和水彩背景',
+    framePhraseZh: '手绘动画电影剧照',
+    negativeMustNotZh: [],
+    negativeMustZh: ['照片级'],
   },
 };
+
+// Traditional → simplified for the characters the Chinese image-prompt rules look for, so a crew
+// writing 繁體 (真人實拍參考攝影, 純白背景, 東亞) passes the same checks as one writing 简体.
+const ZH_T = '實參攝寫繪畫質膚絨織紋損調級動風簡賽顆東亞漢華國韓歐維紀時當現戰無場沒純圖臉須髮還間構變燈樣與體條機啞寬細電影剛劇個們來這為後從歲種頭於將兩裡進遠擊衛萬處滿點眾邊師張長門開關問員陽陰雲書幾話鐵號專業輕壓環題顏鏡區鬥創標誌劃會戲網際聲氣態網雜淺濃暗餘濕黃綠藍紅寫臨團鄉樓廳櫃燈廢廠館護殘獨帶膠鮮爾歷羅陸屬樂傳麗貴壯';
+const ZH_S = '实参摄写绘画质肤绒织纹损调级动风简赛颗东亚汉华国韩欧维纪时当现战无场没纯图脸须发还间构变灯样与体条机哑宽细电影刚剧个们来这为后从岁种头于将两里进远击卫万处满点众边师张长门开关问员阳阴云书几话铁号专业轻压环题颜镜区斗创标志划会戏网际声气态网杂浅浓暗余湿黄绿蓝红写临团乡楼厅柜灯废厂馆护残独带胶鲜尔历罗陆属乐传丽贵壮';
+const ZH_FOLD = new Map([...ZH_T].map((ch, i) => [ch, ZH_S[i]]));
+export function foldZh(text) {
+  return [...String(text ?? '')].map((ch) => ZH_FOLD.get(ch) || ch).join('').toLowerCase();
+}
+
+const ZH_ETHNICITY_RE = /(东亚|亚洲|亚裔|汉族|华人|中国|日本|韩国|朝鲜|欧洲|白人|黑人|非洲|拉丁|中东|阿拉伯|南亚|东南亚|混血|蒙古|藏族|维吾尔|鲜卑|匈奴|胡人|西域|印度)/;
+// whole era words only — a bare 明 / 清 / 元 would match 明亮 / 清晰 / 元素
+const ZH_ERA_RE = /(年代|世纪|时期|当代|现代|古代|近代|公元|未来|中世纪|维多利亚|民国|春秋|战国|先秦|秦朝|秦代|秦末|西汉|东汉|汉朝|汉代|汉初|汉末|三国|西晋|东晋|晋朝|南北朝|北魏|北齐|北周|南朝|隋朝|隋代|隋末|唐朝|唐代|初唐|盛唐|晚唐|五代|宋朝|宋代|北宋|南宋|元朝|元代|明朝|明代|明末|清朝|清代|晚清)/;
+
+// the checked part of a Chinese render phrase: up to its first comma, at most 8 characters
+const renderKeyZh = (preset) => preset.renderZh.split('，')[0].slice(0, 8);
+
+/** The rules the image-prompt gates apply, in the project's image-prompt language. */
+export function imagePromptKit(params) {
+  const zh = params.imagePromptLang === 'zh';
+  const preset = STYLE_PRESETS[params.style] || STYLE_PRESETS.realistic;
+  const has = (text, word) => (zh ? foldZh(text).includes(foldZh(word)) : String(text ?? '').toLowerCase().includes(String(word).toLowerCase()));
+  return {
+    zh,
+    label: zh ? 'Chinese' : 'English',
+    inLang: (text) => (zh ? CJK_RE.test(String(text ?? '')) : isEnglish(text)),
+    ethnicity: (text) => (zh ? ZH_ETHNICITY_RE.test(foldZh(text)) : ETHNICITY_RE.test(String(text ?? ''))),
+    era: (text) => (zh ? ZH_ERA_RE.test(foldZh(text)) : ERA_RE.test(String(text ?? ''))),
+    sheetRatio: (text) => /16\s*[:：]\s*9/.test(String(text ?? '')),
+    // the style's render phrase — its first 30 characters in English, up to 8 before the first comma in Chinese
+    render: zh ? preset.renderZh : preset.render,
+    renderKey: zh ? renderKeyZh(preset) : preset.render.slice(0, 30),
+    hasRender: (text) => has(text, zh ? renderKeyZh(preset) : preset.render.slice(0, 30)),
+    framePhrase: zh ? preset.framePhraseZh : preset.framePhrase,
+    negativeMust: zh ? preset.negativeMustZh : preset.negativeMust,
+    negativeMustNot: zh ? preset.negativeMustNotZh : preset.negativeMustNot,
+    has,
+    bansPeople: (neg) => (zh ? /人/.test(foldZh(neg)) : /(people|person|figure|human|man|woman|crowd)/.test(String(neg).toLowerCase())),
+    bansHands: (neg) => (zh ? /手/.test(foldZh(neg)) : /(hand|finger)/.test(String(neg).toLowerCase())),
+    saysEmpty: (text) => (zh ? /(空场景|空无一人|没有人|没有任何人|无人|空景)/.test(foldZh(text)) : /(no people|empty|unpopulated|nobody|no one|no human)/i.test(String(text))),
+    whiteBackground: (text) => (zh ? /(纯白背景|白色背景|白底)/.test(foldZh(text)) : /white background/i.test(String(text))),
+    scalePhrase: (scale) => (zh ? PROP_SCALES_ZH[scale] : PROP_SCALES[scale]),
+  };
+}
 
 const LANG_TAGS = { zh: 'Chinese', en: 'English', ja: 'Japanese', ko: 'Korean', fr: 'French', de: 'German', es: 'Spanish' };
 const QUOTE_RE = /[「」『』“”]/;
@@ -536,9 +608,18 @@ export function containsName(text, name) {
   return new RegExp(`\\b${name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i').test(text);
 }
 
+function promptTokens(text) {
+  const t = foldZh(text);
+  const words = t.match(/[a-z0-9']+/g) || [];
+  // Chinese has no spaces: compare character bigrams inside each run of CJK characters.
+  const bigrams = [];
+  for (const run of t.match(/[\u3400-\u9fff]+/g) || []) for (let i = 0; i + 1 < run.length; i++) bigrams.push(run.slice(i, i + 2));
+  return new Set([...words, ...bigrams]);
+}
+
 export function jaccard(a, b) {
-  const wa = new Set(String(a).toLowerCase().match(/[a-z0-9']+/g) || []);
-  const wb = new Set(String(b).toLowerCase().match(/[a-z0-9']+/g) || []);
+  const wa = promptTokens(a);
+  const wb = promptTokens(b);
   if (wa.size < 8 || wb.size < 8) return 0;
   let inter = 0;
   for (const w of wa) if (wb.has(w)) inter += 1;
@@ -807,6 +888,7 @@ export const GATES = [
     }
     if (params.videoResolution && !videoResolutionFor(mode, params.videoResolution)) out.push(`params.videoResolution ${params.videoResolution} is not a tier of ${mode.model} \u2014 it takes ${mode.resolutions.join(' / ')}`);
     if (!STYLE_PRESETS[params.style]) out.push(`params.style must be one of ${Object.keys(STYLE_PRESETS).join(' / ')}`);
+    if (!IMAGE_PROMPT_LANGS.includes(params.imagePromptLang)) out.push(`params.imagePromptLang must be one of ${IMAGE_PROMPT_LANGS.join(' / ')} (the language of the character / scene / prop image prompts)`);
     if (!/^\d+:\d+$/.test(String(params.ratio))) out.push('params.ratio must look like 9:16');
     if (!project.title) out.push('title is required');
     return out;
@@ -1076,26 +1158,26 @@ export const GATES = [
     }
     return out;
   }),
-  gate('char-prompts', 'characters', 'image prompts English, no names, ethnicity + era stated', ({ project, params }) => {
+  gate('char-prompts', 'characters', 'image prompts in params.imagePromptLang (English by default), no names, ethnicity + era stated', ({ project, params }) => {
     const out = [];
     const names = forbiddenNames(project);
-    const preset = STYLE_PRESETS[params.style] || STYLE_PRESETS.realistic;
+    const kit = imagePromptKit(params);
     for (const c of project.characters || []) {
       const img = c.image || {};
       for (const key of ['prompt', 'negativePrompt', 'sheet']) {
         const text = String(img[key] || '');
         if (!text.trim()) { out.push(`${c.id}: image.${key} is empty`); continue; }
-        if (!isEnglish(text)) out.push(`${c.id}: image.${key} must be English`);
+        if (!kit.inLang(text)) out.push(`${c.id}: image.${key} must be ${kit.label} (params.imagePromptLang = ${params.imagePromptLang})`);
         for (const n of names) if (containsName(text, n)) out.push(`${c.id}: image.${key} contains the name "${n}" — describe, don't name`);
       }
       if (!Array.isArray(img.tags) || !img.tags.length) out.push(`${c.id}: image.tags is empty`);
-      if (img.prompt && !ETHNICITY_RE.test(img.prompt)) out.push(`${c.id}: image.prompt must state ethnicity / facial heritage`);
-      if (img.prompt && !ERA_RE.test(img.prompt)) out.push(`${c.id}: image.prompt must state the era`);
-      if (img.sheet && !/16:9/.test(img.sheet)) out.push(`${c.id}: image.sheet must specify the 16:9 canvas`);
-      if (img.sheet && !img.sheet.toLowerCase().includes(preset.render.slice(0, 30).toLowerCase())) out.push(`${c.id}: image.sheet must contain the ${params.style} render phrase (see STYLE_PRESETS)`);
-      const neg = String(img.negativePrompt || '').toLowerCase();
-      for (const word of preset.negativeMustNot) if (neg.includes(word)) out.push(`${c.id}: style ${params.style} must not ban "${word}" in the negative prompt`);
-      for (const word of preset.negativeMust) if (!neg.includes(word)) out.push(`${c.id}: style ${params.style} must ban "${word}" in the negative prompt`);
+      if (img.prompt && !kit.ethnicity(img.prompt)) out.push(`${c.id}: image.prompt must state ethnicity / facial heritage${kit.zh ? '（如 东亚、汉族）' : ''}`);
+      if (img.prompt && !kit.era(img.prompt)) out.push(`${c.id}: image.prompt must state the era${kit.zh ? '（如 当代、秦末汉初、唐代）' : ''}`);
+      if (img.sheet && !kit.sheetRatio(img.sheet)) out.push(`${c.id}: image.sheet must specify the 16:9 canvas`);
+      if (img.sheet && !kit.hasRender(img.sheet)) out.push(`${c.id}: image.sheet must contain the ${params.style} render phrase "${kit.renderKey}…" (see STYLE_PRESETS${kit.zh ? '.renderZh' : ''})`);
+      const neg = String(img.negativePrompt || '');
+      for (const word of kit.negativeMustNot) if (kit.has(neg, word)) out.push(`${c.id}: style ${params.style} must not ban "${word}" in the negative prompt`);
+      for (const word of kit.negativeMust) if (!kit.has(neg, word)) out.push(`${c.id}: style ${params.style} must ban "${word}" in the negative prompt`);
     }
     return out;
   }),
@@ -1220,8 +1302,9 @@ export const GATES = [
   }),
 
   // ── art ───────────────────────────────────────────────────────────────
-  gate('scene-design', 'art', 'scenes: intent, 3–5 anchors, ≥1 English lighting state', ({ project }) => {
+  gate('scene-design', 'art', 'scenes: intent, 3–5 anchors, ≥1 lighting state in params.imagePromptLang', ({ project, params }) => {
     const out = [];
+    const kit = imagePromptKit(params);
     for (const s of project.scenes || []) {
       if (!String(s.summary || '').trim()) out.push(`${s.id}: summary (design intent) is empty`);
       const anchors = s.anchors || [];
@@ -1231,7 +1314,7 @@ export const GATES = [
       if (!lighting.length) out.push(`${s.id}: at least one lighting state is required`);
       for (const l of lighting) {
         if (!l.state || !l.prompt) out.push(`${s.id}: every lighting state needs state + prompt`);
-        else if (!isEnglish(l.prompt)) out.push(`${s.id}: lighting "${l.state}" prompt must be English`);
+        else if (!kit.inLang(l.prompt)) out.push(`${s.id}: lighting "${l.state}" prompt must be ${kit.label}`);
       }
       if (s.variantOf) {
         if (!sceneById(project, s.variantOf)) out.push(`${s.id}: variantOf ${s.variantOf} does not exist`);
@@ -1240,28 +1323,29 @@ export const GATES = [
     }
     return out;
   }),
-  gate('scene-prompts', 'art', 'scene prompts English, empty of people, no names, style-consistent', ({ project, params }) => {
+  gate('scene-prompts', 'art', 'scene prompts in params.imagePromptLang, empty of people, no names, style-consistent', ({ project, params }) => {
     const out = [];
     const names = forbiddenNames(project);
-    const preset = STYLE_PRESETS[params.style] || STYLE_PRESETS.realistic;
+    const kit = imagePromptKit(params);
     for (const s of project.scenes || []) {
       const img = s.image || {};
       for (const key of ['prompt', 'negativePrompt', 'sheet']) {
         const text = String(img[key] || '');
         if (!text.trim()) { out.push(`${s.id}: image.${key} is empty`); continue; }
-        if (!isEnglish(text)) out.push(`${s.id}: image.${key} must be English`);
+        if (!kit.inLang(text)) out.push(`${s.id}: image.${key} must be ${kit.label}`);
         for (const n of names) if (containsName(text, n)) out.push(`${s.id}: image.${key} contains the character name "${n}"`);
       }
-      const neg = String(img.negativePrompt || '').toLowerCase();
-      if (neg && !/(people|person|figure|human|man|woman|crowd)/.test(neg)) out.push(`${s.id}: negativePrompt must ban people — environments are a separate asset layer`);
-      if (img.prompt && !/(no people|empty|unpopulated|nobody|no one|no human)/i.test(img.prompt)) out.push(`${s.id}: image.prompt must say the scene is empty (no people)`);
-      if (img.sheet && !img.sheet.toLowerCase().includes(preset.render.slice(0, 30).toLowerCase())) out.push(`${s.id}: image.sheet must contain the ${params.style} render phrase`);
+      const neg = String(img.negativePrompt || '');
+      if (neg && !kit.bansPeople(neg)) out.push(`${s.id}: negativePrompt must ban people — environments are a separate asset layer`);
+      if (img.prompt && !kit.saysEmpty(img.prompt)) out.push(`${s.id}: image.prompt must say the scene is empty (${kit.zh ? '空场景，没有人' : 'no people'})`);
+      if (img.sheet && !kit.hasRender(img.sheet)) out.push(`${s.id}: image.sheet must contain the ${params.style} render phrase "${kit.renderKey}…"`);
     }
     return out;
   }),
-  gate('prop-design', 'art', 'props: scale phrase, 3–5 anchors, ≥1 state, white background, no hands', ({ project }) => {
+  gate('prop-design', 'art', 'props: scale phrase, 3–5 anchors, ≥1 state, white background, no hands', ({ project, params }) => {
     const out = [];
     const names = forbiddenNames(project);
+    const kit = imagePromptKit(params);
     for (const p of project.props || []) {
       if (!PROP_SCALES[p.scale]) out.push(`${p.id}: scale must be one of ${Object.keys(PROP_SCALES).join(' / ')}`);
       if (!String(p.summary || '').trim()) out.push(`${p.id}: summary (dramatic function) is empty`);
@@ -1271,24 +1355,24 @@ export const GATES = [
       if (!states.length) out.push(`${p.id}: at least one state is required`);
       for (const st of states) {
         if (!st.state || !st.prompt) out.push(`${p.id}: every state needs state + prompt`);
-        else if (!isEnglish(st.prompt)) out.push(`${p.id}: state "${st.state}" prompt must be English`);
+        else if (!kit.inLang(st.prompt)) out.push(`${p.id}: state "${st.state}" prompt must be ${kit.label}`);
       }
       for (const id of p.relatedScenes || []) if (!sceneById(project, id)) out.push(`${p.id}: relatedScenes references unknown scene ${id}`);
       const img = p.image || {};
       for (const key of ['prompt', 'negativePrompt', 'sheet']) {
         const text = String(img[key] || '');
         if (!text.trim()) { out.push(`${p.id}: image.${key} is empty`); continue; }
-        if (!isEnglish(text)) out.push(`${p.id}: image.${key} must be English`);
+        if (!kit.inLang(text)) out.push(`${p.id}: image.${key} must be ${kit.label}`);
         for (const n of names) if (containsName(text, n)) out.push(`${p.id}: image.${key} contains the character name "${n}"`);
       }
-      const phrase = PROP_SCALES[p.scale];
+      const phrase = kit.scalePhrase(p.scale);
       if (phrase) {
-        for (const key of ['prompt', 'sheet']) if (img[key] && !img[key].toLowerCase().includes(phrase)) out.push(`${p.id}: image.${key} must contain "${phrase}"`);
+        for (const key of ['prompt', 'sheet']) if (img[key] && !kit.has(img[key], phrase)) out.push(`${p.id}: image.${key} must contain "${phrase}"`);
       }
-      const neg = String(img.negativePrompt || '').toLowerCase();
-      if (neg && !/(hand|finger)/.test(neg)) out.push(`${p.id}: negativePrompt must ban hands — a hand holding the prop is the usual contamination`);
-      if (neg && !/(people|person|figure|human)/.test(neg)) out.push(`${p.id}: negativePrompt must ban people`);
-      for (const key of ['prompt', 'sheet']) if (img[key] && !/white background/i.test(img[key])) out.push(`${p.id}: image.${key} must specify a pure white background`);
+      const neg = String(img.negativePrompt || '');
+      if (neg && !kit.bansHands(neg)) out.push(`${p.id}: negativePrompt must ban hands — a hand holding the prop is the usual contamination`);
+      if (neg && !(kit.zh ? kit.bansPeople(neg) : /(people|person|figure|human)/.test(neg.toLowerCase()))) out.push(`${p.id}: negativePrompt must ban people`);
+      for (const key of ['prompt', 'sheet']) if (img[key] && !kit.whiteBackground(img[key])) out.push(`${p.id}: image.${key} must specify a pure white background${kit.zh ? '（纯白背景）' : ''}`);
     }
     return out;
   }),
@@ -2509,6 +2593,47 @@ export function segmentPlan(project, episode) {
  * Measured on Seed Audio 1.0: the parenthetical is obeyed, not spoken (a 12-character line ran
  * 5.17 s plain and 4.88 s with the direction), so it costs nothing in the sample's length.
  */
+/**
+ * The full prompt of one image node on the characters / scenes / props canvas, in the project's
+ * image-prompt language: the headshot (1:1), the sheet (16:9; a character's references its headshot
+ * as @image1), a scene's lighting variant and a prop's state (both reference the sheet as @image1).
+ * The Operator pastes `prompt` and `negative` as they are — no hand-assembled prefixes.
+ */
+export function imagePrompt(project, id, asset) {
+  const params = paramsOf(project);
+  const kit = imagePromptKit(params);
+  const zh = kit.zh;
+  const c = characterById(project, id), sc = sceneById(project, id), pr = propById(project, id);
+  const entity = c || sc || pr;
+  if (!entity) throw new Error(`no character / scene / prop ${id}`);
+  const img = entity.image || {};
+  const out = (prompt, ratio, from) => ({ entity: id, asset, lang: params.imagePromptLang, prompt, negative: String(img.negativePrompt || ''), ratio, from });
+  const kind = asset || 'sheet';
+  if (c) {
+    if (kind === 'headshot') return out(zh ? `${img.prompt}，正面干净人像，纯色中性背景` : `${img.prompt}, clean front-facing portrait, plain neutral background`, '1:1', null);
+    if (kind === 'sheet') return out(`${zh ? '@image1 是必须完全一致的脸——五官与发型相同。' : '@image1 is the face to match exactly — same features, same hairstyle. '}${img.sheet}`, '16:9', 'headshot');
+    throw new Error(`a character has --asset headshot | sheet, not ${kind}`);
+  }
+  if (kind === 'sheet') return out(String(img.sheet || ''), '16:9', null);
+  if (sc && kind.startsWith('lighting:')) {
+    const state = kind.slice('lighting:'.length);
+    const l = (sc.lighting || []).find((x) => x.state === state);
+    if (!l) throw new Error(`${id} has no lighting state "${state}" (${(sc.lighting || []).map((x) => x.state).join(' / ')})`);
+    return out(zh
+      ? `@image1 是同一个空间；结构、材质与磨损完全一致，只改变光线：${l.prompt}。空场景，没有任何人，${kit.framePhrase}`
+      : `@image1 is this exact space; keep structure, materials and wear identical; change only the lighting: ${l.prompt}. Empty scene, no people, ${kit.framePhrase}`, '16:9', 'sheet');
+  }
+  if (pr && kind.startsWith('state:')) {
+    const state = kind.slice('state:'.length);
+    const st = (pr.states || []).find((x) => x.state === state);
+    if (!st) throw new Error(`${id} has no state "${state}" (${(pr.states || []).map((x) => x.state).join(' / ')})`);
+    return out(zh
+      ? `@image1 是要完全还原的同一件道具。${st.prompt}。纯白背景，没有人，没有手`
+      : `@image1 is the prop to reproduce exactly. ${st.prompt}, pure white background, no people, no hands`, '16:9', 'sheet');
+  }
+  throw new Error(sc ? `a scene has --asset sheet | lighting:<state>` : `a prop has --asset sheet | state:<state>`);
+}
+
 export function voiceSamplePrompt(character, params = {}) {
   const v = character?.voice || {};
   const pf = character?.profile || {};
@@ -3261,6 +3386,7 @@ export function initProject(opts) {
       videoDuration: opts.duration || (mode.autoDuration ? DEFAULT_PARAMS.videoDuration : 'fixed'),
       lookPhrase: opts.look || DEFAULT_PARAMS.lookPhrase,
       style: opts.style || DEFAULT_PARAMS.style,
+      imagePromptLang: opts.imageLang || DEFAULT_PARAMS.imagePromptLang,
       register: normalizeRegister(opts.register || DEFAULT_PARAMS.register),
     },
     source: { kind: opts.source || 'original', path: opts.sourcePath || '', note: '' },
@@ -3392,7 +3518,7 @@ function main(argv) {
       adapt: flag(rest, '--adapt'), ratio: flag(rest, '--ratio'), video: flag(rest, '--video'), style: flag(rest, '--style'), lang: flag(rest, '--lang'),
       resolution: flag(rest, '--resolution'), accent: flag(rest, '--accent'),
       references: flag(rest, '--references'), duration: flag(rest, '--duration'), look: flag(rest, '--look'),
-      register: flag(rest, '--register'),
+      register: flag(rest, '--register'), imageLang: flag(rest, '--image-lang'),
       source: flag(rest, '--source'), sourcePath: flag(rest, '--source-path'),
     });
     const paths = projectPaths(dir);
@@ -3479,6 +3605,15 @@ function main(argv) {
       console.log('');
       console.log(out.prompt);
     }
+    return 0;
+  }
+
+  if (cmd === 'prompt' && pos[1] === 'image') {
+    const { project } = loadProject(input);
+    if (!pos[2]) throw new Error('usage: prompt <project> image C01|S01|P01 [--asset headshot|sheet|lighting:<state>|state:<state>] [--json]');
+    const out = imagePrompt(project, pos[2], flag(rest, '--asset') || 'sheet');
+    if (flag(rest, '--json')) console.log(JSON.stringify(out, null, 2));
+    else console.log(out.prompt);
     return 0;
   }
 

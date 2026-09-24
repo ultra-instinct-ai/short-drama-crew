@@ -41,8 +41,8 @@ Read `reference/stage-characters.md`. The bible shape follows
    `$SD prompt <project> voice C01`, metadata = the JSON.
 4. `characters` canvas (`wji canvas create characters` once; Art Director designs, Operator
    executes): per character a title node, a **headshot** image node (1:1, portrait prompt), a
-   **sheet** image node (16:9, `--from` the headshot, sheet prompt prefixed with `@image1 is the
-   face to match`) and a **voice** audio node (`seed-audio-1.0`, `--from` the headshot — the model
+   **sheet** image node (16:9, `--from` the headshot) — both prompts from `$SD prompt <project>
+   image C01 --asset headshot|sheet`, in `params.imagePromptLang` — and a **voice** audio node (`seed-audio-1.0`, `--from` the headshot — the model
    reads the face and invents a voice; `prompt voice C01` composes a dry-voice prompt: age,
    identity, personality, timbre, pitch, pace, accent, emotion, then the acted line). Recipes:
    `../short-drama-core/reference/canvas-recipes.md`.

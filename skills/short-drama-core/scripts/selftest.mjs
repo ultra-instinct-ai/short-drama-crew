@@ -19,7 +19,7 @@ import {
   cutStart, segmentCharacters, keyScenes, shotTexts, motionSentence, cameraClause, PURPOSE_KINDS, ANGLES, HEIGHTS, NO_SUBTITLES, LIPS_CLOSED,
   audioPrompt, musicOf, cueSeconds, AUDIO_MODEL, AUDIO_MAX_CHARS,
   VIDEO_MODELS, VIDEO_MODES, DEFAULT_PARAMS, videoModel, videoResolutionFor, nearestResolution, segmentPlan, videoReferences,
-  formatGates, displayName,
+  formatGates, displayName, imagePrompt, imagePromptKit, foldZh, IMAGE_PROMPT_LANGS,
 } from './short-drama.mjs';
 import { spawnSync } from 'node:child_process';
 import { copyFileSync, symlinkSync } from 'node:fs';
@@ -1602,6 +1602,93 @@ const breaks = (gateId, project, episode, needle) => {
     const x = clone(PROJECT); x.characters[2].disguise = bad;
     breaks('tiers', x, null, needle);
   }
+}
+
+// ── Chinese image prompts (params.imagePromptLang = zh) ──────────────────────
+{
+  // the fixture with its image prompts written in Chinese; C02 in 繁體 to prove the folding
+  const zh = clone(PROJECT);
+  zh.params.imagePromptLang = 'zh';
+  const R = '半写实角色插画，绘画质感，笔触柔和融合并带可见的笔刷肌理，解剖结构扎实';
+  const NEG = '眼神空洞、塑料皮肤、过度磨皮、完全对称的脸、死板发型、无纹理布料、标志、品牌名、文字、水印';
+  const CH = {
+    C01: ['二十四岁左右的东亚女性，当代中国，便利店夜班店员，短发齐耳，褪色的藏青夹克，眼下微青，四分之三侧身胸像，纯色中性背景，左上方柔和方向光',
+      '单人角色设定图，一张 16:9 横版画布，纯白背景。' + R + '。左区一张正面胸像，右上三个全身像（正面、侧面、背面），右下四个细节特写；人物：二十四岁东亚女性，短发，藏青夹克。无文字、无水印。'],
+    C02: ['六十歲出頭的東亞男性，當代中國，退休保安，矮壯微駝，花白平頭，洗舊的灰色夾克，指節粗大，四分之三側身胸像，純色中性背景，左上方柔和方向光',
+      '單人角色設定圖，一張 16:9 橫版畫布，純白背景。半寫實角色插畫，繪畫質感，筆觸柔和。左區一張正面胸像，右上三個全身像，右下四個細節特寫；人物：六十歲東亞男性，花白平頭，灰夾克。無文字、無水印。'],
+    C03: ['三十多岁的东亚男性，当代中国，穿深色连帽雨衣，帽檐压低，下巴有胡茬，身形瘦高，四分之三侧身胸像，纯色中性背景，右侧硬光',
+      '单人角色设定图，一张 16:9 横版画布，纯白背景。' + R + '。左区一张正面胸像，右上三个全身像，右下四个细节特写；人物：三十多岁东亚男性，深色雨衣，瘦高。无文字、无水印。'],
+  };
+  for (const c of zh.characters) Object.assign(c.image, { prompt: CH[c.id][0], sheet: CH[c.id][1], negativePrompt: NEG });
+  const SC = {
+    S01: ['中国城市里一家小便利店的店内，空场景，没有人，从门口望向收银台，关东煮机的灯箱闪烁，绿色四格监控屏，夜晚冷白日光灯', { 凌晨冷白光: '凌晨，整片冷白日光灯，货架投下硬影', 监控回放绿: '只剩监控屏的绿光照亮收银台，其余沉在暗里' }],
+    S02: ['便利店门口的条纹雨棚下，空场景，没有人，湿漉漉的地面反光，门口的垃圾桶，雨夜', { 雨夜冷白灯: '雨夜，雨棚下一盏冷白灯，雨丝在灯下发亮' }],
+  };
+  for (const sc of zh.scenes) {
+    Object.assign(sc.image, { prompt: SC[sc.id][0], sheet: `环境设定图，一张 16:9 横版画布。${R}。主画面：${SC[sc.id][0]}；右侧与底部为锚点细节特写，所有格子是同一个空间。无文字、无水印。`, negativePrompt: '人、人物、人影、人群、手、标志、品牌名、文字、水印' });
+    for (const l of sc.lighting) l.prompt = SC[sc.id][1][l.state];
+  }
+  const pr = zh.props[0];
+  Object.assign(pr.image, { prompt: '一个旧的三点五寸监控硬盘，手持尺寸，金属外壳有划痕，贴着褪色的标签（不可辨读），纯白背景，没有人，没有手，柔和均匀的棚拍光',
+    sheet: `道具设定图，一张 16:9 横版画布，纯白背景。${R}。主画面：旧监控硬盘，手持尺寸，四分之三视角；右侧与底部为细节特写。没有人、没有手。无文字、无水印。`,
+    negativePrompt: '人、人物、手、手指、杂乱背景、标志、品牌名、文字、水印' });
+  pr.states[0].prompt = '装在半透明的防静电袋里，袋口折起';
+  pr.states[1].prompt = '接上一根灰色数据线，指示灯亮着';
+  for (const g of ['params', 'char-prompts', 'distinct', 'scene-design', 'scene-prompts', 'prop-design']) passes(g, zh);
+  ok(IMAGE_PROMPT_LANGS.includes('zh') && imagePromptKit(zh.params).zh, 'zh is an image-prompt language');
+  eq(foldZh('真人實拍參考攝影'), '真人实拍参考摄影', 'traditional folds to simplified');
+
+  const en = clone(PROJECT); en.params.imagePromptLang = 'zh';
+  breaks('char-prompts', en, null, 'image.prompt must be Chinese');
+  breaks('scene-prompts', en, null, 'must be Chinese');
+  breaks('scene-design', en, null, 'prompt must be Chinese');
+  breaks('prop-design', en, null, 'must be Chinese');
+  const fr = clone(PROJECT); fr.params.imagePromptLang = 'fr';
+  breaks('params', fr, null, 'imagePromptLang');
+
+  const x = clone(zh);
+  x.characters[0].image.prompt = x.characters[0].image.prompt.replace('东亚女性，当代中国', '女性，当代');
+  breaks('char-prompts', x, null, 'ethnicity');
+  const bright = clone(zh);
+  bright.characters[1].image.prompt = '东亚男性，退休保安，明亮清晰的元素，矮壮微驼';     // 明 / 清 / 元 alone are no era
+  breaks('char-prompts', bright, null, 'era');
+  x.characters[1].image.prompt = x.characters[1].image.prompt.replace('當代中國，', '');
+  breaks('char-prompts', x, null, 'era');
+  x.characters[2].image.sheet = x.characters[2].image.sheet.replace(R, '写实风格');
+  breaks('char-prompts', x, null, 'render phrase "半写实角色插画…"');
+  x.characters[0].image.negativePrompt += '、照片級';
+  breaks('char-prompts', x, null, 'must not ban "照片级"');
+  x.characters[0].image.sheet = x.characters[0].image.sheet.replace('16:9', '横版');
+  breaks('char-prompts', x, null, '16:9');
+  const y = clone(zh);
+  y.scenes[0].image.prompt = y.scenes[0].image.prompt.replace('空场景，没有人，', '');
+  breaks('scene-prompts', y, null, 'empty');
+  y.scenes[1].image.negativePrompt = '标志、文字、水印';
+  breaks('scene-prompts', y, null, 'ban people');
+  const z = clone(zh);
+  z.props[0].image.prompt = z.props[0].image.prompt.replace('手持尺寸，', '');
+  breaks('prop-design', z, null, 'must contain "手持尺寸"');
+  z.props[0].image.sheet = z.props[0].image.sheet.replace('纯白背景', '灰色背景');
+  breaks('prop-design', z, null, 'white background');
+  z.props[0].image.negativePrompt = '人、标志、文字';
+  breaks('prop-design', z, null, 'ban hands');
+  const d = clone(zh);
+  d.characters[2].image.prompt = d.characters[0].image.prompt;
+  breaks('distinct', d, null, 'image prompts are 100% alike');   // CJK bigrams, not English words
+
+  const head = imagePrompt(zh, 'C01', 'headshot');
+  ok(head.prompt.endsWith('正面干净人像，纯色中性背景') && head.ratio === '1:1' && head.from === null && head.lang === 'zh', 'zh headshot prompt');
+  const sheet = imagePrompt(zh, 'C01', 'sheet');
+  ok(sheet.prompt.startsWith('@image1 是必须完全一致的脸') && sheet.ratio === '16:9' && sheet.from === 'headshot' && sheet.negative === NEG, 'zh character sheet references the headshot');
+  const light = imagePrompt(zh, 'S01', 'lighting:监控回放绿');
+  ok(light.prompt.includes('只改变光线：只剩监控屏的绿光') && light.prompt.endsWith('空场景，没有任何人，电影剧照') && light.from === 'sheet', 'zh lighting variant');
+  ok(imagePrompt(zh, 'P01', 'state:接在主机上').prompt.startsWith('@image1 是要完全还原的同一件道具。接上一根灰色数据线'), 'zh prop state');
+  eq(imagePrompt(zh, 'S02').prompt, zh.scenes[1].image.sheet, 'a scene sheet is its sheet prompt');
+  ok(imagePrompt(PROJECT, 'C01', 'sheet').prompt.startsWith('@image1 is the face to match exactly'), 'en character sheet keeps the English prefix');
+  ok(imagePrompt(PROJECT, 'S01', 'lighting:凌晨冷白光').prompt.endsWith('Empty scene, no people, cinematic film still'), 'en lighting variant');
+  assert.throws(() => imagePrompt(zh, 'S01', 'lighting:白天'), /no lighting state/, 'unknown lighting state refused');
+  assert.throws(() => imagePrompt(zh, 'C01', 'lighting:x'), /headshot \| sheet/, 'a character has no lighting');
+  assert.throws(() => imagePrompt(zh, 'X9'), /no character/, 'unknown id refused');
 }
 
 // ── the CLI entry point survives a symlink (realpath isMain) ──────────────────

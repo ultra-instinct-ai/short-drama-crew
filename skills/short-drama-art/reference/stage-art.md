@@ -9,7 +9,7 @@ stage's output is a **consistency plan** per asset, not a mood board.
 | --- | --- |
 | `summary` | design intent — what story this space tells, not a floor plan |
 | `anchors` (3–5) | features that must appear in every generation: paintable, recognisable, checkable ("flickering oden light box", "red drawer with worn corners"; not "old atmosphere") |
-| `lighting` (≥1) | one English prompt per lighting state the episodes actually use — derive them from the episodes the scene appears in, don't write a day/dusk/night set nobody uses |
+| `lighting` (≥1) | one prompt (in `params.imagePromptLang`) per lighting state the episodes actually use — derive them from the episodes the scene appears in, don't write a day/dusk/night set nobody uses |
 | `image.prompt` | the master view, **empty scene, no people** (say so); `negativePrompt` must ban people |
 | `image.sheet` | environment sheet: main panel (≈72 % × 70 %, master view + first lighting state) + an L of detail panels showing the anchors; `THE SPACE MUST BE IDENTICAL ACROSS ALL PANELS`, `nothing invented that is not present in the master view`; the style render phrase |
 | `variantOf` + `changes` | a scene that is the parent with a different time / weather / foreground — cheaper and more consistent than a new environment; outline scenes with a `reusePlan` become variants |
@@ -25,11 +25,11 @@ shot-level prompt detail; the oden warmer is a scene anchor; the hard drive is a
 
 | Field | Rule |
 | --- | --- |
-| `scale` | `handheld` / `tabletop` / `furniture`; the phrase `handheld scale` etc. must be in `image.prompt` and `image.sheet` — models paint handheld things at furniture size |
+| `scale` | `handheld` / `tabletop` / `furniture`; the phrase `handheld scale` etc. (Chinese: `手持尺寸` / `桌面尺寸` / `大件尺寸`) must be in `image.prompt` and `image.sheet` — models paint handheld things at furniture size |
 | `summary` | dramatic function, not a product description |
 | `anchors` (3–5) | details that survive an extreme close-up (a fresh scratch on the brass clasp) |
 | `states` (≥1) | closed / open, sealed / plugged in — each is its own reference image |
-| `image.*` | **pure white background, no people, no hands** (negative prompt bans hands — the hand holding the prop is the usual contamination), three-quarter master view; sheet = white-background main panel + detail panels + other states + a side orthographic view |
+| `image.*` | **pure white background (纯白背景), no people, no hands** (negative prompt bans hands — the hand holding the prop is the usual contamination), three-quarter master view; sheet = white-background main panel + detail panels + other states + a side orthographic view |
 
 ## On WJI
 

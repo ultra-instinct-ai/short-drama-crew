@@ -69,6 +69,7 @@ All commands accept either the directory or the `project.json` path.
 | `subtitles` | false | `true` drops the subtitles-off sentence requirement from the prompts |
 | `maxFrameChars` | 900 | frames longer than this are flagged as padding (advisory) |
 | `lookPhrase` | empty | a lens / look phrase (e.g. `wide-aperture lens, shallow depth of field, creamy background bokeh and soft out-of-focus foreground elements`) that every segment prompt must carry verbatim |
+| `imagePromptLang` | `en` | the language of every character / scene / prop image prompt (portrait, sheet, negative, lighting states, prop states): `en`, or `zh` when the image model takes Chinese — 简体 or 繁體, gated in that language (`init --image-lang zh`). Video prompts follow `params.video`; `identityEn`, `voice.prompt` and `videoDirection` stay English. `prompt <project> image C01 --asset headshot\|sheet\|lighting:<state>\|state:<state>` prints a node's full prompt in it |
 | `style` | `realistic` | `photoreal` (live action), `realistic` (semi-realistic painterly) or `ghibli`; one style for the whole drama (see stage-characters) |
 | `register` | required | the 语体 the lines are written in: `粤语` / `大陆普通话` / `台湾国语` / `港式普通话` / `古装` / `年代` / `英文美式` / `英文英式` (traditional spellings accepted). When `speechAccent` is empty it is derived from this in the prompt's language (`standard Mandarin` / `标准普通话`). A character may override it in `bible.speech.register`. The `dialogue-register` gate is **advisory** — it notes lines that break the register and never fails `validate` |
 | `hookSeconds` | 15 | the hook image (`hookBeat`) must be on screen by this cumulative second |
@@ -159,9 +160,9 @@ Outline stage fills the first block; the characters stage fills the rest.
 | `disguise` | `lang` | optional `{ name, revealEpisode }` for a character who hides who they are (a villain under a false name, a secret identity): before `revealEpisode` every episode document — `render script` / `dialogue` / `segment`, the seed note — calls them `name` so the crew's scripts do not spoil the reveal. `name` is treated as an alias by the name gates. Gate `tiers`: `name` set and ≠ the real name, `revealEpisode` in 2–episodes |
 | `oneLiner`, `profile.*`, `voice.timbre…emotion` | `lang` | human-readable. **No names or aliases**: in a Chinese (`wan`) prompt `timbre / pace / accent / emotion` are pasted beside the character's first line, and all six go into the voice-sample prompt — gate `voice` |
 | `profile.evidence[]` | source | verbatim quotes, never translated |
-| `image.prompt` | **English** | portrait prompt; **no names or aliases**; must state ethnicity and era |
-| `image.negativePrompt` | English | style-dependent, see stage-characters |
-| `image.sheet` | English | 16:9 three-zone sheet prompt; no names; contains the style's render phrase |
+| `image.prompt` | **`params.imagePromptLang`** (English by default) | portrait prompt; **no names or aliases**; must state ethnicity and era |
+| `image.negativePrompt` | `imagePromptLang` | style-dependent, see stage-characters |
+| `image.sheet` | `imagePromptLang` | 16:9 three-zone sheet prompt; no names; contains the style's render phrase (`STYLE_PRESETS[style].render`, or `.renderZh` in Chinese) |
 | `voice.prompt` | English | ≤400 characters, a static voice identity, **no quoted lines** |
 | `voice.videoDirection` | **English** | ≤160 characters, one clause: how they speak (pace, where the voice sits, what it does at the end of a phrase, accent). It is pasted beside **every line this character says** in a video prompt, and gated there — compress `voice.prompt`, do not repeat it |
 | `identityEn` | **English** | ≤80 characters, the name-free way a prompt refers to this person (`the woman in her mid thirties in headphones`). Distinct per character; no names. Used to attribute dialogue in `keyframes` mode and anywhere a `@imageK` label is not available |
@@ -183,8 +184,8 @@ Outline stage fills the first block; the characters stage fills the rest.
 
 Outline stage: `id`, `name`, `primary`, `reusePlan` (required for a scene used in
 only one episode). Art stage: `summary` (design intent), `anchors` (3–5,
-paintable and checkable), `lighting` (≥1, English prompts, derived from the
-episodes it appears in), `image.*` (English, **empty scene — negative prompt
+paintable and checkable), `lighting` (≥1, prompts in `imagePromptLang`, derived from the
+episodes it appears in), `image.*` (`imagePromptLang`, **empty scene — negative prompt
 must ban people**), `variantOf` + `changes` for variants of a parent scene.
 `wji.nodes.lighting` / `wji.assets.lighting` are keyed by lighting `state`.
 

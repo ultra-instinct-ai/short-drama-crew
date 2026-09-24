@@ -28,10 +28,12 @@ it reads without scrolling — `wji canvas add text -c CV -n "E01-01 影片提�
 wji canvas create characters --json | jq -r .id                                  # → CV; bind wji.canvases.characters
 # row for C01 (rows 700 px apart: --at 0,0 / 0,700 / …)
 wji canvas add title -c CV -t "C01 林小夏" --at 0,0 --json | jq -r .id           # → T1; bind characters.C01.wji.nodes.title
+SD prompt <project> image C01 --asset headshot > /tmp/C01-headshot.txt       # prompts in params.imagePromptLang (en / zh)
+SD prompt <project> image C01 --asset sheet > /tmp/C01-sheet.txt             # "@image1 is the face to match…" + image.sheet
 wji canvas add image -c CV -n "C01 headshot" -m "<image model>" -r 1:1 \
-  --at 400,0 -p "<image.prompt>, clean front-facing portrait, plain neutral background" --json | jq -r .id   # → H1
+  --at 400,0 --prompt-file /tmp/C01-headshot.txt --json | jq -r .id            # → H1
 wji canvas add image -c CV -n "C01 sheet" --from H1 -m "<image model>" -r 16:9 \
-  --prompt-file /tmp/C01-sheet.txt --json | jq -r .id                          # → S1 (file = "@image1 is the face to match exactly. " + image.sheet)
+  --prompt-file /tmp/C01-sheet.txt --json | jq -r .id                          # → S1
 wji canvas add audio -c CV -n "C01 voice" --from H1 -m seed-audio-1.0 \
   -p "$(SD prompt <project> voice C01)" --json | jq -r .id                     # → V1; references the HEADSHOT
 #   the prompt is （age;identity;personality;timbre;pitch;pace;accent;emotion;此刻<direction>）<line>
@@ -47,17 +49,20 @@ sheets. `wji canvas gen S1 --yes --wait` per node; the result's asset id →
 wji fs set <C01 dataset> --add-images <headshot> <sheet> <voice> --icon <headshot> --set primaryAudio=<voice>
 ```
 
-Reference for the sheet prompt file: `@image1 is the face to match exactly — same features, same
-hairstyle. ` + `image.sheet`.
+`prompt image … --json` also returns `negative` (the entity's `image.negativePrompt`), `ratio` and
+`from` (which node the prompt's `@image1` is) — pass the negative with `--set` when the model has a
+negative-prompt parameter (`wji models get "<image model>"`). The prompts come out in
+`params.imagePromptLang`: `zh` gives `@image1 是必须完全一致的脸——五官与发型相同。…`.
 
 ## 2. `scenes` canvas — one row per scene
 
 ```bash
 wji canvas create scenes --json | jq -r .id                                      # → SC; bind wji.canvases.scenes
 wji canvas add title -c SC -t "S01 便利店店内" --at 0,0
+SD prompt <project> image S01 > /tmp/S01-sheet.txt
+SD prompt <project> image S01 --asset "lighting:监控回放绿" > /tmp/S01-green.txt
 wji canvas add image -c SC -n "S01 sheet" -m "<image model>" -r 16:9 --at 400,0 --prompt-file /tmp/S01-sheet.txt   # → SS1
-wji canvas add image -c SC -n "S01 lighting 监控回放绿" --from SS1 -m "<image model>" -r 16:9 \
-  -p "@image1 is this exact space; keep structure, materials and wear identical; change only the lighting: <lighting prompt>. Empty scene, no people, cinematic film still"
+wji canvas add image -c SC -n "S01 lighting 监控回放绿" --from SS1 -m "<image model>" -r 16:9 --prompt-file /tmp/S01-green.txt
 ```
 
 Variants: `--from` the parent scene's sheet node, prompt = parent master view + `changes` +
@@ -69,15 +74,16 @@ After generation: inspect (no people, one space across panels), attach
 
 ## 2b. `props` canvas — one row per prop
 
-Props live on their own canvas: white background, `handheld scale` / `tabletop scale` /
+Props live on their own canvas: white background, `handheld scale` (手持尺寸) / `tabletop scale` /
 `furniture scale` in the prompt, one **state** node per `states[]` entry referencing the sheet.
 
 ```bash
 wji canvas create props --json | jq -r .id                                       # → PC; bind wji.canvases.props
 wji canvas add title -c PC -t "P01 旧监控硬盘" --at 0,0
+SD prompt <project> image P01 > /tmp/P01-sheet.txt
+SD prompt <project> image P01 --asset "state:接在主机上" > /tmp/P01-plugged.txt
 wji canvas add image -c PC -n "P01 sheet" -m "<image model>" -r 16:9 --at 400,0 --prompt-file /tmp/P01-sheet.txt   # → PS1
-wji canvas add image -c PC -n "P01 state 接在主机上" --from PS1 -m "<image model>" -r 16:9 \
-  -p "@image1 is the prop to reproduce exactly. <state prompt>, pure white background, no people, no hands"
+wji canvas add image -c PC -n "P01 state 接在主机上" --from PS1 -m "<image model>" -r 16:9 --prompt-file /tmp/P01-plugged.txt
 ```
 
 Inspect (no hands, no people, the same object in every panel), attach
