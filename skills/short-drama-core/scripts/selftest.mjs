@@ -1685,6 +1685,8 @@ const breaks = (gateId, project, episode, needle) => {
   ok(imagePrompt(zh, 'P01', 'state:接在主机上').prompt.startsWith('@image1 是要完全还原的同一件道具。接上一根灰色数据线'), 'zh prop state');
   eq(imagePrompt(zh, 'S02').prompt, zh.scenes[1].image.sheet, 'a scene sheet is its sheet prompt');
   ok(imagePrompt(PROJECT, 'C01', 'sheet').prompt.startsWith('@image1 is the face to match exactly'), 'en character sheet keeps the English prefix');
+  ok(imagePrompt(zh, 'C02', 'sheet').prompt.startsWith('@image1 是必須完全一致的臉——五官與髮型相同。'), '繁體 prompts get the 繁體 prefix');
+  ok(imagePrompt(zh, 'C02', 'headshot').prompt.endsWith('，正面乾淨人像，純色中性背景'), '繁體 headshot suffix');
   ok(imagePrompt(PROJECT, 'S01', 'lighting:凌晨冷白光').prompt.endsWith('Empty scene, no people, cinematic film still'), 'en lighting variant');
   assert.throws(() => imagePrompt(zh, 'S01', 'lighting:白天'), /no lighting state/, 'unknown lighting state refused');
   assert.throws(() => imagePrompt(zh, 'C01', 'lighting:x'), /headshot \| sheet/, 'a character has no lighting');

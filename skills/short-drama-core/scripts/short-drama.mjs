@@ -500,9 +500,19 @@ export const STYLE_PRESETS = {
 
 // Traditional → simplified for the characters the Chinese image-prompt rules look for, so a crew
 // writing 繁體 (真人實拍參考攝影, 純白背景, 東亞) passes the same checks as one writing 简体.
-const ZH_T = '實參攝寫繪畫質膚絨織紋損調級動風簡賽顆東亞漢華國韓歐維紀時當現戰無場沒純圖臉須髮還間構變燈樣與體條機啞寬細電影剛劇個們來這為後從歲種頭於將兩裡進遠擊衛萬處滿點眾邊師張長門開關問員陽陰雲書幾話鐵號專業輕壓環題顏鏡區鬥創標誌劃會戲網際聲氣態網雜淺濃暗餘濕黃綠藍紅寫臨團鄉樓廳櫃燈廢廠館護殘獨帶膠鮮爾歷羅陸屬樂傳麗貴壯';
-const ZH_S = '实参摄写绘画质肤绒织纹损调级动风简赛颗东亚汉华国韩欧维纪时当现战无场没纯图脸须发还间构变灯样与体条机哑宽细电影刚剧个们来这为后从岁种头于将两里进远击卫万处满点众边师张长门开关问员阳阴云书几话铁号专业轻压环题颜镜区斗创标志划会戏网际声气态网杂浅浓暗余湿黄绿蓝红写临团乡楼厅柜灯废厂馆护残独带胶鲜尔历罗陆属乐传丽贵壮';
+const ZH_T = '實參攝寫繪畫質膚絨織紋損調級動風簡賽顆東亞漢華國韓歐維紀時當現戰無場沒純圖臉須髮還間構變燈樣與體條機啞寬細電影剛劇個們來這為後從歲種頭於將兩裡進遠擊衛萬處滿點眾邊師張長門開關問員陽陰雲書幾話鐵號專業輕壓環題顏鏡區鬥創標誌劃會戲網際聲氣態網雜淺濃暗餘濕黃綠藍紅寫臨團鄉樓廳櫃燈廢廠館護殘獨帶膠鮮爾歷羅陸屬樂傳麗貴壯結線淨';
+const ZH_S = '实参摄写绘画质肤绒织纹损调级动风简赛颗东亚汉华国韩欧维纪时当现战无场没纯图脸须发还间构变灯样与体条机哑宽细电影刚剧个们来这为后从岁种头于将两里进远击卫万处满点众边师张长门开关问员阳阴云书几话铁号专业轻压环题颜镜区斗创标志划会戏网际声气态网杂浅浓暗余湿黄绿蓝红写临团乡楼厅柜灯废厂馆护残独带胶鲜尔历罗陆属乐传丽贵壮结线净';
 const ZH_FOLD = new Map([...ZH_T].map((ch, i) => [ch, ZH_S[i]]));
+const ZH_HANT = new Map([...ZH_S].map((ch, i) => [ch, [...ZH_T][i]]));
+/** True when the text is written in 繁體 (it changes under folding). */
+export function isHant(text) {
+  const t = String(text ?? '');
+  return [...t].some((ch) => ZH_FOLD.has(ch));
+}
+/** Simplified → traditional for the engine's own fixed phrases (not a general converter). */
+export function hantPhrase(text) {
+  return [...String(text ?? '').replace(/干净/g, '乾淨')].map((ch) => ZH_HANT.get(ch) || ch).join('');
+}
 export function foldZh(text) {
   return [...String(text ?? '')].map((ch) => ZH_FOLD.get(ch) || ch).join('').toLowerCase();
 }
@@ -2607,11 +2617,14 @@ export function imagePrompt(project, id, asset) {
   const entity = c || sc || pr;
   if (!entity) throw new Error(`no character / scene / prop ${id}`);
   const img = entity.image || {};
+  // the fixed phrases follow the script the prompts are written in (繁體 or 简体)
+  const hant = zh && isHant(`${img.prompt || ''}${img.sheet || ''}`);
+  const t = (phrase) => (hant ? hantPhrase(phrase) : phrase);
   const out = (prompt, ratio, from) => ({ entity: id, asset, lang: params.imagePromptLang, prompt, negative: String(img.negativePrompt || ''), ratio, from });
   const kind = asset || 'sheet';
   if (c) {
-    if (kind === 'headshot') return out(zh ? `${img.prompt}，正面干净人像，纯色中性背景` : `${img.prompt}, clean front-facing portrait, plain neutral background`, '1:1', null);
-    if (kind === 'sheet') return out(`${zh ? '@image1 是必须完全一致的脸——五官与发型相同。' : '@image1 is the face to match exactly — same features, same hairstyle. '}${img.sheet}`, '16:9', 'headshot');
+    if (kind === 'headshot') return out(zh ? `${img.prompt}${t('，正面干净人像，纯色中性背景')}` : `${img.prompt}, clean front-facing portrait, plain neutral background`, '1:1', null);
+    if (kind === 'sheet') return out(`${zh ? t('@image1 是必须完全一致的脸——五官与发型相同。') : '@image1 is the face to match exactly — same features, same hairstyle. '}${img.sheet}`, '16:9', 'headshot');
     throw new Error(`a character has --asset headshot | sheet, not ${kind}`);
   }
   if (kind === 'sheet') return out(String(img.sheet || ''), '16:9', null);
@@ -2620,7 +2633,7 @@ export function imagePrompt(project, id, asset) {
     const l = (sc.lighting || []).find((x) => x.state === state);
     if (!l) throw new Error(`${id} has no lighting state "${state}" (${(sc.lighting || []).map((x) => x.state).join(' / ')})`);
     return out(zh
-      ? `@image1 是同一个空间；结构、材质与磨损完全一致，只改变光线：${l.prompt}。空场景，没有任何人，${kit.framePhrase}`
+      ? `${t('@image1 是同一个空间；结构、材质与磨损完全一致，只改变光线：')}${l.prompt}${t(`。空场景，没有任何人，${kit.framePhrase}`)}`
       : `@image1 is this exact space; keep structure, materials and wear identical; change only the lighting: ${l.prompt}. Empty scene, no people, ${kit.framePhrase}`, '16:9', 'sheet');
   }
   if (pr && kind.startsWith('state:')) {
@@ -2628,7 +2641,7 @@ export function imagePrompt(project, id, asset) {
     const st = (pr.states || []).find((x) => x.state === state);
     if (!st) throw new Error(`${id} has no state "${state}" (${(pr.states || []).map((x) => x.state).join(' / ')})`);
     return out(zh
-      ? `@image1 是要完全还原的同一件道具。${st.prompt}。纯白背景，没有人，没有手`
+      ? `${t('@image1 是要完全还原的同一件道具。')}${st.prompt}${t('。纯白背景，没有人，没有手')}`
       : `@image1 is the prop to reproduce exactly. ${st.prompt}, pure white background, no people, no hands`, '16:9', 'sheet');
   }
   throw new Error(sc ? `a scene has --asset sheet | lighting:<state>` : `a prop has --asset sheet | state:<state>`);
