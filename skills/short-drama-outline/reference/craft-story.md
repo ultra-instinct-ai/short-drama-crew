@@ -15,7 +15,7 @@ the focusing questions first, do not pad a synopsis around a blank.
 
 | 判断项 | 必须回答的问题 | 合格标准 | field |
 | --- | --- | --- | --- |
-| 题材定位 | 复仇、逆袭、甜宠、豪门、悬疑、古装、家庭伦理，还是混合？ | 类型清晰，不能只写“爱情”或“都市” | `params.genre` |
+| 题材定位 | 复仇、逆袭、甜宠、豪门、悬疑、古装、家庭伦理，还是混合？ | 类型清晰，不能只写“爱情”或“都市” | `params.genre`, `params.story` (the genre rules: `../../short-drama-core/reference/story.md`) |
 | 受众定位 | 主要观众追求什么情绪补偿？ | 能说出观众想看的爽感、痛点或幻想 | `audience` |
 | 一句话卖点 | 主角、困境、反击与最大看点，一句话 | 句子内同时有角色、冲突、反转或利益点 | `logline` |
 | 核心爽点 | 打脸、复仇、强宠、身份揭露、智商碾压还是情感释放？ | 爽点可以反复变奏，不是一场戏就用完 | `satisfactionEngine` |
@@ -98,6 +98,9 @@ requirement — genre, register, episode length, the ending — the guideline ch
 episodes.
 
 ## 6. Inside an episode — the formula (gate `rhythm`, stage 4)
+
+The seconds below are the `short` format's. A `medium` episode hooks by 30 s and turns every
+60 s; a `movie` part turns every 90 s and only the first part needs the cold open — `../../short-drama-core/reference/format.md`.
 
 | 段落 | 目标 | 必须出现 | 检查问题 |
 | --- | --- | --- | --- |

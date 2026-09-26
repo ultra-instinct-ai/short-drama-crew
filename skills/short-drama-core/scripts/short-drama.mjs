@@ -7,6 +7,17 @@
 //            [--video h3|seedance|seedance2|seedance2fast|wan]   (decides the segment length — see VIDEO_MODELS)
 //            [--resolution 480P|…] [--accent "台灣口音國語"] [--style photoreal|realistic|ghibli]
 //            [--references sheets|keyframes] [--duration auto|fixed] [--look "shallow depth of field"] [--lang zh] [--adapt 原創]
+//            [--cinematography low-key|sweet-romance|period-nostalgia|costume-idol|costume-dark|scifi-hard|scifi-soft|none]
+//                                                                      (lighting & composition — see CINEMATOGRAPHY_PRESETS; picked from the genre when omitted)
+//            [--action gun-fu|hk-kungfu|wuxia-fantasy|historical-realist|bullet-time|superhero|street-brawl|car-chase|none]
+//            [--violence blood|implied]                              (how fights are cut — see ACTION_STYLES)
+//            [--grammar drama|action|faceslap|comedy] [--comedy slapstick|deadpan|romcom|none]
+//                                                                      (the default segment grammar and the comedy style — see GRAMMARS)
+//            [--composition standard|art-first]                      (艺术优先 framing in any genre — see COMPOSITION_STYLES)
+//            [--story revenge,sweet,mystery,comedy,angst,family,palace,cultivation,scifi,horror]
+//                                                                      (how the story is written — see STORY_GENRES; read from the genre when omitted)
+//            [--market mainland|overseas]                            (mainland holds the supernatural to a rational explanation)
+//            [--format short|medium|movie]                            (短剧 1–3 min, 中剧 4–15 min, 电影 in ~5-minute parts — see FORMATS)
 //            [--register 台湾国语]                                      (语体 — decides how lines are written and the accent spoken)
 //            [--image-lang en|zh]                                       (language of the character / scene / prop image prompts)
 //   validate <project> [--stage outline|characters|art|script|storyboard] [--ep 1-3]
@@ -58,6 +69,23 @@ export const DEFAULT_PARAMS = Object.freeze({
   videoDuration: 'auto',
   lookPhrase: '',
   lookPhraseZh: '',
+  // The lighting and composition rules every cut is held to (CINEMATOGRAPHY_PRESETS). `init` picks
+  // one from the genre; a project without the key predates the presets and keeps `none`.
+  cinematography: 'none',
+  // How fight segments (`segment.action: true`) are cut (ACTION_STYLES), and whether blood may show.
+  action: 'none',
+  violence: 'blood',
+  // The grammar a segment without its own `grammar` is cut in, and the comedy style (COMEDY_STYLES).
+  grammar: 'drama',
+  comedy: 'none',
+  // What the frame is built for (COMPOSITION_STYLES): `standard`, or `art-first` in any genre.
+  composition: 'standard',
+  // How the story is written (STORY_GENRES): a list, genres combine.
+  story: [],
+  // What is being made (FORMATS): short 短剧, medium 中剧, movie 电影 in parts.
+  format: 'short',
+  // Where it is released (MARKETS): mainland holds the supernatural to a rational explanation.
+  market: 'mainland',
   // The language of the character / scene / prop image prompts (sheets, headshots, lighting and
   // prop states): `en`, or `zh` when the image model takes Chinese and the crew wants to read them.
   imagePromptLang: 'en',
@@ -552,6 +580,604 @@ export function imagePromptKit(params) {
   };
 }
 
+/**
+ * The drama's lighting and composition, orthogonal to the render style (`params.style`). Each
+ * preset has a guide in reference/cinematography-<key>.md; the gates read only the fields below.
+ *
+ * `framePhrase` goes in every cut's frame and every scene lighting-state prompt; `videoPhrase` (or
+ * `videoPhraseZh` for a Chinese prompt) in the video prompt's Look line when no keyframes carry it.
+ * Every cut names its `light.source`; a person is never keyed from `bannedLight`; at least
+ * `preferredShare` of the cuts with people in a segment are keyed from `preferredLight`; no cut is
+ * slower than `maxStop`. `anachronisms`, when set, is what a `light.source` may not be in that era.
+ * Optional: `kit` (the lens and stop `init` gives the camera package), `bokehShare` (that share of
+ * a segment's cuts say `bokeh` in the frame), `widePerSegment` (every segment has that many `wide` /
+ * `extreme-wide` cuts, and each of those frames says `negative space`).
+ * The phrases never name a nationality: that would pull every face towards it whatever the
+ * character sheets say.
+ */
+export const CINEMATOGRAPHY_PRESETS = {
+  // 悬疑 / 犯罪 / 惊悚 / 都市暗黑: the scene's own practicals, people in shadow, side and back light.
+  'low-key': {
+    label: 'low-key, practical-lit, negative space, wide open',
+    framePhrase: 'low-key practical lighting',
+    videoPhrase: 'low-key cinematography lit only by practical sources in the scene, faces held in shadow and shaped by side, back and rim light with no flat fill, compositions with generous negative space and layered out-of-focus foregrounds, shallow depth of field',
+    videoPhraseZh: '低调光影，光线只来自场景内的现场光源，人物处于阴影中，以侧光、逆光、轮廓光勾勒，不打平光补光，构图留白，前景虚化增加层次，大光圈浅景深',
+    sourceHint: 'the practical in or just outside the frame that the key comes from (a lamp, a window, a screen, a sign), not a film light',
+    // 包围光 / 世界光: light from the lens axis or from nowhere flattens the face and kills the shadow side.
+    bannedLight: ['frontal', 'ambient'],
+    bannedWhy: 'floods the face (包围光 / 世界光) — stage the person so the practical sits beside or behind them',
+    // 侧光 / 逆光 / 边缘光 / 轮廓光.
+    preferredLight: ['side-left', 'side-right', 'back-left', 'back-right', 'backlight'],
+    preferredWhat: 'keyed from the side or behind',
+    preferredShare: 0.5,
+    maxStop: 2.8,
+  },
+  // 甜宠 / 韩风唯美 / 浪漫: bright soft light on the face, a warm halo behind the hair, pastel air.
+  'sweet-romance': {
+    label: 'sweet romance: soft high-key glow, backlit halo, pastel, dreamy bokeh',
+    framePhrase: 'soft romantic lighting',
+    videoPhrase: 'soft romantic cinematography of a modern idol romance drama, bright airy high-key light from soft motivated sources, faces softly and flatteringly lit with a warm backlight haloing the hair, gentle low-contrast pastel grade with creamy highlights and lifted shadows, dreamy diffusion and soft halation, shot wide open with an extremely shallow depth of field, dreamy oversized creamy bokeh balls and soft out-of-focus foregrounds',
+    videoPhraseZh: '唯美浪漫偶像剧质感，明亮通透的柔光，光线来自窗光、夕阳、串灯等柔和光源，人物面部柔和明亮，暖色逆光在发丝上形成光晕，低反差粉嫩柔和色调，高光奶油般柔和，暗部通透不死黑，柔焦朦胧，全开大光圈极浅景深，梦幻的大颗奶油光斑散景与柔焦前景',
+    sourceHint: 'the soft source in or just outside the frame that the light comes from (a big window, the low sun, overcast sky, string lights, a café lamp), not a film light',
+    // 底光 / 顶光: the horror and interrogation lights — they carve eye sockets and chins.
+    bannedLight: ['underlight', 'top'],
+    bannedWhy: 'carves the face (底光 / 顶光 belong to a thriller) — turn the person toward the soft source or put it behind them as a halo',
+    // 前侧柔光 for the face, 逆光 / 边缘光 for the halo in the hair.
+    preferredLight: ['front-left', 'front-right', 'back-left', 'back-right', 'backlight'],
+    preferredWhat: 'soft three-quarter front keyed or haloed from behind',
+    preferredShare: 0.5,
+    // The dreamiest bokeh: a T1.3 package, never slower than T2, and half the frames name the bokeh.
+    maxStop: 2,
+    kit: { lens: 'Zeiss Master Prime', aperture: 'T1.3' },
+    bokehShare: 0.5,
+  },
+  // 年代 / 怀旧: a period film look — warm faded film stock, window sun and bare bulbs, unhurried frames.
+  'period-nostalgia': {
+    label: 'period nostalgia: vintage film stock, warm faded grade, window sun and bare bulbs',
+    framePhrase: 'nostalgic period film look',
+    videoPhrase: 'nostalgic period cinematography shot on vintage lenses and film stock, warm amber and faded pastel grade with muted greens and brick reds, soft film grain and gentle halation, motivated window sunlight and bare tungsten bulbs with dust drifting in the light, unhurried steady compositions that let the period details breathe',
+    videoPhraseZh: '年代怀旧电影质感，老镜头与胶片拍摄，暖琥珀色与褪色的柔和色调，墨绿与砖红点缀，细腻胶片颗粒与柔和光晕，窗外阳光与裸钨丝灯泡的自然光，灰尘在光里浮动，构图稳定从容，让年代细节慢慢呈现',
+    sourceHint: 'the period source the light comes from (sun through a window, a bare tungsten bulb, a desk lamp, a fluorescent tube, a coal stove, the glow of an old television), not a film light',
+    // 顺光 reads as a modern flash snapshot, 底光 as horror.
+    bannedLight: ['frontal', 'underlight'],
+    bannedWhy: 'reads as a modern flash or a horror light — let the window or the bulb come in from the side',
+    preferredLight: ['front-left', 'front-right', 'side-left', 'side-right', 'back-left', 'back-right'],
+    preferredWhat: 'keyed by a window or a bulb from an angle',
+    preferredShare: 0.5,
+    maxStop: 4,
+    anachronisms: /\b(led|smart ?phones?|phone screens?|laptops?|tablets?|flat[- ]?screens?|ring ?lights?)\b/i,
+  },
+  // 古装偶像 / 古偶 / 仙侠: luminous faces, gauze and petals, a glow through the sleeves.
+  'costume-idol': {
+    label: 'costume idol drama: luminous, gauze-diffused, backlit silk, mist and petals',
+    framePhrase: 'ethereal costume drama lighting',
+    videoPhrase: 'ethereal costume idol drama cinematography, bright soft light diffused through silk gauze and paper windows, faces luminous and flatteringly lit with a warm backlight glowing through flowing hair and sleeves, drifting mist, petals and shafts of light, soft pastel and jade palette with moon-white and pale gold, dreamy diffusion and halation, sweeping wide and extreme-wide vistas with vast negative space, close shots wide open with an extremely shallow depth of field and dreamy oversized creamy bokeh',
+    videoPhraseZh: '唯美古装偶像剧质感，明亮柔和的光线透过纱幔与窗纸，人物面容通透柔美，暖色逆光穿过飘动的发丝与衣袖，薄雾、花瓣与光束缓缓飘散，淡雅的粉彩与青玉色调，月白与浅金点缀，柔焦朦胧与光晕，大量全景与大全景，构图大面积留白，近景全开大光圈极浅景深，梦幻的大颗奶油光斑散景',
+    sourceHint: 'the soft period source (sun through paper windows or silk curtains, the open sky, moonlight, lanterns, candles, a glowing spell), never an electric light',
+    bannedLight: ['underlight', 'top'],
+    bannedWhy: 'carves the face (底光 / 顶光 belong to the dark court drama) — turn the person toward the soft source or put it behind them as a glow',
+    preferredLight: ['front-left', 'front-right', 'back-left', 'back-right', 'backlight'],
+    preferredWhat: 'soft three-quarter front keyed or glowing from behind',
+    preferredShare: 0.5,
+    maxStop: 2,
+    kit: { lens: 'Zeiss Master Prime', aperture: 'T1.3' },
+    bokehShare: 0.5,
+    // 全景 / 大全景 with 大量留白: the world is part of the fantasy, so every segment steps back once
+    // (both costume presets do).
+    widePerSegment: 1,
+    anachronisms: /\b(electric|electricity|light ?bulbs?|bulbs?|neon|fluorescent|led|street ?lights?|lamp ?posts?|screens?|phones?|televisions?|tv)\b/i,
+  },
+  // 古装写实暗黑 / 权谋 / 武侠: fire and lattice light only, faces carved out of the dark, real texture.
+  'costume-dark': {
+    label: 'dark historical realism: firelight and lattice windows, faces in shadow, smoke, earthy texture',
+    framePhrase: 'low-key firelit period lighting',
+    videoPhrase: 'gritty low-key historical cinematography with realistic texture, lit only by candles, oil lamps, braziers, torches and daylight or moonlight through lattice windows, faces carved by side and back light and falling into deep shadow, smoke and dust hanging in shafts of light, desaturated earthy palette of ochre, umber and cold steel blue, worn fabric, weathered wood and stone, sweeping wide and extreme-wide shots with vast negative space of darkness, smoke and sky, compositions with negative space and layered out-of-focus foregrounds, shallow depth of field',
+    videoPhraseZh: '写实质感的暗黑古装影调，光线只来自蜡烛、油灯、火盆、火把，以及透过窗棂的日光或月光，人物面部被侧光与逆光雕刻，隐入浓重阴影，烟尘在光束中悬浮，低饱和的赭石、深棕与冷铁蓝色调，布料磨旧，木石斑驳，大量全景与大全景，大面积留白于黑暗、烟尘与天空之中，构图留白，前景虚化增加层次，大光圈浅景深',
+    sourceHint: 'the period source the key comes from (a candle, an oil lamp, a brazier, a torch, daylight or moonlight through a lattice window), never an electric light',
+    bannedLight: ['frontal', 'ambient'],
+    bannedWhy: 'floods the face (包围光 / 世界光) — stage the person so the flame or the lattice window sits beside or behind them',
+    preferredLight: ['side-left', 'side-right', 'back-left', 'back-right', 'backlight'],
+    preferredWhat: 'keyed from the side or behind',
+    preferredShare: 0.5,
+    maxStop: 2.8,
+    // 全景 / 大全景 with 大量留白, as in costume-idol — here the empty space is darkness, smoke and sky.
+    widePerSegment: 1,
+    anachronisms: /\b(electric|electricity|light ?bulbs?|bulbs?|neon|fluorescent|led|street ?lights?|lamp ?posts?|screens?|phones?|televisions?|tv)\b/i,
+  },
+  // 硬科幻: engineered, plausible, lit by instruments, work lights and a harsh single sun.
+  'scifi-hard': {
+    label: 'hard sci-fi: grounded engineered technology, instrument and work light, a harsh single sun, cold neutral palette',
+    framePhrase: 'grounded hard science fiction lighting',
+    videoPhrase: 'grounded hard science fiction cinematography, functional engineered technology with real weight and wear, light only from instrument panels, work lamps, screens and a harsh single sun, deep hard-edged shadows, a cold neutral palette of white, grey and amber warning lights, a sober documentary realism in the camera, a real sense of physical scale',
+    videoPhraseZh: '写实硬科幻影调，功能性工业设计的科技设备厚重且有使用痕迹，光线只来自仪表面板、工作灯、屏幕与单一强烈的太阳，阴影浓重边缘锐利，白、灰与琥珀色警示灯构成的冷静中性色调，纪实般克制的镜头语言，真实的物理尺度感',
+    sourceHint: 'the engineered or natural source the key comes from (an instrument panel, a screen, a work lamp, an LED strip, the sun through a viewport, the glow of a planet), never magic or free-floating light',
+    // Space has no soft world light; the face is shaped by one hard source.
+    bannedLight: ['frontal', 'ambient'],
+    bannedWhy: 'is a soft world light space does not have — key the face from the panel, the lamp or the sun',
+    preferredLight: ['side-left', 'side-right', 'back-left', 'back-right', 'top'],
+    preferredWhat: 'keyed hard from the side, behind or an overhead panel',
+    preferredShare: 0.5,
+    maxStop: 2.8,
+    anachronisms: /\b(magic|magical|spells?|runes?|qi|auras?|holograms?|holographic|force ?fields?|energy (beams?|orbs?|glow))\b/i,
+    anachronismWhy: 'does not belong in hard science fiction (no magic, floating holograms or energy glows)',
+  },
+  // 软科幻 / 赛博朋克 / 未来都市: stylised, luminous, holograms and neon, the future through its people.
+  'scifi-soft': {
+    label: 'soft sci-fi: holograms and neon, dual-tone colour light, haze and reflections, imaginative technology',
+    framePhrase: 'luminous soft science fiction lighting',
+    videoPhrase: 'stylized soft science fiction cinematography, glowing holographic interfaces and neon light, dual-tone colour lighting in saturated cyan, magenta and violet, atmospheric haze catching beams of light, rain-slick reflective surfaces, sleek imaginative technology, the future seen through its people',
+    videoPhraseZh: '风格化的软科幻影调，发光的全息界面与霓虹灯光，青、洋红与紫色的高饱和双色光，空气中的薄雾映出道道光束，雨后湿润反光的地面，流线型的奇想科技，透过人物看见未来',
+    sourceHint: 'the glowing source the key comes from (a hologram, a neon sign, a glowing interface, an energy core, a light strip, a city of screens)',
+    bannedLight: ['frontal', 'ambient'],
+    bannedWhy: 'flattens the colour — let a neon or a hologram cut across the face from the side or behind',
+    preferredLight: ['side-left', 'side-right', 'back-left', 'back-right', 'backlight'],
+    preferredWhat: 'cut by colour light from the side or behind',
+    preferredShare: 0.5,
+    maxStop: 2.8,
+  },
+  none: null,
+};
+
+/** The cinematography preset in force, or null when the project opts out. */
+export function cinematographyOf(params) {
+  return CINEMATOGRAPHY_PRESETS[params?.cinematography] || null;
+}
+
+/**
+ * The preset a genre calls for when `init` is not told. Period and costume come first, because a
+ * 古装偶像 is a costume drama before it is a romance. A bare 古装 reads as idol (most 古装短剧 are);
+ * SKILL.md says to confirm that with the user.
+ */
+export function cinematographyForGenre(genre) {
+  const g = String(genre || '');
+  const romance = /甜宠|甜寵|恋爱|戀愛|爱情|愛情|浪漫|韩风|韓風|韩剧|韓劇|偶像|romance|romantic|rom-?com/i;
+  if (/古装|古裝|古偶|仙侠|仙俠|玄幻|宫廷|宮廷|宫斗|宮鬥|武侠|武俠|江湖|权谋|權謀|历史|歷史|wuxia|xianxia|costume|historical/i.test(g)) {
+    if (/古偶|仙侠|仙俠|玄幻/i.test(g) || romance.test(g)) return 'costume-idol';
+    if (/暗黑|写实|寫實|权谋|權謀|武侠|武俠|江湖|悬疑|懸疑|复仇|復仇|宫斗|宮鬥|历史|歷史|historical|wuxia/i.test(g)) return 'costume-dark';
+    return 'costume-idol';
+  }
+  if (/硬科幻|hard sci-?fi/i.test(g)) return 'scifi-hard';
+  if (/软科幻|軟科幻|科幻|未来|未來|赛博|賽博|星际|星際|cyberpunk|sci-?fi|science fiction/i.test(g)) return 'scifi-soft';
+  if (/年代|怀旧|懷舊|复古|復古|[七八九]十年代|[789]0年代|民国|民國|period|nostalgi|retro/i.test(g)) return 'period-nostalgia';
+  return romance.test(g) ? 'sweet-romance' : 'low-key';
+}
+
+// ── action ──────────────────────────────────────────────────────────────────
+
+/**
+ * How a fight is cut, orthogonal to the cinematography (the light) and the render style. Applies
+ * only to segments marked `action: true`. Every style shares the hard rules (ACTION_RULES); its own
+ * fields drive the advisory `action-advice` gate and the prompt's Action line. Guides:
+ * reference/action-<key>.md. The phrases never name a film, a franchise or a performer.
+ *
+ * `cutSeconds` is the average cut length the style reads at; `needs` are shots the style's fight
+ * segments (across an episode) should contain at least once.
+ */
+const isWide = (c) => c.size === 'wide' || c.size === 'extreme-wide';
+const saysSlowMo = (c) => /slow[- ]?motion|slow-mo|升格|慢动作|慢鏡|慢镜/i.test(`${c.motion?.action || ''} ${c.motion?.result || ''} ${c.cameraNote?.path || ''} ${c.cameraNote?.hold || ''} ${c.frame || ''}`);
+const shaky = (c) => c.camera === 'Shake Slightly' || c.camera === 'Shake Strongly';
+export const ACTION_STYLES = {
+  'gun-fu': {
+    label: '近身枪斗 — close-quarters gunplay fused with grappling, long takes, full bodies',
+    videoPhrase: 'grounded tactical gun-fu action, close-quarters gunplay fused with judo throws and joint locks, long unbroken takes framed wide enough to see full bodies, efficient precise movement with no wasted motion, muzzle flashes lighting the dark and spent casings falling',
+    videoPhraseZh: '写实战术枪斗动作，近身枪战融合柔道摔投与关节技，长镜头不间断，景别足以看清全身动作，动作精准利落毫不拖泥带水，枪口火光照亮黑暗，弹壳纷纷落地',
+    cutSeconds: [3.5, 5],
+    needs: [{ what: 'a long take (a cut of 4 s or more)', test: (c) => Number(c.seconds) >= 4 }, { what: 'a wide or medium full-body cut', test: (c) => isWide(c) || c.size === 'medium' }],
+    look: 'low-key',
+  },
+  'hk-kungfu': {
+    label: '港式功夫 — crisp full-body exchanges, props as weapons, speed-ramped hits, comedy between blows',
+    videoPhrase: 'classic kung fu action choreography, crisp full-body fight framing, rapid exchanges of strikes and blocks, everyday objects used as weapons, snappy speed-ramped impacts with the key hit repeated from a second angle, playful physical comedy between blows',
+    videoPhraseZh: '经典功夫动作设计，全身入画的清晰打斗构图，拳脚攻防快速往来，随手拿起身边物件当武器，打击点快慢变速，关键一击换角度重复，招式之间带着诙谐的肢体喜剧',
+    cutSeconds: [2, 3],
+    needs: [{ what: 'a locked-off wide or medium that shows the whole exchange', test: (c) => c.camera === 'Static Shot' && (isWide(c) || c.size === 'medium') }],
+    look: 'none',
+  },
+  'wuxia-fantasy': {
+    label: '仙侠武侠 — wire-work flight, flowing silk, sword light and qi, slow motion and freeze poses',
+    videoPhrase: 'graceful wire-work martial arts fantasy, fighters floating and gliding through the air, flowing sleeves and hair, glowing sword-light trails and swirling qi energy, slow-motion leaps and freeze-frame poses, balletic poetic movement',
+    videoPhraseZh: '飘逸的仙侠武侠动作，威亚吊挂般腾空飞掠，衣袖与发丝随风飘扬，剑光划出发光轨迹，真气流转环绕，升格慢动作腾跃与定格亮相，动作如舞蹈般写意',
+    cutSeconds: [3, 5],
+    needs: [{ what: 'a slow-motion cut', test: saysSlowMo }, { what: 'a rising or orbiting camera (Pedestal Up / Tilt Up / Arc Shot)', test: (c) => ['Pedestal Up', 'Tilt Up', 'Arc Shot'].includes(c.camera) }],
+    look: 'costume-idol',
+  },
+  'historical-realist': {
+    label: '写实冷兵器 — heavy blades, mud and exhaustion, few blows, each one final',
+    videoPhrase: 'brutal grounded cold-weapon combat, heavy swords and spears with real weight, short desperate exchanges, mud, sweat and ragged breath, the camera handheld close to the fighters, every blow final',
+    videoPhraseZh: '残酷写实的冷兵器搏杀，刀枪沉重有真实分量，短促而拼命的交锋，泥泞、汗水与粗重喘息，手持摄影紧贴搏斗者，每一击都致命',
+    cutSeconds: [2.5, 4],
+    needs: [{ what: 'a handheld cut (Shake Slightly / Shake Strongly)', test: shaky }],
+    look: 'costume-dark',
+  },
+  'bullet-time': {
+    label: '子弹时间 — time freezes mid-move, the camera orbits, bullets trace trails, then snap to speed',
+    videoPhrase: 'stylized bullet-time action, time slowing to a near freeze mid-move, the camera orbiting the frozen moment, bullets tracing visible rippling trails through the air, debris and shell casings suspended, then snapping back to full speed',
+    videoPhraseZh: '风格化的子弹时间动作，动作进行中时间骤然放慢近乎静止，摄影机环绕凝固的瞬间，子弹在空气中划出清晰的波纹轨迹，碎片与弹壳悬浮半空，随后骤然恢复全速',
+    cutSeconds: [3, 5],
+    needs: [{ what: 'an Arc Shot around a frozen moment', test: (c) => c.camera === 'Arc Shot' }, { what: 'a slow-motion cut', test: saysSlowMo }],
+    look: 'low-key',
+  },
+  superhero: {
+    label: '超级英雄 — power reveals, low-angle hero framing, landings, spectacle',
+    videoPhrase: 'large-scale superhero spectacle action, heroic low-angle framing, powers visibly igniting with glowing energy effects, a powerful three-point landing, sweeping destruction in the background, confident heroic poses',
+    videoPhraseZh: '大场面超级英雄动作，英雄式低角度构图，超能力发动时能量光效清晰可见，强力的三点式落地，背景中大范围的破坏场面，自信的英雄姿态',
+    cutSeconds: [2.5, 4.5],
+    needs: [{ what: 'a low-angle hero cut (height low or ground)', test: (c) => c.height === 'low' || c.height === 'ground' }, { what: 'a slow-motion power reveal', test: saysSlowMo }],
+    look: 'none',
+  },
+  'street-brawl': {
+    label: '写实街头格斗 — raw handheld close-quarters fighting in cramped spaces',
+    videoPhrase: 'raw handheld street brawl, messy desperate close-quarters fighting in a cramped space, bodies slammed into walls and doors, grappling and exhaustion, the camera jostled and close',
+    videoPhraseZh: '粗粝的手持街头搏斗，狭窄空间里混乱拼命的近身肉搏，身体被狠狠撞向墙壁与门板，扭打缠斗、精疲力竭，摄影机贴身晃动',
+    cutSeconds: [2, 3.5],
+    needs: [{ what: 'a handheld cut (Shake Slightly / Shake Strongly)', test: shaky }],
+    look: 'low-key',
+  },
+  'car-chase': {
+    label: '飞车追逐 — low tracking alongside, driver inside vs cars outside, near misses, a crash',
+    videoPhrase: 'high-speed car chase, low tracking shots racing alongside the cars, tyres screeching and drifting through tight turns, near misses with traffic, cutting between the tense driver inside and the speeding cars outside',
+    videoPhraseZh: '高速飞车追逐，低机位跟拍与车辆并驾齐驱，轮胎尖啸着漂移过急弯，与车流惊险擦身而过，在车内紧张的驾驶者与车外飞驰的车辆之间交替切换',
+    cutSeconds: [2, 3],
+    needs: [{ what: 'a Tracking Shot alongside the cars', test: (c) => c.camera === 'Tracking Shot' }, { what: 'a cut inside the car (medium / close on the driver)', test: (c) => c.size === 'close' || c.size === 'medium' }],
+    look: 'none',
+  },
+  none: null,
+};
+
+/** The action style in force, or null. */
+export function actionOf(params) {
+  return ACTION_STYLES[params?.action] || null;
+}
+
+/** An action style a genre names outright; anything less clear stays `none` and is asked. */
+export function actionForGenre(genre) {
+  const g = String(genre || '');
+  if (/飞车|飛車|追车|追車|赛车|賽車|car ?chase/i.test(g)) return 'car-chase';
+  if (/超级英雄|超級英雄|超能力|superhero/i.test(g)) return 'superhero';
+  if (/子弹时间|子彈時間|bullet[- ]?time/i.test(g)) return 'bullet-time';
+  if (/(科幻|未来|未來|赛博|賽博|sci-?fi|cyberpunk).*(动作|動作|打斗|打鬥)|(动作|動作|打斗|打鬥).*(科幻|未来|未來|赛博|賽博)/i.test(g)) return 'bullet-time';
+  if (/枪战|槍戰|枪斗|槍鬥|杀手|殺手|gun ?fu|gunfight/i.test(g)) return 'gun-fu';
+  if (/港式动作|港式動作|功夫|kung ?fu/i.test(g)) return 'hk-kungfu';
+  if (/冷兵器|战争|戰爭|沙场|沙場/i.test(g)) return 'historical-realist';
+  if (/(仙侠|仙俠|玄幻|武侠|武俠).*(动作|動作|打斗|打鬥|武打)|(动作|動作|打斗|打鬥|武打).*(仙侠|仙俠|玄幻|武侠|武俠)/.test(g)) return 'wuxia-fantasy';
+  if (/街头|街頭|格斗|格鬥|黑帮|黑幫|brawl/i.test(g)) return 'street-brawl';
+  return 'none';
+}
+
+/** The hard rules every fight segment is held to; `segment.actionExceptions` may waive one when the user asks. */
+export const ACTION_RULES = ['open-wide', 'one-move', 'impact-reaction', 'no-graphic'];
+export const ACTION_MOVE_KINDS = ['strike', 'kick', 'shot', 'slash', 'stab', 'block', 'dodge', 'throw', 'grapple', 'fall', 'leap', 'draw', 'reload', 'power', 'stance', 'chase', 'swerve', 'crash', 'none'];
+/** What a video model performs one of per cut: a blow, a shot, a throw, a manoeuvre. */
+export const MOVE_VERBS_EN = ['punches', 'kicks', 'strikes', 'hits', 'slashes', 'stabs', 'shoots', 'fires', 'blocks', 'parries', 'throws', 'flips', 'elbows', 'knees', 'headbutts', 'sweeps', 'chops', 'thrusts', 'slams', 'swings', 'tackles', 'dodges', 'swerves', 'drifts', 'rams', 'crashes'];
+export const MOVE_VERBS_ZH = ['出拳', '挥拳', '踢', '劈', '砍', '刺', '捅', '开枪', '開槍', '射击', '射擊', '格挡', '格擋', '摔', '扫腿', '掃腿', '肘击', '肘擊', '膝撞', '撞向', '闪避', '閃避', '漂移', '撞车', '撞車'];
+const CHAIN_RE = /\b(then|and then|followed by|combo|in quick succession|one after another)\b|然后|然後|接着|接著|随即|隨即|连环|連環|连续|連續/i;
+const BLOOD_RE = /\bblood(y|ied)?\b|\bgore\b|\bwounds?\b|\bbleed(s|ing)?\b|血|伤口|傷口/i;
+/** What providers refuse outright even when blood is allowed. */
+const GRAPHIC_RE = /\bdismember\w*|\bdecapitat\w*|\bbeheaded?\b|\bsevered (head|limb|arm|leg|hand)s?\b|\bentrails\b|\bguts spill\w*|\bdisembowel\w*|断肢|斷肢|斩首|斬首|砍头|砍頭|内脏|內臟|开膛|開膛/i;
+/**
+ * Films, franchises, characters and performers a prompt must never name: the model pulls in their
+ * faces and look, and content filters flag them. Describe the camera, the rhythm and the movement.
+ */
+export const IP_NAMES_RE = /\bjohn wick\b|\bmatrix\b|\bmarvel\b|\bavengers?\b|\bspider-?man\b|\biron ?man\b|\bcaptain america\b|\bthor\b|\bhulk\b|\bbatman\b|\bsuperman\b|\bneo\b|\bkeanu\b|\bbruce lee\b|\bjackie chan\b|\bdonnie yen\b|\bjet li\b|\bip man\b|\bcrouching tiger\b|\bjason bourne\b|\bfast (and|&) furious\b|\bmission impossible\b|\boldboy\b|约翰·?威克|約翰·?威克|黑客帝国|駭客任務|漫威|复仇者|復仇者|蜘蛛侠|蜘蛛俠|钢铁侠|鋼鐵俠|李小龙|李小龍|成龙|成龍|甄子丹|李连杰|李連杰|叶问|葉問|卧虎藏龙|臥虎藏龍|速度与激情|速度與激情|碟中谍|不可能的任務/i;
+
+// ── composition ─────────────────────────────────────────────────────────────
+
+/**
+ * What the frame is built for (`params.composition`, overridable per segment with
+ * `segment.composition`). `standard` adds nothing. `art-first` (艺术优先) puts the composition
+ * before coverage in any genre: every cut names its composition devices (COMPOSITION_DEVICES),
+ * whose phrases go in the frame; at least `signatureShare` of a segment's cuts use a signature
+ * device; every segment steps back to a wide at least once; the prompt carries a Composition line.
+ */
+export const COMPOSITION_DEVICES = {
+  'negative-space': 'vast negative space',
+  symmetry: 'perfectly symmetrical composition',
+  'grand-scale': 'monumental scale with small figures in an immense space',
+  'frame-in-frame': 'framed within a frame',
+  'leading-lines': 'strong leading lines',
+  silhouette: 'a stark silhouette against the light',
+  'layered-depth': 'layered foreground, midground and background',
+  'color-block': 'bold blocks of flat colour',
+  'top-down': 'a graphic top-down view',
+  thirds: 'the subject placed on a third',
+};
+export const COMPOSITION_DEVICES_ZH = {
+  'negative-space': '大面积留白', symmetry: '严格对称构图', 'grand-scale': '宏大壮观的空间中人物渺小',
+  'frame-in-frame': '框中框构图', 'leading-lines': '强烈的引导线', silhouette: '逆光中的鲜明剪影',
+  'layered-depth': '前中后景层次分明', 'color-block': '大块平涂色块', 'top-down': '图形化的俯视构图', thirds: '主体位于三分线',
+};
+export const COMPOSITION_STYLES = {
+  standard: null,
+  'art-first': {
+    label: '艺术优先 — composition before coverage: negative space, symmetry, monumental scale',
+    videoPhrase: 'art-first composition, every frame composed like a painting, vast negative space, rigorous symmetry, monumental scale with small figures in immense spaces, strong graphic geometry, a patient steady camera',
+    videoPhraseZh: '艺术优先的构图，每一帧都如画作般经营，大面积留白，严谨对称，宏大壮观的空间中人物渺小，强烈的几何图形感，耐心稳定的镜头',
+    signature: ['negative-space', 'symmetry', 'grand-scale'],
+    signatureShare: 0.5,
+    widePerSegment: 1,
+    cutSeconds: [3, 6],
+  },
+};
+export const COMPOSITION_RULES = ['composition-device', 'signature-share', 'art-wide'];
+
+/** The composition style this segment is framed in: its own, else the drama's. */
+export function compositionOf(seg, params) {
+  return COMPOSITION_STYLES[seg?.composition || params?.composition] || null;
+}
+
+/** A genre that asks for art-house framing. */
+export function compositionForGenre(genre) {
+  return /艺术|藝術|文艺|文藝|唯美构图|唯美構圖|art-?house|art-?first|arthouse/i.test(String(genre || '')) ? 'art-first' : 'standard';
+}
+
+// ── grammar ─────────────────────────────────────────────────────────────────
+
+/**
+ * How a segment is cut. A drama is set up on independent axes — render style, cinematography (the
+ * light), register (the lines), action style, comedy style — and each storyboard segment then has
+ * one or more **grammars**: its own `segment.grammar` (a string or an array), else
+ * `params.grammar`. `drama` adds nothing to the base rules; `action` cuts a fight in
+ * `params.action`'s style; `faceslap` cuts a 打脸 payoff; `comedy` cuts a gag in `params.comedy`'s
+ * style. Grammars combine: `['action', 'comedy']` is a comic fight, and every rule of each applies.
+ * Guide: reference/grammar.md.
+ */
+export const GRAMMARS = ['drama', 'action', 'faceslap', 'comedy'];
+export const FACESLAP_RULES = ['reveal-insert', 'reaction-chain'];
+export const COMEDY_RULES = ['punchline-reaction', 'setup-first'];
+/** Every rule a segment may waive through `exceptions` when the user asks. */
+export const GRAMMAR_RULES = [...ACTION_RULES, ...FACESLAP_RULES, ...COMEDY_RULES, ...COMPOSITION_RULES];
+export const GAG_KINDS = ['setup', 'build', 'punchline'];
+
+/** 爽剧打脸: the turning of the tables — pressure, the proof, a cascade of faces. */
+export const FACESLAP = {
+  label: '爽剧打脸 — the underestimated hero, the proof in close-up, a cascade of stunned faces',
+  videoPhrase: 'a triumphant turning-the-tables payoff, the underestimated hero framed from a low angle with unhurried confidence, the proof revealed in a decisive close-up, a cascade of stunned faces as the whole room changes its tune',
+  videoPhraseZh: '扬眉吐气的反转打脸，被看低的主角以低角度从容亮相，证据在果断的特写中揭晓，众人震惊的表情接连出现，全场态度瞬间反转',
+  minReactions: 2,
+};
+/** The 爽点 types a 打脸 payoff is the natural way to cut. */
+export const FACESLAP_SATISFACTION = ['打脸', '身份揭露', '智商碾压', '复仇'];
+
+/**
+ * Comedy styles (`params.comedy`). `hold` is how long the laugh is given: the reaction after a
+ * punchline, or the punchline itself held that long plus a second.
+ */
+export const COMEDY_STYLES = {
+  slapstick: {
+    label: '无厘头喜剧 — big physical gags, crash zooms on stunned faces, whip pans, cartoon sound',
+    videoPhrase: 'exaggerated slapstick comedy, big physical gags and rubber-faced reactions, snappy crash zooms onto stunned faces, whip pans and freeze-frame beats, cartoonish sound-effect timing',
+    videoPhraseZh: '夸张的无厘头喜剧，大幅度肢体笑料与夸张表情反应，快速推镜怼脸，甩镜与定格笑点，卡通式音效节奏',
+    hold: 2,
+    cutSeconds: [2, 3],
+    needs: [{ what: 'a crash zoom (Zoom In) onto a face', test: (c) => c.camera === 'Zoom In' }],
+  },
+  deadpan: {
+    label: '冷面处境喜剧 — static symmetrical frames held a beat too long, straight faces, the awkward silence',
+    videoPhrase: 'deadpan situational comedy, symmetrical static frames held a beat too long, characters reacting with blank straight faces, the awkward silence itself as the joke, no mugging',
+    videoPhraseZh: '冷面处境喜剧，对称的固定机位画面刻意多停一拍，角色面无表情地反应，尴尬的沉默本身就是笑点，不做夸张表情',
+    hold: 3,
+    cutSeconds: [3, 5],
+    needs: [{ what: 'a locked-off wide or medium (Static Shot)', test: (c) => c.camera === 'Static Shot' && (isWide(c) || c.size === 'medium') }],
+  },
+  romcom: {
+    label: '甜宠喜剧 — flustered blushes and double-takes, misunderstandings in bright frames, cute timing',
+    videoPhrase: 'light romantic comedy, embarrassed blushes and flustered double-takes, misunderstandings played out in bright cheerful frames, cute comic timing with playful pops of sound',
+    videoPhraseZh: '轻快的甜宠喜剧，害羞脸红与慌乱的二次反应，误会在明亮欢快的画面里上演，可爱俏皮的喜剧节奏与音效点缀',
+    hold: 2,
+    cutSeconds: [2, 4],
+    needs: [{ what: 'a close-up reaction (the blush, the double-take)', test: (c) => c.purpose?.kind === 'reaction' && (c.size === 'close' || c.size === 'extreme-close') }],
+  },
+  none: null,
+};
+
+export function comedyOf(params) {
+  return COMEDY_STYLES[params?.comedy] || null;
+}
+
+/** The grammars a segment is cut in: its own, else the drama's default. `action: true` is the old spelling of `grammar: 'action'`. */
+export function grammarsOf(seg, params) {
+  const own = asList(seg?.grammar).map(String);
+  const list = own.length ? own : [String(params?.grammar || 'drama')];
+  if (seg?.action === true && !list.includes('action')) list.push('action');
+  return uniq(list);
+}
+
+/** The rules waived for this segment on the user's request: `exceptions` (or the old `actionExceptions`). */
+function waivedRules(seg) {
+  const map = new Map();
+  for (const x of [...asList(seg?.exceptions), ...asList(seg?.actionExceptions)]) {
+    if (GRAMMAR_RULES.includes(x?.rule) && String(x.reason || '').trim()) map.set(x.rule, x.reason);
+  }
+  return map;
+}
+
+/** A comedy genre makes comedy the default grammar; everything else is drama. */
+export function grammarForGenre(genre) {
+  return /喜剧|喜劇|搞笑|爆笑|无厘头|無厘頭|沙雕|comedy|sitcom/i.test(String(genre || '')) ? 'comedy' : 'drama';
+}
+
+/** The comedy style a comedy genre implies; `none` when the genre is not a comedy. */
+export function comedyForGenre(genre) {
+  const g = String(genre || '');
+  if (grammarForGenre(g) !== 'comedy') return 'none';
+  if (/冷面|处境|處境|sitcom|deadpan/i.test(g)) return 'deadpan';
+  if (/甜宠|甜寵|恋爱|戀愛|爱情|愛情|浪漫|romcom|romantic/i.test(g)) return 'romcom';
+  return 'slapstick';
+}
+
+/** The labelled lines a segment's prompt carries for its grammars, in the prompt's language. */
+export function grammarLines(seg, params, lang = 'en') {
+  const g = grammarsOf(seg, params);
+  const zh = lang === 'zh';
+  const out = [];
+  const action = actionOf(params), comedy = comedyOf(params);
+  if (g.includes('action') && action) out.push(zh ? `动作：${action.videoPhraseZh}。` : `Action: ${action.videoPhrase}.`);
+  if (g.includes('faceslap')) out.push(zh ? `爽点：${FACESLAP.videoPhraseZh}。` : `Payoff: ${FACESLAP.videoPhrase}.`);
+  if (g.includes('comedy') && comedy) out.push(zh ? `喜剧：${comedy.videoPhraseZh}。` : `Comedy: ${comedy.videoPhrase}.`);
+  const art = compositionOf(seg, params);
+  if (art) out.push(zh ? `构图：${art.videoPhraseZh}。` : `Composition: ${art.videoPhrase}.`);
+  return out;
+}
+
+// ── format ──────────────────────────────────────────────────────────────────
+
+/**
+ * What is being made (`params.format`). The pipeline is the same — outline units, scripts,
+ * storyboards — and so is the story structure; what changes is the unit's length and the rhythm it
+ * is held to. `short` 短剧: 1–3 minute episodes, a hook and a cliff every episode. `medium` 中剧:
+ * 4–15 minute episodes, the same series mechanics at a slower pulse. `movie` 电影: one film written
+ * as ~5-minute parts (段) — each part a unit with its own turn, but no paywall and no cliff at every
+ * cut, only at the act breaks. Guide: reference/format.md.
+ */
+export const FORMATS = {
+  short: { label: '短剧', unit: '集', minutes: [1, 3], ratio: '9:16', hookSeconds: 15, turnSeconds: 30, maxConsecutiveLines: 3, minActionRatio: 0.35, hookEveryUnit: true, cliff: 'every' },
+  medium: { label: '中剧', unit: '集', minutes: [4, 15], ratio: '16:9', hookSeconds: 30, turnSeconds: 60, maxConsecutiveLines: 4, minActionRatio: 0.3, hookEveryUnit: true, cliff: 'every' },
+  movie: { label: '电影', unit: '段', minutes: [3, 8], ratio: '16:9', hookSeconds: 60, turnSeconds: 90, maxConsecutiveLines: 5, minActionRatio: 0.25, hookEveryUnit: false, cliff: 'act' },
+};
+/** The episode length the genre research is written for; `span` converts from it. */
+export const SHORT_EPISODE_MINUTES = 1.5;
+
+export function formatOf(params) {
+  return FORMATS[params?.format] || FORMATS.short;
+}
+
+/**
+ * A count the rules state in short-drama episodes, in this format's units. A series converts by
+ * runtime (three 1.5-minute episodes are one 5-minute episode); a movie, which is not paced like a
+ * paywalled series, converts by share of the film when the rule gives one.
+ */
+export function span(params, shortEps, movieShare) {
+  const f = params?.format || 'short';
+  if (f === 'short') return shortEps;
+  const N = Number(params?.episodes) || 1;
+  if (f === 'movie' && movieShare != null) return Math.max(1, Math.round(movieShare * N));
+  return Math.max(1, Math.round((shortEps * SHORT_EPISODE_MINUTES) / (Number(params?.minutesPerEpisode) || SHORT_EPISODE_MINUTES)));
+}
+
+/** Whether the run is at least as long as `shortEps` short-drama episodes (by runtime outside `short`). */
+export function runsAtLeast(params, shortEps) {
+  const N = Number(params?.episodes) || 0;
+  if ((params?.format || 'short') === 'short') return N >= shortEps;
+  return N * (Number(params?.minutesPerEpisode) || SHORT_EPISODE_MINUTES) >= shortEps * SHORT_EPISODE_MINUTES;
+}
+
+/** The format a genre or an episode length implies: 电影 / 微电影 / movie → movie, over 3 minutes → medium. */
+export function formatForGenre(genre, minutes) {
+  if (/电影|電影|微电影|微電影|movie|film/i.test(String(genre || ''))) return 'movie';
+  if (/中剧|中劇|横屏剧|橫屏劇/.test(String(genre || '')) || Number(minutes) > 3) return 'medium';
+  return 'short';
+}
+
+/** Whether this unit ends an act (a structure phase) other than the last — where a movie cliffs. */
+function endsAct(project, ep) {
+  const phases = project.outline?.structure || [];
+  return phases.slice(0, -1).some((ph) => Array.isArray(ph.episodes) && Number(ph.episodes[1]) === Number(ep));
+}
+
+// ── story genres ────────────────────────────────────────────────────────────
+
+/**
+ * How the story is written, per genre (`params.story`, a list: genres combine — 复仇 + 甜宠 is
+ * the commonest 短剧 there is). Each genre adds an outline ledger the gates can count, character
+ * fields, and a few script markers; its rules are in reference/story-<key>.md. The thresholds come
+ * from the genre research in those guides and are defaults: `outline.storyExceptions` waives a rule
+ * for the whole drama when the user asks.
+ */
+export const STORY_GENRES = {
+  revenge: { label: '复仇 / 逆袭', rules: ['first-payback', 'payback-gap', 'payback-ledger', 'setup-before-payback', 'tiers-ascending', 'big-payback-cadence', 'hero-delivers'] },
+  sweet: { label: '甜宠', rules: ['sweet-share', 'sweet-gap', 'meet-bind', 'first-touch', 'first-kiss', 'midpoint-confession', 'misunderstanding-run', 'black-moment', 'he-ending'] },
+  mystery: { label: '悬疑', rules: ['central-question', 'culprit-early', 'clue-count', 'clue-lead', 'clue-echo', 'red-herrings', 'open-questions', 'clue-on-screen'] },
+  comedy: { label: '喜剧', rules: ['comic-premise', 'comic-cast', 'running-gags', 'gag-density', 'gag-setup', 'punchline-brevity'] },
+  angst: { label: '虐恋 / 追妻火葬场', rules: ['abuse-cap', 'turn-timing', 'regret-outweighs', 'pursuit-length', 'release-cadence', 'engineered-misbelief', 'exit-by-choice', 'costly-regret', 'ending-contract', 'male-lead-red-lines'] },
+  family: { label: '家庭伦理', rules: ['family-web', 'every-member-resolves', 'tear-cadence', 'public-vindication', 'secret-hygiene', 'earned-reconciliation', 'child-compliance'] },
+  palace: { label: '宫斗 / 权谋', rules: ['scheme-setup', 'no-teleported-evidence', 'authority-not-rescue', 'competent-antagonist', 'rank-climb', 'faction-realignment', 'moral-capital'] },
+  cultivation: { label: '玄幻 / 修仙 / 系统', rules: ['golden-finger', 'upgrade-cadence', 'no-level-skip', 'cause-and-cost', 'foe-known', 'peak-held', 'hidden-master-reveals'] },
+  scifi: { label: '科幻', rules: ['novum-first', 'one-novum', 'rule-costs', 'show-before-use', 'countdown', 'loops', 'foreknowledge', 'midpoint-turn'] },
+  horror: { label: '恐怖 / 灵异 / 惊悚', rules: ['scare-cadence', 'false-alarms', 'early-threat', 'hide-the-monster', 'fair-rules', 'rule-horror', 'mainland-explanation'] },
+};
+/** Where the drama is released: `mainland` holds the supernatural to a rational explanation, `overseas` does not. */
+export const MARKETS = ['mainland', 'overseas'];
+export const ANGST_ENDINGS = ['HE', 'HE-second', 'BE', 'OE'];
+export const ANGST_KINDS = ['虐', '悔', '追', '糖'];
+/** What the male lead may never do to her — regulators and audiences both refuse it. */
+const ANGST_RED_LINES_RE = /掌掴|扇耳光|扇她|逼.{0,4}下跪|扔钱|下药|迷药|挖肾|取肾|家暴|囚禁|强吻|强迫|刀抵|打她|殴打/;
+export const FAMILY_END_STATES = ['和解', '清醒切割', '惩戒', '离世'];
+export const SCHEME_STAKES = ['minor', 'major', 'master'];
+export const SCHEME_OUTCOMES = ['success', 'countered', 'backfired'];
+export const START_POWERS = ['废柴', '隐藏大佬', '满级'];
+export const NOVUM_RULE_KINDS = ['power', 'limit', 'cost', 'trigger', 'exception'];
+export const SCARE_TYPES = ['氛围', '假警报', '惊吓', '揭示', '规则惩罚'];
+/** Mainland releases explain the threat by one of these; the supernatural stays overseas. */
+export const RATIONAL_EXPLANATIONS = ['人为', '幻觉', '科学', '骗局', '精神'];
+export const STORY_RULES = Object.values(STORY_GENRES).flatMap((g) => g.rules);
+/** 爽点 types that pay a revenge back; the sweet ones. */
+export const PAYBACK_TYPES = ['打脸', '复仇', '身份揭露', '智商碾压'];
+export const SWEET_TYPES = ['强宠', '情感释放'];
+export const PAYBACK_SCALES = ['small', 'big', 'final'];
+export const ROMANCE_MILESTONES = ['meet', 'bind', 'spark', 'touch', 'jealousy', 'protect', 'kiss', 'confession', 'misunderstanding', 'reconcile', 'public', 'black-moment', 'commit'];
+export const MYSTERY_MODES = ['whodunit', 'inverted', 'thriller'];
+export const MYSTERY_ROLES = ['investigator', 'culprit', 'accomplice', 'suspect', 'unreliable-ally', 'victim', 'witness'];
+export const COMIC_ROLES = ['逗', '捧', 'both'];
+
+/** The drama's story genres, as a list of known keys. */
+export function storyOf(params) {
+  return asList(params?.story).map(String).filter((k) => Object.hasOwn(STORY_GENRES, k));
+}
+
+/** The story genres a genre string names. */
+export function storyForGenre(genre) {
+  const g = String(genre || '');
+  const out = [];
+  if (/复仇|復仇|逆袭|逆襲|战神|戰神|赘婿|贅婿|打脸|打臉|重生|真假千金|虐渣|revenge|underdog/i.test(g)) out.push('revenge');
+  if (/甜宠|甜寵|恋爱|戀愛|爱情|愛情|先婚后爱|先婚後愛|闪婚|閃婚|霸总|霸總|契约婚|契約婚|浪漫|romance|romcom/i.test(g)) out.push('sweet');
+  if (/悬疑|懸疑|推理|刑侦|刑偵|惊悚|驚悚|探案|mystery|thriller|detective/i.test(g)) out.push('mystery');
+  if (/喜剧|喜劇|搞笑|爆笑|沙雕|无厘头|無厘頭|comedy|sitcom/i.test(g)) out.push('comedy');
+  if (/虐恋|虐戀|虐心|追妻|火葬场|火葬場|替身|白月光|带球跑|帶球跑|angst/i.test(g)) out.push('angst');
+  if (/家庭|伦理|倫理|婆媳|萌宝|萌寶|认亲|認親|寻亲|尋親|亲情|親情|豪门恩怨|豪門恩怨|family/i.test(g)) out.push('family');
+  if (/宫斗|宮鬥|宅斗|宅鬥|权谋|權謀|夺嫡|奪嫡|palace intrigue/i.test(g)) out.push('palace');
+  if (/修仙|玄幻|系统|系統|异能|異能|升级|升級|神医|神醫|cultivation|xianxia|litrpg/i.test(g)) out.push('cultivation');
+  if (/科幻|末世|时间循环|時間循環|穿越时空|穿越時空|赛博|賽博|星际|星際|未来|未來|囤货|囤貨|sci-?fi|science fiction|cyberpunk/i.test(g)) out.push('scifi');
+  if (/恐怖|灵异|靈異|惊悚|驚悚|怪谈|怪談|诡异|詭異|民俗|horror/i.test(g)) out.push('horror');
+  return out;
+}
+
+/** The story rules waived for the whole drama, on the user's request. */
+function storyWaived(project) {
+  const map = new Map();
+  for (const x of asList(project.outline?.storyExceptions)) if (STORY_RULES.includes(x?.rule) && String(x.reason || '').trim()) map.set(x.rule, x.reason);
+  return map;
+}
+
+/** The outline phase an episode belongs to. */
+function phaseOfEp(project, ep) {
+  return (project.outline?.structure || []).find((s) => Array.isArray(s.episodes) && ep >= Number(s.episodes[0]) && ep <= Number(s.episodes[1]))?.phase || '';
+}
+
+/** The longest run of consecutive outline episodes for which `pred` holds: `{ len, from }`. */
+function longestRun(episodes, pred) {
+  let best = { len: 0, from: 0 }, len = 0, from = 0;
+  for (const e of episodes) {
+    if (pred(e)) { if (!len) from = e.ep; len += 1; if (len > best.len) best = { len, from }; } else len = 0;
+  }
+  return best;
+}
+
+/** Outline episodes, in order. */
+function outlineEpisodes(project) {
+  return [...(project.outline?.episodes || [])].sort((a, b) => Number(a.ep) - Number(b.ep));
+}
+
+/** Script beats of an episode, flattened with where they sit. */
+function scriptBeats(e) {
+  return (e.scenes || []).flatMap((sc, si) => (sc.flow || []).map((b, bi) => ({ b, si: si + 1, bi: bi + 1 })));
+}
+
+/** `T1.5` / `f/2` / `2.8` → 1.5 / 2 / 2.8; NaN when there is no number. */
+export function stopNumber(stop) {
+  const m = String(stop || '').match(/(\d+(?:\.\d+)?)/);
+  return m ? Number(m[1]) : NaN;
+}
+
 const LANG_TAGS = { zh: 'Chinese', en: 'English', ja: 'Japanese', ko: 'Korean', fr: 'French', de: 'German', es: 'Spanish' };
 const QUOTE_RE = /[「」『』“”]/;
 const QUOTE_RE_G = /[「」『』“”"]/g;
@@ -592,6 +1218,9 @@ export function paramsOf(project) {
   // The register is the drama's spoken 语体; the accent the video model is told to speak follows it.
   p.register = normalizeRegister(p.register);
   if (!String(p.speechAccent || '').trim() && REGISTER_ACCENT[p.register]) p.speechAccent = REGISTER_ACCENT[p.register][mode.promptLang === 'zh' ? 'zh' : 'en'];
+  // The rhythm follows the format unless the project sets it.
+  const fmt = FORMATS[p.format] || FORMATS.short;
+  for (const key of ['hookSeconds', 'turnSeconds', 'maxConsecutiveLines', 'minActionRatio']) if (project.params?.[key] == null) p[key] = fmt[key];
   if (p.thresholds.maxPrimaryScenes == null) {
     const eps = Number(p.episodes) || 0;
     p.thresholds.maxPrimaryScenes = Math.min(15, Math.max(5, 4 + Math.ceil(eps / 10)));
@@ -898,6 +1527,20 @@ export const GATES = [
     }
     if (params.videoResolution && !videoResolutionFor(mode, params.videoResolution)) out.push(`params.videoResolution ${params.videoResolution} is not a tier of ${mode.model} \u2014 it takes ${mode.resolutions.join(' / ')}`);
     if (!STYLE_PRESETS[params.style]) out.push(`params.style must be one of ${Object.keys(STYLE_PRESETS).join(' / ')}`);
+    if (!Object.hasOwn(ACTION_STYLES, params.action)) out.push(`params.action must be one of ${Object.keys(ACTION_STYLES).join(' / ')}`);
+    if (!['blood', 'implied'].includes(params.violence)) out.push('params.violence must be blood or implied');
+    if (!GRAMMARS.includes(params.grammar)) out.push(`params.grammar must be one of ${GRAMMARS.join(' / ')}`);
+    if (!Object.hasOwn(FORMATS, params.format)) out.push(`params.format must be one of ${Object.keys(FORMATS).join(' / ')}`);
+    else {
+      const [lo, hi] = FORMATS[params.format].minutes;
+      const m = Number(params.minutesPerEpisode);
+      if (m && (m < lo || m > hi)) out.push(`params.minutesPerEpisode ${m} is outside the ${params.format} range ${lo}\u2013${hi} minutes \u2014 pick the format that fits (short 1\u20133, medium 4\u201315, movie parts 3\u20138)`);
+    }
+    if (!MARKETS.includes(params.market)) out.push(`params.market must be one of ${MARKETS.join(' / ')}`);
+    for (const k of asList(params.story)) if (!Object.hasOwn(STORY_GENRES, k)) out.push(`params.story "${k}" is not one of ${Object.keys(STORY_GENRES).join(' / ')}`);
+    if (!Object.hasOwn(COMPOSITION_STYLES, params.composition)) out.push(`params.composition must be one of ${Object.keys(COMPOSITION_STYLES).join(' / ')}`);
+    if (!Object.hasOwn(COMEDY_STYLES, params.comedy)) out.push(`params.comedy must be one of ${Object.keys(COMEDY_STYLES).join(' / ')}`);
+    if (!Object.hasOwn(CINEMATOGRAPHY_PRESETS, params.cinematography)) out.push(`params.cinematography must be one of ${Object.keys(CINEMATOGRAPHY_PRESETS).join(' / ')}`);
     if (!IMAGE_PROMPT_LANGS.includes(params.imagePromptLang)) out.push(`params.imagePromptLang must be one of ${IMAGE_PROMPT_LANGS.join(' / ')} (the language of the character / scene / prop image prompts)`);
     if (!/^\d+:\d+$/.test(String(params.ratio))) out.push('params.ratio must look like 9:16');
     if (!project.title) out.push('title is required');
@@ -1081,7 +1724,7 @@ export const GATES = [
       for (const key of ['task', 'satisfactionPlan', 'hookPlan']) if (!String(p[key] || '').trim()) out.push(`outline.structure[${i}] (${p.phase}): ${key} is empty`);
       if (p.phase === 'golden') {
         // 黄金窗口 is the first ~20 % — and never less than the first three episodes of a long run.
-        const cap = Math.max(Math.ceil(n * 0.2), n >= 6 ? 3 : 1);
+        const cap = Math.max(Math.ceil(n * (params.format === 'movie' ? 0.3 : 0.2)), n >= 6 ? 3 : 1);
         if (b > cap) out.push(`golden window ends at episode ${b}; for ${n} episodes it must end by ${cap} (the first ~20 %)`);
         if (n >= 6 && b < 3) out.push(`golden window ends at episode ${b}; with ${n} episodes the first three episodes are the retention window`);
       }
@@ -1124,7 +1767,7 @@ export const GATES = [
     const byEp = (k) => eps.find((e) => Number(e.ep) === k);
     const e1 = byEp(1);
     if (e1 && fnOf(e1).length && !fnOf(e1).includes('开局钩子')) out.push('ep 1: function must include 开局钩子 — the first episode grabs');
-    if (n >= 3) {
+    if (n >= 3 && params.format !== 'movie') {
       const e2 = byEp(2), e3 = byEp(3);
       if (e2 && engine && e2.satisfaction?.type && !engine.includes(e2.satisfaction.type)) out.push(`ep 2: satisfaction.type "${e2.satisfaction.type}" must be the brief's engine (${engine}) — episode two proves the 爽点`);
       if (e3 && fnOf(e3).length && !fnOf(e3).some((f) => ['冲突升级', '身份揭露', '大反转'].includes(f))) out.push('ep 3: function must include 冲突升级 / 身份揭露 / 大反转 — episode three widens the main line');
@@ -1311,10 +1954,606 @@ export const GATES = [
     return out;
   }),
 
+  // ── story genres (outline) ────────────────────────────────────────────
+  gate('story-revenge', 'outline', '复仇/逆袭: an early payback, no long stretch without one, a payback ladder that climbs the antagonist tiers, the hero lands the last blow', ({ project, params }) => {
+    if (!storyOf(params).includes('revenge')) return [];
+    const out = [];
+    const waived = storyWaived(project);
+    const N = Number(params.episodes) || 0;
+    const eps = outlineEpisodes(project);
+    const mixed = storyOf(params).length > 1;
+    const isPayback = (e) => PAYBACK_TYPES.includes(e.satisfaction?.type);
+    if (!waived.has('first-payback') && N >= 3 && !eps.some((e) => e.ep <= span(params, 3, 0.2) && isPayback(e))) out.push(`复仇: no payback 爽点 (${PAYBACK_TYPES.join(' / ')}) in units 1–${span(params, 3, 0.2)} — close one full 压→爽 loop inside the golden opening`);
+    const gapMax = span(params, mixed ? 5 : 3, mixed ? 0.3 : 0.2);
+    const gap = longestRun(eps, (e) => !isPayback(e));
+    if (!waived.has('payback-gap') && gap.len > gapMax) out.push(`复仇: ${gap.len} episodes in a row from E${pad2(gap.from)} without a payback 爽点 — at most ${gapMax}${mixed ? ' when mixed with another genre' : ''}`);
+    const chars = project.characters || [];
+    const byId = new Map(chars.map((c) => [c.id, c]));
+    const antagonists = chars.filter((c) => isObject(c.antagonist));
+    const paybacks = asList(project.outline?.paybacks);
+    if (!waived.has('payback-ledger')) {
+      if (!antagonists.length) out.push('复仇: no character has an antagonist block { tier 1–3, firstPressEp, motive } — the ladder needs rungs');
+      for (const a of antagonists) {
+        if (![1, 2, 3].includes(Number(a.antagonist.tier))) out.push(`${a.id}: antagonist.tier must be 1 (petty oppressor), 2 (power holder) or 3 (arch-nemesis)`);
+        if (!String(a.antagonist.motive || '').trim()) out.push(`${a.id}: antagonist.motive is empty — an antagonist with no reason of their own is an 极端反派`);
+      }
+      if (!paybacks.length) out.push('复仇: outline.paybacks is empty — list every payback { ep, target, scale: small / big / final, by, how }');
+      for (const [i, pb] of paybacks.entries()) {
+        const where = `paybacks[${i}]`;
+        if (!(Number(pb.ep) >= 1 && Number(pb.ep) <= N)) out.push(`${where}: ep must be 1–${N}`);
+        if (!byId.get(pb.target)?.antagonist) out.push(`${where}: target ${pb.target} is not a character with an antagonist block`);
+        if (!PAYBACK_SCALES.includes(pb.scale)) out.push(`${where}: scale must be one of ${PAYBACK_SCALES.join(' / ')}`);
+        if (!byId.has(pb.by)) out.push(`${where}: by ${pb.by} is not a character — who lands it`);
+      }
+      for (const a of antagonists) {
+        const finals = paybacks.filter((pb) => pb.target === a.id && pb.scale === 'final');
+        if (finals.length !== 1) out.push(`${a.id}: ${finals.length} final paybacks — every antagonist is finished exactly once`);
+      }
+    }
+    const finalOf = (a) => paybacks.find((pb) => pb.target === a.id && pb.scale === 'final');
+    if (!waived.has('setup-before-payback')) {
+      for (const a of antagonists) {
+        const first = paybacks.filter((pb) => pb.target === a.id).map((pb) => Number(pb.ep)).sort((x, y) => x - y)[0];
+        const press = Number(a.antagonist.firstPressEp);
+        if (!(press >= 1)) { out.push(`${a.id}: antagonist.firstPressEp is required — the episode they first press the hero`); continue; }
+        const need = Number(a.antagonist.tier) >= 2 ? span(params, 3, 0.1) : 1;
+        if (first && first - press < need) out.push(`${a.id}: first payback in E${pad2(first)} only ${first - press} episode(s) after they first press in E${pad2(press)} — a tier ${a.antagonist.tier} needs ${need}`);
+      }
+    }
+    const top = Math.max(0, ...antagonists.map((a) => Number(a.antagonist.tier) || 0));
+    if (!waived.has('tiers-ascending') && antagonists.length) {
+      const order = antagonists.filter(finalOf).map((a) => ({ a, ep: Number(finalOf(a).ep), tier: Number(a.antagonist.tier) })).sort((x, y) => x.ep - y.ep);
+      for (let i = 1; i < order.length; i++) if (order[i].tier < order[i - 1].tier) out.push(`${order[i].a.id} (tier ${order[i].tier}) is finished in E${pad2(order[i].ep)}, after ${order[i - 1].a.id} (tier ${order[i - 1].tier}) — the ladder climbs: lower tiers fall first`);
+      const topFinal = order.filter((x) => x.tier === top).map((x) => x.ep).sort((x, y) => y - x)[0];
+      if (runsAtLeast(params, 10) && topFinal && topFinal < Math.ceil(0.8 * N)) out.push(`复仇: the top antagonist falls in E${pad2(topFinal)} — the arch-nemesis is finished in the climax, at ${Math.ceil(0.8 * N)} or later`);
+    }
+    if (!waived.has('big-payback-cadence') && runsAtLeast(params, 20)) {
+      const esc = (project.outline?.structure || []).find((x) => x.phase === 'escalation');
+      if (esc) {
+        const bigs = paybacks.filter((pb) => pb.scale !== 'small').map((pb) => Number(pb.ep)).filter((ep) => ep >= esc.episodes[0] && ep <= esc.episodes[1]).sort((x, y) => x - y);
+        const marks = [Number(esc.episodes[0]) - 1, ...bigs, Number(esc.episodes[1])];
+        const cadence = span(params, 10, 0.3);
+        for (let i = 1; i < marks.length; i++) if (marks[i] - marks[i - 1] > cadence) { out.push(`复仇: E${pad2(marks[i - 1] + 1)}–E${pad2(marks[i])} is more than ${cadence} units of escalation without a big payback — 小爽 builds, but a big one lands every 5–10 episodes`); break; }
+      }
+    }
+    if (!waived.has('hero-delivers')) {
+      for (const a of antagonists.filter((x) => Number(x.antagonist.tier) === top)) {
+        const f = finalOf(a);
+        if (f && byId.get(f.by)?.tier !== 'lead') out.push(`${a.id}: the arch-nemesis is finished by ${f.by}, not a lead — the backer may stand behind the hero, never land the last blow`);
+      }
+    }
+    return out;
+  }),
+  gate('story-sweet', 'outline', '甜宠: sugar in most episodes and never far apart, the milestones on time (meet E1, bind ≤ E3, touch ≤ E5, confession mid-run), short misunderstandings, one black moment, a happy ending', ({ project, params }) => {
+    if (!storyOf(params).includes('sweet')) return [];
+    const out = [];
+    const waived = storyWaived(project);
+    const N = Number(params.episodes) || 0;
+    const eps = outlineEpisodes(project);
+    const mixed = storyOf(params).length > 1;
+    const isSweet = (e) => SWEET_TYPES.includes(e.satisfaction?.type);
+    const share = eps.length ? eps.filter(isSweet).length / eps.length : 0;
+    const want = mixed ? 0.25 : 0.4;
+    if (!waived.has('sweet-share') && N >= 3 && share < want) out.push(`甜宠: ${Math.round(share * 100)} % of episodes pay in sugar (${SWEET_TYPES.join(' / ')}) — at least ${Math.round(want * 100)} %${mixed ? ' when mixed' : ''}`);
+    if (!waived.has('sweet-gap')) {
+      const extra = mixed ? 2 : 0;
+      const gap = longestRun(eps, (e) => !isSweet(e));
+      const climaxGap = phaseOfEp(project, gap.from + gap.len - 1) === 'climax';
+      const limit = span(params, (climaxGap ? 4 : 3) + extra, (climaxGap ? 0.25 : 0.2) + (extra ? 0.1 : 0));
+      if (gap.len > limit) out.push(`甜宠: ${gap.len} episodes in a row from E${pad2(gap.from)} without sugar — at most ${limit}`);
+    }
+    const rom = asList(project.outline?.romance);
+    for (const [i, m] of rom.entries()) {
+      if (!ROMANCE_MILESTONES.includes(m.milestone)) out.push(`romance[${i}]: milestone must be one of ${ROMANCE_MILESTONES.join(' / ')}`);
+      if (!(Number(m.ep) >= 1 && Number(m.ep) <= N)) out.push(`romance[${i}]: ep must be 1–${N}`);
+    }
+    const firstOf = (k) => rom.filter((m) => m.milestone === k).map((m) => Number(m.ep)).sort((a, b) => a - b)[0];
+    if (!waived.has('meet-bind')) {
+      if (firstOf('meet') !== 1) out.push('甜宠: the leads meet in E01 (romance milestone meet at ep 1)');
+      if (!(firstOf('bind') <= span(params, 3, 0.15))) out.push(`甜宠: nothing binds the leads by E${pad2(span(params, 3, 0.15))} (milestone bind: 闪婚 / 契约 / 同居 / 替嫁 / 婚约) — without it they drift apart`);
+    }
+    const touch = Math.min(firstOf('touch') || Infinity, firstOf('kiss') || Infinity);
+    if (!waived.has('first-touch') && runsAtLeast(params, 10) && !(touch <= span(params, 5, 0.3))) out.push(`甜宠: no physical closeness (milestone touch) by E${pad2(span(params, 5, 0.3))} — show the promise early`);
+    if (!waived.has('first-kiss') && runsAtLeast(params, 10) && !(firstOf('kiss') <= Math.floor(0.5 * N))) out.push(`甜宠: no first kiss by E${pad2(Math.floor(0.5 * N))} (half the run)`);
+    if (!waived.has('midpoint-confession') && runsAtLeast(params, 20)) {
+      const lo = Math.ceil(0.4 * N), hi = Math.floor(0.6 * N);
+      if (!rom.some((m) => m.milestone === 'confession' && Number(m.ep) >= lo && Number(m.ep) <= hi)) out.push(`甜宠: no confession between E${pad2(lo)} and E${pad2(hi)} — the midpoint of love`);
+    }
+    if (!waived.has('misunderstanding-run')) {
+      let long = 0;
+      for (const m of rom.filter((x) => x.milestone === 'misunderstanding')) {
+        const len = Number(m.until) - Number(m.ep) + 1;
+        if (!(len >= 1)) { out.push(`misunderstanding at E${pad2(m.ep)}: until (the episode it clears) is required`); continue; }
+        const limit = phaseOfEp(project, Number(m.ep)) === 'climax' ? span(params, 5, 0.3) : span(params, 3, 0.2);
+        if (len > limit) out.push(`甜宠: the misunderstanding from E${pad2(m.ep)} lasts ${len} episodes — at most ${limit}; a misunderstanding one line would clear loses the audience`);
+        if (len > span(params, 3, 0.2)) long += 1;
+      }
+      if (long > 1) out.push(`甜宠: ${long} misunderstandings run past the limit — only one may`);
+    }
+    const blacks = rom.filter((m) => m.milestone === 'black-moment');
+    if (!waived.has('black-moment')) {
+      if (blacks.length > 1) out.push(`甜宠: ${blacks.length} black moments — the genre allows one`);
+      for (const b of blacks) {
+        const ep = Number(b.ep);
+        if (runsAtLeast(params, 10) && (ep < Math.ceil(0.7 * N) || ep > Math.floor(0.9 * N))) out.push(`甜宠: the black moment in E${pad2(ep)} belongs between E${pad2(Math.ceil(0.7 * N))} and E${pad2(Math.floor(0.9 * N))}`);
+        if (!rom.some((m) => ['reconcile', 'commit'].includes(m.milestone) && Number(m.ep) > ep && Number(m.ep) <= ep + span(params, 5, 0.25))) out.push(`甜宠: nothing reconciles the leads within ${span(params, 5, 0.25)} units of the black moment in E${pad2(ep)}`);
+      }
+    }
+    if (!waived.has('he-ending') && N >= 3 && !eps.filter((e) => e.ep > N - span(params, 3, 0.15)).some(isSweet)) out.push('甜宠: nothing near the end pays in sugar — the genre promises a happy ending');
+    return out;
+  }),
+  gate('story-mystery', 'outline', '悬疑: one central question asked early and answered late, the culprit on screen early, every answer built from clues planted well before it, red herrings dismissed, a bounded number of open questions', ({ project, params }) => {
+    if (!storyOf(params).includes('mystery')) return [];
+    const out = [];
+    const waived = storyWaived(project);
+    const N = Number(params.episodes) || 0;
+    const mode = project.outline?.mysteryMode || 'whodunit';
+    if (!MYSTERY_MODES.includes(mode)) out.push(`outline.mysteryMode must be one of ${MYSTERY_MODES.join(' / ')}`);
+    const qs = asList(project.outline?.questions);
+    const clues = asList(project.outline?.clues);
+    const clueById = new Map(clues.map((c) => [c.id, c]));
+    const golden = (project.outline?.structure || []).find((x) => x.phase === 'golden');
+    const goldenEnd = golden ? Number(golden.episodes[1]) : 3;
+    for (const [i, c] of clues.entries()) {
+      if (!c.id || !String(c.what || '').trim()) out.push(`clues[${i}]: id and what are required`);
+      if (!['true', 'red-herring'].includes(c.kind)) out.push(`clues[${i}]: kind must be true or red-herring`);
+      if (!(Number(c.plantEp) >= 1 && Number(c.plantEp) <= N)) out.push(`clues[${i}]: plantEp must be 1–${N}`);
+      if (c.prop && !(project.props || []).some((p) => p.id === c.prop)) out.push(`clues[${i}]: prop ${c.prop} does not exist — a clue is something the camera can show`);
+    }
+    const central = qs.filter((q) => Number(q.layer) === 1);
+    if (!waived.has('central-question')) {
+      if (central.length !== 1) out.push(`悬疑: ${central.length} layer-1 questions — exactly one central question hangs over the drama`);
+      for (const q of central) {
+        if (!(Number(q.openEp) <= span(params, 3, 0.15))) out.push(`悬疑: the central question opens in E${pad2(q.openEp)} — ask it by E${pad2(span(params, 3, 0.15))}`);
+        if (runsAtLeast(params, 10) && !(Number(q.answerEp) >= Math.ceil(0.8 * N) && Number(q.answerEp) <= N)) out.push(`悬疑: the central question is answered in E${pad2(q.answerEp)} — the truth lands in the climax, E${pad2(Math.ceil(0.8 * N))}–E${pad2(N)}`);
+      }
+    }
+    if (!waived.has('culprit-early') && mode !== 'thriller') {
+      const culprits = (project.characters || []).filter((c) => c.mysteryRole === 'culprit');
+      if (culprits.length !== 1) out.push(`悬疑: ${culprits.length} characters with mysteryRole culprit — exactly one mastermind (accomplices are accomplice)`);
+      const limit = runsAtLeast(params, 10) ? Math.min(Math.max(span(params, 5, 0.25), goldenEnd), Math.ceil(0.3 * N)) : 1;
+      for (const c of culprits) if (!(Number(c.firstEp) <= limit)) out.push(`${c.id}: the culprit first appears in E${pad2(c.firstEp)} — on screen by E${pad2(limit)}, or the solution cheats`);
+    }
+    for (const [i, q] of qs.entries()) {
+      if (![1, 2, 3].includes(Number(q.layer))) out.push(`questions[${i}]: layer must be 1 (central), 2 (major) or 3 (local)`);
+      if (!(Number(q.openEp) >= 1)) out.push(`questions[${i}]: openEp is required`);
+      if (!q.answerEp) continue;
+      const own = asList(q.clues).map((id) => clueById.get(id));
+      if (own.some((c) => !c)) out.push(`questions[${i}]: clue ${asList(q.clues).find((id) => !clueById.get(id))} does not exist`);
+      const trueClues = own.filter((c) => c && c.kind === 'true');
+      const need = { 1: 3, 2: 2, 3: 1 }[Number(q.layer)] || 1;
+      if (!waived.has('clue-count') && trueClues.length < need) out.push(`questions[${i}] (layer ${q.layer}): answered with ${trueClues.length} true clue(s) — at least ${need}, all shown before the answer`);
+      const answer = Number(q.answerEp);
+      const lead = Math.min({ 1: Math.max(span(params, 10, 0.25), Math.ceil(0.15 * N)), 2: span(params, 3, 0.1), 3: 1 }[Number(q.layer)] || 1, Math.max(1, answer - 1));
+      if (!waived.has('clue-lead')) {
+        for (const c of trueClues) if (answer - Number(c.plantEp) < lead) out.push(`questions[${i}]: clue ${c.id} is planted in E${pad2(c.plantEp)}, only ${answer - Number(c.plantEp)} episode(s) before the answer in E${pad2(answer)} — at least ${lead}`);
+        if (Number(q.layer) === 1 && runsAtLeast(params, 10) && !trueClues.some((c) => Number(c.plantEp) <= goldenEnd)) out.push(`questions[${i}]: no clue to the central question is planted in the golden episodes — play the cards early`);
+      }
+      if (!waived.has('clue-echo')) {
+        for (const c of trueClues) {
+          if (answer - Number(c.plantEp) <= span(params, 20, 0.5)) continue;
+          if (!asList(c.echoEps).map(Number).some((e) => e < answer && answer - e <= span(params, 15, 0.35))) out.push(`clue ${c.id}: ${answer - Number(c.plantEp)} units between plant and payoff — echo it (echoEps) within ${span(params, 15, 0.35)} units of the answer, or the audience has forgotten it`);
+        }
+      }
+    }
+    if (!waived.has('red-herrings')) {
+      const reds = clues.filter((c) => c.kind === 'red-herring');
+      const trues = clues.filter((c) => c.kind === 'true');
+      if (reds.length > trues.length) out.push(`悬疑: ${reds.length} red herrings against ${trues.length} true clues — fewer false trails than true ones, or the audience feels tricked`);
+      const truthEp = Number(central[0]?.answerEp) || N;
+      for (const r of reds) if (!(Number(r.dismissedEp) > Number(r.plantEp) && Number(r.dismissedEp) <= truthEp)) out.push(`red herring ${r.id}: dismissedEp must fall after it is planted and no later than the truth (E${pad2(truthEp)})`);
+    }
+    if (!waived.has('open-questions')) {
+      for (let ep = 1; ep <= N; ep++) {
+        const open = qs.filter((q) => Number(q.openEp) <= ep && !(Number(q.answerEp) <= ep)).length;
+        if (open > 6) { out.push(`悬疑: ${open} questions are open in E${pad2(ep)} — at most 6, or the fragment viewer is lost`); break; }
+      }
+    }
+    return out;
+  }),
+  gate('story-comedy', 'outline', '喜剧: a comic premise, every lead and support with a comic flaw, a straight man, running gags that recur and pay off late', ({ project, params }) => {
+    if (!storyOf(params).includes('comedy')) return [];
+    const out = [];
+    const waived = storyWaived(project);
+    const N = Number(params.episodes) || 0;
+    if (!waived.has('comic-premise') && !String(project.outline?.brief?.comicPremise || '').trim()) out.push('喜剧: outline.brief.comicPremise is empty — the gap between the normal world and the comic one (e.g. an 18-year-old body with a great-grandmother inside)');
+    if (!waived.has('comic-cast')) {
+      const cast = (project.characters || []).filter((c) => ['lead', 'support'].includes(c.tier));
+      for (const c of cast) {
+        if (!String(c.comic?.flaw || '').trim()) out.push(`${c.id}: comic.flaw is empty — every lead and support has a named comic flaw`);
+        if (c.comic?.role && !COMIC_ROLES.includes(c.comic.role)) out.push(`${c.id}: comic.role must be one of ${COMIC_ROLES.join(' / ')}`);
+      }
+      const leads = cast.filter((c) => c.tier === 'lead').map((c) => String(c.comic?.flaw || '').trim()).filter(Boolean);
+      if (new Set(leads).size < leads.length) out.push('喜剧: two leads share a comic flaw — each one is funny in their own way');
+      if (cast.length && !cast.some((c) => ['捧', 'both'].includes(c.comic?.role))) out.push('喜剧: nobody plays it straight (comic.role 捧 or both) — if everyone is unusual, nobody is');
+    }
+    if (!waived.has('running-gags')) {
+      const gags = asList(project.outline?.runningGags);
+      const need = runsAtLeast(params, 30) ? 2 : 1;
+      if (runsAtLeast(params, 6) && gags.length < need) out.push(`喜剧: ${gags.length} running gag(s) — at least ${need}`);
+      const minOcc = Math.min(3, Math.max(1, N));
+      const minGap = runsAtLeast(params, 30) ? span(params, 3, 0.1) : 1;
+      const climax = (project.outline?.structure || []).find((x) => x.phase === 'climax');
+      for (const g of gags) {
+        const eps = uniq(asList(g.eps).map(Number)).sort((a, b) => a - b);
+        if (!g.id || !String(g.premise || '').trim()) out.push('runningGags: every running gag needs id and premise');
+        if (eps.length < minOcc) out.push(`running gag ${g.id}: ${eps.length} occurrence(s) — at least ${minOcc}, each one escalated`);
+        for (let i = 1; i < eps.length; i++) if (eps[i] - eps[i - 1] < minGap) { out.push(`running gag ${g.id}: E${pad2(eps[i - 1])} and E${pad2(eps[i])} are too close — let it rest ${minGap} episodes`); break; }
+        if (runsAtLeast(params, 10) && climax && !(eps[eps.length - 1] >= Number(climax.episodes[0]))) out.push(`running gag ${g.id}: never returns in the climax — pay it off late`);
+      }
+    }
+    return out;
+  }),
+  gate('story-angst', 'outline', '虐恋: the pain capped early, the turn at a quarter to a half, regret longer than the pain, every wound released within two episodes, an engineered misunderstanding the audience sees, she leaves by choice, the ending honoured, no red lines crossed by the male lead', ({ project, params }) => {
+    if (!storyOf(params).includes('angst')) return [];
+    const out = [];
+    const waived = storyWaived(project);
+    const N = Number(params.episodes) || 0;
+    const a = isObject(project.outline?.angst) ? project.outline.angst : {};
+    const beats = asList(a.beats);
+    const chars = project.characters || [];
+    const byId = new Map(chars.map((c) => [c.id, c]));
+    if (!ANGST_ENDINGS.includes(a.ending)) out.push(`outline.angst.ending must be one of ${ANGST_ENDINGS.join(' / ')} — decide it before writing`);
+    for (const [i, b] of beats.entries()) {
+      if (!ANGST_KINDS.includes(b.kind)) out.push(`angst.beats[${i}]: kind must be one of ${ANGST_KINDS.join(' / ')}`);
+      if (!(Number(b.ep) >= 1 && Number(b.ep) <= N)) out.push(`angst.beats[${i}]: ep must be 1–${N}`);
+    }
+    const pain = beats.filter((b) => b.kind === '虐');
+    const regret = beats.filter((b) => b.kind === '悔' || b.kind === '追');
+    const turn = Number(a.turnEp);
+    if (!waived.has('abuse-cap') && runsAtLeast(params, 10)) {
+      const last = Math.max(0, ...pain.filter((b) => !(turn && Number(b.ep) >= turn)).map((b) => Number(b.ep)));
+      if (last > Math.floor(0.35 * N)) out.push(`虐恋: the pain runs to E${pad2(last)} before the turn — the 虐 phase is at most ~30 % (E${pad2(Math.floor(0.35 * N))}); it establishes cause and effect, it does not wallow`);
+    }
+    if (!waived.has('turn-timing') && runsAtLeast(params, 10) && !(turn >= Math.ceil(0.25 * N) && turn <= Math.floor(0.45 * N))) out.push(`虐恋: turnEp (where regret begins) is ${a.turnEp ?? 'missing'} — it belongs between E${pad2(Math.ceil(0.25 * N))} and E${pad2(Math.floor(0.45 * N))}`);
+    if (!waived.has('regret-outweighs') && pain.length && regret.length < 1.5 * pain.length) out.push(`虐恋: ${regret.length} regret / pursuit beats against ${pain.length} beats of pain — his regret outweighs her suffering (at least 1.5×)`);
+    const he = a.ending === 'HE' || a.ending === 'HE-second';
+    const pursuit = beats.filter((b) => b.kind === '追').map((b) => Number(b.ep)).sort((x, y) => x - y);
+    if (!waived.has('pursuit-length') && he && runsAtLeast(params, 10)) {
+      if (pursuit.length < 3) out.push(`虐恋: ${pursuit.length} pursuit (追) beats — at least three; forgiveness after one cry is 火葬场不够烧`);
+      else if (Number(a.reconcileEp) - pursuit[0] < Math.ceil(0.15 * N)) out.push(`虐恋: the pursuit lasts ${Number(a.reconcileEp) - pursuit[0]} episodes — at least ${Math.ceil(0.15 * N)} before she forgives`);
+    }
+    if (!waived.has('release-cadence')) for (const b of pain) if (!(Number(b.releaseEp) >= Number(b.ep) && Number(b.releaseEp) <= Number(b.ep) + span(params, 2, 0.1))) out.push(`虐恋: the wound in E${pad2(b.ep)} is not released within ${span(params, 2, 0.1)} unit(s) (releaseEp) — pain is a deposit the drama repays; short-drama viewers swipe away`);
+    const mb = isObject(a.misbelief) ? a.misbelief : null;
+    if (!waived.has('engineered-misbelief')) {
+      if (!mb) out.push('虐恋: outline.angst.misbelief is missing — { belief, engineeredBy, evidence, audienceRevealEp, heroRevealEp }: the misunderstanding is engineered, never a sentence nobody says');
+      else {
+        const by = byId.get(mb.engineeredBy);
+        if (!by || by.tier === 'lead') out.push('虐恋: the misbelief is engineered by a non-lead (the 白月光, a rival, the family) — misbelief.engineeredBy');
+        if (!String(mb.evidence || '').trim()) out.push('虐恋: misbelief.evidence is empty — the false belief rests on an artifact (a keepsake, a photo, a framed scene)');
+        if (!(Number(mb.audienceRevealEp) <= span(params, 3, 0.15))) out.push(`虐恋: the audience learns the truth by E${pad2(span(params, 3, 0.15))} (misbelief.audienceRevealEp) — the tears come from dramatic irony`);
+        if (runsAtLeast(params, 10) && !(Number(mb.heroRevealEp) <= Math.floor(0.55 * N))) out.push(`虐恋: he learns the truth (heroRevealEp) by E${pad2(Math.floor(0.55 * N))}`);
+      }
+    }
+    if (!waived.has('exit-by-choice') && runsAtLeast(params, 10)) {
+      const x = Number(a.exitEp);
+      if (!(x >= Math.ceil(0.1 * N) && x <= Math.floor(0.4 * N)) || (turn && x > turn)) out.push(`虐恋: she leaves by her own choice (exitEp) between E${pad2(Math.ceil(0.1 * N))} and E${pad2(Math.floor(0.4 * N))}, no later than the turn`);
+    }
+    if (!waived.has('costly-regret')) {
+      for (const b of regret) if (!String(b.cost || '').trim()) out.push(`虐恋: the ${b.kind} beat in E${pad2(b.ep)} costs him nothing — every regret and pursuit beat has a cost (status, pride, money, family)`);
+      if (he && !beats.some((b) => b.kind === '追' && b.public && (!a.reconcileEp || Number(b.ep) <= Number(a.reconcileEp)))) out.push('虐恋: no public pursuit beat (public: true) before she forgives — the apology is made before witnesses');
+    }
+    if (!waived.has('ending-contract')) {
+      if (he && runsAtLeast(params, 10) && !(Number(a.reconcileEp) >= Math.ceil(0.85 * N))) out.push(`虐恋: a happy ending reconciles late (reconcileEp at E${pad2(Math.ceil(0.85 * N))} or later)`);
+      if (he && a.reconcileEp && !beats.some((b) => b.kind === '糖' && Number(b.ep) >= Number(a.reconcileEp))) out.push('虐恋: no sugar (糖) after the reconciliation — 先虐后甜 pays the debt');
+      if (a.ending === 'BE' && /甜|HE|圆满|在一起/.test(String(project.outline?.brief?.promise || ''))) out.push('虐恋: the brief promises sweetness but the ending is BE — make the promise honest');
+    }
+    if (!waived.has('male-lead-red-lines')) {
+      if (!asList(project.outline?.brief?.redLines).length) out.push('虐恋: outline.brief.redLines is empty — list what the male lead never does (strike, drug, confine, coerce)');
+      for (const b of beats) {
+        const inflictor = byId.get(b.inflictor);
+        if (inflictor?.tier === 'lead' && ANGST_RED_LINES_RE.test(`${b.cost || ''} ${b.what || ''}`)) out.push(`虐恋: E${pad2(b.ep)} — the male lead crosses a red line (${`${b.cost || ''} ${b.what || ''}`.match(ANGST_RED_LINES_RE)[0]}); 虐 is emotional and situational, never physical abuse by him`);
+      }
+    }
+    return out;
+  }),
+  gate('story-family', 'outline', '家庭伦理: a family web of two generations, every member resolved, tears on a steady beat, a public vindication before witnesses, secrets hinted before they are told, reconciliation earned by sacrifice, children never used as tools', ({ project, params }) => {
+    if (!storyOf(params).includes('family')) return [];
+    const out = [];
+    const waived = storyWaived(project);
+    const N = Number(params.episodes) || 0;
+    const eps = outlineEpisodes(project);
+    const chars = project.characters || [];
+    const fam = chars.filter((c) => isObject(c.family));
+    if (!waived.has('family-web')) {
+      const gens = new Set(fam.map((c) => Number(c.family.generation)).filter((x) => Number.isFinite(x)));
+      if (fam.length < 5 || gens.size < 2) out.push(`家庭伦理: ${fam.length} family members over ${gens.size} generation(s) — the genre is a system: at least five members, two generations (characters[].family { generation, role, minor?, endState })`);
+    }
+    if (!waived.has('every-member-resolves')) for (const c of fam.filter((x) => ['lead', 'support'].includes(x.tier))) if (!FAMILY_END_STATES.includes(c.family.endState)) out.push(`${c.id}: family.endState must be one of ${FAMILY_END_STATES.join(' / ')} — every member of the family ends somewhere`);
+    if (!waived.has('tear-cadence') && runsAtLeast(params, 10)) {
+      const tears = eps.filter((e) => e.satisfaction?.type === '情感释放');
+      if (tears.length < 0.2 * eps.length) out.push(`家庭伦理: ${tears.length} tear episodes (情感释放) — at least 20 %; 泪 is the promise`);
+      const gap = longestRun(eps, (e) => e.satisfaction?.type !== '情感释放');
+      if (gap.len > span(params, 6, 0.25)) out.push(`家庭伦理: ${gap.len} units in a row from E${pad2(gap.from)} without a tear — at most ${span(params, 6, 0.25)}`);
+    }
+    const vind = asList(project.outline?.vindications);
+    if (!waived.has('public-vindication') && runsAtLeast(params, 20)) {
+      const lo = Math.ceil(0.25 * N), hi = Math.floor(0.7 * N);
+      if (!vind.some((v) => Number(v.ep) >= lo && Number(v.ep) <= hi && asList(v.witnesses).length >= 3)) out.push(`家庭伦理: no public vindication with three or more family witnesses between E${pad2(lo)} and E${pad2(hi)} (outline.vindications) — the wronged one is vindicated at the 寿宴, before everyone`);
+      const climax = (project.outline?.structure || []).find((x) => x.phase === 'climax');
+      if (climax && !vind.some((v) => Number(v.ep) >= Number(climax.episodes[0]))) out.push('家庭伦理: no second, larger vindication in the climax');
+    }
+    const secrets = asList(project.outline?.secrets);
+    if (!waived.has('secret-hygiene')) {
+      for (const [i, sc] of secrets.entries()) {
+        if (!(Number(sc.plantEp) < Number(sc.revealEp))) out.push(`secrets[${i}]: plantEp must come before revealEp`);
+        const hints = asList(sc.hintEps).map(Number).filter((e) => e > Number(sc.plantEp) && e < Number(sc.revealEp));
+        if (hints.length < 2) out.push(`secrets[${i}] (${sc.content || sc.id}): ${hints.length} hint(s) between plant and reveal — at least two`);
+      }
+      const main = secrets[0];
+      if (main && !(Number(main.audienceKnowsEp) <= span(params, 5, 0.2))) out.push(`家庭伦理: the audience learns the main secret by E${pad2(span(params, 5, 0.2))} (secrets[0].audienceKnowsEp) — 信息差 drives the family drama`);
+      if (main && runsAtLeast(params, 20) && !(Number(main.revealEp) >= Math.ceil(0.5 * N) && Number(main.revealEp) <= Math.floor(0.85 * N))) out.push(`家庭伦理: the main secret is revealed in E${pad2(main.revealEp)} — between E${pad2(Math.ceil(0.5 * N))} and E${pad2(Math.floor(0.85 * N))}, with room for the fallout`);
+    }
+    if (!waived.has('earned-reconciliation')) {
+      for (const [i, r] of asList(project.outline?.reconciliations).entries()) {
+        if (r.endState !== '和解') continue;
+        if (!(Number(r.woundEp) < Number(r.triggerEp) && Number(r.triggerEp) <= Number(r.turnEp))) out.push(`reconciliations[${i}]: woundEp < triggerEp (the evidence of sacrifice) ≤ turnEp`);
+        if (runsAtLeast(params, 20) && Number(r.turnEp) - Number(r.woundEp) < span(params, 10, 0.3)) out.push(`reconciliations[${i}]: reconciled ${Number(r.turnEp) - Number(r.woundEp)} units after the wound — at least ${span(params, 10, 0.3)}`);
+        if (vind.some((v) => Number(v.ep) === Number(r.turnEp) && r.pair && asList(r.pair).includes(v.char)) && !(Number(r.triggerEp) < Number(r.turnEp))) out.push(`reconciliations[${i}]: they reconcile the moment her status is revealed — repentance is earned by her sacrifice, not her wealth (富贵门前皆孝子)`);
+      }
+    }
+    if (!waived.has('child-compliance')) {
+      for (const c of fam.filter((x) => x.family.minor)) {
+        for (const e of eps.filter((x) => ['智商碾压', '复仇', '打脸'].includes(x.satisfaction?.type))) {
+          if (c.name && String(e.satisfaction?.action || '').includes(c.name)) out.push(`E${pad2(e.ep)}: the child ${c.name} lands the ${e.satisfaction.type} — children are truth-tellers and bridges, never schemers (NRTA 2026 儿童类微短剧 notice)`);
+        }
+      }
+    }
+    return out;
+  }),
+  gate('story-palace', 'outline', '宫斗/权谋: schemes planted well before they are sprung, counters built from earlier plants, the throne never a rescue button, antagonists who win, a rank ladder that climbs with a low point, betrayals foreshadowed, the heroine keeping moral capital', ({ project, params }) => {
+    if (!storyOf(params).includes('palace')) return [];
+    const out = [];
+    const waived = storyWaived(project);
+    const N = Number(params.episodes) || 0;
+    const chars = project.characters || [];
+    const leads = new Set(chars.filter((c) => c.tier === 'lead').map((c) => c.id));
+    const schemes = asList(project.outline?.schemes);
+    if (!schemes.length) out.push('宫斗: outline.schemes is empty — every scheme { id, schemer, target, stakes, setupEp, revealEp, outcome, counteredBy? }');
+    for (const [i, sc] of schemes.entries()) {
+      if (!SCHEME_STAKES.includes(sc.stakes)) out.push(`schemes[${i}]: stakes must be one of ${SCHEME_STAKES.join(' / ')}`);
+      if (!SCHEME_OUTCOMES.includes(sc.outcome)) out.push(`schemes[${i}]: outcome must be one of ${SCHEME_OUTCOMES.join(' / ')}`);
+    }
+    if (!waived.has('scheme-setup')) {
+      const need = { minor: span(params, 2, 0.05), major: span(params, 5, 0.15), master: Math.min(span(params, 20, 0.5), Math.max(2, Math.floor(0.25 * N))) };
+      for (const sc of schemes) if (Number(sc.revealEp) - Number(sc.setupEp) < (need[sc.stakes] || 2)) out.push(`scheme ${sc.id}: set up ${Number(sc.revealEp) - Number(sc.setupEp)} episode(s) before it is sprung — a ${sc.stakes} scheme needs ${need[sc.stakes] || 2}`);
+      if (runsAtLeast(params, 20) && !schemes.some((sc) => sc.stakes === 'master' && Number(sc.setupEp) <= N / 2)) out.push('宫斗: no master scheme planted in the first half — the long plant is the genre (梅长苏\'s twelve-year setup, the 滴血验亲 counter-trap)');
+    }
+    const countered = schemes.filter((sc) => sc.outcome !== 'success');
+    if (!waived.has('no-teleported-evidence')) for (const sc of countered) {
+      if (!isObject(sc.counteredBy) || !(Number(sc.counteredBy.plantEp) < Number(sc.revealEp))) out.push(`scheme ${sc.id}: countered by something not planted before the reveal (counteredBy.plantEp) — no evidence out of nowhere`);
+      if (!String(sc.flaw || '').trim()) out.push(`scheme ${sc.id}: countered with no flaw recorded — every loss has a cause (rushed, no proof, overreach)`);
+    }
+    if (!waived.has('authority-not-rescue')) {
+      for (const ph of project.outline?.structure || []) {
+        const n = countered.filter((sc) => sc.counteredBy?.type === 'authority' && Number(sc.revealEp) >= ph.episodes[0] && Number(sc.revealEp) <= ph.episodes[1]).length;
+        if (n > 1) out.push(`宫斗: ${n} schemes in the ${ph.phase} phase are countered by the emperor alone — the arbiter has an agenda, never a rescue button`);
+      }
+    }
+    if (!waived.has('competent-antagonist') && runsAtLeast(params, 20) && !schemes.some((sc) => !leads.has(sc.schemer) && leads.has(sc.target) && sc.outcome === 'success' && Number(sc.revealEp) <= N / 2)) out.push('宫斗: no antagonist scheme succeeds against the heroine before the midpoint — a strong enough villain saves a story');
+    if (!waived.has('rank-climb')) {
+      const events = asList(project.outline?.rankEvents).filter((r) => leads.has(r.char)).sort((a, b) => Number(a.ep) - Number(b.ep));
+      const levels = asList(project.outline?.rankLadder?.levels);
+      const idx = (x) => levels.indexOf(x);
+      if (levels.length < 3) out.push('宫斗: outline.rankLadder.levels lists the ranks low → high (at least three)');
+      const ups = events.filter((r, i) => i === 0 || idx(r.to) > idx(events[i - 1].to));
+      const firstBy = Math.min(span(params, 12, 0.2), N);
+      if (!events.length || Number(events[0].ep) > firstBy) out.push(`宫斗: the heroine's first rank event lands after E${pad2(firstBy)} — the ladder is the progress bar`);
+      if (runsAtLeast(params, 15) && ups.length < Math.ceil(N / span(params, 15, 0.3))) out.push(`宫斗: ${ups.length} rank rises — at least ${Math.ceil(N / span(params, 15, 0.3))}`);
+      for (let i = 1; i < events.length; i++) if (Number(events[i].ep) - Number(events[i - 1].ep) > span(params, 15, 0.3)) { out.push(`宫斗: no rank event between E${pad2(events[i - 1].ep)} and E${pad2(events[i].ep)} — at most ${span(params, 15, 0.3)} units`); break; }
+      if (runsAtLeast(params, 20) && !events.some((r, i) => i > 0 && idx(r.to) < idx(events[i - 1].to) && Number(r.ep) >= Math.ceil(0.3 * N) && Number(r.ep) <= Math.floor(0.6 * N))) out.push(`宫斗: no low point (a demotion, 冷宫, 禁足) between E${pad2(Math.ceil(0.3 * N))} and E${pad2(Math.floor(0.6 * N))}`);
+      if (runsAtLeast(params, 10) && levels.length && !events.some((r) => r.to === levels[levels.length - 1] && Number(r.ep) >= Math.ceil(0.9 * N))) out.push(`宫斗: the heroine reaches the top rung (${levels[levels.length - 1]}) in the last 10 % — the seizure of power`);
+    }
+    if (!waived.has('faction-realignment')) {
+      const factions = asList(project.outline?.factions);
+      if (runsAtLeast(params, 20) && (factions.length < 2 || factions.length > 4)) out.push(`宫斗: ${factions.length} factions — two to four, or the audience cannot track them`);
+      for (const [i, al] of asList(project.outline?.allegiance).entries()) {
+        if (!String(al.motive || '').trim() || !(Number(al.foreshadowEp) <= Number(al.ep) - span(params, 5, 0.15))) out.push(`allegiance[${i}]: a switch of sides needs a motive and foreshadowing at least ${span(params, 5, 0.15)} units earlier (foreshadowEp)`);
+      }
+    }
+    if (!waived.has('moral-capital')) {
+      for (const sc of schemes.filter((x) => leads.has(x.schemer))) {
+        const provoked = schemes.some((o) => o.schemer === sc.target && leads.has(o.target) && Number(o.setupEp) < Number(sc.setupEp));
+        if (!provoked && !String(sc.justice || '').trim()) out.push(`scheme ${sc.id}: the heroine schemes against ${sc.target}, who never schemed against her first — keep her moral capital (or record the justice goal in justice)`);
+      }
+    }
+    return out;
+  }),
+  gate('story-cultivation', 'outline', '玄幻/修仙/系统: the 金手指 on in the first two episodes with rules and costs, steady breakthroughs one realm at a time with a cause and a cost, the foe’s realm known before the fight, the peak held back', ({ project, params }) => {
+    if (!storyOf(params).includes('cultivation')) return [];
+    const out = [];
+    const waived = storyWaived(project);
+    const N = Number(params.episodes) || 0;
+    const o = project.outline || {};
+    const realms = asList(o.powerSystem?.realms).map((r) => r.id);
+    const at = (id) => realms.indexOf(id);
+    if (realms.length < 3) out.push('修仙: outline.powerSystem.realms lists the realms low → high (at least three), each with a visual signature');
+    const fingers = asList(o.goldenFinger);
+    if (!waived.has('golden-finger')) {
+      if (!fingers.length) out.push('修仙: outline.goldenFinger is missing — { type, name, activationEp, rules[], costs[] }');
+      if (fingers.length > 2) out.push(`修仙: ${fingers.length} 金手指 — one or two; a sprawl of cheats bores`);
+      for (const f of fingers) {
+        if (!(Number(f.activationEp) <= span(params, 2, 0.1))) out.push(`修仙: the 金手指 ${f.name || ''} activates in E${pad2(f.activationEp)} — by E${pad2(span(params, 2, 0.1))}`);
+        if (!asList(f.rules).length || !asList(f.costs).length) out.push(`修仙: the 金手指 ${f.name || ''} needs rules and costs — limits are more interesting than powers`);
+      }
+    }
+    const start = o.startPower || '废柴';
+    if (!START_POWERS.includes(start)) out.push(`outline.startPower must be one of ${START_POWERS.join(' / ')}`);
+    const ups = asList(o.upgrades).sort((a, b) => Number(a.ep) - Number(b.ep));
+    for (const [i, u] of ups.entries()) if (!realms.includes(u.to)) out.push(`upgrades[${i}]: realm ${u.to} is not in powerSystem.realms`);
+    if (start === '废柴') {
+      if (!waived.has('upgrade-cadence') && runsAtLeast(params, 12)) {
+        const marks = [0, ...ups.map((u) => Number(u.ep)), N];
+        const cadence = span(params, 12, 0.3);
+        for (let i = 1; i < marks.length; i++) if (marks[i] - marks[i - 1] > cadence) { out.push(`修仙: E${pad2(marks[i - 1] + 1)}–E${pad2(marks[i])} goes more than ${cadence} units without a breakthrough — the level-up is the promise`); break; }
+        const golden = (o.structure || []).find((x) => x.phase === 'golden');
+        if (golden && !ups.some((u) => Number(u.ep) <= Number(golden.episodes[1]))) out.push('修仙: no breakthrough in the golden episodes — the first loop (humiliation → awakening → gain → 打脸) closes early');
+      }
+      if (!waived.has('no-level-skip')) {
+        const byChar = new Map();
+        for (const u of ups) {
+          const prev = byChar.get(u.char);
+          if (prev !== undefined && at(u.to) - prev > 1) out.push(`upgrades: ${u.char} jumps ${at(u.to) - prev} realms in E${pad2(u.ep)} — one realm at a time`);
+          if (prev !== undefined && at(u.to) < prev) out.push(`upgrades: ${u.char} falls back a realm in E${pad2(u.ep)} — only an injury or a seal does that; record it as a cost`);
+          byChar.set(u.char, at(u.to));
+        }
+      }
+      if (!waived.has('peak-held') && runsAtLeast(params, 10) && realms.length) {
+        const peak = ups.find((u) => u.to === realms[realms.length - 1]);
+        if (peak && Number(peak.ep) < Math.ceil(0.85 * N)) out.push(`修仙: the peak realm is reached in E${pad2(peak.ep)} — hold it for the last 15 % (E${pad2(Math.ceil(0.85 * N))} on)`);
+      }
+    } else if (!waived.has('hidden-master-reveals') && runsAtLeast(params, 10)) {
+      const reveals = outlineEpisodes(project).filter((e) => e.satisfaction?.type === '身份揭露').map((e) => e.ep);
+      const marks = [0, ...reveals, N];
+      const cadence = span(params, 10, 0.25);
+      for (let i = 1; i < marks.length; i++) if (marks[i] - marks[i - 1] > cadence) { out.push(`修仙: a ${start} hero goes more than ${cadence} units (E${pad2(marks[i - 1] + 1)}–E${pad2(marks[i])}) without another layer of 身份揭露 — the tension is the hidden identity, not the win`); break; }
+    }
+    if (!waived.has('cause-and-cost')) for (const u of ups) if (!String(u.cause || '').trim() || !String(u.cost || '').trim()) out.push(`upgrades: the breakthrough in E${pad2(u.ep)} needs a cause and a cost (time, resources, injury, exposure, a debt to the system)`);
+    if (!waived.has('foe-known')) for (const [i, f] of asList(o.fights).entries()) {
+      if (!(Number(f.foeRevealedEp) <= Number(f.ep))) out.push(`fights[${i}]: the foe's realm is revealed after the fight in E${pad2(f.ep)} — say it first (foeRevealedEp), so 越级 reads`);
+      const gap = at(f.foeRealm) - at(f.heroRealm);
+      if (gap > 1) out.push(`fights[${i}]: the hero fights ${gap} realms up — at most one`);
+      if (gap > 0 && !String(f.edge || '').trim()) out.push(`fights[${i}]: fighting above the realm needs an edge set up earlier (a rule, a pill, a treasure) — edge`);
+    }
+    return out;
+  }),
+  gate('story-scifi', 'outline', '科幻: one novum on screen in E1, world rules with limits and costs shown before they decide anything, a countdown that only counts down, loops that learn, foreknowledge paid off fast, a midpoint turn', ({ project, params }) => {
+    if (!storyOf(params).includes('scifi')) return [];
+    const out = [];
+    const waived = storyWaived(project);
+    const N = Number(params.episodes) || 0;
+    const o = project.outline || {};
+    const novum = isObject(o.brief?.novum) ? o.brief.novum : null;
+    if (!waived.has('novum-first') && (!novum || !String(novum.statement || '').trim() || !(Number(novum.firstEp) <= 1))) out.push('科幻: outline.brief.novum { statement, category, firstEp: 1 } — the one impossible thing is on screen in E01');
+    if (!waived.has('one-novum')) {
+      const loose = asList(o.secondaryNovums).filter((x) => !String(x.derivesFrom || '').trim());
+      if (loose.length > 1) out.push(`科幻: ${loose.length} marvels that do not derive from the novum — Wells' law: one impossible assumption, developed with strict logic`);
+    }
+    const rules = asList(o.worldRules);
+    for (const [i, r] of rules.entries()) if (!NOVUM_RULE_KINDS.includes(r.kind)) out.push(`worldRules[${i}]: kind must be one of ${NOVUM_RULE_KINDS.join(' / ')}`);
+    if (!waived.has('rule-costs')) {
+      const powers = rules.filter((r) => r.kind === 'power').length;
+      const limits = rules.filter((r) => r.kind === 'limit' || r.kind === 'cost').length;
+      if (limits < powers) out.push(`科幻: ${powers} power rule(s) and ${limits} limit / cost rule(s) — at least one limit or cost per power (limits are more interesting than powers)`);
+    }
+    if (!waived.has('show-before-use')) {
+      const climax = (o.structure || []).find((x) => x.phase === 'climax');
+      for (const r of rules) {
+        const decides = asList(r.decidesEps).map(Number);
+        if (decides.length && !(Number(r.shownEp) < Math.min(...decides))) out.push(`worldRules ${r.id}: decides E${pad2(Math.min(...decides))} but is shown in E${pad2(r.shownEp)} — show a rule in action before it decides a turn`);
+        if (climax && decides.some((d) => d >= Number(climax.episodes[0])) && !(Number(r.shownEp) <= Number(climax.episodes[0]) - span(params, 3, 0.1))) out.push(`worldRules ${r.id}: decides the climax but is shown only in E${pad2(r.shownEp)} — at least ${span(params, 3, 0.1)} unit(s) before the climax`);
+        if (r.brokenEp && !(r.kind === 'exception' && Number(r.revealSetupEp) < Number(r.brokenEp))) out.push(`worldRules ${r.id}: broken in E${pad2(r.brokenEp)} — a rule only bends as a set-up exception (kind exception, revealSetupEp earlier)`);
+      }
+    }
+    const cd = isObject(o.countdown) ? o.countdown : null;
+    if (!waived.has('countdown') && cd) {
+      const log = asList(cd.log).sort((a, b) => Number(a.ep) - Number(b.ep));
+      for (let i = 1; i < log.length; i++) if (Number(log[i].value) > Number(log[i - 1].value)) { out.push(`科幻: the countdown goes up in E${pad2(log[i].ep)} — it only counts down`); break; }
+      const early = outlineEpisodes(project).filter((e) => ['golden', 'escalation'].includes(phaseOfEp(project, e.ep))).length;
+      if (early && log.filter((l) => ['golden', 'escalation'].includes(phaseOfEp(project, Number(l.ep)))).length < 0.6 * early) out.push('科幻: the countdown is on screen in fewer than 60 % of the episodes before the climax — it is the spine and the free cliffhanger');
+    } else if (!waived.has('countdown') && novum?.category === '末世') out.push('科幻: a 末世 drama runs on a countdown — outline.countdown { label, zeroEp, log: [{ ep, value }] }');
+    if (!waived.has('loops')) {
+      const loops = asList(o.loops).sort((a, b) => Number(a.ep) - Number(b.ep));
+      for (const l of loops) if (!String(l.newInfo || '').trim()) out.push(`科幻: loop ${l.n ?? ''} in E${pad2(l.ep)} brings nothing new (newInfo) — each iteration adds information, skill or cost`);
+      for (let i = 1; i < loops.length; i++) if (loops[i].changed === false && loops[i - 1].changed === false) { out.push(`科幻: two loops in a row (E${pad2(loops[i - 1].ep)}, E${pad2(loops[i].ep)}) where the hero changes nothing`); break; }
+    }
+    if (!waived.has('foreknowledge')) for (const f of asList(o.foreknowledge)) if (!(Number(f.payoffEp) - Number(f.plantedEp) <= span(params, 10, 0.3) && Number(f.payoffEp) >= Number(f.plantedEp))) out.push(`科幻: foreknowledge "${f.event}" pays off ${Number(f.payoffEp) - Number(f.plantedEp)} units after it is planted — within ${span(params, 10, 0.3)}`);
+    if (!waived.has('midpoint-turn') && runsAtLeast(params, 20)) {
+      const lo = Math.ceil(0.4 * N), hi = Math.floor(0.6 * N);
+      const inBand = (ep) => Number(ep) >= lo && Number(ep) <= hi;
+      const turned = rules.some((r) => ['exception', 'trigger'].includes(r.kind) && inBand(r.shownEp)) || (cd && inBand(cd.zeroEp));
+      const hooked = outlineEpisodes(project).some((e) => inBand(e.ep) && ['反转', '危机'].includes(e.hookType));
+      if (!turned || !hooked) out.push(`科幻: no midpoint turn between E${pad2(lo)} and E${pad2(hi)} — the countdown reaches zero or a rule turns out incomplete (an exception or a trigger), on a 反转 / 危机 hook`);
+    }
+    return out;
+  }),
+  gate('story-horror', 'outline', '恐怖/灵异: a scare nearly every episode, false alarms rationed, the threat felt in E1 and shown late, rules shown before they kill, the rule-horror anatomy, and on the mainland a rational explanation planted with clues', ({ project, params }) => {
+    if (!storyOf(params).includes('horror')) return [];
+    const out = [];
+    const waived = storyWaived(project);
+    const N = Number(params.episodes) || 0;
+    const eps = outlineEpisodes(project);
+    const h = isObject(project.outline?.horror) ? project.outline.horror : {};
+    const threat = isObject(h.threat) ? h.threat : {};
+    const real = (e) => asList(e.scares).some((x) => ['惊吓', '揭示', '规则惩罚'].includes(x));
+    for (const e of eps) for (const x of asList(e.scares)) if (!SCARE_TYPES.includes(x)) out.push(`E${pad2(e.ep)}: scare "${x}" is not one of ${SCARE_TYPES.join(' / ')}`);
+    if (!waived.has('scare-cadence') && eps.length && eps.filter(real).length < 0.8 * eps.length) out.push(`恐怖: ${eps.filter(real).length} of ${eps.length} episodes have a real scare (惊吓 / 揭示 / 规则惩罚 in episodes[].scares) — at least 80 %`);
+    if (!waived.has('false-alarms')) {
+      eps.forEach((e, i) => {
+        if (!asList(e.scares).includes('假警报')) return;
+        if (!real(e)) out.push(`E${pad2(e.ep)}: a false alarm with no real scare after it — the cat scare exists to set up the real one`);
+        if (i > 0 && asList(eps[i - 1].scares).includes('假警报')) out.push(`E${pad2(e.ep)}: false alarms two episodes running`);
+      });
+    }
+    if (!waived.has('early-threat') && Number(threat.firstSignEp) !== 1) out.push('恐怖: the first sign of the threat is in E01 (outline.horror.threat.firstSignEp) — within the first seconds');
+    if (!waived.has('hide-the-monster') && runsAtLeast(params, 10)) {
+      if (!(Number(threat.revealEp) >= Math.ceil(0.5 * N))) out.push(`恐怖: the threat is fully shown in E${pad2(threat.revealEp)} — hold it past the half (E${pad2(Math.ceil(0.5 * N))}); the unseen is scarier`);
+      if (asList(threat.glimpseEps).filter((e) => Number(e) < Number(threat.revealEp)).length < 2) out.push('恐怖: fewer than two glimpses before the reveal (threat.glimpseEps)');
+    }
+    const rules = asList(project.outline?.horrorRules);
+    if (!waived.has('fair-rules')) for (const r of rules) if (r.brokenEp && !(Number(r.shownEp) < Number(r.brokenEp))) out.push(`恐怖: rule "${r.text}" kills in E${pad2(r.brokenEp)} before the audience has seen it — every rule is shown before anyone is punished by it`);
+    if (!waived.has('rule-horror') && h.subgenre === '规则怪谈') {
+      if (rules.length < 5) out.push(`规则怪谈: ${rules.length} rules — at least five`);
+      if (!rules.some((r) => Number(r.shownEp) <= span(params, 2, 0.1))) out.push(`规则怪谈: the first rule is shown by E${pad2(span(params, 2, 0.1))} — the rulebook is the setting`);
+      if (!rules.some((r) => r.isTrue === false && (N < 10 || Number(r.shownEp) <= Math.floor(0.6 * N)))) out.push('规则怪谈: no false or contradicting rule (isTrue: false) by the midpoint — telling true rules from contaminated ones is the game');
+    }
+    if (!waived.has('mainland-explanation') && params.market === 'mainland') {
+      const ex = isObject(threat.explanation) ? threat.explanation : {};
+      if (!RATIONAL_EXPLANATIONS.includes(ex.type)) out.push(`恐怖 (mainland): the threat is explained by ${RATIONAL_EXPLANATIONS.join(' / ')} (threat.explanation.type) — ghosts confirmed real, fortune-telling that comes true and 封建迷信 are red lines; set params.market overseas for a supernatural drama`);
+      else {
+        if (runsAtLeast(params, 10) && !(Number(ex.revealEp) >= Math.ceil(0.8 * N))) out.push(`恐怖 (mainland): the explanation lands in E${pad2(ex.revealEp)} — keep the dread until the climax (E${pad2(Math.ceil(0.8 * N))} on)`);
+        if (asList(ex.clueEps).filter((e) => Number(e) <= Number(ex.revealEp) - 2).length < 2) out.push('恐怖 (mainland): the rational explanation needs at least two clues planted two or more episodes before it (explanation.clueEps) — an unplanted "it was a dream" cheats');
+      }
+    }
+    return out;
+  }),
+  gate('story-advice', 'outline', 'genre craft notes: hook variety, identity layers, public sugar, suspects, twist fatigue, exposition, compliance per genre and market (advisory)', ({ project, params }) => {
+    const story = storyOf(params);
+    if (!story.length) return [];
+    const out = [];
+    const N = Number(params.episodes) || 0;
+    const eps = outlineEpisodes(project);
+    if (eps.length >= 6) {
+      const counts = new Map();
+      for (const e of eps) counts.set(e.hookType, (counts.get(e.hookType) || 0) + 1);
+      for (const [t, n] of counts) if (n / eps.length > 0.4) out.push(`hookType ${t} ends ${Math.round((n / eps.length) * 100)} % of episodes — vary the cliffs (≤ 40 %)`);
+      let streak = 1;
+      for (let i = 1; i < eps.length; i++) { streak = eps[i].hookType === eps[i - 1].hookType ? streak + 1 : 1; if (streak > 3) { out.push(`E${pad2(eps[i].ep)}: the same hookType four episodes running`); break; } }
+    }
+    const text = (e) => `${e.synopsis || ''} ${e.satisfaction?.action || ''} ${e.hook || ''}`;
+    if (story.includes('revenge')) {
+      if (/隐藏身份|隐藏|身份|战神|戰神|赘婿|贅婿|真千金|大佬/.test(`${project.outline?.brief?.logline || ''} ${project.outline?.brief?.satisfactionEngine || ''}`) && N >= 20 && eps.filter((e) => e.satisfaction?.type === '身份揭露').length < 3) out.push('复仇: a hidden-identity premise reveals in layers — plan at least three 身份揭露 episodes, the full one in the climax');
+      const bad = eps.filter((e) => /私刑|以暴制暴|灭门|滅門|虐杀|虐殺/.test(text(e)));
+      if (bad.length) out.push(`复仇: ${bad.map((e) => `E${pad2(e.ep)}`).join(', ')} read as extra-legal violence (私刑 / 以暴制暴) — regulators target it; land the payback through exposure, law or wits`);
+    }
+    if (story.includes('sweet')) {
+      const rom = asList(project.outline?.romance);
+      const climax = (project.outline?.structure || []).find((x) => x.phase === 'climax');
+      if (climax && N >= 10 && !rom.some((m) => m.milestone === 'public' && Number(m.ep) >= Number(climax.episodes[0]))) out.push('甜宠: no public milestone in the climax — 被偏爱 escalates from private to public (公开 / 官宣 / 婚礼)');
+      const money = eps.filter((e) => e.satisfaction?.type === '强宠' && /黑卡|买下|買下|豪车|豪車|包下|一掷千金|一擲千金/.test(text(e)));
+      const pets = eps.filter((e) => e.satisfaction?.type === '强宠');
+      if (pets.length >= 5 && money.length / pets.length > 0.2) out.push('甜宠: more than 20 % of the 强宠 payoffs are money — regulators target 炫富; show care, not a card');
+    }
+    const flag = (re, why) => { const hit = eps.filter((e) => re.test(text(e))); if (hit.length) out.push(`${hit.map((e) => `E${pad2(e.ep)}`).join(', ')}: ${why}`); };
+    if (story.includes('palace')) flag(/堕胎|酷刑|房中术|房中術/, 'abortion detail, torture or 房中术 on screen — keep it off screen (NRTA on 宫斗)');
+    if (story.includes('cultivation') && params.market === 'mainland') flag(/招魂|鬼上身|养小鬼|養小鬼|冥婚|风水改运|風水改運|符咒治病/, 'reads as 封建迷信 presented as real — keep 修仙 in an invented world; in a modern city never show talismans or feng-shui working');
+    if (story.includes('horror') && params.market === 'mainland') flag(/鬼魂|冤魂|算命|灵验|靈驗|报应|報應/, 'a ghost, a fortune or karma presented as real — mainland horror resolves it rationally');
+    if (story.includes('angst')) flag(/挖肾|取肾|流血|血腥|强吻|強吻/, 'organ harvesting, blood close-ups or forced kisses — dated and restricted; imply, never show');
+    if (story.includes('scifi')) flag(/众所周知|你知道的|原理是/, 'a lecture line in the synopsis — show the rule through a consequence, one rule a scene');
+    if (story.includes('mystery')) {
+      const suspects = (project.characters || []).filter((c) => ['suspect', 'culprit', 'unreliable-ally'].includes(c.mysteryRole));
+      if ((project.outline?.mysteryMode || 'whodunit') === 'whodunit' && N >= 10 && (suspects.length < 3 || suspects.length > 5)) out.push(`悬疑: ${suspects.length} viable suspects — a whodunit plays best with 3–5`);
+      if (eps.length >= 6 && eps.filter((e) => e.hookType === '反转').length / eps.length > 0.35) out.push('悬疑: more than 35 % of cliffs are 反转 — twist fatigue; open questions instead');
+    }
+    return out;
+  }, { advisory: true }),
   // ── art ───────────────────────────────────────────────────────────────
-  gate('scene-design', 'art', 'scenes: intent, 3–5 anchors, ≥1 lighting state in params.imagePromptLang', ({ project, params }) => {
+  gate('scene-design', 'art', 'scenes: intent, 3–5 anchors, ≥1 lighting state in params.imagePromptLang (in the cinematography preset)', ({ project, params }) => {
     const out = [];
     const kit = imagePromptKit(params);
+    // The cinematography presets carry an English framePhrase only, so a Chinese
+    // image prompt (imagePromptLang zh) has nothing to match — skip the check there.
+    const look = kit.zh ? null : cinematographyOf(params);
     for (const s of project.scenes || []) {
       if (!String(s.summary || '').trim()) out.push(`${s.id}: summary (design intent) is empty`);
       const anchors = s.anchors || [];
@@ -1325,6 +2564,7 @@ export const GATES = [
       for (const l of lighting) {
         if (!l.state || !l.prompt) out.push(`${s.id}: every lighting state needs state + prompt`);
         else if (!kit.inLang(l.prompt)) out.push(`${s.id}: lighting "${l.state}" prompt must be ${kit.label}`);
+        else if (look && !l.prompt.toLowerCase().includes(look.framePhrase)) out.push(`${s.id}: lighting "${l.state}" prompt must contain "${look.framePhrase}" and name the practical sources that light the space (params.cinematography ${params.cinematography})`);
       }
       if (s.variantOf) {
         if (!sceneById(project, s.variantOf)) out.push(`${s.id}: variantOf ${s.variantOf} does not exist`);
@@ -1447,6 +2687,48 @@ export const GATES = [
     }
     return out;
   }),
+  gate('story-script', 'script', 'genre markers in the script: mystery clues planted on screen in their episode; comedy gags per episode, a setup before every punchline, short punchlines', (ctx) => {
+    const { project, params } = ctx;
+    const story = storyOf(params);
+    if (!story.includes('mystery') && !story.includes('comedy')) return [];
+    const out = [];
+    const waived = storyWaived(project);
+    const runningIds = new Set(asList(project.outline?.runningGags).map((g) => g.id));
+    const firstRun = new Map(asList(project.outline?.runningGags).map((g) => [g.id, Math.min(...asList(g.eps).map(Number))]));
+    for (const [ep, e] of ctx.episodes) {
+      const beats = scriptBeats(e);
+      if (story.includes('mystery') && !waived.has('clue-on-screen')) {
+        for (const c of asList(project.outline?.clues).filter((x) => Number(x.plantEp) === Number(ep))) {
+          if (!beats.some(({ b }) => asList(b.clue).includes(c.id))) out.push(`E${pad2(ep)}: clue ${c.id} (${c.what}) is planted in this episode but no beat shows it — mark the beat that puts it on screen clue: "${c.id}"`);
+        }
+      }
+      if (story.includes('comedy')) {
+        for (const { b, si, bi } of beats) if (b.gag !== undefined && !GAG_KINDS.includes(b.gag)) out.push(`E${pad2(ep)} scene ${si} beat ${bi}: gag must be one of ${GAG_KINDS.join(' / ')}`);
+        const punches = beats.filter(({ b }) => b.gag === 'punchline');
+        const style = params.comedy;
+        const dense = ['slapstick', 'deadpan'].includes(style);
+        // Short: 2–3 an episode; longer units by the minute (≈ 0.8 / 0.5 a minute), never fewer than that.
+        const need = (params.format || 'short') === 'short'
+          ? Math.min(dense ? 3 : 2, Number(params.minutesPerEpisode) < 1.5 ? 2 : 3)
+          : Math.max(dense ? 3 : 2, Math.round(Number(params.minutesPerEpisode || 5) * (dense ? 0.8 : 0.5)));
+        if (!waived.has('gag-density') && punches.length < need) out.push(`E${pad2(ep)}: ${punches.length} punchline beat(s) — a comedy episode lands at least ${need} (mark them gag: punchline)`);
+        punches.forEach(({ b, si, bi }) => {
+          const where = `E${pad2(ep)} scene ${si} beat ${bi}`;
+          const at = beats.findIndex((x) => x.b === b);
+          const setupBefore = beats.slice(0, at).some(({ b: x }) => x.gag === 'setup');
+          const callback = b.runningGag && runningIds.has(b.runningGag) && firstRun.get(b.runningGag) < Number(ep);
+          if (b.runningGag && !runningIds.has(b.runningGag)) out.push(`${where}: runningGag ${b.runningGag} is not in outline.runningGags`);
+          if (!waived.has('gag-setup') && !setupBefore && !callback) out.push(`${where}: a punchline with no setup before it in the episode and no running gag it calls back — plant it (gag: setup) or point at the running gag`);
+          if (!waived.has('punchline-brevity') && b.line) {
+            const n = CJK_RE.test(b.line) ? nonWhitespace(b.line) : String(b.line).split(/\s+/).filter(Boolean).length;
+            const max = CJK_RE.test(b.line) ? 20 : 12;
+            if (n > max) out.push(`${where}: the punchline line runs ${n} ${CJK_RE.test(b.line) ? 'characters' : 'words'} — at most ${max}; the funny word goes last and nothing explains it after`);
+          }
+        });
+      }
+    }
+    return out;
+  }),
   gate('duration', 'script', 'episode duration within target ± tolerance', (ctx) => {
     const out = [];
     for (const [ep, e] of ctx.episodes) {
@@ -1470,7 +2752,7 @@ export const GATES = [
       let offset = 0;
       for (let i = 0; i < si - 1; i++) offset += ((e.scenes[i] || {}).flow || []).length;
       const position = offset + bi;
-      if (position > params.hookWindow) out.push(`E${pad2(ep)}: hook lands at beat ${position}, must be within the first ${params.hookWindow} (cold open)`);
+      if ((formatOf(params).hookEveryUnit || Number(ep) === 1) && position > params.hookWindow) out.push(`E${pad2(ep)}: hook lands at beat ${position}, must be within the first ${params.hookWindow} (cold open)`);
     }
     return out;
   }),
@@ -1513,7 +2795,7 @@ export const GATES = [
     }
     return out;
   }),
-  gate('rhythm', 'script', '短剧节奏: hook by 15 s, a turn every 30 s, 爽点 between hook and cliff, no 4 lines in a row, action ≥ 35 % of lines', (ctx) => {
+  gate('rhythm', 'script', '节奏 (by format): hook by 15 / 30 / 60 s, a turn every 30 / 60 / 90 s, 爽点 between hook and cliff, lines in a row capped, action alongside dialogue', (ctx) => {
     const { params } = ctx;
     const out = [];
     for (const [ep, e] of ctx.episodes) {
@@ -1522,7 +2804,7 @@ export const GATES = [
       if (!offsets.length) continue;
       const total = offsets[offsets.length - 1].end;
       const hook = offsets.find((o) => Array.isArray(e.hookBeat) && o.si === Number(e.hookBeat[0]) && o.bi === Number(e.hookBeat[1]));
-      if (hook && hook.start > params.hookSeconds + 1e-9) out.push(`${E}: the hook image lands at ${round2(hook.start)} s, must be on screen by ${params.hookSeconds} s`);
+      if (hook && (formatOf(params).hookEveryUnit || Number(ep) === 1) && hook.start > params.hookSeconds + 1e-9) out.push(`${E}: the hook image lands at ${round2(hook.start)} s, must be on screen by ${params.hookSeconds} s`);
       const points = turnPoints(e, params);
       for (let i = 1; i < points.length; i++) {
         const gap = points[i].at - points[i - 1].at;
@@ -1710,14 +2992,16 @@ export const GATES = [
     }
     return out;
   }),
-  gate('photography', 'storyboard', 'every cut names its lens and stop, its key-light direction, and enough foreground', (ctx) => {
+  gate('photography', 'storyboard', 'every cut names its lens and stop, its key-light direction, and enough foreground; the cinematography preset (named source, preferred light, wide open)', (ctx) => {
     const { project, params } = ctx;
     const out = [];
     const kit = params.camera || DEFAULT_PARAMS.camera;
+    const look = cinematographyOf(params);
     for (const [, e] of ctx.episodes) {
       for (const seg of e.storyboard?.segments || []) {
         const cuts = seg.cuts || [];
         let withForeground = 0;
+        let withPeople = 0, shaped = 0, withBokeh = 0, wides = 0;
         cuts.forEach((c, k) => {
           const where = `${seg.id} cut ${k + 1}`;
           const frame = String(c.frame || '');
@@ -1745,7 +3029,30 @@ export const GATES = [
             if (frame.trim() && !/out of focus|foreground blur|defocus|bokeh|soft foreground/i.test(frame)) out.push(`${where}: the foreground is named but never said to be out of focus`);
           }
           if (c.foreground === undefined) out.push(`${where}: foreground is required — name what sits between the lens and the subject, or "" for a deliberately clean frame`);
+          if (!look) return;
+          // The cinematography preset: a named source, no banned light on a person, shot wide open.
+          if (frame.trim() && !frame.toLowerCase().includes(look.framePhrase)) out.push(`${where}: frame prompt must contain "${look.framePhrase}" (params.cinematography ${params.cinematography})`);
+          const source = String(c.light?.source || '').trim();
+          if (!source) out.push(`${where}: light.source is required — ${look.sourceHint}`);
+          else if (look.anachronisms && look.anachronisms.test(source)) out.push(`${where}: light.source "${source}" ${look.anachronismWhy || 'does not exist in this era'} (params.cinematography ${params.cinematography}) — ${look.sourceHint}`);
+          else if (frame.trim() && !frame.includes(source)) out.push(`${where}: frame prompt must name the light source "${source}"`);
+          const people = (c.characters || []).length > 0;
+          if (people) {
+            withPeople += 1;
+            if (look.preferredLight.includes(dir)) shaped += 1;
+            if (look.bannedLight.includes(dir)) out.push(`${where}: light.direction "${dir}" ${look.bannedWhy}: ${look.preferredLight.join(' / ')}`);
+          }
+          const n = stopNumber(stop);
+          if (stop && !(n <= look.maxStop)) out.push(`${where}: aperture ${stop} is too slow — shoot wide open, T${look.maxStop} or faster`);
+          if (/bokeh/i.test(frame)) withBokeh += 1;
+          if (c.size === 'wide' || c.size === 'extreme-wide') {
+            wides += 1;
+            if (look.widePerSegment && frame.trim() && !/negative space/i.test(frame)) out.push(`${where}: a ${SIZES[c.size]} in ${params.cinematography} is built on negative space — say where it is ("negative space")`);
+          }
         });
+        if (look && look.bokehShare && cuts.length && withBokeh < look.bokehShare * cuts.length) out.push(`${seg.id}: only ${withBokeh} of ${cuts.length} frames name their bokeh — at least ${Math.round(look.bokehShare * 100)} % must say what melts into bokeh behind or in front of the subject (params.cinematography ${params.cinematography})`);
+        if (look && look.widePerSegment && cuts.length && wides < look.widePerSegment) out.push(`${seg.id}: no wide or extreme-wide cut — ${params.cinematography} needs at least ${look.widePerSegment} per segment, a 全景 / 大全景 with vast negative space`);
+        if (look && withPeople && shaped < look.preferredShare * withPeople) out.push(`${seg.id}: only ${shaped} of ${withPeople} cuts with people are ${look.preferredWhat} (${look.preferredLight.join(' / ')}) — at least ${Math.round(look.preferredShare * 100)} % must (params.cinematography ${params.cinematography}); re-stage the person against the source or move the camera`);
         // "Reasonably" means most of them: a segment of clean frames is flat.
         if (cuts.length && withForeground * 2 < cuts.length) out.push(`${seg.id}: only ${withForeground} of ${cuts.length} cuts have a foreground element — at least half must, or the segment has no depth`);
       }
@@ -1774,6 +3081,11 @@ export const GATES = [
         // `lookPhrase` is English; a Chinese prompt carries `lookPhraseZh` instead, when there is one.
         const look = String(videoModel(params).promptLang === 'zh' ? params.lookPhraseZh || '' : params.lookPhrase || '').trim();
         if (look && !prompt.toLowerCase().includes(look.toLowerCase())) out.push(`${seg.id}: prompt must carry the look phrase "${look}" (params.${videoModel(params).promptLang === 'zh' ? 'lookPhraseZh' : 'lookPhrase'})`);
+        const cine = cinematographyOf(params);
+        if (cine && params.references === 'sheets') {
+          const phrase = videoModel(params).promptLang === 'zh' ? cine.videoPhraseZh : cine.videoPhrase;
+          if (!prompt.toLowerCase().includes(phrase.toLowerCase())) out.push(`${seg.id}: prompt must carry the cinematography phrase "${phrase}" (params.cinematography ${params.cinematography})`);
+        }
         if (params.references === 'sheets' && params.video !== 'wan') {
           const preset = STYLE_PRESETS[params.style] || STYLE_PRESETS.realistic;
           if (!prompt.toLowerCase().includes(preset.videoPhrase)) out.push(`${seg.id}: prompt must contain "${preset.videoPhrase}" (style ${params.style}) — there are no keyframes to carry the style`);
@@ -2184,6 +3496,244 @@ export const GATES = [
     }
     return out;
   }, { advisory: true }),
+  // ── action (fight segments) ─────────────────────────────────────────────
+  gate('action', 'storyboard', 'fight segments: open on a wide, one move per cut, a reaction after every impact, no provider-refused gore, blood only when allowed, the style in the prompt (waivable per segment when the user asks)', (ctx) => {
+    const { params } = ctx;
+    const out = [];
+    const style = actionOf(params);
+    for (const [, e] of ctx.episodes) {
+      const segs = e.storyboard?.segments || [];
+      const openedScenes = new Set();
+      for (const seg of segs) {
+        if (!grammarsOf(seg, params).includes('action') || !style) continue;
+        const waived = waivedRules(seg);
+        const cuts = seg.cuts || [];
+        // open-wide: the first fight segment of a scene opens on the geography; later ones reset to it once.
+        if (!waived.has('open-wide') && cuts.length) {
+          const first = !openedScenes.has(seg.sceneIndex);
+          if (first && !isWide(cuts[0])) out.push(`${seg.id}: a fight opens on a wide or extreme-wide — show where everyone is before the first blow (or waive open-wide on the user's request)`);
+          if (!first && !cuts.some(isWide)) out.push(`${seg.id}: a fight segment with no wide — reset the geography once (or waive open-wide on the user's request)`);
+        }
+        openedScenes.add(seg.sceneIndex);
+        cuts.forEach((c, k) => {
+          const where = `${seg.id} cut ${k + 1}`;
+          const kind = c.move?.kind;
+          if (c.move !== undefined && !ACTION_MOVE_KINDS.includes(kind)) out.push(`${where}: move.kind must be one of ${ACTION_MOVE_KINDS.join(' / ')}`);
+          // one-move: one blow, shot, throw or manoeuvre per cut.
+          if (!waived.has('one-move')) {
+            const action = String(c.motion?.action || '');
+            const moves = CJK_RE.test(action) ? MOVE_VERBS_ZH.filter((v) => action.includes(v)).length : (action.toLowerCase().match(/[a-z]+/g) || []).filter((w) => MOVE_VERBS_EN.includes(w)).length;
+            if (moves > 1) out.push(`${where}: ${moves} fight moves in one cut — a video model performs one; give each blow its own cut (or waive one-move on the user's request)`);
+            if (CHAIN_RE.test(action)) out.push(`${where}: motion.action chains moves ("then", "接着"…) — one move per cut, the next move is the next cut`);
+          }
+          // impact-reaction: the blow lands, then we see what it did.
+          if (!waived.has('impact-reaction') && c.move?.impact && c.purpose?.kind !== 'consequence') {
+            const next = cuts[k + 1];
+            if (!next) out.push(`${where}: an impact ends the segment — the next segment's first cut must show what it did (make it a reaction / consequence), or show the result here (purpose.kind consequence)`);
+            else if (!['reaction', 'consequence'].includes(next.purpose?.kind)) out.push(`${where}: an impact is followed by cut ${k + 2} (${next.purpose?.kind || 'no purpose'}) — follow a blow with a reaction or consequence cut (or waive impact-reaction on the user's request)`);
+          }
+          const text = `${c.frame || ''} ${c.motion?.action || ''} ${c.motion?.result || ''}`;
+          if (!waived.has('no-graphic') && GRAPHIC_RE.test(text)) out.push(`${where}: dismemberment / decapitation / organs — providers refuse these even with blood allowed; show the blow and the reaction instead`);
+          if (params.violence === 'implied' && BLOOD_RE.test(text)) out.push(`${where}: blood or wounds on screen but params.violence is implied — show the impact through the reaction and the sound`);
+        });
+        const prompt = String(seg.prompt || '');
+        if (prompt.trim()) {
+          if (!waived.has('no-graphic') && GRAPHIC_RE.test(prompt)) out.push(`${seg.id}: prompt describes dismemberment / decapitation / organs — providers refuse it`);
+          if (params.violence === 'implied' && BLOOD_RE.test(prompt)) out.push(`${seg.id}: prompt shows blood but params.violence is implied`);
+        }
+      }
+    }
+    return out;
+  }),
+  gate('action-advice', 'storyboard', 'fight rhythm and coverage for the action style: average cut length, the signature shots (advisory)', (ctx) => {
+    const { params } = ctx;
+    const style = actionOf(params);
+    if (!style) return [];
+    const out = [];
+    for (const [ep, e] of ctx.episodes) {
+      const fights = (e.storyboard?.segments || []).filter((s) => grammarsOf(s, params).includes('action'));
+      if (!fights.length) continue;
+      for (const seg of fights) {
+        const cuts = seg.cuts || [];
+        if (!cuts.length) continue;
+        const avg = cuts.reduce((a, c) => a + (Number(c.seconds) || 0), 0) / cuts.length;
+        const [lo, hi] = style.cutSeconds;
+        if (avg < lo || avg > hi) out.push(`${seg.id}: cuts average ${round2(avg)} s — ${params.action} reads at ${lo}–${hi} s`);
+      }
+      const all = fights.flatMap((s) => s.cuts || []);
+      for (const n of style.needs) if (!all.some(n.test)) out.push(`E${pad2(ep)}: no ${n.what} in the fight segments — a signature of ${params.action}`);
+    }
+    return out;
+  }, { advisory: true }),
+  gate('grammar', 'storyboard', 'segment grammars: known, their style chosen, exceptions carry the user’s reason, each grammar’s phrase in the prompt', (ctx) => {
+    const { params } = ctx;
+    const out = [];
+    for (const [, e] of ctx.episodes) {
+      for (const seg of e.storyboard?.segments || []) {
+        const gs = grammarsOf(seg, params);
+        for (const g of gs) if (!GRAMMARS.includes(g)) out.push(`${seg.id}: grammar "${g}" is not one of ${GRAMMARS.join(' / ')}`);
+        if (gs.includes('action') && !actionOf(params)) out.push(`${seg.id}: cut as action but params.action is none — pick the drama's action style (ACTION_STYLES)`);
+        if (gs.includes('comedy') && !comedyOf(params)) out.push(`${seg.id}: cut as comedy but params.comedy is none — pick the drama's comedy style (COMEDY_STYLES)`);
+        for (const x of [...asList(seg.exceptions), ...asList(seg.actionExceptions)]) {
+          if (!GRAMMAR_RULES.includes(x?.rule)) out.push(`${seg.id}: exception rule "${x?.rule}" is not one of ${GRAMMAR_RULES.join(' / ')}`);
+          else if (!String(x.reason || '').trim()) out.push(`${seg.id}: exception ${x.rule} needs a reason — the user's request it answers`);
+        }
+        (seg.cuts || []).forEach((c, k) => {
+          if (c.gag !== undefined && !GAG_KINDS.includes(c.gag)) out.push(`${seg.id} cut ${k + 1}: gag must be one of ${GAG_KINDS.join(' / ')}`);
+        });
+        const prompt = String(seg.prompt || '');
+        if (!prompt.trim()) continue;
+        const lang = videoModel(params).promptLang === 'zh' ? 'zh' : 'en';
+        for (const line of grammarLines(seg, params, lang)) {
+          const phrase = line.replace(/^[^:：]+[:：]\s*/, '').replace(/[.。]$/, '');
+          if (!prompt.toLowerCase().includes(phrase.toLowerCase())) out.push(`${seg.id}: prompt must carry "${line}" — the ${gs.join(' + ')} grammar${gs.length > 1 ? 's' : ''} (prompt segment writes it)`);
+        }
+      }
+    }
+    return out;
+  }),
+  gate('faceslap', 'storyboard', '打脸 segments: the proof on screen (reveal / evidence cut), then a cascade of at least two reactions (waivable per segment when the user asks)', (ctx) => {
+    const { params } = ctx;
+    const out = [];
+    for (const [, e] of ctx.episodes) {
+      const segs = e.storyboard?.segments || [];
+      segs.forEach((seg, i) => {
+        if (!grammarsOf(seg, params).includes('faceslap')) return;
+        const waived = waivedRules(seg);
+        const cuts = seg.cuts || [];
+        const at = cuts.findIndex((c) => ['reveal', 'evidence'].includes(c.purpose?.kind));
+        if (at < 0) {
+          if (!waived.has('reveal-insert')) out.push(`${seg.id}: a 打脸 segment shows the proof — a reveal or evidence cut (the document, the card, the badge, the identity) (or waive reveal-insert on the user's request)`);
+          return;
+        }
+        if (waived.has('reaction-chain')) return;
+        // The cascade may run on into the next segment of the same scene.
+        const next = segs[i + 1] && segs[i + 1].sceneIndex === seg.sceneIndex ? segs[i + 1].cuts || [] : [];
+        const reactions = [...cuts.slice(at + 1), ...next].filter((c) => c.purpose?.kind === 'reaction').length;
+        if (reactions < FACESLAP.minReactions) out.push(`${seg.id}: the reveal is answered by ${reactions} reaction cut${reactions === 1 ? '' : 's'} — a 打脸 needs at least ${FACESLAP.minReactions} (the villain, the crowd, the one who doubted) (or waive reaction-chain on the user's request)`);
+      });
+    }
+    return out;
+  }),
+  gate('comedy', 'storyboard', 'comedy segments: every punchline has a setup before it and a laugh held after it (waivable per segment when the user asks)', (ctx) => {
+    const { params } = ctx;
+    const style = comedyOf(params);
+    if (!style) return [];
+    const out = [];
+    for (const [, e] of ctx.episodes) {
+      const segs = e.storyboard?.segments || [];
+      segs.forEach((seg, i) => {
+        if (!grammarsOf(seg, params).includes('comedy')) return;
+        const waived = waivedRules(seg);
+        const cuts = seg.cuts || [];
+        const prev = segs[i - 1] && segs[i - 1].sceneIndex === seg.sceneIndex ? segs[i - 1].cuts || [] : [];
+        cuts.forEach((c, k) => {
+          if (c.gag !== 'punchline') return;
+          const where = `${seg.id} cut ${k + 1}`;
+          if (!waived.has('setup-first') && ![...prev, ...cuts.slice(0, k)].some((x) => x.gag === 'setup')) out.push(`${where}: a punchline with no setup before it in the scene — mark the cut that plants the joke gag: setup (or waive setup-first on the user's request)`);
+          if (waived.has('punchline-reaction')) return;
+          const next = cuts[k + 1];
+          const heldReaction = next && next.purpose?.kind === 'reaction' && Number(next.seconds) >= style.hold;
+          const heldItself = Number(c.seconds) >= style.hold + 1 && c.camera === 'Static Shot';
+          if (!heldReaction && !heldItself) out.push(`${where}: the punchline gets no laugh room — follow it with a reaction cut of ${style.hold} s or more, or hold the punchline itself (Static Shot, ${style.hold + 1} s or more) (params.comedy ${params.comedy}; or waive punchline-reaction on the user's request)`);
+        });
+      });
+    }
+    return out;
+  }),
+  gate('grammar-advice', 'storyboard', '打脸 and comedy craft: pressure before the reveal, the hero from below, the music hit, the 爽点 cut as 打脸; comedy rhythm, a punchline per comedy segment, signature shots, faces that read; art-first holds and steadiness (advisory)', (ctx) => {
+    const { project, params } = ctx;
+    const out = [];
+    const style = comedyOf(params);
+    const dark = ['low-key', 'costume-dark'].includes(params.cinematography);
+    for (const [ep, e] of ctx.episodes) {
+      const segs = e.storyboard?.segments || [];
+      // The 爽点 of a 打脸-type episode is cut as a 打脸.
+      const satType = (project.outline?.episodes || []).find((x) => Number(x.ep) === Number(ep))?.satisfaction?.type;
+      if (FACESLAP_SATISFACTION.includes(satType) && Array.isArray(e.satisfactionBeat)) {
+        const seg = segs.find((s) => (s.cuts || []).some((c) => cutClaims(s, c, e.satisfactionBeat)));
+        if (seg && !grammarsOf(seg, params).includes('faceslap')) out.push(`${seg.id}: carries the E${pad2(ep)} 爽点 (${satType}) — cut it as grammar faceslap`);
+      }
+      segs.forEach((seg, i) => {
+        const gs = grammarsOf(seg, params);
+        const cuts = seg.cuts || [];
+        if (gs.includes('faceslap')) {
+          const at = cuts.findIndex((c) => ['reveal', 'evidence'].includes(c.purpose?.kind));
+          const before = [...segs.slice(0, i).filter((s) => s.sceneIndex === seg.sceneIndex).flatMap((s) => s.cuts || []), ...cuts.slice(0, Math.max(at, 0))];
+          if (!before.some((c) => c.purpose?.kind === 'pressure')) out.push(`${seg.id}: no pressure cut before the reveal — the 打脸 lands as hard as the arrogance before it`);
+          if (!cuts.some((c) => c.height === 'low' || c.height === 'ground')) out.push(`${seg.id}: the hero is never framed from below — the 打脸 moment is a low angle`);
+          const cues = isObject(seg.sound?.music) ? asList(seg.sound.music.cues).map((c) => c?.do) : [];
+          if (!cues.some((d) => d === 'swell' || d === 'enter')) out.push(`${seg.id}: no music hit (enter / swell) on the reveal — the 打脸 is scored`);
+          const faces = uniq(cuts.slice(Math.max(at, 0) + 1).filter((c) => c.purpose?.kind === 'reaction').flatMap((c) => c.characters || []));
+          if (at >= 0 && faces.length < 2) out.push(`${seg.id}: the reactions after the reveal show ${faces.length} person — the cascade is different faces (the villain, the crowd, the doubter)`);
+        }
+        if (gs.includes('comedy') && style) {
+          if (cuts.length && !cuts.some((c) => c.gag === 'punchline')) out.push(`${seg.id}: a comedy segment with no punchline (gag: punchline) — if the scene is straight, set grammar: drama on it`);
+          const avg = cuts.length ? cuts.reduce((a, c) => a + (Number(c.seconds) || 0), 0) / cuts.length : 0;
+          const [lo, hi] = style.cutSeconds;
+          if (cuts.length && (avg < lo || avg > hi)) out.push(`${seg.id}: cuts average ${round2(avg)} s — ${params.comedy} comedy reads at ${lo}–${hi} s`);
+          if (dark && params.comedy !== 'deadpan' && cuts.some((c) => c.gag === 'punchline' && ['side-left', 'side-right', 'back-left', 'back-right', 'backlight'].includes(c.light?.direction))) out.push(`${seg.id}: a punchline keyed from the side or behind in a ${params.cinematography} drama — a laugh needs the face; let the practical reach it on the punchline`);
+        }
+      });
+      for (const seg of segs) {
+        const art = compositionOf(seg, params);
+        const cuts = seg.cuts || [];
+        if (!art || !cuts.length) continue;
+        const avg = cuts.reduce((a, c) => a + (Number(c.seconds) || 0), 0) / cuts.length;
+        const fight = grammarsOf(seg, params).includes('action') || grammarsOf(seg, params).includes('comedy');
+        if (!fight && avg < art.cutSeconds[0]) out.push(`${seg.id}: art-first cuts average ${round2(avg)} s — a composed frame needs ${art.cutSeconds[0]} s or more to be seen`);
+        if (!fight && cuts.some((c) => c.camera === 'Shake Slightly' || c.camera === 'Shake Strongly')) out.push(`${seg.id}: a handheld cut in an art-first segment — the composition needs a steady frame`);
+      }
+      if (style) {
+        const comic = segs.filter((s) => grammarsOf(s, params).includes('comedy')).flatMap((s) => s.cuts || []);
+        if (comic.length) for (const n of style.needs) if (!comic.some(n.test)) out.push(`E${pad2(ep)}: no ${n.what} in the comedy segments — a signature of ${params.comedy}`);
+      }
+    }
+    return out;
+  }, { advisory: true }),
+  gate('composition', 'storyboard', 'art-first framing: every cut names its composition devices and the frame carries them; half the cuts use negative space, symmetry or monumental scale; a wide in every segment (waivable per segment when the user asks)', (ctx) => {
+    const { params } = ctx;
+    const out = [];
+    for (const [, e] of ctx.episodes) {
+      for (const seg of e.storyboard?.segments || []) {
+        if (seg.composition !== undefined && !Object.hasOwn(COMPOSITION_STYLES, seg.composition)) { out.push(`${seg.id}: composition "${seg.composition}" is not one of ${Object.keys(COMPOSITION_STYLES).join(' / ')}`); continue; }
+        const art = compositionOf(seg, params);
+        if (!art) continue;
+        const waived = waivedRules(seg);
+        const cuts = seg.cuts || [];
+        let signed = 0;
+        cuts.forEach((c, k) => {
+          const where = `${seg.id} cut ${k + 1}`;
+          const devices = asList(c.composition);
+          if (devices.some((d) => art.signature.includes(d))) signed += 1;
+          if (waived.has('composition-device')) return;
+          if (!devices.length) { out.push(`${where}: composition is required in an art-first segment — name its devices (${Object.keys(COMPOSITION_DEVICES).join(' / ')})`); return; }
+          const frame = String(c.frame || '').toLowerCase();
+          for (const d of devices) {
+            if (!COMPOSITION_DEVICES[d]) out.push(`${where}: composition "${d}" is not one of ${Object.keys(COMPOSITION_DEVICES).join(' / ')}`);
+            else if (frame.trim() && !frame.includes(COMPOSITION_DEVICES[d].toLowerCase())) out.push(`${where}: frame prompt must contain "${COMPOSITION_DEVICES[d]}" (composition ${d})`);
+          }
+        });
+        if (cuts.length && !waived.has('signature-share') && signed < art.signatureShare * cuts.length) out.push(`${seg.id}: only ${signed} of ${cuts.length} cuts use ${art.signature.join(' / ')} — art-first needs at least ${Math.round(art.signatureShare * 100)} % (or waive signature-share on the user's request)`);
+        if (cuts.length && !waived.has('art-wide') && cuts.filter(isWide).length < art.widePerSegment) out.push(`${seg.id}: no wide or extreme-wide — an art-first segment steps back to the whole composition at least once (or waive art-wide on the user's request)`);
+      }
+    }
+    return out;
+  }),
+  gate('no-ip-names', 'storyboard', 'no film, franchise, character or performer names in frames or prompts', (ctx) => {
+    const out = [];
+    for (const [, e] of ctx.episodes) {
+      for (const seg of e.storyboard?.segments || []) {
+        const m = String(seg.prompt || '').match(IP_NAMES_RE);
+        if (m) out.push(`${seg.id}: prompt names "${m[0]}" — the model pulls in that film's faces and look and filters flag it; describe the camera, rhythm and movement instead`);
+        (seg.cuts || []).forEach((c, k) => {
+          const f = String(c.frame || '').match(IP_NAMES_RE);
+          if (f) out.push(`${seg.id} cut ${k + 1}: frame names "${f[0]}" — describe the look instead`);
+        });
+      }
+    }
+    return out;
+  }),
 ];
 
 export const STAGES = ['outline', 'characters', 'art', 'script', 'storyboard'];
@@ -2832,6 +4382,11 @@ export function promptSkeleton(project, episode, segmentId) {
 
   const mode = videoModel(params);
   const preset = STYLE_PRESETS[params.style] || STYLE_PRESETS.realistic;
+  const cine = cinematographyOf(params);
+  const lookOf = () => [preset.videoPhrase, cine?.videoPhrase, params.lookPhrase].filter(Boolean).join(', ');
+  // A segment says how it is cut — fight, 打脸, comedy — in every mode (the motion is the video's, not the keyframes').
+  const cutLines = grammarLines(seg, params, 'en');
+  const actionLine = cutLines.length ? [...cutLines, ''] : [];
   const accent = String(params.speechAccent || '').trim();
   const sound = isObject(seg.sound) ? seg.sound : {};
   const sfxOf = (k) => asList(sound.sfx).filter((x) => Number(x?.cut) === k + 1).map((x) => String(x.event)).join('; ');
@@ -2862,9 +4417,9 @@ export function promptSkeleton(project, episode, segmentId) {
     const lead = sheets
       ? allRefs.map((r) => `${r.label} is ${r.use}.`)
       : [h3AlignmentLine(cuts), ...voiceLegend];
-    const look = sheets ? [`Look: ${preset.videoPhrase}${params.lookPhrase ? `, ${params.lookPhrase}` : ''}.`, ''] : [];
+    const look = sheets ? [`Look: ${lookOf()}.`, ''] : [];
     const soundscape = [sound.ambience || '…', ...cuts.map((c, k) => (sfxOf(k) ? `at [Shot ${k + 1}] ${sfxOf(k)}` : '')).filter(Boolean)].join('; ');
-    video = [...lead, '', ...look, 'integrated_multimodal_description:', ...shots, '', `overall_soundscape: ${soundscape}.${accent && dialogue.flat().length ? ` All dialogue in ${accent}.` : ''}${params.subtitles ? '' : ` ${NO_SUBTITLES.en[0].toUpperCase()}${NO_SUBTITLES.en.slice(1)}.`}`, '', `non_diegetic_music: ${musicOf(sound).intent || 'N/A'}`].join('\n');
+    video = [...lead, '', ...look, ...actionLine, 'integrated_multimodal_description:', ...shots, '', `overall_soundscape: ${soundscape}.${accent && dialogue.flat().length ? ` All dialogue in ${accent}.` : ''}${params.subtitles ? '' : ` ${NO_SUBTITLES.en[0].toUpperCase()}${NO_SUBTITLES.en.slice(1)}.`}`, '', `non_diegetic_music: ${musicOf(sound).intent || 'N/A'}`].join('\n');
   } else if (mode.family === 'wan') {
     const blocks = cuts.map((c, k) => {
       const talk = dialogue[k].map((l) => `台词（${l.speakerRef}，${l.direction || '…'}）：「${l.line}」`);
@@ -2877,6 +4432,8 @@ export function promptSkeleton(project, episode, segmentId) {
     video = [
       params.references === 'sheets' ? wanSheetLegendLine(allRefs) : wanLegendLine(cuts, allRefs), '',
       ...blocks.flatMap((b) => [b, '']),
+      ...(cine && params.references === 'sheets' ? [`画面：${cine.videoPhraseZh}${params.lookPhraseZh ? `，${params.lookPhraseZh}` : ''}。`, ''] : []),
+      ...(grammarLines(seg, params, 'zh').length ? [...grammarLines(seg, params, 'zh'), ''] : []),
       `音频：对白为${accent || '…'}，环境音${sound.ambience || '…'}${sfxAll ? `；${sfxAll}` : ''}${musicOf(sound).intent ? `；配乐：${musicOf(sound).intent}` : ''}。${params.subtitles ? '' : `${NO_SUBTITLES.zh}。`}`,
     ].join('\n');
   } else if (params.references === 'sheets') {
@@ -2894,7 +4451,7 @@ export function promptSkeleton(project, episode, segmentId) {
       return `Shot ${k + 1} (${starts[k].toFixed(1)}–${(starts[k] + Number(c.seconds)).toFixed(1)} s, ${SIZES[c.size] || c.size}, ${c.camera}): ${c.frame || '…'} ${motionSentence(c)} ${cameraClause(c)} ${talk}`.replace(/\s+/g, ' ').trim();
     });
     const sfxAll = cuts.map((c, k) => (sfxOf(k) ? `shot ${k + 1}: ${sfxOf(k)}` : '')).filter(Boolean).join('; ');
-    video = [...legend, '', ...shots, '', `Look: ${preset.videoPhrase}${params.lookPhrase ? `, ${params.lookPhrase}` : ''}. Maintain continuity in character identities, clothing, prop ownership, scene layout and the camera axis across every shot.`, `Sound: ${sound.ambience || '…'}${sfxAll ? `; ${sfxAll}` : ''}.${accent && dialogue.flat().length ? ` All dialogue in ${accent}.` : ''}${musicOf(sound).intent ? ` Music: ${musicOf(sound).intent}.` : ' No music.'}${params.subtitles ? '' : ` ${NO_SUBTITLES.en[0].toUpperCase()}${NO_SUBTITLES.en.slice(1)}.`}`].join('\n');
+    video = [...legend, '', ...shots, '', ...actionLine, `Look: ${lookOf()}. Maintain continuity in character identities, clothing, prop ownership, scene layout and the camera axis across every shot.`, `Sound: ${sound.ambience || '…'}${sfxAll ? `; ${sfxAll}` : ''}.${accent && dialogue.flat().length ? ` All dialogue in ${accent}.` : ''}${musicOf(sound).intent ? ` Music: ${musicOf(sound).intent}.` : ' No music.'}${params.subtitles ? '' : ` ${NO_SUBTITLES.en[0].toUpperCase()}${NO_SUBTITLES.en.slice(1)}.`}`].join('\n');
   } else {
     const anchors = [...seedanceAnchors(cuts.length), ...allRefs.filter((r) => r.kind !== 'image').map((r) => `${r.label} is ${r.use}.`)];
     const shotOf = (c) => `${SIZES[c.size] || c.size}, ${c.camera}, ${cameraPhrase(c, params)}; ${lightPhrase(c)}${foregroundPhrase(c)}`;
@@ -2910,7 +4467,7 @@ export function promptSkeleton(project, episode, segmentId) {
       return `From @image${k + 1} (${starts[k].toFixed(1)}–${(starts[k] + Number(c.seconds)).toFixed(1)} s): ${motionSentence(c)} ${cameraClause(c)} ${talk}`.replace(/\s+/g, ' ').trim();
     });
     const sfxAll = cuts.map((c, k) => (sfxOf(k) ? `from @image${k + 1}: ${sfxOf(k)}` : '')).filter(Boolean).join('; ');
-    video = [...anchors, ...states, '', ...script, '', 'Maintain continuity in character identities, clothing, prop ownership, scene layout and the camera axis.', `Sound: ${sound.ambience || '…'}${sfxAll ? `; ${sfxAll}` : ''}.${accent && dialogue.flat().length ? ` All dialogue in ${accent}.` : ''}${musicOf(sound).intent ? ` Music: ${musicOf(sound).intent}.` : ' No music.'}${params.subtitles ? '' : ` ${NO_SUBTITLES.en[0].toUpperCase()}${NO_SUBTITLES.en.slice(1)}.`}`].join('\n');
+    video = [...anchors, ...states, '', ...script, '', ...actionLine, 'Maintain continuity in character identities, clothing, prop ownership, scene layout and the camera axis.', `Sound: ${sound.ambience || '…'}${sfxAll ? `; ${sfxAll}` : ''}.${accent && dialogue.flat().length ? ` All dialogue in ${accent}.` : ''}${musicOf(sound).intent ? ` Music: ${musicOf(sound).intent}.` : ' No music.'}${params.subtitles ? '' : ` ${NO_SUBTITLES.en[0].toUpperCase()}${NO_SUBTITLES.en.slice(1)}.`}`].join('\n');
   }
 
   const sceneEntity = sceneById(project, scene.sceneId) || {};
@@ -2988,6 +4545,18 @@ export function renderOutline(project) {
   lines.push('## 场景', '', mdTable(['ID', '场景', '主场景', '复用方案'], (project.scenes || []).map((s) => [s.id, s.name, s.primary ? '是' : '', s.variantOf ? `变体 ← ${s.variantOf}` : s.reusePlan || ''])), '');
   if ((project.props || []).length) lines.push('## 叙事道具', '', mdTable(['ID', '道具', '承载', '爽点'], project.props.map((p) => [p.id, p.name, p.function, (p.beatIds || []).join('、')])), '');
   lines.push('## 爽点表', '', mdTable(['ID', '集', '类型', '权重', '铺垫', '兑现'], (o.beats || []).map((b) => [b.id, b.episode, b.type, b.weight || 'minor', b.setup, b.payoff])), '');
+  // The genre ledgers, when the drama has them.
+  if (asList(o.paybacks).length) lines.push('## 复仇阶梯', '', mdTable(['集', '对象', '量级', '出手', '方式'], asList(o.paybacks).map((p) => [p.ep, characterById(project, p.target)?.name || p.target, p.scale, characterById(project, p.by)?.name || p.by, p.how || ''])), '');
+  if (asList(o.romance).length) lines.push('## 感情里程碑', '', mdTable(['集', '里程碑', '至', '说明'], asList(o.romance).map((m) => [m.ep, m.milestone, m.until || '', m.note || ''])), '');
+  if (asList(o.questions).length) lines.push('## 悬念问题', '', mdTable(['ID', '层级', '问题', '提出', '解答', '线索'], asList(o.questions).map((q) => [q.id, q.layer, q.question, q.openEp, q.answerEp || '', asList(q.clues).join('、')])), '');
+  if (asList(o.clues).length) lines.push('## 线索账本', '', mdTable(['ID', '类型', '线索', '埋设', '回响', '排除'], asList(o.clues).map((c) => [c.id, c.kind, c.what, c.plantEp, asList(c.echoEps).join('、'), c.dismissedEp || ''])), '');
+  if (asList(o.angst?.beats).length) lines.push('## 虐恋节拍', '', `结局 ${o.angst.ending || ''} · 转折 E${o.angst.turnEp || ''} · 离开 E${o.angst.exitEp || ''} · 和好 E${o.angst.reconcileEp || ''}`, '', mdTable(['集', '类型', '代价', '释放'], asList(o.angst.beats).map((b) => [b.ep, b.kind, b.cost || b.what || '', b.releaseEp || ''])), '');
+  if (asList(o.secrets).length) lines.push('## 家族秘密', '', mdTable(['ID', '秘密', '观众知情', '埋设', '暗示', '揭开'], asList(o.secrets).map((x) => [x.id, x.content, x.audienceKnowsEp, x.plantEp, asList(x.hintEps).join('、'), x.revealEp])), '');
+  if (asList(o.schemes).length) lines.push('## 计谋账本', '', mdTable(['ID', '主谋', '目标', '量级', '布局', '揭开', '结果'], asList(o.schemes).map((x) => [x.id, characterById(project, x.schemer)?.name || x.schemer, characterById(project, x.target)?.name || x.target, x.stakes, x.setupEp, x.revealEp, x.outcome])), '');
+  if (asList(o.upgrades).length) lines.push('## 升级记录', '', mdTable(['集', '人物', '境界', '契机', '代价'], asList(o.upgrades).map((u) => [u.ep, characterById(project, u.char)?.name || u.char, u.to, u.cause, u.cost])), '');
+  if (asList(o.worldRules).length) lines.push('## 世界规则', '', mdTable(['ID', '规则', '类型', '首次展示', '决定剧情'], asList(o.worldRules).map((r) => [r.id, r.rule, r.kind, r.shownEp, asList(r.decidesEps).join('、')])), '');
+  if (asList(o.horrorRules).length) lines.push('## 规则', '', mdTable(['ID', '规则', '真伪', '展示', '触犯'], asList(o.horrorRules).map((r) => [r.id, r.text, r.isTrue === false ? '假' : '真', r.shownEp, r.brokenEp || ''])), '');
+  if (asList(o.runningGags).length) lines.push('## 贯穿笑点', '', mdTable(['ID', '设定', '出现集数'], asList(o.runningGags).map((g) => [g.id, g.premise, asList(g.eps).join('、')])), '');
   lines.push('## 分集梗概', '');
   for (const e of o.episodes || []) {
     lines.push(`### 第 ${e.ep} 集`, '', e.synopsis || '', '', `- **钩子**：${e.hook || ''}`, `- **悬念**：${e.suspense || ''}`, `- 场景：${(e.sceneIds || []).join('、')} · 人物：${(e.characterIds || []).join('、')}${(e.propIds || []).length ? ` · 道具：${e.propIds.join('、')}` : ''}`);
@@ -3205,7 +4774,7 @@ export function renderSegment(project, episode, segmentId) {
   const starts = cutStarts(cuts);
   const total = cuts.reduce((s, c) => s + (Number(c.seconds) || 0), 0);
   const nameOf = (id) => displayName(project, id, episode.ep);
-  const lines = [`# ${seg.id}`, '', `${sceneById(project, scene.sceneId)?.name || scene.sceneId || ''}${scene.lighting ? ` · ${scene.lighting}` : ''} · ${round2(total)} s · ${params.video}`, ''];
+  const lines = [`# ${seg.id}`, '', `${sceneById(project, scene.sceneId)?.name || scene.sceneId || ''}${scene.lighting ? ` · ${scene.lighting}` : ''} · ${round2(total)} s · ${params.video} · ${grammarsOf(seg, params).join(' + ')}`, ''];
   const kit = params.camera || DEFAULT_PARAMS.camera;
   lines.push(`镜头：${kit.body} + ${kit.lens}`, '');
   if (isObject(seg.axis)) lines.push(`轴线：${asList(seg.axis.between).map(nameOf).join(' ↔ ')} · 机位常驻：${seg.axis.workingSide || ''} · 画面左 ${nameOf(seg.axis.screenLeft)} / 画面右 ${nameOf(seg.axis.screenRight)}`, '');
@@ -3241,10 +4810,10 @@ export function renderSegment(project, episode, segmentId) {
       ['时长', `${timestamp(starts[k])} 起 · ${c.seconds} s`],
       ['景别／角度／高度／焦段', `${c.size} · ${ANGLES_ZH[c.angle] || c.angle || ''} · ${HEIGHTS_ZH[c.height] || c.height || ''} · ${focalOf(c)} ${c.aperture || kit.aperture} · 轴线 ${c.axisSide || ''}`],
       ['起点', boundaryText(cutStart(seg, k), c)],
-      ['唯一动作', `${c.motion?.trigger || ''} → ${c.motion?.action || ''} → ${c.motion?.result || ''}`],
+      ['唯一动作', `${c.motion?.trigger || ''} → ${c.motion?.action || ''} → ${c.motion?.result || ''}${c.move?.kind ? ` · 招式 ${c.move.kind}${c.move.impact ? '（命中）' : ''}` : ''}${c.gag ? ` · 笑点 ${c.gag}` : ''}${asList(c.composition).length ? ` · 构图 ${asList(c.composition).join('/')}` : ''}`],
       ['终点', boundaryText(c.end, c)],
       ['摄影机', cam],
-      ['光与前景', `${[c.light?.direction, c.light?.note].filter(Boolean).join(' — ')}${c.foreground ? ` · 前景 ${c.foreground}` : ''}${c.background ? ` · 背景 ${c.background}` : ''}`],
+      ['光与前景', `${[c.light?.direction, c.light?.source ? `光源 ${c.light.source}` : '', c.light?.note].filter(Boolean).join(' — ')}${c.foreground ? ` · 前景 ${c.foreground}` : ''}${c.background ? ` · 背景 ${c.background}` : ''}`],
       ['声音', soundText],
       ['视觉依据', basis || '无'],
       ...(c.note ? [['备注', c.note]] : []),
@@ -3379,7 +4948,18 @@ export function initProject(opts) {
   for (const key of required) if (opts[key] == null || opts[key] === '') throw new Error(`--${key} is required`);
   const video = opts.video || DEFAULT_PARAMS.video;
   if (!VIDEO_MODELS[video]) throw new Error(`--video must be one of ${VIDEO_MODES.join(' / ')}`);
+  if (opts.cinematography && !Object.hasOwn(CINEMATOGRAPHY_PRESETS, opts.cinematography)) throw new Error(`--cinematography must be one of ${Object.keys(CINEMATOGRAPHY_PRESETS).join(' / ')}`);
   const mode = VIDEO_MODELS[video];
+  const cine = opts.cinematography || cinematographyForGenre(opts.genre);
+  if (opts.format && !Object.hasOwn(FORMATS, opts.format)) throw new Error(`--format must be one of ${Object.keys(FORMATS).join(' / ')}`);
+  const format = opts.format || formatForGenre(opts.genre, opts.minutes);
+  if (opts.action && !Object.hasOwn(ACTION_STYLES, opts.action)) throw new Error(`--action must be one of ${Object.keys(ACTION_STYLES).join(' / ')}`);
+  if (opts.violence && !['blood', 'implied'].includes(opts.violence)) throw new Error('--violence must be blood or implied');
+  if (opts.grammar && !GRAMMARS.includes(opts.grammar)) throw new Error(`--grammar must be one of ${GRAMMARS.join(' / ')}`);
+  if (opts.market && !MARKETS.includes(opts.market)) throw new Error(`--market must be one of ${MARKETS.join(' / ')}`);
+  for (const k of opts.story ? String(opts.story).split(/[,\s]+/).filter(Boolean) : []) if (!Object.hasOwn(STORY_GENRES, k)) throw new Error(`--story must be a list of ${Object.keys(STORY_GENRES).join(' / ')}`);
+  if (opts.composition && !Object.hasOwn(COMPOSITION_STYLES, opts.composition)) throw new Error(`--composition must be one of ${Object.keys(COMPOSITION_STYLES).join(' / ')}`);
+  if (opts.comedy && !Object.hasOwn(COMEDY_STYLES, opts.comedy)) throw new Error(`--comedy must be one of ${Object.keys(COMEDY_STYLES).join(' / ')}`);
   return {
     version: VERSION,
     title: String(opts.title),
@@ -3389,7 +4969,7 @@ export function initProject(opts) {
       minutesPerEpisode: Number(opts.minutes),
       genre: String(opts.genre),
       adaptMode: opts.adapt || DEFAULT_PARAMS.adaptMode,
-      ratio: opts.ratio || DEFAULT_PARAMS.ratio,
+      ratio: opts.ratio || FORMATS[format].ratio,
       video,
       // Store the provider's own spelling, and fall back to the nearest tier this model has.
       videoResolution: nearestResolution(mode, opts.resolution || DEFAULT_PARAMS.videoResolution),
@@ -3400,6 +4980,20 @@ export function initProject(opts) {
       lookPhrase: opts.look || DEFAULT_PARAMS.lookPhrase,
       style: opts.style || DEFAULT_PARAMS.style,
       imagePromptLang: opts.imageLang || DEFAULT_PARAMS.imagePromptLang,
+      // Picked from the genre unless named; `--cinematography none` opts out.
+      cinematography: cine,
+      // Named, or read from the genre only when it names an action style outright.
+      action: opts.action || actionForGenre(opts.genre),
+      violence: opts.violence || DEFAULT_PARAMS.violence,
+      // A comedy genre cuts every segment as comedy unless the segment says otherwise.
+      grammar: opts.grammar || grammarForGenre(opts.genre),
+      composition: opts.composition || compositionForGenre(opts.genre),
+      story: opts.story ? String(opts.story).split(/[,\s]+/).filter(Boolean) : storyForGenre(opts.genre),
+      market: opts.market || DEFAULT_PARAMS.market,
+      format,
+      comedy: opts.comedy || (opts.grammar === 'comedy' && comedyForGenre(opts.genre) === 'none' ? 'slapstick' : comedyForGenre(opts.genre)),
+      // A preset that asks for a faster lens brings its own package.
+      ...(CINEMATOGRAPHY_PRESETS[cine]?.kit ? { camera: { ...DEFAULT_PARAMS.camera, ...CINEMATOGRAPHY_PRESETS[cine].kit } } : {}),
       register: normalizeRegister(opts.register || DEFAULT_PARAMS.register),
     },
     source: { kind: opts.source || 'original', path: opts.sourcePath || '', note: '' },
@@ -3532,6 +5126,7 @@ function main(argv) {
       resolution: flag(rest, '--resolution'), accent: flag(rest, '--accent'),
       references: flag(rest, '--references'), duration: flag(rest, '--duration'), look: flag(rest, '--look'),
       register: flag(rest, '--register'), imageLang: flag(rest, '--image-lang'),
+      cinematography: flag(rest, '--cinematography'), action: flag(rest, '--action'), violence: flag(rest, '--violence'), grammar: flag(rest, '--grammar'), comedy: flag(rest, '--comedy'), composition: flag(rest, '--composition'), story: flag(rest, '--story'), market: flag(rest, '--market'), format: flag(rest, '--format'),
       source: flag(rest, '--source'), sourcePath: flag(rest, '--source-path'),
     });
     const paths = projectPaths(dir);

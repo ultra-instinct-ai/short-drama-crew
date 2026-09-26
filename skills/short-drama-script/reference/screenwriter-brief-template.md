@@ -6,7 +6,7 @@ Copy into episode rewrite briefs as needed.
 
 When writing any physical beat, always include the **entry and exit movement** for every position change and **track every prop** from early pre-placement to final use.
 
-Producer will run **Continuity & Blocking Pull-Fit** (`../short-drama-core/reference/producer-continuity-blocking-qa.md`) before green — P0 blocks greening and burning.
+Producer will run **Continuity & Blocking Pull-Fit** (`../../short-drama-core/reference/producer-continuity-blocking-qa.md`) before green — P0 blocks greening and burning.
 
 ## Dialogue performance (mandatory)
 

@@ -146,6 +146,21 @@ picks out, what fills the shadow side, and **how it changes over the cut** — a
 the fill away, a pan that carries the face out of one source into another, a turn that trades a
 front key for a rim. A cut where the light does nothing is a cut where the light was not directed.
 
+Under a `params.cinematography` preset the light also has a `source`: the lamp, window, sun or
+string lights, candle or lattice window it comes from, named verbatim in the frame. A person is never keyed from the
+preset's banned directions (e.g. `low-key` / `costume-dark`: `frontal` / `ambient`;
+`sweet-romance` / `costume-idol`: `underlight` / `top`), at least half the cuts with people in a
+segment use its preferred ones, the stop stays within the preset's limit, and a period or costume
+preset refuses a source its era did not have. Stage the person against the source first, then pick the camera side; the
+tables are in `../../short-drama-core/reference/cinematography.md` and the preset's guide.
+
+**Each segment is cut in its grammar** (`segment.grammar`, else `params.grammar`; see
+`../../short-drama-core/reference/grammar.md`): `action` segments open on a wide, take one move per cut and answer every impact
+(`../../short-drama-core/reference/action.md`); `faceslap` segments show the proof and a cascade of reactions
+(`../../short-drama-core/reference/grammar-faceslap.md`); `comedy` segments set up every punchline and give it laugh room
+(`../../short-drama-core/reference/grammar-comedy.md`). Each grammar adds its line to the prompt (`Action:` / `Payoff:` /
+`Comedy:`).
+
 ### Foreground
 
 Depth needs something to be shallow *against*. `foreground` names what sits between the lens and

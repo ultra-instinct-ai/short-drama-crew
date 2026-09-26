@@ -88,10 +88,14 @@ validate, then quote, then generate.
    `wji profile wallet` (a drama is many generations — know the balance).
 2. **Scan the message for `-auto`** (spending waiver, see the `wji` skill). Without it: one image
    runs, video and batches ask first.
-3. **Ask the parameters once**, in one message: episodes × minutes per episode, genre, adapt
+3. **Ask the parameters once**, in one message: the **format** (`short` 短剧 1–3-minute episodes,
+   `medium` 中剧 4–15-minute episodes, `movie` 电影 written as ~5-minute parts — read
+   `reference/format.md`; the pipeline and the story structure are the same, the rhythm and the
+   genre counts scale), episodes (or parts) × minutes each, genre, adapt
    mode (原创 / 忠实 / 抽核 / 借壳), the 语体 (`register`: 粤语 / 大陆普通话 / 台湾国语 / 港式普通话 /
    古装 / 年代 / 英文美式 / 英文英式 — it decides how the lines are written and the accent the video
-   model speaks), ratio (default 9:16). Offer the defaults you will use unless told otherwise:
+   model speaks), ratio (default 9:16 for short, 16:9 for medium and movie). Offer the defaults you
+   will use unless told otherwise:
    `video: h3` (MiniMax H3 ref), `style: realistic`, **`references: sheets`** (no storyboard
    images) and **`videoDuration: auto`**. Do not start Stage 1 without the first two.
 
@@ -127,9 +131,50 @@ validate, then quote, then generate.
    `ARRI ALEXA Mini LF` / `Zeiss Supreme Prime` / `T1.5`. Every shot prompt names it verbatim, so
    the drama looks shot on one rig; a cut can override the focal and the stop. A look the user asks
    for on top of that (大光圈, 背景虛化, 前景模糊…) goes in `lookPhrase`.
+
+   **The cinematography** is `params.cinematography`, the drama's lighting and composition preset.
+   `init` picks it from the genre: `costume-idol` (古偶 / 仙侠: luminous, gauze and backlit silk) or
+   `costume-dark` (权谋 / 武侠 / 写实: candles, torches, lattice light, faces in shadow) for 古装 —
+   a bare 古装 gets `costume-idol`, so confirm it with the user; `period-nostalgia` for 年代 / 怀旧
+   (film grain, warm faded colour, window sun and bare bulbs); `scifi-hard` for 硬科幻 (instrument
+   panels, work lamps, one harsh sun, no magic or floating holograms) and `scifi-soft` for 软科幻 /
+   科幻 / 赛博朋克 / 未来 (holograms, neon, dual-tone colour, haze) — a bare 科幻 gets `scifi-soft`,
+   confirm it; `sweet-romance` for 甜宠 / 恋爱 / 韩风唯美 (bright soft light, a warm halo in the hair,
+   pastel); `low-key` for everything else (the scene's own practicals, people in shadow, side /
+   back / rim light). The costume and period presets refuse light sources their era did not have,
+   and `scifi-hard` refuses magic and floating holograms. The preset is gated from the scene
+   lighting states through every cut to the video prompt's Look line. Read
+   `reference/cinematography.md`, then the chosen preset's guide. Pass `--cinematography` when the
+   genre mixes both (ask the user which way the picture leans), and `none` only when the user wants
+   a look that fits neither. The presets carry English phrases only, so with `--image-lang zh` the
+   sheet and lighting prompts are not held to the preset's `framePhrase` — the video prompts still
+   are (`videoPhraseZh`).
+
+   **Genre is composed, not picked.** Besides the look, a drama has an action style
+   (`params.action`: `gun-fu` · `hk-kungfu` · `wuxia-fantasy` · `historical-realist` ·
+   `bullet-time` · `superhero` · `street-brawl` · `car-chase`), a comedy style (`params.comedy`:
+   `slapstick` · `deadpan` · `romcom`), and a default **grammar** (`params.grammar`: `drama` ·
+   `action` · `faceslap` · `comedy`) for segments that do not name their own. `init` reads all of
+   them from the genre (古装喜剧 → `costume-idol` + `comedy` + `slapstick`; 未来动作 → `low-key` +
+   `bullet-time`). Confirm the composition with the user; when the story has fights or gags and
+   the style is `none`, ask. The recipes table is in `reference/grammar.md`.
+
+   **The story genres** are `params.story`, a list that combines: `revenge` 复仇/逆袭 · `sweet` 甜宠 ·
+   `mystery` 悬疑 · `comedy` 喜剧 · `angst` 虐恋 · `family` 家庭伦理 · `palace` 宫斗/权谋 · `cultivation`
+   玄幻/修仙/系统 · `scifi` 科幻 · `horror` 恐怖/灵异. `params.market` (`mainland` / `overseas`) decides
+   whether the supernatural may be real. They decide how the story is *written*: what the outline must
+   track (a payback ladder, romance milestones, a question and clue ledger, running gags) and the
+   genre rules it is held to. `init` reads them from the genre; confirm them with the user — read
+   `reference/story.md`.
+
+   **Composition** is its own axis: `params.composition: art-first` (艺术优先) frames any genre for
+   negative space, symmetry and monumental scale — every cut names its devices
+   (`composition: [...]`), gated; read `reference/composition-art-first.md`. A segment
+   may override it (`"composition": "standard"` for a chaotic fight).
+   `params.violence` is `blood` (default) or `implied`.
 4. **Locate or create the project directory** (the user's choice, else next to the source):
    ```bash
-   $SD init <dir> --title "<title>" --episodes N --minutes M --genre "<genre>" --register 台湾国语 [--adapt 抽核] [--ratio 9:16] [--video h3|seedance|seedance2|seedance2fast|wan] [--resolution 480P|…] [--accent "台湾口音国语"] [--style photoreal|realistic|ghibli] [--references sheets|keyframes] [--duration auto|fixed] [--look "<lens phrase>"] [--lang zh] [--image-lang en|zh]
+   $SD init <dir> --title "<title>" --episodes N --minutes M --genre "<genre>" --register 台湾国语 [--adapt 抽核] [--ratio 9:16] [--video h3|seedance|seedance2|seedance2fast|wan] [--resolution 480P|…] [--accent "台湾口音国语"] [--style photoreal|realistic|ghibli] [--references sheets|keyframes] [--duration auto|fixed] [--look "<lens phrase>"] [--cinematography low-key|sweet-romance|period-nostalgia|costume-idol|costume-dark|scifi-hard|scifi-soft|none] [--action gun-fu|hk-kungfu|wuxia-fantasy|historical-realist|bullet-time|superhero|street-brawl|car-chase|none] [--violence blood|implied] [--grammar drama|action|faceslap|comedy] [--comedy slapstick|deadpan|romcom|none] [--composition standard|art-first] [--story revenge,sweet,…] [--market mainland|overseas] [--format short|medium|movie] [--lang zh] [--image-lang en|zh]
    # --image-lang zh: character / scene / prop image prompts in Chinese (the default is English)
    # params.camera (body / lens / aperture) is edited in project.json
    ```

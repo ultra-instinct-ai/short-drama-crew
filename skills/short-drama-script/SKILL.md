@@ -35,7 +35,9 @@ rewrite brief.
    hook image inside the first 3 beats and by 15 s, a `turn: true` beat at least every 30 s, the
    爽点 on an action (`satisfactionBeat`), the cliff as the last beat; lines in the register, from
    each speaker's `speech`. Every line carries its emotional context and a concrete delivery.
-   Delete `seedNote` when done.
+   Genre markers on the beats: `clue: "K1"` on the beat that plants a mystery clue in its plant
+   episode; `gag: setup / build / punchline` and `runningGag` in a comedy (a setup before every
+   punchline, punchlines ≤ 20 字). Delete `seedNote` when done.
 3. `$SD validate <project> --stage script --ep N` — duration math, line length, speakers, hook
    window, rhythm, design, filmability, upstream ids; the register gate only advises. Over
    budget: cut actions first (keep the rhythm flips); under: add conflict, not small talk. When

@@ -21,7 +21,10 @@ Paths are relative to this skill's folder. The engine, `schema.md` and the fixtu
 
 Read `reference/stage-outline.md` and `reference/craft-story.md` first — the 短剧 method: brief,
 three phases, 分集目录, the 爽点 / 钩子 libraries, the episode formula. Field shapes:
-`../short-drama-core/reference/schema.md`.
+`../short-drama-core/reference/schema.md`. Then read the format
+(`../short-drama-core/reference/format.md` — short 短剧 / medium 中剧 / movie in parts scale the
+rhythm and the counts) and, for each genre in `params.story`, its guide
+(`../short-drama-core/reference/story-<genre>.md`, indexed by `story.md`).
 
 ## Steps
 
@@ -33,10 +36,17 @@ three phases, 分集目录, the 爽点 / 钩子 libraries, the episode formula. 
    beatIds), `beats[]`, `outline.structure` (golden / escalation / climax with episode ranges; a
    one-episode drama is `golden [1,1]` + `climax [1,1]`) and `outline.guideline` (tone, intensity,
    dialogue style, visual style, limits, ≥ 3 forbidden, 3–5 priorities).
+   **Per story genre** (`params.story`), write its ledger with the skeleton: the antagonist tiers
+   and the payback ladder (`revenge`), the romance milestones (`sweet`), the central question, the
+   culprit and the clue ledger (`mystery`), the comic premise, comic flaws and running gags
+   (`comedy`), the 虐/悔/追 beats and the engineered misbelief (`angst`), the family web, secrets and
+   reconciliations (`family`), the rank ladder, schemes and factions (`palace`), the power system,
+   金手指 and upgrade log (`cultivation`), the novum, world rules and countdown (`scifi`), the
+   threat, its rules and the scare log (`horror`).
    `$SD validate <project> --stage outline` will still fail on `episodes` — expected at this point;
    read the other gates.
 3. **Sign-off ⛔**: show the user the brief, what was cut, who was merged, where the major beats
-   land (`cutNote` / `mergeNote`) and the guideline's priorities. Do **not** write episode synopses
+   land (`cutNote` / `mergeNote`), the guideline's priorities and the genre ledgers. Do **not** write episode synopses
    before they agree — a wrong skeleton wastes every downstream stage.
 4. **Episodes** in batches of ≤ 10 — design before prose: `function` / `task` / `change` /
    `satisfaction` / `hookType` (the 分集目录; episode 1 grabs, 2 proves the 爽点, 3 widens the line,

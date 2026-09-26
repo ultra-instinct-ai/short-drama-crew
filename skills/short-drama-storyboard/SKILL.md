@@ -21,10 +21,36 @@ Paths are relative to this skill's folder. The engine, `schema.md` and the fixtu
 `../short-drama-core/`; `$SD` is the engine alias defined there.
 
 Read `reference/stage-storyboard.md`, `reference/craft-shots.md`, `reference/craft-motion.md`
-and `../short-drama-core/reference/canvas-recipes.md` before the first storyboard.
+and `../short-drama-core/reference/canvas-recipes.md` before the first storyboard — plus the
+cinematography preset's guide (`../short-drama-core/reference/cinematography-<preset>.md`) and
+`../short-drama-core/reference/grammar.md` with the guide of every grammar this episode uses.
 
 ## Craft reminders
 
+- **Every cut is lit and composed in the preset's look** (`params.cinematography`). Name the
+  source in `light.source`, stage the person against it, and choose the camera side that gives the
+  preset's preferred direction (the table in
+  `../short-drama-core/reference/cinematography.md`). Compose as the guide says, shoot past a
+  foreground, and stay within the preset's stop (T2.8; T2 for `sweet-romance` and `costume-idol`,
+  which start on a T1.3 package and name their bokeh; T4 for `period-nostalgia`). Both costume
+  presets also need a 全景 / 大全景 with negative space in every segment. For `sweet-romance` and
+  `costume-idol`, shoot the 甜宠 set pieces (心动对视, 回眸, 共伞…) as
+  `../short-drama-core/reference/cinematography-sweet-romance.md` §6 lays out.
+- **Each segment is cut in its grammar.** Set `grammar` on a segment whose kind differs from the
+  drama's default (`"action"`, `"faceslap"`, `"comedy"`, `"drama"`, or several:
+  `["action", "comedy"]`) and read the guide of each grammar used before cutting it:
+  `action` (`action.md`, `action-<style>.md`) breaks the fight into moves (拆招) — one move per cut
+  (`move: { kind, impact }`), open on a wide, a reaction or consequence after every impact;
+  `faceslap` (`grammar-faceslap.md`) is pressure, the calm, the entrance, **the proof on screen**,
+  **a cascade of at least two reactions** — the 爽点 of a 打脸 / 身份揭露 / 智商碾压 / 复仇 episode is
+  cut this way; `comedy` (`grammar-comedy.md`) needs **a setup before every punchline** (`gag`) and
+  **laugh room after it**, in the comedy style's rhythm. The bold rules are gated. Waive one for a
+  segment (`exceptions: [{ rule, reason }]`) only when the user asks, never to turn a gate green.
+  `$SD prompt <project> segment` writes each grammar's line (`Action:` / `Payoff:` / `Comedy:`).
+  No film, franchise or performer names in any prompt (gated).
+- With `params.composition: art-first` every cut names its devices (`composition: [...]`); a
+  segment may override it back to `standard` for a chaotic fight
+  (`../short-drama-core/reference/composition-art-first.md`).
 - Every cut is a set-up: besides its beats and framing it carries the **lens** (`focal`, or let
   the shot size pick it), the **key light relative to the camera** (`light.direction` +
   `light.note`), the **foreground** to throw out of focus, its `purpose` (kind + what changes),

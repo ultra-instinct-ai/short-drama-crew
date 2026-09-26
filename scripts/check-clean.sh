@@ -12,8 +12,12 @@ say() { printf '%s\n' "$*"; }
 
 # 1. adult terms — case-insensitive, whole pack (skills, agents, docs, scripts, crew.json)
 targets=(skills agents scripts/sync-wji-skill.sh crew.json AGENTS.md README.md)
-adult='NSFW|情色|色情|做爱|做愛|性爱|性愛|性器|\bsex(ual|y)?\b|nude|naked|bunny|blowjob|\boral\b|intimacy|intimate|erotic|dirty talk|痴女|\badult\b|pussy|cock|titjob|乳交|騎乘|骑乘|前戲|前戏|插入|orgasm|颜射|顏射|moan|porn'
-if hits=$(grep -rniE "$adult" "${targets[@]}" 2>/dev/null); [ -n "$hits" ]; then
+adult='NSFW|情色|色情|做爱|做愛|性爱|性愛|性器|\bsex(ual|y)?\b|nude|naked|bunny|blowjob|\boral\b|intimacy|intimate|erotic|dirty talk|痴女|\badult\b|\bpussy\b|\bcock\b|titjob|乳交|騎乘|骑乘|前戲|前戏|插入|orgasm|颜射|顏射|moan|porn'
+# Craft and regulatory uses of the flagged words, the same way 高潮 is allowed below:
+# Hitchcock / cockpit (substring accidents), "intimate" as a framing term, the fake-dating trope
+# name, the instruction that a child never speaks adult lines, and quotes of the NRTA red lines.
+adult_ok='Hitchcock|cockpit|intimate (close-up|dialogue|two-shot|wide)|Borrowed intimacy|adult lines|red lines are'
+if hits=$(grep -rniE "$adult" "${targets[@]}" 2>/dev/null | grep -vE "$adult_ok"); [ -n "$hits" ]; then
   say "✗ adult terms found:"; say "$hits"; fail=1
 fi
 # 高潮 is fine as a story-structure word (高潮收束 / 高潮选择 / 大高潮 / 高潮或结局); anything else is not

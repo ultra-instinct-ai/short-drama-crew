@@ -53,6 +53,27 @@ gate should pass before you show the skeleton.
 Show the user, in plain language: the lines cut, the people merged, the episode of each major beat.
 Wait for a yes. Change the skeleton on their feedback and validate again.
 
+## Genre ledgers (`params.story`)
+
+Each story genre adds what the outline must track, written with the skeleton and shown at
+sign-off (`../../short-drama-core/reference/story.md`, and the genre's own guide for the rules and the craft):
+
+| genre | ledger | gate |
+| --- | --- | --- |
+| `revenge` | `characters[].antagonist { tier, firstPressEp, motive }`, `outline.paybacks[] { ep, target, scale, by, how }` | `story-revenge` |
+| `sweet` | `outline.romance[] { ep, milestone, until?, note }` | `story-sweet` |
+| `mystery` | `outline.mysteryMode`, `outline.questions[]`, `outline.clues[]`, `characters[].mysteryRole` / `firstEp` | `story-mystery` |
+| `comedy` | `outline.brief.comicPremise`, `characters[].comic { flaw, humanity, role }`, `outline.runningGags[]` | `story-comedy` |
+| `angst` | `outline.angst { ending, turnEp, exitEp, reconcileEp, misbelief, beats[] }`, `outline.brief.redLines` | `story-angst` |
+| `family` | `characters[].family`, `outline.secrets[]`, `outline.vindications[]`, `outline.reconciliations[]` | `story-family` |
+| `palace` | `outline.rankLadder`, `outline.rankEvents[]`, `outline.schemes[]`, `outline.factions[]`, `outline.allegiance[]` | `story-palace` |
+| `cultivation` | `outline.powerSystem`, `outline.goldenFinger`, `outline.startPower`, `outline.upgrades[]`, `outline.fights[]` | `story-cultivation` |
+| `scifi` | `outline.brief.novum`, `outline.worldRules[]`, `outline.countdown`, `outline.loops[]`, `outline.foreknowledge[]` | `story-scifi` |
+| `horror` | `outline.horror { subgenre, threat }`, `outline.horrorRules[]`, `outline.episodes[].scares` | `story-horror` |
+
+The episodes are then designed against the ledger: a payback episode's `satisfaction.type` is a
+payback type, a sugar episode's is 强宠 / 情感释放, and so on — the gates count both.
+
 ## Episodes (batches of ≤10)
 
 Design first, prose second. Per episode the 分集目录 fields: `function` (开局钩子 / 冲突升级 /

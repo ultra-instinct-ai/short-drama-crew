@@ -29,7 +29,7 @@ goal, obstacle or turn is not saved by natural-sounding lines.
 feeds two places downstream: the storyboard's visible performance state and the video prompt's
 speech direction; both derive from it, neither invents a new emotion.
 
-Producer **pull-fit** (blocking, all future scripts): every line must also pass `../short-drama-core/reference/producer-dialogue-performance-qa.md` — (1) emotional context established around the line; (2) concrete 點樣演繹 delivery. Bare emotion tags fail.
+Producer **pull-fit** (blocking, all future scripts): every line must also pass `../../short-drama-core/reference/producer-dialogue-performance-qa.md` — (1) emotional context established around the line; (2) concrete 點樣演繹 delivery. Bare emotion tags fail.
 
 ## 2. 语体 — `params.register`
 

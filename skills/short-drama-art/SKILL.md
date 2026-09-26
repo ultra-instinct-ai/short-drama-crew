@@ -18,12 +18,14 @@ metadata:
 Paths are relative to this skill's folder. The engine, `schema.md` and the fixture live in
 `../short-drama-core/`; `$SD` is the engine alias defined there.
 
-Read `reference/stage-art.md` and `../short-drama-core/reference/canvas-recipes.md`.
+Read `reference/stage-art.md` and `../short-drama-core/reference/canvas-recipes.md`, and the
+cinematography preset's guide (`../short-drama-core/reference/cinematography-<preset>.md`, §1 and
+§2) before writing a lighting state.
 
 ## Steps
 
 1. Scenes: `summary`, 3–5 `anchors`, `lighting` states derived from the episodes the scene
-   appears in, empty-scene `image.*`; variants via `variantOf` + `changes`. Props (narrative ones
+   appears in (in the preset's look, lit by named sources), empty-scene `image.*`; variants via `variantOf` + `changes`. Props (narrative ones
    only): `scale`, `anchors`, `states`, white-background `image.*`.
    `$SD validate <project> --stage art`.
 2. Sync to `location/` and `prop/` datasets (Operator): content = `$SD render <project> scene S01`

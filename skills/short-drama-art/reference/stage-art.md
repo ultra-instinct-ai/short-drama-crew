@@ -9,7 +9,7 @@ stage's output is a **consistency plan** per asset, not a mood board.
 | --- | --- |
 | `summary` | design intent — what story this space tells, not a floor plan |
 | `anchors` (3–5) | features that must appear in every generation: paintable, recognisable, checkable ("flickering oden light box", "red drawer with worn corners"; not "old atmosphere") |
-| `lighting` (≥1) | one prompt (in `params.imagePromptLang`) per lighting state the episodes actually use — derive them from the episodes the scene appears in, don't write a day/dusk/night set nobody uses |
+| `lighting` (≥1) | one prompt (in `params.imagePromptLang`) per lighting state the episodes actually use — derive them from the episodes the scene appears in, don't write a day/dusk/night set nobody uses. With a `params.cinematography` preset each English prompt contains the preset's `framePhrase` (`low-key practical lighting` / `soft romantic lighting`) and names the sources that light the space (what, where, what colour) — see the preset's guide, `../../short-drama-core/reference/cinematography-<preset>.md` §1. The presets carry no Chinese phrase yet, so `imagePromptLang: zh` is not held to it |
 | `image.prompt` | the master view, **empty scene, no people** (say so); `negativePrompt` must ban people |
 | `image.sheet` | environment sheet: main panel (≈72 % × 70 %, master view + first lighting state) + an L of detail panels showing the anchors; `THE SPACE MUST BE IDENTICAL ACROSS ALL PANELS`, `nothing invented that is not present in the master view`; the style render phrase |
 | `variantOf` + `changes` | a scene that is the parent with a different time / weather / foreground — cheaper and more consistent than a new environment; outline scenes with a `reusePlan` become variants |

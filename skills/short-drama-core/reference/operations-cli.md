@@ -15,7 +15,7 @@ $SD <cmd> {project} …
 
 | Operation | Command |
 | --- | --- |
-| `init` | `short-drama.mjs init {project} --title "<t>" --episodes N --minutes M --genre "<g>" --register 台湾国语 [--adapt 抽核] [--ratio 9:16] [--video h3\|seedance\|seedance2\|seedance2fast\|wan] [--resolution 480P…] [--accent "<accent>"] [--style photoreal\|realistic\|ghibli] [--references sheets\|keyframes] [--duration auto\|fixed] [--look "<lens>"] [--lang zh]` |
+| `init` | `short-drama.mjs init {project} --title "<t>" --episodes N --minutes M --genre "<g>" --register 台湾国语 [--adapt 抽核] [--ratio 9:16] [--video h3\|seedance\|seedance2\|seedance2fast\|wan] [--resolution 480P…] [--accent "<accent>"] [--style photoreal\|realistic\|ghibli] [--references sheets\|keyframes] [--duration auto\|fixed] [--look "<lens>"] [--cinematography low-key\|sweet-romance\|period-nostalgia\|costume-idol\|costume-dark\|scifi-hard\|scifi-soft\|none] [--action <style>\|none] [--violence blood\|implied] [--grammar drama\|action\|faceslap\|comedy] [--comedy slapstick\|deadpan\|romcom\|none] [--composition standard\|art-first] [--story revenge,sweet,…] [--market mainland\|overseas] [--format short\|medium\|movie] [--lang zh]` |
 | `validate` | `short-drama.mjs validate {project} [--stage <stage>] [--ep N]` — exits 1 on a hard failure, 0 on advisories alone |
 | `checkup` | `short-drama.mjs checkup {project}` — same, but prints the passing and skipped rows too |
 | `seed` | `short-drama.mjs seed {project} script --ep N [--force]` · `… seed {project} storyboard --ep N [--force]` |

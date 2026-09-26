@@ -74,6 +74,16 @@ this episode.
   only way to get it back.
 - **A picture change is a sound change** downstream — remember it when the storyboard exists.
 
+## Genre markers (gate `story-script`)
+
+- **Mystery**: the beat that plants a clue carries `clue: "K1"` (or a list) in the clue's plant
+  episode — a clue is something the camera shows, never narration. Plant it inside a beat doing
+  something else (`../../short-drama-core/reference/story-mystery.md` §5).
+- **Comedy**: `gag: setup` where a joke is planted, `gag: build` for the repeats of a rule of three,
+  `gag: punchline` where it lands (at least 2–3 an episode), `runningGag: "G1"` on a callback. Every
+  punchline has a setup before it (or calls back a running gag); a punchline line is ≤ 20 字 and
+  ends on the funny word (`../../short-drama-core/reference/story-comedy.md`).
+
 ## Feel (not gated, decides whether it plays)
 
 Short lines, dense action: an action or reaction every two or three lines, never four lines in a
@@ -121,7 +131,7 @@ green episode is 16/16; a row that says 否 names what to fix.
 
 ## Dialogue performance pull-fit (Producer gate)
 
-Before script green / any dialogue re-lock, Producer runs `../short-drama-core/reference/producer-dialogue-performance-qa.md` on **every** spoken line:
+Before script green / any dialogue re-lock, Producer runs `../../short-drama-core/reference/producer-dialogue-performance-qa.md` on **every** spoken line:
 
 1. **對白有冇交代清楚** — emotional state/context at the moment of the line is established in `△` / surrounding beats.
 2. **點樣演繹** — delivery specified (tone, physical state, intention — e.g. 怜香惜玉、半闭眼享受、破音尖叫).
@@ -130,7 +140,7 @@ FAIL → revise before green. This is recurring for all future episodes.
 
 ## Continuity & Blocking Pull-Fit (Producer gate)
 
-Before script green, Producer runs `../short-drama-core/reference/producer-continuity-blocking-qa.md` **in parallel with** the Dialogue performance pull-fit:
+Before script green, Producer runs `../../short-drama-core/reference/producer-continuity-blocking-qa.md` **in parallel with** the Dialogue performance pull-fit:
 
 - Character position transitions explicitly bridged (坐→跪, 站→跪, 拖起, 扳转…) — no silent jumps
 - Relative sit/stand places clear each beat
