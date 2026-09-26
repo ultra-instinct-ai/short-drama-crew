@@ -1,6 +1,6 @@
 ---
 name: wji
-description: Drive the WJI AI platform from the terminal with the `wji` CLI — sign in, manage workspaces and the fsnode/dataset tree, upload assets, generate images/video/audio and poll the results, and work on Infinite Canvas nodes (read the user's selected nodes, create generate nodes, connect references), and manage models, agents, prompt presets and your profile. Use whenever a task mentions WJI, wji-backend, a WJI workspace, canvas, fsnode, dataset node, or asks to generate media on WJI.
+description: Drive the WJI AI platform from the terminal with the `wji` CLI — sign in, manage workspaces and the fsnode/dataset tree, upload assets, generate images/video/audio and poll the results, and work on Infinite Canvas nodes (read the user's selected nodes, create generate nodes, connect references), manage workspace members, invitations and canvas owners, and manage models, agents, prompt presets and your profile. Use whenever a task mentions WJI, wji-backend, a WJI workspace, canvas, fsnode, dataset node, or asks to generate media on WJI.
 ---
 
 # WJI CLI
@@ -332,6 +332,19 @@ A workspace's InfiniteCanvas app can hold several canvases (`wji canvas list`);
 `wji canvas create <name>` adds an empty one — e.g. one canvas per episode or
 per character set.
 
+**Ownership.** A canvas can have an owner (a workspace member) and a
+visibility: `members` (everyone in the workspace sees it) or `owner` (only
+the owner and the workspace owner). `wji canvas list` shows both;
+`wji canvas owner <canvasId> <member> --visibility owner` sets them — the
+workspace owner only. Visibility hides, it does not lock: on a `members`
+canvas any editor can edit. For a class of students (one canvas each, copy
+work to all, collect results) use `wji class` — see the `wji-classroom` skill.
+
+**Color tags.** `wji canvas tag red <nodeIds…> -l HW1` tags nodes and names
+the color on that canvas; `--tag HW1` then filters `canvas nodes`,
+`class status` and `class results`. `wji canvas copy <nodeIds…> --to
+<canvasId…>` copies nodes with their connections and tags to other canvases.
+
 **The link.** The user opens a canvas in the browser and presses the link
 button in its top bar. That stores the open workspace, canvas and **the nodes
 they have selected** on their account for 5 minutes (the tab renews it while
@@ -431,7 +444,8 @@ wji org list && wji org use <orgId>
   These commands delete, revoke or overwrite, and none can be undone from the
   CLI: `ws rm`, `ws app rm`, `ws member rm`, `fs rm`, `dataset rm`,
   `asset rm`, `history rm`, `preset rm`, `skill rm`, `skill update --dir`,
-  `agent rm`, `auth key rm`, `auth key revoke`, `config rm`, `canvas rm`.
+  `agent rm`, `auth key rm`, `auth key revoke`, `config rm`, `canvas rm`,
+  `ws member link` (revokes the current share link).
   They prompt `[y/N]` in a terminal, but when you run them there is no
   terminal, so they refuse unless you pass `--yes`. **The user's reply in the
   chat is the only confirmation there is.** Before running one:

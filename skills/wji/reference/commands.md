@@ -73,7 +73,11 @@ switch endpoint.
 | `ws favorite <id> [--off]` | `PUT /workspace/list/:id/favorite` |
 | `ws fs [id] [-a appId]` | `GET /workspace/list/:id/fs[/:appid]` |
 | `ws app list\|add <app> [-n]\|rm <appId> [-y]` | `POST/DELETE /workspace/list/:id/apps` |
-| `ws member list\|add <userId> [-r role]\|role <memberId> <role>\|rm <memberId> [-y]` | `/workspace/list/:id/member/*` |
+| `ws member list [id] [-r role]` | members from `GET /workspace/list/:id` (there is no member-list endpoint): name, email, role, user id, membership id |
+| `ws member add <userIds...> [-r editor\|viewer] [-w]` | `POST .../member/add-batch {users, role}` (≤50; existing members skipped). Org workspaces accept only org members |
+| `ws member invite <emails...> [-r editor\|viewer] [-w]` | `POST /invitation/workspace/:id/invite-emails` (owner only, ≤50; commas/spaces split). Registered users are **added at once**, others get an emailed invitation — which also revokes the current share link. Reports added / invited / skipped / invalid |
+| `ws member link [id] [-r role] [--show]` | `POST /invitation/create {targetType:'workspace', targetId, role}` (owner only; valid 7 days — the server rejects any `expiredAt`). One active link per workspace — a new one revokes the old. `--show` lists the active link (`GET /invitation/workspace/:id`) |
+| `ws member role <member> <editor\|viewer> [-w]` / `ws member rm <members...> [-w] [-y]` | `PUT .../member/:memberId/role`, `DELETE .../member/:memberId`. `<member>` is a name, email, user id or membership id (ambiguous names are an error); the owner is refused. A removed member's canvases stay |
 | `ws quota [id] [--set k=v]` | `GET .../quota-usage`, `PUT .../quota` |
 | `ws stats [id]` | `GET /workspace/list/:id/stats` |
 | `ws templates` / `ws clone <templateId>` | `GET /workspace/start/templates`, `POST /workspace/create/:id` |
@@ -160,14 +164,17 @@ updates live.
 | --- | --- |
 | `canvas status` (`link`) | `GET /canvas-link`, then the selected nodes read fresh from the canvas |
 | `canvas unlink` | `DELETE /canvas-link`; the tab turns its button off at its next heartbeat (≤ 60s) |
-| `canvas list [-w]` | canvases under each InfiniteCanvas app: `GET /workspace/list/:id/fs/:appId` → `workspace-v2/canvases` children |
-| `canvas create <name> [-w] [--app]` | `POST /fsnode/create` a `workspace-v2/canvas` folder under that `canvases` folder with the web's initial content (`{data:{viewport, backgroundMode:'dots'}, metadata:{}}`) |
+| `canvas list [-w] [-o member\|none]` | canvases under each InfiniteCanvas app: `GET /workspace/list/:id/fs/:appId` → `workspace-v2/canvases` children, with owner and visibility from `content.metadata`. Owner-only canvases of others are hidden unless you own the workspace |
+| `canvas create <name> [-w] [--app] [-o member] [--visibility owner\|members]` | `POST /fsnode/create` a `workspace-v2/canvas` folder under that `canvases` folder with the web's initial content (`{data:{viewport, backgroundMode:'dots'}, metadata:{ownerUserId?, visibility?}}`) |
+| `canvas owner <canvasId> [member] [--visibility owner\|members] [--none]` | without options shows owner + visibility; otherwise `PATCH /fsnode/list/:id` with the whole envelope `{data, metadata}` and `baseUpdatedAt` (retried on 409). **Workspace owner only** (403 otherwise). `owner` visibility = only the owner and the workspace owner see the canvas; it hides, it does not lock — with `members` any editor can edit it |
+| `canvas tag <tag> [nodeIds...] [-c] [-l label] [--selected]` | sets `content.colorTag {colorId}` on the nodes (`contentPatch`); `none` removes it. `<tag>` is a color, color id or existing label. `-l` writes the color's label to the canvas folder `content.data.colorTagNames` (`""` clears) |
+| `canvas copy [nodeIds...] --to <canvasIds...> [-c] [--selected] [--at x,y] [--same-position] [-y]` | the canvas's own copy-paste: new nodes (no position, `generate.historyId/pendingAssetId` dropped, finished asset shared via `file`), edges among them re-created oldest first so `@image1…` numbering holds, color tags kept and a missing label carried to the target. Edges from nodes outside the copy are left out. Default placement: right of what is already on the target |
 | `canvas nodes [-c] [-k kind] [-n regex] [--tag tags…\|--untagged]` | `GET /fsnode/list/:canvasId/children?limit=-1` + `POST /assets/check-status`. `-n` matches the node name as a case-insensitive regex (`/re/flags` to set flags yourself). `--tag` takes a label (`C01`, case-insensitive), a color (`red`) or a color id (`rose`); several values match any. Filters combine (AND) |
 | `canvas tags [-c] [-a]` | the canvas's color tags: color, label, node count (`-a` also unused, unlabelled colors) |
 | `canvas get <nodeId> [-c]` | same load; one node with references (`@image1 ← id`) and frame slots |
 | `canvas edges [-c] [--node]` | the `canvas/edge` children |
 | `canvas add <kind> [-c] [-n] [-t\|--text-file] [--plain] [--size w,h] [--asset] [--dataset] [-p\|--prompt-file] [-m] [-r] [--resolution] [-d] [--set] [--from ids…] [--at x,y]` | `POST /fsnode/create` (`canvas/node/<kind>`), then one `canvas/edge` per `--from`. Kinds: text, title, comment, image, video, audio, dataset. `add dataset --dataset <fsnodeId>` writes `content {datasetId, datasetName, datasetType, datasetParentName, description}` from the dataset node (must be `workspace/dataset`); it takes no `--from`. Text kinds are Markdown on the web; `--plain` turns every single line break into a Markdown hard break (`"  \n"`, fenced code untouched), and without it the CLI warns when a single break would be joined. `--size` writes `content.width/height` |
-| `canvas set <nodeId> [-c] [-n] [-t\|--text-file] [--plain] [--move x,y] [--size w,h] [-p] [-m] [-r] [--resolution] [-d] [--set]` | read → merge → `PATCH /fsnode/list/:id` |
+| `canvas set <nodeId> [-c] [-n] [-t\|--text-file] [--plain] [--move x,y] [--size w,h] [-p] [-m] [-r] [--resolution] [-d] [--set]` | read → merge → `PATCH /fsnode/list/:id` with `contentPatch` of only the top-level keys that changed, so a concurrent browser edit of another key survives (falls back to a whole-content write on a backend without `contentPatch`) |
 | `canvas connect <from> <to> [-c]` | `POST /fsnode/create` (`canvas/edge`); a first/last-frame video model gets `videoFrameSlot` start, then end |
 | `canvas disconnect <from> <to> [-c]` | `DELETE /fsnode/list/:edgeId` |
 | `canvas rm <nodeIds...> [-c] [-y]` | deletes the nodes' edges, then the nodes; refuses nodes still generating |
@@ -208,6 +215,23 @@ Link state (`/canvas-link`, one per user, Redis TTL 300s): the tab `PUT`s
 viewport, url}` on toggle (`takeover: true`), on selection change and every
 60s. A non-takeover `PUT` from a tab that no longer owns the link gets
 `409 canvas-link-gone`, which switches that tab's button off.
+
+## class
+
+A class is a workspace the teacher owns; students are members (editors) and
+each student's canvas is the one whose `metadata.ownerUserId` is them. Every
+command takes `-w` (defaults to the linked workspace, then the profile's).
+
+| Command | API / behaviour |
+| --- | --- |
+| `class roster` | members minus the owner, with role and owned canvases |
+| `class canvases [--create] [--visibility owner\|members] [--update] [--name '{name}'] [--student …] [--app]` | lists each student's canvas; `--create` makes the missing ones (`POST /fsnode/create`, owner = student, default visibility `owner`); `--update` applies `--visibility` to existing ones. Idempotent |
+| `class copy [nodeIds...] [-c] [--selected] [--student …] [--at x,y] [--same-position] [-y]` | `canvas copy` into every student canvas (default: the linked selection); 4 canvases at a time; failures reported per student with a rerun hint, exit 1 |
+| `class status [--tag …] [-k kind] [--student …] [-s name\|recent\|progress]` | per student: nodes, generate nodes done / running / failed / not run, `GET /ai/assets/history/search?scope=canvas&scopeId=<canvas>&limit=1&sort[createdAt]=desc` for count + last generation, credits from `GET .../quota-usage` `byUserTotal` |
+| `class results [--student …] [--tag …] [-k kind] [-n regex] [--since 2h] [--all] [-s recent\|name] [-l n] [-d dir]` | finished media on student canvases (generate nodes; `--all` adds display nodes), newest first; `-d` saves `<dir>/<student>/<node>-<id>.<ext>` |
+
+`--tag` matches each canvas's own label (a label a canvas lacks matches nothing
+there); `--student` takes names, emails or user ids.
 
 ## gen
 
