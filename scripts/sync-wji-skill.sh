@@ -3,7 +3,11 @@
 # Never edit skills/wji by hand — change wji-cli/skill/wji and re-run this.
 set -euo pipefail
 here="$(cd "$(dirname "$0")/.." && pwd)"
-src="${WJI_CLI_DIR:-$here/../wji-cli}/skill/wji"
+cli_dir="${WJI_CLI_DIR:-$here/../wji-cli}"
+# wji-cli is a pnpm workspace now: the skill lives in packages/cli/skill.
+# Older checkouts keep it at the repo root.
+src="$cli_dir/packages/cli/skill/wji"
+[ -f "$src/SKILL.md" ] || src="$cli_dir/skill/wji"
 if [ ! -f "$src/SKILL.md" ]; then
   # fall back to the globally installed CLI package
   src="$(npm root -g 2>/dev/null)/@wji.ai/cli/skill/wji"
