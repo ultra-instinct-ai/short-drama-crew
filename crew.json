@@ -2,7 +2,7 @@
   "version": 1,
   "name": "short-drama-crew",
   "title": "Short Drama Crew",
-  "description": "Seven seats that produce an AI short drama (短剧) on WJI: Producer, Screenwriter, Art Director, Director, Sound Designer, WJI Operator, Proofreader.",
+  "description": "Nine seats that produce an AI short drama (短剧), its ads and its social posts on WJI: Producer, Screenwriter, Art Director, Director, Sound Designer, Ad Creative Director, Social Media Manager, WJI Operator, Proofreader.",
   "skillsDir": "skills",
   "entry": "drama-producer",
   "agents": {
@@ -11,8 +11,8 @@
       "prompt": "agents/drama-producer.md",
       "skills": ["short-drama", "short-drama-core", "wji"],
       "capabilities": { "read": true, "write": true, "exec": "engine", "network": false, "spend": false, "spawn": true },
-      "delegatesTo": ["screenwriter", "art-director", "director", "sound-designer", "wji-operator", "proofreader"],
-      "channels": ["short-drama-crew", "audio-desk"]
+      "delegatesTo": ["screenwriter", "art-director", "director", "sound-designer", "ad-creative-director", "social-media-manager", "wji-operator", "proofreader"],
+      "channels": ["short-drama-crew", "audio-desk", "marketing-desk"]
     },
     "screenwriter": {
       "name": "Screenwriter",
@@ -46,13 +46,29 @@
       "delegatesTo": [],
       "channels": ["audio-desk"]
     },
+    "ad-creative-director": {
+      "name": "Ad Creative Director",
+      "prompt": "agents/ad-creative-director.md",
+      "skills": ["ads", "wji"],
+      "capabilities": { "read": true, "write": true, "exec": false, "network": false, "spend": false, "spawn": false },
+      "delegatesTo": [],
+      "channels": ["marketing-desk"]
+    },
+    "social-media-manager": {
+      "name": "Social Media Manager",
+      "prompt": "agents/social-media-manager.md",
+      "skills": ["social-media", "ads", "short-drama-core", "wji"],
+      "capabilities": { "read": true, "write": true, "exec": "engine", "network": false, "spend": false, "spawn": false },
+      "delegatesTo": [],
+      "channels": ["marketing-desk"]
+    },
     "wji-operator": {
       "name": "WJI Operator",
       "prompt": "agents/wji-operator.md",
       "skills": ["wji", "short-drama-core"],
       "capabilities": { "read": true, "write": true, "exec": true, "network": true, "spend": true, "spawn": false },
       "delegatesTo": [],
-      "channels": ["short-drama-crew", "audio-desk"]
+      "channels": ["short-drama-crew", "audio-desk", "marketing-desk"]
     },
     "proofreader": {
       "name": "Proofreader",
@@ -60,10 +76,15 @@
       "skills": ["short-drama-core", "short-drama-script", "short-drama-storyboard", "short-drama-sound"],
       "capabilities": { "read": true, "write": false, "exec": "readonly", "network": false, "spend": false, "spawn": false },
       "delegatesTo": [],
-      "channels": ["short-drama-crew", "audio-desk"]
+      "channels": ["short-drama-crew", "audio-desk", "marketing-desk"]
     }
   },
   "channels": {
+    "marketing-desk": {
+      "name": "Marketing desk",
+      "purpose": "Ads and social posts: briefs, spec sheets, placements and quotes between Producer, Ad Creative Director, Social Media Manager, Operator and Proofreader.",
+      "members": ["drama-producer", "ad-creative-director", "social-media-manager", "wji-operator", "proofreader"]
+    },
     "short-drama-crew": {
       "name": "Short Drama Crew",
       "purpose": "Main room: assignments, stage status, greenlights.",

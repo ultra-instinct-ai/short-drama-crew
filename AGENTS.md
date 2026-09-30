@@ -1,8 +1,9 @@
 # Short Drama Crew — operating rules
 
-This repository is a **crew**: seven agent seats and nine skills that produce an AI short drama
-(短剧 / 短劇) on the WJI platform through the `wji` CLI. The same files run on Claude Code, OpenAI
-Codex and OpenClaw; `wji crew install` puts them where each host looks.
+This repository is a **crew**: nine agent seats and eleven skills that produce an AI short drama
+(短剧 / 短劇), its commercials and its social posts on the WJI platform through the `wji` CLI. The
+same files run on Claude Code, OpenAI Codex and OpenClaw; `wji crew install` puts them where each
+host looks.
 
 ## Seats
 
@@ -13,6 +14,8 @@ Codex and OpenClaw; `wji crew install` puts them where each host looks.
 | `art-director` | scenes, props, sheet look, canvas plans | scripts, storyboards, `wji` |
 | `director` | storyboard, shot language, video prompts, episode canvas plan | outline / script rewrites, `wji` |
 | `sound-designer` | voice / SFX / BGM prompts, cue sheets, soft-QC | canvas, generation |
+| `ad-creative-director` | ad brief, concept and hooks, shot list, KV / still / clip prompts, deliverables | drama scripts, platform sizing, `wji` |
+| `social-media-manager` | platform specs, per-post spec sheet and copy, teasers / posters from an episode, placements from an ad master | scripts, ad concepts, `wji` |
 | `wji-operator` | **every** `wji` command, canvas, generation, download, bind | creative decisions |
 | `proofreader` | audits claimed changes on disk; PASS / FAIL with evidence | writing, generating |
 
@@ -42,6 +45,8 @@ plays every seat in turn, in the same order, with the same gates.
 | `short-drama-script` | per-episode 谈话+行动 scripts, dialogue polish |
 | `short-drama-storyboard` | segments, cuts, video prompts, episode canvas |
 | `short-drama-sound` | voices, SFX, cut-timed BGM, Seed Audio briefs |
+| `ads` | commercials and ad creative: formats, product photography, styles, product identity, banner sizes, compliance |
+| `social-media` | every platform's image / video specs, hooks, covers, copy; an episode into teasers and posters, an ad master into every placement |
 | `wji` | the CLI itself: auth, workspaces, fsnodes, assets, generation, canvas |
 
 Paths inside a skill are relative to its folder; the engine, schema and fixture live only in

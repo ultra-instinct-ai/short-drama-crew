@@ -20,11 +20,14 @@ spends credits.
 | **Art Director** | scenes, props, sheet look, canvas plans | scripts, storyboards, `wji` |
 | **Director** | storyboard, shot language, video prompts, episode canvas | outline / script rewrites, `wji` |
 | **Sound Designer** | voice / SFX / BGM prompts, cue sheets, soft-QC | canvas, generation |
+| **Ad Creative Director** | ad brief, concept and hooks, shot list, KV / still / clip prompts, deliverables | drama scripts, platform sizing, `wji` |
+| **Social Media Manager** | platform specs, per-post spec sheet and copy, teasers / posters from an episode, placements from an ad master | scripts, ad concepts, `wji` |
 | **WJI Operator** | every `wji` command, canvas, generation, download, bind | creative decisions |
 | **Proofreader** | audits claimed changes on disk; PASS / FAIL with evidence | writing, generating |
 
-Talk to the Producer. Channels: **Short Drama Crew** (all but Sound) and **Audio desk** (Producer,
-Sound Designer, Operator, Proofreader).
+Talk to the Producer. Channels: **Short Drama Crew** (all but Sound and Marketing), **Audio desk**
+(Producer, Sound Designer, Operator, Proofreader) and **Marketing desk** (Producer, Ad Creative
+Director, Social Media Manager, Operator, Proofreader).
 
 ## Skills
 
@@ -38,11 +41,16 @@ Sound Designer, Operator, Proofreader).
 | `short-drama-script` | per-episode scripts, dialogue polish |
 | `short-drama-storyboard` | segments, cuts, video prompts, episode canvas |
 | `short-drama-sound` | voices, SFX, cut-timed BGM, Seed Audio briefs |
+| `ads` | commercials and ad creative: formats and durations, product photography and lighting, styles, product identity across generations, banner sizes, compliance |
+| `social-media` | every platform's image / video specs (global + 小红书 / 抖音 / 视频号 / B站 / 公众号 …), hooks, covers, copy; turns an episode into teasers and posters or an ad master into every placement |
 | `wji` | the CLI itself (mirrored from [wji-cli](https://github.com/ultra-instinct-ai/wji-cli); do not edit here) |
 
 The skills follow the [Agent Skills](https://agentskills.io) spec, so every host reads the same
 `SKILL.md`. The engine, `schema.md` and the `night-shift` fixture live only in `short-drama-core`;
-the stage skills point at it with `../short-drama-core/…`, so the nine folders must stay siblings.
+the stage skills point at it with `../short-drama-core/…`, so the eleven folders must stay siblings.
+`ads/reference/` and `social-media/reference/` are shared verbatim with the same skills in
+[wji-cli](https://github.com/ultra-instinct-ai/wji-cli) (`skill/ads`, `skill/social-media`) and
+with WJI chat; only each `SKILL.md` is spelled for its host.
 
 ## Install
 

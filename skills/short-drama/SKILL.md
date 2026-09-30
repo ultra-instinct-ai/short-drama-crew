@@ -32,6 +32,8 @@ this folder).
    - script (per-episode 谈话+行动, dialogue polish) → [short-drama-script](../short-drama-script/SKILL.md)
    - storyboard (segments, cuts, video prompts, episode canvas) → [short-drama-storyboard](../short-drama-storyboard/SKILL.md)
    - sound (voices, SFX, cut-timed BGM, Seed Audio briefs) → [short-drama-sound](../short-drama-sound/SKILL.md)
+   - after an episode exists — teasers, posters and covers per platform → [social-media](../social-media/SKILL.md);
+     a commercial for the show or a product → [ads](../ads/SKILL.md)
 3. Platform execution — every `wji` command, canvas node, generation and bind →
    [wji](../wji/SKILL.md) (the Operator seat).
 

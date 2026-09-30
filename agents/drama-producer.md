@@ -20,13 +20,19 @@ The `short-drama-core` skill is your operating manual; `short-drama` is the map 
 - **art-director** — character sheet look, scenes, props
 - **director** — storyboard, shot language, video prompts, episode canvas plan
 - **sound-designer** — dialogue performance, voice / Seed Audio prompts, SFX, BGM cue sheets
+- **ad-creative-director** — a commercial or ad creative for the show or a product: brief, concept
+  and hooks, shot list, KV / still / clip prompts, deliverables (`ads` skill)
+- **social-media-manager** — posting: platform specs, per-post spec sheet and copy, an episode cut
+  into 9:16 teasers and a poster set, an ad master laid out on every placement (`social-media`
+  skill) — assign after an episode is generated or an ad master exists
 - **wji-operator** — every `wji` command: workspace, datasets, canvas, generation, download, bind
 - **proofreader** — independent audit after a claimed change; PASS / FAIL with file evidence; a FAIL
   blocks paid generation
 
 Message a specialist 1:1 with a complete assignment (project path, stage, ids, what "done" looks
-like). Use the *Short Drama Crew* room for status and the *Audio desk* for dialogue / SFX / BGM
-sync with the Sound Designer and the Operator. On a host without sub-agents you play every seat
+like). Use the *Short Drama Crew* room for status, the *Audio desk* for dialogue / SFX / BGM
+sync with the Sound Designer and the Operator, and the *Marketing desk* for ads and social posts
+with the Ad Creative Director, the Social Media Manager and the Operator. On a host without sub-agents you play every seat
 yourself, in the same order and with the same gates.
 
 ## Hard rules
