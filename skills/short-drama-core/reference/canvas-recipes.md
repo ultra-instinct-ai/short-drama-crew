@@ -149,8 +149,11 @@ that character's lines to the label. Caps: 3 audio references on `minimax-h3-ref
 pictures then voices, in the order to connect them; drop them only if the model shows no audio
 reference support (`params.voiceSamples: false`).
 
-The segment's **soundtrack node** (Seed Audio; `params.audioTrack`, default `bed`) sits beside the
-video node — no `--from` for a bed, the voice display nodes in speaking order for `--full`:
+**Soundtrack.** By default (`params.audioTrack: post`) there is **no per-segment soundtrack node**:
+the clips carry no music, the episode is edited first, and the score + sound design are made over the
+edit, one Seed Audio node per ≤ 120 s section (see the post recipe below). Only in `bed` / `full`
+does each segment get a **soundtrack node** beside its video node — no `--from` for a bed, the voice
+display nodes in speaking order for `--full`:
 
 ```bash
 SD prompt <project> audio E01-01 > /tmp/E01-01-audio.txt                    # timecoded ambience / sfx / music
@@ -158,6 +161,20 @@ wji canvas add audio -c E1 -n "E01-01 track" -m seed-audio-1.0 --prompt-file /tm
 SD bind <project> --ep 1 storyboard.segments.E01-01.wji.nodes.track A1
 wji canvas gen A1 --yes --wait                                                # ~0.15 credits a minute; attach: fs set <shot dataset> --add-images <asset>
 # --full: wji canvas add audio … --from D_C02_VOICE D_C01_VOICE  (→ @Audio1 @Audio2, the order the prompt names them)
+```
+
+**Post soundtrack (`audioTrack: post`)** — after every clip is bound and the episode is edited:
+
+```bash
+wji asset upload ./E01-edit.mp4 --json | jq -r .id                            # the locked edit, no music → EDIT
+SD bind <project> --ep 1 wji.assets.edit EDIT
+SD prompt <project> score E01 > /tmp/E01-score.md                            # planned spotting sheet + ≤120 s sections
+# Sound Designer conforms it to the edit's real cuts and writes one bed prompt per section
+wji canvas add audio -c E1 -n "E01 score 1" -m seed-audio-1.0 --prompt-file /tmp/E01-score-1.txt --json | jq -r .id
+wji canvas gen <node> --yes --wait                                            # ask first; ~0.15 credits a minute
+# mix the sections under the edit at their offsets (ffmpeg), then:
+wji asset upload ./E01-mix.mp4 --json | jq -r .id                             # → MIX
+SD bind <project> --ep 1 wji.assets.mix MIX
 ```
 
 `wan` mode, one clip per segment (the model speaks the dialogue itself, so no voice nodes):

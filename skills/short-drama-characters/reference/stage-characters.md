@@ -197,8 +197,8 @@ sample line and its acting direction into the readable 声线 section of `conten
 
 **The sample is a dry voice.** Seed Audio is an audio-scene generator — asked for a line it will
 happily add a room, a score and a coffee machine — so the composed prompt ends its parenthetical
-with `干声，无配乐无音效`. The same model makes the segments' soundtrack beds in stage 5
-(`prompt audio`), where the room, the score and the coffee machine belong.
+with `干声，无配乐无音效`. The same model makes the episode score over the edit (or the per-segment beds) in stage 5
+(`prompt score` / `prompt audio`), where the room, the score and the coffee machine belong.
 
 ### What the voice asset is for
 

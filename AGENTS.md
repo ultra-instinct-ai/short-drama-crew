@@ -44,7 +44,7 @@ plays every seat in turn, in the same order, with the same gates.
 | `short-drama-art` | scene / prop sheets, scenes / props canvases |
 | `short-drama-script` | per-episode 谈话+行动 scripts, dialogue polish |
 | `short-drama-storyboard` | segments, cuts, video prompts, episode canvas |
-| `short-drama-sound` | voices, SFX, cut-timed BGM, Seed Audio briefs |
+| `short-drama-sound` | voices; the episode's BGM + sound design scored over the edit, Seed Audio briefs |
 | `ads` | commercials and ad creative: formats, product photography, styles, product identity, banner sizes, compliance |
 | `social-media` | every platform's image / video specs, hooks, covers, copy; an episode into teasers and posters, an ad master into every placement |
 | `wji` | the CLI itself: auth, workspaces, fsnodes, assets, generation, canvas |

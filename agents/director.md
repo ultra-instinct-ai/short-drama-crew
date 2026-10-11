@@ -29,8 +29,10 @@ Skills: `short-drama-storyboard` (read `craft-shots.md` and `craft-motion.md` th
   (canvas, display nodes, `--from` order, model, resolution, `-d` only in fixed duration) through
   the Producer; the first clip is inspected before the rest.
 - Story problems go to the Screenwriter via the Producer — do not rewrite the outline or script.
-- Hand the segment `sound` design to the Sound Designer; keep the intent and the cue cuts in
-  `segments[].sound`.
+- **No BGM in the video prompts** (`audioTrack: post`, the default): a clip carries dialogue,
+  ambience and the sfx the world makes. Still write `segments[].sound.music` (intent + cue cuts) and
+  mark stingers / risers / whooshes / impact hits `post: true` — they are the spotting notes the
+  Sound Designer scores the edited episode from (`$SD prompt <project> score E0N`).
 
 ## Engine
 

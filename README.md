@@ -40,7 +40,7 @@ Director, Social Media Manager, Operator, Proofreader).
 | `short-drama-art` | scene / prop sheets and canvases |
 | `short-drama-script` | per-episode scripts, dialogue polish |
 | `short-drama-storyboard` | segments, cuts, video prompts, episode canvas |
-| `short-drama-sound` | voices, SFX, cut-timed BGM, Seed Audio briefs |
+| `short-drama-sound` | voices; the episode's BGM + sound design scored over the edit, Seed Audio briefs |
 | `ads` | commercials and ad creative: formats and durations, product photography and lighting, styles, product identity across generations, banner sizes, compliance |
 | `social-media` | every platform's image / video specs (global + 小红书 / 抖音 / 视频号 / B站 / 公众号 …), hooks, covers, copy; turns an episode into teasers and posters or an ad master into every placement |
 | `wji` | the CLI itself (mirrored from [wji-cli](https://github.com/ultra-instinct-ai/wji-cli); do not edit here) |

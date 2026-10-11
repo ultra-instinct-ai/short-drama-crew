@@ -7,7 +7,7 @@
   "ambience": "neon KTV booth hum, leather sofa creak",
   "sfx": [
     { "cut": 2, "event": "wine glass tip and splash on table" },
-    { "cut": 7, "event": "SPECIAL: cliff freeze sting — single high piano hit then silence" }
+    { "cut": 7, "event": "SPECIAL: cliff freeze sting — single high piano hit then silence", "post": true }
   ],
   "music": {
     "intent": "romantic neon slow pulse, soft keys, restrained satin bass",
@@ -23,7 +23,15 @@
 }
 ```
 
-`prompt audio … --bed` / `--full` expands this into `[start s:end s]` lines for Seed Audio.
+Where it goes depends on `params.audioTrack`:
+
+- **`post` (default)** — the clip gets only the ambience, the in-picture sfx and the lines; `music`
+  and every `post: true` sfx stay out of it. They are the spotting notes for the episode score:
+  `$SD prompt <project> score E01` lays them on the episode timeline (SMPTE) for scoring over the
+  edit (`mix-over-video.md`). A cue `at` is still a cut of *this* segment — the sheet adds the
+  segment's offset.
+- **`bed` / `full`** — `prompt audio … --bed` / `--full` expands this into `[start s:end s]` lines
+  for a Seed Audio node per segment, and the music intent also goes into the clip prompt.
 
 ## BGM cue verbs (short-drama-core)
 
@@ -42,11 +50,42 @@ Put mood vocabulary in `intent` + `note`:
 
 Rules: one music intent per segment (or continuous across a scene); instrumental unless vocals are a story beat; **duck under dialogue**; hit 爽点 / cliff on purpose. Continuous texture belongs in **ambience**, not twenty music mood words.
 
+### With a `params.cinematography` preset (sound is half the look)
+
+Craft in `../../short-drama-core/reference/cinematography-<preset>.md`; not gated.
+
+| preset | music / sfx |
+| --- | --- |
+| `low-key` | nothing extra — the usual dread / tension vocabulary |
+| `sweet-romance` | the OST is the segment's `sound.music`, cues on the cut: `enter` on the eye-lock's last cut, `swell` on the look back / the carry / the gap closing, `silence` as the hand lands or just before a confession line (so it lands in a hush), `drop` on the 壁咚; rain on the umbrella, a heartbeat if wanted |
+| `period-nostalgia` | diegetic music of the era — the radio, a period song on the cassette player — in `sound.sfx` or as the segment's `music` intent; cicadas in the courtyard, the bicycle bell, a street hawker, a distant train |
+| `costume-idol` | follows `sweet-romance` for the 心动 set pieces (执手, 簪花, 共乘一马, 月下对饮, 灯会) — `enter` / `swell` / `silence`; wind, chimes, the lantern festival crowd as ambience |
+| `costume-dark` | fire crackle, wind, rain on tiles, armour creaking, distant drums; **`silence`** in the court before a verdict; violence carried by sound and consequence rather than choreography |
+| `scifi-hard` | hums, fans, relays, alarms, radio chatter with squelch, breathing in a helmet; **silence in vacuum** (only the suit's breathing and radio); music sparse — a low drone, a single piano line |
+| `scifi-soft` | rain, crowds in many languages, synth hums, holographic chimes, drones passing; music synthwave / ambient pads |
+
+### By segment grammar (`segment.grammar`, else `params.grammar`)
+
+Craft in `../../short-drama-core/reference/grammar-faceslap.md` §3, `grammar-comedy.md` and
+`action.md` / `action-<style>.md` ("Sound"); gate `grammar-advice` checks the 打脸 music hit.
+
+| grammar | music / sfx |
+| --- | --- |
+| `faceslap` | `silence` or `drop` under the insult, **`enter` / `swell` on the entrance or the proof**, full through the reaction cascade; sfx: the document slapped on the table, the gasp, the cup falling, the murmur rising |
+| `comedy` | **silence before the punchline** (a `silence` cue or a pause in the ambience); `slapstick` — cartoon sfx on every beat (boing, whoosh, record scratch) and a comic sting after the punchline; `deadpan` — no comic sfx, often no music, the ambience (clock, fly, fridge hum) fills the hold; `romcom` — playful pops and plinks, a heartbeat, a cute sting, the OST entering on the blush |
+| `action` | **every impact gets an sfx on its cut**; the music `drop`s out before the decisive blow; per style: `bullet-time` stretched / pitched-down sound then snap back, `gun-fu` driving low synth, `hk-kungfu` exaggerated whooshes and snaps with a comic sting, `historical-realist` metal on metal and often no score, `street-brawl` none or a low drone, `car-chase` engines then the silence after the crash |
+
 ## SFX + special short-drama FX
 
 Every story-visible hit needs `sfx[]` tied to a **cut** (or absolute time in a hand-written prompt). Prefer concrete / onomatopoeic events.
 
 Mark hero moments with `SPECIAL:` in `event` so QC can hear them.
+
+**In the clip or in post?** An sfx the world makes — a glass, a door, a slap, footsteps, rain — is
+in-clip: the video model makes it in sync with the picture. Sound design the world does not make —
+stinger, riser, whoosh, impact hit, reverse cymbal, drone hit, the silence drop — gets `"post": true`:
+it stays out of the clip prompt and is made over the edit, where it can land across a cut. A hit that
+is both (the slap *and* a stinger on it) is two entries.
 
 | Beat | Typical special FX |
 | --- | --- |

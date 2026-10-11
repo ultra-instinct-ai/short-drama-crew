@@ -31,7 +31,7 @@ this folder).
    - art (scene / prop sheets, canvases) → [short-drama-art](../short-drama-art/SKILL.md)
    - script (per-episode 谈话+行动, dialogue polish) → [short-drama-script](../short-drama-script/SKILL.md)
    - storyboard (segments, cuts, video prompts, episode canvas) → [short-drama-storyboard](../short-drama-storyboard/SKILL.md)
-   - sound (voices, SFX, cut-timed BGM, Seed Audio briefs) → [short-drama-sound](../short-drama-sound/SKILL.md)
+   - sound (voices, SFX; after the clips are edited, the episode's BGM + sound design on the edit's timecode) → [short-drama-sound](../short-drama-sound/SKILL.md)
    - after an episode exists — teasers, posters and covers per platform → [social-media](../social-media/SKILL.md);
      a commercial for the show or a product → [ads](../ads/SKILL.md)
 3. Platform execution — every `wji` command, canvas node, generation and bind →
@@ -45,7 +45,7 @@ this folder).
 | Screenwriter | outline, character bible text, scripts | art, storyboard, `wji` |
 | Art Director | scenes, props, sheet look | scripts, storyboards, `wji` |
 | Director | storyboard, shot language, video prompts | rewrites the outline, `wji` |
-| Sound Designer | voice / SFX / BGM prompts and cue sheets | canvas or generation |
+| Sound Designer | voice / SFX prompts; BGM + sound design cue sheets over the edited episode | canvas or generation |
 | Operator | all `wji` / canvas / gen / bind, after the cost is approved | creative decisions |
 | Proofreader | audits claimed changes on disk, PASS / FAIL with evidence | writes or generates |
 

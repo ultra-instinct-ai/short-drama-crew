@@ -20,7 +20,7 @@ $SD <cmd> {project} …
 | `checkup` | `short-drama.mjs checkup {project}` — same, but prints the passing and skipped rows too |
 | `seed` | `short-drama.mjs seed {project} script --ep N [--force]` · `… seed {project} storyboard --ep N [--force]` |
 | `render` | `short-drama.mjs render {project} outline \| guideline \| character C01 \| scene S01 \| prop P01 \| script --ep N \| dialogue --ep N \| segment E01-01` |
-| `prompt` | `short-drama.mjs prompt {project} segment E01-01 [--json]` · `… prompt {project} audio E01-01 [--full\|--bed]` · `… prompt {project} voice C01` |
+| `prompt` | `short-drama.mjs prompt {project} segment E01-01 [--json]` · `… prompt {project} audio E01-01 [--full\|--bed]` · `… prompt {project} score E01 [--fps 24] [--json]` (post soundtrack spotting sheet) · `… prompt {project} voice C01` |
 | `manifest` | `short-drama.mjs manifest {project} [--stage <stage>] [--ep N] [--json]` — exit 2 while anything is unbound |
 | `bind` | `short-drama.mjs bind {project} [--ep N] <path> <value>` — record a WJI id in the JSON |
 

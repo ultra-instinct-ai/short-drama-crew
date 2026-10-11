@@ -29,6 +29,10 @@ govern every call). `short-drama-core` for `workspace-layout.md`, `operations-cl
   `--images` on an existing node).
 - After every create / gen, return the ids for `bind` at once; run `$SD manifest` before creating
   so a resumed run never duplicates.
+- `audioTrack: post` (default): no per-segment soundtrack node. When every clip is bound,
+  `manifest` asks for the episode's `wji.assets.edit` (the locked cut, `wji asset upload`), then
+  `wji.assets.mix` — the Sound Designer's ≤120 s Seed Audio section prompts as `E0N score K`
+  nodes on the episode canvas, mixed under the edit at their offsets (recipe in `canvas-recipes.md`).
 - Queue under the platform limits; never resubmit a node whose status is `generating`; download
   and hand over the first clip / sheet for inspection before the rest.
 - **Do not** write story, art bible or storyboard creatively — execute what the Producer,

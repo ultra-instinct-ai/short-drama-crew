@@ -17,7 +17,7 @@ import {
   speechDirection, cameraPhrase, lightPhrase, foregroundPhrase, focalOf, LIGHT_DIRECTIONS, identityOf, isEnglish,
   renderGuideline, renderDialogue, scriptSelfCheck, beatOffsets, turnPoints, parseAge, talkAndAction, normalizeRegister, REGISTERS, REGISTER_ACCENT,
   cutStart, segmentCharacters, keyScenes, shotTexts, motionSentence, cameraClause, PURPOSE_KINDS, ANGLES, HEIGHTS, NO_SUBTITLES, LIPS_CLOSED,
-  audioPrompt, musicOf, cueSeconds, AUDIO_MODEL, AUDIO_MAX_CHARS,
+  audioPrompt, musicOf, cueSeconds, AUDIO_MODEL, AUDIO_MAX_CHARS, AUDIO_MAX_SECONDS, scoreSheet, smpte,
   VIDEO_MODELS, VIDEO_MODES, DEFAULT_PARAMS, videoModel, videoResolutionFor, nearestResolution, segmentPlan, videoReferences,
   formatGates, displayName, imagePrompt, imagePromptKit, foldZh, IMAGE_PROMPT_LANGS,
 } from './short-drama.mjs';
@@ -1397,21 +1397,24 @@ const breaks = (gateId, project, episode, needle) => {
   eq(cueSeconds(3, seg5.cuts), 6, 'a cue at a cut number is that cut\'s start');
   eq(cueSeconds('10.5s', seg5.cuts), 10.5, 'a cue in seconds is read as seconds');
   eq(cueSeconds('later', seg5.cuts), null, 'a cue that is neither is null');
-  const bed = audioPrompt(PROJECT, E01, seg5);
-  eq(bed.mode, 'bed', 'the default track is a bed');
+  // A per-segment soundtrack node is the `bed` / `full` mode; the default is `post` (scored over the edit).
+  const PB = clone(PROJECT); PB.params.audioTrack = 'bed';
+  eq(paramsOf(PROJECT).audioTrack, 'post', 'the default soundtrack is made in post, over the edit');
+  const bed = audioPrompt(PB, E01, seg5);
+  eq(bed.mode, 'bed', 'bed mode makes a bed');
   eq(bed.model, AUDIO_MODEL, 'the soundtrack node is Seed Audio');
   ok(bed.prompt.startsWith('[0.0s:11.0s] Ambience, continuous: the low hum'), 'the bed opens with the timecoded ambience');
   ok(bed.prompt.includes('[6.0s:9.0s] SFX: a single ring of the brass wind chimes'), 'sfx are timecoded to their cut');
   ok(bed.prompt.includes('[6.0s:10.5s] the music swells — on the chime.') && bed.prompt.includes('[10.5s:11.0s] the music falls silent'), 'music cues become timecoded states');
   ok(bed.prompt.includes('No dialogue, no vocals, no narration.'), 'a bed carries no voices');
   eq(bed.references.length, 0, 'a bed references no voices');
-  const full = audioPrompt(PROJECT, E01, E01.storyboard.segments[1], { mode: 'full' });
+  const full = audioPrompt(PB, E01, E01.storyboard.segments[1], { mode: 'full' });
   eq(full.references.map((r) => r.label).join(','), '@Audio1,@Audio2', 'full mode references the speakers as @AudioN');
   ok(full.prompt.includes('[5.5s:7.1s] @Audio1 (the stocky man in his sixties with a grey crew cut), slow and gravelly'), 'a line is timecoded into its cut after the lead-in, in its voice and direction');
   ok(full.prompt.includes('says: 又是你值夜班。'), 'the line is verbatim');
-  const noMusic = audioPrompt(PROJECT, E01, E01.storyboard.segments[0]);
+  const noMusic = audioPrompt(PB, E01, E01.storyboard.segments[0]);
   ok(noMusic.prompt.includes('No music.'), 'N/A music is stated');
-  const md = renderSegment(PROJECT, E01, 'E01-05');
+  const md = renderSegment(PB, E01, 'E01-05');
   ok(md.includes('## 音轨提示词（seed-audio-1.0 · bed · 11 s）') && md.includes('配乐：the low cello note（镜1 enter，镜3 swell，10.5s silence）'), 'segment markdown carries the soundtrack prompt and the cues');
   // gates
   const e = clone(E01); e.storyboard.segments[4].sound.music = { intent: '', cues: [] };
@@ -1421,7 +1424,7 @@ const breaks = (gateId, project, episode, needle) => {
   const e3 = clone(E01); e3.storyboard.segments[4].sound.music.cues[0].at = '40s';
   breaks('sound', PROJECT, e3, 'inside the segment');
   const e4 = clone(E01); e4.storyboard.segments[4].sound.ambience = 'x'.repeat(AUDIO_MAX_CHARS);
-  breaks('audio-track', PROJECT, e4, 'max 2048');
+  breaks('audio-track', PB, e4, 'max 2048');
   const p = clone(PROJECT); p.params.audioTrack = 'full';
   p.characters.push({ id: 'C04', name: '路人', tier: 'functional', role: 'r', from: ['原创'], identityEn: 'a passer-by in a wet coat', voice: { videoDirection: 'flat' } });
   const e5 = clone(E01); e5.scenes[1].characters.push('C03', 'C04');
@@ -1431,9 +1434,51 @@ const breaks = (gateId, project, episode, needle) => {
   eq(failures('audio-track', p2, E01).length, 0, 'audioTrack none skips the gate');
   const p3 = clone(PROJECT); p3.params.audioTrack = 'stems';
   breaks('params', p3, null, 'audioTrack');
-  const items = manifest(PROJECT, { 1: E01 });
-  ok(items.some((i) => i.item === 'storyboard.segments.E01-01.wji.nodes.track'), 'manifest asks for the soundtrack node');
+  const items = manifest(PB, { 1: E01 });
+  ok(items.some((i) => i.item === 'storyboard.segments.E01-01.wji.nodes.track'), 'bed mode: manifest asks for the soundtrack node');
   ok(!manifest(p2, { 1: E01 }).some((i) => i.item.includes('.nodes.track')), 'audioTrack none asks for no soundtrack node');
+  // post (default): no music in any clip, no per-segment track, the episode is scored over the edit
+  ok(!manifest(PROJECT, { 1: E01 }).some((i) => i.item.includes('.nodes.track')), 'post asks for no per-segment soundtrack node');
+  eq(failures('audio-track', PROJECT, E01).length, 0, 'post skips the per-segment audio gate');
+  for (const video of ['h3', 'seedance2', 'wan']) {
+    for (const references of ['keyframes', 'sheets']) {
+      const pv = clone(PROJECT); pv.params.video = video; pv.params.references = references;
+      const vp = promptSkeleton(pv, E01, 'E01-05').video.prompt;
+      ok(!vp.includes('cello'), `post: the music intent stays out of the clip (${video}/${references})`);
+      ok(video === 'h3' ? vp.includes('non_diegetic_music: N/A') : video === 'wan' ? vp.includes('无配乐') : vp.includes('No music.'), `post: the clip is told there is no music (${video}/${references})`);
+      const pb = clone(pv); pb.params.audioTrack = 'bed';
+      ok(promptSkeleton(pb, E01, 'E01-05').video.prompt.includes('cello'), `bed: the music intent is still in the clip (${video}/${references})`);
+    }
+  }
+  const ePost = clone(E01); ePost.storyboard.segments[4].sound.sfx.push({ cut: 3, event: 'SPECIAL: a reversed-cymbal riser into a hard stop', post: true });
+  ok(!promptSkeleton(PROJECT, ePost, 'E01-05').video.prompt.includes('reversed-cymbal'), 'a post: true sfx stays out of the clip');
+  ok(audioPrompt(PB, ePost, ePost.storyboard.segments[4]).prompt.includes('reversed-cymbal'), 'a post: true sfx is still in a per-segment bed');
+  ok(renderSegment(PROJECT, E01, 'E01-05').includes('prompt score E01'), 'post: segment markdown points at the episode score sheet');
+  const sheet = scoreSheet(PROJECT, ePost);
+  eq(sheet.seconds, 68, 'the score sheet lays the segments end to end');
+  eq(sheet.fps, 24, 'the score sheet defaults to 24 fps');
+  eq(smpte(63.5, 24), '00:01:03:12', 'SMPTE is HH:MM:SS:FF');
+  eq(smpte(3725, 25), '01:02:05:00', 'SMPTE carries hours');
+  ok(sheet.rows.some((r) => r.layer === 'BGM' && r.at === 63 && r.what.startsWith('swell')), 'a music cue lands at its segment offset + cut start');
+  ok(sheet.rows.some((r) => r.layer === 'design' && r.at === 63 && r.what.includes('reversed-cymbal')), 'post sfx are sound design on the sheet');
+  ok(sheet.rows.some((r) => r.layer === 'sfx in clip' && r.what.includes('wind chimes')), 'in-clip sfx are listed so they are not doubled');
+  ok(sheet.rows.some((r) => r.layer === 'DX' && r.at === 3.5), 'lines are spotted after the lead-in, for ducking');
+  eq(sheet.rows.filter((r) => r.layer === 'BGE').length, 2, 'one ambience bed per scene, chained across its segments');
+  eq(sheet.rows.find((r) => r.layer === 'BGE' && r.segment === 'E01-02').end, 68, 'the scene bed runs to the scene end');
+  ok(sheet.rows.some((r) => r.layer === 'story' && r.what.startsWith('hook')) && sheet.rows.some((r) => r.layer === 'story' && r.what.startsWith('cliff')), 'the hook and the cliff anchor 起 / 合');
+  eq(sheet.sections.length, 1, 'a 68 s episode is one Seed Audio section');
+  const eLong = clone(E01);
+  for (const sg of eLong.storyboard.segments) for (const c of sg.cuts) c.seconds *= 2;   // 136 s
+  const long = scoreSheet(PROJECT, eLong, { fps: 25 });
+  ok(long.sections.length === 2 && long.sections.every((x) => x.seconds <= AUDIO_MAX_SECONDS), 'a long episode splits into ≤ 120 s sections');
+  eq(long.sections[0].segments.join(','), 'E01-01', 'the split falls on the scene change');
+  eq(long.fps, 25, '--fps overrides the frame rate');
+  const pp = clone(PROJECT); const eDone = clone(E01);
+  for (const sg of eDone.storyboard.segments) sg.wji = { ...(sg.wji || {}), assets: { ...(sg.wji?.assets || {}), video: 'a1' } };
+  ok(manifest(pp, { 1: eDone }).some((i) => i.item === 'wji.assets.edit'), 'post: once every clip exists the manifest asks for the edit');
+  eDone.wji = { ...(eDone.wji || {}), assets: { edit: 'e1' } };
+  ok(manifest(pp, { 1: eDone }).some((i) => i.item === 'wji.assets.mix'), 'post: after the edit it asks for the scored mix');
+  ok(!manifest(pp, { 1: E01 }).some((i) => i.item.startsWith('wji.assets.')), 'post: no edit item while clips are missing');
   ok(voiceSamplePrompt(PROJECT.characters[0], paramsOf(PROJECT)).includes('干声，无配乐无音效'), 'the voice sample is asked for dry');
 }
 
