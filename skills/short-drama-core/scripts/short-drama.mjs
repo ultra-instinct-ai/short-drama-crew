@@ -30,6 +30,8 @@
 //   prompt   <project> image C01|S01|P01 [--asset headshot|sheet|lighting:<state>|state:<state>] [--json]
 //                                                      the image node's prompt, in params.imagePromptLang (+ negative, ratio, reference)
 //   prompt   <project> audio E01-01 [--full]          the segment's Seed Audio soundtrack prompt (timecoded ambience / sfx / music, + lines with --full)
+//   prompt   <project> score E01 [--fps 24]           the episode's spotting sheet for the post soundtrack (audioTrack post): planned
+//                                                      timecodes of scenes, lines, music cues and post sfx, and the ≤120 s Seed Audio sections
 //   manifest <project> [--stage …] [--ep N]           unbound WJI objects, in execution order
 //   bind     <project> [--ep N] <path> <value>        write a WJI id back (path segments may be entity ids)
 //   slug     <name>
@@ -104,8 +106,12 @@ export const DEFAULT_PARAMS = Object.freeze({
   speechLeadSeconds: 0.5,
   subtitles: false,
   maxFrameChars: 900,
-  // A Seed Audio node per segment: the soundtrack bed by default (ambience, sfx, timed music).
-  audioTrack: 'bed',
+  // Where the score lives. `post` (default): the clips carry dialogue, ambience and in-picture sfx but
+  // no music — music and sound design cannot carry across separately generated segments, so they are
+  // made once over the edited episode, on its timecode. `bed` / `full`: a Seed Audio node per segment.
+  audioTrack: 'post',
+  // Frame rate the post spotting sheet writes SMPTE timecode at (conform it to the edit's real fps).
+  scoreFps: 24,
   // Scene-boundary contrast: last K cuts of scene N vs first K of scene N+1 (gate boundary-contrast).
   boundaryContrastCuts: 2,
   thresholds: { maxLeads: 5, maxSupport: 10, maxFunctional: 10, maxBeatGap: 3, maxProps: 8 },
@@ -185,8 +191,14 @@ export const AUDIO_MODEL = VOICE_MODEL;
 export const AUDIO_MAX_SECONDS = 120;
 export const AUDIO_MAX_CHARS = 2048;
 export const AUDIO_MAX_REFS = 3;
-/** What the per-segment audio node generates: nothing, a bed (ambience + sfx + music) or the full track with the lines. */
-export const AUDIO_TRACK_MODES = ['none', 'bed', 'full'];
+/**
+ * Where the soundtrack is made. `post`: no music in the clips and no per-segment audio node — the
+ * score and sound design are made once over the edited episode (`prompt score`). `none`: nothing.
+ * `bed` (ambience + sfx + music) / `full` (the bed plus the lines): a Seed Audio node per segment.
+ */
+export const AUDIO_TRACK_MODES = ['post', 'none', 'bed', 'full'];
+/** No per-segment audio node in these modes. */
+export const NO_SEGMENT_TRACK = ['post', 'none'];
 /** What the music does at a cue point. */
 export const MUSIC_CUES = ['enter', 'swell', 'duck', 'drop', 'silence', 'out'];
 /** `fixed` passes `-d` = Σ cut seconds; `auto` leaves it off and lets the model match the prompt. */
@@ -1488,6 +1500,100 @@ export function audioPrompt(project, episode, seg, opts = {}) {
   } else lines.push('No dialogue, no vocals, no narration.');
   const prompt = lines.join('\n');
   return { segment: seg.id, mode, seconds: total, prompt, references, model: AUDIO_MODEL };
+}
+
+/** Seconds → SMPTE `HH:MM:SS:FF` at a whole-number frame rate. */
+export function smpte(seconds, fps = 24) {
+  const f = Math.max(0, Math.round(Number(seconds) * fps));
+  const ff = f % fps, total = Math.floor(f / fps);
+  return [Math.floor(total / 3600), Math.floor(total / 60) % 60, total % 60, ff].map(pad2).join(':');
+}
+
+/**
+ * The episode's spotting sheet for the post soundtrack (`audioTrack: post`): the storyboard laid end to
+ * end on one timeline — scene beds (BGE), every line (where the music ducks), each segment's music
+ * intent and cues, the `post: true` sound design, the sfx already in the clips (never doubled), and the
+ * hook / turns / 爽点 / cliff as the 起承转合 anchors. It is the PLANNED timeline: the Sound Designer
+ * conforms it to the edited video's real cuts before writing the Seed Audio prompts, one per section
+ * of ≤ AUDIO_MAX_SECONDS, split at a scene change where one fits.
+ */
+export function scoreSheet(project, episode, opts = {}) {
+  const params = paramsOf(project);
+  const fps = Math.round(Number(opts.fps || params.scoreFps)) || 24;
+  const segs = (episode.storyboard?.segments || []).filter((s) => (s.cuts || []).length);
+  const rows = [];
+  const spans = [];
+  const beatAtTime = new Map();
+  let t = 0, bed = null;
+  for (const seg of segs) {
+    const cuts = seg.cuts;
+    const starts = cutStarts(cuts);
+    const total = cuts.reduce((sum, c) => sum + (Number(c.seconds) || 0), 0);
+    const si = Number(seg.sceneIndex);
+    const scene = (episode.scenes || [])[si - 1] || {};
+    const sound = isObject(seg.sound) ? seg.sound : {};
+    const newScene = !spans.length || spans[spans.length - 1].scene !== si;
+    spans.push({ segment: seg.id, scene: si, start: t, end: t + total });
+    rows.push({ at: t, end: t + total, layer: 'segment', segment: seg.id, what: `S${si}${newScene ? ' — new scene' : ''}` });
+    if (newScene || !bed) {
+      bed = { at: t, end: t + total, layer: 'BGE', segment: seg.id, what: sound.ambience || '…' };
+      rows.push(bed);
+    } else bed.end = t + total;
+    cuts.forEach((c, k) => {
+      const [from, to] = c.beats || [0, -1];
+      for (let b = from; b <= to; b++) if (!beatAtTime.has(`${si}:${b}`)) beatAtTime.set(`${si}:${b}`, t + starts[k]);
+      let at = t + starts[k] + (Number(params.speechLeadSeconds) || 0);
+      for (const l of claimedLines(scene, [c])) {
+        const secs = lineSeconds(l.line, params);
+        const who = l.speaker === 'VO' ? 'VO' : characterById(project, l.speaker)?.name || l.speaker;
+        rows.push({ at, end: Math.min(t + total, at + secs), layer: 'DX', segment: seg.id, what: `${who}: ${l.line}` });
+        at += secs;
+      }
+    });
+    for (const x of asList(sound.sfx)) {
+      const k = Number(x?.cut);
+      if (!(k >= 1 && k <= cuts.length)) continue;
+      const at = t + starts[k - 1];
+      rows.push({ at, end: at + (Number(cuts[k - 1].seconds) || 0), layer: x.post === true ? 'design' : 'sfx in clip', segment: seg.id, what: String(x.event) });
+    }
+    const music = musicOf(sound);
+    if (music.intent) {
+      const cues = music.cues.map((c) => ({ at: cueSeconds(c?.at, cuts), do: c?.do, note: c?.note })).filter((c) => c.at != null).sort((a, b) => a.at - b.at);
+      if (!cues.length) rows.push({ at: t, end: t + total, layer: 'BGM', segment: seg.id, what: `bed — ${music.intent}` });
+      cues.forEach((c, i) => rows.push({ at: t + c.at, end: t + (i + 1 < cues.length ? cues[i + 1].at : total), layer: 'BGM', segment: seg.id, what: `${c.do} — ${music.intent}${c.note ? ` (${c.note})` : ''}` }));
+    }
+    t += total;
+  }
+  const point = (ref, what) => {
+    const at = Array.isArray(ref) ? beatAtTime.get(`${Number(ref[0])}:${Number(ref[1])}`) : undefined;
+    if (at != null) rows.push({ at, end: at, layer: 'story', segment: '', what });
+  };
+  point(episode.hookBeat, 'hook (起)');
+  (episode.scenes || []).forEach((sc, si) => (sc.flow || []).forEach((b, bi) => { if (b.turn === true) point([si + 1, bi + 1], 'turn (转)'); }));
+  point(episode.satisfactionBeat, '爽点');
+  if (segs.length) rows.push({ at: t, end: t, layer: 'story', segment: '', what: 'cliff (合) — last frame' });
+  const order = ['story', 'segment', 'BGE', 'BGM', 'design', 'sfx in clip', 'DX'];
+  rows.sort((a, b) => a.at - b.at || order.indexOf(a.layer) - order.indexOf(b.layer));
+  // Seed Audio sections: ≤ AUDIO_MAX_SECONDS, cut at a segment boundary, the latest scene change when one fits.
+  const sections = [];
+  let open = [];
+  for (const sp of spans) {
+    if (open.length && sp.end - open[0].start > AUDIO_MAX_SECONDS) {
+      let cut = open.length;
+      for (let i = open.length - 1; i > 0; i--) if (open[i].scene !== open[i - 1].scene) { cut = i; break; }
+      sections.push(open.slice(0, cut));
+      open = open.slice(cut);
+    }
+    open.push(sp);
+  }
+  if (open.length) sections.push(open);
+  return {
+    episode: `E${pad2(episode.ep)}`,
+    fps,
+    seconds: t,
+    rows: rows.map((r) => ({ ...r, tcIn: smpte(r.at, fps), tcOut: smpte(r.end, fps) })),
+    sections: sections.map((g, i) => ({ n: i + 1, start: g[0].start, end: g[g.length - 1].end, seconds: g[g.length - 1].end - g[0].start, segments: g.map((x) => x.segment), tcIn: smpte(g[0].start, fps), tcOut: smpte(g[g.length - 1].end, fps) })),
+  };
 }
 
 // ── gates ───────────────────────────────────────────────────────────────────
@@ -3459,7 +3565,7 @@ export const GATES = [
   gate('audio-track', 'storyboard', 'Seed Audio node per segment: the derived prompt fits the model (≤ 120 s, ≤ 2048 chars, ≤ 3 voices in full mode)', (ctx) => {
     const { project, params } = ctx;
     const out = [];
-    if (params.audioTrack === 'none') return out;
+    if (NO_SEGMENT_TRACK.includes(params.audioTrack)) return out;
     for (const [, e] of ctx.episodes) {
       for (const seg of e.storyboard?.segments || []) {
         if (!(seg.cuts || []).length || !isObject(seg.sound)) continue;
@@ -4389,7 +4495,10 @@ export function promptSkeleton(project, episode, segmentId) {
   const actionLine = cutLines.length ? [...cutLines, ''] : [];
   const accent = String(params.speechAccent || '').trim();
   const sound = isObject(seg.sound) ? seg.sound : {};
-  const sfxOf = (k) => asList(sound.sfx).filter((x) => Number(x?.cut) === k + 1).map((x) => String(x.event)).join('; ');
+  // `post: true` sfx (stingers, risers, whooshes — sound design outside the story world) are made over
+  // the edit, never in the clip; in `post` mode the music is too, so the clip is told there is none.
+  const sfxOf = (k) => asList(sound.sfx).filter((x) => x?.post !== true && Number(x?.cut) === k + 1).map((x) => String(x.event)).join('; ');
+  const clipMusic = params.audioTrack === 'post' ? '' : musicOf(sound).intent;
   // Who else is on screen while `speaker` has a line: the H3 idiom keeps the lip-sync off them.
   // In keyframes mode the @imageN labels are frames, so a person is named by identity instead.
   const othersOnScreen = (c, speaker) => (c.characters || []).filter((id) => id !== speaker).map((id) => (params.references === 'sheets' && sheetLabels.get(id) ? `the person in ${sheetLabels.get(id)}` : identityOf(characterById(project, id))));
@@ -4419,7 +4528,7 @@ export function promptSkeleton(project, episode, segmentId) {
       : [h3AlignmentLine(cuts), ...voiceLegend];
     const look = sheets ? [`Look: ${lookOf()}.`, ''] : [];
     const soundscape = [sound.ambience || '…', ...cuts.map((c, k) => (sfxOf(k) ? `at [Shot ${k + 1}] ${sfxOf(k)}` : '')).filter(Boolean)].join('; ');
-    video = [...lead, '', ...look, ...actionLine, 'integrated_multimodal_description:', ...shots, '', `overall_soundscape: ${soundscape}.${accent && dialogue.flat().length ? ` All dialogue in ${accent}.` : ''}${params.subtitles ? '' : ` ${NO_SUBTITLES.en[0].toUpperCase()}${NO_SUBTITLES.en.slice(1)}.`}`, '', `non_diegetic_music: ${musicOf(sound).intent || 'N/A'}`].join('\n');
+    video = [...lead, '', ...look, ...actionLine, 'integrated_multimodal_description:', ...shots, '', `overall_soundscape: ${soundscape}.${accent && dialogue.flat().length ? ` All dialogue in ${accent}.` : ''}${params.subtitles ? '' : ` ${NO_SUBTITLES.en[0].toUpperCase()}${NO_SUBTITLES.en.slice(1)}.`}`, '', `non_diegetic_music: ${clipMusic || 'N/A'}`].join('\n');
   } else if (mode.family === 'wan') {
     const blocks = cuts.map((c, k) => {
       const talk = dialogue[k].map((l) => `台词（${l.speakerRef}，${l.direction || '…'}）：「${l.line}」`);
@@ -4434,7 +4543,7 @@ export function promptSkeleton(project, episode, segmentId) {
       ...blocks.flatMap((b) => [b, '']),
       ...(cine && params.references === 'sheets' ? [`画面：${cine.videoPhraseZh}${params.lookPhraseZh ? `，${params.lookPhraseZh}` : ''}。`, ''] : []),
       ...(grammarLines(seg, params, 'zh').length ? [...grammarLines(seg, params, 'zh'), ''] : []),
-      `音频：对白为${accent || '…'}，环境音${sound.ambience || '…'}${sfxAll ? `；${sfxAll}` : ''}${musicOf(sound).intent ? `；配乐：${musicOf(sound).intent}` : ''}。${params.subtitles ? '' : `${NO_SUBTITLES.zh}。`}`,
+      `音频：对白为${accent || '…'}，环境音${sound.ambience || '…'}${sfxAll ? `；${sfxAll}` : ''}${clipMusic ? `；配乐：${clipMusic}` : params.audioTrack === 'post' ? '；无配乐' : ''}。${params.subtitles ? '' : `${NO_SUBTITLES.zh}。`}`,
     ].join('\n');
   } else if (params.references === 'sheets') {
     const legend = allRefs.map((r) => `${r.label} is ${r.use}.`);
@@ -4451,7 +4560,7 @@ export function promptSkeleton(project, episode, segmentId) {
       return `Shot ${k + 1} (${starts[k].toFixed(1)}–${(starts[k] + Number(c.seconds)).toFixed(1)} s, ${SIZES[c.size] || c.size}, ${c.camera}): ${c.frame || '…'} ${motionSentence(c)} ${cameraClause(c)} ${talk}`.replace(/\s+/g, ' ').trim();
     });
     const sfxAll = cuts.map((c, k) => (sfxOf(k) ? `shot ${k + 1}: ${sfxOf(k)}` : '')).filter(Boolean).join('; ');
-    video = [...legend, '', ...shots, '', ...actionLine, `Look: ${lookOf()}. Maintain continuity in character identities, clothing, prop ownership, scene layout and the camera axis across every shot.`, `Sound: ${sound.ambience || '…'}${sfxAll ? `; ${sfxAll}` : ''}.${accent && dialogue.flat().length ? ` All dialogue in ${accent}.` : ''}${musicOf(sound).intent ? ` Music: ${musicOf(sound).intent}.` : ' No music.'}${params.subtitles ? '' : ` ${NO_SUBTITLES.en[0].toUpperCase()}${NO_SUBTITLES.en.slice(1)}.`}`].join('\n');
+    video = [...legend, '', ...shots, '', ...actionLine, `Look: ${lookOf()}. Maintain continuity in character identities, clothing, prop ownership, scene layout and the camera axis across every shot.`, `Sound: ${sound.ambience || '…'}${sfxAll ? `; ${sfxAll}` : ''}.${accent && dialogue.flat().length ? ` All dialogue in ${accent}.` : ''}${clipMusic ? ` Music: ${clipMusic}.` : ' No music.'}${params.subtitles ? '' : ` ${NO_SUBTITLES.en[0].toUpperCase()}${NO_SUBTITLES.en.slice(1)}.`}`].join('\n');
   } else {
     const anchors = [...seedanceAnchors(cuts.length), ...allRefs.filter((r) => r.kind !== 'image').map((r) => `${r.label} is ${r.use}.`)];
     const shotOf = (c) => `${SIZES[c.size] || c.size}, ${c.camera}, ${cameraPhrase(c, params)}; ${lightPhrase(c)}${foregroundPhrase(c)}`;
@@ -4467,7 +4576,7 @@ export function promptSkeleton(project, episode, segmentId) {
       return `From @image${k + 1} (${starts[k].toFixed(1)}–${(starts[k] + Number(c.seconds)).toFixed(1)} s): ${motionSentence(c)} ${cameraClause(c)} ${talk}`.replace(/\s+/g, ' ').trim();
     });
     const sfxAll = cuts.map((c, k) => (sfxOf(k) ? `from @image${k + 1}: ${sfxOf(k)}` : '')).filter(Boolean).join('; ');
-    video = [...anchors, ...states, '', ...script, '', ...actionLine, 'Maintain continuity in character identities, clothing, prop ownership, scene layout and the camera axis.', `Sound: ${sound.ambience || '…'}${sfxAll ? `; ${sfxAll}` : ''}.${accent && dialogue.flat().length ? ` All dialogue in ${accent}.` : ''}${musicOf(sound).intent ? ` Music: ${musicOf(sound).intent}.` : ' No music.'}${params.subtitles ? '' : ` ${NO_SUBTITLES.en[0].toUpperCase()}${NO_SUBTITLES.en.slice(1)}.`}`].join('\n');
+    video = [...anchors, ...states, '', ...script, '', ...actionLine, 'Maintain continuity in character identities, clothing, prop ownership, scene layout and the camera axis.', `Sound: ${sound.ambience || '…'}${sfxAll ? `; ${sfxAll}` : ''}.${accent && dialogue.flat().length ? ` All dialogue in ${accent}.` : ''}${clipMusic ? ` Music: ${clipMusic}.` : ' No music.'}${params.subtitles ? '' : ` ${NO_SUBTITLES.en[0].toUpperCase()}${NO_SUBTITLES.en.slice(1)}.`}`].join('\n');
   }
 
   const sceneEntity = sceneById(project, scene.sceneId) || {};
@@ -4822,7 +4931,9 @@ export function renderSegment(project, episode, segmentId) {
   lines.push('## 画面提示词（起始瞬间）', '', ...cuts.flatMap((c, k) => [`**${k + 1}.** ${c.frame || ''}`, '']));
   if (seg.note) lines.push(`> ${seg.note}`, '');
   lines.push('## 视频提示词', '', '```', seg.prompt || '', '```', '');
-  if (params.audioTrack !== 'none' && isObject(seg.sound)) {
+  if (params.audioTrack === 'post' && isObject(seg.sound)) {
+    lines.push('## 音轨', '', `配乐与声音设计在剪辑后整集制作（audioTrack post）— 本段的配乐意图与 post 音效写入整集的 spotting sheet：\`prompt score E${pad2(episode.ep)}\`。`, '');
+  } else if (params.audioTrack !== 'none' && isObject(seg.sound)) {
     const a = audioPrompt(project, episode, seg);
     lines.push(`## 音轨提示词（${AUDIO_MODEL} · ${a.mode} · ${round2(a.seconds)} s）`, '', '```', a.prompt, '```', '');
   }
@@ -4906,13 +5017,18 @@ export function manifest(project, episodes, opts = {}) {
         if (!sw.nodes?.keyframes?.[k]) add('storyboard', seg.id, `storyboard.segments.${seg.id}.wji.nodes.keyframes.${k}`, `wji canvas add image -c <${E}> -n "${seg.id} f${k + 1}" --from <display nodes>`);
         else if (!sw.assets?.keyframes?.[k]) add('storyboard', seg.id, `storyboard.segments.${seg.id}.wji.assets.keyframes.${k}`, `wji canvas gen ${sw.nodes.keyframes[k]} → asset`);
       }
-      if (paramsOf(project).audioTrack !== 'none' && isObject(seg.sound)) {
+      if (!NO_SEGMENT_TRACK.includes(paramsOf(project).audioTrack) && isObject(seg.sound)) {
         const full = paramsOf(project).audioTrack === 'full';
         if (!sw.nodes?.track) add('storyboard', seg.id, `storyboard.segments.${seg.id}.wji.nodes.track`, `wji canvas add audio -c <${E}> -n "${seg.id} track" -m ${AUDIO_MODEL}${full ? ' --from <voice display nodes, speaking order>' : ''} --prompt-file <prompt audio ${seg.id}>`);
         else if (!sw.assets?.track) add('storyboard', seg.id, `storyboard.segments.${seg.id}.wji.assets.track`, `wji canvas gen ${sw.nodes.track} → asset → fs set <shot dataset> --add-images <asset>`);
       }
       if (!sw.nodes?.video) add('storyboard', seg.id, `storyboard.segments.${seg.id}.wji.nodes.video`, `wji canvas add video -c <${E}> -n "${seg.id}" --from <${paramsOf(project).references === 'sheets' ? 'sheet display nodes' : 'keyframes'}>`);
       else if (!sw.assets?.video) add('storyboard', seg.id, `storyboard.segments.${seg.id}.wji.assets.video`, `wji canvas gen ${sw.nodes.video} (video — ask first) → asset`);
+    }
+    // Post soundtrack: once every clip exists, the episode is edited, then scored and mixed as one.
+    if (paramsOf(project).audioTrack === 'post' && segs.length && segs.every((s) => s.wji?.assets?.video)) {
+      if (!ew.assets?.edit) add('storyboard', E, 'wji.assets.edit', `edit the clips into the locked ${E} cut (no music) → wji asset upload <${E} edit.mp4>`);
+      else if (!ew.assets?.mix) add('storyboard', E, 'wji.assets.mix', `prompt score ${E} → conform to the edit → Seed Audio per section (wji canvas add audio -c <${E}> -n "${E} score N" -m ${AUDIO_MODEL} --prompt-file …; ask first) → mix under the edit → wji asset upload <${E} mix.mp4>`);
     }
   }
   return items;
@@ -5212,6 +5328,28 @@ function main(argv) {
       console.log(`# ${out.segment} · audio ${out.model} · ${out.mode} · ${round2(out.seconds)}s${out.references.length ? ` · refs: ${out.references.map((r) => `${r.label} ← ${r.entity}:${r.asset}`).join(', ')}` : ''}`);
       console.log('');
       console.log(out.prompt);
+    }
+    return 0;
+  }
+
+  if (cmd === 'prompt' && pos[1] === 'score') {
+    const ep = Number((pos[2] || '').match(/^E(\d+)$/)?.[1]);
+    const { project, episodes } = loadProject(input);
+    if (!ep || !episodes[ep]) throw new Error('usage: prompt <project> score E01 [--fps 24] [--json]');
+    const out = scoreSheet(project, episodes[ep], { fps: flag(rest, '--fps') });
+    if (flag(rest, '--json')) console.log(JSON.stringify(out, null, 2));
+    else {
+      console.log(`# ${out.episode} · post soundtrack spotting sheet · ${round2(out.seconds)} s · ${smpte(out.seconds, out.fps)} @ ${out.fps} fps`);
+      console.log('');
+      console.log('PLANNED timeline (storyboard end to end). Conform every row to the edited video\'s real cuts before writing prompts.');
+      console.log('Layers: BGE / BGM / design are made in post; "sfx in clip" and DX are already in the video — never double them; BGM ducks under DX.');
+      console.log('');
+      console.log('| TC in | TC out | sec | layer | segment | what |');
+      console.log('| --- | --- | --- | --- | --- | --- |');
+      for (const r of out.rows) console.log(`| ${r.tcIn} | ${r.tcOut} | ${r.at.toFixed(1)}–${r.end.toFixed(1)} | ${r.layer} | ${r.segment} | ${String(r.what).replace(/\|/g, '/')} |`);
+      console.log('');
+      console.log(`Seed Audio sections (≤ ${AUDIO_MAX_SECONDS} s each, local time 0 = section start):`);
+      for (const x of out.sections) console.log(`  ${x.n}. ${x.tcIn} → ${x.tcOut} (${round2(x.seconds)} s) · ${x.segments.join(', ')}`);
     }
     return 0;
   }

@@ -96,11 +96,16 @@ cinematography preset's guide (`../short-drama-core/reference/cinematography-<pr
    nobody extra) before the rest. Stay under the queue cap. A `wan-3.0-ref` rejection from
    DashScope's content filter (`DataInspectionFailed`) charges nothing and is partly random —
    retry the same node 8–12 times, then **shorten** the prompt.
-5. Soundtrack per segment: hand the `segment.sound` design to the Sound Designer
-   (`../short-drama-sound/SKILL.md`); `$SD prompt <project> audio E0N-01` derives the Seed Audio
-   prompt.
-6. After each clip: `wji fs set <shot dataset> --add-images <track> --set primaryVideo=<clip>`;
-   bind asset ids. `$SD manifest <project> --ep N` must be clean before the episode is done.
+5. **No BGM in the clips.** With `params.audioTrack: post` (the default) a clip carries dialogue,
+   ambience and in-picture sfx only — music and sound design (stingers, risers, whooshes) cannot
+   carry across separately generated segments. Still write `segment.sound.music` (intent + cues) and
+   mark sound-design hits `post: true`: they are the spotting notes the Sound Designer scores from.
+6. After each clip: `wji fs set <shot dataset> --set primaryVideo=<clip>` (in `bed` / `full` also
+   `--add-images <track>`); bind asset ids.
+7. When every clip is in: the episode is edited (picture lock), then handed to the Sound Designer
+   (`../short-drama-sound/SKILL.md`) with `$SD prompt <project> score E0N` for the score and sound
+   design on the edit's timecode. `$SD manifest <project> --ep N` (edit → mix) must be clean before
+   the episode is done.
 
 ## Hand-off
 

@@ -1,6 +1,8 @@
-# Mix over a supplied video (default: BGM + BGE + Ambience + Sound design)
+# Score and mix the edited video (default: BGM + BGE + Ambience + Sound design)
 
-Use when the user hands over a finished or rough-cut video and asks to "add a mix / 加混音 / 配樂". AI video (Seedance with audio on) already carries **dialogue, Foley and diegetic SFX**, so the default job adds only the layers the video lacks. Full theory, loudness standards and sources: `film-mixing-guideline.md` (sections 2, 5, 6, 8).
+Use for every episode of a project in `params.audioTrack: post` (the default) once its clips are edited into a locked cut, and whenever the user hands over a finished or rough-cut video and asks to "add a mix / 加混音 / 配樂". The clips are generated without music, segment by segment, so music and sound design are made here, once, over the whole edit — that is the only place a cue can carry across a cut. AI video (Seedance with audio on) already carries **dialogue, Foley and diegetic SFX**, so the default job adds only the layers the video lacks.
+
+**With a project on disk**, start from the planned spotting sheet: `$SD prompt <project> score E01` (SMPTE rows for the scene beds, every line, each segment's music cues, the `post: true` sound design, the sfx already in the clips, the hook / turns / 爽点 / cliff, and the ≤120 s sections). Then conform it to the edit in Step 1 — trims and re-timed clips move every row after them. Full theory, loudness standards and sources: `film-mixing-guideline.md` (sections 2, 5, 6, 8).
 
 ## Default layer policy
 
@@ -29,6 +31,8 @@ ffmpeg -i "$V" -af silencedetect=n=-40dB:d=0.4 -f null - 2>&1 | grep -E 'silence
 ```
 
 Then get a beat map: who speaks when, what happens, where the jokes, turns and cliff land (watch the video with the video-analysis helper, or read the locked script and storyboard if the project has them). Note dialogue spans: BGM must duck there.
+
+Conforming the planned sheet: match each `segment` row to the detected cut where that clip starts in the edit, shift every row of that segment by the difference, drop rows that fell in trimmed frames, and re-snap music cues and `post` hits to the nearest detected cut (±2 frames).
 
 ## Step 2. Story structure 起承轉合 → music map
 

@@ -19,7 +19,8 @@ The `short-drama-core` skill is your operating manual; `short-drama` is the map 
 - **screenwriter** — outline, character bible (text), scripts, dialogue polish
 - **art-director** — character sheet look, scenes, props
 - **director** — storyboard, shot language, video prompts, episode canvas plan
-- **sound-designer** — dialogue performance, voice / Seed Audio prompts, SFX, BGM cue sheets
+- **sound-designer** — dialogue performance, voice / Seed Audio prompts; after the episode is
+  edited, the BGM + sound-design cue sheet on the edit's timecode (clips carry no music)
 - **ad-creative-director** — a commercial or ad creative for the show or a product: brief, concept
   and hooks, shot list, KV / still / clip prompts, deliverables (`ads` skill)
 - **social-media-manager** — posting: platform specs, per-post spec sheet and copy, an episode cut

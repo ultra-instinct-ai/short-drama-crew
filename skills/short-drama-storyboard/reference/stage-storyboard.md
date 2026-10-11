@@ -398,13 +398,36 @@ world, same faces, right size, nobody extra), fix, then continue. An episode is 
 a wrong direction costs the whole batch — which is why this is opt-in and the default references
 the sheets directly.
 
-## Soundtrack node — Seed Audio is not a TTS
+## Soundtrack — scored over the edit, not per clip
+
+Each segment is a separate generation, so music and sound design made inside a clip stop at its
+last frame: a cue cannot swell across a cut into the next segment, and every clip invents its own
+score. So by default (`params.audioTrack: post`) **the clips carry no music**: the video prompt
+says `No music.` (H3 `non_diegetic_music: N/A`, Wan `无配乐`), keeps the dialogue, the ambience and
+the in-picture sfx, and drops every sfx marked `post: true` (stingers, risers, whooshes, impact
+hits — sound design outside the story world). The storyboard still writes `sound.music` (intent and
+cues) and the `post: true` hits: they are the **spotting notes**. When every clip is in, the episode
+is edited, and the Sound Designer scores the edit as one piece on its timecode:
+
+```bash
+$SD prompt <project> score E01            # planned spotting sheet: SMPTE rows + ≤120 s Seed Audio sections
+```
+
+The sheet lays the segments end to end — scene beds (BGE), every line (where the music ducks), each
+segment's music cues at their episode time, the `post` sound design, the sfx already in the clips
+(never doubled) and the hook / turns / 爽点 / cliff as the 起承转合 anchors. It is the *planned*
+timeline: the Sound Designer conforms it to the edit's real cuts
+(`../../short-drama-sound/reference/mix-over-video.md`) before any prompt is written. `manifest`
+then asks for the episode's `wji.assets.edit` and `wji.assets.mix`.
+
+### Per-segment soundtrack node (`audioTrack: bed` / `full`)
 
 `seed-audio-1.0` (the voice-sample model of stage 2) generates a whole **audio scene** from one
 prompt: speech, sound effects, ambience and music in one track, up to 120 s, and a
 **`[start s:end s]` timecode in front of an element pins it to that interval** (100 ms
-precision). So every segment gets a soundtrack node next to its video node, and the prompt is
-derived — not written — from `segment.sound` and the cut timing:
+precision). In `bed` / `full` every segment gets a soundtrack node next to its video node and the
+music goes into the clip prompt too; the prompt is derived — not written — from `segment.sound` and
+the cut timing:
 
 ```bash
 $SD prompt <project> audio E01-05            # bed (default)
@@ -421,13 +444,13 @@ Music, instrumental: the low cello note.
 No dialogue, no vocals, no narration.
 ```
 
-`params.audioTrack` decides what the node makes: **`bed`** (default) — ambience + sfx + timed
+`params.audioTrack` decides what the node makes: **`bed`** — ambience + sfx + timed
 music, no voices: the editor's music-and-effects track, and what the video model's same-pass sound
 is checked against; **`full`** — the bed plus every line at its cut (start = cut start +
 `speechLeadSeconds`, length from the reading rate), each read in the connected voice sample
 (`--from` the voice display nodes in speaking order → `@Audio1..3`; Seed Audio takes at most 3, so a
-segment with four speakers stays `bed`); **`none`** — no node. Music dynamics are written as cues on
-`sound.music`:
+segment with four speakers stays `bed`); **`none`** / **`post`** — no node. Music dynamics are
+written as cues on `sound.music` in every mode:
 
 ```json
 "music": { "intent": "the low cello note",

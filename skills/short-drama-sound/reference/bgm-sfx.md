@@ -7,7 +7,7 @@
   "ambience": "neon KTV booth hum, leather sofa creak",
   "sfx": [
     { "cut": 2, "event": "wine glass tip and splash on table" },
-    { "cut": 7, "event": "SPECIAL: cliff freeze sting — single high piano hit then silence" }
+    { "cut": 7, "event": "SPECIAL: cliff freeze sting — single high piano hit then silence", "post": true }
   ],
   "music": {
     "intent": "romantic neon slow pulse, soft keys, restrained satin bass",
@@ -23,7 +23,15 @@
 }
 ```
 
-`prompt audio … --bed` / `--full` expands this into `[start s:end s]` lines for Seed Audio.
+Where it goes depends on `params.audioTrack`:
+
+- **`post` (default)** — the clip gets only the ambience, the in-picture sfx and the lines; `music`
+  and every `post: true` sfx stay out of it. They are the spotting notes for the episode score:
+  `$SD prompt <project> score E01` lays them on the episode timeline (SMPTE) for scoring over the
+  edit (`mix-over-video.md`). A cue `at` is still a cut of *this* segment — the sheet adds the
+  segment's offset.
+- **`bed` / `full`** — `prompt audio … --bed` / `--full` expands this into `[start s:end s]` lines
+  for a Seed Audio node per segment, and the music intent also goes into the clip prompt.
 
 ## BGM cue verbs (short-drama-core)
 
@@ -72,6 +80,12 @@ Craft in `../../short-drama-core/reference/grammar-faceslap.md` §3, `grammar-co
 Every story-visible hit needs `sfx[]` tied to a **cut** (or absolute time in a hand-written prompt). Prefer concrete / onomatopoeic events.
 
 Mark hero moments with `SPECIAL:` in `event` so QC can hear them.
+
+**In the clip or in post?** An sfx the world makes — a glass, a door, a slap, footsteps, rain — is
+in-clip: the video model makes it in sync with the picture. Sound design the world does not make —
+stinger, riser, whoosh, impact hit, reverse cymbal, drone hit, the silence drop — gets `"post": true`:
+it stays out of the clip prompt and is made over the edit, where it can land across a cut. A hit that
+is both (the slap *and* a stinger on it) is two entries.
 
 | Beat | Typical special FX |
 | --- | --- |

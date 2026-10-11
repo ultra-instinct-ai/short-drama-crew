@@ -58,7 +58,7 @@ ending), change the guideline first, then the episodes.
 | **Screenwriter** | outline, character bible (text), scripts, dialogue | `../short-drama-outline/`, `../short-drama-characters/`, `../short-drama-script/` |
 | **Art Director** | scenes / props art; character sheet look once the text prompts exist | `../short-drama-art/`, `../short-drama-characters/` |
 | **Director** | storyboard, shot language, video prompts, episode canvas plan | `../short-drama-storyboard/` |
-| **Sound Designer** | voice / Seed Audio prompts, SFX, cut-timed BGM | `../short-drama-sound/` |
+| **Sound Designer** | voice / Seed Audio prompts, SFX; the episode score + sound design over the edit | `../short-drama-sound/` |
 | **Operator** | **every** `wji` command: workspace, datasets, canvas, generation, download, bind | `../wji/` |
 | **Proofreader** | independent audit after claimed changes; PASS / FAIL with file evidence | reads all of the above |
 
