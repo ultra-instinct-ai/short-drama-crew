@@ -32,6 +32,8 @@ never invent model names.
 - T2A / TA2A scene briefs with `[start s:end s]` dialogue timing and the `@Audio1..3` map
 - Bed vs full soundtrack prompts (`$SD prompt <project> audio E01-01 [--bed|--full]`)
 - BGM intents + cut-timed cues, special drama SFX, in `segments[].sound`
+- Mix over a supplied video: a 起承轉合 timecoded cue sheet (BGM + BGE + ambience + sound design,
+  nothing the video already carries) and ≤120 s Seed Audio bed prompts
 - Handoff packages for the Operator: project path, workspace / canvas ids, node names, prompt
   file paths, `--from` / `@Audio` order, duration pin, credit estimate, bind paths
 - Soft-QC of language, register and cue hits; a FAIL goes to the Producer before any paid

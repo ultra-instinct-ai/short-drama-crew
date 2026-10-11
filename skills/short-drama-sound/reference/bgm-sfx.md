@@ -42,6 +42,31 @@ Put mood vocabulary in `intent` + `note`:
 
 Rules: one music intent per segment (or continuous across a scene); instrumental unless vocals are a story beat; **duck under dialogue**; hit 爽点 / cliff on purpose. Continuous texture belongs in **ambience**, not twenty music mood words.
 
+### With a `params.cinematography` preset (sound is half the look)
+
+Craft in `../../short-drama-core/reference/cinematography-<preset>.md`; not gated.
+
+| preset | music / sfx |
+| --- | --- |
+| `low-key` | nothing extra — the usual dread / tension vocabulary |
+| `sweet-romance` | the OST is the segment's `sound.music`, cues on the cut: `enter` on the eye-lock's last cut, `swell` on the look back / the carry / the gap closing, `silence` as the hand lands or just before a confession line (so it lands in a hush), `drop` on the 壁咚; rain on the umbrella, a heartbeat if wanted |
+| `period-nostalgia` | diegetic music of the era — the radio, a period song on the cassette player — in `sound.sfx` or as the segment's `music` intent; cicadas in the courtyard, the bicycle bell, a street hawker, a distant train |
+| `costume-idol` | follows `sweet-romance` for the 心动 set pieces (执手, 簪花, 共乘一马, 月下对饮, 灯会) — `enter` / `swell` / `silence`; wind, chimes, the lantern festival crowd as ambience |
+| `costume-dark` | fire crackle, wind, rain on tiles, armour creaking, distant drums; **`silence`** in the court before a verdict; violence carried by sound and consequence rather than choreography |
+| `scifi-hard` | hums, fans, relays, alarms, radio chatter with squelch, breathing in a helmet; **silence in vacuum** (only the suit's breathing and radio); music sparse — a low drone, a single piano line |
+| `scifi-soft` | rain, crowds in many languages, synth hums, holographic chimes, drones passing; music synthwave / ambient pads |
+
+### By segment grammar (`segment.grammar`, else `params.grammar`)
+
+Craft in `../../short-drama-core/reference/grammar-faceslap.md` §3, `grammar-comedy.md` and
+`action.md` / `action-<style>.md` ("Sound"); gate `grammar-advice` checks the 打脸 music hit.
+
+| grammar | music / sfx |
+| --- | --- |
+| `faceslap` | `silence` or `drop` under the insult, **`enter` / `swell` on the entrance or the proof**, full through the reaction cascade; sfx: the document slapped on the table, the gasp, the cup falling, the murmur rising |
+| `comedy` | **silence before the punchline** (a `silence` cue or a pause in the ambience); `slapstick` — cartoon sfx on every beat (boing, whoosh, record scratch) and a comic sting after the punchline; `deadpan` — no comic sfx, often no music, the ambience (clock, fly, fridge hum) fills the hold; `romcom` — playful pops and plinks, a heartbeat, a cute sting, the OST entering on the blush |
+| `action` | **every impact gets an sfx on its cut**; the music `drop`s out before the decisive blow; per style: `bullet-time` stretched / pitched-down sound then snap back, `gun-fu` driving low synth, `hk-kungfu` exaggerated whooshes and snaps with a comic sting, `historical-realist` metal on metal and often no score, `street-brawl` none or a low drone, `car-chase` engines then the silence after the crash |
+
 ## SFX + special short-drama FX
 
 Every story-visible hit needs `sfx[]` tied to a **cut** (or absolute time in a hand-written prompt). Prefer concrete / onomatopoeic events.
