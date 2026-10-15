@@ -32,6 +32,8 @@
 //   prompt   <project> audio E01-01 [--full]          the segment's Seed Audio soundtrack prompt (timecoded ambience / sfx / music, + lines with --full)
 //   prompt   <project> score E01 [--fps 24]           the episode's spotting sheet for the post soundtrack (audioTrack post): planned
 //                                                      timecodes of scenes, lines, music cues and post sfx, and the ≤120 s Seed Audio sections
+//   dashboard <project> [--output dashboard.html] [--assets <dir>]
+//                                                      static production dashboard for the whole project
 //   manifest <project> [--stage …] [--ep N]           unbound WJI objects, in execution order
 //   bind     <project> [--ep N] <path> <value>        write a WJI id back (path segments may be entity ids)
 //   slug     <name>
@@ -39,6 +41,7 @@
 import { existsSync, mkdirSync, readFileSync, realpathSync, writeFileSync } from 'node:fs';
 import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { renderDashboard } from './short-drama-dashboard.mjs';
 
 // ── constants ───────────────────────────────────────────────────────────────
 
@@ -1607,6 +1610,44 @@ function gate(id, stage, label, run, opts = {}) {
   return { id, stage, label, run, advisory: opts.advisory === true };
 }
 
+const ASSET_CONDITIONS = ['new', 'lived-in', 'worn'];
+// Whole English words, so "stainless" is not "stain". Chinese marks are the wear words themselves.
+const WORN_CONDITION_RE = /\b(worn|rust|rusty|rusted|faded|chipped|torn|frayed|peeling|stain|stained|stains)\b|殘舊|残旧|生鏽|生锈|褪色|剝落|剥落/i;
+const CLEAN_BAN_RE = /showroom[-\s]?clean|brand[-\s]?new/i;
+
+function assetConditionFailures(entity, texts) {
+  const out = [];
+  if (!ASSET_CONDITIONS.includes(entity.condition)) out.push(`${entity.id}: condition must be new, lived-in or worn`);
+  if (!String(entity.conditionReason || '').trim()) out.push(`${entity.id}: conditionReason must say why the story gives this condition`);
+  if (entity.condition === 'new') {
+    for (const [where, text] of texts) {
+      if (WORN_CONDITION_RE.test(String(text || ''))) out.push(`${entity.id}: condition is new but ${where} describes wear`);
+    }
+  }
+  if (entity.condition && entity.condition !== 'worn' && CLEAN_BAN_RE.test(String(entity.image?.negativePrompt || ''))) {
+    out.push(`${entity.id}: only condition worn may ban brand-new or showroom-clean`);
+  }
+  return out;
+}
+
+function sceneConditionTexts(scene) {
+  const texts = [];
+  for (const a of scene.anchors || []) texts.push([`anchor "${a.name || ''}"`, `${a.name || ''} ${a.desc || ''}`]);
+  const img = scene.image || {};
+  for (const key of ['prompt', 'sheet']) if (img[key]) texts.push([`image.${key}`, img[key]]);
+  for (const l of scene.lighting || []) if (l.prompt) texts.push([`lighting "${l.state || ''}"`, l.prompt]);
+  return texts;
+}
+
+function propConditionTexts(prop) {
+  const texts = [];
+  for (const a of prop.anchors || []) texts.push([`anchor "${a.name || ''}"`, `${a.name || ''} ${a.desc || ''}`]);
+  const img = prop.image || {};
+  for (const key of ['prompt', 'sheet']) if (img[key]) texts.push([`image.${key}`, img[key]]);
+  for (const st of prop.states || []) if (st.prompt) texts.push([`state "${st.state || ''}"`, st.prompt]);
+  return texts;
+}
+
 export const GATES = [
   // ── outline ───────────────────────────────────────────────────────────
   gate('params', 'outline', 'params complete and valid', ({ project, params }) => {
@@ -2662,6 +2703,7 @@ export const GATES = [
     const look = kit.zh ? null : cinematographyOf(params);
     for (const s of project.scenes || []) {
       if (!String(s.summary || '').trim()) out.push(`${s.id}: summary (design intent) is empty`);
+      out.push(...assetConditionFailures(s, sceneConditionTexts(s)));
       const anchors = s.anchors || [];
       if (anchors.length < 3 || anchors.length > 5) out.push(`${s.id}: ${anchors.length} anchors, need 3–5`);
       for (const a of anchors) if (!a.name || !a.desc) out.push(`${s.id}: every anchor needs name + desc`);
@@ -2705,6 +2747,7 @@ export const GATES = [
     for (const p of project.props || []) {
       if (!PROP_SCALES[p.scale]) out.push(`${p.id}: scale must be one of ${Object.keys(PROP_SCALES).join(' / ')}`);
       if (!String(p.summary || '').trim()) out.push(`${p.id}: summary (dramatic function) is empty`);
+      out.push(...assetConditionFailures(p, propConditionTexts(p)));
       const anchors = p.anchors || [];
       if (anchors.length < 3 || anchors.length > 5) out.push(`${p.id}: ${anchors.length} anchors, need 3–5`);
       const states = p.states || [];
@@ -4289,8 +4332,8 @@ export function imagePrompt(project, id, asset) {
     const l = (sc.lighting || []).find((x) => x.state === state);
     if (!l) throw new Error(`${id} has no lighting state "${state}" (${(sc.lighting || []).map((x) => x.state).join(' / ')})`);
     return out(zh
-      ? `${t('@image1 是同一个空间；结构、材质与磨损完全一致，只改变光线：')}${l.prompt}${t(`。空场景，没有任何人，${kit.framePhrase}`)}`
-      : `@image1 is this exact space; keep structure, materials and wear identical; change only the lighting: ${l.prompt}. Empty scene, no people, ${kit.framePhrase}`, '16:9', 'sheet');
+      ? `${t('@image1 是同一个空间；结构、材质与状态完全一致，只改变光线：')}${l.prompt}${t(`。空场景，没有任何人，${kit.framePhrase}`)}`
+      : `@image1 is this exact space; keep structure, materials and condition identical; change only the lighting: ${l.prompt}. Empty scene, no people, ${kit.framePhrase}`, '16:9', 'sheet');
   }
   if (pr && kind.startsWith('state:')) {
     const state = kind.slice('state:'.length);
@@ -5287,6 +5330,27 @@ function main(argv) {
       writeJsonFile(file, seedStoryboard(project, episode));
     }
     console.log(`✓ ${file}`);
+    return 0;
+  }
+
+  if (cmd === 'dashboard') {
+    const loaded = loadProject(input);
+    const output = resolve(flag(rest, '--output', join(loaded.paths.dir, 'dashboard.html')));
+    if (existsSync(output) && !flag(rest, '--force')) {
+      throw new Error(`${output} exists (pass --force to overwrite)`);
+    }
+    const gateResults = runGates(makeContext(loaded.project, loaded.episodes));
+    const html = renderDashboard({
+      project: loaded.project,
+      episodes: loaded.episodes,
+      gateResults,
+      projectDir: loaded.paths.dir,
+      assetsDir: flag(rest, '--assets'),
+      outputPath: output,
+    });
+    mkdirSync(dirname(output), { recursive: true });
+    writeFileSync(output, html, 'utf8');
+    console.log(`✓ ${output}`);
     return 0;
   }
 

@@ -36,6 +36,8 @@ this folder).
      a commercial for the show or a product → [ads](../ads/SKILL.md)
 3. Platform execution — every `wji` command, canvas node, generation and bind →
    [wji](../wji/SKILL.md) (the Operator seat).
+4. A readable review of the whole project — `$SD dashboard {project}` in
+   [short-drama-core](../short-drama-core/SKILL.md). It writes one HTML file and spends nothing.
 
 ## Seats
 

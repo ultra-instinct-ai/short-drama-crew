@@ -202,7 +202,7 @@ id or list) and `gag` (`setup` / `build` / `punchline`) with `runningGag`.
 ```json
 {
   "id": "S01", "name": "便利店店内", "primary": true, "reusePlan": "",
-  "summary": "设计意图…", "anchors": [{ "name": "闪烁的关东煮灯箱", "desc": "…" }],
+  "summary": "设计意图…", "condition": "lived-in", "conditionReason": "这家店每晚都在营业，是用旧了而不是残破", "anchors": [{ "name": "闪烁的关东煮灯箱", "desc": "…" }],
   "lighting": [{ "state": "凌晨冷白光", "prompt": "…" }],
   "image": { "prompt": "…", "negativePrompt": "…", "sheet": "…", "tags": [] },
   "variantOf": "", "changes": "",
@@ -216,13 +216,20 @@ paintable and checkable), `lighting` (≥1, prompts in `imagePromptLang`, derive
 episodes it appears in), `image.*` (`imagePromptLang`, **empty scene — negative prompt
 must ban people**), `variantOf` + `changes` for variants of a parent scene.
 `wji.nodes.lighting` / `wji.assets.lighting` are keyed by lighting `state`.
+`condition` is `new`, `lived-in` or `worn`, and `conditionReason` says why the story gives it
+that condition — the same two fields are required on every prop. Realism is materials, light and
+detail, not wear. A luxury interior, a set just built, a prop the organisers have just issued,
+and every national or regional flag are `new` and accurate. Anchors follow the condition: do not
+add peeling paint, rust or fading by default. Only `worn` may ban `brand-new` or `showroom-clean`
+in `negativePrompt`. A `new` asset fails when an anchor or prompt says worn, rust, faded, chipped,
+torn, frayed, peeling, stain, 殘舊, 生鏽, 褪色 or 剝落.
 
 ### props[]
 
 ```json
 {
   "id": "P01", "name": "旧监控硬盘", "function": "全剧悬念核心：里面到底录了什么",
-  "beatIds": ["B02"], "scale": "handheld", "summary": "…",
+  "beatIds": ["B02"], "scale": "handheld", "summary": "…", "condition": "worn", "conditionReason": "三年前的硬盘，标签撕掉、接口生锈",
   "anchors": [{ "name": "…", "desc": "…" }], "states": [{ "state": "封在防静电袋里", "prompt": "…" }],
   "relatedScenes": ["S01"], "carriedBy": ["林小夏"],
   "image": { "prompt": "…", "negativePrompt": "…", "sheet": "…", "tags": [] },

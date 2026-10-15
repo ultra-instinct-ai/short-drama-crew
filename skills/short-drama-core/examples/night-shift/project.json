@@ -587,6 +587,8 @@
       "primary": true,
       "reusePlan": "",
       "summary": "凌晨两点的便利店：亮得刺眼、空得发冷，收银台是全店唯一有人气的地方，所有的戏都在那一米柜台前后发生。",
+      "condition": "lived-in",
+      "conditionReason": "这家便利店每晚都在营业：柜台和抽屉有日常使用的痕迹，不是残破，也不是刚搭好的布景。",
       "anchors": [
         {
           "name": "关东煮灯箱",
@@ -646,6 +648,8 @@
       "primary": true,
       "reusePlan": "",
       "summary": "店门外一米宽的雨棚：里面是灯，外面是雨，站在这里的人一半亮一半黑——所有来历不明的人都从这里进出。",
+      "condition": "lived-in",
+      "conditionReason": "雨棚在雨里站了很多年，红白条已经褪色，但店还在开，不是新搭的布景。",
       "anchors": [
         {
           "name": "褪色的红白雨棚",
@@ -708,6 +712,8 @@
       ],
       "scale": "handheld",
       "summary": "一块旧的 3.5 寸机械硬盘，装在防静电袋里，标签被撕掉一半。",
+      "condition": "worn",
+      "conditionReason": "这是三年前的监控硬盘：标签撕掉一半，接口生锈，不是主办方刚发的新道具。",
       "anchors": [
         {
           "name": "撕掉一半的标签",

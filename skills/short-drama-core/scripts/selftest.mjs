@@ -3,7 +3,7 @@
 // case — a gate that cannot fail is not a gate.
 
 import assert from 'node:assert/strict';
-import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -21,6 +21,7 @@ import {
   VIDEO_MODELS, VIDEO_MODES, DEFAULT_PARAMS, videoModel, videoResolutionFor, nearestResolution, segmentPlan, videoReferences,
   formatGates, displayName, imagePrompt, imagePromptKit, foldZh, IMAGE_PROMPT_LANGS,
 } from './short-drama.mjs';
+import { renderDashboard } from './short-drama-dashboard.mjs';
 import { spawnSync } from 'node:child_process';
 import { copyFileSync, symlinkSync } from 'node:fs';
 
@@ -47,6 +48,38 @@ const breaks = (gateId, project, episode, needle) => {
   ok(f.length > 0, `${gateId} breaks`);
   if (needle) ok(f.some((m) => m.includes(needle)), `${gateId} names the problem (${needle}): ${f.join(' | ')}`);
 };
+
+// ── dashboard ──────────────────────────────────────────────────────────────
+{
+  const outputPath = join(tmpdir(), 'wji-short-drama-dashboard-test.html');
+  const html = renderDashboard({
+    project: PROJECT,
+    episodes: { 1: E01 },
+    gateResults: runGates(makeContext(PROJECT, { 1: E01 })),
+    projectDir: FIXTURE,
+    outputPath,
+  });
+  ok(html.startsWith('<!doctype html>'), 'dashboard is a standalone HTML document');
+  ok(html.includes('夜班便利店') && html.includes('人物设定'), 'dashboard renders project sections');
+  ok(html.includes('E01-01') && html.includes('制作总览'), 'dashboard renders episode storyboard');
+  ok(html.includes('图片占位'), 'dashboard keeps an image placeholder when no media is bound');
+
+  const mediaDir = mkdtempSync(join(tmpdir(), 'wji-dashboard-media-'));
+  const localImage = join(mediaDir, 'lin.jpg');
+  writeFileSync(localImage, '');
+  const withMedia = clone(PROJECT);
+  withMedia.characters[0].image.url = localImage;
+  withMedia.characters[1].video = { url: 'https://cdn.example.com/chen.mp4', type: 'video' };
+  const mediaHtml = renderDashboard({
+    project: withMedia,
+    episodes: { 1: E01 },
+    projectDir: mediaDir,
+    outputPath: join(mediaDir, 'dashboard.html'),
+  });
+  ok(mediaHtml.includes('lin.jpg') && mediaHtml.includes('<img'), 'dashboard uses a local image path');
+  ok(mediaHtml.includes('<video src="https://cdn.example.com/chen.mp4"'), 'dashboard uses a WJI video URL');
+  rmSync(mediaDir, { recursive: true, force: true });
+}
 
 // ── fixture is green ────────────────────────────────────────────────────────
 {
@@ -228,6 +261,35 @@ const breaks = (gateId, project, episode, needle) => {
   breaks('prop-design', p4, null, 'white background');
   const p5 = clone(PROJECT); p5.props[0].states = [];
   breaks('prop-design', p5, null, 'state');
+}
+{
+  const missing = clone(PROJECT);
+  delete missing.scenes[0].condition;
+  delete missing.scenes[0].conditionReason;
+  breaks('scene-design', missing, null, 'condition must be new, lived-in or worn');
+  const fresh = clone(PROJECT);
+  fresh.scenes[0].condition = 'new';
+  fresh.scenes[0].conditionReason = 'the organisers finished this set this morning';
+  breaks('scene-design', fresh, null, 'condition is new but');
+  const clean = clone(PROJECT);
+  clean.scenes[1].condition = 'new';
+  clean.scenes[1].conditionReason = 'a pavilion built for this episode and struck the next day';
+  const scrub = (text) => String(text || '').replace(/\b(worn|rust|rusty|rusted|faded|chipped|torn|frayed|peeling|stain|stained|stains)\b/gi, 'plain').replace(/殘舊|残旧|生鏽|生锈|褪色|剝落|剥落/g, '');
+  for (const a of clean.scenes[1].anchors) { a.name = scrub(a.name); a.desc = scrub(a.desc); }
+  clean.scenes[1].image.prompt = scrub(clean.scenes[1].image.prompt);
+  clean.scenes[1].image.sheet = scrub(clean.scenes[1].image.sheet);
+  for (const l of clean.scenes[1].lighting) l.prompt = scrub(l.prompt);
+  passes('scene-design', clean, null);
+  const ban = clone(PROJECT);
+  ban.scenes[0].image.negativePrompt += ', brand-new, showroom-clean';
+  breaks('scene-design', ban, null, 'only condition worn may ban');
+  const propMissing = clone(PROJECT);
+  delete propMissing.props[0].conditionReason;
+  breaks('prop-design', propMissing, null, 'conditionReason');
+  const propNew = clone(PROJECT);
+  propNew.props[0].condition = 'new';
+  propNew.props[0].conditionReason = 'a drive the organisers just issued';
+  breaks('prop-design', propNew, null, 'condition is new but');
 }
 
 // ── script gates ────────────────────────────────────────────────────────────
@@ -2554,6 +2616,7 @@ const breaks = (gateId, project, episode, needle) => {
   const dir = mkdtempSync(join(tmpdir(), 'sd-link-'));
   try {
     copyFileSync(join(here, 'short-drama.mjs'), join(dir, 'engine.mjs'));
+    copyFileSync(join(here, 'short-drama-dashboard.mjs'), join(dir, 'short-drama-dashboard.mjs'));
     symlinkSync(join(dir, 'engine.mjs'), join(dir, 'sd'));
     const run = spawnSync(process.execPath, [join(dir, 'sd')], { encoding: 'utf8' });
     eq(run.status, 0, 'symlinked engine exits 0 with usage');

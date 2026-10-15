@@ -201,6 +201,29 @@ write JSON → validate --stage <stage> → fix until green → render → sync 
 - **Look at what you generated.** `wji asset download <id> -o <dir>` and open the image before
   approving a sheet or moving to the next segment. One wrong sheet corrupts every shot after it.
 
+## Production dashboard
+
+Generate the dashboard whenever the user wants to review the project, and refresh it after a
+stage or episode is locked:
+
+```bash
+$SD dashboard {project}
+# custom location, and a folder of downloaded WJI images:
+$SD dashboard {project} --output {project}/dashboard.html --assets {project}/assets --force
+```
+
+The output is one static HTML file: production totals and gate health, brief and guideline,
+episode directory, character bibles, scene / prop sheets, scripts, cut timing and storyboard
+plans. It does not call WJI and costs no credits. Every character, scene, prop and storyboard
+slot keeps an image placeholder until a picture or video is bound. A bound value may be a WJI
+server URL (`https://…` image or video) or a local file: set `image.url` / `video.url`, or
+`wji.assets.sheet|headshot|keyframe|video`, to that URL or to a path relative to the project
+(or an absolute path). Files whose name contains the entity or asset id are also picked up from
+`{project}/assets`, `{project}/output`, the project tree, or `--assets <dir>`. A video URL or
+`.mp4` / `.webm` / `.mov` file renders as a player; if the address fails to load, the
+placeholder stays. Open `dashboard.html` in a browser. Do not paste the HTML into a dataset or
+upload it as an asset.
+
 ## Stage skills (the craft lives there)
 
 | Stage | Skill | Gate |

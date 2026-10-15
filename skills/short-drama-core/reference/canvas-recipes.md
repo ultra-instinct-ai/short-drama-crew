@@ -66,7 +66,7 @@ wji canvas add image -c SC -n "S01 lighting 监控回放绿" --from SS1 -m "<ima
 ```
 
 Variants: `--from` the parent scene's sheet node, prompt = parent master view + `changes` +
-`keep the structure, materials and wear identical to @image1`.
+`keep the structure, materials and condition identical to @image1`.
 
 After generation: inspect (no people, one space across panels), attach
 (`--add-images <sheet> <variants…> --icon <sheet>`), bind `scenes.S01.wji.nodes.sheet`,
