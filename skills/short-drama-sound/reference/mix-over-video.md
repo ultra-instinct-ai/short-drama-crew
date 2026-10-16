@@ -20,6 +20,8 @@ Rule: if the video already has it, don't add it again. Listen first and list wha
 
 ## Step 1. Analyse the video (local, free; no WJI)
 
+If `edits/E01.fcproj` exists, take the cut list from `filmcraft-cli --project edits/E01.fcproj inspect sequence` (see `../../short-drama-core/reference/edit-tools.md`). Otherwise detect cuts from the exported picture:
+
 ```bash
 V=input.mp4
 ffprobe -v error -show_entries format=duration:stream=codec_type,r_frame_rate,codec_name -of json "$V"
@@ -74,6 +76,8 @@ Actions: `enter | swell | duck | drop | silence | sting | riser | whoosh | out |
 
 ## Step 5. Mix spec (for whoever lays it under the video)
 
+Lay the stems with SoundCraft when `soundcraft-cli` is installed, and keep `edits/E01/E01.scraft`. Use ffmpeg only when that CLI is missing (`../../short-drama-core/reference/edit-tools.md`).
+
 - Dialogue is the anchor: centred; everything sits under it.
 - BGM ducks under dialogue via sidechain from the video's audio (or automation on the dialogue spans from Step 1). No standard fixes the dB; judge by ear.
 - BGE/ambience low and continuous; crossfade across clip seams.
@@ -85,5 +89,5 @@ Actions: `enter | swell | duck | drop | silence | sting | riser | whoosh | out |
 - No accidental vocals or dialogue (use spectrogram; ASR on music hallucinates, ignore nonsense text).
 - No doubled Foley or SFX against the video.
 - 起承轉合 arc audible; every `SPECIAL:` hit present at its timecode.
-- Loudness measured with `ffmpeg -af ebur128=peak=true` on the final mix.
+- Loudness: the SoundCraft bounce JSON (`lufs`, `true_peak_db`) when the mix was bounced there; otherwise `ffmpeg -af ebur128=peak=true` on the final mix.
 FAIL → Producer before any paid regen.

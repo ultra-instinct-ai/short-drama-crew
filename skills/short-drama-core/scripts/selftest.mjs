@@ -21,9 +21,8 @@ import {
   VIDEO_MODELS, VIDEO_MODES, DEFAULT_PARAMS, videoModel, videoResolutionFor, nearestResolution, segmentPlan, videoReferences,
   formatGates, displayName, imagePrompt, imagePromptKit, foldZh, IMAGE_PROMPT_LANGS,
 } from './short-drama.mjs';
-import { renderDashboard } from './short-drama-dashboard.mjs';
 import { spawnSync } from 'node:child_process';
-import { copyFileSync, symlinkSync } from 'node:fs';
+import { copyFileSync, existsSync, symlinkSync } from 'node:fs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const FIXTURE = join(here, '../examples/night-shift');
@@ -51,34 +50,35 @@ const breaks = (gateId, project, episode, needle) => {
 
 // ── dashboard ──────────────────────────────────────────────────────────────
 {
-  const outputPath = join(tmpdir(), 'wji-short-drama-dashboard-test.html');
-  const html = renderDashboard({
-    project: PROJECT,
-    episodes: { 1: E01 },
-    gateResults: runGates(makeContext(PROJECT, { 1: E01 })),
-    projectDir: FIXTURE,
-    outputPath,
-  });
+  const html = readFileSync(join(here, '../dashboard.html'), 'utf8');
   ok(html.startsWith('<!doctype html>'), 'dashboard is a standalone HTML document');
-  ok(html.includes('夜班便利店') && html.includes('人物设定'), 'dashboard renders project sections');
-  ok(html.includes('E01-01') && html.includes('制作总览'), 'dashboard renders episode storyboard');
-  ok(html.includes('图片占位'), 'dashboard keeps an image placeholder when no media is bound');
+  ok(html.includes('project.json') && html.includes('episodes/E'), 'dashboard loads project.json and episode files');
+  ok(html.includes('/assets/check-status') && html.includes('/assets/list/'), 'dashboard resolves an asset id to its file url');
+  ok(html.includes('圖片佔位'), 'dashboard keeps an image placeholder when no media is bound');
+  ok(!html.includes('夜班便利店'), 'dashboard does not bake the fixture into the page');
+  ok(!html.includes('asset download'), 'dashboard does not download asset files');
+  ok(html.includes('data-target') && html.includes('scrollTo'), 'dashboard left nav scrolls the content column');
+  ok(html.includes('episode.scenes') && html.includes('△') && html.includes('<details class="script">'), 'dashboard folds the episode script from scenes[].flow');
+  ok(html.includes('localStorage.setItem') && html.includes('wji-short-drama-token') && html.includes('login-dialog'), 'dashboard saves the API key in localStorage');
+  ok(html.includes('https://app.wji.ai') && html.includes('InfiniteCanvas') && html.includes("app: 'Dataset'"), 'dashboard links to the WJI canvas and dataset pages');
+  ok(html.includes('id="viewer"') && html.includes('data-kind'), 'dashboard enlarges an image or video on click');
 
-  const mediaDir = mkdtempSync(join(tmpdir(), 'wji-dashboard-media-'));
-  const localImage = join(mediaDir, 'lin.jpg');
-  writeFileSync(localImage, '');
-  const withMedia = clone(PROJECT);
-  withMedia.characters[0].image.url = localImage;
-  withMedia.characters[1].video = { url: 'https://cdn.example.com/chen.mp4', type: 'video' };
-  const mediaHtml = renderDashboard({
-    project: withMedia,
-    episodes: { 1: E01 },
-    projectDir: mediaDir,
-    outputPath: join(mediaDir, 'dashboard.html'),
-  });
-  ok(mediaHtml.includes('lin.jpg') && mediaHtml.includes('<img'), 'dashboard uses a local image path');
-  ok(mediaHtml.includes('<video src="https://cdn.example.com/chen.mp4"'), 'dashboard uses a WJI video URL');
-  rmSync(mediaDir, { recursive: true, force: true });
+  const dir = mkdtempSync(join(tmpdir(), 'sd-dash-copy-'));
+  try {
+    writeFileSync(join(dir, 'project.json'), JSON.stringify(PROJECT));
+    const engine = join(here, 'short-drama.mjs');
+    const first = spawnSync(process.execPath, [engine, 'dashboard', dir], { encoding: 'utf8' });
+    eq(first.status, 0, `dashboard copies a missing file: ${first.stderr}`);
+    ok(existsSync(join(dir, 'dashboard.html')), 'dashboard.html is copied beside project.json');
+    const stamped = join(dir, 'dashboard.html');
+    writeFileSync(stamped, 'keep');
+    const second = spawnSync(process.execPath, [engine, 'dashboard', dir], { encoding: 'utf8' });
+    eq(second.status, 0, 'dashboard leaves an existing file');
+    eq(readFileSync(stamped, 'utf8'), 'keep', 'an existing dashboard.html is not overwritten');
+    ok(second.stdout.includes('already beside project.json'), 'dashboard reports the file is already there');
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
 }
 
 // ── fixture is green ────────────────────────────────────────────────────────
@@ -2616,7 +2616,6 @@ const breaks = (gateId, project, episode, needle) => {
   const dir = mkdtempSync(join(tmpdir(), 'sd-link-'));
   try {
     copyFileSync(join(here, 'short-drama.mjs'), join(dir, 'engine.mjs'));
-    copyFileSync(join(here, 'short-drama-dashboard.mjs'), join(dir, 'short-drama-dashboard.mjs'));
     symlinkSync(join(dir, 'engine.mjs'), join(dir, 'sd'));
     const run = spawnSync(process.execPath, [join(dir, 'sd')], { encoding: 'utf8' });
     eq(run.status, 0, 'symlinked engine exits 0 with usage');

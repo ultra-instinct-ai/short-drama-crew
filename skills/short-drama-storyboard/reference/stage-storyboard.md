@@ -406,8 +406,10 @@ score. So by default (`params.audioTrack: post`) **the clips carry no music**: t
 says `No music.` (H3 `non_diegetic_music: N/A`, Wan `无配乐`), keeps the dialogue, the ambience and
 the in-picture sfx, and drops every sfx marked `post: true` (stingers, risers, whooshes, impact
 hits — sound design outside the story world). The storyboard still writes `sound.music` (intent and
-cues) and the `post: true` hits: they are the **spotting notes**. When every clip is in, the episode
-is edited, and the Sound Designer scores the edit as one piece on its timecode:
+cues) and the `post: true` hits: they are the **spotting notes**. When every clip is in, the Operator
+cuts the episode as in `../../short-drama-core/reference/edit-tools.md` (FilmCraft, or ffmpeg if
+`filmcraft-cli` is missing; the `.fcproj` stays in the project), and the Sound Designer scores that
+locked picture as one piece on its timecode:
 
 ```bash
 $SD prompt <project> score E01            # planned spotting sheet: SMPTE rows + ≤120 s Seed Audio sections

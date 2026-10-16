@@ -32,16 +32,15 @@
 //   prompt   <project> audio E01-01 [--full]          the segment's Seed Audio soundtrack prompt (timecoded ambience / sfx / music, + lines with --full)
 //   prompt   <project> score E01 [--fps 24]           the episode's spotting sheet for the post soundtrack (audioTrack post): planned
 //                                                      timecodes of scenes, lines, music cues and post sfx, and the ≤120 s Seed Audio sections
-//   dashboard <project> [--output dashboard.html] [--assets <dir>]
-//                                                      static production dashboard for the whole project
+//   dashboard <project> [--output dashboard.html] [--force]
+//                                                      copy the static dashboard next to the project; it loads project.json
 //   manifest <project> [--stage …] [--ep N]           unbound WJI objects, in execution order
 //   bind     <project> [--ep N] <path> <value>        write a WJI id back (path segments may be entity ids)
 //   slug     <name>
 
-import { existsSync, mkdirSync, readFileSync, realpathSync, writeFileSync } from 'node:fs';
+import { copyFileSync, existsSync, mkdirSync, readFileSync, realpathSync, writeFileSync } from 'node:fs';
 import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { renderDashboard } from './short-drama-dashboard.mjs';
 
 // ── constants ───────────────────────────────────────────────────────────────
 
@@ -5276,6 +5275,16 @@ function main(argv) {
     return 0;
   }
 
+  function installDashboard(projectDir, opts = {}) {
+    const output = resolve(opts.output || join(projectDir, 'dashboard.html'));
+    const source = join(dirname(fileURLToPath(import.meta.url)), '..', 'dashboard.html');
+    if (!existsSync(source)) throw new Error(`static dashboard missing: ${source}`);
+    if (existsSync(output) && !opts.force) return { output, copied: false };
+    mkdirSync(dirname(output), { recursive: true });
+    copyFileSync(source, output);
+    return { output, copied: true };
+  }
+
   if (cmd === 'init') {
     const dir = pos[0];
     if (!dir) throw new Error('usage: init <dir> --title … --episodes N --minutes M --genre G');
@@ -5292,7 +5301,9 @@ function main(argv) {
     if (existsSync(paths.project) && !flag(rest, '--force')) throw new Error(`${paths.project} exists (pass --force to overwrite)`);
     writeJsonFile(paths.project, project);
     mkdirSync(paths.episodes, { recursive: true });
+    const dashboard = installDashboard(paths.dir);
     console.log(`✓ ${paths.project}`);
+    console.log(`✓ ${dashboard.output}`);
     return 0;
   }
 
@@ -5335,22 +5346,12 @@ function main(argv) {
 
   if (cmd === 'dashboard') {
     const loaded = loadProject(input);
-    const output = resolve(flag(rest, '--output', join(loaded.paths.dir, 'dashboard.html')));
-    if (existsSync(output) && !flag(rest, '--force')) {
-      throw new Error(`${output} exists (pass --force to overwrite)`);
-    }
-    const gateResults = runGates(makeContext(loaded.project, loaded.episodes));
-    const html = renderDashboard({
-      project: loaded.project,
-      episodes: loaded.episodes,
-      gateResults,
-      projectDir: loaded.paths.dir,
-      assetsDir: flag(rest, '--assets'),
-      outputPath: output,
+    const outputFlag = flag(rest, '--output');
+    const installed = installDashboard(loaded.paths.dir, {
+      output: typeof outputFlag === 'string' ? outputFlag : undefined,
+      force: Boolean(flag(rest, '--force')),
     });
-    mkdirSync(dirname(output), { recursive: true });
-    writeFileSync(output, html, 'utf8');
-    console.log(`✓ ${output}`);
+    console.log(installed.copied ? `✓ ${installed.output}` : `✓ ${installed.output} (already beside project.json)`);
     return 0;
   }
 

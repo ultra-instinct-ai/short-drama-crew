@@ -172,7 +172,7 @@ SD prompt <project> score E01 > /tmp/E01-score.md                            # p
 # Sound Designer conforms it to the edit's real cuts and writes one bed prompt per section
 wji canvas add audio -c E1 -n "E01 score 1" -m seed-audio-1.0 --prompt-file /tmp/E01-score-1.txt --json | jq -r .id
 wji canvas gen <node> --yes --wait                                            # ask first; ~0.15 credits a minute
-# mix the sections under the edit at their offsets (ffmpeg), then:
+# lay the sections under the edit — SoundCraft, or ffmpeg if soundcraft-cli is missing (edit-tools.md)
 wji asset upload ./E01-mix.mp4 --json | jq -r .id                             # → MIX
 SD bind <project> --ep 1 wji.assets.mix MIX
 ```

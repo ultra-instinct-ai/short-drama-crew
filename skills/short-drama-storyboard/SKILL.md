@@ -102,10 +102,12 @@ cinematography preset's guide (`../short-drama-core/reference/cinematography-<pr
    mark sound-design hits `post: true`: they are the spotting notes the Sound Designer scores from.
 6. After each clip: `wji fs set <shot dataset> --set primaryVideo=<clip>` (in `bed` / `full` also
    `--add-images <track>`); bind asset ids.
-7. When every clip is in: the episode is edited (picture lock), then handed to the Sound Designer
-   (`../short-drama-sound/SKILL.md`) with `$SD prompt <project> score E0N` for the score and sound
-   design on the edit's timecode. `$SD manifest <project> --ep N` (edit → mix) must be clean before
-   the episode is done.
+7. When every clip is in: the Operator cuts the episode to picture lock as in
+   `../short-drama-core/reference/edit-tools.md` — FilmCraft (`filmcraft-cli`), timeline kept at
+   `edits/E0N.fcproj`, or ffmpeg when that CLI is not installed. Then hand the locked export to
+   the Sound Designer (`../short-drama-sound/SKILL.md`) with `$SD prompt <project> score E0N` for
+   the score and sound design on the edit's timecode. `$SD manifest <project> --ep N` (edit → mix)
+   must be clean before the episode is done.
 
 ## Hand-off
 

@@ -1,0 +1,863 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>短劇製作看板</title>
+<style>
+  :root {
+    --paper: #f3f4f0;
+    --surface: #ffffff;
+    --ink: #333333;
+    --muted: #6d7064;
+    --rule: #d1d3cc;
+    --olive: #56720a;
+    --sage: #7a9a12;
+    --lime: #b5d42e;
+    --soft: #e8e9e5;
+    --rail: #eaebe5;
+    --well: #1a1b18;
+    --wash: #f7fce8;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html, body { height: 100%; margin: 0; background: var(--paper); color: var(--ink); }
+  body { font: 15px/1.6 "Iowan Old Style", "Songti SC", "Source Han Serif TC", serif; overflow: hidden; }
+  :focus-visible { outline: 2px solid var(--olive); outline-offset: 2px; }
+  .shell { display: flex; height: 100%; }
+  .rail {
+    width: 228px; flex: none; overflow: auto;
+    background: var(--rail); border-right: 1px solid var(--rule);
+    padding: 22px 16px 32px;
+  }
+  .brand { display: block; padding-bottom: 16px; border-bottom: 1px solid var(--ink); color: inherit; text-decoration: none; }
+  .brand b { display: block; font-size: 20px; font-weight: 600; letter-spacing: 0; }
+  .brand span { display: block; margin-top: 4px; font-size: 12px; color: var(--muted); font-family: "Avenir Next", "PingFang TC", sans-serif; }
+  .rail nav { display: flex; flex-direction: column; padding-top: 8px; }
+  .rail nav a {
+    display: grid; grid-template-columns: 28px 1fr; gap: 6px; align-items: baseline;
+    padding: 9px 0; border-bottom: 1px solid rgba(0,0,0,.08);
+    color: inherit; text-decoration: none;
+    font-family: "Avenir Next", "PingFang TC", sans-serif; font-size: 13px;
+  }
+  .rail nav a.ext { grid-template-columns: 1fr; color: var(--olive); }
+  .rail nav a.current { color: var(--olive); font-weight: 600; }
+  .rail .group { margin: 18px 0 2px; font-size: 12px; color: var(--muted); font-family: "Avenir Next", "PingFang TC", sans-serif; }
+  .main-col { flex: 1; min-width: 0; min-height: 0; display: flex; flex-direction: column; }
+  #app { position: relative; flex: 1; overflow: auto; padding: 8px 28px 70vh; }
+  .page-section { padding-top: 28px; }
+  .links a { color: var(--olive); margin-right: 14px; font-family: "Avenir Next", "PingFang TC", sans-serif; font-size: 13px; }
+  @media (max-width: 800px) {
+    body { overflow: auto; }
+    .shell { flex-direction: column; height: auto; }
+    .rail { width: auto; max-height: 40vh; }
+    .main-col { height: auto; }
+    #app { overflow: visible; padding-bottom: 48px; }
+  }
+  button, input { font: 13px/1.4 "Avenir Next", "PingFang TC", sans-serif; }
+  button {
+    border: 0; background: var(--olive); color: #fff; border-radius: 4px;
+    padding: 7px 12px; cursor: pointer;
+  }
+  .ghost { background: transparent; color: var(--ink); border: 1px solid var(--rule); }
+  .bar {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    padding: 12px 20px; background: rgba(243,244,240,.94);
+    border-bottom: 1px solid var(--rule);
+  }
+  .note { color: var(--muted); font-size: 12px; font-family: "Avenir Next", "PingFang TC", sans-serif; }
+  h1 { font-weight: 500; font-size: 40px; line-height: 1.2; margin: 0; max-width: 16em; }
+  h2 {
+    font-weight: 500; font-size: 26px; line-height: 1.3; margin: 0 0 14px;
+  }
+  .facts { display: flex; flex-wrap: wrap; gap: 4px 16px; margin: 10px 0 0; color: var(--muted); font-family: "Avenir Next", "PingFang TC", sans-serif; font-size: 13px; }
+  .core { max-width: 38em; margin: 14px 0 0; font-size: 18px; line-height: 1.65; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+  article {
+    background: var(--surface); border: 1px solid var(--rule); border-radius: 2px;
+    overflow: hidden; display: flex; flex-direction: column;
+  }
+  .figure { background: var(--soft); display: flex; flex-direction: column; }
+  .figure:not(:has(.placeholder)) { background: var(--well); }
+  .shot {
+    position: relative; display: block; width: 100%; margin: 0; padding: 0;
+    border: 0; border-radius: 0; background: transparent; color: inherit; cursor: zoom-in;
+  }
+  .shot img, .shot video {
+    width: 100%; height: 210px; object-fit: contain; display: block;
+    background: var(--well); pointer-events: none;
+  }
+  .enlarge {
+    position: absolute; right: 8px; bottom: 8px;
+    font: 11px/1.4 "Avenir Next", "PingFang TC", sans-serif;
+    color: #f3f4f0; background: rgba(26, 27, 24, .62);
+    border-radius: 2px; padding: 2px 6px; pointer-events: none;
+  }
+  .placeholder {
+    margin: 22px 16px; text-align: center; color: var(--muted);
+    border: 1px dashed var(--rule); border-radius: 2px; padding: 28px 10px;
+    font-family: "Avenir Next", "PingFang TC", sans-serif; font-size: 13px;
+  }
+  .sheet { aspect-ratio: 16 / 9; }
+  .sheet .placeholder {
+    margin: 0; flex: 1; display: flex; align-items: center; justify-content: center;
+    border: 0; border-radius: 0; padding: 0;
+  }
+  .sheet .shot { flex: 1; min-height: 0; }
+  .sheet .shot img, .sheet .shot video { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .body { padding: 12px 14px 16px; }
+  .kicker { font-family: "Avenir Next", "PingFang TC", sans-serif; font-size: 12px; color: var(--sage); }
+  h3 { margin: 2px 0 6px; font-size: 20px; font-weight: 500; }
+  p { margin: 0 0 8px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .chip {
+    font-family: "Avenir Next", "PingFang TC", sans-serif; font-size: 12px;
+    background: var(--rail); color: var(--olive); border-radius: 2px; padding: 2px 8px;
+  }
+  .aside { margin: 6px 0 0; color: var(--muted); font-size: 13px; }
+  .prose { background: var(--surface); border: 1px solid var(--rule); border-radius: 2px; padding: 16px 18px; max-width: 42em; }
+  .prose b, .script-scene header em {
+    font-style: normal;
+  }
+  .prose b {
+    display: block; margin: 12px 0 2px;
+    font-family: "Avenir Next", "PingFang TC", sans-serif; font-weight: 600; font-size: 12px; color: var(--olive);
+  }
+  .prose p:first-child b { margin-top: 0; }
+  .prose li b { display: inline; margin: 0 6px 0 0; }
+  .prose ul { margin: 0 0 8px; padding-left: 1.2em; }
+  .prose li { margin: 0 0 4px; }
+  .script { margin: 14px 0; border: 1px solid var(--rule); border-radius: 2px; background: var(--surface); max-width: 42em; }
+  .script > summary { cursor: pointer; padding: 12px 16px; font-family: "Avenir Next", "PingFang TC", sans-serif; color: var(--olive); }
+  .script-body { padding: 0 16px 16px; display: flex; flex-direction: column; gap: 18px; }
+  .script-scene header { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; border-bottom: 1px solid var(--rule); padding-bottom: 6px; margin-bottom: 8px; }
+  .script-scene h4 { margin: 0; font-size: 18px; font-weight: 500; }
+  .script-scene header span, .script-scene header em { color: var(--sage); font-size: 12px; font-family: "Avenir Next", "PingFang TC", sans-serif; }
+  .beat { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; margin: 0 0 8px; max-width: 40em; }
+  .beat.line { padding-left: 1.5em; }
+  .beat .tri { color: var(--olive); flex: none; }
+  .marks { display: inline-flex; gap: 4px; }
+  .marks i { font-style: normal; font-size: 11px; font-family: "Avenir Next", "PingFang TC", sans-serif; border: 1px solid var(--lime); color: var(--olive); border-radius: 2px; padding: 0 6px; }
+  .empty { padding: 48px 8px; color: var(--muted); max-width: 40em; }
+  .err { color: #8a3b12; font-family: "Avenir Next", "PingFang TC", sans-serif; font-size: 13px; }
+  dialog {
+    border: 1px solid var(--rule); border-radius: 4px; background: var(--surface); color: var(--ink);
+    padding: 20px 22px; width: min(420px, calc(100vw - 32px));
+  }
+  dialog::backdrop { background: rgba(26, 27, 24, .45); }
+  dialog h3 { margin: 0 0 8px; font-size: 22px; font-weight: 500; }
+  dialog p { color: var(--muted); font-size: 13px; font-family: "Avenir Next", "PingFang TC", sans-serif; }
+  dialog label { display: flex; flex-direction: column; gap: 4px; margin-top: 12px; font-size: 12px; color: var(--muted); font-family: "Avenir Next", "PingFang TC", sans-serif; }
+  dialog input { border: 1px solid var(--rule); border-radius: 4px; padding: 8px; color: var(--ink); background: var(--surface); }
+  .dialog-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 16px; }
+  .viewer {
+    width: min(1080px, calc(100vw - 24px));
+    max-height: calc(100vh - 24px);
+    padding: 12px;
+    background: var(--well);
+    color: #f3f4f0;
+    border: 0;
+  }
+  .viewer::backdrop { background: rgba(26, 27, 24, .72); }
+  .viewer-stage { display: flex; align-items: center; justify-content: center; min-height: 36vh; }
+  .viewer-stage img, .viewer-stage video { max-width: 100%; max-height: calc(100vh - 132px); object-fit: contain; }
+  .viewer-bar { display: flex; gap: 12px; align-items: center; justify-content: space-between; margin-top: 10px; }
+  .viewer-bar p { margin: 0; color: #f3f4f0; font-size: 14px; }
+  .viewer-actions { display: flex; gap: 8px; flex: none; }
+  .viewer button { background: transparent; color: #f3f4f0; border: 1px solid rgba(243, 244, 240, .4); }
+  .viewer button:focus-visible { outline-color: var(--lime); }
+  @media (prefers-reduced-motion: reduce) {
+    * { scroll-behavior: auto !important; }
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+<aside class="rail">
+  <a class="brand" href="#overview" data-target="overview"><b id="brand">短劇</b><span>製作看板</span></a>
+  <nav id="nav"></nav>
+</aside>
+<div class="main-col">
+<header class="bar">
+  <button type="button" id="pick">選擇專案</button>
+  <input id="dir" type="file" webkitdirectory multiple hidden />
+  <button type="button" id="login">登入</button>
+  <button type="button" id="reload" class="ghost">重新載入</button>
+  <span class="note" id="status"></span>
+</header>
+<main id="app"></main>
+</div>
+</div>
+<dialog id="login-dialog">
+  <form id="login-form">
+    <h3>登入 WJI</h3>
+    <p>貼上 API key（sk_ 開頭）或 <code>wji auth token</code>。儲存後只留在這台瀏覽器的 localStorage，不會寫進專案檔。</p>
+    <label>API 位址<input id="api" type="text" spellcheck="false" autocomplete="off" /></label>
+    <label>API Key<input id="token" type="password" spellcheck="false" autocomplete="off" /></label>
+    <div class="dialog-actions">
+      <button type="button" id="login-clear" class="ghost">清除</button>
+      <button type="submit">儲存</button>
+    </div>
+  </form>
+</dialog>
+<dialog id="viewer" class="viewer">
+  <div class="viewer-stage">
+    <img id="viewer-img" alt="" hidden />
+    <video id="viewer-video" controls playsinline hidden></video>
+  </div>
+  <div class="viewer-bar">
+    <p id="viewer-caption"></p>
+    <div class="viewer-actions">
+      <button type="button" id="viewer-prev">上一張</button>
+      <button type="button" id="viewer-next">下一張</button>
+      <button type="button" id="viewer-close">關閉</button>
+    </div>
+  </div>
+</dialog>
+<script>
+const ID_RE = /^[a-f0-9]{24}$/i
+const VIDEO_RE = /\.(mp4|webm|mov|m4v)(\?|$)/i
+const API_KEY = 'wji-short-drama-api'
+const TOKEN_KEY = 'wji-short-drama-token'
+const SLOT_KEYS = ['sheet', 'headshot', 'keyframe', 'poster', 'video']
+const BRIEF_LABELS = {
+  logline: '一句話',
+  audience: '觀眾',
+  satisfactionEngine: '滿足方式',
+  mainHook: '主鉤子',
+  protagonistPressure: '主角壓力',
+  antagonistPressure: '對立壓力',
+  emotionalLine: '情緒線',
+  promise: '承諾',
+}
+const GUIDE_LABELS = {
+  tone: '語氣',
+  emotionalIntensity: '情緒強度',
+  dialogueStyle: '對白',
+  visualStyle: '畫面',
+  productionLimits: '製作限制',
+}
+const CONDITION_LABELS = { new: '全新', 'lived-in': '有人住過', worn: '用舊' }
+const TIER_LABELS = { lead: '主角', support: '配角', functional: '功能' }
+const PHASE_LABELS = { golden: '黃金開場', escalation: '升級', climax: '收束' }
+
+const statusEl = document.querySelector('#status')
+const app = document.querySelector('#app')
+const loginDialog = document.querySelector('#login-dialog')
+const viewer = document.querySelector('#viewer')
+const viewerImg = document.querySelector('#viewer-img')
+const viewerVideo = document.querySelector('#viewer-video')
+const viewerCaption = document.querySelector('#viewer-caption')
+
+function readSession() {
+  return {
+    api: (localStorage.getItem(API_KEY) || 'https://api.wji.ai').replace(/\/$/, ''),
+    token: (localStorage.getItem(TOKEN_KEY) || '').trim(),
+  }
+}
+
+function paintLogin() {
+  const button = document.querySelector('#login')
+  const { token } = readSession()
+  button.textContent = token ? `已登入 ····${token.slice(-4)}` : '登入'
+}
+
+function openLogin() {
+  const session = readSession()
+  document.querySelector('#api').value = session.api
+  document.querySelector('#token').value = session.token
+  loginDialog.showModal()
+}
+
+paintLogin()
+document.querySelector('#login').onclick = openLogin
+document.querySelector('#login-form').onsubmit = (event) => {
+  event.preventDefault()
+  const api = document.querySelector('#api').value.trim() || 'https://api.wji.ai'
+  const token = document.querySelector('#token').value.trim()
+  localStorage.setItem(API_KEY, api)
+  localStorage.setItem(TOKEN_KEY, token)
+  paintLogin()
+  loginDialog.close()
+  boot()
+}
+document.querySelector('#login-clear').onclick = () => {
+  localStorage.removeItem(TOKEN_KEY)
+  localStorage.removeItem(API_KEY)
+  document.querySelector('#api').value = 'https://api.wji.ai'
+  document.querySelector('#token').value = ''
+  paintLogin()
+  loginDialog.close()
+  boot()
+}
+
+document.querySelector('#pick').onclick = () => document.querySelector('#dir').click()
+document.querySelector('#dir').onchange = (event) => {
+  const list = event.target.files
+  if (!list?.length) return
+  const files = new Map()
+  for (const file of list) {
+    const rel = (file.webkitRelativePath || file.name).split('/').slice(1).join('/')
+    if (rel) files.set(rel, file)
+  }
+  load({ files }).catch(fail)
+}
+document.querySelector('#reload').onclick = () => boot()
+
+function fail(error) {
+  statusEl.textContent = ''
+  app.innerHTML = `<p class="err">${esc(error.message || error)}</p>`
+}
+
+function esc(value) {
+  return String(value ?? '').replace(/[&<>"']/g, (ch) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+  }[ch]))
+}
+
+function refOf(value) {
+  if (!value) return null
+  if (typeof value === 'string') {
+    if (/^https?:\/\//i.test(value) || value.startsWith('data:')) return { url: value }
+    if (ID_RE.test(value)) return { id: value }
+    if (value && !value.includes('://')) return { file: value.replace(/^\.\//, '') }
+    return null
+  }
+  if (typeof value === 'object') {
+    const url = value.url || value.src
+    if (typeof url === 'string' && (/^https?:\/\//i.test(url) || url.startsWith('data:'))) return { url }
+    const id = value.id || value.assetId
+    if (id && ID_RE.test(String(id))) return { id: String(id) }
+    if (typeof url === 'string' && url && !url.includes('://')) return { file: url.replace(/^\.\//, '') }
+  }
+  return null
+}
+
+function slotsOf(entity) {
+  const assets = entity?.wji?.assets || {}
+  const slots = []
+  const add = (label, value) => {
+    const ref = refOf(value)
+    if (ref) slots.push({ label, ...ref })
+  }
+  add('image', entity?.image)
+  add('video', entity?.video)
+  for (const key of SLOT_KEYS) add(key, assets[key])
+  for (const [key, value] of Object.entries(assets)) {
+    if (key.startsWith('lighting:') || key.startsWith('state:')) add(key, value)
+  }
+  return slots
+}
+
+function collectIds(project, episodes) {
+  const ids = new Set()
+  const take = (entity) => {
+    for (const slot of slotsOf(entity)) if (slot.id) ids.add(slot.id)
+  }
+  for (const list of [project.characters, project.scenes, project.props]) {
+    for (const entity of list || []) take(entity)
+  }
+  for (const episode of Object.values(episodes)) {
+    take(episode)
+    for (const segment of episode.storyboard?.segments || []) take(segment)
+  }
+  return [...ids]
+}
+
+async function resolveAssets(ids) {
+  const map = {}
+  if (!ids.length) return map
+  const { token, api } = readSession()
+  if (!token) return map
+  const base = api
+  for (let i = 0; i < ids.length; i += 100) {
+    const chunk = ids.slice(i, i + 100)
+    const res = await fetch(`${base}/assets/check-status`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ ids: chunk }),
+    })
+    if (!res.ok) throw new Error(`查詢素材網址失敗（${res.status}）。請在登入框貼上 API key 或 wji auth token。接口是 POST /assets/check-status，與 GET /assets/list/:id 回傳的 url 相同。`)
+    const rows = await res.json()
+    const list = Array.isArray(rows) ? rows : (rows.data || [])
+    for (const asset of list) {
+      if (asset?.id && asset.url) map[asset.id] = asset
+    }
+  }
+  return map
+}
+
+function mediaOf(entity, assets, files) {
+  let image = null
+  let video = null
+  for (const slot of slotsOf(entity)) {
+    let url = slot.url || null
+    let kind = slot.label === 'video' || (url && VIDEO_RE.test(url)) ? 'video' : 'image'
+    if (!url && slot.id && assets[slot.id]?.url) {
+      url = assets[slot.id].url
+      const category = String(assets[slot.id].category || assets[slot.id].type || '')
+      if (category === 'video' || VIDEO_RE.test(url)) kind = 'video'
+    }
+    if (!url && slot.file && files?.has(slot.file)) {
+      url = URL.createObjectURL(files.get(slot.file))
+      if (VIDEO_RE.test(slot.file)) kind = 'video'
+    }
+    if (!url) continue
+    if (kind === 'video') video ||= url
+    else image ||= url
+  }
+  if (image) return { kind: 'image', url: image, video }
+  if (video) return { kind: 'video', url: video }
+  return null
+}
+
+function shotButton(url, kind, caption) {
+  const media = kind === 'video'
+    ? `<video src="${esc(url)}" muted playsinline preload="metadata"></video>`
+    : `<img src="${esc(url)}" alt="${esc(caption)}" />`
+  return `<button type="button" class="shot" data-src="${esc(url)}" data-kind="${kind}" data-caption="${esc(caption)}" aria-label="放大 ${esc(caption)}">${media}<span class="enlarge">放大</span></button>`
+}
+
+function figure(entity, assets, files, frame) {
+  const media = mediaOf(entity, assets, files)
+  const caption = entity.name || entity.id || ''
+  const cls = frame ? `figure ${frame}` : 'figure'
+  if (!media) return `<div class="${cls}"><div class="placeholder">圖片佔位</div></div>`
+  const parts = [shotButton(media.url, media.kind, caption)]
+  if (media.kind === 'image' && media.video) parts.push(shotButton(media.video, 'video', caption))
+  return `<div class="${cls}">${parts.join('')}</div>`
+}
+
+function shots() {
+  return [...document.querySelectorAll('#app .shot')]
+}
+
+function openShot(button) {
+  const src = button.dataset.src
+  const kind = button.dataset.kind
+  const caption = button.dataset.caption || ''
+  viewerCaption.textContent = caption
+  viewer.dataset.current = String(shots().indexOf(button))
+  if (kind === 'video') {
+    viewerImg.hidden = true
+    viewerImg.removeAttribute('src')
+    viewerVideo.hidden = false
+    viewerVideo.src = src
+    viewerVideo.play().catch(() => {})
+  } else {
+    viewerVideo.pause()
+    viewerVideo.removeAttribute('src')
+    viewerVideo.load()
+    viewerVideo.hidden = true
+    viewerImg.hidden = false
+    viewerImg.src = src
+    viewerImg.alt = caption
+  }
+  if (!viewer.open) viewer.showModal()
+}
+
+function stepShot(delta) {
+  const list = shots()
+  if (!list.length) return
+  let index = Number(viewer.dataset.current || 0) + delta
+  if (index < 0) index = list.length - 1
+  if (index >= list.length) index = 0
+  openShot(list[index])
+}
+
+app.addEventListener('click', (event) => {
+  const shot = event.target.closest('.shot')
+  if (!shot) return
+  openShot(shot)
+})
+document.querySelector('#viewer-prev').onclick = () => stepShot(-1)
+document.querySelector('#viewer-next').onclick = () => stepShot(1)
+document.querySelector('#viewer-close').onclick = () => viewer.close()
+viewer.addEventListener('click', (event) => {
+  if (event.target === viewer) viewer.close()
+})
+viewer.addEventListener('close', () => {
+  viewerVideo.pause()
+  viewerVideo.removeAttribute('src')
+  viewerVideo.load()
+})
+viewer.addEventListener('keydown', (event) => {
+  if (event.target === viewerVideo) return
+  if (event.key === 'ArrowRight') {
+    event.preventDefault()
+    stepShot(1)
+  }
+  if (event.key === 'ArrowLeft') {
+    event.preventDefault()
+    stepShot(-1)
+  }
+})
+
+const WEB = 'https://app.wji.ai'
+
+function isBound(value) {
+  return ID_RE.test(String(value || ''))
+}
+
+function canvasHref(workspaceId, canvasId, nodeId) {
+  if (!isBound(workspaceId) || !isBound(canvasId)) return ''
+  const query = new URLSearchParams({ app: 'InfiniteCanvas', canvas: canvasId })
+  if (isBound(nodeId)) query.set('node', nodeId)
+  return `${WEB}/app/workspace/${workspaceId}?${query}`
+}
+
+function datasetHref(workspaceId, datasetId) {
+  if (!isBound(workspaceId) || !isBound(datasetId)) return ''
+  const query = new URLSearchParams({ app: 'Dataset', dataset: datasetId })
+  return `${WEB}/app/workspace/${workspaceId}?${query}`
+}
+
+function firstNode(nodes) {
+  if (!nodes || typeof nodes !== 'object') return ''
+  for (const value of Object.values(nodes)) {
+    if (isBound(value)) return String(value)
+    if (Array.isArray(value)) {
+      const hit = value.find((item) => isBound(item))
+      if (hit) return String(hit)
+    }
+  }
+  return ''
+}
+
+function wjiLinks(workspaceId, opts) {
+  const links = []
+  const canvas = canvasHref(workspaceId, opts.canvasId, opts.nodeId)
+  const dataset = datasetHref(workspaceId, opts.datasetId)
+  if (canvas) links.push(`<a href="${esc(canvas)}" target="_blank" rel="noopener">畫布</a>`)
+  if (dataset) links.push(`<a href="${esc(dataset)}" target="_blank" rel="noopener">數據集</a>`)
+  return links.length ? `<p class="links">${links.join('')}</p>` : ''
+}
+
+function navItem(id, index, label) {
+  return `<a href="#${id}" data-target="${id}"><span>${index}</span>${esc(label)}</a>`
+}
+
+function extItem(href, label) {
+  if (!href) return ''
+  return `<a class="ext" href="${esc(href)}" target="_blank" rel="noopener">${esc(label)}</a>`
+}
+
+let navLock = false
+
+function scrollToId(id) {
+  const el = document.getElementById(id)
+  if (!el) return
+  const main = document.querySelector('#app')
+  const mainScrolls = main.scrollHeight > main.clientHeight + 8
+  const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+  navLock = true
+  if (mainScrolls) main.scrollTo({ top: Math.max(0, el.offsetTop - 12), behavior })
+  else el.scrollIntoView({ behavior, block: 'start' })
+  setCurrent(id)
+  window.setTimeout(() => { navLock = false }, 500)
+}
+
+function currentFromScroll() {
+  if (navLock) return
+  const main = document.querySelector('#app')
+  const sections = [...main.querySelectorAll('.page-section')]
+  const line = main.scrollTop + 24
+  let id = sections[0]?.id
+  for (const section of sections) {
+    if (section.offsetTop <= line) id = section.id
+  }
+  if (id) setCurrent(id)
+}
+
+function setCurrent(id) {
+  for (const link of document.querySelectorAll('#nav a[data-target]')) {
+    link.classList.toggle('current', link.dataset.target === id)
+  }
+}
+
+function bindNav() {
+  const main = document.querySelector('#app')
+  if (main.dataset.navBound) return
+  main.dataset.navBound = '1'
+  main.addEventListener('scroll', currentFromScroll, { passive: true })
+}
+
+document.querySelector('#nav').addEventListener('click', (event) => {
+  const link = event.target.closest('a[data-target]')
+  if (!link) return
+  event.preventDefault()
+  scrollToId(link.dataset.target)
+})
+document.querySelector('.brand').addEventListener('click', (event) => {
+  event.preventDefault()
+  scrollToId('overview')
+})
+
+function chips(pairs) {
+  const items = pairs.filter(([, value]) => value != null && value !== '')
+  if (!items.length) return ''
+  return `<div class="chips">${items.map(([label, value]) => `<span class="chip">${esc(label)} ${esc(value)}</span>`).join('')}</div>`
+}
+
+function conditionText(value) {
+  return CONDITION_LABELS[value] || value || ''
+}
+
+function tierText(value) {
+  return TIER_LABELS[value] || value || ''
+}
+
+function aside(text) {
+  if (!text) return ''
+  return `<p class="aside">${esc(text)}</p>`
+}
+
+function episodeLabel(episode) {
+  const raw = String(episode.change || '').split(/[，。；,]/)[0].trim()
+  return raw.slice(0, 10) || '分集'
+}
+
+function labeled(labels, source) {
+  if (!source) return ''
+  return Object.entries(labels)
+    .filter(([key]) => source[key])
+    .map(([key, label]) => `<p><b>${esc(label)}</b>${esc(source[key])}</p>`)
+    .join('')
+}
+
+function bulletBlock(label, items) {
+  if (!Array.isArray(items) || !items.length) return ''
+  return `<p><b>${esc(label)}</b></p><ul>${items.map((item) => `<li>${esc(item)}</li>`).join('')}</ul>`
+}
+
+function structureOf(structure) {
+  if (!Array.isArray(structure) || !structure.length) return ''
+  const rows = structure.map((phase) => {
+    const name = PHASE_LABELS[phase.phase] || phase.phase || ''
+    return `<li><b>${esc(name)}</b> ${esc(phase.task || '')}</li>`
+  }).join('')
+  return `<p><b>結構</b></p><ul>${rows}</ul>`
+}
+
+function speakerName(project, speaker) {
+  if (!speaker) return ''
+  if (speaker === 'VO') return '畫外'
+  const character = (project.characters || []).find((item) => item.id === speaker)
+  return character?.name || speaker
+}
+
+function beatMarks(beat) {
+  const marks = []
+  if (beat.turn) marks.push('轉折')
+  if (beat.gag) marks.push(beat.gag === true ? '笑點' : `笑點 ${beat.gag}`)
+  if (beat.clue) {
+    const clue = Array.isArray(beat.clue) ? beat.clue.join(' ') : beat.clue
+    marks.push(`線索 ${clue}`)
+  }
+  if (!marks.length) return ''
+  return `<span class="marks">${marks.map((mark) => `<i>${esc(mark)}</i>`).join('')}</span>`
+}
+
+function scriptOf(project, episode) {
+  const scenes = episode.scenes || []
+  if (!scenes.some((scene) => (scene.flow || []).length)) return ''
+  const sceneName = (id) => (project.scenes || []).find((scene) => scene.id === id)?.name || id || ''
+  const blocks = scenes.map((scene, index) => {
+    const flow = (scene.flow || []).map((beat) => {
+      const marks = beatMarks(beat)
+      if (beat.line || beat.speaker) {
+        const name = speakerName(project, beat.speaker)
+        const delivery = beat.delivery ? `（${esc(beat.delivery)}）` : ''
+        return `<p class="beat line"><b>${esc(name)}${delivery}：</b>${esc(beat.line || '')}${marks}</p>`
+      }
+      if (beat.action) return `<p class="beat action"><span class="tri">△</span><span>${esc(beat.action)}</span>${marks}</p>`
+      return ''
+    }).join('')
+    return `<div class="script-scene"><header><span>${esc(scene.sceneId || index + 1)}</span><h4>${esc(sceneName(scene.sceneId))}</h4><em>${esc(scene.lighting || '')}</em></header>${flow}</div>`
+  }).join('')
+  return `<details class="script"><summary>劇本</summary><div class="script-body">${blocks}</div></details>`
+}
+
+function card(entity, assets, files, extra, frame) {
+  return `<article>${figure(entity, assets, files, frame)}<div class="body"><div class="kicker">${esc(entity.id || '')}</div><h3>${esc(entity.name || entity.id || '')}</h3>${extra || ''}</div></article>`
+}
+
+function note(label, text) {
+  if (!text) return ''
+  return `<p><b>${esc(label)}</b>${esc(text)}</p>`
+}
+
+function render(project, episodes, assets, files) {
+  const params = project.params || {}
+  const brief = project.outline?.brief || {}
+  const guideline = project.outline?.guideline || {}
+  const characters = project.characters || []
+  const scenes = project.scenes || []
+  const props = project.props || []
+  const eps = Object.values(episodes).sort((a, b) => (a.ep || 0) - (b.ep || 0))
+  const wji = project.wji || {}
+  const workspaceId = wji.workspaceId
+  const canvases = wji.canvases || {}
+  const facts = [
+    params.genre, params.register, params.ratio,
+    params.episodes ? `${params.episodes} 集` : '',
+    params.video, params.videoResolution,
+  ].filter(Boolean)
+
+  const story = [
+    labeled(BRIEF_LABELS, brief),
+    structureOf(project.outline?.structure),
+    labeled(GUIDE_LABELS, guideline),
+    bulletBlock('不能做', guideline.forbidden),
+    bulletBlock('優先', guideline.priorities),
+  ].join('')
+
+  const characterCards = characters.map((character) => card(character, assets, files,
+    `<p>${esc(character.oneLiner || character.role || '')}</p>${chips([['角色', character.role], ['層級', tierText(character.tier)]])}${wjiLinks(workspaceId, { canvasId: canvases.characters, nodeId: firstNode(character.wji?.nodes), datasetId: character.wji?.datasetId })}`,
+    'sheet'
+  )).join('')
+
+  const sceneCards = scenes.map((scene) => card(scene, assets, files,
+    `<p>${esc(scene.summary || '')}</p>${chips([['狀態', conditionText(scene.condition)]])}${aside(scene.conditionReason)}${wjiLinks(workspaceId, { canvasId: canvases.scenes, nodeId: firstNode(scene.wji?.nodes), datasetId: scene.wji?.datasetId })}`,
+    'sheet'
+  )).join('')
+
+  const propCards = props.map((prop) => card(prop, assets, files,
+    `<p>${esc(prop.summary || '')}</p>${chips([['狀態', conditionText(prop.condition)]])}${aside(prop.conditionReason)}${wjiLinks(workspaceId, { canvasId: canvases.props, nodeId: firstNode(prop.wji?.nodes), datasetId: prop.wji?.datasetId })}`,
+    'sheet'
+  )).join('')
+
+  const episodeBlocks = eps.map((episode) => {
+    const ep = episode.ep
+    const canvasId = episode.wji?.canvasId || canvases.episodes?.[ep] || canvases.episodes?.[String(ep)]
+    const segments = (episode.storyboard?.segments || []).map((segment) => card(segment, assets, files,
+      `<p>${esc((segment.prompt || '').slice(0, 220))}</p>${chips([['場景', segment.sceneIndex]])}${wjiLinks(workspaceId, { canvasId, nodeId: firstNode(segment.wji?.nodes), datasetId: segment.wji?.datasetId })}`
+    )).join('')
+    return `<section id="ep-${ep}" class="page-section">
+      <h2>E${String(ep || '').padStart(2, '0')}</h2>
+      ${wjiLinks(workspaceId, { canvasId, datasetId: episode.wji?.screenplayDatasetId })}
+      <div class="prose">
+        ${note('本集變化', episode.change)}
+        ${note('開場鉤子', episode.hook)}
+        ${note('結尾懸念', episode.cliff)}
+      </div>
+      ${scriptOf(project, episode)}
+      <div class="grid">${segments}</div>
+    </section>`
+  }).join('')
+
+  const wjiNav = [
+    extItem(canvasHref(workspaceId, canvases.characters), '人物畫布'),
+    extItem(canvasHref(workspaceId, canvases.scenes), '場景畫布'),
+    extItem(canvasHref(workspaceId, canvases.props), '道具畫布'),
+    extItem(datasetHref(workspaceId, wji.outlineDatasetId), '大綱數據集'),
+    extItem(datasetHref(workspaceId, wji.guidelineDatasetId), '創作指引數據集'),
+    ...Object.entries(wji.datasetFolders || {}).map(([name, id]) => extItem(datasetHref(workspaceId, id), `${name} 數據集`)),
+  ].filter(Boolean).join('')
+
+  document.querySelector('#brand').textContent = project.title || '短劇'
+  document.querySelector('#nav').innerHTML = [
+    navItem('overview', '01', '製作總覽'),
+    navItem('story', '02', '故事設計'),
+    navItem('characters', '03', '人物設定'),
+    navItem('world', '04', '場景與道具'),
+    navItem('episodes', '05', '分集劇本'),
+    ...eps.map((episode) => navItem(`ep-${episode.ep}`, 'E' + String(episode.ep).padStart(2, '0'), episodeLabel(episode))),
+    wjiNav ? `<div class="group">WJI</div>${wjiNav}` : '',
+  ].join('')
+
+  app.innerHTML = `
+    <section id="overview" class="page-section">
+      <h1>${esc(project.title || '未命名')}</h1>
+      <p class="facts">${facts.map((item) => `<span>${esc(item)}</span>`).join('')}</p>
+      <p class="core">${esc(project.outline?.core || '')}</p>
+      ${wjiLinks(workspaceId, { canvasId: canvases.characters || canvases.scenes, datasetId: wji.outlineDatasetId })}
+    </section>
+    <section id="story" class="page-section">
+      <h2>故事設計</h2>
+      <div class="prose">${story}</div>
+    </section>
+    <section id="characters" class="page-section">
+      <h2>人物設定</h2>
+      <div class="grid">${characterCards || '<p class="empty">尚無人物</p>'}</div>
+    </section>
+    <section id="world" class="page-section">
+      <h2>場景與道具</h2>
+      <div class="grid">${sceneCards}${propCards}</div>
+    </section>
+    <section id="episodes" class="page-section">
+      <h2>分集劇本與分鏡</h2>
+      ${episodeBlocks ? '' : '<p class="empty">尚無分集</p>'}
+    </section>
+    ${episodeBlocks}
+  `
+  setCurrent('overview')
+  bindNav()
+}
+
+async function readProject(source) {
+  if (source.files) {
+    const file = source.files.get('project.json')
+    if (!file) throw new Error('這個資料夾裡沒有 project.json')
+    const project = JSON.parse(await file.text())
+    const episodes = {}
+    for (const [path, episodeFile] of source.files) {
+      const match = path.match(/^episodes\/E(\d+)\.json$/i)
+      if (!match) continue
+      const episode = JSON.parse(await episodeFile.text())
+      episodes[episode.ep || Number(match[1])] = episode
+    }
+    return { project, episodes, files: source.files }
+  }
+  const response = await fetch('project.json')
+  if (!response.ok) throw new Error('讀不到旁邊的 project.json')
+  const project = await response.json()
+  const episodes = {}
+  const count = Number(project.params?.episodes) || 0
+  for (let ep = 1; ep <= count; ep += 1) {
+    const episodeResponse = await fetch(`episodes/E${String(ep).padStart(2, '0')}.json`)
+    if (!episodeResponse.ok) continue
+    const episode = await episodeResponse.json()
+    episodes[episode.ep || ep] = episode
+  }
+  return { project, episodes, files: null }
+}
+
+async function load(source) {
+  statusEl.textContent = '讀取 project.json…'
+  const { project, episodes, files } = await readProject(source)
+  if (!localStorage.getItem(API_KEY) && project.wji?.endpoint) {
+    localStorage.setItem(API_KEY, project.wji.endpoint)
+  }
+  const ids = collectIds(project, episodes)
+  statusEl.textContent = ids.length ? `向 /assets/check-status 查詢 ${ids.length} 個素材網址…` : ''
+  const assets = await resolveAssets(ids)
+  render(project, episodes, assets, files)
+  const resolved = Object.keys(assets).length
+  statusEl.textContent = ids.length
+    ? (readSession().token
+      ? `已解析 ${resolved} / ${ids.length} 個素材網址，圖片由瀏覽器直接讀 CDN。`
+      : '專案已載入。按登入貼上 API key 或 wji auth token，才會向 WJI 查素材網址。')
+    : '專案已載入。'
+}
+
+async function boot() {
+  try {
+    await load({})
+  } catch {
+    app.innerHTML = `<div class="empty">
+      <p>這是靜態頁，不會生成，也不會把圖片下載到專案裡。</p>
+      <p>選擇專案資料夾，或把本檔放在專案目錄旁，用靜態伺服器打開，它會讀 <code>project.json</code> 和 <code>episodes/E01.json</code>。</p>
+      <p>素材 id 透過 <code>POST /assets/check-status</code> 取回 <code>url</code>（與 <code>GET /assets/list/:id</code> 的檔案地址相同）。按登入貼上 API key 或 <code>wji auth token</code>，會記在 localStorage。點圖片或影片可以放大。</p>
+    </div>`
+    statusEl.textContent = ''
+  }
+}
+
+boot()
+</script>
+</body>
+</html>

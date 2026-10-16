@@ -97,7 +97,11 @@ validate, then quote, then generate.
    model speaks), ratio (default 9:16 for short, 16:9 for medium and movie). Offer the defaults you
    will use unless told otherwise:
    `video: h3` (MiniMax H3 ref), `style: realistic`, **`references: sheets`** (no storyboard
-   images) and **`videoDuration: auto`**. Do not start Stage 1 without the first two.
+   images) and **`videoDuration: auto`**. That message is a gate. If the user left something out —
+   no video model, no episode count, no genre, no 语体 — ask for it, or name the default you would
+   use, in the same message. Do not `init`, and do not start Stage 1, until they confirm the set.
+   A default is a proposal, not a decision. A resumed `project.json` that already has these params
+   is not asked again unless a required field is empty.
 
    **The video mode decides how the plot is cut up.** A segment is one video generation, so its
    length is whatever the provider accepts — and that differs by a factor of two:
@@ -203,26 +207,33 @@ write JSON → validate --stage <stage> → fix until green → render → sync 
 
 ## Production dashboard
 
-Generate the dashboard whenever the user wants to review the project, and refresh it after a
-stage or episode is locked:
+The dashboard is one static file, `dashboard.html` beside this skill. It does not bake
+`project.json`, and it does not download images. **Every project keeps its own copy in the
+same folder as `project.json`.** `init` copies it. On any later session, if that file is
+missing, copy it again — do not overwrite a copy that is already there:
 
 ```bash
 $SD dashboard {project}
-# custom location, and a folder of downloaded WJI images:
-$SD dashboard {project} --output {project}/dashboard.html --assets {project}/assets --force
 ```
 
-The output is one static HTML file: production totals and gate health, brief and guideline,
-episode directory, character bibles, scene / prop sheets, scripts, cut timing and storyboard
-plans. It does not call WJI and costs no credits. Every character, scene, prop and storyboard
-slot keeps an image placeholder until a picture or video is bound. A bound value may be a WJI
-server URL (`https://…` image or video) or a local file: set `image.url` / `video.url`, or
-`wji.assets.sheet|headshot|keyframe|video`, to that URL or to a path relative to the project
-(or an absolute path). Files whose name contains the entity or asset id are also picked up from
-`{project}/assets`, `{project}/output`, the project tree, or `--assets <dir>`. A video URL or
-`.mp4` / `.webm` / `.mov` file renders as a player; if the address fails to load, the
-placeholder stays. Open `dashboard.html` in a browser. Do not paste the HTML into a dataset or
-upload it as an asset.
+That command checks `{project}/dashboard.html`. Missing → copy. Already there → leave it
+(`--force` replaces it with this skill's current page). Open the copy through a local static
+server so it can `fetch` `./project.json` and `episodes/E01.json`. Refreshing re-reads the JSON.
+
+Pictures and videos stay as asset ids on `wji.assets.sheet|headshot|keyframe|poster|video`
+(and `lighting:` / `state:` keys). The page asks `POST /assets/check-status` for those ids
+and uses the returned `url` — the same file address as `GET /assets/list/:id` (`wji asset get`).
+Paste the bearer from `wji auth token` once; the browser then loads the CDN url. Do not run
+`wji asset download` for the dashboard. An `https` url already stored on `image.url` /
+`video.url` is used as-is. A relative file that is already in the chosen folder is shown from
+that file. Anything else stays a placeholder. Video urls render as a player.
+
+The left nav scrolls the page itself (the section links call `scrollTo` on the content column).
+Bound WJI ids become links to `https://app.wji.ai/app/workspace/<workspaceId>`:
+a canvas is `?app=InfiniteCanvas&canvas=<id>` (and `&node=<id>` when a node is bound);
+a dataset is `?app=Dataset&dataset=<id>`.
+
+Do not paste the HTML into a dataset or upload it as an asset.
 
 ## Stage skills (the craft lives there)
 
