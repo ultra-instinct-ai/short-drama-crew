@@ -73,7 +73,7 @@ the headshot + sheet as image references and the voice as audio.
 ```
 
 - headshot: `canvas add image -n "C01 headshot" -m <image model> -r 1:1 -p "<image.prompt>"`
-- sheet:    `canvas add image -n "C01 sheet" --from <headshotNode> -m <image model> -r 16:9 -p "@image1 is the face to match. <image.sheet>"`
+- sheet:    `canvas add image -n "C01 sheet" --from <headshotNode> -m <image model> -r 16:9 -p "@image1 is the face to match exactly. <image.sheet>"`
 - voice:    `canvas add audio -n "C01 voice" -m <audio/tts model> -p "<voice.prompt>"` (optional; skip when no voice model is enabled)
 - title:    `canvas add title -t "C01 林小夏" --at <x>,<y>` — one per row, rows 700 px apart
 

@@ -190,7 +190,7 @@ id or list) and `gag` (`setup` / `build` / `punchline`) with `runningGag`.
 | `profile.evidence[]` | source | verbatim quotes, never translated |
 | `image.prompt` | **`params.imagePromptLang`** (English by default) | portrait prompt; **no names or aliases**; must state ethnicity and era |
 | `image.negativePrompt` | `imagePromptLang` | style-dependent, see stage-characters |
-| `image.sheet` | `imagePromptLang` | 16:9 three-zone sheet prompt; no names; contains the style's render phrase (`STYLE_PRESETS[style].render`, or `.renderZh` in Chinese) |
+| `image.sheet` | `imagePromptLang` | 16:9 three-panel sheet (headshot filling the height, front full body with the face covered by a grey box, back full body), grey-white studio background, studio lighting; no names; contains the style's render phrase (`STYLE_PRESETS[style].render`, or `.renderZh` in Chinese) |
 | `voice.prompt` | English | ≤400 characters, a static voice identity, **no quoted lines** |
 | `voice.videoDirection` | **English** | ≤160 characters, one clause: how they speak (pace, where the voice sits, what it does at the end of a phrase, accent). It is pasted beside **every line this character says** in a video prompt, and gated there — compress `voice.prompt`, do not repeat it |
 | `identityEn` | **English** | ≤80 characters, the name-free way a prompt refers to this person (`the woman in her mid thirties in headphones`). Distinct per character; no names. Used to attribute dialogue in `keyframes` mode and anywhere a `@imageK` label is not available |

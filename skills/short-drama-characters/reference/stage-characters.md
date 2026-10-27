@@ -71,23 +71,34 @@ headshot|sheet`.
   **must** ban `photorealistic`. Both gated. Always add `logo, brand name, text` — a "store
   uniform" comes back wearing a real chain's badge otherwise (seen in testing), and a real brand
   on a character is a problem in every shot after it.
-- `image.sheet`: the model-sheet layout, written out in full every time:
+- `image.sheet`: the three-panel sheet, written out in full every time. Left to right on
+  one 16:9 canvas, grey-white seamless studio background, studio lighting:
 
   ```
-  ┌──────────┬────────────────────────────┐
-  │  bust    │   front    side    back     │   ONE 16:9 canvas, pure white background
-  │ portrait ├────────────────────────────┤   LEFT ZONE ≈ 34 % width: head-and-shoulders bust,
-  │ (face    │  detail · detail · detail   │     both shoulders complete, flat bottom edge
-  │  ref)    │                            │   RIGHT-TOP: three full-body views, same height,
-  └──────────┴────────────────────────────┘     same head-to-body ratio, PROPORTIONS ARE CRITICAL
-                                               RIGHT-BOTTOM: 4–5 small detail studies;
-                                               the detail studies give way, not the figures
+  ┌────────────┬────────────┬────────────┐
+  │  headshot  │   front    │    back    │   ONE 16:9 canvas
+  │  face fills│  full body │  full body │   grey-white studio background
+  │  the height│  grey box  │            │   studio lighting
+  │            │  over face │            │
+  └────────────┴────────────┴────────────┘
   ```
 
-  Plus: `all views share the SAME face as the bust portrait`, `LIGHTING IN THE LEFT ZONE ONLY:
-  soft directional key…`, `LIGHTING IN THE RIGHT ZONES: flat even orthographic lighting`, the
-  style's render phrase (`STYLE_PRESETS[style].render` — `node scripts/short-drama.mjs` exports
-  it; copy it verbatim), `No text, no watermark`. Gated: `16:9`, render phrase, no names.
+  ```
+  Single character sheet on ONE 16:9 landscape canvas, three panels left to right,
+  grey-white seamless studio background, studio lighting. <style render phrase>.
+  LEFT: one headshot, the face filling the full height of the panel, facial features
+  large and clear. CENTER: full-body front view, the face completely covered by a flat
+  grey box so no facial features are visible. RIGHT: full-body back view, same height
+  and body proportions as the front view, feet on the same ground line. Subject:
+  <ethnicity, age, era, identity, hair, outfit>. Same costume on both full-body views.
+  No side view, no extra characters, no scenery, no text, no watermark.
+  ```
+
+  The face lives only in the left headshot. The center panel is the costume and the body.
+  Copy the style render phrase verbatim (`STYLE_PRESETS[style].render`, or `.renderZh` when
+  `imagePromptLang` is Chinese — `node scripts/short-drama.mjs` exports it). In Chinese the
+  same three panels, still containing `16:9` and the `renderZh` phrase: `左：一张头像，五官撑满该格的全部高度。中：全身正面，脸部被一块平整的灰色方块完全遮住。右：全身背面，与正面同一身高。灰白无缝棚拍背景，棚拍灯光。`
+  Gated: `16:9`, render phrase, no names.
 
 ## Voice
 
@@ -177,9 +188,10 @@ invents a voice that fits it, which is why the headshot must be approved first. 
 one reference, so pass only the headshot node. About 3.6 credits a sample.
 
 Generate headshots first (a set of headshots is a batch — quote the total), **look at them**
-(download and open), then sheets and voices from the approved headshots. Check a sheet for: one
-face across all views, three full bodies of equal height, no squashed figures, white background.
-Regenerate rather than accept a sheet with two faces — every shot inherits it. Listen to the voice
+(download and open), then sheets and voices from the approved headshots. Check a sheet for: the
+headshot face fills the panel height, the front full body has its face covered by a flat grey
+box, the back full body matches that height, grey-white studio background. Regenerate rather
+than accept a sheet with a visible face on the front body — every shot inherits it. Listen to the voice
 before you attach it: the age and the weight of the voice should match the face.
 
 Attach and bind:
