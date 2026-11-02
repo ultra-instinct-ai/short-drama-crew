@@ -97,6 +97,30 @@ adjective:
   tighter) is a statement of power — make it on purpose.
 - **Over-the-shoulder** names whose shoulder is in the foreground (`foreground`); that decides
   whose shot it is.
+
+### Two people talking
+
+A model puts into the shot everyone the shot names, and "looking at him" gives it no direction. In
+sheets mode the gate `two-person-framing` holds every two-person segment to these, and `prompt
+segment` writes the phrases for you:
+
+- **Default pattern:** a two-shot once to set who stands where → **over-the-shoulder**, alternating,
+  for the exchange → a **clean single** for the punchline or the biggest reaction. A reaction lands
+  harder alone, so do not put every shot over a shoulder.
+- **A single is single.** `characters` holds one person, the shot opens `Only @imageK in frame.`, and
+  the rest of the shot never describes the other person. Their reaction gets its own cut.
+- **Every look has a direction.** `eyeline: { C01: "screen-left down" }` — `screen-left` or
+  `screen-right`, then `level`, `up` or `down`. The direction is toward the other person, so it follows
+  from the side they stand on. `"away screen-left"` is a deliberate look elsewhere; `"task"` keeps the
+  eyes on what the hands are doing. Height comes from the blocking: a person kneeling looks up, the
+  one standing looks down.
+- **The sides are locked.** `axis.screenLeft` / `screenRight` become a `Sides:` line in the prompt, and
+  every shot holds them. Moving a person across needs `axisSide: cross` with a `note`.
+- **Over-the-shoulder is its own setting.** `ots: "C01"` is the person whose shoulder is near the lens;
+  `characters` holds both people. The prompt says their face is not visible, so only one face is left
+  for the lip-sync and the eyes. It counts as a foreground for `params.foregroundLevel`, and that person
+  needs no `eyeline`. When one person is much lower, shoot up past the low shoulder or down past the
+  high one, and keep the sides.
 - **Crossing the axis** is legal with a neutral shot, an in-shot crossing, a deliberate
   disorientation or a re-established geography — `axisSide: cross` with a `note` that says which;
   the new working side is then inherited by the cuts after it.

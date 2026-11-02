@@ -14,7 +14,7 @@ import {
   paramsOf, parseEpRange, promptSkeleton, renderCharacter, renderOutline, renderProp, renderScene, renderScript,
   renderSegment, runGates, seedScript, seedStoryboard, seedanceAnchors, slug, timestamp, writeJsonFile,
   wanLegendLine, wanSheetLegendLine, wanShotHeader, segmentReferences, imageReferences, audioReferences, voiceSamplePrompt, voiceSampleSeconds, nonWhitespace,
-  speechDirection, cameraPhrase, lightPhrase, foregroundPhrase, foregroundBand, foregroundForLook, focalOf, LIGHT_DIRECTIONS, identityOf, isEnglish,
+  speechDirection, cameraPhrase, lightPhrase, eyelinePhrase, eyelineValid, onlyInFramePhrase, overShoulderPhrase, sidesLine, foregroundPhrase, foregroundBand, foregroundForLook, focalOf, LIGHT_DIRECTIONS, identityOf, isEnglish,
   renderGuideline, renderDialogue, scriptSelfCheck, beatOffsets, turnPoints, parseAge, talkAndAction, normalizeRegister, REGISTERS, REGISTER_ACCENT,
   cutStart, segmentCharacters, keyScenes, shotTexts, motionSentence, cameraClause, PURPOSE_KINDS, ANGLES, HEIGHTS, NO_SUBTITLES, LIPS_CLOSED,
   audioPrompt, musicOf, cueSeconds, AUDIO_MODEL, AUDIO_MAX_CHARS, AUDIO_MAX_SECONDS, scoreSheet, smpte,
@@ -911,6 +911,58 @@ const breaks = (gateId, project, episode, needle) => {
   breaks('photography', PROJECT, missingFg, 'foreground is required');
   const unsaidFg = clone(E01); unsaidFg.storyboard.segments[0].cuts[0].frame = unsaidFg.storyboard.segments[0].cuts[0].frame.replace('the dripping edge of the striped awning', 'a wall');
   breaks('photography', PROJECT, unsaidFg, 'must name the foreground');
+}
+
+{
+  // Two people on screen, sheets mode: who is in frame, where they look, which side they stand on.
+  eq(eyelinePhrase('screen-right down', '@image3'), '@image3 looks toward screen-right and down.', 'an eyeline has a direction and a height');
+  eq(eyelinePhrase('task', '@image3'), '@image3 keeps their eyes on what their hands are doing.', 'task keeps the eyes on the work');
+  ok(eyelinePhrase('away screen-left', '@image3').includes('looks away'), 'away says so');
+  ok(eyelinePhrase('screen-left up', '@image3', 'zh').includes('左侧上方'), 'the Chinese eyeline');
+  ok(eyelineValid('screen-left level') && eyelineValid('task') && eyelineValid('away screen-right down'), 'valid eyelines');
+  ok(!eyelineValid('at him') && !eyelineValid('screen-right sideways'), 'an eyeline without a direction is refused');
+  const p = clone(PROJECT); p.params.references = 'sheets';
+  const framed = () => {
+    const ep = clone(E01);
+    const seg = ep.storyboard.segments.find((s) => s.id === 'E01-02');   // C01 | C02 | C01+C02 | C02 | C02, C02 screen left
+    const look = { C01: 'screen-left level', C02: 'screen-right level' };
+    seg.cuts.forEach((c) => { c.eyeline = Object.fromEntries((c.characters || []).map((id) => [id, look[id]])); });
+    seg.prompt = promptSkeleton(p, ep, seg.id).video.prompt;
+    return { ep, seg };
+  };
+  const only = (f) => f.filter((m) => m.startsWith('E01-02'));
+  const { ep: okEp, seg: okSeg } = framed();
+  eq(only(failures('two-person-framing', p, okEp)).length, 0, 'the skeleton writes everything the gate asks for');
+  ok(okSeg.prompt.includes('Sides: '), 'the skeleton locks the sides');
+  ok(okSeg.prompt.includes('Only @image'), 'the skeleton opens a single with who is in frame');
+  ok(okSeg.prompt.includes('looks toward screen-left'), 'the skeleton states the eyeline');
+  const noLook = framed(); delete noLook.seg.cuts[0].eyeline;
+  ok(only(failures('two-person-framing', p, noLook.ep)).some((m) => m.includes('is required')), 'an eyeline is required');
+  const vague = framed(); vague.seg.cuts[0].eyeline = { C01: 'at him' };
+  ok(only(failures('two-person-framing', p, vague.ep)).some((m) => m.includes('not valid')), '"at him" is refused');
+  const wrong = framed(); wrong.seg.cuts[0].eyeline = { C01: 'screen-right level' };
+  ok(only(failures('two-person-framing', p, wrong.ep)).some((m) => m.includes('so looking at the other person is screen-left')), 'looking away from the other person is caught');
+  const away = framed(); away.seg.cuts[0].eyeline = { C01: 'away screen-right' }; away.seg.prompt = promptSkeleton(p, away.ep, away.seg.id).video.prompt;
+  ok(!only(failures('two-person-framing', p, away.ep)).some((m) => m.includes('so looking')), 'a deliberate look away passes');
+  const noSides = framed(); noSides.seg.prompt = noSides.seg.prompt.replace(/Sides: [^\n]*\n/, '');
+  ok(only(failures('two-person-framing', p, noSides.ep)).some((m) => m.includes('must lock the sides')), 'a prompt without the sides line fails');
+  const leaked = framed();
+  const labelOf = /(@image\d+) looks toward screen-right/.exec(leaked.seg.prompt)[1];
+  leaked.seg.prompt = leaked.seg.prompt.replace(/(Shot 1 \([^)]*\): )/, `$1Behind him stands ${labelOf}. `).replace(/(\[Shot 1\] )/, `$1Behind him stands ${labelOf}. `);
+  ok(only(failures('two-person-framing', p, leaked.ep)).some((m) => m.includes('must not describe')), 'a single that names the other person fails');
+  const ots = framed(); const twoShot = ots.seg.cuts[2];
+  twoShot.ots = 'C01'; delete twoShot.eyeline.C01;
+  ots.seg.prompt = promptSkeleton(p, ots.ep, ots.seg.id).video.prompt;
+  ok(ots.seg.prompt.includes('their face not visible'), 'the skeleton writes the over-the-shoulder');
+  ok(ots.seg.prompt.includes('lower-right foreground'), 'the near shoulder sits on its own side of the axis');
+  eq(only(failures('two-person-framing', p, ots.ep)).length, 0, 'over-the-shoulder needs no eyeline from the shoulder');
+  const badOts = framed(); badOts.seg.cuts[0].ots = 'C02';
+  ok(only(failures('two-person-framing', p, badOts.ep)).some((m) => m.includes('ots must be one of')), 'ots must be on screen with one other');
+  eq(onlyInFramePhrase('@image3', 'zh'), '画面中只有@image3。', 'the Chinese single');
+  ok(overShoulderPhrase('@image3', 'left', 'zh').includes('左下方前景'), 'the Chinese over-the-shoulder');
+  ok(sidesLine({ screenLeft: 'A', screenRight: 'B' }, (id) => id, 'zh').includes('A始终在画面左侧'), 'the Chinese sides line');
+  // Keyframes carry the blocking in their pictures: the gate stays out of the way.
+  eq(failures('two-person-framing', PROJECT, E01).length, 0, 'keyframes mode is exempt');
 }
 
 {
@@ -2358,8 +2410,8 @@ const breaks = (gateId, project, episode, needle) => {
 
 // ── gate inventory (crew engine) ────────────────────────────────────────────
 {
-  eq(GATES.length, 67, 'gate count');
-  eq(GATES.filter((g) => !g.advisory).length, 61, 'hard gate count');
+  eq(GATES.length, 68, 'gate count');
+  eq(GATES.filter((g) => !g.advisory).length, 62, 'hard gate count');
   eq(GATES.filter((g) => g.advisory).length, 6, 'advisory gate count');
   ok(!GATES.find((g) => g.id === 'boundary-contrast').advisory, 'boundary-contrast is hard');
   ok(GATES.find((g) => g.id === 'boundary-contrast-episode').advisory, 'boundary-contrast-episode is advisory');
@@ -2481,8 +2533,8 @@ const breaks = (gateId, project, episode, needle) => {
   const results = runGates(makeContext(PROJECT, { 1: E01 }));
   const rep = formatGates(results);
   eq(Object.keys(rep).sort().join(','), 'advisory,failed,hard,lines,notes,summary,text', 'formatGates shape');
-  eq(rep.summary, '✓ 61 gate(s) passed, 6 advisory (1 note)', 'fixture summary');
-  eq(rep.failed, 0, 'nothing failed'); eq(rep.hard, 61, 'hard count'); eq(rep.advisory, 6, 'advisory count');
+  eq(rep.summary, '✓ 62 gate(s) passed, 6 advisory (1 note)', 'fixture summary');
+  eq(rep.failed, 0, 'nothing failed'); eq(rep.hard, 62, 'hard count'); eq(rep.advisory, 6, 'advisory count');
   // The fixture now raises one advisory (E01-03 carries the 爽点 and is not cut as faceslap),
   // exactly as it does in the wji-cli copy — advisory lines print, failures still must not.
   eq(rep.lines.filter((l) => l.includes('✗')).length, 0, 'a green run prints no failed gates');
