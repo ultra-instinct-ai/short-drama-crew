@@ -30,8 +30,7 @@ cinematography preset's guide (`../short-drama-core/reference/cinematography-<pr
 - **Every cut is lit and composed in the preset's look** (`params.cinematography`). Name the
   source in `light.source`, stage the person against it, and choose the camera side that gives the
   preset's preferred direction (the table in
-  `../short-drama-core/reference/cinematography.md`). Compose as the guide says, shoot past a
-  foreground, and stay within the preset's stop (T2.8; T2 for `sweet-romance` and `costume-idol`,
+  `../short-drama-core/reference/cinematography.md`). Compose as the guide says and stay within the preset's stop (T2.8; T2 for `sweet-romance` and `costume-idol`,
   which start on a T1.3 package and name their bokeh; T4 for `period-nostalgia`). Both costume
   presets also need a 全景 / 大全景 with negative space in every segment. For `sweet-romance` and
   `costume-idol`, shoot the 甜宠 set pieces (心动对视, 回眸, 共伞…) as
@@ -53,7 +52,8 @@ cinematography preset's guide (`../short-drama-core/reference/cinematography-<pr
   (`../short-drama-core/reference/composition-art-first.md`).
 - Every cut is a set-up: besides its beats and framing it carries the **lens** (`focal`, or let
   the shot size pick it), the **key light relative to the camera** (`light.direction` +
-  `light.note`), the **foreground** to throw out of focus, its `purpose` (kind + what changes),
+  `light.note`), the **foreground** if the story gives one a reason (how often is
+  `params.foregroundLevel`: `low` / `medium` / `high`), its `purpose` (kind + what changes),
   the three framing axes (`angle`, `height`, `axisSide` against the segment's `axis`), its
   `start` / `end` boundaries (positions, facing, gaze, hands, held props per person — the next
   cut begins where these end), `motion` (cue → one visible action → landing) and `cameraNote`

@@ -14,7 +14,7 @@ import {
   paramsOf, parseEpRange, promptSkeleton, renderCharacter, renderOutline, renderProp, renderScene, renderScript,
   renderSegment, runGates, seedScript, seedStoryboard, seedanceAnchors, slug, timestamp, writeJsonFile,
   wanLegendLine, wanSheetLegendLine, wanShotHeader, segmentReferences, imageReferences, audioReferences, voiceSamplePrompt, voiceSampleSeconds, nonWhitespace,
-  speechDirection, cameraPhrase, lightPhrase, foregroundPhrase, focalOf, LIGHT_DIRECTIONS, identityOf, isEnglish,
+  speechDirection, cameraPhrase, lightPhrase, foregroundPhrase, foregroundBand, foregroundForLook, focalOf, LIGHT_DIRECTIONS, identityOf, isEnglish,
   renderGuideline, renderDialogue, scriptSelfCheck, beatOffsets, turnPoints, parseAge, talkAndAction, normalizeRegister, REGISTERS, REGISTER_ACCENT,
   cutStart, segmentCharacters, keyScenes, shotTexts, motionSentence, cameraClause, PURPOSE_KINDS, ANGLES, HEIGHTS, NO_SUBTITLES, LIPS_CLOSED,
   audioPrompt, musicOf, cueSeconds, AUDIO_MODEL, AUDIO_MAX_CHARS, AUDIO_MAX_SECONDS, scoreSheet, smpte,
@@ -879,12 +879,34 @@ const breaks = (gateId, project, episode, needle) => {
   breaks('photography', PROJECT, noNote, 'light.note is required');
   const wrongDir = clone(E01); wrongDir.storyboard.segments[0].cuts[0].light.direction = 'top';
   breaks('photography', PROJECT, wrongDir, 'keyed from directly above');
-  // Foreground: named in the frame, said to be out of focus, and present on at least half the cuts.
+  // Foreground: named in the frame, said to be out of focus, and within params.foregroundLevel across the episode.
   ok(foregroundPhrase(cut).includes('out of focus'), 'the foreground phrase says it is defocused');
   eq(foregroundPhrase({ foreground: '' }), '', 'a clean frame adds nothing');
   ok(foregroundPhrase({ foreground: '\u6536\u94f6\u53f0' }, 'zh').includes('\u524d\u666f'), 'the Chinese foreground phrase says 前景');
-  const noFg = clone(E01); noFg.storyboard.segments[0].cuts.forEach((c) => { c.foreground = ''; });
-  breaks('photography', PROJECT, noFg, 'no depth');
+  const noFg = clone(E01); noFg.storyboard.segments.forEach((seg) => seg.cuts.forEach((c) => { c.foreground = ''; }));
+  // The fixture sits at `high`: no foreground at all is too few there, and fine at `low`.
+  breaks('photography', PROJECT, noFg, 'params.foregroundLevel high allows');
+  const asLevel = (level) => ({ ...PROJECT, params: { ...PROJECT.params, foregroundLevel: level } });
+  ok(!failures('photography', asLevel('low'), noFg).some((f) => f.includes('foregroundLevel')), 'low accepts an episode of clean frames');
+  breaks('photography', asLevel('low'), E01, 'params.foregroundLevel low allows');
+  breaks('photography', asLevel('medium'), E01, 'params.foregroundLevel medium allows');
+  breaks('params', asLevel('sometimes'), E01, 'params.foregroundLevel must be one of');
+  const levelFor = (params) => paramsOf({ params }).foregroundLevel;
+  eq(levelFor({}), 'medium', 'the default level is medium');
+  eq(levelFor({ composition: 'standard', cinematography: 'low-key', genre: '复仇' }), 'medium', 'a standard look stays medium');
+  eq(levelFor({ composition: 'art-first' }), 'high', '艺术优先 defaults to high');
+  eq(levelFor({ cinematography: 'sweet-romance' }), 'high', 'the 唯美 romance preset defaults to high');
+  eq(levelFor({ cinematography: 'costume-idol' }), 'high', 'the 唯美 costume preset defaults to high');
+  eq(levelFor({ genre: '唯美古风' }), 'high', 'a 唯美 genre defaults to high');
+  eq(levelFor({ genre: '美感優先' }), 'high', 'a 美感優先 genre defaults to high');
+  eq(levelFor({ composition: 'art-first', foregroundLevel: 'low' }), 'low', 'a named level beats the look');
+  eq(foregroundForLook({ cinematography: 'costume-dark' }), 'medium', 'the dark costume preset is not 唯美');
+  eq(foregroundBand('low', 40).max, 10, 'low allows a quarter of the cuts');
+  eq(foregroundBand('medium', 40).min, 10, 'medium starts at a quarter');
+  eq(foregroundBand('medium', 40).max, 20, 'medium stops at half');
+  eq(foregroundBand('high', 40).min, 20, 'high starts at half');
+  ok(foregroundBand('nope', 40) === null, 'an unknown level has no band');
+  for (const [k, pr] of Object.entries(CINEMATOGRAPHY_PRESETS)) if (pr) ok(!/foreground/i.test(pr.videoPhrase) && !/前景/.test(pr.videoPhraseZh), `${k} leaves the foreground to the level`);
   const missingFg = clone(E01); delete missingFg.storyboard.segments[0].cuts[0].foreground;
   breaks('photography', PROJECT, missingFg, 'foreground is required');
   const unsaidFg = clone(E01); unsaidFg.storyboard.segments[0].cuts[0].frame = unsaidFg.storyboard.segments[0].cuts[0].frame.replace('the dripping edge of the striped awning', 'a wall');

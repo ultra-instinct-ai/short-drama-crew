@@ -78,13 +78,12 @@ the negative space is usually the dark part of the frame.
 - Write the placement into `frame`: `she sits in the lower-left third, the unlit shelves filling
   the right two-thirds of the frame`.
 
-**前景 — a foreground layer.** Most cuts shoot *past* something: the edge of a shelf, rain on the
-glass, a door frame, a hanging lamp, the shoulder of the other person (an over-the-shoulder). Take
-it from the scene's anchors where you can, so it also carries continuity. The existing `photography`
-gate already requires a named `foreground` on at least half the cuts of a segment, said to be out
-of focus. Aim higher than that minimum in this look.
+**前景 — a foreground layer.** Where the story gives a reason, shoot *past* something: the edge of a
+shelf, rain on the glass, a door frame, a hanging lamp, the shoulder of the other person (an
+over-the-shoulder). Take it from the scene's anchors where you can, so it also carries continuity.
+`params.foregroundLevel` sets how often; this look suits `medium` or `high`.
 
-**Three layers.** A defocused foreground, the person in the shadow in the mid-ground, and a
+**Three layers, when a cut has a foreground.** A defocused foreground, the person in the shadow in the mid-ground, and a
 practical in the background that falls into bokeh. That depth is what the wide aperture exists for.
 
 ## 4. Lens — wide open, chosen per scene

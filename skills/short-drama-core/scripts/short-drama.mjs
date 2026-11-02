@@ -19,6 +19,7 @@
 //            [--market mainland|overseas]                            (mainland holds the supernatural to a rational explanation)
 //            [--format short|medium|movie]                            (短剧 1–3 min, 中剧 4–15 min, 电影 in ~5-minute parts — see FORMATS)
 //            [--register 台湾国语]                                      (语体 — decides how lines are written and the accent spoken)
+//            [--foreground low|medium|high]                             (how often cuts shoot past a foreground — see FOREGROUND_LEVELS)
 //            [--image-lang en|zh]                                       (language of the character / scene / prop image prompts)
 //   validate <project> [--stage outline|characters|art|script|storyboard] [--ep 1-3]
 //   checkup  <project> [--stage …] [--ep …]            every gate with ✓/✗, exit 0
@@ -199,6 +200,28 @@ export const AUDIO_MAX_REFS = 3;
  * `bed` (ambience + sfx + music) / `full` (the bed plus the lines): a Seed Audio node per segment.
  */
 export const AUDIO_TRACK_MODES = ['post', 'none', 'bed', 'full'];
+// Share of an episode's cuts that may carry a foreground. Measured per episode, not per segment, so a
+// siege can be full of them and a quiet confession can have none.
+export const FOREGROUND_LEVELS = Object.freeze({
+  low: { min: 0, max: 0.25 },
+  medium: { min: 0.25, max: 0.5 },
+  high: { min: 0.5, max: 1 },
+});
+/**
+ * The level a project gets when it does not name one: `high` for 唯美 or 美感优先 — the art-first
+ * composition, the two 唯美 cinematography presets, or a genre that says so — `medium` otherwise.
+ */
+export function foregroundForLook(params) {
+  const aesthetic = params?.composition === 'art-first'
+    || ['sweet-romance', 'costume-idol'].includes(params?.cinematography)
+    || /唯美|美感/.test(String(params?.genre || ''));
+  return aesthetic ? 'high' : 'medium';
+}
+/** The foreground cut count a level allows in an episode of `cuts` cuts. */
+export function foregroundBand(level, cuts) {
+  const band = FOREGROUND_LEVELS[level];
+  return band ? { min: Math.floor(band.min * cuts), max: Math.ceil(band.max * cuts) } : null;
+}
 /** No per-segment audio node in these modes. */
 export const NO_SEGMENT_TRACK = ['post', 'none'];
 /** What the music does at a cue point. */
@@ -415,8 +438,8 @@ export function speechDirection(character, delivery, lang = 'en') {
 
 /**
  * The blurred thing between the lens and the subject. Depth needs something to be shallow against,
- * so a cut names one and the prompt says it is out of focus; an empty `foreground` is a deliberate
- * clean frame and the gate limits how many of those a segment may have.
+ * so a cut that needs one names it and the prompt says it is out of focus; an empty `foreground` is a
+ * deliberate clean frame. params.foregroundLevel sets how many of each an episode has.
  */
 export function foregroundPhrase(cut, lang = 'en') {
   const fg = String(cut?.foreground || '').trim();
@@ -614,8 +637,8 @@ export const CINEMATOGRAPHY_PRESETS = {
   'low-key': {
     label: 'low-key, practical-lit, negative space, wide open',
     framePhrase: 'low-key practical lighting',
-    videoPhrase: 'low-key cinematography lit only by practical sources in the scene, faces held in shadow and shaped by side, back and rim light with no flat fill, compositions with generous negative space and layered out-of-focus foregrounds, shallow depth of field',
-    videoPhraseZh: '低调光影，光线只来自场景内的现场光源，人物处于阴影中，以侧光、逆光、轮廓光勾勒，不打平光补光，构图留白，前景虚化增加层次，大光圈浅景深',
+    videoPhrase: 'low-key cinematography lit only by practical sources in the scene, faces held in shadow and shaped by side, back and rim light with no flat fill, compositions with generous negative space, shallow depth of field',
+    videoPhraseZh: '低调光影，光线只来自场景内的现场光源，人物处于阴影中，以侧光、逆光、轮廓光勾勒，不打平光补光，构图留白，大光圈浅景深',
     sourceHint: 'the practical in or just outside the frame that the key comes from (a lamp, a window, a screen, a sign), not a film light',
     // 包围光 / 世界光: light from the lens axis or from nowhere flattens the face and kills the shadow side.
     bannedLight: ['frontal', 'ambient'],
@@ -630,8 +653,8 @@ export const CINEMATOGRAPHY_PRESETS = {
   'sweet-romance': {
     label: 'sweet romance: soft high-key glow, backlit halo, pastel, dreamy bokeh',
     framePhrase: 'soft romantic lighting',
-    videoPhrase: 'soft romantic cinematography of a modern idol romance drama, bright airy high-key light from soft motivated sources, faces softly and flatteringly lit with a warm backlight haloing the hair, gentle low-contrast pastel grade with creamy highlights and lifted shadows, dreamy diffusion and soft halation, shot wide open with an extremely shallow depth of field, dreamy oversized creamy bokeh balls and soft out-of-focus foregrounds',
-    videoPhraseZh: '唯美浪漫偶像剧质感，明亮通透的柔光，光线来自窗光、夕阳、串灯等柔和光源，人物面部柔和明亮，暖色逆光在发丝上形成光晕，低反差粉嫩柔和色调，高光奶油般柔和，暗部通透不死黑，柔焦朦胧，全开大光圈极浅景深，梦幻的大颗奶油光斑散景与柔焦前景',
+    videoPhrase: 'soft romantic cinematography of a modern idol romance drama, bright airy high-key light from soft motivated sources, faces softly and flatteringly lit with a warm backlight haloing the hair, gentle low-contrast pastel grade with creamy highlights and lifted shadows, dreamy diffusion and soft halation, shot wide open with an extremely shallow depth of field, dreamy oversized creamy bokeh balls',
+    videoPhraseZh: '唯美浪漫偶像剧质感，明亮通透的柔光，光线来自窗光、夕阳、串灯等柔和光源，人物面部柔和明亮，暖色逆光在发丝上形成光晕，低反差粉嫩柔和色调，高光奶油般柔和，暗部通透不死黑，柔焦朦胧，全开大光圈极浅景深，梦幻的大颗奶油光斑散景',
     sourceHint: 'the soft source in or just outside the frame that the light comes from (a big window, the low sun, overcast sky, string lights, a café lamp), not a film light',
     // 底光 / 顶光: the horror and interrogation lights — they carve eye sockets and chins.
     bannedLight: ['underlight', 'top'],
@@ -685,8 +708,8 @@ export const CINEMATOGRAPHY_PRESETS = {
   'costume-dark': {
     label: 'dark historical realism: firelight and lattice windows, faces in shadow, smoke, earthy texture',
     framePhrase: 'low-key firelit period lighting',
-    videoPhrase: 'gritty low-key historical cinematography with realistic texture, lit only by candles, oil lamps, braziers, torches and daylight or moonlight through lattice windows, faces carved by side and back light and falling into deep shadow, smoke and dust hanging in shafts of light, desaturated earthy palette of ochre, umber and cold steel blue, worn fabric, weathered wood and stone, sweeping wide and extreme-wide shots with vast negative space of darkness, smoke and sky, compositions with negative space and layered out-of-focus foregrounds, shallow depth of field',
-    videoPhraseZh: '写实质感的暗黑古装影调，光线只来自蜡烛、油灯、火盆、火把，以及透过窗棂的日光或月光，人物面部被侧光与逆光雕刻，隐入浓重阴影，烟尘在光束中悬浮，低饱和的赭石、深棕与冷铁蓝色调，布料磨旧，木石斑驳，大量全景与大全景，大面积留白于黑暗、烟尘与天空之中，构图留白，前景虚化增加层次，大光圈浅景深',
+    videoPhrase: 'gritty low-key historical cinematography with realistic texture, lit only by candles, oil lamps, braziers, torches and daylight or moonlight through lattice windows, faces carved by side and back light and falling into deep shadow, smoke and dust hanging in shafts of light, desaturated earthy palette of ochre, umber and cold steel blue, worn fabric, weathered wood and stone, sweeping wide and extreme-wide shots with vast negative space of darkness, smoke and sky, compositions with negative space, shallow depth of field',
+    videoPhraseZh: '写实质感的暗黑古装影调，光线只来自蜡烛、油灯、火盆、火把，以及透过窗棂的日光或月光，人物面部被侧光与逆光雕刻，隐入浓重阴影，烟尘在光束中悬浮，低饱和的赭石、深棕与冷铁蓝色调，布料磨旧，木石斑驳，大量全景与大全景，大面积留白于黑暗、烟尘与天空之中，构图留白，大光圈浅景深',
     sourceHint: 'the period source the key comes from (a candle, an oil lamp, a brazier, a torch, daylight or moonlight through a lattice window), never an electric light',
     bannedLight: ['frontal', 'ambient'],
     bannedWhy: 'floods the face (包围光 / 世界光) — stage the person so the flame or the lattice window sits beside or behind them',
@@ -1221,6 +1244,8 @@ export function slug(name) {
 export function paramsOf(project) {
   const p = { ...DEFAULT_PARAMS, ...(project.params || {}) };
   p.thresholds = { ...DEFAULT_PARAMS.thresholds, ...(project.params?.thresholds || {}) };
+  // Named, or read from the look, so a later change of look carries the level with it.
+  if (project.params?.foregroundLevel == null) p.foregroundLevel = foregroundForLook(p);
   // The model decides how long a segment may be; an explicit param still wins, but it is then gated.
   const mode = videoModel(p);
   if (project.params?.maxSegmentSeconds == null) p.maxSegmentSeconds = mode.maxSegmentSeconds;
@@ -1657,6 +1682,7 @@ export const GATES = [
     if (!ADAPT_MODES.includes(params.adaptMode)) out.push(`params.adaptMode must be one of ${ADAPT_MODES.join(' / ')}`);
     if (!VIDEO_MODES.includes(params.video)) out.push(`params.video must be one of ${VIDEO_MODES.join(' / ')}`);
     if (!AUDIO_TRACK_MODES.includes(params.audioTrack)) out.push(`params.audioTrack must be one of ${AUDIO_TRACK_MODES.join(' / ')}`);
+    if (!FOREGROUND_LEVELS[params.foregroundLevel]) out.push(`params.foregroundLevel must be one of ${Object.keys(FOREGROUND_LEVELS).join(' / ')}`);
     if (!REGISTERS.includes(params.register)) out.push(`params.register (语体) must be one of ${REGISTERS.join(' / ')} — it decides how the lines are written and the accent the model speaks`);
     if (!REFERENCE_MODES.includes(params.references)) out.push(`params.references must be one of ${REFERENCE_MODES.join(' / ')}`);
     if (!DURATION_MODES.includes(params.videoDuration)) out.push(`params.videoDuration must be one of ${DURATION_MODES.join(' / ')}`);
@@ -3140,15 +3166,16 @@ export const GATES = [
     }
     return out;
   }),
-  gate('photography', 'storyboard', 'every cut names its lens and stop, its key-light direction, and enough foreground; the cinematography preset (named source, preferred light, wide open)', (ctx) => {
+  gate('photography', 'storyboard', 'every cut names its lens and stop, its key-light direction, and a foreground share within params.foregroundLevel; the cinematography preset (named source, preferred light, wide open)', (ctx) => {
     const { project, params } = ctx;
     const out = [];
     const kit = params.camera || DEFAULT_PARAMS.camera;
     const look = cinematographyOf(params);
-    for (const [, e] of ctx.episodes) {
+    for (const [epId, e] of ctx.episodes) {
+      let epCuts = 0, epForeground = 0;
       for (const seg of e.storyboard?.segments || []) {
         const cuts = seg.cuts || [];
-        let withForeground = 0;
+        epCuts += cuts.length;
         let withPeople = 0, shaped = 0, withBokeh = 0, wides = 0;
         cuts.forEach((c, k) => {
           const where = `${seg.id} cut ${k + 1}`;
@@ -3172,7 +3199,7 @@ export const GATES = [
           // Foreground.
           const fg = String(c.foreground || '').trim();
           if (fg) {
-            withForeground += 1;
+            epForeground += 1;
             if (frame.trim() && !frame.includes(fg)) out.push(`${where}: frame prompt must name the foreground "${fg}"`);
             if (frame.trim() && !/out of focus|foreground blur|defocus|bokeh|soft foreground/i.test(frame)) out.push(`${where}: the foreground is named but never said to be out of focus`);
           }
@@ -3201,8 +3228,10 @@ export const GATES = [
         if (look && look.bokehShare && cuts.length && withBokeh < look.bokehShare * cuts.length) out.push(`${seg.id}: only ${withBokeh} of ${cuts.length} frames name their bokeh — at least ${Math.round(look.bokehShare * 100)} % must say what melts into bokeh behind or in front of the subject (params.cinematography ${params.cinematography})`);
         if (look && look.widePerSegment && cuts.length && wides < look.widePerSegment) out.push(`${seg.id}: no wide or extreme-wide cut — ${params.cinematography} needs at least ${look.widePerSegment} per segment, a 全景 / 大全景 with vast negative space`);
         if (look && withPeople && shaped < look.preferredShare * withPeople) out.push(`${seg.id}: only ${shaped} of ${withPeople} cuts with people are ${look.preferredWhat} (${look.preferredLight.join(' / ')}) — at least ${Math.round(look.preferredShare * 100)} % must (params.cinematography ${params.cinematography}); re-stage the person against the source or move the camera`);
-        // "Reasonably" means most of them: a segment of clean frames is flat.
-        if (cuts.length && withForeground * 2 < cuts.length) out.push(`${seg.id}: only ${withForeground} of ${cuts.length} cuts have a foreground element — at least half must, or the segment has no depth`);
+      }
+      const band = foregroundBand(params.foregroundLevel, epCuts);
+      if (band && (epForeground < band.min || epForeground > band.max)) {
+        out.push(`E${pad2(epId)}: ${epForeground} of ${epCuts} cuts have a foreground — params.foregroundLevel ${params.foregroundLevel} allows ${band.min}–${band.max}. Change which cuts carry one (story first), or change the level`);
       }
     }
     return out;
@@ -4255,7 +4284,7 @@ export function seedStoryboard(project, episode) {
   });
   return {
     ...episode,
-    storyboard: { plan: segmentPlan(project, episode), seedScenes, visualPlans, segments: [] },
+    storyboard: { plan: { ...segmentPlan(project, episode), foregroundLevel: paramsOf(project).foregroundLevel }, seedScenes, visualPlans, segments: [] },
   };
 }
 
@@ -5138,6 +5167,7 @@ export function initProject(opts) {
       lookPhrase: opts.look || DEFAULT_PARAMS.lookPhrase,
       style: opts.style || DEFAULT_PARAMS.style,
       imagePromptLang: opts.imageLang || DEFAULT_PARAMS.imagePromptLang,
+      ...(opts.foreground ? { foregroundLevel: opts.foreground } : {}),
       // Picked from the genre unless named; `--cinematography none` opts out.
       cinematography: cine,
       // Named, or read from the genre only when it names an action style outright.
@@ -5293,7 +5323,7 @@ function main(argv) {
       adapt: flag(rest, '--adapt'), ratio: flag(rest, '--ratio'), video: flag(rest, '--video'), style: flag(rest, '--style'), lang: flag(rest, '--lang'),
       resolution: flag(rest, '--resolution'), accent: flag(rest, '--accent'),
       references: flag(rest, '--references'), duration: flag(rest, '--duration'), look: flag(rest, '--look'),
-      register: flag(rest, '--register'), imageLang: flag(rest, '--image-lang'),
+      register: flag(rest, '--register'), imageLang: flag(rest, '--image-lang'), foreground: flag(rest, '--foreground'),
       cinematography: flag(rest, '--cinematography'), action: flag(rest, '--action'), violence: flag(rest, '--violence'), grammar: flag(rest, '--grammar'), comedy: flag(rest, '--comedy'), composition: flag(rest, '--composition'), story: flag(rest, '--story'), market: flag(rest, '--market'), format: flag(rest, '--format'),
       source: flag(rest, '--source'), sourcePath: flag(rest, '--source-path'),
     });

@@ -163,11 +163,37 @@ tables are in `../../short-drama-core/reference/cinematography.md` and the prese
 
 ### Foreground
 
-Depth needs something to be shallow *against*. `foreground` names what sits between the lens and
-the subject — a console edge, a curtain of rain off an awning, a blurred shoulder, a doorframe —
-and the frame prompt says it is thrown out of focus. `""` is a deliberately clean frame, and the
-gate allows it for up to half the cuts of a segment: a segment of clean frames reads flat, and a
-drama where every shot is clean reads like a corporate video.
+`foreground` names what sits between the lens and the subject — a console edge, a curtain of rain
+off an awning, a blurred shoulder, a doorframe — and the frame prompt says it is thrown out of focus.
+`""` is a deliberately clean frame.
+
+**How often** is `params.foregroundLevel`, gated across the episode so scenes can differ:
+
+| Level | Cuts with a foreground | Use |
+|---|---|---|
+| `low` | up to 25 % | clean, direct, face-led; only where the story asks for one |
+| `medium` (default) | 25–50 % | where the story or the shot type gives a reason |
+| `high` (default for 唯美 / 美感优先) | 50 % or more | a layered, voyeuristic or crowded look; soft, composed beauty |
+
+唯美 / 美感优先 means `composition: art-first`, `cinematography: sweet-romance` or `costume-idol`, or a genre
+that says 唯美 or 美感. Naming `foregroundLevel` overrides this.
+
+**Which cuts** — story first, then shot type, then shot size. Remove it in your head: if the audience
+loses no meaning, shoot the cut clean.
+
+1. **Story decides whether.** Threat (the barrel in front of him), watching or hiding (a doorframe, a
+   curtain), trapped or outnumbered (bodies closing in), distance between two people, power (the
+   powerful one's shoulder or weapon), closeness (her hair, soft), a clue that matters later.
+2. **Shot type decides what.** Over-the-shoulder always has one (the listener's shoulder); POV has what
+   they look past; an establishing shot has a layer of the place. Usually clean: a reaction close-up, an
+   insert, the 打脸 proof or reveal, an action impact, a moment of isolation.
+3. **Shot size decides how much.** A wide can take a large shape on one edge; a medium one edge; a close
+   a soft sliver, never near the eyes or mouth; an extreme close-up almost never.
+
+Take it from the scene: it must already be there and on the camera's side of the action. Keep it off
+the face, the mouth, the key prop and the action. Prefer simple still shapes (edges, frames, shoulders)
+over foreground faces and hands, which can read as an extra person. Do not repeat one object across
+cuts unless it is a story motif. At `high`, keep the same reasons and simply use them more.
 
 Directing feel (not gated): reverse angles for dialogue (asker's close-up, answerer's close-up);
 the first cut of an episode moves; a key action gets its own 2 s insert; a reaction shot after a

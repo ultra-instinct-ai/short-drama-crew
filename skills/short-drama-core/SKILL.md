@@ -180,6 +180,7 @@ validate, then quote, then generate.
    ```bash
    $SD init <dir> --title "<title>" --episodes N --minutes M --genre "<genre>" --register 台湾国语 [--adapt 抽核] [--ratio 9:16] [--video h3|seedance|seedance2|seedance2fast|wan] [--resolution 480P|…] [--accent "台湾口音国语"] [--style photoreal|realistic|ghibli] [--references sheets|keyframes] [--duration auto|fixed] [--look "<lens phrase>"] [--cinematography low-key|sweet-romance|period-nostalgia|costume-idol|costume-dark|scifi-hard|scifi-soft|none] [--action gun-fu|hk-kungfu|wuxia-fantasy|historical-realist|bullet-time|superhero|street-brawl|car-chase|none] [--violence blood|implied] [--grammar drama|action|faceslap|comedy] [--comedy slapstick|deadpan|romcom|none] [--composition standard|art-first] [--story revenge,sweet,…] [--market mainland|overseas] [--format short|medium|movie] [--lang zh] [--image-lang en|zh]
    # --image-lang zh: character / scene / prop image prompts in Chinese (the default is English)
+   # --foreground low|medium|high: how often cuts shoot past a foreground (default medium; high for 唯美 / 美感优先)
    # params.camera (body / lens / aperture) is edited in project.json
    ```
    An existing `project.json` means a resumed run: `validate` and `manifest` tell you where it stands.
