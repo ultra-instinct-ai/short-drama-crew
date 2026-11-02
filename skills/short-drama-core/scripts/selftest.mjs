@@ -14,7 +14,7 @@ import {
   paramsOf, parseEpRange, promptSkeleton, renderCharacter, renderOutline, renderProp, renderScene, renderScript,
   renderSegment, runGates, seedScript, seedStoryboard, seedanceAnchors, slug, timestamp, writeJsonFile,
   wanLegendLine, wanSheetLegendLine, wanShotHeader, segmentReferences, imageReferences, audioReferences, voiceSamplePrompt, voiceSampleSeconds, nonWhitespace,
-  speechDirection, cameraPhrase, lightPhrase, eyelinePhrase, eyelineValid, onlyInFramePhrase, overShoulderPhrase, sidesLine, foregroundPhrase, foregroundBand, foregroundForLook, focalOf, LIGHT_DIRECTIONS, identityOf, isEnglish,
+  speechDirection, cameraPhrase, lightPhrase, idlePhrase, idleSentence, IDLE_MAX_CHARS, eyelinePhrase, eyelineValid, onlyInFramePhrase, overShoulderPhrase, sidesLine, foregroundPhrase, foregroundBand, foregroundForLook, focalOf, LIGHT_DIRECTIONS, identityOf, isEnglish,
   renderGuideline, renderDialogue, scriptSelfCheck, beatOffsets, turnPoints, parseAge, talkAndAction, normalizeRegister, REGISTERS, REGISTER_ACCENT,
   cutStart, segmentCharacters, keyScenes, shotTexts, motionSentence, cameraClause, PURPOSE_KINDS, ANGLES, HEIGHTS, NO_SUBTITLES, LIPS_CLOSED,
   audioPrompt, musicOf, cueSeconds, AUDIO_MODEL, AUDIO_MAX_CHARS, AUDIO_MAX_SECONDS, scoreSheet, smpte,
@@ -911,6 +911,41 @@ const breaks = (gateId, project, episode, needle) => {
   breaks('photography', PROJECT, missingFg, 'foreground is required');
   const unsaidFg = clone(E01); unsaidFg.storyboard.segments[0].cuts[0].frame = unsaidFg.storyboard.segments[0].cuts[0].frame.replace('the dripping edge of the striped awning', 'a wall');
   breaks('photography', PROJECT, unsaidFg, 'must name the foreground');
+}
+
+{
+  // Everyone on screen is alive: a model freezes whoever the prompt gives no motion.
+  eq(idlePhrase('shifts her weight', '@image3'), '@image3 shifts her weight.', 'an idle reads as a sentence');
+  eq(idlePhrase('still', '@image3'), '@image3 holds still, only breathing and blinking.', 'still keeps the breath');
+  ok(idlePhrase('轻轻换了一下重心', '@image3', 'zh').endsWith('轻轻换了一下重心。'), 'the Chinese idle');
+  eq(idleSentence({ characters: ['A', 'B'], idle: { B: 'taps a finger' } }, (id) => id), 'B taps a finger. ', 'only the people with an idle are written');
+  const p = clone(PROJECT); p.params.references = 'sheets';
+  const only = (f) => f.filter((m) => m.startsWith('E01-02'));
+  const build = (idle) => {
+    const ep = clone(E01); const seg = ep.storyboard.segments.find((s) => s.id === 'E01-02');
+    const two = seg.cuts[2];   // C01 + C02
+    if (idle) two.idle = idle;
+    seg.prompt = promptSkeleton(p, ep, seg.id).video.prompt;
+    return { ep, seg, two };
+  };
+  const bare = build();
+  ok(only(failures('idle-motion', p, bare.ep)).some((m) => m.includes('have an idle')), 'a second visible person with no idle fails');
+  const good = build({ C02: 'shifts her weight and picks at her sleeve' });
+  eq(only(failures('idle-motion', p, good.ep)).filter((m) => !m.includes('cameraNote.hold')).length, 0, 'one idle for the second person passes');
+  ok(good.seg.prompt.includes('shifts her weight and picks at her sleeve.'), 'the skeleton writes the idle');
+  const stillOne = build({ C02: 'still' });
+  ok(stillOne.seg.prompt.includes('holds still, only breathing and blinking.'), 'still is written with the breath');
+  eq(only(failures('idle-motion', p, stillOne.ep)).filter((m) => !m.includes('cameraNote.hold')).length, 0, 'keeping still is allowed when it is the performance');
+  ok(only(failures('idle-motion', p, build({ C02: 'walks to the door' }).ep)).some((m) => m.includes('too big')), 'a change of place is not an idle');
+  ok(only(failures('idle-motion', p, build({ C02: 'says something quietly' }).ep)).some((m) => m.includes('too big')), 'a line is not an idle');
+  ok(only(failures('idle-motion', p, build({ C02: 'x'.repeat(IDLE_MAX_CHARS + 1) }).ep)).some((m) => m.includes('one small motion')), 'an idle stays small');
+  const unwritten = build({ C02: 'taps a finger' }); unwritten.seg.prompt = unwritten.seg.prompt.replace(/taps a finger\.\s*/, '');
+  ok(only(failures('idle-motion', p, unwritten.ep)).some((m) => m.includes('must carry the idle')), 'an idle left out of the prompt fails');
+  const onlyHold = build({ C02: 'taps a finger' }); onlyHold.two.cameraNote = { ...onlyHold.two.cameraNote, hold: 'only the sign flickers' };
+  ok(only(failures('idle-motion', p, onlyHold.ep)).some((m) => m.includes('drop "only"')), '"only the sign" contradicts the people moving');
+  const offScreen = build({ C03: 'taps a finger' });
+  ok(only(failures('idle-motion', p, offScreen.ep)).some((m) => m.includes('not on screen')), 'an idle for someone off screen fails');
+  eq(failures('idle-motion', PROJECT, E01).length, 0, 'keyframes mode is exempt');
 }
 
 {
@@ -2410,8 +2445,8 @@ const breaks = (gateId, project, episode, needle) => {
 
 // ── gate inventory (crew engine) ────────────────────────────────────────────
 {
-  eq(GATES.length, 68, 'gate count');
-  eq(GATES.filter((g) => !g.advisory).length, 62, 'hard gate count');
+  eq(GATES.length, 69, 'gate count');
+  eq(GATES.filter((g) => !g.advisory).length, 63, 'hard gate count');
   eq(GATES.filter((g) => g.advisory).length, 6, 'advisory gate count');
   ok(!GATES.find((g) => g.id === 'boundary-contrast').advisory, 'boundary-contrast is hard');
   ok(GATES.find((g) => g.id === 'boundary-contrast-episode').advisory, 'boundary-contrast-episode is advisory');
@@ -2533,8 +2568,8 @@ const breaks = (gateId, project, episode, needle) => {
   const results = runGates(makeContext(PROJECT, { 1: E01 }));
   const rep = formatGates(results);
   eq(Object.keys(rep).sort().join(','), 'advisory,failed,hard,lines,notes,summary,text', 'formatGates shape');
-  eq(rep.summary, '✓ 62 gate(s) passed, 6 advisory (1 note)', 'fixture summary');
-  eq(rep.failed, 0, 'nothing failed'); eq(rep.hard, 62, 'hard count'); eq(rep.advisory, 6, 'advisory count');
+  eq(rep.summary, '✓ 63 gate(s) passed, 6 advisory (1 note)', 'fixture summary');
+  eq(rep.failed, 0, 'nothing failed'); eq(rep.hard, 63, 'hard count'); eq(rep.advisory, 6, 'advisory count');
   // The fixture now raises one advisory (E01-03 carries the 爽点 and is not cut as faceslap),
   // exactly as it does in the wji-cli copy — advisory lines print, failures still must not.
   eq(rep.lines.filter((l) => l.includes('✗')).length, 0, 'a green run prints no failed gates');
