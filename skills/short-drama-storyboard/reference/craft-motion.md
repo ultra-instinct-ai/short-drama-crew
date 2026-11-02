@@ -19,7 +19,27 @@ text for a machine, not prose for a reader.
    what is received → one or two visible signals in a channel the size can read (gaze, breath,
    body set, object handling) → the decision (an action taken or withheld) → the landing at the
    end boundary. A wide cannot carry an eyelid; a close-up cannot carry a full-body retreat.
-   Keeping still is a valid performance when it is the character's strategy.
+   Keeping still is a valid performance when it is the character's strategy — and even then they
+   breathe and blink (`idle: "still"`).
+
+### Everyone on screen is alive (gate `idle-motion`, sheets mode)
+
+A model freezes whoever the prompt gives no motion, so a sub-character stands in the background like
+a photo. `motion` is the one action that carries the cut; everyone else who is visible gets a small
+motion of their own in `cut.idle: { C02: "shifts her weight, picking at her sleeve" }`. The skeleton
+writes it into the shot. The rule, per cut with two or more visible people: all but the one carrying
+the action have one (an over-the-shoulder's shoulder does not count). Give the speaker one too when
+they would otherwise only talk.
+
+- **Take it from why they are there.** Waiting: shifts weight, fiddles with a strap, checks the door.
+  Working: the work carries on. Listening: a small nod, the eyes moving over the other's face. Tense:
+  a tightening jaw, a thumb rubbing a finger. Do not reuse one motion across people or cuts: two people
+  breathing in time reads as a loop.
+- **Small enough not to steal the cut:** one motion, in place. A line, a moving mouth or a change of
+  place is a cut's action, not an idle (gated, as is a length over 90 characters).
+- **It must not break the boundaries:** hands, held props and positions end where `end` says.
+- **Crowds and extras** with no sheet go in `background` as a motion, not a list of people: "shoppers
+  drifting past far behind her".
 
 
 

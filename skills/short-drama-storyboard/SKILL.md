@@ -62,6 +62,9 @@ cinematography preset's guide (`../short-drama-core/reference/cinematography-<pr
 - **Cross-scene boundary** (gate `boundary-contrast`): the last cuts of one scene must not
   repeat the size + angle + characters of the first cuts of the next; write a deliberate one
   with `note: match-cut`. The episode-level version is advisory.
+- **Everyone on screen is alive** (gate `idle-motion`, sheets mode): a model freezes whoever the prompt gives no
+  motion. In a cut with two or more visible people, all but the one carrying the action get a small
+  motion in `idle` (`"still"` when keeping still is the performance). See `craft-motion.md`.
 - **Two people talking** (gate `two-person-framing`, sheets mode): a two-shot once, then
   over-the-shoulder (`ots`) for the exchange, a clean single for the punchline. A single names only
   its person; every look states a screen direction (`eyeline`); the sides stay locked. See

@@ -506,6 +506,23 @@ export function motionSentence(cut, lang = 'en') {
   return `Cue: ${t}. Action: ${a}. End: ${r}.`;
 }
 
+// Everyone on screen is alive. A model freezes whoever the prompt gives no motion, so each person other
+// than the one carrying the cut's action gets a small motion of their own (gate idle-motion).
+export const IDLE_STILL = 'still';
+// A line, a mouth that moves or a change of place is a cut's action, not an idle.
+export const IDLE_TOO_BIG = /\b(says?|speaks?|talks?|whispers?|shouts?|mouths?|chews?|walks?|crosses|leaves|enters|runs?|sits? down|stands? up)\b|[说說讲講喊嚼]|走向|离开|離開|坐下|站起/i;
+export const IDLE_MAX_CHARS = 90;
+export function idlePhrase(idle, who, lang = 'en') {
+  const text = String(idle || '').trim().replace(/[.。]+$/, '');
+  if (text === IDLE_STILL) return lang === 'zh' ? `${who}保持不动，只有呼吸与眨眼。` : `${who} holds still, only breathing and blinking.`;
+  return lang === 'zh' ? `${who}${text}。` : `${who} ${text}.`;
+}
+/** The idle motions of a cut, in on-screen order. */
+export function idleSentence(cut, whoOf, lang = 'en') {
+  const parts = (cut.characters || []).filter((id) => cut.idle?.[id]).map((id) => idlePhrase(cut.idle[id], whoOf(id), lang));
+  return parts.length ? `${parts.join(' ')} ` : '';
+}
+
 /**
  * A lock-off is written (what still moves, held), a move is written (why, when, along what, ending
  * where) — an empty camera line is read by the model as permission to drift.
@@ -3734,6 +3751,41 @@ export const GATES = [
     }
     return out;
   }),
+  gate('idle-motion', 'storyboard', 'sheets mode: in a cut with two or more visible faces, everyone but the one carrying the action has a small motion of their own, written into the shot', (ctx) => {
+    const { project, params } = ctx;
+    const out = [];
+    if (params.references !== 'sheets') return out;
+    const lang = videoModel(params).promptLang === 'zh' ? 'zh' : 'en';
+    for (const [, e] of ctx.episodes) {
+      for (const seg of e.storyboard?.segments || []) {
+        const labels = characterLabels(segmentReferences(project, e, seg));
+        const whoOf = (id) => labels.get(id) || identityOf(characterById(project, id));
+        const prompt = String(seg.prompt || '');
+        const texts = prompt.trim() ? shotTexts(prompt, videoModel(params).family, params.references) : new Map();
+        (seg.cuts || []).forEach((c, k) => {
+          const where = `${seg.id} cut ${k + 1}`;
+          const visible = (c.characters || []).filter((id) => id !== c.ots);
+          for (const [id, idle] of Object.entries(isObject(c.idle) ? c.idle : {})) {
+            if (!(c.characters || []).includes(id)) out.push(`${where}: idle.${id} — that person is not on screen`);
+            const text = String(idle || '').trim();
+            if (text.length > IDLE_MAX_CHARS) out.push(`${where}: idle.${id} is ${text.length} chars, max ${IDLE_MAX_CHARS} — one small motion`);
+            if (IDLE_TOO_BIG.test(text)) out.push(`${where}: idle.${id} "${text}" is too big for an idle — a line, a moving mouth or a change of place is a cut's action`);
+            const phrase = idlePhrase(idle, whoOf(id), lang);
+            const shot = texts.get(k + 1);
+            if (shot && !shot.includes(phrase)) out.push(`${where}: the shot must carry the idle — paste "${phrase}"`);
+          }
+          if (visible.length < 2) return;
+          const idled = visible.filter((id) => String(c.idle?.[id] || '').trim());
+          if (idled.length < visible.length - 1) {
+            const missing = visible.filter((id) => !idled.includes(id));
+            out.push(`${where}: ${visible.length} people are visible but only ${idled.length} have an idle — give all but the one carrying the action a small motion in cut.idle (${missing.join(', ')}), or "${IDLE_STILL}" when keeping still is the performance`);
+          }
+          if (/^\s*(only|nothing but)\b|只有|只剩/i.test(String(c.cameraNote?.hold || ''))) out.push(`${where}: cameraNote.hold says only "${c.cameraNote.hold}" moves, but the people in frame move too — drop "only"`);
+        });
+      }
+    }
+    return out;
+  }),
   gate('audio-track', 'storyboard', 'Seed Audio node per segment: the derived prompt fits the model (≤ 120 s, ≤ 2048 chars, ≤ 3 voices in full mode)', (ctx) => {
     const { project, params } = ctx;
     const out = [];
@@ -4692,6 +4744,7 @@ export function promptSkeleton(project, episode, segmentId) {
   const framingLabels = characterLabels(allRefs);
   const whoOf = (id) => framingLabels.get(id) || identityOf(characterById(project, id));
   const framingLang = videoModel(params).promptLang === 'zh' ? 'zh' : 'en';
+  const idleOf = (c) => (params.references === 'sheets' ? idleSentence(c, whoOf, framingLang) : '');
   const framingOf = (c) => (params.references === 'sheets' ? shotFraming(c, seg, whoOf, framingLang) : '');
   const sidesOf = () => {
     const axis = isObject(seg.axis) ? seg.axis : null;
@@ -4716,7 +4769,7 @@ export function promptSkeleton(project, episode, segmentId) {
       const body = sheets
         ? `${framingOf(c)}${c.frame || '…'} ${SIZES[c.size] || c.size}, ${c.camera}.`
         : `… anchor on @image${k + 1} · ${SIZES[c.size] || c.size}, ${c.camera}, ${cameraPhrase(c, params)}. ${lightPhrase(c)}.${foregroundPhrase(c)}`;
-      return `${head}${body} ${motionSentence(c)} ${cameraClause(c)} ${d}${lips}`.replace(/\s+/g, ' ').trim();
+      return `${head}${body} ${motionSentence(c)} ${idleOf(c)}${cameraClause(c)} ${d}${lips}`.replace(/\s+/g, ' ').trim();
     });
     // Keyframes are aligned by the alignment line; the voices are named either way.
     const voiceLegend = allRefs.filter((r) => r.kind !== 'image').map((r) => `${r.label} is ${r.use}.`);
@@ -4732,7 +4785,7 @@ export function promptSkeleton(project, episode, segmentId) {
       // Wan's prompt is Chinese: the lens and the light direction translate, the note and the
       // foreground are the author's English prose, so they are left as blanks to write in Chinese.
       const shot = `${cameraPhrase(c, params, 'zh')}。${LIGHT_DIRECTIONS_ZH[c.light?.direction] || '…'}，…。前景：${c.foreground ? '…（虚化）' : '无'}。`;
-      return [`${wanShotHeader(cuts, k)}${framingOf(c)}…${shot}${motionSentence(c, 'zh')}${cameraClause(c, 'zh')}`, ...talk].join('\n');
+      return [`${wanShotHeader(cuts, k)}${framingOf(c)}…${shot}${motionSentence(c, 'zh')}${idleOf(c)}${cameraClause(c, 'zh')}`, ...talk].join('\n');
     });
     const sfxAll = cuts.map((c, k) => (sfxOf(k) ? `镜头${k + 1}：${sfxOf(k)}` : '')).filter(Boolean).join('；');
     video = [
@@ -4754,7 +4807,7 @@ export function promptSkeleton(project, episode, segmentId) {
         return `${base} while ${others.join(' and ')} ${others.length > 1 ? 'do' : 'does'} not speak, ${LIPS_CLOSED}`;
       }).join(' ');
       // The frame already carries the lens, the light and the foreground — do not repeat them.
-      return `Shot ${k + 1} (${starts[k].toFixed(1)}–${(starts[k] + Number(c.seconds)).toFixed(1)} s, ${SIZES[c.size] || c.size}, ${c.camera}): ${framingOf(c)}${c.frame || '…'} ${motionSentence(c)} ${cameraClause(c)} ${talk}`.replace(/\s+/g, ' ').trim();
+      return `Shot ${k + 1} (${starts[k].toFixed(1)}–${(starts[k] + Number(c.seconds)).toFixed(1)} s, ${SIZES[c.size] || c.size}, ${c.camera}): ${framingOf(c)}${c.frame || '…'} ${motionSentence(c)} ${idleOf(c)}${cameraClause(c)} ${talk}`.replace(/\s+/g, ' ').trim();
     });
     const sfxAll = cuts.map((c, k) => (sfxOf(k) ? `shot ${k + 1}: ${sfxOf(k)}` : '')).filter(Boolean).join('; ');
     video = [...legend, '', ...shots, '', ...actionLine, `Look: ${lookOf()}. Maintain continuity in character identities, clothing, prop ownership, scene layout and the camera axis across every shot.`, `Sound: ${sound.ambience || '…'}${sfxAll ? `; ${sfxAll}` : ''}.${accent && dialogue.flat().length ? ` All dialogue in ${accent}.` : ''}${clipMusic ? ` Music: ${clipMusic}.` : ' No music.'}${params.subtitles ? '' : ` ${NO_SUBTITLES.en[0].toUpperCase()}${NO_SUBTITLES.en.slice(1)}.`}`].join('\n');
