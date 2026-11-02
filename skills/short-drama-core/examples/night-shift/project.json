@@ -12,7 +12,8 @@
     "videoResolution": "768P",
     "references": "keyframes",
     "style": "realistic",
-    "register": "大陆普通话"
+    "register": "大陆普通话",
+    "foregroundLevel": "high"
   },
   "source": {
     "kind": "original",

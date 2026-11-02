@@ -46,7 +46,7 @@ storyboard (stage 5).
 | `scenes[].lighting[].prompt` | the preset's `framePhrase`, plus the sources that light the space | `scene-design` |
 | every `cut.frame` | the `framePhrase`, the direction phrase, `light.source` verbatim, the camera phrase, the foreground | `photography` |
 | every `cut.light` | `direction` (never one of the preset's `bannedLight` on a person), `source`, `note` | `photography` |
-| each segment | at least `preferredShare` of the cuts with people keyed from `preferredLight`; at least half with a foreground | `photography` |
+| each segment | at least `preferredShare` of the cuts with people keyed from `preferredLight`; the episode's foreground share within `params.foregroundLevel` | `photography` |
 | every `cut.aperture` / `params.camera.aperture` | `maxStop` or faster | `photography` |
 | video prompt, `sheets` mode | the Look line carries the preset's `videoPhrase` (for `wan`: a `画面：` line with `videoPhraseZh`). `prompt segment` writes it for you | `video-prompt` |
 
