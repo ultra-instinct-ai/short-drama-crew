@@ -436,6 +436,54 @@ export function speechDirection(character, delivery, lang = 'en') {
   return bits.join(lang === 'zh' ? '\uff0c' : ', ');
 }
 
+// Two people on screen. A model puts into the shot everyone the shot names, and "looking at him" gives
+// it no direction, so sheets-mode prompts say who is in frame, which way each person looks and which
+// side each stands on (gate two-person-framing).
+export const EYELINE_DIRECTIONS = ['screen-left', 'screen-right'];
+export const EYELINE_HEIGHTS = ['level', 'up', 'down'];
+/** "screen-right down" · "away screen-left" · "task" (eyes on what the hands are doing). */
+export function parseEyeline(value) {
+  const words = String(value || '').trim().split(/\s+/).filter(Boolean);
+  if (words[0] === 'task') return { task: true };
+  const away = words[0] === 'away';
+  const [to, height = 'level'] = away ? words.slice(1) : words;
+  return { to, height, away };
+}
+export function eyelineValid(value) {
+  const e = parseEyeline(value);
+  return Boolean(e.task) || (EYELINE_DIRECTIONS.includes(e.to) && EYELINE_HEIGHTS.includes(e.height));
+}
+export function eyelinePhrase(value, who, lang = 'en') {
+  const e = parseEyeline(value);
+  const zh = lang === 'zh';
+  if (e.task) return zh ? `${who}的视线落在手上的活上。` : `${who} keeps their eyes on what their hands are doing.`;
+  const side = zh ? (e.to === 'screen-left' ? '左' : '右') : e.to;
+  if (zh) return `${who}的视线${e.away ? '移开，' : ''}朝画面${side}侧${e.height === 'up' ? '上方' : e.height === 'down' ? '下方' : '平视'}。`;
+  return `${who} ${e.away ? 'looks away toward' : 'looks toward'} ${side}${e.height === 'up' ? ' and up' : e.height === 'down' ? ' and down' : ' at eye level'}.`;
+}
+export function sidesLine(axis, whoOf, lang = 'en') {
+  const left = whoOf(axis.screenLeft), right = whoOf(axis.screenRight);
+  return lang === 'zh' ? `站位：${left}始终在画面左侧，${right}始终在画面右侧。` : `Sides: ${left} stays on screen left and ${right} on screen right in every shot.`;
+}
+export function onlyInFramePhrase(who, lang = 'en') {
+  return lang === 'zh' ? `画面中只有${who}。` : `Only ${who} in frame.`;
+}
+export function overShoulderPhrase(who, side, lang = 'en') {
+  return lang === 'zh'
+    ? `越过${who}的肩拍摄：其肩与后脑虚化在画面${side === 'left' ? '左' : '右'}下方前景，看不到其脸。`
+    : `Over-the-shoulder from behind ${who}: their shoulder and the back of their head soft in the lower-${side} foreground, their face not visible.`;
+}
+/** What a shot opens with in a two-person segment: who is in frame, then where each person looks. */
+export function shotFraming(cut, seg, whoOf, lang = 'en') {
+  if (segmentCharacters(seg).length < 2) return '';
+  const chars = cut.characters || [];
+  const parts = [];
+  if (cut.ots) parts.push(overShoulderPhrase(whoOf(cut.ots), seg.axis?.screenLeft === cut.ots ? 'left' : 'right', lang));
+  else if (chars.length === 1) parts.push(onlyInFramePhrase(whoOf(chars[0]), lang));
+  for (const id of chars) if (id !== cut.ots && cut.eyeline?.[id]) parts.push(eyelinePhrase(cut.eyeline[id], whoOf(id), lang));
+  return parts.length ? `${parts.join(' ')} ` : '';
+}
+
 /**
  * The blurred thing between the lens and the subject. Depth needs something to be shallow against,
  * so a cut that needs one names it and the prompt says it is out of focus; an empty `foreground` is a
@@ -3203,6 +3251,7 @@ export const GATES = [
             if (frame.trim() && !frame.includes(fg)) out.push(`${where}: frame prompt must name the foreground "${fg}"`);
             if (frame.trim() && !/out of focus|foreground blur|defocus|bokeh|soft foreground/i.test(frame)) out.push(`${where}: the foreground is named but never said to be out of focus`);
           }
+          else if (c.ots) epForeground += 1;   // the near shoulder is the foreground
           if (c.foreground === undefined) out.push(`${where}: foreground is required — name what sits between the lens and the subject, or "" for a deliberately clean frame`);
           if (!look) return;
           // The cinematography preset: a named source, no banned light on a person, shot wide open.
@@ -3622,13 +3671,65 @@ export const GATES = [
           const text = texts.get(k + 1);
           if (!text) return;   // the dialect gate reports the missing shot
           const lines = claimedLines(scene, [c]);
-          if (mode.family === 'h3' && lines.length && (c.characters || []).length >= 2 && !/does not speak|lips remain completely closed/.test(text)) out.push(`${seg.id} [Shot ${k + 1}]: two people on screen while one speaks — say the other "does not speak; ${LIPS_CLOSED}" or the lip-sync lands on the more visible face (measured 3/3 vs 2/3)`);
+          if (mode.family === 'h3' && lines.length && (c.characters || []).length >= 2 && !c.ots && !/does not speak|lips remain completely closed/.test(text)) out.push(`${seg.id} [Shot ${k + 1}]: two people on screen while one speaks — say the other "does not speak; ${LIPS_CLOSED}" or the lip-sync lands on the more visible face (measured 3/3 vs 2/3)`);
           if (sheetOf) for (const id of c.characters || []) {
             const label = sheetOf.get(id);
             if (label && !text.includes(label)) out.push(`${seg.id} shot ${k + 1}: ${characterById(project, id)?.identityEn || id} is on screen but the shot never binds ${label} — a person bound in one shot and unbound in the next becomes two people`);
           }
         });
         if (mode.family === 'h3') for (const m of prompt.matchAll(/<d>\[[^\]]+\]\s*([^<]*)<\/d>/g)) if (/[()（）]/.test(m[1])) out.push(`${seg.id}: <d> holds only the line — "${truncateLine(m[1])}" carries a parenthetical; put the direction outside <d>`);
+      }
+    }
+    return out;
+  }),
+  gate('two-person-framing', 'storyboard', 'sheets mode, two-person segments: a single names only its person, every look has a screen direction toward the other, the sides are locked, over-the-shoulder is said', (ctx) => {
+    const { project, params } = ctx;
+    const out = [];
+    if (params.references !== 'sheets') return out;
+    const lang = videoModel(params).promptLang === 'zh' ? 'zh' : 'en';
+    for (const [, e] of ctx.episodes) {
+      for (const seg of e.storyboard?.segments || []) {
+        const people = segmentCharacters(seg);
+        if (people.length < 2) continue;
+        const cuts = seg.cuts || [];
+        const axis = isObject(seg.axis) ? seg.axis : null;
+        const labels = characterLabels(segmentReferences(project, e, seg));
+        const whoOf = (id) => labels.get(id) || identityOf(characterById(project, id));
+        const prompt = String(seg.prompt || '');
+        const texts = prompt.trim() ? shotTexts(prompt, videoModel(params).family, params.references) : new Map();
+        if (prompt.trim() && axis?.screenLeft && axis?.screenRight && !cuts.some((c) => c.axisSide === 'cross')) {
+          const line = sidesLine(axis, whoOf, lang);
+          if (!prompt.includes(line)) out.push(`${seg.id}: the prompt must lock the sides — add "${line}"`);
+        }
+        cuts.forEach((c, k) => {
+          const where = `${seg.id} cut ${k + 1}`;
+          const chars = c.characters || [];
+          const text = texts.get(k + 1);
+          if (c.ots) {
+            if (!chars.includes(c.ots) || chars.length !== 2) out.push(`${where}: ots must be one of exactly two people on screen — the one whose shoulder is near the lens`);
+            else if (text && !text.includes(overShoulderPhrase(whoOf(c.ots), axis?.screenLeft === c.ots ? 'left' : 'right', lang))) out.push(`${where}: the shot must say the over-the-shoulder — paste "${overShoulderPhrase(whoOf(c.ots), axis?.screenLeft === c.ots ? 'left' : 'right', lang)}"`);
+          } else if (chars.length === 1 && text) {
+            const phrase = onlyInFramePhrase(whoOf(chars[0]), lang);
+            if (!text.includes(phrase)) out.push(`${where}: a single must open with "${phrase}"`);
+            for (const other of people.filter((id) => id !== chars[0])) {
+              const label = labels.get(other);
+              const identity = String(characterById(project, other)?.identityEn || '').trim();
+              if ((label && new RegExp(`${label}(?!\\d)`).test(text)) || (identity && text.includes(identity))) out.push(`${where}: a single on ${chars[0]} must not describe ${other} — whoever a shot names ends up on screen`);
+            }
+          }
+          for (const id of chars) {
+            if (id === c.ots) continue;
+            const value = c.eyeline?.[id];
+            if (!value) { out.push(`${where}: eyeline.${id} is required — "screen-left|screen-right level|up|down", "away screen-left" or "task"`); continue; }
+            if (!eyelineValid(value)) { out.push(`${where}: eyeline.${id} "${value}" is not valid — "screen-left|screen-right level|up|down", "away screen-left" or "task"`); continue; }
+            const look = parseEyeline(value);
+            if (axis && !look.task && !look.away && c.axisSide !== 'cross' && (id === axis.screenLeft || id === axis.screenRight)) {
+              const toward = id === axis.screenLeft ? 'screen-right' : 'screen-left';
+              if (look.to !== toward) out.push(`${where}: ${id} stands on ${id === axis.screenLeft ? 'screen left' : 'screen right'}, so looking at the other person is ${toward}, not ${look.to} — or say "away ${look.to}"`);
+            }
+            if (text && !text.includes(eyelinePhrase(value, whoOf(id), lang))) out.push(`${where}: the shot must state the eyeline — paste "${eyelinePhrase(value, whoOf(id), lang)}"`);
+          }
+        });
       }
     }
     return out;
@@ -3668,6 +3769,9 @@ export const GATES = [
           const action = String(c.motion?.action || '');
           if (/\b(does not|doesn't|never)\b/i.test(action) || /没有|不去|不[看说动]/.test(action)) out.push(`${where}: motion.action is phrased as what does not happen — a model cannot film an absence; write the action that happens instead (a hold, a hand that stays)`);
         });
+        const scene = (e.scenes || [])[Number(seg.sceneIndex) - 1];
+        const twoFaceLines = scene ? cuts.filter((c) => (c.characters || []).length >= 2 && !c.ots && claimedLines(scene, [c]).length).length : 0;
+        if (twoFaceLines >= 2) out.push(`${seg.id}: ${twoFaceLines} lines are played with both faces in frame — try the pattern in craft-shots.md: a two-shot once, over-the-shoulder for the exchange, a clean single for the punchline`);
         if (cuts.length >= 4 && ups >= 2 && downs === 0) out.push(`${seg.id}: every cut tightens — by mid-segment there is nowhere left to go; step back out once or hold the working size`);
       }
     }
@@ -4068,11 +4172,24 @@ function checkSpeechDirections(seg, prompt, lines, project, lang, refs = []) {
   return out;
 }
 
+/** Which image reference carries each person's face in a segment. */
+export function characterLabels(refs) {
+  const images = refs.filter((r) => r.kind === 'image');
+  const labels = new Map();
+  for (const r of images) {
+    const who = r.faceOf || (r.asset === 'sheet' || r.asset === 'headshot' ? r.entity : null);
+    if (who && !labels.has(who)) labels.set(who, r.label);
+  }
+  for (const r of images.filter((x) => x.asset === 'headshot' || x.faceOf)) labels.set(r.faceOf || r.entity, r.label);
+  return labels;
+}
+
 function shotParagraphs(prompt) {
   const map = new Map();
   const re = /\[Shot (\d+)\]\s*([\s\S]*?)(?=\n\[Shot \d+\]|\n\s*\n|$)/g;
   let m;
-  while ((m = re.exec(prompt))) map.set(Number(m[1]), m[2].trim());
+  // The soundscape line also says "at [Shot 1]": the shot's own paragraph comes first and is the one kept.
+  while ((m = re.exec(prompt))) if (!map.has(Number(m[1]))) map.set(Number(m[1]), m[2].trim());
   return map;
 }
 
@@ -4572,7 +4689,16 @@ export function promptSkeleton(project, episode, segmentId) {
   const clipMusic = params.audioTrack === 'post' ? '' : musicOf(sound).intent;
   // Who else is on screen while `speaker` has a line: the H3 idiom keeps the lip-sync off them.
   // In keyframes mode the @imageN labels are frames, so a person is named by identity instead.
-  const othersOnScreen = (c, speaker) => (c.characters || []).filter((id) => id !== speaker).map((id) => (params.references === 'sheets' && sheetLabels.get(id) ? `the person in ${sheetLabels.get(id)}` : identityOf(characterById(project, id))));
+  const framingLabels = characterLabels(allRefs);
+  const whoOf = (id) => framingLabels.get(id) || identityOf(characterById(project, id));
+  const framingLang = videoModel(params).promptLang === 'zh' ? 'zh' : 'en';
+  const framingOf = (c) => (params.references === 'sheets' ? shotFraming(c, seg, whoOf, framingLang) : '');
+  const sidesOf = () => {
+    const axis = isObject(seg.axis) ? seg.axis : null;
+    if (params.references !== 'sheets' || !axis?.screenLeft || !axis?.screenRight || cuts.some((c) => c.axisSide === 'cross')) return [];
+    return [sidesLine(axis, whoOf, framingLang)];
+  };
+  const othersOnScreen = (c, speaker) => (c.characters || []).filter((id) => id !== speaker && id !== c.ots).map((id) => (params.references === 'sheets' && sheetLabels.get(id) ? `the person in ${sheetLabels.get(id)}` : identityOf(characterById(project, id))));
   let video;
   if (mode.family === 'h3') {
     const sheets = params.references === 'sheets';
@@ -4588,14 +4714,14 @@ export function promptSkeleton(project, episode, segmentId) {
       // In sheets mode the cut's own `frame` goes into the prompt and already carries the lens, the
       // light and the foreground (gated there), so only the shot size and camera move are added.
       const body = sheets
-        ? `${c.frame || '…'} ${SIZES[c.size] || c.size}, ${c.camera}.`
+        ? `${framingOf(c)}${c.frame || '…'} ${SIZES[c.size] || c.size}, ${c.camera}.`
         : `… anchor on @image${k + 1} · ${SIZES[c.size] || c.size}, ${c.camera}, ${cameraPhrase(c, params)}. ${lightPhrase(c)}.${foregroundPhrase(c)}`;
       return `${head}${body} ${motionSentence(c)} ${cameraClause(c)} ${d}${lips}`.replace(/\s+/g, ' ').trim();
     });
     // Keyframes are aligned by the alignment line; the voices are named either way.
     const voiceLegend = allRefs.filter((r) => r.kind !== 'image').map((r) => `${r.label} is ${r.use}.`);
     const lead = sheets
-      ? allRefs.map((r) => `${r.label} is ${r.use}.`)
+      ? [...allRefs.map((r) => `${r.label} is ${r.use}.`), ...sidesOf()]
       : [h3AlignmentLine(cuts), ...voiceLegend];
     const look = sheets ? [`Look: ${lookOf()}.`, ''] : [];
     const soundscape = [sound.ambience || '…', ...cuts.map((c, k) => (sfxOf(k) ? `at [Shot ${k + 1}] ${sfxOf(k)}` : '')).filter(Boolean)].join('; ');
@@ -4606,18 +4732,18 @@ export function promptSkeleton(project, episode, segmentId) {
       // Wan's prompt is Chinese: the lens and the light direction translate, the note and the
       // foreground are the author's English prose, so they are left as blanks to write in Chinese.
       const shot = `${cameraPhrase(c, params, 'zh')}。${LIGHT_DIRECTIONS_ZH[c.light?.direction] || '…'}，…。前景：${c.foreground ? '…（虚化）' : '无'}。`;
-      return [`${wanShotHeader(cuts, k)}…${shot}${motionSentence(c, 'zh')}${cameraClause(c, 'zh')}`, ...talk].join('\n');
+      return [`${wanShotHeader(cuts, k)}${framingOf(c)}…${shot}${motionSentence(c, 'zh')}${cameraClause(c, 'zh')}`, ...talk].join('\n');
     });
     const sfxAll = cuts.map((c, k) => (sfxOf(k) ? `镜头${k + 1}：${sfxOf(k)}` : '')).filter(Boolean).join('；');
     video = [
-      params.references === 'sheets' ? wanSheetLegendLine(allRefs) : wanLegendLine(cuts, allRefs), '',
+      params.references === 'sheets' ? wanSheetLegendLine(allRefs) : wanLegendLine(cuts, allRefs), ...sidesOf(), '',
       ...blocks.flatMap((b) => [b, '']),
       ...(cine && params.references === 'sheets' ? [`画面：${cine.videoPhraseZh}${params.lookPhraseZh ? `，${params.lookPhraseZh}` : ''}。`, ''] : []),
       ...(grammarLines(seg, params, 'zh').length ? [...grammarLines(seg, params, 'zh'), ''] : []),
       `音频：对白为${accent || '…'}，环境音${sound.ambience || '…'}${sfxAll ? `；${sfxAll}` : ''}${clipMusic ? `；配乐：${clipMusic}` : params.audioTrack === 'post' ? '；无配乐' : ''}。${params.subtitles ? '' : `${NO_SUBTITLES.zh}。`}`,
     ].join('\n');
   } else if (params.references === 'sheets') {
-    const legend = allRefs.map((r) => `${r.label} is ${r.use}.`);
+    const legend = [...allRefs.map((r) => `${r.label} is ${r.use}.`), ...sidesOf()];
     const shots = cuts.map((c, k) => {
       const talk = dialogue[k].map((l) => {
         const base = `${l.speakerRef}${l.direction ? `, ${l.direction},` : ''} says: ${l.line}`;
@@ -4628,7 +4754,7 @@ export function promptSkeleton(project, episode, segmentId) {
         return `${base} while ${others.join(' and ')} ${others.length > 1 ? 'do' : 'does'} not speak, ${LIPS_CLOSED}`;
       }).join(' ');
       // The frame already carries the lens, the light and the foreground — do not repeat them.
-      return `Shot ${k + 1} (${starts[k].toFixed(1)}–${(starts[k] + Number(c.seconds)).toFixed(1)} s, ${SIZES[c.size] || c.size}, ${c.camera}): ${c.frame || '…'} ${motionSentence(c)} ${cameraClause(c)} ${talk}`.replace(/\s+/g, ' ').trim();
+      return `Shot ${k + 1} (${starts[k].toFixed(1)}–${(starts[k] + Number(c.seconds)).toFixed(1)} s, ${SIZES[c.size] || c.size}, ${c.camera}): ${framingOf(c)}${c.frame || '…'} ${motionSentence(c)} ${cameraClause(c)} ${talk}`.replace(/\s+/g, ' ').trim();
     });
     const sfxAll = cuts.map((c, k) => (sfxOf(k) ? `shot ${k + 1}: ${sfxOf(k)}` : '')).filter(Boolean).join('; ');
     video = [...legend, '', ...shots, '', ...actionLine, `Look: ${lookOf()}. Maintain continuity in character identities, clothing, prop ownership, scene layout and the camera axis across every shot.`, `Sound: ${sound.ambience || '…'}${sfxAll ? `; ${sfxAll}` : ''}.${accent && dialogue.flat().length ? ` All dialogue in ${accent}.` : ''}${clipMusic ? ` Music: ${clipMusic}.` : ' No music.'}${params.subtitles ? '' : ` ${NO_SUBTITLES.en[0].toUpperCase()}${NO_SUBTITLES.en.slice(1)}.`}`].join('\n');

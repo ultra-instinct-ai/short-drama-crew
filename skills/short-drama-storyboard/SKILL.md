@@ -62,6 +62,10 @@ cinematography preset's guide (`../short-drama-core/reference/cinematography-<pr
 - **Cross-scene boundary** (gate `boundary-contrast`): the last cuts of one scene must not
   repeat the size + angle + characters of the first cuts of the next; write a deliberate one
   with `note: match-cut`. The episode-level version is advisory.
+- **Two people talking** (gate `two-person-framing`, sheets mode): a two-shot once, then
+  over-the-shoulder (`ots`) for the exchange, a clean single for the punchline. A single names only
+  its person; every look states a screen direction (`eyeline`); the sides stay locked. See
+  `craft-shots.md`.
 - **Prompts are delivery text**: no ids, files or notes, subtitles off, the other person's lips
   closed while one speaks (H3), everyone bound by `@imageK` in their own shot.
 - **Everything the node references is addressed by its label, everywhere it applies.** WJI
