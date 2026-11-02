@@ -10,7 +10,8 @@ Global flags (accepted before any subcommand):
 | `--org <orgId>` | organization context (`X-Org-Id`) |
 | `--no-org` | force personal context for this call |
 | `--locale <locale>` | response language: `cht`, `chs`, `en` |
-| `--json` | print the raw API response instead of tables |
+| `--json` | print JSON instead of tables (`standard` detail unless `--detail` is given) |
+| `--detail <level>` | `brief` / `standard` / `full` for list and get reads; `full` is the raw API response. Env `WJI_DETAIL` |
 
 Value conventions: `@file` reads a file, `-` reads stdin, `--set key=value`
 repeats and nests on dots, references are `assetId[:label[:weight]]`.
@@ -64,13 +65,15 @@ switch endpoint.
 
 | Command | API |
 | --- | --- |
-| `ws list [-k keyword] [-s all\|me\|shared\|favorite] [--page] [--limit]` | `GET /workspace/search` — `--limit` max 100, `-1` returns at most 500 |
-| `ws get [id]` | `GET /workspace/list/:id` |
+| `ws list [-k keyword] [-s all\|me\|shared\|favorite] [--page] [--limit]` | `GET /workspace/search` — `--limit` max 100, `-1` returns at most 500; sends `detail` |
+| `ws get [id]` | `GET /workspace/list/:id` — sends `detail` (`settings` and full members need `--detail full`) |
 | `ws use <id>` | stores the default workspace locally |
 | `ws create <name> [-d] [-r ratio] [-l lang] [-t type] [-a app...] [--no-apps]` | `POST /workspace/create` — without `-a` the workspace gets the default template `dataset datasetimagegeneration canvas`; `--no-apps` creates it empty (the API itself adds nothing) |
 | `ws update [id] [-n] [-d] [-r] [-l] [--set]` | `PUT /workspace/list/:id` |
 | `ws rm <id> [-y]` | `DELETE /workspace/list/:id` (owner only) |
 | `ws favorite <id> [--off]` | `PUT /workspace/list/:id/favorite` |
+| `ws leave <id> [-y]` | `POST /workspace/list/:id/leave` — any member except the owner; coming back needs a new invite. Clears the profile default if it pointed there |
+| `ws defaults [id] [--chat] [--image] [--video] [--storyboard] [--audio] [--image-resolution] [--video-resolution]` | no flags: shows `settings.defaultModels`. With flags: reads the workspace at `detail=full`, merges, `PUT /workspace/list/:id {settings}` (settings is replaced whole, so never send a partial `settings` via `ws update --set`). `none` clears one. Chat is stored as the model **name** (what conversations carry), media as the **nickname**; either spelling is accepted. The chat default is used for new conversations in the workspace |
 | `ws fs [id] [-a appId]` | `GET /workspace/list/:id/fs[/:appid]` |
 | `ws app list\|add <app> [-n]\|rm <appId> [-y]` | `POST/DELETE /workspace/list/:id/apps` |
 | `ws member list [id] [-r role]` | members from `GET /workspace/list/:id` (there is no member-list endpoint): name, email, role, user id, membership id |
@@ -96,10 +99,10 @@ Restriction from the backend: `Dataset`, `Draw`, `DatasetImageGeneration` and
 
 | Command | API |
 | --- | --- |
-| `fs root [key] [-d depth]` | `GET /fsnode/root[/:key]` — key defaults to your drive; pass a workspace id for its root |
-| `fs ls <id> [--limit] [--scope]` | `GET /fsnode/list/:id/children` |
-| `fs tree <id> [-d depth]` | `GET /fsnode/list/:id/tree` |
-| `fs get <id> [--scope]` | `GET /fsnode/list/:id` (comma-separated ids allowed) |
+| `fs root [key] [-d depth]` | `GET /fsnode/root[/:key]` — key defaults to your drive; pass a workspace id for its root; sends `detail` |
+| `fs ls <id> [--limit] [--scope]` | `GET /fsnode/list/:id/children` — sends `detail`; at `standard` each `content` is a summary |
+| `fs tree <id> [-d depth]` | `GET /fsnode/list/:id/tree` — sends `detail` |
+| `fs get <id> [--scope]` | `GET /fsnode/list/:id` (comma-separated ids allowed) — sends `detail`; `--detail full` for the whole `content` |
 | `fs path <id>` | `GET /fsnode/list/:id/path` |
 | `fs mkdir <parent> <name> [--nickname] [--content]` | `POST /fsnode/create` type=folder |
 | `fs touch <parent> <name> [--mimetype] [--asset] [--content]` | `POST /fsnode/create` type=file |
@@ -118,7 +121,7 @@ characters, nicknames at 200, and `fs batch` at 100 items per call.
 | Command | Notes |
 | --- | --- |
 | `dataset new <parent> <name> [-t type] [-d description] [--images] [--nickname]` | creates an fsnode with mimetype `workspace/dataset` |
-| `dataset list <folderId>` | dataset nodes in a folder |
+| `dataset list <folderId>` | dataset nodes in a folder (sends `detail`) |
 | `dataset get <key>` | `GET /dataset/list/:key` (vector-store record) |
 | `dataset rm <key> [-y]` | `DELETE /dataset/list/:key` |
 
@@ -150,6 +153,11 @@ Model parameters worth knowing (`--set`, see `wji models get`):
 `gpt-image-2.5-*` `background=transparent` returns a PNG with alpha;
 `bytedance-seedream-5-pro` `layer_decomposition=true` splits one reference
 image into separate PNG layer assets (exactly 1 reference, `size=1K|2K`).
+`face-swap-uncensored` / `head-swap-uncensored` take exactly 2 references in
+order (target picture, then the face / head); `qwen-image-edit-uncensored`
+edits the first reference; `z-image-*-uncensored` `long_edge=<px>`;
+`wan-animate-uncensored` `mode=animate|replace`; `flashvsr-uncensored`
+`resolution=720p|1080p|2k|4k`.
 
 Uploads of `.html`, `.xhtml`, `.svg`, `.js` and `.xml` are stored as
 `application/octet-stream` with `Content-Disposition: attachment`.
@@ -171,7 +179,7 @@ updates live.
 | `canvas copy [nodeIds...] --to <canvasIds...> [-c] [--selected] [--at x,y] [--same-position] [-y]` | the canvas's own copy-paste: new nodes (no position, `generate.historyId/pendingAssetId` dropped, finished asset shared via `file`), edges among them re-created oldest first so `@image1…` numbering holds, color tags kept and a missing label carried to the target. Edges from nodes outside the copy are left out. Default placement: right of what is already on the target |
 | `canvas nodes [-c] [-k kind] [-n regex] [--tag tags…\|--untagged]` | `GET /fsnode/list/:canvasId/children?limit=-1` + `POST /assets/check-status`. `-n` matches the node name as a case-insensitive regex (`/re/flags` to set flags yourself). `--tag` takes a label (`C01`, case-insensitive), a color (`red`) or a color id (`rose`); several values match any. Filters combine (AND) |
 | `canvas tags [-c] [-a]` | the canvas's color tags: color, label, node count (`-a` also unused, unlabelled colors) |
-| `canvas get <nodeId> [-c]` | same load; one node with references (`@image1 ← id`) and frame slots |
+| `canvas get <nodeId> [-c]` | same load; one node with references (`@image1 ← id`) and frame slots. Canvas commands always load the full canvas; `--detail` trims only the JSON they print (`standard` clips `text` / `generate.prompt` and drops `generate.values`) |
 | `canvas edges [-c] [--node]` | the `canvas/edge` children |
 | `canvas add <kind> [-c] [-n] [-t\|--text-file] [--plain] [--size w,h] [--asset] [--dataset] [-p\|--prompt-file] [-m] [-r] [--resolution] [-d] [--set] [--from ids…] [--at x,y]` | `POST /fsnode/create` (`canvas/node/<kind>`), then one `canvas/edge` per `--from`. Kinds: text, title, comment, image, video, audio, dataset. `add dataset --dataset <fsnodeId>` writes `content {datasetId, datasetName, datasetType, datasetParentName, description}` from the dataset node (must be `workspace/dataset`); it takes no `--from`. Text kinds are Markdown on the web; `--plain` turns every single line break into a Markdown hard break (`"  \n"`, fenced code untouched), and without it the CLI warns when a single break would be joined. `--size` writes `content.width/height` |
 | `canvas set <nodeId> [-c] [-n] [-t\|--text-file] [--plain] [--move x,y] [--size w,h] [-p] [-m] [-r] [--resolution] [-d] [--set]` | read → merge → `PATCH /fsnode/list/:id` with `contentPatch` of only the top-level keys that changed, so a concurrent browser edit of another key survives (falls back to a whole-content write on a backend without `contentPatch`) |
@@ -233,6 +241,78 @@ command takes `-w` (defaults to the linked workspace, then the profile's).
 `--tag` matches each canvas's own label (a label a canvas lacks matches nothing
 there); `--student` takes names, emails or user ids.
 
+## npc
+
+`<npc>` is an id, `@handle` or name among your NPCs (org NPCs with `--org`); an
+unknown `@handle` falls back to `GET /npc-city/residents/by-handle/:h` (public).
+
+| Command | API |
+| --- | --- |
+| `npc list [--public] [-k] [--status active\|debut\|hiatus] [--visibility] [--page] [--limit]` | `GET /npc-city/residents/mine` (`--public`: `GET /npc-city/residents`) |
+| `npc get <npc>` | `GET /npc-city/residents/:id` |
+| `npc create <name> --role --genre [--handle] [--tagline] [--bio] [--image url\|assetId] [--hero-image] [--color] [--status] [--visibility] [--social k=url…] [--tag k=v…] [--set k=v…]` | `GET …/handle-available`, then `POST /npc-city/residents` (needs profile `canSpawn`; private by default; name is uppercased) |
+| `npc set <npc> [-n] [--role] [--genre] [same flags]` | `PATCH /npc-city/residents/:id` with only the given fields; `--social` / `--tag` merge into the current objects |
+| `npc publish <npc>` / `npc unpublish <npc>` | `PATCH … {visibility}` |
+| `npc rm <npc> [-y]` | `DELETE /npc-city/residents/:id` (soft delete) |
+| `npc handle <handle> [--exclude <npc>]` | `GET /npc-city/residents/handle-available` |
+| `npc job list <npc>` | the resident's `jobs[]`, numbered 1…n |
+| `npc job add <npc> -t <type> --title --date YYYY-MM-DD [--about] [--location] [--url]` | read, append, `PATCH {jobs}` |
+| `npc job set <npc> <n> [same flags]` | read, merge into #n, `PATCH {jobs}` |
+| `npc job rm <npc> <n...> [-y]` | read, drop, `PATCH {jobs}`; refuses if the list changed meanwhile |
+| `npc soul get <npc>` | `GET /npc-city/residents/:id/soul` |
+| `npc soul set <npc> <json\|@file\|->` | `PATCH /npc-city/residents/:id/soul {soulConfig}` (shallow merge) |
+| `npc doc export <npc> [--format md\|json] [-o file]` | `GET /npc-city/residents/:id/document?format=` |
+| `npc doc apply <npc> <@file\|-> [--dry-run] [--sync-memories] [-y]` | `POST …/document/preview`, confirm, `POST …/document`. The document route reports memory changes but never saves them; `--sync-memories` replaces the memory table with the document's `## Memories` |
+| `npc memory list\|add\|set\|rm <npc>` | `GET/POST /npc-city/residents/:id/memories`, `PATCH/DELETE /npc-city/memories/:id` (title ≤200, date ≤40, weight 1–5, type formative\|trauma\|joy\|connection\|revelation). `list` marks the top 3 by weight (then newest) — the only ones the live reply prompt reads, content clipped to 140 |
+| `npc album list <npc> [album]` · `create <npc> --name [-d] [--photo …]` · `add <npc> <album> <photo…>` · `set <npc> <album> [--name] [-d] [--cover n] [--label n=text…]` · `rm-photo <npc> <album> <n…>` · `rm <npc> <album>` | `GET/POST /npc-city/residents/:id/albums`, `PATCH/DELETE …/albums/:albumId` (label ≤120, description ≤500; photos `{id, assetId, url, label}`, the CLI mints ids and resolves asset ids / uploads files to URLs; `<album>` = number or id) |
+| `npc readiness <npc>` | `GET /npc-city/live/residents/:id/readiness` — soul integrity, gate reasons (selfDescription / humanProtocol >10 chars, a trait, headshot, a scene), scenes, voice sample, stages |
+| `npc stage list <npc>` | `GET /npc-city/live/residents/:id/stages` |
+| `npc stage export <stageId> [--format md\|json] [-o]` | `GET /npc-city/live/stages/:id/document` |
+| `npc stage apply <stageId> <@file\|-> [--dry-run] [-y]` | `POST …/document/preview`, confirm, `POST …/document` (text only; baked fields warn) |
+| `npc stage import <npc> <@file\|-> [-y]` | `POST /npc-city/live/residents/:id/stages/import` — a Draft stage, nothing rendered, no credits |
+| `npc stage set <stageId> [--debug on\|off] [--on on\|off] [--label]` | `PATCH /npc-city/live/stages/:id {debugMode, enabled, label}` — `--on` needs a Ready stage; debug on an on-air stage asks first |
+| `npc stage rm <stageId> [-y]` | `DELETE /npc-city/live/stages/:id` |
+| `npc transfer send <npc> --to <email\|userId> [-y]` | `POST /npc-city/residents/:id/transfer` |
+| `npc transfer list` | `GET /npc-city/transfers/incoming` + `/outgoing` |
+| `npc transfer accept\|reject\|cancel <transferId>` | `POST /npc-city/transfers/:id/<action>` |
+
+Writing the character and stages well — what each field does at runtime —
+is the `npc-character` skill.
+
+Job types: concert, release, collaboration, brand, event, ad, appearance. The
+server drops jobs without a title or date and turns unknown types into `event`;
+the CLI rejects both up front.
+
+## backreel
+
+| Command | API |
+| --- | --- |
+| `backreel list [--all] [-k] [--page] [--limit]` | `GET /backreel/post/search/my` (`--all`: `GET /backreel/post/search`) |
+| `backreel get <postId>` | `GET /backreel/post/list/:id` |
+| `backreel create <title> [--kind showcase\|crowdfunding] [--logline] [--media assetId...] [--category] [--project-status] [--tags a,b] [-d text\|@file] [--cover assetId] [--cover-portrait] [--trailer] [--body json]` | `POST /backreel/post/create` (always a draft) |
+| `backreel set <postId> [--title] [same flags]` | `PUT /backreel/post/list/:id` with only the given fields |
+| `backreel publish\|unpublish <postId>` | `POST /backreel/post/list/:id/publish\|unpublish` (publish needs a cover, media or an episode) |
+| `backreel rm <postId> [-y]` | `DELETE /backreel/post/list/:id` |
+| `backreel creators [-k] [--role kind] [--verified] [--no-featured] [--page] [--limit ≤48]` | `GET /backreel/creator/list` — editor-picked `featured` plus a heat-ranked page (recent likes, favorites ×2); creators with no recent activity are not listed. `--role`: investor, production_company, brand, distributor, sales_agent |
+| `backreel image <file...> --slot cover\|portrait\|media\|photo [--post id] [--check]` | reads the size locally, warns on ratio / resolution, `POST /assets/v2/upload` with width/height, then `PUT {cover\|coverPortrait\|assets}` (media appends, ≤9) |
+| `backreel image-specs` | recommended size per slot (16:9 1920×1080, 9:16 1080×1920, 3:4 1536×2048, 1:1 800×800) |
+| `backreel check <postId>` | publish blockers (title, description text/img, cover\|media\|episode, crowdfunding goal ≥1) and advice (portrait, logline, credits, VOD not ready) |
+| `backreel episode list\|add\|set\|rm\|move\|tiers\|status\|play` | whole `episodes[]` read-modify-`PUT` (≤30, showcase only). A file: `POST /backreel/vod/upload-token` → signed ApplyUploadInfo / PUT / CommitUploadInfo → `POST /backreel/vod/claim` → `vodVid`; `--legacy` / `--asset` = WJI asset. `status` / `play` use `GET …/episodes/:order/play` (409 = transcoding) |
+| `backreel enquiry list\|unread\|get\|reply\|status\|grant\|download` | `/backreel/enquiry/search?box=`, `unread-count`, `list/:id` + `list/:id/messages`, `POST list/:id/messages {body, attachments}` (files via `POST /backreel/file/upload?purpose=enquiry`), `POST list/:id/status`, `POST list/:id/grant`, `GET /backreel/file/:id/download` |
+| `backreel fund show\|set\|tier\|supporter\|donations` | read-modify-`PUT` of `campaign` (crowdfunding only) and `donation` (any post); `donations` = `GET /backreel/donation/post/:id/manage` |
+| `backreel credit list <postId>` | the post's `credits[]`, numbered |
+| `backreel credit add <postId> --role [--name] [--kind cast\|crew\|creative] [--npc] [--user] [--link] [--job <type>]` | read, append, `PUT {credits}`; `--job` then appends to the NPC's `jobs` (own NPCs only, checked first) |
+| `backreel credit rm <postId> <n...> [-y]` | read, drop, `PUT {credits}` |
+
+Project status: planning, pre_production, in_production, post_production,
+completed. `--logline` is a one-line hook (≤200 chars, HTML stripped, `""`
+clears it) shown large on the post page and **always public**, even when the
+description is gated. The post detail no longer carries playable URLs for VOD
+episodes — playback is gated per episode on the web. Every `backreel` call
+sends `X-App: backreel` so notifications and mail link to Backreel. The
+`backreel` skill covers the creator workflow in depth. `-d` plain text becomes `<p>` paragraphs; HTML passes through and
+is sanitized server-side. Admin routes (`/api/backreel/*`) reject `sk_` keys.
+
 ## gen
 
 Shared flags: `-m/--model` (required), `-p/--prompt`, `-n/--n`, `-w/--workspace`,
@@ -244,7 +324,7 @@ Shared flags: `-m/--model` (required), `-p/--prompt`, `-n/--n`, `-w/--workspace`
 | --- | --- | --- |
 | `gen image` | `--ref`, `--omni`, `--style-ref`, `--reference-weight`, `--stylize`, `--model-options` | `POST /ai/assets/history/image/generations` |
 | `gen video` | `-d/--duration`, `--start-image`, `--end-image`, `--ref`, `--ref-video`, `--ref-audio` | `POST /ai/assets/history/video/generations` |
-| `gen audio` | `-d/--duration`, `--ref-audio` | `POST /ai/assets/history/audio/generations` |
+| `gen audio` | `-d/--duration`, `--ref-audio`, `--ref` (one image, e.g. a headshot → a Seed Audio voice sample; not with `--ref-audio`) | `POST /ai/assets/history/audio/generations` |
 | `gen cost -t <type> -m <model>` | `-n`, `-p`, `-d`, `-r`, `--refs`, `--values` | `POST /ai/assets/preComputeCost` |
 
 Every generation goes through the history endpoint — there is no raw mode. The
@@ -272,7 +352,7 @@ parameters are range-checked against the model's `min`/`max`.
 ## history
 
 `history list [-w] [--mode image|video|audio] [--fsnode] [--scope] [--scope-id] [--tags] [--bookmarked]` →
-`GET /ai/assets/history/search`
+`GET /ai/assets/history/search` (sends `detail`; `standard` clips `prompt` and summarises `form`)
 
 `history get <id> [--wait] [--timeout] [--interval]` ·
 `history bookmark <id> [--off]` · `history rm <id> [-y]` ·
@@ -281,12 +361,15 @@ parameters are range-checked against the model's `min`/`max`.
 ## models
 
 `models list [-f feature...] [-w] [-k keyword] [--all]` →
-`GET /ai/model/list/:features`
+`GET /ai/model/list/:features` (sends `detail`; at `standard` the `form` keeps
+only ratios, batch, reference caps and `other` options — `--detail full` for the
+whole schema)
 
 The endpoint matches with `features.some(...)`, so an empty feature list returns
 nothing; with no `-f` the CLI asks for every feature instead.
 
-The response is a curated view — no `id`, `rate`, `tags` or `protocol` — and it
+The response is a curated view — no `id`, `rate` or `protocol` (`tags` is
+included; uncensored models carry `uncensored`) — and it
 is de-duplicated by **`nickname`**, which is therefore the unique selector.
 `name` is not unique (`seedance-2.0` exists twice under different providers).
 Pass the `MODEL` column (the nickname) to `-m`.
@@ -304,7 +387,7 @@ Features: `text`, `image`, `video`, `audio`, `tts`, `web`, `thinking`,
 ## agent
 
 `agent list` (public marketplace) · `agent mine` · `agent get <id>` ·
-`agent create <name> -d [-i instructions] [-m model] [--visibility] [-c] [-t] [--greeting]` ·
+`agent create <name> -d [-i instructions] [-m model] [--visibility] [-c] [-t] [--greeting] [--max-steps n]` ·
 `agent update <id> …` · `agent rm <id> [-y]` · `agent files <id>` ·
 `agent categories [--mine]` · `agent tags [--mine]` · `agent recommend`
 
@@ -322,6 +405,17 @@ takes `--skill <ref...>`.
 
 Visibility: `private`, `unlist`, `public`. Instructions are only returned to
 the agent's creator.
+
+Ownership (backend since Oct 2026): a private agent is readable only by its
+creator; `update`, `rm`, `files`, `versions` and `restore` are creator-only on
+every agent (403 `無權操作此 Agent` otherwise — not a bug). `agent create`
+needs the account's agent-create permission (without it: 400 `您沒有此功能的訪問權限`). `--set` cannot change `creator` or
+`organization`, and non-admins cannot set `key`, `isSystem`, `isHighligted`,
+`recommendTitle`, `weight` or `store` — the server drops them silently.
+
+`--max-steps n` caps model calls per chat turn (1–200; parallel tool calls in
+one step count once). Unset means the site default, 40. `update --max-steps
+default` clears it.
 
 Field caps: name ≤200, model ≤100, description and greeting ≤5,000,
 instructions ≤200,000 characters.
@@ -381,17 +475,6 @@ Crew packs are local or remote folders (`crew.json`, `agents/<seat>.md`, `skills
 | `crew uninstall <name> [--for targets] [-y]` | removes exactly the recorded paths; reminds you to clean `openclaw.json` by hand |
 | `crew check <dir>` | validates `crew.json` ↔ `agents/*.md` (names, skills, tools vs capabilities), every `SKILL.md` (name == folder, description ≤ 1024) and that relative links resolve |
 
-## crew
-
-Crew packs are local/remote folders (`crew.json`, `agents/<seat>.md`, `skills/<name>/SKILL.md`, `AGENTS.md`) — no WJI API involved.
-
-| Command | Behaviour |
-| --- | --- |
-| `crew install [name] --for <claude,codex,openclaw,grok\|all> [--from dir\|zip\|tar.gz\|url] [--ref] [--project dir] [--link] [--out zip] [--no-register] [--dry-run] [-y]` | fetches the pack (registry → GitHub tarball, cached under `~/.wji/crews/`), validates it, prints the plan, then per host: **claude** copies `skills/*` → `~/.claude/skills/` and `agents/*.md` → `~/.claude/agents/`; **codex** copies skills → `~/.agents/skills/` and writes `~/.codex/agents/<seat>.toml` (`developer_instructions` = persona body, `sandbox_mode` from capabilities, `[[skills.config]]` per skill); **openclaw** shares `~/.agents/skills/`, writes `~/.openclaw/workspaces/<crew>/<seat>/{AGENTS.md,SOUL.md,skills→}` + `openclaw.agents.json5` and runs `openclaw agents add` when the binary exists; **grok** writes `<crew>-export.zip` (`skills/`, `bots/*.json`, `bots/crew-manifest.json`, `channels/*.json`, sibling links rewritten to `sand-workflow:`). `--project` targets `<dir>/.claude`, `.agents`, `.codex`, `openclaw` instead of `$HOME` |
-| `crew status [name]` | reads `~/.wji/crews/installed.json`; per path ✓ / ↗ symlink / ✗ missing |
-| `crew uninstall <name> [--for targets] [-y]` | removes exactly the recorded paths; reminds you to clean `openclaw.json` by hand |
-| `crew check <dir>` | validates `crew.json` ↔ `agents/*.md` (names, skills, tools vs capabilities), every `SKILL.md` (name == folder, description ≤ 1024) and that relative links resolve |
-
 Import rules: the zip must contain `SKILL.md` at its root (or one folder deep — a
 single common root folder is stripped). `SKILL.md` frontmatter `name:` is
 required; `description:` is read too. Visibility is `private` (default) or
@@ -430,6 +513,12 @@ Pass `null` to clear a nullable field. Password minimum is 6 characters.
   asset carrying `error` is also a failure.
 - Some GETs are cached per user for 10s, keyed on the full URL including the
   query string.
+- Workspace, fsnode, model and history reads accept `?detail=brief|standard|full`.
+  The API defaults to `full` (the website relies on it); the CLI sends the
+  `--detail` value, or `standard` under `--json`. `standard` clips long text to
+  200 chars, turns media into `{id, url, thumbnail, status, …}` and reduces an
+  fsnode `content` to a summary carrying `truncated: true`; never PATCH such a
+  summary back.
 - Paginated endpoints return `{ data, pagination: { total, page, limit, next,
   hasNext, hasPrev, totalPages } }`. An explicit `limit` is capped at **100**.
   `limit: -1` returns everything only on endpoints that opt in (`fs ls` does);

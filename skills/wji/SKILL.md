@@ -1,6 +1,6 @@
 ---
 name: wji
-description: Drive the WJI AI platform from the terminal with the `wji` CLI — sign in, manage workspaces and the fsnode/dataset tree, upload assets, generate images/video/audio and poll the results, and work on Infinite Canvas nodes (read the user's selected nodes, create generate nodes, connect references), manage workspace members, invitations and canvas owners, and manage models, agents, prompt presets and your profile. Use whenever a task mentions WJI, wji-backend, a WJI workspace, canvas, fsnode, dataset node, or asks to generate media on WJI.
+description: Drive the WJI AI platform from the terminal with the `wji` CLI — sign in, manage workspaces and the fsnode/dataset tree, upload assets, generate images/video/audio and poll the results, and work on Infinite Canvas nodes (read the user's selected nodes, create generate nodes, connect references), manage workspace members, invitations and canvas owners, manage NPC City NPCs (profile, work history, soul, character document) and Backreel posts (drafts, publishing, cast and crew credits), and manage models, agents, prompt presets and your profile. Use whenever a task mentions WJI, wji-backend, a WJI workspace, canvas, fsnode, dataset node, NPC City, an NPC / resident, Backreel, or asks to generate media on WJI.
 ---
 
 # WJI CLI
@@ -8,6 +8,12 @@ description: Drive the WJI AI platform from the terminal with the `wji` CLI — 
 `wji` is a thin, scriptable client over the WJI API. Every command accepts
 `--json`, so prefer `--json` piped through `jq` when you need to read a value,
 and the human table output when you are showing the user a result.
+
+`--json` prints the **`standard`** detail level: ids, names, status, media urls,
+long text clipped to 200 chars and `content` reduced to a summary marked
+`truncated: true`. Add `--detail full` whenever you need the whole `content`,
+`form` or `settings` (always before a read-modify-write), and `--detail brief`
+when you only want ids. `WJI_DETAIL=full` sets it for a whole session.
 
 ## Before anything else
 
@@ -78,6 +84,9 @@ Most commands take `--workspace`, but setting a default is less error-prone:
 ```bash
 wji ws list
 wji ws use <workspaceId>
+wji ws defaults                       # default chat / image / video / audio models
+wji ws defaults --chat <model> --video <nickname>   # "none" clears one
+wji ws leave <workspaceId>            # leave a workspace you were invited to
 ```
 
 After that, `wji ws get`, `wji fs`, `wji gen` and `wji preset list` all default
@@ -94,7 +103,7 @@ wji ws fs                                  # whole workspace tree
 wji ws fs --app <appId>                    # one app's tree
 wji fs tree <nodeId> --depth 2
 wji fs ls <folderId>
-wji fs get <nodeId> --json | jq .content
+wji fs get <nodeId> --json --detail full | jq .content      # --detail full: the summary is not the content
 
 wji fs mkdir <parentId> characters --nickname 角色
 wji dataset new <folderId> "Ada" -t character -d "a tired detective"
@@ -211,6 +220,25 @@ balanced default; **Seedance 2.0 Fast / MiniMax H3 Max** for drafts, tests and
 large batches. The ranking is a guide — quote the real number from
 `wji gen cost` / `wji canvas gen` before spending.
 
+**Uncensored (無審核) models.** Use these only when the user asks for
+uncensored output or a censored model refused the content. They carry the
+`uncensored` tag in `wji models list --json`, and their names end in
+`-uncensored`. The Wan 3.0 family has a Ref and a first/last-frame variant of
+each tier, like the censored Wan 3.0.
+
+| Job | Model (`name`) | Inputs |
+| --- | --- | --- |
+| Video, Ref | `wan-3.0-ref-uncensored`, `wan-3.0-prime-ref-uncensored` (480p–1080p); `wan-3.0-pro-ref-uncensored`, `wan-3.0-prime-pro-ref-uncensored` (1080p / 2k / 4k) | ≤ 10 images + ≤ 5 videos + ≤ 5 audios, freely mixed (video/audio ≤ 15 s total) |
+| Video, first/last frame | `wan-3.0-uncensored`, `wan-3.0-prime-uncensored`, `wan-3.0-pro-uncensored`, `wan-3.0-prime-pro-uncensored` | text only, or start and/or end image; 2–30 s |
+| Image → video | `wan-2.7-i2v-uncensored` (720p/1080p, 2–15 s; optional 1 driving audio for lip-sync via `--ref-audio`), `wan-2.2-i2v-uncensored` (cheapest; 480p/720p, 5 or 8 s, optional end frame) | start image |
+| Animate a character | `wan-animate-uncensored` (`--set mode=animate\|replace`) | exactly 1 image + 1 video; output is as long as the video |
+| Text → image | `z-image-uncensored` (long edge ≤ 1536), `z-image-pro-uncensored` (≤ 2560, `--set long_edge=`) | prompt + ratio |
+| Edit an image | `qwen-image-edit-uncensored` | 1–3 images: the **first** is the image to edit |
+| Face / head swap | `face-swap-uncensored`, `head-swap-uncensored` | exactly 2 images, **order matters**: 1st = target picture, 2nd = the face / head to put on it |
+| Video upscale | `flashvsr-uncensored` (`--set resolution=720p\|1080p\|2k\|4k`) | 1 MP4 ≤ 120 s; billed per input second |
+
+"Prime" variants are faster and cost more; "Pro" variants output 1080p–4K.
+
 ### Limits (per account)
 
 | Limit | Value | When exceeded |
@@ -248,7 +276,7 @@ headshot and sheet as image references and the voice as an audio reference to
 a Ref model.
 
 ```bash
-wji fs get <datasetId> --scope full --json | jq '{images: [.images[]? | {id, type}], icon, primaryAudio}'
+wji fs get <datasetId> --json --detail full | jq '{images: [.images[]? | {id, type}], icon, primaryAudio}'
 wji fs set <datasetId> --add-images <headshot> <sheet> <voice> --icon <headshot> --set primaryAudio=<voice>
 ```
 
@@ -294,7 +322,11 @@ wji agent skill-add <agentId> system:image user:<skillId>
 wji agent skills <agentId>
 wji agent versions <agentId>          # every edit auto-snapshots a version
 wji agent restore <agentId> <versionId>
+wji agent update <agentId> --max-steps 80   # model calls per chat turn (default 40, max 200)
 ```
+
+Versions, files, update and restore are creator-only — a 403 `無權操作此 Agent`
+on someone else's agent is expected.
 
 Skill refs are `system:<key>` or `user:<skillId>` (a bare id means `user:`).
 System keys currently include `image`, `document`, `workspace-dataset`,
@@ -427,6 +459,57 @@ wji canvas rm <nodeId…>                        # destructive — see Rules
 
 See `reference/canvas-recipes.md` for end-to-end examples.
 
+## NPC City and Backreel
+
+**NPC City NPCs** (residents) belong to you, or to an organization when you
+pass `--org`. Refer to one by id, `@handle` or name; an `@handle` that isn't
+yours resolves in the public directory (read-only for you).
+
+```bash
+wji npc list                                   # yours; --public for the directory
+wji npc get @mika                              # profile + numbered work history
+wji npc create "Mika" --role Singer --genre "City pop" --handle mika.npc   # private draft
+wji npc set @mika --tagline "…" --tag tier=Rising --social ig=https://…
+wji npc publish @mika                          # visibility public (unpublish = private)
+wji npc job add @mika -t concert --title "Neon Night" --date 2026-10-01 --location Taipei
+wji npc job set @mika 2 --detail "sold out" ; wji npc job rm @mika 3 -y
+wji npc soul get @mika > soul.json ; wji npc soul set @mika '{"liveSpeakingTone":"…"}'   # keys must be soul keys — unknown ones are stored silently
+wji npc doc export @mika -o mika.md            # whole character in one file
+wji npc doc apply @mika @mika.md --dry-run     # see the diff, then without --dry-run
+```
+
+- **Jobs** are the NPC's work history (concert, release, collaboration, brand,
+  event, ad, appearance) shown on its public page. They have no ids: the CLI
+  numbers them 1…n and rewrites the whole list, so list again before `job
+  set` / `job rm` if anything else may have changed it.
+- `soul set` merges top-level keys only; a nested object you pass replaces
+  that whole key. Memories and albums are not part of the soul.
+- `npc create` needs NPC City spawn permission on the account (a 403 says so);
+  only an admin can grant it. Admin actions — spawn permission, featured / hero
+  slider, moderation — are not in `wji`.
+- `npc transfer send <npc> --to <email>` offers the NPC to someone; they
+  `npc transfer accept <id>` within 7 days. You lose it on acceptance.
+
+**Backreel posts** are your film / project pages. `create` always makes a
+draft; publishing needs a cover, media or an episode.
+
+```bash
+wji backreel list                              # yours, drafts included; --all for published posts
+wji backreel create "Harbour" -d @synopsis.txt --tags drama,short --cover <assetId>
+wji backreel set <postId> --project-status in_production
+wji backreel credit add <postId> --kind creative --name "Wayne" --role 導演
+wji backreel credit add <postId> --npc @mika --role "飾 阿明" --job appearance
+wji backreel publish <postId>                  # unpublish takes it offline
+wji backreel set <postId> --logline "一句話賣點"   # always public, ≤200 chars
+wji backreel creators --role investor           # browse creators
+```
+
+- Credits (max 30) are rewritten whole in order; `credit rm` goes by number.
+- `--npc` casts an NPC (the credit's `npcId`, name and avatar come from it);
+  `--job <type>` also adds the work to that NPC's history — only for your own
+  NPCs.
+- `--description` takes plain text (turned into paragraphs) or HTML.
+
 ## Everything else
 
 ```bash
@@ -445,7 +528,8 @@ wji org list && wji org use <orgId>
   CLI: `ws rm`, `ws app rm`, `ws member rm`, `fs rm`, `dataset rm`,
   `asset rm`, `history rm`, `preset rm`, `skill rm`, `skill update --dir`,
   `agent rm`, `auth key rm`, `auth key revoke`, `config rm`, `canvas rm`,
-  `ws member link` (revokes the current share link).
+  `ws member link` (revokes the current share link), `npc rm`, `npc job rm`,
+  `npc doc apply`, `npc transfer send`, `backreel rm`, `backreel credit rm`.
   They prompt `[y/N]` in a terminal, but when you run them there is no
   terminal, so they refuse unless you pass `--yes`. **The user's reply in the
   chat is the only confirmation there is.** Before running one:
@@ -499,6 +583,9 @@ wji org list && wji org use <orgId>
 - **Lists are paginated.** `--limit` is capped at 100; `--limit -1` returns at
   most 500 on most endpoints. Page with `--page` instead of assuming you got
   everything.
+- **Lists are trimmed.** `--json` is the `standard` level; read `content`,
+  `form` or `settings` with `--detail full`, and never write back a `content`
+  that carries `truncated: true`.
 - **Report failures honestly.** A failed generation surfaces as a non-zero exit
   with the provider's message — pass it on rather than retrying silently.
 
