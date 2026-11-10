@@ -1,0 +1,1666 @@
+{
+  "lang": "en",
+  "label": "美式英文",
+  "version": "1.0",
+  "entries": [
+    {
+      "id": "en-core-001",
+      "phrase": "How's it going?",
+      "variants": [
+        "How's it goin'?",
+        "How's everything?"
+      ],
+      "meaning": "最中性嘅美式打招呼，等於「點呀／近排點」；問嘅人多數唔係真想聽你講詳情。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "stranger",
+          "client"
+        ]
+      },
+      "example": "How's it going, man? Haven't seen you in a minute.",
+      "situation": "同朋友、同事、熟客見面嘅第一句",
+      "avoid": [
+        "對第一次見嘅客戶或長輩，用 Nice to meet you 或者 How are you? 穩陣啲；加 man 只留給熟朋友"
+      ],
+      "note": "全美通用。東岸講得快，變成 How's it goin'。答法：Good, you? ／ Not bad. ／ Can't complain。",
+      "tags": [
+        "開場",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-002",
+      "phrase": "What's up?",
+      "variants": [
+        "What's good?",
+        "Sup?"
+      ],
+      "meaning": "打招呼多過真問你喺做咩；語氣好 casual，等於「喂，點呀」。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "warm",
+          "blunt"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "What's up? You look like you just saw a ghost.",
+      "situation": "後生仔之間見面、或者入房同熟人打招呼",
+      "avoid": [
+        "對上司、客戶講會太隨便；正式場合用 How are you?"
+      ],
+      "note": "答 Not much. 就夠，唔使真答。黑人同 Latino 圈子講 What's good?，其他族群跟住用要小心唔自然。",
+      "tags": [
+        "開場",
+        "日常",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-003",
+      "phrase": "Morning.",
+      "variants": [
+        "Mornin'."
+      ],
+      "meaning": "美國辦公室、電梯、走廊嘅極短招呼，等於「早晨」，唔使加 Good。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "polite",
+          "blunt"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "stranger"
+        ]
+      },
+      "example": "Morning. Coffee's in the back, help yourself.",
+      "situation": "早上返工、入升降機、經過同事位",
+      "avoid": [
+        "對長輩或第一次見嘅客戶，省略 Good 會顯得趕時間"
+      ],
+      "note": "美式 office 日常。同一個字對唔同人講，聲調決定親疏；加名字更親：Morning, Dave.",
+      "tags": [
+        "開場",
+        "職場",
+        "惜字如金"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-004",
+      "phrase": "How you been?",
+      "variants": [
+        "How've you been?"
+      ],
+      "meaning": "久無見嘅問候，關心你最近過成點；美式口語會省咗 have。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "greet",
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "How you been? Last I heard you moved out to Denver.",
+      "situation": "舊同事、老朋友重逢",
+      "avoid": [
+        "第一次見面唔適用；正式書面唔好省 have"
+      ],
+      "note": "省 have 係美式口語常態，唔係懶音。答法：Good, busy. ／ Hangin' in there.",
+      "tags": [
+        "開場",
+        "日常",
+        "關心"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-005",
+      "phrase": "Long time no see.",
+      "variants": [
+        "Long time."
+      ],
+      "meaning": "好久不見；已經係美式固定講法，唔當中文直譯嘅錯英文。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "idiom",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "Long time no see. You still working at the shop?",
+      "situation": "街上面撞到舊朋友",
+      "avoid": [
+        "正式場合用 It's been a while 或者 It's good to see you again"
+      ],
+      "note": "源自十九世紀嘅洋涇浜英語，今日全美通用，母語者完全唔會覺得怪。",
+      "tags": [
+        "開場",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-006",
+      "phrase": "You good?",
+      "variants": [],
+      "meaning": "問你仲得唔得、有冇事；美式關心，唔等於撩交嗌。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "worried",
+          "blunt"
+        ],
+        "function": [
+          "question",
+          "comfort"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "You good? You've been staring at that screen for an hour.",
+      "situation": "見到朋友／同事唔對路，或者想確認對方 OK",
+      "avoid": [
+        "語氣一硬、加個 huh 就會變成挑釁；對長輩用 Are you all right?"
+      ],
+      "note": "紐約口音特別常見。答 I'm good. 就等於「我冇事」，唔使長篇解釋。",
+      "tags": [
+        "關心",
+        "日常",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-007",
+      "phrase": "How's the family?",
+      "variants": [],
+      "meaning": "美式街坊／同事 small talk 嘅標準題，關心你屋企人，但唔會追問。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "warm",
+          "polite"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "stranger"
+        ]
+      },
+      "example": "How's the family? Your mom still doing the garden thing?",
+      "situation": "鄰居、同事、熟客閒聊",
+      "avoid": [
+        "對唔熟嘅人問家庭可以好冒犯；唔好追問婚姻、仔女"
+      ],
+      "note": "美國中西部、郊區最常用。答 They're good, thanks. 就收，唔使交代細節。",
+      "tags": [
+        "日常",
+        "客套",
+        "家庭"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-008",
+      "phrase": "Some weather, huh?",
+      "variants": [],
+      "meaning": "天氣做開場白嘅美式講法，句尾 huh 係等人附和。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "polite",
+          "funny"
+        ],
+        "function": [
+          "question",
+          "greet"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "friend"
+        ]
+      },
+      "example": "Some weather, huh? My basement's already wet.",
+      "situation": "升降機、收銀排隊、鄰居喺門口",
+      "avoid": [
+        "加州人唔會咁講（因為冇天氣）；用嚟嘲笑人會變挑釁"
+      ],
+      "note": "中西部、東岸最常聽到。huh 係美式句尾附和詞，升調。",
+      "tags": [
+        "日常",
+        "客套",
+        "開場"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-009",
+      "phrase": "For here or to go?",
+      "variants": [
+        "Is that for here or to go?",
+        "For here or to go, hon?"
+      ],
+      "meaning": "快餐店、咖啡店必問：堂食定外賣。美式用 to go，唔用 takeaway。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "waitress",
+          "sales"
+        ],
+        "tone": [
+          "polite",
+          "blunt"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "client"
+        ]
+      },
+      "example": "For here or to go? — To go, please.",
+      "situation": "咖啡店、diner、pizza 店落單",
+      "avoid": [
+        "英式講 takeaway／eat in；美國店員聽 to go 先順耳"
+      ],
+      "note": "to go 係美式核心；英式 takeaway。南部店員會加 hon 或 sweetie。",
+      "tags": [
+        "餐廳",
+        "咖啡廳",
+        "服務員",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-010",
+      "phrase": "Need a bag?",
+      "variants": [],
+      "meaning": "超商、雜貨店收銀問你要唔要袋；美式口語省咗 Do you。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "sales",
+          "shopkeeper"
+        ],
+        "tone": [
+          "polite",
+          "blunt"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "client"
+        ]
+      },
+      "example": "Need a bag? — Nah, I'm good, thanks.",
+      "situation": "便利店、超市、藥房收銀",
+      "avoid": [
+        "對客戶書面或者正式場合要講 Would you like a bag?"
+      ],
+      "note": "省略 Do you 係美式口語常態。加州、紐約部分地區膠袋收費，問得更直接。",
+      "tags": [
+        "便利店",
+        "店員",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-011",
+      "phrase": "Can I get the check?",
+      "variants": [
+        "Could we get the check?",
+        "Check, please."
+      ],
+      "meaning": "埋單。美式餐廳講 check，唔講 bill。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "question",
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "client"
+        ]
+      },
+      "example": "Can I get the check when you get a sec?",
+      "situation": "diner、餐廳食完飯",
+      "avoid": [
+        "英式用 bill；美國講 bill 會被聽成帳單／鈔票"
+      ],
+      "note": "美式 check＝帳單；英式 bill。分帳講 Can we split it?",
+      "tags": [
+        "餐廳",
+        "服務員",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-012",
+      "phrase": "I'll have the same.",
+      "variants": [],
+      "meaning": "同對方叫一樣嘅；美式落單標準講法，唔用 I want。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "agree",
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "I'll have the same, but no onions.",
+      "situation": "同朋友／同事一齊食飯落單",
+      "avoid": [
+        "I want 係點餐大忌，美國人聽落好無禮；要講 I'll have 或 Can I get"
+      ],
+      "note": "美式點餐公式：I'll have / Can I get + 食物。",
+      "tags": [
+        "餐廳",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-013",
+      "phrase": "You're all set.",
+      "variants": [],
+      "meaning": "搞掂晒、你可以走／可以用喇；服務業收尾萬用語。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "sales",
+          "waitress"
+        ],
+        "tone": [
+          "polite",
+          "warm"
+        ],
+        "function": [
+          "agree",
+          "dismiss"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "stranger"
+        ]
+      },
+      "example": "You're all set. Your table's right this way.",
+      "situation": "酒店 check-in、銀行、診所、餐廳帶位",
+      "avoid": [
+        "對客人講唔好再加 OK? 會變催促；唔適用喺要道歉嘅場面"
+      ],
+      "note": "美式服務業高頻。另一用法：I'm all set. ＝我唔需要喇。",
+      "tags": [
+        "客套",
+        "服務員",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-014",
+      "phrase": "Sorry, coming through.",
+      "variants": [],
+      "meaning": "借借、唔該借過；美式人多地方用，語氣輕但直接。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "polite",
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "colleague"
+        ]
+      },
+      "example": "Sorry, coming through — hot pan, hot pan.",
+      "situation": "廚房、餐廳、地鐵、人群中搬嘢",
+      "avoid": [
+        "對長輩或客戶只講一句 Excuse me 更穩；用 sorry 開頭唔好太細聲"
+      ],
+      "note": "紐約地鐵、餐廳樓面最常聽到；重複兩次（hot pan, hot pan）係美式習慣。",
+      "tags": [
+        "餐廳",
+        "街頭",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-015",
+      "phrase": "Where's the restroom?",
+      "variants": [
+        "Where's the bathroom?",
+        "Where's the men's room?"
+      ],
+      "meaning": "廁所喺邊；美式一定用 restroom／bathroom，唔用 toilet。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "client"
+        ]
+      },
+      "example": "Where's the restroom? — Back left, past the counter.",
+      "situation": "餐廳、商場、加油站問路",
+      "avoid": [
+        "美國講 toilet 會令人尷尬，唔好照中文直譯；問 the john 只限極熟朋友"
+      ],
+      "note": "美式 restroom／bathroom；英式 toilet／loo。同一座樓嘅美式用詞：elevator、apartment、garbage、vacation、cell phone；英式係 lift、flat、rubbish、holiday、mobile——寫美式劇本唔好混。",
+      "tags": [
+        "日常",
+        "餐廳"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-016",
+      "phrase": "Am I going the right way?",
+      "variants": [],
+      "meaning": "行錯路未啊？美式問路最自然嘅問法。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "polite",
+          "worried"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger"
+        ]
+      },
+      "example": "Am I going the right way for the train station?",
+      "situation": "街上面唔肯定方向，問路人",
+      "avoid": [
+        "對紐約人問路要快、要具體；長篇解釋會被當推銷"
+      ],
+      "note": "美式問路：Am I going the right way for…? ／ How do I get to…? 英式多用 Have you got…?",
+      "tags": [
+        "街頭",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-017",
+      "phrase": "Hang a left.",
+      "variants": [
+        "Hang a right.",
+        "Make a left."
+      ],
+      "meaning": "轉左。美式口語 hang a left，比 turn left 更日常。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "delivery"
+        ],
+        "tone": [
+          "blunt",
+          "warm"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "stranger"
+        ]
+      },
+      "example": "Hang a left at the light, then it's the second driveway.",
+      "situation": "車上司機指路、行路問路",
+      "avoid": [
+        "對外地人或者長輩講 turn left 清楚啲；hang a left 係本地人講法"
+      ],
+      "note": "美式指路：hang a left／make a left／take a left 都通。英式多用 turn left。",
+      "tags": [
+        "街頭",
+        "日常",
+        "司機"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-018",
+      "phrase": "It's right around the corner.",
+      "variants": [],
+      "meaning": "就喺附近、轉個彎就到；美式最常用嘅「近」講法。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "warm",
+          "polite"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "friend"
+        ]
+      },
+      "example": "It's right around the corner from the gas station.",
+      "situation": "答人問路、講地點",
+      "avoid": [
+        "距離超過兩三個街口就唔好講；會令人覺得你亂指"
+      ],
+      "note": "美式 around the corner 亦可以指「快將發生」（The election's around the corner）。",
+      "tags": [
+        "街頭",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-019",
+      "phrase": "Sorry, my bad.",
+      "variants": [
+        "My bad."
+      ],
+      "meaning": "認錯、我唔啱；美式口語道歉，語氣輕，唔算正式道歉。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "helpless",
+          "polite"
+        ],
+        "function": [
+          "apology"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "stranger"
+        ]
+      },
+      "example": "Sorry, my bad — I grabbed the wrong folder.",
+      "situation": "小錯、撞到人、搞錯嘢",
+      "avoid": [
+        "對客戶或嚴重過失唔好只用 my bad，要講 I'm sorry, that was my mistake"
+      ],
+      "note": "my bad 喺 1980 年代街頭興起，今日全美通用；正式場合仍然偏輕。",
+      "tags": [
+        "客套",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-020",
+      "phrase": "I appreciate it.",
+      "variants": [
+        "I appreciate that.",
+        "Appreciate it."
+      ],
+      "meaning": "唔該晒、多謝；美式比 thank you 更真誠、更有重量嘅道謝。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "warm",
+          "polite"
+        ],
+        "function": [
+          "thanks"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "I appreciate it. Seriously, you didn't have to.",
+      "situation": "人幫咗大忙、讓路、請食飯",
+      "avoid": [
+        "對長輩或客戶第一次講，用 Thank you so much 穩陣；appreciate it 偏熟"
+      ],
+      "note": "美式核心道謝語。加 Seriously 或者 Really 表示真心，唔係客套。",
+      "tags": [
+        "客套",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-021",
+      "phrase": "No worries.",
+      "variants": [],
+      "meaning": "唔緊要、唔使客氣；輕鬆版本嘅 you're welcome。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "warm",
+          "polite"
+        ],
+        "function": [
+          "dismiss",
+          "comfort"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "No worries, it happens to everybody.",
+      "situation": "對方道歉或者道謝時回應",
+      "avoid": [
+        "美式同長輩講 no worries 會偏 casual；正式書面用 You're welcome"
+      ],
+      "note": "加州、年輕世代最常講，已經全美通行；英式較少用，澳洲最多。",
+      "tags": [
+        "客套",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-022",
+      "phrase": "Right?",
+      "variants": [
+        "Right? Exactly."
+      ],
+      "meaning": "句尾求附和：係咪呀、你都覺呢；用嚟拉對方入自己陣營。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "warm",
+          "sassy"
+        ],
+        "function": [
+          "agree",
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "Right? That's exactly what I told him.",
+      "situation": "對方講中你心嗰句，你想拉佢一齊確認",
+      "avoid": [
+        "語氣一沉、拉長就變諷刺（Right…）；對客戶講會似教訓"
+      ],
+      "note": "美式 tag question，句尾升調；英式對應係 isn't it?／wasn't it?，美式單講一句 Right? 最自然。",
+      "tags": [
+        "日常",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-023",
+      "phrase": "I'm good, thanks.",
+      "variants": [
+        "I'm good."
+      ],
+      "meaning": "唔使喇、我夠喇；美式婉拒嘅第一選擇，比 no thank you 自然。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "stranger"
+        ]
+      },
+      "example": "I'm good, thanks — I already ate.",
+      "situation": "人請你食嘢、問你要唔要加、遞嘢畀你",
+      "avoid": [
+        "只想答「我好好」時講 I'm good 會被聽成婉拒，要講 I'm doing great"
+      ],
+      "note": "美式 I'm good 同時係「我唔需要」同「我冇事」；靠語氣同上下文分。",
+      "tags": [
+        "拒絕",
+        "客套",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-024",
+      "phrase": "I'm gonna pass.",
+      "variants": [
+        "I'll pass."
+      ],
+      "meaning": "我唔去／我唔要；比 no 禮貌，但意思好清楚。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "polite",
+          "blunt"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "I'm gonna pass on the karaoke, but thanks for asking.",
+      "situation": "婉拒聚會、邀約、加碼",
+      "avoid": [
+        "對上司或客戶用 pass 會太 casual，要講 I'll have to pass, but thank you"
+      ],
+      "note": "美式常用 pass on + 名詞。加 but thanks for asking 保全面子。",
+      "tags": [
+        "拒絕",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-025",
+      "phrase": "Maybe next time.",
+      "variants": [],
+      "meaning": "下次啦；美式軟拒絕，通常等於「今次唔會」。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "polite",
+          "helpless"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "Maybe next time — this week's kinda crazy.",
+      "situation": "被邀約但唔想去",
+      "avoid": [
+        "連續講幾次會令人覺得你敷衍；真心想見就講 Let's find a day"
+      ],
+      "note": "美國人講 maybe next time 九成係唔去；唔好照字面等。",
+      "tags": [
+        "拒絕",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-026",
+      "phrase": "It's fine, really.",
+      "variants": [
+        "It's fine."
+      ],
+      "meaning": "真係冇事；但語氣一沉就係「其實有事，我唔想講」。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "helpless",
+          "cold"
+        ],
+        "function": [
+          "dismiss",
+          "comfort"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "It's fine, really. I just need a minute.",
+      "situation": "人道歉、或者問你有冇唔開心",
+      "avoid": [
+        "真心冇事就用 no worries；呢句講太多次會令人覺得你嬲緊"
+      ],
+      "note": "英文 understatement：fine 通常唔係 fine。演員要喺語氣做分別。",
+      "tags": [
+        "客套",
+        "冷面"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-027",
+      "phrase": "Sounds good.",
+      "variants": [
+        "Sounds good to me."
+      ],
+      "meaning": "好呀、就咁話；美式最常用嘅同意，唔使講 yes。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "Sounds good. So I'll text you when I'm outside.",
+      "situation": "同意安排、時間、計劃",
+      "avoid": [
+        "正式會議記錄唔好寫 sounds good，要寫 agreed／approved"
+      ],
+      "note": "全美通用。變體 Sounds like a plan. 更口語。",
+      "tags": [
+        "日常",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-028",
+      "phrase": "You bet.",
+      "variants": [
+        "You betcha."
+      ],
+      "meaning": "當然啦／冇問題；中西部味重嘅美式答應。",
+      "categories": {
+        "age": [
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "archetype": [],
+        "tone": [
+          "warm",
+          "polite"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "client",
+          "stranger"
+        ]
+      },
+      "example": "You bet — I'll get that out today.",
+      "situation": "答應人請求、回應道謝",
+      "avoid": [
+        "兩岸年輕人有時覺得老派；正式場合用 Certainly 或 Of course"
+      ],
+      "note": "中西部、鄉郊最常聽到；You betcha 更重鄉音。",
+      "tags": [
+        "日常",
+        "老派",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-029",
+      "phrase": "For sure.",
+      "variants": [],
+      "meaning": "一定啦／係呀；美式加強同意，語氣比 sure 熱。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "warm",
+          "blunt"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "For sure, man. Anytime.",
+      "situation": "朋友之間答應、附和",
+      "avoid": [
+        "對客戶或長輩用 for sure 太 casual；書面唔用"
+      ],
+      "note": "全美通用，年輕人用得更密；連續講會變口頭禪。",
+      "tags": [
+        "日常",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-030",
+      "phrase": "Yeah, no.",
+      "variants": [],
+      "meaning": "唔係咁／唔好啦；先 yeah 後 no 係美式獨有嘅緩衝，唔係口誤。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "blunt",
+          "sassy"
+        ],
+        "function": [
+          "disagree",
+          "refuse-soft"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "Yeah, no, that's not gonna work for me.",
+      "situation": "婉轉但明確咁拒絕",
+      "avoid": [
+        "寫書面或者對客戶，唔好留 yeah，直接講 Unfortunately, that won't work"
+      ],
+      "note": "美式對話特徵：yeah 唔代表同意，只係表示「我聽到」。同 no, yeah（＝其實同意）要分清楚。",
+      "tags": [
+        "拒絕",
+        "直球",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-031",
+      "phrase": "I hear you.",
+      "variants": [],
+      "meaning": "我明白你講咩；但唔等於我同意，係美式最常用嘅緩衝。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "cold",
+          "warm"
+        ],
+        "function": [
+          "comfort",
+          "agree"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "I hear you, but the deadline's not moving.",
+      "situation": "對方抱怨、爭論、情緒激動時",
+      "avoid": [
+        "真心同意要加 I agree；只講 I hear you 有時會被聽成敷衍"
+      ],
+      "note": "職場、情侶吵架都用。加 but 就係轉折訊號。",
+      "tags": [
+        "職場",
+        "關心",
+        "冷面"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-032",
+      "phrase": "That sucks.",
+      "variants": [],
+      "meaning": "好慘、好煩（唔帶粗口嘅同情）；美式安慰，語氣好直接。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "warm",
+          "blunt"
+        ],
+        "function": [
+          "comfort"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "That sucks. Did they at least give you a refund?",
+      "situation": "朋友講咗壞消息",
+      "avoid": [
+        "對客戶或長輩講 that sucks 太粗魯；要講 I'm sorry to hear that"
+      ],
+      "note": "美式安慰萬用句，唔算粗口但唔正式。英式多用 That's rubbish 或 That's gutting。",
+      "tags": [
+        "關心",
+        "日常",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-033",
+      "phrase": "Hang in there.",
+      "variants": [],
+      "meaning": "頂住、撐落去；美式打氣，用喺對方捱緊嘅時候。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "encourage",
+          "comfort"
+        ],
+        "register": "idiom",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "Hang in there — the semester's almost over.",
+      "situation": "對方病、忙、考試、分手",
+      "avoid": [
+        "唔好對剛失去親人嘅人講，會顯得太輕；要講 I'm so sorry"
+      ],
+      "note": "美式 idiom，全美通用。變體 Keep your head up. 較勵志。",
+      "tags": [
+        "關心",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-034",
+      "phrase": "You got this.",
+      "variants": [],
+      "meaning": "你得嘅、搞得掂；近年美式最流行嘅打氣。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "encourage"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "You got this. Just breathe and start talking.",
+      "situation": "對方面試、上台、比賽之前",
+      "avoid": [
+        "對長輩用會有點像哄細路；正式場合唔適合"
+      ],
+      "note": "2010 年代之後爆紅，全美通用；年輕世代幾乎萬用。",
+      "tags": [
+        "關心",
+        "日常",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-035",
+      "phrase": "Take your time.",
+      "variants": [],
+      "meaning": "你慢慢嚟、唔急；美式禮貌，反面係催。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "polite",
+          "warm"
+        ],
+        "function": [
+          "comfort",
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "client",
+          "stranger"
+        ]
+      },
+      "example": "Take your time. We're not in a rush.",
+      "situation": "對方趕住做嘢、諗嘢、睇 menu",
+      "avoid": [
+        "排隊好長、後面有人等嘅時候講，會變諷刺"
+      ],
+      "note": "美式服務業常講，令客人唔覺得被催。",
+      "tags": [
+        "客套",
+        "關心"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-036",
+      "phrase": "Let me know.",
+      "variants": [],
+      "meaning": "有消息話我知；美式收尾萬用句，唔等於命令。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "polite",
+          "warm"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "Let me know if you need a ride, okay?",
+      "situation": "交代完事情、道別前",
+      "avoid": [
+        "對上司講 Let me know 會有吩咐意味，要講 Please keep me posted"
+      ],
+      "note": "美式 email 收尾常見：Let me know if you have any questions.",
+      "tags": [
+        "客套",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-037",
+      "phrase": "Anyway,",
+      "variants": [
+        "Anyways,"
+      ],
+      "meaning": "講返正題／算啦；用嚟截断話題或者收線嘅美式 filler。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "helpless",
+          "blunt"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "Anyway, I should probably head out.",
+      "situation": "話題尷尬、想轉題、想走",
+      "avoid": [
+        "連續用兩次會好明顯係想避開話題；正式會議唔好用嚟轉場"
+      ],
+      "note": "Anyways 係美式口語變體，正式寫作唔用。年輕人用 anyway 收尾極常見。",
+      "tags": [
+        "日常",
+        "開場",
+        "收尾"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-038",
+      "phrase": "I gotta run.",
+      "variants": [
+        "I gotta go.",
+        "Gotta run."
+      ],
+      "meaning": "我要走喇；美式口語 gotta＝got to，係最自然嘅道別開場。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "blunt",
+          "polite"
+        ],
+        "function": [
+          "farewell"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "I gotta run — my parking meter's about to expire.",
+      "situation": "聚會中途要走、電話收線",
+      "avoid": [
+        "對客戶或長輩用 gotta 太 casual，要講 I have to get going"
+      ],
+      "note": "美式口語 gotta 幾乎一定用；書面唔寫。英式多用 I've got to dash。",
+      "tags": [
+        "收尾",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-039",
+      "phrase": "See you around.",
+      "variants": [
+        "See ya."
+      ],
+      "meaning": "遲啲見；唔一定真係約實，係美式隨口道別。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "warm",
+          "blunt"
+        ],
+        "function": [
+          "farewell"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "stranger"
+        ]
+      },
+      "example": "See you around. Say hi to your mom for me.",
+      "situation": "鄰居、同事、casual 場合離開",
+      "avoid": [
+        "對客戶或重要人物用會顯得唔重視；正式道別用 It was good seeing you"
+      ],
+      "note": "美式萬用道別，唔代表有下次約定。",
+      "tags": [
+        "收尾",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-040",
+      "phrase": "Take it easy.",
+      "variants": [],
+      "meaning": "保重／慢慢嚟；美式道別，亦可以叫對方冷靜。",
+      "categories": {
+        "age": [
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "archetype": [],
+        "tone": [
+          "warm",
+          "blunt"
+        ],
+        "function": [
+          "farewell",
+          "comfort"
+        ],
+        "register": "idiom",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "Take it easy, man. Don't let them get to you.",
+      "situation": "朋友離開、或者勸人唔好咁緊張",
+      "avoid": [
+        "勸人冷靜時講 take it easy 有時會被聽成睇小；對客戶唔好咁講"
+      ],
+      "note": "美式老派道別，五十歲以上用得多；年輕人會講 Later 或 Peace out。",
+      "tags": [
+        "收尾",
+        "老派",
+        "關心"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-041",
+      "phrase": "Have a good one.",
+      "variants": [],
+      "meaning": "祝你今日順利；美式店員、同事最常用嘅收尾。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "sales",
+          "waitress",
+          "delivery"
+        ],
+        "tone": [
+          "warm",
+          "polite"
+        ],
+        "function": [
+          "farewell"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "Have a good one. Drive safe.",
+      "situation": "買完嘢、離開店、收線",
+      "avoid": [
+        "書面或者正式商務 email 唔用；對客戶可以但偏 casual"
+      ],
+      "note": "全美通用，服務業密度最高。one 指 day／weekend，靠上下文。",
+      "tags": [
+        "收尾",
+        "客套",
+        "店員"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-042",
+      "phrase": "Let's grab coffee sometime.",
+      "variants": [
+        "We should grab coffee.",
+        "Let's get coffee sometime."
+      ],
+      "meaning": "不如搵日飲杯咖啡；美式社交邀約，可以係真心亦可以係客套。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "warm",
+          "flirty"
+        ],
+        "function": [
+          "urge",
+          "flirt"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "Let's grab coffee sometime — I want to hear how the move went.",
+      "situation": "同行、舊同事、約會初期",
+      "avoid": [
+        "對下屬或者客戶講，會被讀成有額外意圖；正式商務用 Let's set up a meeting"
+      ],
+      "note": "美式 grab coffee 唔一定真係飲咖啡，等於「傾下偈」。加州、紐約最常見。",
+      "tags": [
+        "日常",
+        "客套",
+        "戀愛"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-043",
+      "phrase": "Because I said so.",
+      "variants": [],
+      "meaning": "因為我話事；美式父母終極句，唔會再解釋。",
+      "categories": {
+        "age": [
+          "kid",
+          "teen"
+        ],
+        "archetype": [
+          "mum",
+          "dad"
+        ],
+        "tone": [
+          "blunt",
+          "angry"
+        ],
+        "function": [
+          "dismiss",
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family"
+        ]
+      },
+      "example": "Because I said so. Now get in the car.",
+      "situation": "阿爸阿媽同細路／青少年講嘢",
+      "avoid": [
+        "對伴侶或者同事講會極度冒犯；呢句只屬於父母對仔女"
+      ],
+      "note": "美式家庭經典台詞，帶年代感但完全仍在用；青少年聽到會即刻反眼。",
+      "tags": [
+        "家庭",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-044",
+      "phrase": "Don't wait up.",
+      "variants": [],
+      "meaning": "唔好等我返嚟先瞓；美式家庭／情侶夜歸交代。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "dad",
+          "mum"
+        ],
+        "tone": [
+          "blunt",
+          "warm"
+        ],
+        "function": [
+          "farewell",
+          "warn"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family"
+        ]
+      },
+      "example": "Don't wait up — I'll be at the shop till late.",
+      "situation": "夜返、加班、出去聚會前交代",
+      "avoid": [
+        "對客戶或同事講會好怪；只用喺同住嘅人"
+      ],
+      "note": "美式家庭常用。亦可幽默用法：Don't wait up. ＝你唔使指望我。",
+      "tags": [
+        "家庭",
+        "收尾"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-core-045",
+      "phrase": "I mean,",
+      "variants": [
+        "I mean, like,"
+      ],
+      "meaning": "我意思係……；用嚟修正、軟化或者鋪墊，係美式最密嘅 filler。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "helpless",
+          "blunt"
+        ],
+        "function": [
+          "disagree",
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "I mean, y'know, that's not what I said.",
+      "situation": "講錯嘢想補救、想解釋、想拖半秒",
+      "avoid": [
+        "一句話入面用兩三次會變成年輕人 stereotype；正式場合少用"
+      ],
+      "note": "美式對話 filler 三寶：like、I mean、you know。密度係角色年齡同階層標記。",
+      "tags": [
+        "日常",
+        "直球"
+      ],
+      "source": "general"
+    }
+  ]
+}

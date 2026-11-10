@@ -87,6 +87,7 @@ All commands accept either the directory or the `project.json` path.
 | `turnSeconds` | 30 | the longest stretch allowed between turn points — the hook, every beat marked `turn: true`, the 爽点 and the cliff |
 | `maxConsecutiveLines` | 3 | line beats in a row without an action beat between them |
 | `minActionRatio` | 0.35 | action beats ÷ line beats over an episode with ≥ 5 lines (谈话+行动) |
+| `dialogueReview` | `required` | `required`: every episode's lines are reviewed against the `w-film-dialogue-editor` guide of their 语体 before the storyboard (gate `dialogue-review`); `off`: no review — only when the user asks |
 | `maxLineWords` / `maxNameCallsPerScene` | 20 / 2 | English registers only: words per line, and how often another character is addressed by name in one scene (advisory) |
 | `charsPerSecond` / `actionSeconds` | 4.5 / 2.5 | script duration math: a line takes `nonWhitespaceChars ÷ charsPerSecond` s, an action beat takes `actionSeconds` |
 | `tolerance` | 0.15 | ±15 % for episode duration gates |
@@ -302,6 +303,7 @@ prompt bans hands**). At most `thresholds.maxProps` (8).
 | `flow[].turn` | `true` on a beat that brings new information, an obstacle, a counter or a choice; the `rhythm` gate measures hook → turns → 爽点 → cliff against `turnSeconds` |
 | `scenes[].sceneId` / `lighting` / `characters` / `props` | must exist in `project.json`; `lighting` must be a state of that scene |
 | `flow[]` | alternating **action beats** `{action}` (narrative, one thing per beat, **common actions only**, no quotes) and **line beats** `{speaker, line, delivery?}`; `speaker` ∈ scene `characters` or `VO` (an off-screen voice: it gets no `@audio` reference, the prompt calls it off-screen and keeps every visible mouth closed while it speaks); `line` ≤ `maxLineChars` non-whitespace characters; `delivery` names nobody when the video prompt carries it (a Chinese `wan` prompt, or an English delivery) — gate `beat-flow` |
+| `dialogueReview` | the 对白校对 record (gate `dialogue-review`, required unless `params.dialogueReview: off`), seeded by `seed dialogue`: `{ level: 轻修 \| 中修 \| 重修, guides: ["lang-zh-hk.md", …] (every speaker's 语体 guide of `w-film-dialogue-editor`), diagnosis: { goal, conflict, subtext, voice, rhythm }, rows: [{ scene, beat, speaker, original, issue, revised, reason, note, delivery? }] (one per line beat, 1-based positions; `revised` must equal the script's line — `apply dialogue` writes it; `note` a playable action), selfCheck: [{ item, ok, note }] (the guide's 自检清单, ≥ 3) }` |
 
 Duration: `Σ lines (chars ÷ charsPerSecond) + Σ actions × actionSeconds`.
 

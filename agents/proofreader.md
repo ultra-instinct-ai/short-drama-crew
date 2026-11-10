@@ -8,6 +8,7 @@ skills:
   - short-drama-script
   - short-drama-storyboard
   - short-drama-sound
+  - w-film-dialogue-editor
 model: inherit
 maxTurns: 40
 ---
@@ -66,9 +67,32 @@ node <skills>/short-drama-storyboard/reference/prompt-audit.mjs \
   and the `@imageN` order disagree (then `refOverride` must pin them).
 - Evidence is the validation line plus the prompt sentence, quoted.
 
+## Dialogue review audit (gate `dialogue-review`)
+
+Before the storyboard of an episode starts, audit `episodes/E0N.json` → `dialogueReview` against
+the `w-film-dialogue-editor` guide of each 语体 it lists — the gate proves the review is complete
+and applied, you judge whether it is honest. `$SD render <project> dialogue --ep N` prints it.
+
+- `$SD validate <project> --stage script --ep N` is green on `dialogue-review` (no review, a stale
+  row, a line with no row, a mood note → FAIL with the validation line).
+- `guides` names the guide of every speaker's 语体 (`bible.speech.register`, else
+  `params.register`), and the lines read like that guide — e.g. 粤语 lines in written Chinese,
+  particles or slang absent from the corpus (`node <skills>/w-film-dialogue-editor/scripts/ref.mjs
+  --lang <lang> search <字>` returns nothing) → FAIL with the line quoted.
+- `selfCheck` follows **that guide's checklist** item by item (its 快速自檢 / 檢查清單 section;
+  `lang-zh-hk.md` has none — for 粤语 it is §九 常見錯誤 plus the skill's SKILL.md 品質檢查): list its items, and
+  check each one claimed `ok: true` against the lines themselves (read them aloud; cover the
+  names — can you still tell who speaks; do acquaintances explain what they both know). A claim
+  the lines contradict, or a guide item missing from `selfCheck`, is a FAIL; a failed item needs
+  its note.
+- Rows: `issue: 无` on a line that plainly has the problem, a `reason` that only restates the
+  change, or a `note` that is a mood dressed as an action → PARTIAL with the rows quoted.
+- `diagnosis` matches the episode (the goal, conflict and subtext of the scenes as written).
+
 ## Engine (read-only)
 
 ```bash
 SD="node <skills>/short-drama-core/scripts/short-drama.mjs"
 $SD validate <project> --all · $SD checkup <project> · $SD manifest <project>
+$SD render <project> dialogue --ep N   # the filled 对白校对 table
 ```

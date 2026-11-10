@@ -1,0 +1,1699 @@
+{
+  "lang": "zh-tw",
+  "label": "台灣國語（職場／裝修）",
+  "version": "1.0",
+  "entries": [
+    {
+      "id": "tw-work-001",
+      "phrase": "慣老闆",
+      "variants": [],
+      "meaning": "被員工慣壞、只會凹員工的老闆",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "sarcastic",
+          "complain"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "又一個慣老闆，加班沒加班費。",
+      "situation": "同事私下抱怨公司、茶水間",
+      "avoid": [
+        "對外簡報、對客戶不要用，客戶可能就是老闆"
+      ],
+      "note": "2017 年後在台灣社群大量使用，指把員工當免洗筷的資方。",
+      "tags": [
+        "公司",
+        "抱怨",
+        "網絡用語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-002",
+      "phrase": "責任制",
+      "variants": [],
+      "meaning": "台灣職場用語：事情做完才下班，加班不給加班費",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "boss",
+          "office"
+        ],
+        "tone": [
+          "cold"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "我們是責任制喔，沒加班費。",
+      "situation": "面試、老闆宣布規矩、報到第一天",
+      "avoid": [
+        "面試聽到「責任制」通常等於常態加班，別當成自由"
+      ],
+      "note": "台灣中小企業最常掛在嘴邊的一句；勞基法上其實有條件。",
+      "tags": [
+        "公司",
+        "上班族"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-003",
+      "phrase": "加班",
+      "variants": [],
+      "meaning": "留下來繼續做",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "今天要加班，你先走。",
+      "situation": "下班前、專案趕件",
+      "avoid": [
+        "對客戶說「我們在加班」會顯得公司沒效率"
+      ],
+      "note": "台灣職場常態，語氣多半帶無奈，不加「耶」。",
+      "tags": [
+        "公司",
+        "上班族"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-004",
+      "phrase": "補休",
+      "variants": [],
+      "meaning": "加班換休假，通常休不到",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "complain"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "加班只能補休，不能報加班費。",
+      "situation": "人資說明制度、同事討論權益",
+      "avoid": [
+        "把補休當成獎勵講，員工會更火"
+      ],
+      "note": "台灣中小企業的變通做法，常常放到年底歸零。",
+      "tags": [
+        "公司",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-005",
+      "phrase": "已讀不回",
+      "variants": [
+        "已讀"
+      ],
+      "meaning": "看了訊息但不回應",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "complain"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "他已經已讀不回三天了。",
+      "situation": "催進度、傳訊息沒人理",
+      "avoid": [
+        "對客戶催件時說「你已讀不回」當面講會很衝"
+      ],
+      "note": "台灣通訊軟體文化；光是「已讀」本身就是壓力。",
+      "tags": [
+        "公司",
+        "抱怨",
+        "網絡用語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-006",
+      "phrase": "回報",
+      "variants": [],
+      "meaning": "把進度講給上級或客戶聽",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "office",
+          "boss"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "有進度再回報給我。",
+      "situation": "主管交辦、專案週會",
+      "avoid": [
+        "對客戶用「回報」有上對下味道，改說「跟您說明」"
+      ],
+      "note": "台灣職場高頻動詞，不等於負面告狀。",
+      "tags": [
+        "公司",
+        "上班族"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-007",
+      "phrase": "開會",
+      "variants": [],
+      "meaning": "進會議室討論事情",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "等一下十點開會。",
+      "situation": "早上進辦公室、臨時被叫",
+      "avoid": [
+        "對客戶說「我們在開會」等於婉拒接電話，要補一句回電時間"
+      ],
+      "note": "台灣辦公室日常；「開會」常是拖延與推責任的場地。",
+      "tags": [
+        "公司",
+        "上班族"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-008",
+      "phrase": "提案",
+      "variants": [],
+      "meaning": "提出做法與報價給對方選",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "designer",
+          "office"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "這個提案客戶不買單。",
+      "situation": "設計、廣告、裝修第一次見客戶",
+      "avoid": [
+        "對客戶說「我的提案」要留對方修改空間，否則像硬塞"
+      ],
+      "note": "台灣辦公室用「提案」，大陸多講「方案」。",
+      "tags": [
+        "公司",
+        "白領"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-009",
+      "phrase": "打槍",
+      "variants": [],
+      "meaning": "否決、拒絕掉",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "designer",
+          "office"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "我的提案被打槍了。",
+      "situation": "提案被退、預算被砍",
+      "avoid": [
+        "對客戶說「你們一直打槍我」太直接，會傷合作"
+      ],
+      "note": "台灣常用，比「否決」口語；也能說「被打回票」。",
+      "tags": [
+        "公司",
+        "拒絕"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-010",
+      "phrase": "壓時間",
+      "variants": [],
+      "meaning": "把工期、交期壓短",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "designer",
+          "office"
+        ],
+        "tone": [
+          "complain"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "客戶壓時間，這禮拜要交。",
+      "situation": "專案趕件、裝修趕交屋",
+      "avoid": [
+        "對工班喊「壓時間」又不加人手，只會偷工"
+      ],
+      "note": "台灣專案、裝修都這樣講；「壓」＝壓縮。",
+      "tags": [
+        "公司",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-011",
+      "phrase": "我這邊",
+      "variants": [],
+      "meaning": "我這一方、我負責的部分",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "我這邊先處理，你別擔心。",
+      "situation": "開會、電話分工",
+      "avoid": [
+        "什麼都說「我這邊」卻沒做，會變空話"
+      ],
+      "note": "台灣開會、電話的起手式，比單說「我」顯得專業。",
+      "tags": [
+        "公司",
+        "上班族"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-012",
+      "phrase": "再麻煩你了",
+      "variants": [],
+      "meaning": "請人幫忙的收尾客套",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "這份資料再麻煩你了。",
+      "situation": "交辦事情、掛電話前",
+      "avoid": [
+        "同一件事講三次「再麻煩你」就變催促"
+      ],
+      "note": "台灣職場最軟的指令句，等於「請你處理」。",
+      "tags": [
+        "公司",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-013",
+      "phrase": "收到",
+      "variants": [],
+      "meaning": "知道了、照辦",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "收到，我馬上處理。",
+      "situation": "通訊軟體回主管、回客戶",
+      "avoid": [
+        "對長輩、客戶只回「收到」太像軍中，要補一句說明"
+      ],
+      "note": "台灣職場通訊軟體最常見的兩個字，比「好的」快。",
+      "tags": [
+        "公司",
+        "上班族"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-014",
+      "phrase": "盡量",
+      "variants": [],
+      "meaning": "我會努力，但不保證",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "我盡量，但不一定趕得出來。",
+      "situation": "被要求不可能的期限",
+      "avoid": [
+        "對客戶說「盡量」等於先打預防針，別當成承諾"
+      ],
+      "note": "台灣職場的軟性拒絕，聽的人要懂。",
+      "tags": [
+        "公司",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-015",
+      "phrase": "可能沒辦法喔",
+      "variants": [],
+      "meaning": "婉拒，語氣軟",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "craftsman"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "這禮拜可能沒辦法喔。",
+      "situation": "客戶插隊、同事臨時加需求",
+      "avoid": [
+        "拒絕客戶時只說「沒辦法」會太硬，要給替代時間"
+      ],
+      "note": "「喔」讓拒絕不那麼刺，是台灣特有的緩衝。",
+      "tags": [
+        "拒絕",
+        "公司"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-016",
+      "phrase": "要問一下主管",
+      "variants": [
+        "問一下主管"
+      ],
+      "meaning": "我不能決定",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "這個要問一下主管，我沒辦法決定。",
+      "situation": "客戶要求折扣、要求改圖",
+      "avoid": [
+        "什麼都推給主管，客戶會覺得你沒份量"
+      ],
+      "note": "台灣職場的擋箭牌，但常常也是實話。",
+      "tags": [
+        "公司",
+        "拒絕"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-017",
+      "phrase": "我確認一下再回你",
+      "variants": [],
+      "meaning": "先拖住，之後再給答案",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "我確認一下再回你，好嗎？",
+      "situation": "客戶問細節、被問到不確定的數字",
+      "avoid": [
+        "拖過一天沒回，客戶會直接找別人"
+      ],
+      "note": "台灣業務標準句；通常當天就要回。",
+      "tags": [
+        "公司",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-018",
+      "phrase": "對一下",
+      "variants": [],
+      "meaning": "比對、核對",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "craftsman"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "我們對一下時間。",
+      "situation": "約會議、核對圖面與帳目",
+      "avoid": [
+        "對客戶說「對一下」可以，但要說清楚對什麼"
+      ],
+      "note": "台灣口語高頻：「對一下圖」「對一下帳」「對一下班表」。",
+      "tags": [
+        "公司",
+        "上班族"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-019",
+      "phrase": "先這樣",
+      "variants": [],
+      "meaning": "事情先做到這裡，收線",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "office",
+          "boss"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "farewell"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "先這樣，有問題再打給我。",
+      "situation": "會議結束、電話收尾",
+      "avoid": [
+        "對客戶說「先這樣」像趕人，要加「謝謝您今天」"
+      ],
+      "note": "台灣會議、電話的高頻收尾，乾脆但不失禮。",
+      "tags": [
+        "公司",
+        "收尾"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-020",
+      "phrase": "大概什麼時候可以好",
+      "variants": [],
+      "meaning": "軟性催件，問完成時間",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "client",
+          "boss"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "大概什麼時候可以好？",
+      "situation": "客戶問進度、主管問交期",
+      "avoid": [
+        "連問三次會變成壓力，中間要給進度"
+      ],
+      "note": "台灣催件的軟問法，比「還要多久」客氣很多。",
+      "tags": [
+        "公司",
+        "客戶"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-021",
+      "phrase": "報價單",
+      "variants": [],
+      "meaning": "列明項目與價格的文件",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "craftsman",
+          "designer"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "我先給你一份報價單。",
+      "situation": "裝修、工程、設計第一次談價",
+      "avoid": [
+        "報價單沒列細項，後面追加一定吵架"
+      ],
+      "note": "台灣裝修、工程的第一份文件，細項要寫清楚。",
+      "tags": [
+        "裝修",
+        "客戶"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-022",
+      "phrase": "連工帶料",
+      "variants": [],
+      "meaning": "工錢和材料一起算，不分開報",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "client",
+          "craftsman"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "bargain"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "這個連工帶料多少？",
+      "situation": "裝修估價、問一個項目總價",
+      "avoid": [
+        "只問總價不比細項，最容易後面被追加"
+      ],
+      "note": "台灣裝修行話；相反是「點工點料」，只算工錢。",
+      "tags": [
+        "裝修",
+        "講價",
+        "師傅"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-023",
+      "phrase": "追加",
+      "variants": [],
+      "meaning": "原本沒有的項目後來加上去，要加錢",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "craftsman",
+          "designer"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "這個要追加，原本沒算。",
+      "situation": "施工中發現壁癌、屋主要加櫃子",
+      "avoid": [
+        "追加沒先講就做，驗收一定吵架"
+      ],
+      "note": "台灣裝修糾紛第一名；好的工班會先寫追加單。",
+      "tags": [
+        "裝修",
+        "客戶",
+        "師傅"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-024",
+      "phrase": "超出預算",
+      "variants": [],
+      "meaning": "花費超過原本規劃",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "client",
+          "designer"
+        ],
+        "tone": [
+          "worried"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "這樣做會超出預算。",
+      "situation": "客戶想加東西、設計師提方案",
+      "avoid": [
+        "只說超預算不給替代方案，客戶會覺得你不專業"
+      ],
+      "note": "台灣裝修、提案都用的說法；「爆預算」更口語。",
+      "tags": [
+        "裝修",
+        "客戶"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-025",
+      "phrase": "工班",
+      "variants": [],
+      "meaning": "一組施工的師傅",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "craftsman",
+          "designer",
+          "boss"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "我叫工班明天進場。",
+      "situation": "安排工期、協調各工種",
+      "avoid": [
+        "對客戶說「工班」可以，但別把責任全推給他們"
+      ],
+      "note": "台灣裝修用語，指水電、泥作、木作各組人。",
+      "tags": [
+        "裝修",
+        "師傅"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-026",
+      "phrase": "師傅",
+      "variants": [],
+      "meaning": "對技術工人的尊稱",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "client",
+          "craftsman"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "師傅，這個要怎麼做？",
+      "situation": "工地現場請教、叫水電來修",
+      "avoid": [
+        "叫年輕工人「師傅」有時會被虧，但仍是安全叫法"
+      ],
+      "note": "台灣對水電、木工、貨車司機都叫師傅，是敬稱。",
+      "tags": [
+        "裝修",
+        "師傅",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-027",
+      "phrase": "進場",
+      "variants": [],
+      "meaning": "工班進到工地開始做",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "craftsman",
+          "client"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "什麼時候可以進場？",
+      "situation": "排工期、交屋前後",
+      "avoid": [
+        "屋主還沒點交就進場，東西掉了很難講"
+      ],
+      "note": "台灣工程用語，「進場」＝開工，也用在活動、樂團。",
+      "tags": [
+        "裝修",
+        "工地"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-028",
+      "phrase": "交屋",
+      "variants": [],
+      "meaning": "把房子交給屋主",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "client",
+          "boss"
+        ],
+        "tone": [
+          "worried"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "月底要交屋，來不及了。",
+      "situation": "建案、裝修收尾趕期限",
+      "avoid": [
+        "對屋主說「交屋」要附缺失清單，否則爭議"
+      ],
+      "note": "台灣房產、裝修都講交屋，是責任轉移的時刻。",
+      "tags": [
+        "裝修",
+        "客戶"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-029",
+      "phrase": "驗收",
+      "variants": [],
+      "meaning": "完工後逐項檢查",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "client",
+          "craftsman"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "約個時間驗收，好嗎？",
+      "situation": "裝修完工、工程結案",
+      "avoid": [
+        "驗收沒列清單、沒拍照，後面各說各話"
+      ],
+      "note": "台灣裝修尾聲的關鍵流程，通常跟尾款綁一起。",
+      "tags": [
+        "裝修",
+        "客戶"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-030",
+      "phrase": "監工",
+      "variants": [],
+      "meaning": "在現場盯著施工",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "designer",
+          "craftsman",
+          "boss"
+        ],
+        "tone": [
+          "complain"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "我每天去監工，累死。",
+      "situation": "設計師、屋主盯工程",
+      "avoid": [
+        "說「我幫你監工」等於多收一筆錢，要先講清楚"
+      ],
+      "note": "台灣裝修術語；設計師監工通常另計費。",
+      "tags": [
+        "裝修",
+        "師傅"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-031",
+      "phrase": "打掉",
+      "variants": [
+        "拆除"
+      ],
+      "meaning": "把牆、地板拆掉",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "craftsman"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "這面牆要打掉。",
+      "situation": "拆除階段、討論格局",
+      "avoid": [
+        "沒確認是不是結構牆就說要打，會出事"
+      ],
+      "note": "台灣裝修講「打掉」「拆掉」，大陸講「砸牆」。",
+      "tags": [
+        "裝修",
+        "工地"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-032",
+      "phrase": "水電先走",
+      "variants": [],
+      "meaning": "水電配管先做，其他工種排在後面",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "craftsman"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "水電先走，木作後面。",
+      "situation": "工地排工序、協調工班",
+      "avoid": [
+        "工序講錯，後面全部要拆掉重做"
+      ],
+      "note": "台灣工地順序：拆除→水電→泥作→木作→油漆。",
+      "tags": [
+        "裝修",
+        "工地",
+        "師傅"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-033",
+      "phrase": "泥作",
+      "variants": [],
+      "meaning": "砌磚、粉光、貼磁磚的工種",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "craftsman"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "泥作明天進來貼磁磚。",
+      "situation": "浴室、地坪施工",
+      "avoid": [
+        "把泥作說成「水泥工」不算錯，但不專業"
+      ],
+      "note": "台灣裝修工種名，跟木作、水電並列。",
+      "tags": [
+        "裝修",
+        "師傅"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-034",
+      "phrase": "木作",
+      "variants": [],
+      "meaning": "做天花板、櫃體的工種",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "craftsman"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "木作櫃體今天進場。",
+      "situation": "天花板、系統櫃以外的櫃子",
+      "avoid": [
+        "木作跟系統櫃混著講，報價會對不起來"
+      ],
+      "note": "台灣裝修工種；木作是現場做，系統櫃是工廠裁好來組。",
+      "tags": [
+        "裝修",
+        "師傅"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-035",
+      "phrase": "系統櫃",
+      "variants": [],
+      "meaning": "工廠裁切、現場組裝的櫃子",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "client",
+          "designer"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "系統櫃比木作便宜。",
+      "situation": "比價、討論收納",
+      "avoid": [
+        "系統櫃不能任意改尺寸，先講清楚免得屋主期待落空"
+      ],
+      "note": "台灣裝修特有詞；大陸多講「定制櫃」。",
+      "tags": [
+        "裝修",
+        "客戶"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-036",
+      "phrase": "坪數",
+      "variants": [],
+      "meaning": "房屋面積，台灣用「坪」算",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "client",
+          "designer"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "這間坪數多少？",
+      "situation": "看屋、估裝修預算",
+      "avoid": [
+        "坪數含不含陽台沒問清楚，報價會差很多"
+      ],
+      "note": "台灣算面積用「坪」，1 坪約 3.3 平方公尺。",
+      "tags": [
+        "裝修",
+        "客戶"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-037",
+      "phrase": "一坪多少",
+      "variants": [],
+      "meaning": "問每坪的單價",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "client"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "bargain"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "你們一坪多少？",
+      "situation": "裝修比價、問行情",
+      "avoid": [
+        "只比單價不比工法與材料，最後一定後悔"
+      ],
+      "note": "台灣裝修、房價的行規問法，但整戶總價更常見。",
+      "tags": [
+        "裝修",
+        "講價"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-038",
+      "phrase": "便宜一點",
+      "variants": [],
+      "meaning": "講價、要求降價",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "client"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "bargain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "算便宜一點啦。",
+      "situation": "菜市場、裝修、買家具",
+      "avoid": [
+        "對已經報到底價的工班一直凹，會影響施工品質"
+      ],
+      "note": "台灣菜市場、裝修通用；加「啦」軟一點。",
+      "tags": [
+        "講價",
+        "客戶"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-039",
+      "phrase": "這個價錢很硬",
+      "variants": [],
+      "meaning": "價格談不下來，沒什麼彈性",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "client",
+          "craftsman"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "這個價錢很硬，砍不動。",
+      "situation": "比價後、跟同事討論報價",
+      "avoid": [
+        "當著老闆的面說「很硬」等於說他死要錢"
+      ],
+      "note": "台灣講「很硬」＝沒彈性；也可以說「很死」。",
+      "tags": [
+        "講價",
+        "裝修"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-040",
+      "phrase": "按圖施工",
+      "variants": [],
+      "meaning": "照圖面做，不自己改",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "craftsman",
+          "designer"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "我們是按圖施工，有問題要改圖。",
+      "situation": "現場與圖面不符、屋主臨時想改",
+      "avoid": [
+        "什麼都推給「按圖施工」，客戶會覺得你不動腦"
+      ],
+      "note": "台灣工程術語，也是推責任的標準句。",
+      "tags": [
+        "裝修",
+        "工地"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-041",
+      "phrase": "保固",
+      "variants": [],
+      "meaning": "完工後的保證期",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "craftsman",
+          "boss"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "保固一年，有問題找我。",
+      "situation": "交屋、收尾、售後",
+      "avoid": [
+        "保固範圍沒寫清楚，一年後一定吵"
+      ],
+      "note": "台灣裝修、家電都講保固；大陸講保修。",
+      "tags": [
+        "裝修",
+        "師傅"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-042",
+      "phrase": "尾款",
+      "variants": [],
+      "meaning": "最後一筆付款",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "client",
+          "craftsman"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "bargain"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "驗收完再付尾款。",
+      "situation": "裝修結案、工程付款",
+      "avoid": [
+        "尾款扣太多、扣太久，工班會直接不來收尾"
+      ],
+      "note": "台灣裝修付款：訂金、開工款、階段款、尾款。",
+      "tags": [
+        "裝修",
+        "客戶"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-043",
+      "phrase": "有問題再打給我",
+      "variants": [],
+      "meaning": "收尾時承諾負責到底",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "craftsman",
+          "sales"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "farewell"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "有問題再打給我，別客氣。",
+      "situation": "交屋、完工、售後離開前",
+      "avoid": [
+        "講了卻不接電話，比不講更傷"
+      ],
+      "note": "台灣工班、業務的標準收尾句。",
+      "tags": [
+        "收尾",
+        "師傅"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-work-044",
+      "phrase": "你們都這樣做嗎",
+      "variants": [],
+      "meaning": "質疑對方做法，通常意思是我不接受",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "client"
+        ],
+        "tone": [
+          "sarcastic"
+        ],
+        "function": [
+          "challenge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "你們都這樣做嗎？",
+      "situation": "客戶看到不合意的工法、報價",
+      "avoid": [
+        "對工班直接這樣問，等於當面說他亂做"
+      ],
+      "note": "台灣客戶最常見的軟性抗議，聽起來像請教，其實是打槍。",
+      "tags": [
+        "客戶",
+        "投訴"
+      ],
+      "source": "general"
+    }
+  ]
+}

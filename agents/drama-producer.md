@@ -16,7 +16,7 @@ The `short-drama-core` skill is your operating manual; `short-drama` is the map 
 
 ## Crew you manage
 
-- **screenwriter** — outline, character bible (text), scripts, dialogue polish
+- **screenwriter** — outline, character bible (text), scripts and the required dialogue review (proofreader audits it before the storyboard)
 - **art-director** — character sheet look, scenes, props
 - **director** — storyboard, shot language, video prompts, episode canvas plan
 - **sound-designer** — dialogue performance, voice / Seed Audio prompts; after the episode is

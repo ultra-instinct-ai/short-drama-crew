@@ -1,0 +1,1972 @@
+{
+  "lang": "ja",
+  "label": "日文",
+  "version": "1.0",
+  "entries": [
+    {
+      "id": "ja-work-001",
+      "phrase": "お世話になっております",
+      "variants": [
+        "お世話になってます"
+      ],
+      "romanization": "osewa ni natte orimasu",
+      "meaning": "商務開場招呼——「一直受你關照」，打電話、email 第一句",
+      "literal": "一直承蒙您照顧",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "sales",
+          "office"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "いつもお世話になっております、営業部の田中です。",
+      "situation": "打電話去客戶公司、email 開頭",
+      "avoid": [
+        "對朋友、家人講會好似打去客服，好怪"
+      ],
+      "note": "商務定番開場；錯成「お世話さまです」係常見錯誤。",
+      "tags": [
+        "職場",
+        "敬語",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-002",
+      "phrase": "ご苦労さまです",
+      "variants": [
+        "ご苦労さん",
+        "ご苦労さま"
+      ],
+      "romanization": "gokurousama desu",
+      "meaning": "辛苦晒——上司對下屬、長輩對後輩嘅慰勞",
+      "literal": "您辛苦了（上對下）",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "boss",
+          "craftsman"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "praise",
+          "greet"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "ご苦労さまです、助かったよ。",
+      "situation": "上司巡場、下屬收工",
+      "avoid": [
+        "下屬對上司講「ご苦労さま」係大忌，等於當對方係下屬，要用「お疲れさまです」"
+      ],
+      "note": "日本職場最出名嘅敬語地雷；年輕上司都少用，怕被指上對下。",
+      "tags": [
+        "職場",
+        "敬語",
+        "上司"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-003",
+      "phrase": "承知しました",
+      "variants": [
+        "承知いたしました"
+      ],
+      "romanization": "shouchi shimashita",
+      "meaning": "明白、收到——對上司、客戶嘅正式應承",
+      "literal": "知道了",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "sales"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "承知しました、すぐ手配します。",
+      "situation": "上司交帶工作、客戶提出要求",
+      "avoid": [
+        "對朋友講「承知しました」太生硬，似演時代劇"
+      ],
+      "note": "對上司用「承知しました」，對客戶用「かしこまりました」更穩；「了解しました」對上司略有上對下味。",
+      "tags": [
+        "職場",
+        "敬語",
+        "上司"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-004",
+      "phrase": "かしこまりました",
+      "variants": [],
+      "romanization": "kashikomarimashita",
+      "meaning": "明白、遵命——服務業、對客戶嘅最高規格應承",
+      "literal": "惶恐領命",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "waitress",
+          "sales"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "かしこまりました、少々お待ちください。",
+      "situation": "酒店、高級餐廳、客服回應客人要求",
+      "avoid": [
+        "對同事、朋友講會太隆重，似酒店前台"
+      ],
+      "note": "酒店、高級餐廳、客服必用；比「承知しました」更謙。",
+      "tags": [
+        "職場",
+        "敬語",
+        "服務員"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-005",
+      "phrase": "確認しました",
+      "variants": [
+        "確認いたしました"
+      ],
+      "romanization": "kakunin shimashita",
+      "meaning": "已確認——報連相最基本一句，表示收到而且睇過",
+      "literal": "確認過了",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "確認しました、問題ありません。",
+      "situation": "回覆 email、上司交文件",
+      "avoid": [
+        "「確認しました」對客戶略平，正式要講「確認いたしました」"
+      ],
+      "note": "職場 email 高頻；只講「確認しました」而冇跟進，係新人最常犯。",
+      "tags": [
+        "職場",
+        "敬語",
+        "白領"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-006",
+      "phrase": "共有します",
+      "variants": [
+        "共有いたします",
+        "シェアします"
+      ],
+      "romanization": "kyouyuu shimasu",
+      "meaning": "我會分享（資訊）——報連相嘅「報」",
+      "literal": "共享（資訊）",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "designer"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "共有します、チャットに貼っておきます。",
+      "situation": "收到新資訊，話會傳給團隊",
+      "avoid": [
+        "對客戶講「共有します」略內部用語，對外要講「お伝えします」"
+      ],
+      "note": "近年職場濫用，「共有します」已經變成萬能動詞。",
+      "tags": [
+        "職場",
+        "白領",
+        "敬語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-007",
+      "phrase": "相談があります",
+      "variants": [
+        "相談があるんですが",
+        "ご相談があります"
+      ],
+      "romanization": "soudan ga arimasu",
+      "meaning": "有事想商量——下屬向上司開口嘅前置句，通常係壞消息",
+      "literal": "有事想商量",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "craftsman"
+        ],
+        "tone": [
+          "worried"
+        ],
+        "function": [
+          "question",
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "部長、ちょっと相談があります。",
+      "situation": "項目出事、想請假、想辭職之前",
+      "avoid": [
+        "對客戶講「相談があります」會令人以為要投訴"
+      ],
+      "note": "日本職場文化：先講「相談」再講問題，直接講結論會被視為唔識規矩。",
+      "tags": [
+        "職場",
+        "上司",
+        "敬語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-008",
+      "phrase": "少々お待ちください",
+      "variants": [
+        "少々お待ちいただけますか",
+        "ちょっと待ってください"
+      ],
+      "romanization": "shoushou omachi kudasai",
+      "meaning": "請稍等——電話、接待客戶嘅緩衝句",
+      "literal": "請稍等片刻",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "sales",
+          "waitress"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "少々お待ちください、担当者に代わります。",
+      "situation": "接電話要轉線、查資料",
+      "avoid": [
+        "對朋友講「少々お待ちください」太誇張；朋友用「ちょっと待って」"
+      ],
+      "note": "電話必用；「少々」＝少少，比「ちょっと」正式。",
+      "tags": [
+        "職場",
+        "敬語",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-009",
+      "phrase": "恐れ入りますが",
+      "variants": [
+        "恐縮ですが",
+        "恐れ入ります"
+      ],
+      "romanization": "osoreirimasu ga",
+      "meaning": "唔好意思——商務請求、打斷之前嘅緩衝，謙讓",
+      "literal": "惶恐，但是…",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "sales",
+          "office"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "apology",
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "恐れ入りますが、ご確認いただけますか。",
+      "situation": "請客戶補資料、請上司批核",
+      "avoid": [
+        "對朋友講會好做作"
+      ],
+      "note": "商務電話、email 高頻；「恐縮ですが」係同級版本。",
+      "tags": [
+        "職場",
+        "敬語",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-010",
+      "phrase": "折り返しお電話します",
+      "variants": [
+        "折り返しご連絡します",
+        "折り返します"
+      ],
+      "romanization": "orikaeshi odenwa shimasu",
+      "meaning": "轉頭打返俾你——唔即刻答，留後路",
+      "literal": "回過頭打電話給您",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "sales"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "折り返しお電話します、番号を伺えますか。",
+      "situation": "客人問嘅嘢要查，唔可以即刻答",
+      "avoid": [
+        "講完就冇影，係日本客戶最憎嘅事；呢句等於一個承諾"
+      ],
+      "note": "「折り返し」＝回覆、回電；email 用「折り返しご連絡いたします」。",
+      "tags": [
+        "職場",
+        "敬語",
+        "客戶"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-011",
+      "phrase": "お先に失礼します",
+      "variants": [
+        "お先に失礼しました",
+        "お先です"
+      ],
+      "romanization": "osaki ni shitsurei shimasu",
+      "meaning": "我先走——收工離開公司時講",
+      "literal": "我先失禮了",
+      "categories": {
+        "age": [
+          "young",
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "office",
+          "craftsman"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "farewell"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "お先に失礼します。",
+      "situation": "收工，同事仲做緊嘢",
+      "avoid": [
+        "對客戶講會變成「我走先」，場合一定要係自己公司"
+      ],
+      "note": "日本職場禮貌；「お先です」係較隨便版本，對上司用會失禮。",
+      "tags": [
+        "職場",
+        "收尾",
+        "敬語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-012",
+      "phrase": "上がります",
+      "variants": [
+        "上がらせていただきます",
+        "今日は上がります"
+      ],
+      "romanization": "agarimasu",
+      "meaning": "我收工喇——職場口語「上がる」＝收工",
+      "literal": "我上（收工）了",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "craftsman",
+          "office"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "farewell"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "今日はこれで上がります。",
+      "situation": "同組同事講一聲就走",
+      "avoid": [
+        "對客戶講「上がります」意思唔清，會以為你上樓"
+      ],
+      "note": "「お先に上がります」係較完整版本；關西一樣講。",
+      "tags": [
+        "職場",
+        "收尾",
+        "白領"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-013",
+      "phrase": "残業になりそうです",
+      "variants": [
+        "残業になります",
+        "今日は残業"
+      ],
+      "romanization": "zangyou ni narisou desu",
+      "meaning": "睇嚟要加班——預告今晚走唔到",
+      "literal": "看來要加班",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "complain",
+          "warn"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "今日は残業になりそうです、先に帰ってください。",
+      "situation": "下午五點幾，手頭工作未做完",
+      "avoid": [
+        "對客戶講會顯得可憐；對上司講要加一句「大丈夫です」表示冇問題"
+      ],
+      "note": "日本加班文化；「残業」係正式詞，年輕人略語講「ゾン」。",
+      "tags": [
+        "職場",
+        "抱怨",
+        "白領"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-014",
+      "phrase": "席を外しております",
+      "variants": [
+        "席を外しています",
+        "外出しております"
+      ],
+      "romanization": "seki o hazushite orimasu",
+      "meaning": "佢唔喺位——代接電話時講",
+      "literal": "離開座位中",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "sales"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "question",
+          "agree"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "あいにく田中は席を外しております。",
+      "situation": "客戶打電話嚟搵同事",
+      "avoid": [
+        "講「田中はいません」太直接，對客戶要講「席を外しております」"
+      ],
+      "note": "日本商務電話定番；「外出しております」＝外出，「席を外しております」＝暫時離開。對社外要降格，唔可以講「田中課長」。",
+      "tags": [
+        "職場",
+        "敬語",
+        "客戶"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-015",
+      "phrase": "いってまいります",
+      "variants": [
+        "行ってまいります"
+      ],
+      "romanization": "itte mairimasu",
+      "meaning": "我出去（拜訪客戶）——外出時對同事講，謙讓版",
+      "literal": "我去去就回（謙讓）",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "sales",
+          "office"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "farewell"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "では、いってまいります。",
+      "situation": "出外勤、去客戶公司",
+      "avoid": [
+        "對客戶講「いってまいります」唔通，要講「伺います」"
+      ],
+      "note": "「行ってきます」嘅謙讓版；返嚟講「戻りました」。",
+      "tags": [
+        "職場",
+        "敬語",
+        "白領"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-016",
+      "phrase": "とりあえず生で",
+      "variants": [
+        "とりあえず生",
+        "まず生で"
+      ],
+      "romanization": "toriaezu nama de",
+      "meaning": "先嚟杯生啤——日本飲み会開場定番，仲未諗食咩",
+      "literal": "總之先來生啤",
+      "categories": {
+        "age": [
+          "young",
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "friend"
+        ]
+      },
+      "example": "とりあえず生で。",
+      "situation": "居酒屋坐低，店員問飲咩",
+      "avoid": [
+        "對客戶、上司嘅正式飯局要等上位者先點，自己搶先講會失禮"
+      ],
+      "note": "「生」＝生ビール；乾杯之後先點食物係規矩。關西一樣講。",
+      "tags": [
+        "酒吧",
+        "同事",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-017",
+      "phrase": "飲みニケーション",
+      "variants": [
+        "飲みニケ",
+        "飲ミュニケーション"
+      ],
+      "romanization": "nominikeeshon",
+      "meaning": "靠飲酒溝通——日本職場「飲酒交流」嘅造詞",
+      "literal": "飲酒溝通",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "boss",
+          "office"
+        ],
+        "tone": [
+          "sarcastic"
+        ],
+        "function": [
+          "gossip",
+          "joke"
+        ],
+        "register": "english-mix",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "飲みニケーション、大事ですよね。",
+      "situation": "上司想約下屬去飲酒",
+      "avoid": [
+        "對唔飲酒嘅同事講會反感；近年被視為過時，甚至職權騷擾"
+      ],
+      "note": "communication＋飲み 嘅混合詞，2000 年代流行；年輕世代多數反感，戲劇寫長輩講會好笑。",
+      "tags": [
+        "酒吧",
+        "職場",
+        "外來語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-018",
+      "phrase": "お疲れさまでした",
+      "variants": [
+        "お疲れさま",
+        "お疲れー"
+      ],
+      "romanization": "otsukaresama deshita",
+      "meaning": "辛苦晒（已完成）——項目完成、收工、活動結束時講",
+      "literal": "您辛苦了（已完成）",
+      "categories": {
+        "age": [
+          "young",
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "craftsman",
+          "office"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "farewell",
+          "praise"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "お疲れさまでした、いい現場でした。",
+      "situation": "工程完結、活動收場",
+      "avoid": [
+        "對客戶講會似當佢係同事；對客戶要講「本日はありがとうございました」"
+      ],
+      "note": "過去式係重點：今日做完講「でした」，仲做緊講「です」。",
+      "tags": [
+        "職場",
+        "收尾",
+        "敬語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-019",
+      "phrase": "自己紹介をお願いします",
+      "variants": [
+        "自己紹介をお願いいたします",
+        "自己紹介からお願いします"
+      ],
+      "romanization": "jikoshoukai o onegai shimasu",
+      "meaning": "請自我介紹——面試第一句",
+      "literal": "請自我介紹",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "boss",
+          "office"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "それでは、自己紹介をお願いします。",
+      "situation": "面試開始、新團隊報到",
+      "avoid": [
+        "對朋友講會好搞笑；朋友之間講「自己紹介して」都已經怪"
+      ],
+      "note": "面試定番；日本面試要講姓名、學校、專長，30 秒至 1 分鐘。",
+      "tags": [
+        "面試",
+        "職場",
+        "敬語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-020",
+      "phrase": "希望年収は",
+      "variants": [
+        "希望年収をお聞かせください",
+        "希望年収はいくらですか"
+      ],
+      "romanization": "kibou nenshuu wa",
+      "meaning": "期望年薪——面試、獵頭必問",
+      "literal": "期望年收入是",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "boss",
+          "office"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "希望年収はどのくらいお考えですか。",
+      "situation": "面試尾聲、獵頭第一次通話",
+      "avoid": [
+        "對朋友講「希望年収は」會好尷尬；呢句只限工作面試"
+      ],
+      "note": "日本轉工文化忌諱直接講錢；答「御社の規定に準じます」係安全牌。",
+      "tags": [
+        "面試",
+        "職場",
+        "白領"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-021",
+      "phrase": "前職では何を",
+      "variants": [
+        "前職では何をされていましたか",
+        "前職は何を"
+      ],
+      "romanization": "zenshoku de wa nani o",
+      "meaning": "上一份工做咩——面試追問經驗",
+      "literal": "在前一份工作是做什麼",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "boss",
+          "office"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "前職では何を担当されていましたか。",
+      "situation": "面試問過去經驗",
+      "avoid": [
+        "講「前の会社で何してた？」太 casual，面試一定用「前職では」"
+      ],
+      "note": "「前職」＝上一份工，「現職」＝而家份工，唔好搞亂。",
+      "tags": [
+        "面試",
+        "職場",
+        "白領"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-022",
+      "phrase": "お待たせいたしました",
+      "variants": [
+        "お待たせしました"
+      ],
+      "romanization": "omatase itashimashita",
+      "meaning": "要你久等——遲到、接待要客人等、電話轉接返嚟",
+      "literal": "讓您久等了",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "waitress",
+          "sales"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "apology"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "お待たせいたしました、こちらへどうぞ。",
+      "situation": "客人已經坐低等咗一陣",
+      "avoid": [
+        "對朋友講「お待たせいたしました」太隆重，用「待たせてごめん」"
+      ],
+      "note": "服務業、商務必備；比「お待たせしました」更謙。",
+      "tags": [
+        "職場",
+        "客套",
+        "敬語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-023",
+      "phrase": "確認の上、ご連絡いたします",
+      "variants": [
+        "確認してからご連絡します"
+      ],
+      "romanization": "kakunin no ue, gorenraku itashimasu",
+      "meaning": "我確認之後再聯絡你——唔即刻答，留一個正式承諾",
+      "literal": "確認之後再聯絡您",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "sales",
+          "office"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "社内で確認の上、ご連絡いたします。",
+      "situation": "客人要求未確定，要問內部",
+      "avoid": [
+        "講完冇跟進係大忌；呢句等於一個承諾"
+      ],
+      "note": "商務 email 標準句；口語會講「確認してから、ご連絡します」。",
+      "tags": [
+        "職場",
+        "敬語",
+        "客戶"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-024",
+      "phrase": "見積もりをお願いします",
+      "variants": [
+        "お見積もりをお願いします"
+      ],
+      "romanization": "mitsumori o onegai shimasu",
+      "meaning": "請報價——裝修、工程第一步",
+      "literal": "請報價",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "client"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "見積もりをお願いします。予算は百万円くらいです。",
+      "situation": "業主搵師傅報價",
+      "avoid": [
+        "只講「いくら？」對師傅會失禮，工程要講「見積もり」"
+      ],
+      "note": "日本裝修報價多數免費，但細項要清楚；「概算見積もり」＝粗略報價。",
+      "tags": [
+        "裝修",
+        "講價",
+        "客戶"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-025",
+      "phrase": "追加費用がかかります",
+      "variants": [
+        "追加費用が発生します"
+      ],
+      "romanization": "tsuika hiyou ga kakarimasu",
+      "meaning": "要加錢——追加工程、改圖時講",
+      "literal": "會產生追加費用",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "craftsman"
+        ],
+        "tone": [
+          "worried"
+        ],
+        "function": [
+          "warn",
+          "complain"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "ここを変えると追加費用がかかります。",
+      "situation": "業主臨時話要改位",
+      "avoid": [
+        "講「金かかります」太粗暴；對客戶要解釋原因同金額"
+      ],
+      "note": "裝修最易吵架位；日本師傅多數會先出「追加見積もり」再動工。",
+      "tags": [
+        "裝修",
+        "客戶",
+        "講價"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-026",
+      "phrase": "工期はどのくらいですか",
+      "variants": [
+        "工期はどれくらいですか"
+      ],
+      "romanization": "kouki wa dono kurai desu ka",
+      "meaning": "工期幾長——幾時可以完工",
+      "literal": "工期大約多久",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "client"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "工期はどのくらいですか。",
+      "situation": "睇完現場問師傅要幾耐",
+      "avoid": [
+        "講「いつ終わるの？」對師傅有催促味"
+      ],
+      "note": "「工期」係工程期，「納期」係交貨期，唔好撈亂。",
+      "tags": [
+        "裝修",
+        "客戶",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-027",
+      "phrase": "引き渡しはいつですか",
+      "variants": [
+        "引き渡しはいつになりますか"
+      ],
+      "romanization": "hikiwatashi wa itsu desu ka",
+      "meaning": "幾時交樓——裝修完工交鎖匙",
+      "literal": "什麼時候交屋",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "client"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "引き渡しはいつになりますか。",
+      "situation": "工程尾聲，問幾時可以入伙",
+      "avoid": [
+        "「引き渡し」係正式用語；講「完成」會唔清楚"
+      ],
+      "note": "日本交樓會有「引き渡し検査」；租樓用「引き渡し」都通。",
+      "tags": [
+        "裝修",
+        "客戶",
+        "白領"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-028",
+      "phrase": "内覧お願いします",
+      "variants": [
+        "内覧をお願いします",
+        "内覧できますか"
+      ],
+      "romanization": "nairan onegai shimasu",
+      "meaning": "想睇樓／睇現場——租樓、買樓、睇示範單位",
+      "literal": "請讓我參觀",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "client"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "来週、内覧お願いできますか。",
+      "situation": "睇樓前約時間",
+      "avoid": [
+        "對朋友講「内覧」會太地產；朋友講「家、見せて」"
+      ],
+      "note": "地產、裝修都用；「内見」係租樓專用詞，兩者近年混用。",
+      "tags": [
+        "裝修",
+        "客戶",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-029",
+      "phrase": "図面を確認させてください",
+      "variants": [
+        "図面を見せてください"
+      ],
+      "romanization": "zuan o kakunin sasete kudasai",
+      "meaning": "俾我睇圖則——核對設計圖",
+      "literal": "請讓我確認圖面",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "craftsman",
+          "designer"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "図面を確認させてください。",
+      "situation": "師傅到場，要對圖",
+      "avoid": [
+        "講「見せてください」都通，但「確認させてください」較專業、較有禮"
+      ],
+      "note": "裝修、建築必用；「図面」＝圖則，「設計図」＝設計圖。",
+      "tags": [
+        "裝修",
+        "師傅",
+        "白領"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-030",
+      "phrase": "どのような問題でしょうか",
+      "variants": [
+        "どういった問題でしょうか"
+      ],
+      "romanization": "dono you na mondai deshou ka",
+      "meaning": "有咩問題——クレーム（投訴）接待第一句，唔好即刻認錯",
+      "literal": "是什麼樣的問題呢",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "sales",
+          "office"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "question",
+          "comfort"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "どのような問題でしょうか、詳しくお聞かせください。",
+      "situation": "接到投訴電話，先聽清楚",
+      "avoid": [
+        "講「何が問題ですか」語氣硬，會令客更嬲"
+      ],
+      "note": "客服定番；先聽完再道歉係日本客服標準流程。",
+      "tags": [
+        "投訴",
+        "客戶",
+        "敬語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-031",
+      "phrase": "早急に対応いたします",
+      "variants": [
+        "早急に対応します"
+      ],
+      "romanization": "soukyuu ni taiou itashimasu",
+      "meaning": "即刻處理——投訴回覆嘅承諾句",
+      "literal": "會盡速處理",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "sales",
+          "office"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "agree",
+          "comfort"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "早急に対応いたしますので、少々お待ちください。",
+      "situation": "客人投訴完，要即場承諾",
+      "avoid": [
+        "講完唔做係最傷；日本客戶會記住呢句"
+      ],
+      "note": "「早急に」＝盡快，比「すぐに」正式。",
+      "tags": [
+        "投訴",
+        "客戶",
+        "敬語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-032",
+      "phrase": "上司に確認して折り返します",
+      "variants": [
+        "上司に確認します"
+      ],
+      "romanization": "joushi ni kakunin shite orikaeshimasu",
+      "meaning": "我問上司再回覆你——唔敢自己答嘅擋箭牌",
+      "literal": "問過上司再回電",
+      "categories": {
+        "age": [
+          "young"
+        ],
+        "archetype": [
+          "office",
+          "sales"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "上司に確認して折り返します。",
+      "situation": "客人要求超出自己權限",
+      "avoid": [
+        "對客戶講太多次會顯得冇權、唔專業"
+      ],
+      "note": "日本職場常用擋箭牌；新人最愛講，但講得多會被認為唔敢決定。",
+      "tags": [
+        "職場",
+        "上司",
+        "敬語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-033",
+      "phrase": "検討します",
+      "variants": [
+        "検討いたします"
+      ],
+      "romanization": "kentou shimasu",
+      "meaning": "我哋會考慮——商務上多數等於「唔得」，只係唔講出口",
+      "literal": "會研究",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "boss",
+          "sales"
+        ],
+        "tone": [
+          "cold"
+        ],
+        "function": [
+          "refuse-soft",
+          "dismiss"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "検討します、社内で共有いたします。",
+      "situation": "客戶提案，其實公司唔會做",
+      "avoid": [
+        "當真以為對方會回覆就死等；日本人都知「検討します」多數冇下文"
+      ],
+      "note": "日本商務最出名嘅婉拒；要真進展會講「前向きに検討します」。",
+      "tags": [
+        "職場",
+        "拒絕",
+        "客戶"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-034",
+      "phrase": "前向きに検討します",
+      "variants": [],
+      "romanization": "maemuki ni kentou shimasu",
+      "meaning": "積極考慮——表面上更正面，實際多數更加唔會成",
+      "literal": "會積極研究",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "boss",
+          "sales"
+        ],
+        "tone": [
+          "sarcastic"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "前向きに検討します。",
+      "situation": "客戶走前，行禮講一句",
+      "avoid": [
+        "對外國客戶講會令人真係等；要聽得出係婉拒"
+      ],
+      "note": "「前向き」＝正面、積極；加咗反而更似門面話。",
+      "tags": [
+        "職場",
+        "拒絕",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-035",
+      "phrase": "難しいですね",
+      "variants": [
+        "それは難しいですね"
+      ],
+      "romanization": "muzukashii desu ne",
+      "meaning": "有啲難——最常用嘅委婉拒絕，等於「唔得」",
+      "literal": "有點困難呢",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "craftsman",
+          "boss"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "refuse"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "その条件ですと、難しいですね。",
+      "situation": "客戶要求減價、加急",
+      "avoid": [
+        "講「無理です」太硬；「難しいですね」係日本人拒絕嘅安全牌"
+      ],
+      "note": "日本談判必備；語調越柔越難翻身。",
+      "tags": [
+        "職場",
+        "拒絕",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-036",
+      "phrase": "コスパ",
+      "variants": [
+        "コスパがいい",
+        "コスパ最強"
+      ],
+      "romanization": "kosupa",
+      "meaning": "性價比——表現同價錢嘅比值",
+      "literal": "性價比（cost performance）",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "designer"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "praise",
+          "bargain"
+        ],
+        "register": "english-mix",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "friend"
+        ]
+      },
+      "example": "この物件、コスパいいですよね。",
+      "situation": "同事比較樓盤、裝修用料",
+      "avoid": [
+        "對客戶講「コスパ」略隨便，正式要講「費用対効果」"
+      ],
+      "note": "cost performance 嘅略語，2000 年代起流行；裝修、樓盤都用。",
+      "tags": [
+        "外來語",
+        "白領",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-037",
+      "phrase": "コミュ力",
+      "variants": [
+        "コミュ力高い",
+        "コミュ力ない"
+      ],
+      "romanization": "komyu-ryoku",
+      "meaning": "溝通能力——日本人眼中嘅軟技能",
+      "literal": "溝通能力（communication）",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "boss",
+          "office"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "praise"
+        ],
+        "register": "english-mix",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "コミュ力高いね、助かるよ。",
+      "situation": "上司評下屬、同事之間講笑",
+      "avoid": [
+        "對求職者講「コミュ力ないね」係直接侮辱"
+      ],
+      "note": "communication＋力；面試、人事評價都講。略語用過龍會顯得偷懶。",
+      "tags": [
+        "外來語",
+        "職場",
+        "白領"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-038",
+      "phrase": "石の上にも三年",
+      "variants": [],
+      "romanization": "ishi no ue ni mo sannen",
+      "meaning": "坐三年石頭都會暖——做學徒、做任何工，捱夠就會出頭",
+      "literal": "石頭上坐三年也會暖",
+      "categories": {
+        "age": [
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "craftsman",
+          "elder"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "encourage"
+        ],
+        "register": "proverb",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "石の上にも三年って言うだろ、頑張れよ。",
+      "situation": "師傅鼓勵新人、自己捱過",
+      "avoid": [
+        "對準備辭職、被剝削嘅人講會好刺耳，變成叫人啞忍"
+      ],
+      "note": "日本傳統諺語；近年被批評為過時、合理化長時間勞動。",
+      "tags": [
+        "老派",
+        "師傅",
+        "職場"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-039",
+      "phrase": "急がば回れ",
+      "variants": [],
+      "romanization": "isogaba maware",
+      "meaning": "欲速則不達——趕住做反而要繞路，慢慢做最穩",
+      "literal": "急的話就繞遠路",
+      "categories": {
+        "age": [
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "craftsman",
+          "elder"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "encourage",
+          "warn"
+        ],
+        "register": "proverb",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "急がば回れ、まず型枠から直そう。",
+      "situation": "趕工期但工序唔可以跳",
+      "avoid": [
+        "對趕工期嘅客戶講會似推卸、拖時間"
+      ],
+      "note": "源自琵琶湖瀨田唐橋嘅和歌；裝修、工藝場合常用。",
+      "tags": [
+        "老派",
+        "師傅",
+        "職場"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-040",
+      "phrase": "猫の手も借りたい",
+      "variants": [],
+      "romanization": "neko no te mo karitai",
+      "meaning": "忙到想借貓手——人手極度不足",
+      "literal": "連貓的手都想借",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "craftsman",
+          "office"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "idiom",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "猫の手も借りたいくらい忙しい。",
+      "situation": "旺季、趕交貨",
+      "avoid": [
+        "對客戶講會顯得自己公司管理差"
+      ],
+      "note": "慣用句；日本職場最常講嘅「忙」表達。",
+      "tags": [
+        "職場",
+        "抱怨",
+        "老派"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-041",
+      "phrase": "顔が広い",
+      "variants": [],
+      "romanization": "kao ga hiroi",
+      "meaning": "人面廣——識好多人、關係好",
+      "literal": "臉很寬→人面廣",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "boss",
+          "sales"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "praise"
+        ],
+        "register": "idiom",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "さすが顔が広いですね、助かります。",
+      "situation": "介紹到好師傅、搵到人幫手",
+      "avoid": [
+        "對年輕人講會有點老派；年輕人講「人脈すごい」"
+      ],
+      "note": "慣用句，商務社交常用；相反詞「顔が利く」＝有面子、講得通。",
+      "tags": [
+        "職場",
+        "老派",
+        "客戶"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-042",
+      "phrase": "頭が上がらない",
+      "variants": [
+        "頭が上がりません"
+      ],
+      "romanization": "atama ga agaranai",
+      "meaning": "抬唔起頭——欠咗人一個大人情，永遠還唔清",
+      "literal": "頭抬不起來",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "craftsman",
+          "office"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "thanks"
+        ],
+        "register": "idiom",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "あのとき助けてもらったから、頭が上がらないよ。",
+      "situation": "師傅幫你執手尾、老細幫你頂鑊",
+      "avoid": [
+        "對平輩講「頭が上がらない」好重，似認低威；輕鬆場合講「助かった」就夠"
+      ],
+      "note": "慣用句；日本人情社會常用，帶「我欠你」嘅重量。",
+      "tags": [
+        "職場",
+        "老派",
+        "關心"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-043",
+      "phrase": "首が回らない",
+      "variants": [
+        "首が回りません"
+      ],
+      "romanization": "kubi ga mawaranai",
+      "meaning": "周轉不靈——資金緊到冇得轉",
+      "literal": "脖子轉不動",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "boss",
+          "shopkeeper"
+        ],
+        "tone": [
+          "worried"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "idiom",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "今月は首が回らない。",
+      "situation": "找數期、生意淡",
+      "avoid": [
+        "對客戶講會令人懷疑你公司財力"
+      ],
+      "note": "慣用句，多指金錢；「首がつながる」＝勉強撐得住。",
+      "tags": [
+        "職場",
+        "抱怨",
+        "老派"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-044",
+      "phrase": "名刺をいただけますか",
+      "variants": [
+        "名刺を頂戴できますか"
+      ],
+      "romanization": "meishi o itadakemasu ka",
+      "meaning": "可以俾張名片我嗎——商務初次見面",
+      "literal": "能給我名片嗎",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "sales",
+          "office"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "urge",
+          "greet"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "恐れ入りますが、名刺をいただけますか。",
+      "situation": "見面交換聯絡",
+      "avoid": [
+        "對長輩、上司要先由下位者遞名片，唔好開口要"
+      ],
+      "note": "日本名片禮儀：雙手遞、文字向對方、收到要讀一次。",
+      "tags": [
+        "職場",
+        "客套",
+        "敬語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-work-045",
+      "phrase": "戻りました",
+      "variants": [],
+      "romanization": "modorimashita",
+      "meaning": "我返嚟喇——外勤返公司講",
+      "literal": "我回來了",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "sales",
+          "office"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "戻りました。ただいま報告します。",
+      "situation": "出完外勤返公司",
+      "avoid": [
+        "對客戶要講「お待たせいたしました、戻りました」"
+      ],
+      "note": "出外勤返公司定番；配「いってまいります」。",
+      "tags": [
+        "職場",
+        "白領",
+        "開場"
+      ],
+      "source": "general"
+    }
+  ]
+}

@@ -29,7 +29,7 @@ this folder).
    - outline (brief, skeleton, 分集目录) → [short-drama-outline](../short-drama-outline/SKILL.md)
    - characters (bible, identityEn, image / voice prompts) → [short-drama-characters](../short-drama-characters/SKILL.md)
    - art (scene / prop sheets, canvases) → [short-drama-art](../short-drama-art/SKILL.md)
-   - script (per-episode 谈话+行动, dialogue polish) → [short-drama-script](../short-drama-script/SKILL.md)
+   - script (per-episode 谈话+行动, the required dialogue review with [w-film-dialogue-editor](../w-film-dialogue-editor/SKILL.md)) → [short-drama-script](../short-drama-script/SKILL.md)
    - storyboard (segments, cuts, video prompts, episode canvas) → [short-drama-storyboard](../short-drama-storyboard/SKILL.md)
    - sound (voices, SFX; after the clips are edited, the episode's BGM + sound design on the edit's timecode) → [short-drama-sound](../short-drama-sound/SKILL.md)
    - after an episode exists — teasers, posters and covers per platform → [social-media](../social-media/SKILL.md);

@@ -1,9 +1,12 @@
 # Dialogue craft — lines as action, in the right 语体
 
-Distilled from the user's `w-film-dialogue-editor` skill. Read it before writing a script's
-lines and before any polish pass (`render dialogue --ep N`). What can be checked is the
-**advisory** `dialogue-register` gate — it reports, it never blocks, because a 穿越 character
-speaking 古装 in a modern drama is right, not wrong.
+A summary of the user's `w-film-dialogue-editor` skill, which is installed beside this one and is
+the source of truth: its revision framework, one language guide per 语体 and a corpus of real
+usage queried with `scripts/ref.mjs`. This page is the short version to keep in mind; the guide of
+the drama's 语体 is read in full before writing lines and again in the dialogue review (§3). Two
+gates: the **advisory** `dialogue-register` notes lines that break the register (a 穿越 character
+speaking 古装 in a modern drama is right, not wrong), and the **required** `dialogue-review` holds
+the storyboard until every line has been reviewed.
 
 ## 1. A line is an action under pressure
 
@@ -96,14 +99,16 @@ a 6–18-month half-life: two or three signature words per character, no more. P
 vertical short drama allows damn / hell / ass / limited bitch, avoids the f-word; the first three
 seconds are clean.
 
-## 3. The polish pass — `render dialogue --ep N`
+## 3. The dialogue review — `seed dialogue` → fill → `apply dialogue`
 
-Produces the reference's 逐句校对表: 原句 filled, 问题 / 修改句 / 修改理由 / 导演／演员提示 to fill,
-with each speaker's `bible.speech` summary in the last column. Levels: 轻修 (keep the sentence,
-fix tone, rhythm, filler), 中修 (restructure, cut explanation, sharpen the attack and defence),
-重修 (re-design the beats and strategies, keep the story intent). Do it when the user asks, when
-dialogue is the visible weakness, or when the register gate keeps noting the same scene. The
-filled table is appended to the screenplay dataset under `## 对白校对`.
+Required after every script (`stage-script.md` § Dialogue review). `seed dialogue --ep N` writes
+`episode.dialogueReview` — one row per line with 原句 filled — and prints the guide and the corpus
+query for each speaker. Fill it the way the dialogue skill reviews a scene: the diagnosis first,
+then per line 问题 / 修改句 / 修改理由 / 导演／演员提示, then the guide's 自检清单. Levels: 轻修 (keep
+the sentence, fix tone, rhythm, filler), 中修 (restructure, cut explanation, sharpen the attack and
+defence), 重修 (re-design the beats and strategies, keep the story intent). `apply dialogue` writes
+the revised lines into the script; `render dialogue` prints the filled table, which is appended to
+the screenplay dataset under `## 对白校对`.
 
 | 原句 | 问题 | 修改句 | 修改理由 |
 | --- | --- | --- | --- |

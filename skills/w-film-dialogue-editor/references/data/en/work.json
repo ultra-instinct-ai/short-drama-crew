@@ -1,0 +1,1722 @@
+{
+  "lang": "en",
+  "label": "美式英文",
+  "version": "1.0",
+  "entries": [
+    {
+      "id": "en-work-001",
+      "phrase": "Let's circle back.",
+      "variants": [],
+      "meaning": "我哋遲啲再傾返呢個；corporate-speak 用嚟拖，或者唔想而家決定。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "office",
+          "boss"
+        ],
+        "tone": [
+          "polite",
+          "cold"
+        ],
+        "function": [
+          "dismiss",
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "Let's circle back on the budget after the client call.",
+      "situation": "開會、email，想暫緩一個話題",
+      "avoid": [
+        "對客戶講會顯得你唔想答；用喺私人對話會好假"
+      ],
+      "note": "矽谷、企業最濫用；年輕員工聽到會暗笑。同 take this offline 有分別：circle back 係遲啲再講。",
+      "tags": [
+        "職場",
+        "公司",
+        "同事"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-002",
+      "phrase": "Let's touch base.",
+      "variants": [],
+      "meaning": "我哋聯絡下／對一對進度；美式商務最常見嘅開會邀約語。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "office",
+          "boss"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "Let's touch base Thursday and see where the numbers land.",
+      "situation": "安排短會、跟進",
+      "avoid": [
+        "對客戶或外部人講會太內部；私人場合聽落好假"
+      ],
+      "note": "美式商務慣用；英式會講 catch up。過度使用會被當廢話。",
+      "tags": [
+        "職場",
+        "同事",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-003",
+      "phrase": "Do you have the bandwidth?",
+      "variants": [],
+      "meaning": "你有冇時間／精力接呢件事；bandwidth 講人，唔係網絡。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "office",
+          "boss"
+        ],
+        "tone": [
+          "polite",
+          "cold"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "Do you have the bandwidth to take this one? It's due Friday.",
+      "situation": "派工作之前問同事",
+      "avoid": [
+        "對客戶或者下屬講會顯得你當人係機器；直接問 Are you free 更人化"
+      ],
+      "note": "2010 年代後 corporate 高頻；老一輩會覺得做作。",
+      "tags": [
+        "職場",
+        "公司"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-004",
+      "phrase": "Let's take this offline.",
+      "variants": [],
+      "meaning": "我哋私下再傾；會議上截停一個唔適合公開講嘅話題。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "office",
+          "boss"
+        ],
+        "tone": [
+          "cold",
+          "polite"
+        ],
+        "function": [
+          "dismiss",
+          "warn"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "Let's take this offline — I don't want to get into numbers here.",
+      "situation": "會議、客戶面前，想避免公開討論",
+      "avoid": [
+        "對客戶講會令人覺得你有嘢隱瞞；用得太密會覺得你咩都唔想公開講"
+      ],
+      "note": "美式企業標準語。字面 offline 同網絡無關。",
+      "tags": [
+        "職場",
+        "上司"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-005",
+      "phrase": "I'll loop you in.",
+      "variants": [],
+      "meaning": "我拉你入嚟（email／對話）；美式職場接納同事參與。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "polite",
+          "warm"
+        ],
+        "function": [
+          "agree",
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "I'll loop you in on the thread so you have the context.",
+      "situation": "email、會議後跟進",
+      "avoid": [
+        "對下屬講有好似恩准嘅感覺；對客戶唔適用"
+      ],
+      "note": "loop in ＝ 加入通訊；loop out 較少用。",
+      "tags": [
+        "職場",
+        "同事"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-006",
+      "phrase": "Low-hanging fruit.",
+      "variants": [],
+      "meaning": "最容易見效嘅部分；企業用嚟講先做容易嘅事。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "office",
+          "boss"
+        ],
+        "tone": [
+          "cold",
+          "sassy"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "Low-hanging fruit first — we can save the hard stuff for Q3.",
+      "situation": "策略會、排優先次序",
+      "avoid": [
+        "對客戶講會暗示佢哋嘅問題好瑣碎；用喺私人對話好怪"
+      ],
+      "note": "1990 年代企業用語，今日用會帶少少自覺嘅諷刺；新派公司會刻意避。",
+      "tags": [
+        "職場",
+        "公司"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-007",
+      "phrase": "What's the ask?",
+      "variants": [],
+      "meaning": "你想我做咩／你需要咩；美式商務直接問要求。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "What's the ask here? Am I writing it or just reviewing?",
+      "situation": "收到模糊指示、開會前",
+      "avoid": [
+        "對上司講會顯得你唔想聽解釋；語氣要中性"
+      ],
+      "note": "美式 start-up 常用；傳統企業較少。",
+      "tags": [
+        "職場",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-008",
+      "phrase": "Ping me.",
+      "variants": [],
+      "meaning": "有咩就打我／傳訊息我；美式職場講 ping，唔講 contact。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "blunt",
+          "polite"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "friend"
+        ]
+      },
+      "example": "Ping me when you land and I'll send the address.",
+      "situation": "同事之間交低聯絡方法",
+      "avoid": [
+        "對客戶或長輩講 ping 太 casual；正式寫 Please reach out"
+      ],
+      "note": "源自即時通訊軟件嘅提示音，今日動詞化。全美 office 通用。",
+      "tags": [
+        "職場",
+        "同事",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-009",
+      "phrase": "Per my last email,",
+      "variants": [],
+      "meaning": "正如我上一封 email 講過；美式職場最含蓄嘅發火。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "sarcastic",
+          "angry"
+        ],
+        "function": [
+          "complain",
+          "challenge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "Per my last email, the deadline was Friday, not Monday.",
+      "situation": "同事／客戶唔睇信、重複問",
+      "avoid": [
+        "呢句係 passive-aggressive，對上司或客戶用等於宣戰"
+      ],
+      "note": "美式辦公室經典 passive aggression；email 開頭，句尾通常已經帶刀。網上大量 meme。",
+      "tags": [
+        "職場",
+        "抱怨",
+        "冷面"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-010",
+      "phrase": "Just following up.",
+      "variants": [],
+      "meaning": "跟進一下；美式 email 開場，實際係催你回覆。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "office",
+          "sales"
+        ],
+        "tone": [
+          "polite",
+          "cold"
+        ],
+        "function": [
+          "urge",
+          "question"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "Just following up on the estimate I sent last week.",
+      "situation": "email 第二／第三次追",
+      "avoid": [
+        "連發三次 just following up 會變騷擾；對客戶要加 as discussed"
+      ],
+      "note": "email 標準句式，語氣越禮貌壓力越大。",
+      "tags": [
+        "職場",
+        "客套",
+        "同事"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-011",
+      "phrase": "Let's put a pin in it.",
+      "variants": [],
+      "meaning": "呢個先擺住，遲啲再講；美式開會用嚟封存話題。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "office",
+          "boss"
+        ],
+        "tone": [
+          "polite",
+          "cold"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "Let's put a pin in the hiring question and finish the deck.",
+      "situation": "會議超時、話題發散",
+      "avoid": [
+        "用得太密會令同事覺得你咩都唔想面對"
+      ],
+      "note": "美式會議語，同 circle back 配成一對。",
+      "tags": [
+        "職場",
+        "上司"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-012",
+      "phrase": "Let's get our ducks in a row.",
+      "variants": [],
+      "meaning": "先將嘢排好、準備妥當；美式 idiom，帶少少老派。",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "office",
+          "boss"
+        ],
+        "tone": [
+          "polite",
+          "cold"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "idiom",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "Let's get our ducks in a row before we present to the board.",
+      "situation": "開會前準備、交文件前",
+      "avoid": [
+        "對年輕人講會覺得老土；正式書面少用"
+      ],
+      "note": "1970 年代起流行，今日仍用但帶年代感；新派公司會嘲呢句。",
+      "tags": [
+        "職場",
+        "老派",
+        "上司"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-013",
+      "phrase": "At the end of the day,",
+      "variants": [],
+      "meaning": "講到底、最終；美式總結句開頭，經常用嚟收一個爭論。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "cold",
+          "blunt"
+        ],
+        "function": [
+          "dismiss",
+          "agree"
+        ],
+        "register": "idiom",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "friend",
+          "client"
+        ]
+      },
+      "example": "At the end of the day, it's your call, not mine.",
+      "situation": "辯論收尾、給結論",
+      "avoid": [
+        "用得多會變廢話開場白；唔好用喺要即刻決定嘅場合"
+      ],
+      "note": "英式都會用，但美式密度高好多；商務同體育評述都濫用。",
+      "tags": [
+        "職場",
+        "收尾",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-014",
+      "phrase": "I need it by EOD.",
+      "variants": [
+        "Can you get it to me by end of day?"
+      ],
+      "meaning": "今日收工前要；美式職場 EOD＝end of day，比 tomorrow 更硬。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "boss",
+          "office"
+        ],
+        "tone": [
+          "blunt",
+          "cold"
+        ],
+        "function": [
+          "urge",
+          "warn"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "I need it by EOD — the client's presenting in the morning.",
+      "situation": "交文件、交數",
+      "avoid": [
+        "對下屬講要清楚講幾點；只講 EOD 有人會解做 11:59pm"
+      ],
+      "note": "美式縮寫：EOD／COB（close of business）都通；COB 較老派。",
+      "tags": [
+        "職場",
+        "上司",
+        "惜字如金"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-015",
+      "phrase": "Get it done.",
+      "variants": [
+        "Just get it done."
+      ],
+      "meaning": "搞掂佢；美式上司式命令，唔想聽解釋。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "boss"
+        ],
+        "tone": [
+          "blunt",
+          "angry"
+        ],
+        "function": [
+          "urge",
+          "dismiss"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "Get it done. I don't care how — just make sure it's right.",
+      "situation": "上司催、下屬解釋太多",
+      "avoid": [
+        "對客戶或者伴侶講會極度冒犯；下屬聽到會即刻收聲"
+      ],
+      "note": "美式管理風格直白；北歐或者亞洲公司文化會覺得太硬。",
+      "tags": [
+        "上司",
+        "職場",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-016",
+      "phrase": "That's not what I asked for.",
+      "variants": [],
+      "meaning": "我要嘅唔係呢個；美式上司／客戶最直接嘅不滿，唔帶粗口但好硬。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "boss",
+          "client"
+        ],
+        "tone": [
+          "angry",
+          "cold"
+        ],
+        "function": [
+          "complain",
+          "disagree"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "That's not what I asked for. I said a one-pager, not twenty slides.",
+      "situation": "收到錯嘅成品",
+      "avoid": [
+        "對同事講要加 can you rework it 收尾，否則會令人覺得被全盤否定"
+      ],
+      "note": "美式職場 feedback 文化直白；亞洲團隊會覺得太重。",
+      "tags": [
+        "上司",
+        "抱怨",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-017",
+      "phrase": "Walk me through it.",
+      "variants": [],
+      "meaning": "由頭講一次畀我聽；美式上司／面試官最常用嘅「你解釋下」。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "boss",
+          "office"
+        ],
+        "tone": [
+          "cold",
+          "polite"
+        ],
+        "function": [
+          "question",
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "Walk me through it — how did we get from forty to ninety?",
+      "situation": "面試、匯報、查錯",
+      "avoid": [
+        "語氣一慢就係施壓，唔係想學；下屬要識分"
+      ],
+      "note": "美式商務高頻；字面 walk 同行路無關。",
+      "tags": [
+        "職場",
+        "上司",
+        "面試"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-018",
+      "phrase": "I'm on it.",
+      "variants": [],
+      "meaning": "我即刻做；美式下屬最常用嘅接單回應，比 yes sir 自然。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "blunt",
+          "polite"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "I'm on it. Give me till noon.",
+      "situation": "上司派工作",
+      "avoid": [
+        "如果做唔到就唔好講，美式職場會當你應承咗"
+      ],
+      "note": "美式職場核心回應；加 Give me till noon 表示你已經有計劃。",
+      "tags": [
+        "下屬",
+        "職場",
+        "惜字如金"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-019",
+      "phrase": "Tell me about yourself.",
+      "variants": [],
+      "meaning": "介紹下你自己；美式面試第一句，實際係要你講一個 90 秒故事。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "boss",
+          "office"
+        ],
+        "tone": [
+          "polite",
+          "cold"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "client"
+        ]
+      },
+      "example": "Tell me about yourself — and keep it under two minutes.",
+      "situation": "面試開場",
+      "avoid": [
+        "唔好照背簡歷；美國面試官想聽你點理解自己嘅路"
+      ],
+      "note": "美式面試標準題，幾乎一定會問；英式較少咁開場。",
+      "tags": [
+        "面試",
+        "職場"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-020",
+      "phrase": "Where do you see yourself in five years?",
+      "variants": [],
+      "meaning": "五年後你想點；美式面試經典題，測你有冇計劃。",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "boss"
+        ],
+        "tone": [
+          "polite",
+          "cold"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger"
+        ]
+      },
+      "example": "Where do you see yourself in five years — honestly?",
+      "situation": "面試中段",
+      "avoid": [
+        "答「做你個位」係美式幽默，風險極高；視乎對方"
+      ],
+      "note": "1970 年代起嘅面試老題，今日仍然問；年輕求職者會覺得 stale。",
+      "tags": [
+        "面試",
+        "職場",
+        "老派"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-021",
+      "phrase": "What's your biggest weakness?",
+      "variants": [],
+      "meaning": "你最大缺點係咩；美式面試陷阱題，標準答案是包裝過的優點。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "boss"
+        ],
+        "tone": [
+          "sarcastic",
+          "polite"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger"
+        ]
+      },
+      "example": "What's your biggest weakness? — And don't say perfectionism.",
+      "situation": "面試、performance review",
+      "avoid": [
+        "真誠回答會被扣分；但明顯假答案一樣會被看穿"
+      ],
+      "note": "美式面試文化產物；加 don't say perfectionism 已經變成共同笑話。",
+      "tags": [
+        "面試",
+        "職場"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-022",
+      "phrase": "Do you have any questions for us?",
+      "variants": [],
+      "meaning": "你有咩想問我哋；美式面試收尾，答冇等於唔感興趣。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "boss"
+        ],
+        "tone": [
+          "polite",
+          "warm"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger"
+        ]
+      },
+      "example": "Do you have any questions for us? — Yeah, what does success look like in month one?",
+      "situation": "面試最後五分鐘",
+      "avoid": [
+        "問假期福利要小心時機，太早問會扣分"
+      ],
+      "note": "美式面試標準收尾；反問成功定義係安全又加分嘅答法。",
+      "tags": [
+        "面試",
+        "職場",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-023",
+      "phrase": "We'll be in touch.",
+      "variants": [
+        "We'll be in touch soon."
+      ],
+      "meaning": "我哋會聯絡你；美式面試／提案收尾，通常等於「唔使等」。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "boss",
+          "office"
+        ],
+        "tone": [
+          "cold",
+          "polite"
+        ],
+        "function": [
+          "refuse-soft",
+          "farewell"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "client"
+        ]
+      },
+      "example": "We'll be in touch. Thanks for coming in.",
+      "situation": "面試、supplier 報價後",
+      "avoid": [
+        "唔好當成錄用承諾；連追三次都冇回覆就係唔得"
+      ],
+      "note": "美式職場潛規則：we'll be in touch 九成係婉拒。加 Thanks for coming in 更加肯定。",
+      "tags": [
+        "面試",
+        "職場",
+        "拒絕"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-024",
+      "phrase": "Thanks for coming in.",
+      "variants": [],
+      "meaning": "多謝你嚟；美式面試收尾，語氣中性，唔代表 result。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "boss",
+          "office"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "thanks",
+          "farewell"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "client"
+        ]
+      },
+      "example": "Thanks for coming in. Somebody will reach out by Friday.",
+      "situation": "面試完、客人離開公司",
+      "avoid": [
+        "唔好聽成好消息；呢句同錄用完全無關"
+      ],
+      "note": "美式辦公室禮貌；對來面試、來開會嘅外部人都用。",
+      "tags": [
+        "面試",
+        "職場",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-025",
+      "phrase": "I'm not sure this is the right fit.",
+      "variants": [],
+      "meaning": "我覺得唔係好啱；美式最禮貌嘅拒絕 offer／提案講法。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "office",
+          "boss"
+        ],
+        "tone": [
+          "polite",
+          "cold"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "I'm not sure this is the right fit — for either of us.",
+      "situation": "拒絕 offer、拒絕合作",
+      "avoid": [
+        "加 for either of us 就變得有骨；想保持關係就唔好加"
+      ],
+      "note": "美式商務拒絕模板，殺傷力中等；比 hard no 軟好多。",
+      "tags": [
+        "拒絕",
+        "職場",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-026",
+      "phrase": "Can you give me an estimate?",
+      "variants": [],
+      "meaning": "可唔可以報個價；美式裝修／工程第一步，叫 estimate（通常免費）。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "client",
+          "craftsman"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "question",
+          "bargain"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "Can you give me an estimate before I decide? No pressure.",
+      "situation": "業主搵師傅、搵承辦商",
+      "avoid": [
+        "唔好同 quote／bid 混用；美式 estimate 可以口頭，quote 通常書面固定"
+      ],
+      "note": "美式工程：estimate（估算）→ bid（投標）→ invoice（發票）。免費上門叫 free estimate。",
+      "tags": [
+        "裝修",
+        "工地",
+        "講價",
+        "客戶"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-027",
+      "phrase": "Do we need a permit for this?",
+      "variants": [],
+      "meaning": "呢樣要唔要申請許可；美式裝修必問，冇 permit 會被停工罰款。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "craftsman",
+          "client"
+        ],
+        "tone": [
+          "worried",
+          "polite"
+        ],
+        "function": [
+          "question",
+          "warn"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "Do we need a permit for this, or can we just frame it out?",
+      "situation": "改間隔、加電、換窗之前",
+      "avoid": [
+        "唔好同屋主講「應該唔使」，美國 city inspector 上門就會出事"
+      ],
+      "note": "美式 permit＝政府施工許可；英式多講 planning permission。加建、改水電幾乎一定要。",
+      "tags": [
+        "裝修",
+        "工地",
+        "師傅"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-028",
+      "phrase": "That's a change order.",
+      "variants": [],
+      "meaning": "呢個要開變更單；美式裝修加錢加時嘅正式機制，唔係師傅獅子開大口。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "craftsman",
+          "client"
+        ],
+        "tone": [
+          "blunt",
+          "polite"
+        ],
+        "function": [
+          "warn",
+          "bargain"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "That's a change order — you want the outlet moved after drywall.",
+      "situation": "工程中途改設計",
+      "avoid": [
+        "唔好講成加價，講 change order 先專業；唔寫紙會引致找數爭執"
+      ],
+      "note": "美式合約核心：change order 要雙方簽，列明加錢同加幾日。",
+      "tags": [
+        "裝修",
+        "工地",
+        "師傅",
+        "講價"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-029",
+      "phrase": "What's on the punch list?",
+      "variants": [],
+      "meaning": "仲有咩收尾未搞；美式工程完工前嘅清單，一項項捉漏。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "craftsman",
+          "client"
+        ],
+        "tone": [
+          "blunt",
+          "cold"
+        ],
+        "function": [
+          "question",
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "What's on the punch list? I saw a gap by the baseboard.",
+      "situation": "完工驗收前",
+      "avoid": [
+        "唔好當 punch list 係新工程；只列收尾細項"
+      ],
+      "note": "美式工程術語。walkthrough（驗收巡樓）之後就出 punch list，做完叫 punch out。",
+      "tags": [
+        "裝修",
+        "工地",
+        "師傅"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-030",
+      "phrase": "It's not up to code.",
+      "variants": [],
+      "meaning": "唔符合建築規例；美式師傅最有力嘅一句，等於「一定要改」。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "craftsman",
+          "client"
+        ],
+        "tone": [
+          "blunt",
+          "worried"
+        ],
+        "function": [
+          "warn",
+          "disagree"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "It's not up to code — that railing's gotta be forty-two inches.",
+      "situation": "驗樓、發現舊裝修唔合格",
+      "avoid": [
+        "唔好亂講，講錯會令客人以為你呃錢；要有具體條文"
+      ],
+      "note": "美式 code＝local building code，各州各市不同；inspector 有最終話事權。",
+      "tags": [
+        "裝修",
+        "工地",
+        "師傅",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-031",
+      "phrase": "That's a load-bearing wall.",
+      "variants": [],
+      "meaning": "嗰幅係主力牆；美式裝修最常聽到嘅「唔可以拆」。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "craftsman"
+        ],
+        "tone": [
+          "blunt",
+          "cold"
+        ],
+        "function": [
+          "warn",
+          "refuse"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "That's a load-bearing wall. We're not touching it without an engineer.",
+      "situation": "客人想打通兩間房",
+      "avoid": [
+        "唔好為迎合客人講可以拆；美國一出事係刑事責任"
+      ],
+      "note": "美式講法 load-bearing；英式多講 structural wall。",
+      "tags": [
+        "裝修",
+        "工地",
+        "師傅"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-032",
+      "phrase": "Half up front, half when we're done.",
+      "variants": [],
+      "meaning": "一半訂金，完工找尾數；美式小型工程最常見嘅付款方式。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "craftsman",
+          "client"
+        ],
+        "tone": [
+          "blunt",
+          "polite"
+        ],
+        "function": [
+          "bargain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "Half up front, half when we're done — that's how I work.",
+      "situation": "師傅同業主傾價錢",
+      "avoid": [
+        "對大公司客戶要寫落合約；口頭講完唔寫紙最易反悔"
+      ],
+      "note": "美式口語 up front＝先付。大型工程會分 draw（階段性撥款）。",
+      "tags": [
+        "裝修",
+        "講價",
+        "師傅"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-033",
+      "phrase": "I'll have my guy take a look.",
+      "variants": [],
+      "meaning": "我叫個師傅去睇下；美式承辦商口吻，唔會自己出手。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "craftsman",
+          "boss"
+        ],
+        "tone": [
+          "blunt",
+          "warm"
+        ],
+        "function": [
+          "agree",
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "I'll have my guy take a look at the wiring on Thursday.",
+      "situation": "客人問技術問題，承辦商推給手下",
+      "avoid": [
+        "對客人講 my guy 有時聽落唔專業，正式場合要講 my electrician"
+      ],
+      "note": "美式口語 my guy＝我信得過嘅師傅；亦可以指「我有人」嘅江湖用法。",
+      "tags": [
+        "裝修",
+        "師傅",
+        "客戶"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-034",
+      "phrase": "Can I put you on hold?",
+      "variants": [],
+      "meaning": "可唔可以等我一下；美式客服標準句，唔講 wait a moment。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "sales",
+          "office"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "question",
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "stranger"
+        ]
+      },
+      "example": "Can I put you on hold for about two minutes?",
+      "situation": "電話客服、接待處",
+      "avoid": [
+        "唔好講完就靜音，要等對方答 yes；超過兩分鐘要返嚟交代"
+      ],
+      "note": "美式客服訓練標準語；on hold 亦可以引申為「暫緩」（The project's on hold）。",
+      "tags": [
+        "職場",
+        "客套",
+        "服務員"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-035",
+      "phrase": "I understand your frustration.",
+      "variants": [],
+      "meaning": "我明白你唔滿意；美式客服必備安撫句，但唔等於認錯。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "sales",
+          "office"
+        ],
+        "tone": [
+          "polite",
+          "cold"
+        ],
+        "function": [
+          "comfort",
+          "apology"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "stranger"
+        ]
+      },
+      "example": "I understand your frustration, and I want to fix it.",
+      "situation": "客人投訴、發火",
+      "avoid": [
+        "只講呢句就收線，客人會更嬲；一定要接一個具體行動"
+      ],
+      "note": "美式客服話術（empathy statement），被顧客嘲為罐頭語；但仍是標準訓練。",
+      "tags": [
+        "投訴",
+        "客套",
+        "服務員"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-036",
+      "phrase": "Let me look into that.",
+      "variants": [],
+      "meaning": "我幫你查下；美式客服最常用嘅拖延式承諾。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "sales",
+          "office"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "agree",
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "Let me look into that and call you back before five.",
+      "situation": "客人問題你答唔到",
+      "avoid": [
+        "講完冇回覆就係講大話；一定要給具體時間"
+      ],
+      "note": "美式客服標準句式；加 I'll call you back by five 才成立。",
+      "tags": [
+        "投訴",
+        "職場",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-037",
+      "phrase": "I'd like to speak to a manager.",
+      "variants": [],
+      "meaning": "我要同你上司講；美式投訴升級嘅標準句，講完通常即場有讓步。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "client"
+        ],
+        "tone": [
+          "angry",
+          "cold"
+        ],
+        "function": [
+          "challenge",
+          "complain"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "stranger"
+        ]
+      },
+      "example": "I'd like to speak to a manager, please. This is the third time.",
+      "situation": "客服解決唔到、要升級",
+      "avoid": [
+        "對前線員工講要有禮貌，佢哋有權力令你更難搞；呢句係威脅但唔使粗口"
+      ],
+      "note": "美式消費文化核心句式，網上大量 Karen meme；講之前通常已經忍無可忍。",
+      "tags": [
+        "投訴",
+        "客戶",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-038",
+      "phrase": "I want a refund.",
+      "variants": [],
+      "meaning": "我要退錢；美式消費者最直接嘅要求，唔使講到好婉轉。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "client"
+        ],
+        "tone": [
+          "blunt",
+          "angry"
+        ],
+        "function": [
+          "challenge",
+          "complain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "I want a refund. The part doesn't even fit.",
+      "situation": "貨不對辦、服務未完成",
+      "avoid": [
+        "美式服務業對 refund 好敏感，但要講清楚理由；對小型店鋪可以改成 store credit"
+      ],
+      "note": "美式 refund 文化強；退貨期限（return window）通常 30 日。",
+      "tags": [
+        "投訴",
+        "客戶",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-039",
+      "phrase": "That's not what we agreed on.",
+      "variants": [],
+      "meaning": "我哋講好咗唔係咁；美式談判／找數爭執嘅關鍵句。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "client",
+          "craftsman"
+        ],
+        "tone": [
+          "angry",
+          "cold"
+        ],
+        "function": [
+          "complain",
+          "disagree"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "That's not what we agreed on. The number was eight, not ten.",
+      "situation": "師傅加價、供應商改條款",
+      "avoid": [
+        "冇白紙黑字就好難講；講之前先攞返 email 或者 quote"
+      ],
+      "note": "美式合約文化：口頭 agreement 都有法律效力，但舉證靠 email。",
+      "tags": [
+        "投訴",
+        "講價",
+        "職場"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-040",
+      "phrase": "We're running behind schedule.",
+      "variants": [],
+      "meaning": "我哋落後咗進度；美式工程／專案最常用嘅壞消息講法。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "craftsman",
+          "office"
+        ],
+        "tone": [
+          "worried",
+          "blunt"
+        ],
+        "function": [
+          "complain",
+          "warn"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "We're running behind schedule — the tile's back-ordered two weeks.",
+      "situation": "工程延誤、專案延期",
+      "avoid": [
+        "唔好只講 behind schedule，要即刻接新日期同補救方案"
+      ],
+      "note": "美式工地／辦公室通用；back-ordered＝供應商缺貨待補，係常見原因。",
+      "tags": [
+        "裝修",
+        "工地",
+        "職場",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-041",
+      "phrase": "That's my final offer.",
+      "variants": [],
+      "meaning": "呢個係我最後價；美式談判封頂句，但通常仍然可以再傾。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "client",
+          "boss",
+          "craftsman"
+        ],
+        "tone": [
+          "blunt",
+          "cold"
+        ],
+        "function": [
+          "refuse",
+          "challenge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "That's my final offer — twelve five, and I'll throw in the haul-away.",
+      "situation": "講價、談合約",
+      "avoid": [
+        "講完又讓步就冇信用；對長期客戶唔好用"
+      ],
+      "note": "美式談判話術，實際仍有空間；throw in＝附送。",
+      "tags": [
+        "講價",
+        "職場",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-042",
+      "phrase": "Let's meet in the middle.",
+      "variants": [],
+      "meaning": "大家各讓一步；美式講價最常用嘅折衷句。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "client",
+          "craftsman"
+        ],
+        "tone": [
+          "polite",
+          "blunt"
+        ],
+        "function": [
+          "bargain",
+          "agree"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "Let's meet in the middle — nine thousand, cash.",
+      "situation": "價錢差太遠、談判僵持",
+      "avoid": [
+        "一開始就講會蝕底；要先撐住自己個價"
+      ],
+      "note": "美式講價文化（尤其裝修、二手車）核心句；cash 有折扣暗示。",
+      "tags": [
+        "講價",
+        "職場"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-043",
+      "phrase": "We're way over budget.",
+      "variants": [],
+      "meaning": "我哋超支好多；美式專案／裝修最常見嘅爆數。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "client",
+          "boss",
+          "craftsman"
+        ],
+        "tone": [
+          "worried",
+          "complain"
+        ],
+        "function": [
+          "complain",
+          "warn"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "We're way over budget — the plumbing alone ate twenty grand.",
+      "situation": "裝修中途、專案檢討",
+      "avoid": [
+        "唔好只講 over budget，要講超幾多、邊部分超"
+      ],
+      "note": "美式 way over＝超好多，way 係加強詞（同 hella 同級）。",
+      "tags": [
+        "裝修",
+        "講價",
+        "抱怨",
+        "職場"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-044",
+      "phrase": "Money doesn't grow on trees.",
+      "variants": [],
+      "meaning": "錢唔係樹上面摘落嚟；美式父母／老闆最愛嘅省錢箴言。",
+      "categories": {
+        "age": [
+          "kid",
+          "teen"
+        ],
+        "archetype": [
+          "dad",
+          "mum",
+          "boss"
+        ],
+        "tone": [
+          "blunt",
+          "cold"
+        ],
+        "function": [
+          "refuse",
+          "urge"
+        ],
+        "register": "proverb",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "Money doesn't grow on trees — you want it, you work for it.",
+      "situation": "細路要買嘢、員工要求加預算",
+      "avoid": [
+        "對客戶講會極度冒犯；只適合父母對仔女或者老闆對下屬（半開玩笑）"
+      ],
+      "note": "美式 proverb，帶 1950 年代家庭感；今日講通常半諷刺。",
+      "tags": [
+        "家庭",
+        "老派",
+        "拒絕"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-work-045",
+      "phrase": "Quid pro quo.",
+      "variants": [],
+      "meaning": "互換條件、你幫我我幫你；美式商務／法律用嘅拉丁片語，帶交易味。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "boss",
+          "office"
+        ],
+        "tone": [
+          "cold",
+          "blunt"
+        ],
+        "function": [
+          "bargain",
+          "challenge"
+        ],
+        "register": "english-mix",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "Quid pro quo — I get the intro, you get the footage.",
+      "situation": "談合作、交換資源",
+      "avoid": [
+        "用喺私人關係會好冷；講太多會令人覺得你每樣都計數"
+      ],
+      "note": "拉丁文「一事換一事」，美國法律同政治語境極常見；發音 kwid proh-kwoh。",
+      "tags": [
+        "職場",
+        "講價",
+        "黑話"
+      ],
+      "source": "general"
+    }
+  ]
+}

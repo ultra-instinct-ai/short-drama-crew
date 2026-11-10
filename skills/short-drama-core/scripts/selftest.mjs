@@ -15,7 +15,7 @@ import {
   renderSegment, runGates, seedScript, seedStoryboard, seedanceAnchors, slug, timestamp, writeJsonFile,
   wanLegendLine, wanSheetLegendLine, wanShotHeader, segmentReferences, imageReferences, audioReferences, voiceSamplePrompt, voiceSampleSeconds, nonWhitespace,
   speechDirection, cameraPhrase, lightPhrase, idlePhrase, idleSentence, IDLE_MAX_CHARS, eyelinePhrase, eyelineValid, onlyInFramePhrase, overShoulderPhrase, sidesLine, foregroundPhrase, foregroundBand, foregroundForLook, focalOf, LIGHT_DIRECTIONS, identityOf, isEnglish,
-  renderGuideline, renderDialogue, scriptSelfCheck, beatOffsets, turnPoints, parseAge, talkAndAction, normalizeRegister, REGISTERS, REGISTER_ACCENT,
+  renderGuideline, renderDialogue, seedDialogue, applyDialogue, dialogueRefs, DIALOGUE_GUIDES, corpusAge, scriptSelfCheck, beatOffsets, turnPoints, parseAge, talkAndAction, normalizeRegister, REGISTERS, REGISTER_ACCENT,
   cutStart, segmentCharacters, keyScenes, shotTexts, motionSentence, cameraClause, PURPOSE_KINDS, ANGLES, HEIGHTS, NO_SUBTITLES, LIPS_CLOSED,
   audioPrompt, musicOf, cueSeconds, AUDIO_MODEL, AUDIO_MAX_CHARS, AUDIO_MAX_SECONDS, scoreSheet, smpte,
   VIDEO_MODELS, VIDEO_MODES, DEFAULT_PARAMS, videoModel, videoResolutionFor, nearestResolution, segmentPlan, videoReferences,
@@ -508,7 +508,8 @@ const breaks = (gateId, project, episode, needle) => {
   const results = runGates(makeContext(PROJECT, { 1: e }));
   const adv = results.find((r) => r.id === 'dialogue-register');
   ok(adv.advisory && adv.failures.length === 0 && adv.warnings.length > 0, 'advisory findings come back as warnings, not failures');
-  ok(results.filter((r) => !r.advisory && r.stage !== 'storyboard').every((r) => !r.failures.length), 'a register note never fails validate (the storyboard is stale on purpose here)');
+  ok(results.filter((r) => !r.advisory && r.stage !== 'storyboard' && r.id !== 'dialogue-review').every((r) => !r.failures.length), 'a register note never fails validate (the storyboard is stale on purpose here)');
+  ok(results.find((r) => r.id === 'dialogue-review').failures.some((m) => m.includes('differs from the reviewed one')), 'an edited line is no longer reviewed — dialogue-review asks for it again');
   const p2 = clone(PROJECT); p2.params.register = '粤语';
   ok(failures('dialogue-register', p2, E01).some((m) => m.includes('书面中文硬转')), 'a 粤语 drama with written-Chinese lines is noted');
   const p3 = clone(PROJECT); p3.params.register = '古装';
@@ -1710,24 +1711,108 @@ const breaks = (gateId, project, episode, needle) => {
   const script = renderScript(PROJECT, E01);
   ok(script.includes('穿雨衣的男人（') && script.includes('VO'), 'script markdown names speakers and VO');
   ok(script.includes('△（0-3秒）') && script.includes('【爽点标记】') && script.includes('【钩子标记】'), 'script markdown is in the 短剧 episode format with derived time marks');
-  ok(script.includes('## 本集功能') && script.includes('## 本集任务') && script.includes('## 创作自检') && script.includes('16/16'), 'script markdown carries the episode design and a full self-check');
+  ok(script.includes('## 本集功能') && script.includes('## 本集任务') && script.includes('## 创作自检') && script.includes('18/18') && script.includes('对白是否已按语体 guide 逐句校对'), 'script markdown carries the episode design and a full self-check');
   const guide = renderGuideline(PROJECT);
   ok(guide.includes('创作指引') && guide.includes('## 9. 本项目绝对要注意的重点') && !guide.includes('{{'), 'guideline markdown is complete with no placeholders');
   ok(guide.includes(PROJECT.outline.brief.logline), 'guideline carries the logline');
-  const dlg = renderDialogue(PROJECT, E01);
+  const blank = clone(E01); delete blank.dialogueReview;
+  const dlg = renderDialogue(PROJECT, blank);
   eq((dlg.match(/^\| [^|]*：/gm) || []).length, 13, 'dialogue worksheet has one row per line');
   ok(dlg.includes('禁用：其实、我觉得'), 'dialogue worksheet carries the speaker\'s speech rules');
+  ok(dlg.includes('lang-zh-cn.md') && dlg.includes('ref.mjs --lang zh-cn list --age elder'), 'dialogue worksheet points each speaker at their guide and corpus query');
+  const filled = renderDialogue(PROJECT, E01);
+  ok(filled.includes('| 修改幅度 | 轻修 |') && filled.includes('（保留）') && filled.includes('## 自检'), 'a filled review renders as the 对白校对 table');
   const c1 = renderCharacter(PROJECT, 'C01');
   ok(c1.includes('## 人物圣经') && c1.includes('### 过去的关键选择') && c1.includes('## 人物关系网') && c1.includes('### 写作备忘'), 'character markdown has the bible sections');
   const out = renderOutline(PROJECT);
   ok(out.includes('## 创作简报') && out.includes('## 全剧结构') && out.includes('## 分集目录'), 'outline markdown has brief, structure and episode index');
   const check = scriptSelfCheck(PROJECT, E01);
-  eq(check.score, 16, 'fixture episode scores 16/16');
+  eq(check.score, 18, 'fixture episode scores 18/18');
   const segMd = renderSegment(PROJECT, E01, 'E01-02');
   ok(segMd.includes('| 00:02.000 |') && segMd.includes('integrated_multimodal_description'), 'segment markdown has cut table and prompt');
   ok(segMd.includes('### SHOT 1 · establish') && segMd.includes('| 唯一动作 |') && segMd.includes('| 视觉依据 |') && segMd.includes('轴线：'), 'segment markdown has the SHOT blocks, the axis and the sound line');
   ok(renderSegment(PROJECT, E01, 'E01-03').includes('入画（上一镜不在画内）'), 'a person entering a cut is marked as entering');
   assert.throws(() => renderCharacter(PROJECT, 'C99'), /no character/, 'render refuses unknown ids');
+}
+
+// ── dialogue review (w-film-dialogue-editor) ────────────────────────────────
+{
+  passes('dialogue-review', PROJECT, E01);
+  ok(GATES.find((g) => g.id === 'dialogue-review').advisory === false, 'dialogue-review blocks');
+  eq(DIALOGUE_GUIDES['粤语'].lang, 'zh-hk', '粤语 reads the zh-hk guide and corpus');
+  eq(DIALOGUE_GUIDES['古装'].corpus, false, '古装 has a guide but no corpus');
+  eq(corpusAge(24), 'young', 'a 24-year-old queries the young band');
+  eq(corpusAge(61), 'elder', 'a 61-year-old queries the elder band');
+  const none = clone(E01); delete none.dialogueReview;
+  breaks('dialogue-review', PROJECT, none, 'seed <project> dialogue');
+  const pOff = clone(PROJECT); pOff.params.dialogueReview = 'off';
+  passes('dialogue-review', pOff, none);
+  const lvl = clone(E01); lvl.dialogueReview.level = '';
+  breaks('dialogue-review', PROJECT, lvl, 'level');
+  const diag = clone(E01); diag.dialogueReview.diagnosis.subtext = '';
+  breaks('dialogue-review', PROJECT, diag, '潜台词核心');
+  const guide = clone(E01); guide.dialogueReview.guides = [];
+  breaks('dialogue-review', PROJECT, guide, 'lang-zh-cn.md');
+  const yue = clone(PROJECT); yue.characters.find((c) => c.id === 'C02').bible.speech.register = '粤语';
+  breaks('dialogue-review', yue, E01, 'lang-zh-hk.md');
+  const miss = clone(E01); miss.dialogueReview.rows.pop();
+  breaks('dialogue-review', PROJECT, miss, 'no review row');
+  const stale = clone(E01); stale.scenes[1].flow[2].line = '又轮到你值夜班。';
+  breaks('dialogue-review', PROJECT, stale, 'differs from the reviewed one');
+  const noIssue = clone(E01); noIssue.dialogueReview.rows[0].issue = '';
+  breaks('dialogue-review', PROJECT, noIssue, 'issue is empty');
+  const noWhy = clone(E01); noWhy.dialogueReview.rows[0].revised = '帮我收着，明天有人拿。'; noWhy.scenes[0].flow[1].line = '帮我收着，明天有人拿。';
+  breaks('dialogue-review', PROJECT, noWhy, 'without a reason');
+  const mood = clone(E01); mood.dialogueReview.rows[0].note = '自然一点';
+  breaks('dialogue-review', PROJECT, mood, 'a mood, not an action');
+  const emo = clone(E01); emo.dialogueReview.rows[1].note = '生气';
+  breaks('dialogue-review', PROJECT, emo, 'a mood, not an action');
+  const check = clone(E01); check.dialogueReview.selfCheck = check.dialogueReview.selfCheck.slice(0, 2);
+  breaks('dialogue-review', PROJECT, check, '自检清单');
+  const checkNo = clone(E01); checkNo.dialogueReview.selfCheck[0] = { item: '读出声', ok: false, note: '' };
+  breaks('dialogue-review', PROJECT, checkNo, 'failed with no note');
+  const ghost = clone(E01); ghost.dialogueReview.rows.push({ scene: 1, beat: 1, speaker: 'C01', original: 'x', issue: 'x', revised: 'x', reason: '', note: '逼' });
+  breaks('dialogue-review', PROJECT, ghost, 'no longer a line');
+
+  // seed keeps filled rows for unchanged lines and opens only the edited one
+  const edited = clone(E01); edited.scenes[1].flow[2].line = '又轮到你值夜班。';
+  const reseeded = seedDialogue(PROJECT, edited, { skillDir: null });
+  eq(reseeded.rows.length, 13, 're-seed keeps one row per line');
+  eq(reseeded.rows.filter((r) => !r.issue).length, 1, 're-seed reopens only the edited line');
+  eq(reseeded.level, '轻修', 're-seed keeps the level and diagnosis');
+  eq(seedDialogue(PROJECT, edited, { skillDir: null, force: true }).rows.filter((r) => !r.issue).length, 13, '--force resets every row');
+  ok(!('refs' in reseeded), 'the stored review carries no machine paths');
+  const refs = dialogueRefs(PROJECT, E01, { skillDir: '/x' });
+  ok(refs.speakers.every((x) => x.guide === '/x/references/lang-zh-cn.md'), 'every speaker gets the zh-cn guide');
+  ok(refs.speakers.find((x) => x.id === 'C02').query.includes('--age elder'), "the sixty-year-old's corpus query is the elder band");
+  ok(!refs.speakers.some((x) => x.id === 'VO'), 'VO is not a speaker with a guide');
+
+  // apply writes revised lines and deliveries back, then the gate is green again
+  const app = clone(E01); app.dialogueReview.rows[0].revised = '帮我收着，明天有人拿。'; app.dialogueReview.rows[0].reason = '更短，一口气说完'; app.dialogueReview.rows[0].delivery = '压着嗓子，塞完就走';
+  breaks('dialogue-review', PROJECT, app, 'differs from the reviewed one');
+  eq(applyDialogue(app), 2, 'apply writes the line and the delivery');
+  eq(app.scenes[0].flow[1].line, '帮我收着，明天有人拿。', 'the revised line is in the script');
+  passes('dialogue-review', PROJECT, app);
+  const bad = clone(E01); bad.dialogueReview.rows[0].revised = '';
+  assert.throws(() => applyDialogue(bad), /revised is empty/, 'apply refuses an empty line'); passed += 1;
+  ok(scriptSelfCheck(PROJECT, none).rows.some((r) => r[0].includes('逐句校对') && r[1] === false), 'the 创作自检 says 否 without a review');
+
+  // seed / apply through the CLI
+  const dir = mkdtempSync(join(tmpdir(), 'sd-dlg-'));
+  try {
+    writeFileSync(join(dir, 'project.json'), JSON.stringify(PROJECT));
+    spawnSync('mkdir', ['-p', join(dir, 'episodes')]);
+    writeFileSync(join(dir, 'episodes/E01.json'), JSON.stringify(none));
+    const engine = join(here, 'short-drama.mjs');
+    const r1 = spawnSync(process.execPath, [engine, 'seed', dir, 'dialogue', '--ep', '1'], { encoding: 'utf8' });
+    eq(r1.status, 0, `seed dialogue runs: ${r1.stderr}`);
+    ok(r1.stdout.includes('13 lines (13 to review)') && r1.stdout.includes('lang-zh-cn.md'), 'seed dialogue prints the guide per speaker');
+    const r2 = spawnSync(process.execPath, [engine, 'apply', dir, 'dialogue', '--ep', '1'], { encoding: 'utf8' });
+    eq(r2.status, 0, `apply dialogue runs: ${r2.stderr}`);
+    ok(r2.stdout.includes('0 change(s)'), 'apply on an untouched review changes nothing');
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
 }
 
 // ── manifest & bind ─────────────────────────────────────────────────────────
@@ -2476,8 +2561,8 @@ const breaks = (gateId, project, episode, needle) => {
 
 // ── gate inventory (crew engine) ────────────────────────────────────────────
 {
-  eq(GATES.length, 70, 'gate count');
-  eq(GATES.filter((g) => !g.advisory).length, 64, 'hard gate count');
+  eq(GATES.length, 71, 'gate count');
+  eq(GATES.filter((g) => !g.advisory).length, 65, 'hard gate count');
   eq(GATES.filter((g) => g.advisory).length, 6, 'advisory gate count');
   ok(!GATES.find((g) => g.id === 'boundary-contrast').advisory, 'boundary-contrast is hard');
   ok(GATES.find((g) => g.id === 'boundary-contrast-episode').advisory, 'boundary-contrast-episode is advisory');
@@ -2599,8 +2684,8 @@ const breaks = (gateId, project, episode, needle) => {
   const results = runGates(makeContext(PROJECT, { 1: E01 }));
   const rep = formatGates(results);
   eq(Object.keys(rep).sort().join(','), 'advisory,failed,hard,lines,notes,summary,text', 'formatGates shape');
-  eq(rep.summary, '✓ 64 gate(s) passed, 6 advisory (1 note)', 'fixture summary');
-  eq(rep.failed, 0, 'nothing failed'); eq(rep.hard, 64, 'hard count'); eq(rep.advisory, 6, 'advisory count');
+  eq(rep.summary, '✓ 65 gate(s) passed, 6 advisory (1 note)', 'fixture summary');
+  eq(rep.failed, 0, 'nothing failed'); eq(rep.hard, 65, 'hard count'); eq(rep.advisory, 6, 'advisory count');
   // The fixture now raises one advisory (E01-03 carries the 爽点 and is not cut as faceslap),
   // exactly as it does in the wji-cli copy — advisory lines print, failures still must not.
   eq(rep.lines.filter((l) => l.includes('✗')).length, 0, 'a green run prints no failed gates');

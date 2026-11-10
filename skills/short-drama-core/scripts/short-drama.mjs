@@ -24,6 +24,8 @@
 //   validate <project> [--stage outline|characters|art|script|storyboard] [--ep 1-3]
 //   checkup  <project> [--stage …] [--ep …]            every gate with ✓/✗, exit 0
 //   seed     <project> script --ep N [--force]        episodes/E0N.json skeleton from the outline
+//   seed     <project> dialogue --ep N [--force]      对白校对 record from the current lines (filled rows for unchanged lines are kept)
+//   apply    <project> dialogue --ep N               write the reviewed lines (and deliveries) back into the script
 //   seed     <project> storyboard --ep N [--force]    beat worksheet, visual-plan worksheet + empty segments from the script
 //   render   <project> outline | guideline | character C01 | scene S01 | prop P01 | script --ep N | dialogue --ep N | segment E01-01
 //   prompt   <project> segment E01-01                 derived video-prompt skeleton + keyframe reference plan
@@ -42,6 +44,7 @@
 import { copyFileSync, existsSync, mkdirSync, readFileSync, realpathSync, writeFileSync } from 'node:fs';
 import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { homedir } from 'node:os';
 
 // ── constants ───────────────────────────────────────────────────────────────
 
@@ -104,6 +107,9 @@ export const DEFAULT_PARAMS = Object.freeze({
   maxConsecutiveLines: 3,
   minActionRatio: 0.35,
   maxNameCallsPerScene: 2,
+  // The 对白校对 pass after the script (`seed dialogue` → fill → `apply dialogue`): `required` blocks the
+  // storyboard until every line is reviewed against the 语体 guide; `off` skips it.
+  dialogueReview: 'required',
   maxLineWords: 20,
   // Shot language.
   speechLeadSeconds: 0.5,
@@ -255,6 +261,42 @@ export const REGISTER_ACCENT = {
 export function normalizeRegister(value) {
   const v = String(value || '').trim();
   return REGISTER_ALIASES[v] || v;
+}
+/**
+ * 语体 → the user's `w-film-dialogue-editor` skill: which language guide to read and which corpus
+ * `scripts/ref.mjs` can query. A register without a corpus still has its guide.
+ */
+export const DIALOGUE_GUIDES = {
+  '粤语': { lang: 'zh-hk', guide: 'lang-zh-hk.md', corpus: true },
+  '大陆普通话': { lang: 'zh-cn', guide: 'lang-zh-cn.md', corpus: true },
+  '台湾国语': { lang: 'zh-tw', guide: 'lang-zh-tw.md', corpus: true },
+  '港式普通话': { lang: 'zh-hk-mandarin', guide: 'lang-zh-hk-mandarin.md', corpus: false },
+  '古装': { lang: 'zh-period', guide: 'lang-zh-period.md', corpus: false },
+  '年代': { lang: 'zh-period', guide: 'lang-zh-period.md', corpus: false },
+  '英文美式': { lang: 'en', guide: 'lang-en.md', corpus: true },
+  '英文英式': { lang: 'en', guide: 'lang-en.md', corpus: true },
+};
+export const DIALOGUE_SKILL = 'w-film-dialogue-editor';
+export const DIALOGUE_LEVELS = ['轻修', '中修', '重修'];
+/** The scene-level diagnosis the review must answer before any line is touched. */
+export const DIALOGUE_DIAGNOSIS = { goal: '场面目标', conflict: '主要冲突', subtext: '潜台词核心', voice: '角色声音问题', rhythm: '节奏问题' };
+/** Director notes that are not notes. */
+export const VAGUE_NOTES = ['自然一点', '自然一點', '自然些', '激动一点', '激動一點', '伤心一点', '傷心一點', '大声一点', '大聲一點', 'more natural', 'be natural'];
+/** The corpus's age bands (ref.mjs ENUMS.age). */
+export function corpusAge(age) {
+  if (age == null) return null;
+  if (age <= 12) return 'kid';
+  if (age <= 19) return 'teen';
+  if (age <= 29) return 'young';
+  if (age <= 44) return 'mid';
+  if (age <= 59) return 'senior';
+  return 'elder';
+}
+/** Where the dialogue skill is: beside this skill (npm package, crew install), else the user's Claude skills. */
+export function dialogueSkillDir() {
+  const here = dirname(fileURLToPath(import.meta.url));
+  const candidates = [join(here, '..', '..', DIALOGUE_SKILL), join(homedir(), '.claude', 'skills', DIALOGUE_SKILL)];
+  return candidates.find((d) => existsSync(join(d, 'SKILL.md'))) || null;
 }
 /** 本集功能 — what an episode is for in the run of the drama. */
 export const EPISODE_FUNCTIONS = ['开局钩子', '冲突升级', '身份揭露', '情感推进', '大反转', '清算收束'];
@@ -3215,6 +3257,49 @@ export const GATES = [
     }
     return out;
   }, { advisory: true }),
+  gate('dialogue-review', 'script', '对白校对: every line reviewed against its 语体 guide (w-film-dialogue-editor) — diagnosis, a row per line, the revision applied, playable director notes, the guide’s 自检', (ctx) => {
+    const { params } = ctx;
+    if (params.dialogueReview === 'off') return [];
+    const out = [];
+    for (const [ep, e] of ctx.episodes) {
+      const E = `E${pad2(ep)}`;
+      const lines = lineBeats(e);
+      if (!lines.length) continue;
+      const rv = e.dialogueReview;
+      if (!isObject(rv)) { out.push(`${E}: no dialogueReview — run \`seed <project> dialogue --ep ${ep}\`, read the 语体 guide, fill every row, then \`apply <project> dialogue --ep ${ep}\``); continue; }
+      if (!DIALOGUE_LEVELS.includes(rv.level)) out.push(`${E}: dialogueReview.level must be ${DIALOGUE_LEVELS.join(' / ')}`);
+      for (const [k, label] of Object.entries(DIALOGUE_DIAGNOSIS)) if (!String(rv.diagnosis?.[k] || '').trim()) out.push(`${E}: dialogueReview.diagnosis.${k} (${label}) is empty — diagnose the scene before touching a line`);
+      const want = new Set(dialogueRefs(ctx.project, e, { skillDir: null }).speakers.map((x) => DIALOGUE_GUIDES[x.register]?.guide).filter(Boolean));
+      const read = new Set(asList(rv.guides).map((g) => basename(String(g))));
+      for (const g of want) if (!read.has(g)) out.push(`${E}: dialogueReview.guides is missing ${g} — a speaker in this episode speaks that 语体`);
+      const rows = asList(rv.rows);
+      const byPos = new Map();
+      for (const r of rows) {
+        const key = `${r.scene}:${r.beat}`;
+        if (byPos.has(key)) out.push(`${E} scene ${r.scene} beat ${r.beat}: reviewed twice`);
+        byPos.set(key, r);
+      }
+      const isLine = new Set(lines.map((l) => `${l.scene}:${l.beat}`));
+      for (const r of rows) if (!isLine.has(`${r.scene}:${r.beat}`)) out.push(`${E} scene ${r.scene} beat ${r.beat}: a review row for a beat that is no longer a line — re-seed the review`);
+      for (const l of lines) {
+        const where = `${E} scene ${l.scene} beat ${l.beat}`;
+        const r = byPos.get(`${l.scene}:${l.beat}`);
+        if (!r) { out.push(`${where}: "${truncateLine(l.line)}" has no review row — re-seed the review (filled rows are kept)`); continue; }
+        if (r.speaker !== l.speaker) out.push(`${where}: the row is for ${r.speaker}, the line is ${l.speaker}'s — re-seed the review`);
+        if (String(r.revised ?? '') !== l.line) { out.push(`${where}: the script line differs from the reviewed one ("${truncateLine(String(r.revised ?? ''))}") — \`apply <project> dialogue --ep ${ep}\`, or re-seed after an edit so the new line is reviewed`); continue; }
+        if (!String(r.original || '').trim()) out.push(`${where}: original is empty`);
+        if (!String(r.issue || '').trim()) out.push(`${where}: issue is empty — name the problem, or 无 when the line stands`);
+        if (r.revised !== r.original && !String(r.reason || '').trim()) out.push(`${where}: changed without a reason`);
+        const note = String(r.note || '').trim();
+        if (!note) out.push(`${where}: no 导演／演员提示 — a playable action (逼 / 哄 / 避 / 试探 / 停半拍…)`);
+        else if (EMOTION_ONLY.includes(note) || VAGUE_NOTES.some((w) => note.toLowerCase().includes(w.toLowerCase()))) out.push(`${where}: note "${note}" is a mood, not an action — say what the line does to the other person`);
+      }
+      const checks = asList(rv.selfCheck);
+      if (checks.length < 3) out.push(`${E}: dialogueReview.selfCheck needs the guide's 自检清单 (at least 3 items), each { item, ok, note }`);
+      for (const c of checks) if (!c.ok && !String(c.note || '').trim()) out.push(`${E}: 自检 "${truncateLine(String(c.item || ''))}" failed with no note — fix the lines or say why it stands`);
+    }
+    return out;
+  }),
 
   // ── storyboard (per episode) ──────────────────────────────────────────
   gate('segments', 'storyboard', 'segments: ids sequential, one scene each, cuts claim every beat once in order', (ctx) => {
@@ -4545,7 +4630,7 @@ export function seedScript(project, ep) {
     const sp = c?.bible?.speech || {};
     if (c) speech[id] = { name: displayName(project, id, ep), rhythm: sp.rhythm || '', silence: sp.silence || '', catchphrase: sp.catchphrase || '', forbiddenWords: sp.forbiddenWords || [], register: sp.register || '', voice: c.voice?.pace || '' };
   }
-  return {
+  const seeded = {
     ep: Number(ep),
     targetSeconds: Math.round(Number(params.minutesPerEpisode) * 60),
     // The episode design from the outline's 分集目录 — gated against it in the script stage.
@@ -4568,6 +4653,7 @@ export function seedScript(project, ep) {
       guidelinePriorities: asList(project.outline?.guideline?.priorities),
       guidelineForbidden: asList(project.outline?.guideline?.forbidden),
       speech,
+      dialogue: null,
       rhythm: `hook image by ${params.hookSeconds} s · a turn (new information / obstacle / counter / choice, \`turn: true\`) at least every ${params.turnSeconds} s · 爽点 (satisfactionBeat) on a visible action after the hook and before the cliff · no more than ${params.maxConsecutiveLines} lines in a row`,
       sceneIds: outlineEp.sceneIds || [],
       characterIds: outlineEp.characterIds || [],
@@ -4581,6 +4667,10 @@ export function seedScript(project, ep) {
     storyboard: { segments: [] },
     wji: { screenplayDatasetId: '', canvasId: '', shotFolderId: '', displayNodes: {} },
   };
+  // The dialogue skill for everyone who speaks here — read while writing, not only in the review.
+  const pseudo = { ep: Number(ep), scenes: [{ characters: outlineEp.characterIds || [], flow: [] }] };
+  seeded.seedNote.dialogue = dialogueRefs(project, pseudo);
+  return seeded;
 }
 
 export function seedStoryboard(project, episode) {
@@ -5166,31 +5256,144 @@ export function scriptSelfCheck(project, episode) {
     ['结尾是否有明确【钩子标记】？', !!String(episode.cliff || '').trim() && !!episode.hookType, `${episode.hookType || ''}：${episode.cliff || ''}`],
     ['对白是否符合「谈话 + 行动」？', ta.longestLineRun <= params.maxConsecutiveLines && (ta.lines < 5 || ta.ratio >= params.minActionRatio), `${ta.actions} 动作 / ${ta.lines} 台词，最长连续 ${ta.longestLineRun} 句`],
     ['人物行为是否可拍摄，没有小说式心理描写？', !novel, novel ? '动作里有心理词' : ''],
+    ...(params.dialogueReview === 'off' ? [] : [['对白是否已按语体 guide 逐句校对？', dialogueReviewDone(episode), dialogueReviewNote(episode)]]),
   ];
   return { rows, score: rows.filter((r) => r[1]).length * 2, max: rows.length * 2 };
 }
 
-/** The 对白校对 worksheet: one row per line, 原句 filled, the rest for the polish pass. */
+/** True when every current line has a filled, applied review row. */
+export function dialogueReviewDone(episode) {
+  const rv = episode.dialogueReview;
+  if (!isObject(rv) || !DIALOGUE_LEVELS.includes(rv.level)) return false;
+  const byPos = new Map(asList(rv.rows).map((r) => [`${r.scene}:${r.beat}`, r]));
+  return lineBeats(episode).every((l) => { const r = byPos.get(`${l.scene}:${l.beat}`); return r && r.revised === l.line && String(r.issue || '').trim() && String(r.note || '').trim(); });
+}
+function dialogueReviewNote(episode) {
+  const rv = episode.dialogueReview;
+  if (!isObject(rv)) return '未校对';
+  const rows = asList(rv.rows);
+  const changed = rows.filter((r) => r.revised !== r.original).length;
+  return `${rv.level || '?'} · ${asList(rv.guides).join('、')} · 改 ${changed} / ${rows.length} 句`;
+}
+
+/** Every line beat of an episode, in order, with its scene / beat position (1-based). */
+export function lineBeats(episode) {
+  const out = [];
+  (episode.scenes || []).forEach((sc, i) => (sc.flow || []).forEach((b, k) => {
+    if (b.line !== undefined) out.push({ scene: i + 1, beat: k + 1, speaker: b.speaker, line: String(b.line), delivery: b.delivery || '' });
+  }));
+  return out;
+}
+
+/**
+ * The dialogue skill per speaker of this episode: the 语体 (their bible's override, else the drama's),
+ * the language guide to read, and — where a corpus exists — the `ref.mjs` query that pulls real
+ * phrasing for someone of their age, so lines are drawn from the corpus instead of invented.
+ */
+export function dialogueRefs(project, episode, opts = {}) {
+  const params = paramsOf(project);
+  const dir = opts.skillDir !== undefined ? opts.skillDir : dialogueSkillDir();
+  const root = dir || `<skills>/${DIALOGUE_SKILL}`;
+  const ids = [];
+  for (const l of lineBeats(episode)) if (l.speaker !== 'VO' && !ids.includes(l.speaker)) ids.push(l.speaker);
+  if (!ids.length) for (const sc of episode.scenes || []) for (const id of sc.characters || []) if (!ids.includes(id)) ids.push(id);
+  const speakers = ids.map((id) => {
+    const ch = characterById(project, id);
+    const register = normalizeRegister(ch?.bible?.speech?.register || params.register);
+    const g = DIALOGUE_GUIDES[register];
+    const age = corpusAge(parseAge(ch?.profile?.ageRange));
+    const query = g?.corpus ? `node ${root}/scripts/ref.mjs --lang ${g.lang} list${age ? ` --age ${age}` : ''} --limit 30` : '';
+    return { id, name: displayName(project, id, episode.ep), register, guide: g ? `${root}/references/${g.guide}` : '', lang: g?.lang || '', age: age || '', query };
+  });
+  const guides = [...new Set(speakers.map((x) => x.guide).filter(Boolean))];
+  return {
+    skill: DIALOGUE_SKILL,
+    installed: !!dir,
+    framework: `${root}/references/dialogue_revision_framework.md`,
+    guides,
+    speakers,
+    rule: 'read the guide of every 语体 in this episode before writing a line; pull phrasing from each speaker\'s corpus query (`search <字>` for a word); never invent slang or particles; finish with the guide\'s 自检清单',
+  };
+}
+
+/**
+ * The 对白校对 record (`episode.dialogueReview`), seeded from the current lines. Rows already filled
+ * for a line that has not changed since are kept, so a re-seed after editing the script only asks
+ * for the lines that moved.
+ */
+export function seedDialogue(project, episode, opts = {}) {
+  const refs = dialogueRefs(project, episode, opts);
+  const prev = opts.force ? null : (isObject(episode.dialogueReview) ? episode.dialogueReview : null);
+  const kept = new Map();
+  for (const r of asList(prev?.rows)) kept.set(`${r.scene}:${r.beat}:${r.speaker}:${r.revised}`, r);
+  const rows = lineBeats(episode).map((l) => kept.get(`${l.scene}:${l.beat}:${l.speaker}:${l.line}`) || {
+    scene: l.scene, beat: l.beat, speaker: l.speaker, original: l.line, issue: '', revised: l.line, reason: '', note: '',
+  });
+  const diagnosis = {};
+  for (const k of Object.keys(DIALOGUE_DIAGNOSIS)) diagnosis[k] = prev?.diagnosis?.[k] || '';
+  return {
+    level: prev?.level || '',
+    guides: refs.guides.map((g) => basename(g)),
+    diagnosis,
+    rows,
+    selfCheck: asList(prev?.selfCheck),
+  };
+}
+
+/** Write each row's `revised` (and `delivery`, when the row sets one) back into the script's flow. */
+export function applyDialogue(episode) {
+  const review = episode.dialogueReview;
+  if (!isObject(review)) throw new Error('no dialogueReview — run `seed <project> dialogue --ep N` first');
+  let changed = 0;
+  for (const r of asList(review.rows)) {
+    const b = episode.scenes?.[Number(r.scene) - 1]?.flow?.[Number(r.beat) - 1];
+    if (!b || b.line === undefined) throw new Error(`row scene ${r.scene} beat ${r.beat} is not a line — re-seed the review`);
+    if (b.speaker !== r.speaker) throw new Error(`row scene ${r.scene} beat ${r.beat}: speaker ${r.speaker} but the script has ${b.speaker} — re-seed the review`);
+    const revised = String(r.revised ?? '').trim();
+    if (!revised) throw new Error(`row scene ${r.scene} beat ${r.beat}: revised is empty — a line to cut is removed from the flow, then the review re-seeded`);
+    if (b.line !== revised) { b.line = revised; changed += 1; }
+    if (r.delivery !== undefined && String(r.delivery).trim() && b.delivery !== r.delivery) { b.delivery = r.delivery; changed += 1; }
+  }
+  return changed;
+}
+
+/** The 对白校对 sheet: the filled review when there is one, otherwise the blank worksheet. */
 export function renderDialogue(project, episode) {
   const params = paramsOf(project);
+  const review = isObject(episode.dialogueReview) ? episode.dialogueReview : null;
+  const refs = dialogueRefs(project, episode);
+  const d = review?.diagnosis || {};
   const lines = [`# ${project.title} · 第 ${episode.ep} 集对白校对`, '', mdTable(['项目', '判断'], [
-    ['语体', params.register || ''], ['场面目标', ''], ['主要冲突', ''], ['潜台词核心', ''], ['角色声音问题', ''], ['节奏问题', ''], ['建议修改幅度', '轻修／中修／重修'],
+    ['语体', params.register || ''],
+    ...Object.entries(DIALOGUE_DIAGNOSIS).map(([k, label]) => [label, d[k] || '']),
+    ['修改幅度', review?.level || '轻修／中修／重修'],
   ]), ''];
+  if (!review) {
+    lines.push('## 语体 guide 与语料库', '', `技能 \`${refs.skill}\`${refs.installed ? '' : '（未安装 — 把它放在本技能旁或 ~/.claude/skills）'}；先读 \`${refs.framework}\`。`, '');
+    lines.push(mdTable(['角色', '语体', 'guide', '语料库查询'], refs.speakers.map((x) => [x.name, x.register, x.guide ? `\`${x.guide}\`` : '—', x.query ? `\`${x.query}\`` : '（此语体无语料库，只按 guide）'])), '');
+  }
+  const byPos = new Map(asList(review?.rows).map((r) => [`${r.scene}:${r.beat}`, r]));
   (episode.scenes || []).forEach((sc, i) => {
     const scene = sceneById(project, sc.sceneId);
     lines.push(`## ${i + 1}. ${scene?.name || sc.sceneId}`, '');
     const rows = [];
-    (sc.flow || []).forEach((b) => {
+    (sc.flow || []).forEach((b, k) => {
       if (b.line === undefined) return;
       const ch = characterById(project, b.speaker);
       const sp = ch?.bible?.speech || {};
       const who = b.speaker === 'VO' ? 'VO' : displayName(project, b.speaker, episode.ep);
-      const hint = [sp.rhythm, sp.silence ? `沉默：${sp.silence}` : '', (sp.forbiddenWords || []).length ? `禁用：${sp.forbiddenWords.join('、')}` : ''].filter(Boolean).join('；');
-      rows.push([`${who}${b.delivery ? `（${b.delivery}）` : ''}：${b.line}`, '', '', '', hint]);
+      const r = byPos.get(`${i + 1}:${k + 1}`);
+      if (r) {
+        rows.push([`${who}${b.delivery ? `（${b.delivery}）` : ''}：${r.original}`, r.issue || '', r.revised === r.original ? '（保留）' : r.revised, r.reason || '', r.note || '']);
+      } else {
+        const hint = [sp.rhythm, sp.silence ? `沉默：${sp.silence}` : '', (sp.forbiddenWords || []).length ? `禁用：${sp.forbiddenWords.join('、')}` : ''].filter(Boolean).join('；');
+        rows.push([`${who}${b.delivery ? `（${b.delivery}）` : ''}：${b.line}`, '', '', '', hint]);
+      }
     });
     lines.push(mdTable(['原句', '问题', '修改句', '修改理由', '导演／演员提示'], rows), '');
   });
-  lines.push('> 每句检查：有没有戏剧功能？遮住名字还认得出是谁在说？真正想说的有没有藏起来？熟人有没有互相解释已知的事？导演提示用可演动词（逼、哄、避、试探），不用情绪形容词。', '');
+  if (asList(review?.selfCheck).length) lines.push('## 自检', '', mdTable(['检查项', '结论', '说明'], asList(review.selfCheck).map((c) => [c.item || '', c.ok ? '是' : '否', c.note || ''])), '');
+  if (!review) lines.push('> 每句检查：有没有戏剧功能？遮住名字还认得出是谁在说？真正想说的有没有藏起来？熟人有没有互相解释已知的事？导演提示用可演动词（逼、哄、避、试探），不用情绪形容词。', '');
   return lines.join('\n');
 }
 
@@ -5707,9 +5910,23 @@ function main(argv) {
   if (cmd === 'seed') {
     const what = pos[1];
     const ep = Number(flag(rest, '--ep'));
-    if (!['script', 'storyboard'].includes(what) || !ep) throw new Error('usage: seed <project> script|storyboard --ep N [--force]');
+    if (!['script', 'storyboard', 'dialogue'].includes(what) || !ep) throw new Error('usage: seed <project> script|dialogue|storyboard --ep N [--force]');
     const { paths, project, episodes } = loadProject(input);
     const file = join(paths.episodes, `E${pad2(ep)}.json`);
+    if (what === 'dialogue') {
+      const episode = episodes[ep];
+      if (!episode) throw new Error(`${file} does not exist — seed and write the script first`);
+      if (!lineBeats(episode).length) throw new Error(`${file} has no lines to review`);
+      episode.dialogueReview = seedDialogue(project, episode, { force: Boolean(flag(rest, '--force')) });
+      writeJsonFile(file, episode);
+      const rv = episode.dialogueReview;
+      const refs = dialogueRefs(project, episode);
+      const open = rv.rows.filter((r) => !String(r.issue || '').trim()).length;
+      console.log(`✓ ${file} · dialogueReview: ${rv.rows.length} lines (${open} to review) · read ${refs.framework}`);
+      for (const x of refs.speakers) console.log(`  ${x.name} · ${x.register} · ${x.guide || '(no guide)'}${x.query ? `\n    ${x.query}` : ''}`);
+      if (!refs.installed) console.log(`  ! ${DIALOGUE_SKILL} is not installed beside this skill or in ~/.claude/skills`);
+      return 0;
+    }
     if (what === 'script') {
       if (existsSync(file) && !flag(rest, '--force')) throw new Error(`${file} exists (pass --force to overwrite)`);
       const seeded = seedScript(project, ep);
@@ -5723,6 +5940,20 @@ function main(argv) {
       writeJsonFile(file, seedStoryboard(project, episode));
     }
     console.log(`✓ ${file}`);
+    return 0;
+  }
+
+  if (cmd === 'apply') {
+    const what = pos[1];
+    const ep = Number(flag(rest, '--ep'));
+    if (what !== 'dialogue' || !ep) throw new Error('usage: apply <project> dialogue --ep N');
+    const { paths, episodes } = loadProject(input);
+    const file = join(paths.episodes, `E${pad2(ep)}.json`);
+    const episode = episodes[ep];
+    if (!episode) throw new Error(`${file} does not exist`);
+    const changed = applyDialogue(episode);
+    writeJsonFile(file, episode);
+    console.log(`✓ ${file} · ${changed} change(s) written into the script — re-run validate --stage script --ep ${ep}`);
     return 0;
   }
 

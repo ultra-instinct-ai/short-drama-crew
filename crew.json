@@ -17,7 +17,7 @@
     "screenwriter": {
       "name": "Screenwriter",
       "prompt": "agents/screenwriter.md",
-      "skills": ["short-drama-outline", "short-drama-characters", "short-drama-script", "short-drama-core"],
+      "skills": ["short-drama-outline", "short-drama-characters", "short-drama-script", "short-drama-core", "w-film-dialogue-editor"],
       "capabilities": { "read": true, "write": true, "exec": "engine", "network": false, "spend": false, "spawn": false },
       "delegatesTo": [],
       "channels": ["short-drama-crew"]
@@ -73,7 +73,7 @@
     "proofreader": {
       "name": "Proofreader",
       "prompt": "agents/proofreader.md",
-      "skills": ["short-drama-core", "short-drama-script", "short-drama-storyboard", "short-drama-sound"],
+      "skills": ["short-drama-core", "short-drama-script", "short-drama-storyboard", "short-drama-sound", "w-film-dialogue-editor"],
       "capabilities": { "read": true, "write": false, "exec": "readonly", "network": false, "spend": false, "spawn": false },
       "delegatesTo": [],
       "channels": ["short-drama-crew", "audio-desk", "marketing-desk"]

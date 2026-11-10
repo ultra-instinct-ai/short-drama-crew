@@ -1,0 +1,3263 @@
+{
+  "lang": "zh-hk",
+  "entries": [
+    {
+      "id": "hk-genz-001",
+      "phrase": "走堂",
+      "variants": [
+        "走咗佢",
+        "走兩堂"
+      ],
+      "meaning": "唔去上堂，曠課",
+      "literal": "走出課室",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "blunt",
+          "sassy"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "下晝嗰堂走咗佢啦。",
+      "situation": "同學之間夾定唔去上堂",
+      "avoid": [
+        "喺老師面前講等於自首",
+        "同家長講「走堂」一定反面"
+      ],
+      "note": "大學最常講，中學生都明；2026 仍然通用，唔算老套。",
+      "tags": [
+        "後生",
+        "學生",
+        "直球",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-003",
+      "phrase": "抄功課",
+      "variants": [
+        "借功課"
+      ],
+      "meaning": "照抄同學嘅功課",
+      "categories": {
+        "age": [
+          "teen"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "sassy",
+          "blunt"
+        ],
+        "function": [
+          "tease"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "你抄功課抄到連我個錯字都抄埋。",
+      "situation": "小息互相篤爆抄功課",
+      "avoid": [
+        "同老師講就係告狀",
+        "對唔熟嘅同學講會得罪人"
+      ],
+      "note": "中學最常講，小學都明；大學多數講「抄source」。",
+      "tags": [
+        "學校",
+        "後生",
+        "學生",
+        "踩",
+        "直球",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-004",
+      "phrase": "傾project",
+      "variants": [
+        "傾group project"
+      ],
+      "meaning": "同組員開會討論小組習作",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "english-mix",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "放學留低傾project，唔好又話唔得閒。",
+      "situation": "約組員開會",
+      "avoid": [
+        "同老細講「傾project」會似扮學生"
+      ],
+      "note": "「project」唔會譯做「項目」；中學、大學、office 都講。",
+      "tags": [
+        "後生",
+        "學生",
+        "直球",
+        "中英夾雜"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-005",
+      "phrase": "上莊",
+      "variants": [
+        "莊員",
+        "落莊"
+      ],
+      "meaning": "做大學學會嘅幹事",
+      "literal": "上「莊」（莊＝內閣）",
+      "categories": {
+        "age": [
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "proud",
+          "helpless"
+        ],
+        "function": [
+          "boast"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "我上莊之後，成個sem都冇得瞓。",
+      "situation": "大學開學招莊，或者講自己課外活動",
+      "avoid": [
+        "對唔係大學生嘅人講會一頭霧水",
+        "同家人講會即刻被問幾時畢業"
+      ],
+      "note": "大學專用語，2010 年代已有；2026 仲用，「莊員」係幹事，「落莊」係卸任。",
+      "tags": [
+        "學校",
+        "後生",
+        "學生",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-006",
+      "phrase": "freeride",
+      "variants": [
+        "free rider"
+      ],
+      "meaning": "小組組員唔做嘢，照樣攞分",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "complain"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "english-mix",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "組有個freeride，deadline先現身。",
+      "situation": "分組報告做到爆，有人躺平",
+      "avoid": [
+        "當住本人講等於宣戰"
+      ],
+      "note": "2010 年代大學已用，2026 仲用；比「搭便車」口語好多。",
+      "tags": [
+        "公司",
+        "後生",
+        "學生",
+        "抱怨",
+        "中英夾雜"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-007",
+      "phrase": "趕deadline",
+      "variants": [
+        "趕死線"
+      ],
+      "meaning": "死線前死衝",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "helpless",
+          "complain"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "english-mix",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "趕deadline趕到四點，仲未寫完。",
+      "situation": "交報告或者交件前",
+      "avoid": [
+        "同客講會顯得安排失當"
+      ],
+      "note": "「死線」都有講，但後生一輩多數直接講 deadline。",
+      "tags": [
+        "公司",
+        "後生",
+        "學生",
+        "抱怨",
+        "中英夾雜"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-008",
+      "phrase": "小息先講",
+      "meaning": "而家唔方便講，留返小息",
+      "categories": {
+        "age": [
+          "teen"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "cold"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "小息先講，阿sir望住我哋。",
+      "situation": "上堂想同隔籬位講嘢",
+      "avoid": [
+        "同大人講會似耍太極"
+      ],
+      "note": "中學限定；大學冇小息，會講「轉頭講」。",
+      "tags": [
+        "學校",
+        "後生",
+        "學生",
+        "拒絕",
+        "冷面"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-009",
+      "phrase": "收埋部電話",
+      "meaning": "叫對方即刻收手機",
+      "categories": {
+        "age": [
+          "teen"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "worried",
+          "blunt"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "收埋部電話，miss行緊過嚟。",
+      "situation": "上堂偷玩手機，有人把風",
+      "avoid": [
+        "對長輩講會似命令"
+      ],
+      "note": "中學課室常用；大學講會變笑話。",
+      "tags": [
+        "後生",
+        "學生",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-011",
+      "phrase": "放飛機",
+      "variants": [
+        "甩底"
+      ],
+      "meaning": "約好咗唔出現",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "slacker"
+        ],
+        "tone": [
+          "angry",
+          "complain"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "conflict"
+        ]
+      },
+      "example": "約咗三次，三次都放飛機。",
+      "situation": "朋友約咗唔到又唔講",
+      "avoid": [
+        "對長輩用會似指責"
+      ],
+      "note": "香港獨有講法；「甩底」同義但更短，兩者 2026 都仲用。",
+      "tags": [
+        "後生",
+        "學生",
+        "抱怨",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-012",
+      "phrase": "偷食",
+      "meaning": "上堂偷偷食嘢；亦指偷偷同人搞關係",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "sassy",
+          "funny"
+        ],
+        "function": [
+          "joke"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "上堂偷食薯片，個袋響到全班都知。",
+      "situation": "上堂偷食出事",
+      "avoid": [
+        "講感情出軌都用「偷食」，聽落好市井"
+      ],
+      "note": "校園義同感情義都通，靠上下文分辨。",
+      "tags": [
+        "學校",
+        "後生",
+        "學生",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-013",
+      "phrase": "吹水",
+      "variants": [
+        "吹水group"
+      ],
+      "meaning": "冇目的咁傾閒偈",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "slacker",
+          "office"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "放學去邊吹水？",
+      "situation": "約朋友hea時間",
+      "avoid": [
+        "同客開會講「吹水」會變唔專業"
+      ],
+      "note": "1980、90 年代已有，2026 仲用，完全冇老套；正式場合會講「交流」。",
+      "tags": [
+        "後生",
+        "學生",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-014",
+      "phrase": "食花生",
+      "variants": [
+        "食住花生等睇戲"
+      ],
+      "meaning": "睇人嘈交、睇熱鬧，自己唔插手",
+      "literal": "食花生（睇戲食花生）",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "slacker",
+          "office"
+        ],
+        "tone": [
+          "sassy",
+          "gossip"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "你哋鬧緊？我食花生。",
+      "situation": "群組有人開火",
+      "avoid": [
+        "當事人面前講等於挑機"
+      ],
+      "note": "2010 年代初由高登帶起，2026 仲好常用，已經由網絡語變成日常語。",
+      "tags": [
+        "後生",
+        "學生",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-015",
+      "phrase": "等睇戲",
+      "meaning": "等睇人出事、睇好戲",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "slacker"
+        ],
+        "tone": [
+          "sassy",
+          "gossip"
+        ],
+        "function": [
+          "tease"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "等睇戲啦，佢兩個遲早反面。",
+      "situation": "群組氣氛緊張，大家等爆",
+      "avoid": [
+        "對當事人講會好傷"
+      ],
+      "note": "同「食花生」一齊用；2026 仍然活躍。",
+      "tags": [
+        "後生",
+        "學生",
+        "踩",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-016",
+      "phrase": "派膠",
+      "meaning": "發放無聊、低質內容；做傻事貽笑大方",
+      "literal": "派發塑膠",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "slacker"
+        ],
+        "tone": [
+          "sassy",
+          "sarcastic"
+        ],
+        "function": [
+          "tease"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "又派膠，笑死。",
+      "situation": "有人出post講廢話",
+      "avoid": [
+        "對唔熟嘅人講會似人身攻擊"
+      ],
+      "note": "2000 年代高登語，2020 年代已開始老套；2026 多數係半開玩笑或者懷舊用，後生仔更常講「Kam」「廢水」。",
+      "tags": [
+        "後生",
+        "學生",
+        "踩",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-017",
+      "phrase": "攞彩",
+      "meaning": "出風頭、喺人面前搶威",
+      "categories": {
+        "age": [
+          "young"
+        ],
+        "archetype": [
+          "street",
+          "student"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "佢成日喺group攞彩。",
+      "situation": "有人搶住認叻",
+      "avoid": [
+        "對長輩講會似唔識大體"
+      ],
+      "note": "1990 年代街頭語，2020 年代已經老套；2026 後生仔多講「搶fo」，講「攞彩」會帶江湖味。",
+      "tags": [
+        "地盤",
+        "後生",
+        "抱怨",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-018",
+      "phrase": "出post",
+      "variants": [
+        "出po"
+      ],
+      "meaning": "喺社交平台發文",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office",
+          "designer"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "今晚出post，你要唔要一齊？",
+      "situation": "講自己社交平台動態",
+      "avoid": [
+        "同上司講會似唔專心"
+      ],
+      "note": "2015 年後興起；「po」係 post 嘅短寫，2026 兩種都通。",
+      "tags": [
+        "後生",
+        "學生",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-019",
+      "phrase": "出story",
+      "variants": [
+        "出ig story"
+      ],
+      "meaning": "喺 IG 出限時動態",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "proud"
+        ],
+        "function": [
+          "boast"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "出story記得tag我。",
+      "situation": "聚會影完相之後",
+      "avoid": [
+        "出story講人壞話一定傳開"
+      ],
+      "note": "2016 年 IG story 興起之後開始講；2026 後生仔仍然講「story」，唔會講「限時動態」。",
+      "tags": [
+        "後生",
+        "學生",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-020",
+      "phrase": "抽水",
+      "meaning": "借人哋出事或者話題，為自己攞好處、嘲諷",
+      "literal": "抽走水（泵水）",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office",
+          "street"
+        ],
+        "tone": [
+          "sassy",
+          "sarcastic"
+        ],
+        "function": [
+          "tease"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "conflict"
+        ]
+      },
+      "example": "人哋出事你仲抽水？",
+      "situation": "有人借別人醜聞出post",
+      "avoid": [
+        "喺當事人面前講等於當面拆穿"
+      ],
+      "note": "2010 年代後爆紅，2019 年後好普遍；2026 仍活躍，正式場合唔用。",
+      "tags": [
+        "後生",
+        "學生",
+        "踩",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-021",
+      "phrase": "曲線",
+      "variants": [
+        "曲",
+        "曲到圓"
+      ],
+      "meaning": "反話、反串，表面讚實際踩",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "sarcastic"
+        ],
+        "function": [
+          "tease"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "你係曲線定直線？",
+      "situation": "聽唔出對方講反話",
+      "avoid": [
+        "對唔熟網絡語嘅長輩講會聽唔明"
+      ],
+      "note": "2000 年代高登語；2026 仲用，「曲到圓」係加強版。",
+      "tags": [
+        "後生",
+        "學生",
+        "踩",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-022",
+      "phrase": "上水",
+      "meaning": "潛水一排之後出返嚟講嘢",
+      "literal": "浮上水面",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "slacker"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "潛水幾日，終於上水。",
+      "situation": "群組有人消失一排再出現",
+      "avoid": [
+        "對長輩講會聽唔明"
+      ],
+      "note": "2000 年代論壇語；同「潛水」一對，2026 仲用。",
+      "tags": [
+        "後生",
+        "學生",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-023",
+      "phrase": "潛水",
+      "meaning": "喺群組或者討論區唔出聲",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "slacker",
+          "office"
+        ],
+        "tone": [
+          "cold"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "佢喺group潛水咗一個禮拜。",
+      "situation": "群組有人長期唔回應",
+      "avoid": [
+        "對當事人講等於話佢失蹤"
+      ],
+      "note": "同「上水」成對；2026 仲常用。",
+      "tags": [
+        "後生",
+        "學生",
+        "冷面",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-024",
+      "phrase": "圍爐",
+      "meaning": "同聲同氣嘅人聚埋一齊互相認同",
+      "literal": "圍住個爐取暖",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "sassy",
+          "sarcastic"
+        ],
+        "function": [
+          "tease"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "成個group圍爐，冇人講真話。",
+      "situation": "群組只講啱聽嘅話",
+      "avoid": [
+        "對長輩講會似批評"
+      ],
+      "note": "2019 年後爆紅；2026 仲用，帶貶義。",
+      "tags": [
+        "後生",
+        "學生",
+        "踩",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-025",
+      "phrase": "cap圖",
+      "meaning": "截圖留證",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "cold",
+          "sassy"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "english-mix",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "cap圖先，佢轉頭delete。",
+      "situation": "有人講完唔認",
+      "avoid": [
+        "未經同意放上網會出事"
+      ],
+      "note": "「截圖」係書面；口語講 cap 圖，2026 仲用。",
+      "tags": [
+        "後生",
+        "學生",
+        "冷面",
+        "中英夾雜"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-026",
+      "phrase": "已讀不回",
+      "meaning": "睇咗訊息但係唔覆",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "helpless",
+          "complain"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "已讀不回，仲要係我老細。",
+      "situation": "等回覆等到心淡",
+      "avoid": [
+        "對長輩講會似埋怨"
+      ],
+      "note": "WhatsApp 年代（2010 年代）興起；2026 仲用，IG、Threads 都講。",
+      "tags": [
+        "公司",
+        "後生",
+        "學生",
+        "抱怨",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-027",
+      "phrase": "脆",
+      "variants": [
+        "脆友",
+        "Threads"
+      ],
+      "meaning": "Threads 社交平台；香港後生仔叫「脆」",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "gossip"
+        ],
+        "function": [
+          "gossip"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "脆上面有人講緊你。",
+      "situation": "講社交平台動態",
+      "avoid": [
+        "同唔上網嘅長輩講冇人明"
+      ],
+      "note": "2024 年起香港後生仔叫 Threads 做「脆」，用家叫「脆友」；2026 仍然好活躍。",
+      "tags": [
+        "後生",
+        "學生",
+        "八卦",
+        "潮語"
+      ],
+      "source": "https://hk.ulifestyle.com.hk/topic/detail/20060152"
+    },
+    {
+      "id": "hk-genz-028",
+      "phrase": "影到我plz del",
+      "meaning": "張相或者條片影到我，唔該刪咗佢",
+      "literal": "影到我，please delete",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "sassy",
+          "funny"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "影到我，plz del。",
+      "situation": "朋友影相影到自己，唔想上鏡",
+      "avoid": [
+        "對長輩講會聽唔明"
+      ],
+      "note": "2024–2025 由 Threads 帶起；2026 仲用，亦用嚟自嘲。",
+      "tags": [
+        "後生",
+        "學生",
+        "潮語"
+      ],
+      "source": "https://hk.ulifestyle.com.hk/topic/detail/20060152"
+    },
+    {
+      "id": "hk-genz-029",
+      "phrase": "贏咗99%香港人",
+      "variants": [
+        "贏左99%香港人"
+      ],
+      "meaning": "網上自誇式開場白，做咗件小事都話自己好叻",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "slacker"
+        ],
+        "tone": [
+          "funny",
+          "proud"
+        ],
+        "function": [
+          "boast"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "六點起身，已經贏咗99%香港人。",
+      "situation": "Threads 出post開頭",
+      "avoid": [
+        "認真用會變成自大"
+      ],
+      "note": "2024–2025 Threads 流量密碼，2026 開始有人嫌濫用，變成半諷刺。",
+      "tags": [
+        "後生",
+        "學生",
+        "潮語"
+      ],
+      "source": "https://hk.ulifestyle.com.hk/topic/detail/20060152"
+    },
+    {
+      "id": "hk-genz-030",
+      "phrase": "JHGG",
+      "variants": [
+        "即係咁講"
+      ],
+      "meaning": "即係咁講；用嚟打圓場、講真話前先鋪墊",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "tease"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "JHGG，你今次真係慢咗少少。",
+      "situation": "想講真話前先打底",
+      "avoid": [
+        "寫字樓書面文件唔會用"
+      ],
+      "note": "2024–2026 Threads 常用縮寫，取粵語拼音首字母；同年輕一輩講最通。",
+      "tags": [
+        "後生",
+        "學生",
+        "踩",
+        "潮語"
+      ],
+      "source": "https://hk.ulifestyle.com.hk/topic/detail/20060152"
+    },
+    {
+      "id": "hk-genz-031",
+      "phrase": "0尊",
+      "meaning": "完全冇尊重，被羞辱到冇晒面",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "sassy",
+          "angry"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "conflict"
+        ]
+      },
+      "example": "當眾咁講，真係0尊。",
+      "situation": "被人公開寸",
+      "avoid": [
+        "同長輩講會好冒犯"
+      ],
+      "note": "2022 年連登興起；2025 年已有人話過氣，2026 屬半老套，後生仔多用「Kam」「破防」代替。",
+      "tags": [
+        "後生",
+        "學生",
+        "抱怨",
+        "潮語"
+      ],
+      "source": "https://resources.ctgoodjobs.hk/article/37460"
+    },
+    {
+      "id": "hk-genz-032",
+      "phrase": "老Best",
+      "meaning": "最好嘅朋友",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "老Best，借住五百蚊嚟。",
+      "situation": "叫好朋友幫手",
+      "avoid": [
+        "對普通同事講會太親密"
+      ],
+      "note": "2023–2025 興起，2026 仲用；比「兄弟」軟，男女都用。",
+      "tags": [
+        "後生",
+        "學生",
+        "開場",
+        "潮語"
+      ],
+      "source": "https://resources.ctgoodjobs.hk/article/37460"
+    },
+    {
+      "id": "hk-genz-033",
+      "phrase": "破防",
+      "meaning": "心理防線被攻破，突然好難受",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "佢一句話就令我破防。",
+      "situation": "被一句話刺中",
+      "avoid": [
+        "對長輩講會聽唔明"
+      ],
+      "note": "2022 年由內地傳入，2024–2026 香港後生仔常用；開始有啲書面感。",
+      "tags": [
+        "後生",
+        "學生",
+        "抱怨",
+        "潮語"
+      ],
+      "source": "https://resources.ctgoodjobs.hk/article/37460"
+    },
+    {
+      "id": "hk-genz-034",
+      "phrase": "自肥",
+      "meaning": "利用身份或者權力攞好處畀自己",
+      "literal": "肥自己",
+      "categories": {
+        "age": [
+          "young"
+        ],
+        "archetype": [
+          "office",
+          "designer"
+        ],
+        "tone": [
+          "sassy",
+          "sarcastic"
+        ],
+        "function": [
+          "tease"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "頒獎畀自己，真係自肥。",
+      "situation": "有人明顯偏私",
+      "avoid": [
+        "對上司講等於指控"
+      ],
+      "note": "2010 年代高登語，2021 年後再爆；2026 仲用。",
+      "tags": [
+        "後生",
+        "OL",
+        "踩",
+        "潮語"
+      ],
+      "source": "https://resources.ctgoodjobs.hk/article/37460"
+    },
+    {
+      "id": "hk-genz-035",
+      "phrase": "點部署",
+      "meaning": "你打算點做、有咩計劃",
+      "categories": {
+        "age": [
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "下個月旅行，你點部署？",
+      "situation": "問人計劃",
+      "avoid": [
+        "對長輩講會似催人"
+      ],
+      "note": "「部署」本係軍事用語，2019 年後變成日常問法；2026 仲用。",
+      "tags": [
+        "後生",
+        "學生",
+        "直球",
+        "潮語"
+      ],
+      "source": "https://resources.ctgoodjobs.hk/article/37460"
+    },
+    {
+      "id": "hk-genz-036",
+      "phrase": "Red flag",
+      "meaning": "明顯嘅危險訊號，多數指感情對象",
+      "categories": {
+        "age": [
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "worried",
+          "sassy"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "english-mix",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "第一日就查你電話，Red flag啦。",
+      "situation": "朋友講新對象嘅行為",
+      "avoid": [
+        "對當事人講等於勸分手"
+      ],
+      "note": "2022 年後由英文網絡語傳入，2026 香港後生仔照講英文原詞。",
+      "tags": [
+        "後生",
+        "學生",
+        "中英夾雜"
+      ],
+      "source": "https://resources.ctgoodjobs.hk/article/37460"
+    },
+    {
+      "id": "hk-genz-037",
+      "phrase": "Kam",
+      "meaning": "尷尬、怪、唔識做人",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "sassy",
+          "sarcastic"
+        ],
+        "function": [
+          "tease"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "着西裝去露營，好Kam。",
+      "situation": "有人做咗好唔啱場合嘅事",
+      "avoid": [
+        "當面講好傷",
+        "對長輩講會聽唔明"
+      ],
+      "note": "2023 年起香港後生仔用，2024–2026 極普遍；同「尷尬」「核突」比更口語。",
+      "tags": [
+        "後生",
+        "學生",
+        "踩",
+        "潮語"
+      ],
+      "source": "https://resources.ctgoodjobs.hk/article/37460"
+    },
+    {
+      "id": "hk-genz-038",
+      "phrase": "見字飲水",
+      "meaning": "提醒人飲水，曾經係網絡招呼語",
+      "categories": {
+        "age": [
+          "young"
+        ],
+        "archetype": [
+          "office",
+          "student"
+        ],
+        "tone": [
+          "warm",
+          "funny"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "見字飲水，你個樣好乾。",
+      "situation": "群組打招呼",
+      "avoid": [
+        "2020 年疫情時最hit，依家講會俾人笑老套"
+      ],
+      "note": "2020–2021 疫情期間爆紅，2023 年後已明顯老套；2026 屬於「阿媽級」用語，後生仔講係玩懷舊。",
+      "tags": [
+        "後生",
+        "OL",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-039",
+      "phrase": "好pure好true",
+      "meaning": "好純情好真，多數帶寸",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "sassy",
+          "sarcastic"
+        ],
+        "function": [
+          "tease"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "你仲信佢？好pure好true。",
+      "situation": "笑人天真",
+      "avoid": [
+        "對長輩講會聽唔明"
+      ],
+      "note": "2011 年高登潮語，2010 年代尾已老套；2026 屬於「遠古潮語」，多數用嚟笑人。",
+      "tags": [
+        "後生",
+        "學生",
+        "踩",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-040",
+      "phrase": "巴打",
+      "variants": [
+        "絲打"
+      ],
+      "meaning": "兄弟、姊妹，網絡上嘅稱呼",
+      "literal": "brother 諧音",
+      "categories": {
+        "age": [
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "slacker"
+        ],
+        "tone": [
+          "warm",
+          "funny"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "巴打，有冇link？",
+      "situation": "討論區打招呼",
+      "avoid": [
+        "對現實朋友講會好怪",
+        "對長輩講會聽唔明"
+      ],
+      "note": "2000 年代高登語，2015 年後已老套；2026 屬懷舊用，後生仔改用「老Best」「bro」。",
+      "tags": [
+        "後生",
+        "學生",
+        "開場",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-041",
+      "phrase": "so sad",
+      "meaning": "好慘、好可惜，多數半開玩笑",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "sarcastic",
+          "funny"
+        ],
+        "function": [
+          "joke"
+        ],
+        "register": "english-mix",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "佢又甩底，so sad。",
+      "situation": "講一件小事好可惜",
+      "avoid": [
+        "真係有人出事時講會好涼薄"
+      ],
+      "note": "2010 年代中英夾雜經典；2026 已偏老套，後生仔多講「慘」「破防」。",
+      "tags": [
+        "後生",
+        "學生",
+        "中英夾雜"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-042",
+      "phrase": "世一",
+      "meaning": "世界第一，用嚟極力讚",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "warm",
+          "funny"
+        ],
+        "function": [
+          "praise"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "呢隊band世一。",
+      "situation": "追星、捧場",
+      "avoid": [
+        "對唔熟嘅人講會似誇張"
+      ],
+      "note": "2021–2022 年 MIRROR 熱潮帶起，2024 年後已被人笑老套；2026 仲用，但多數半開玩笑。",
+      "tags": [
+        "後生",
+        "學生",
+        "讚",
+        "潮語"
+      ],
+      "source": "https://resources.ctgoodjobs.hk/article/37460"
+    },
+    {
+      "id": "hk-genz-043",
+      "phrase": "應援",
+      "meaning": "粉絲為偶像搞嘅支持活動，例如廣告、巴士、食物車",
+      "literal": "支援、聲援（日語借詞）",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "warm",
+          "proud"
+        ],
+        "function": [
+          "encourage"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "我哋夾錢做應援。",
+      "situation": "粉絲團搞活動",
+      "avoid": [
+        "對唔追星嘅人講會一頭霧水"
+      ],
+      "note": "2021 年 MIRROR 熱潮之後香港普及；2026 仲用，韓團、本地團粉絲都講。",
+      "tags": [
+        "後生",
+        "學生",
+        "關心",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-044",
+      "phrase": "躺平",
+      "meaning": "唔再搏，放棄競爭",
+      "categories": {
+        "age": [
+          "young"
+        ],
+        "archetype": [
+          "slacker",
+          "office"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "返工咁辛苦，我躺平喇。",
+      "situation": "講自己放棄上進",
+      "avoid": [
+        "同上司講等於辭職宣言"
+      ],
+      "note": "2021 年由內地傳入，香港後生仔照用；2026 仲用，但已由潮語變成心態詞。",
+      "tags": [
+        "公司",
+        "後生",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-045",
+      "phrase": "佛系",
+      "meaning": "乜都隨緣、唔爭",
+      "categories": {
+        "age": [
+          "young"
+        ],
+        "archetype": [
+          "slacker",
+          "student"
+        ],
+        "tone": [
+          "helpless",
+          "cold"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "佛系溫書，溫到幾多得幾多。",
+      "situation": "講自己唔緊張",
+      "avoid": [
+        "對老細講會似唔負責"
+      ],
+      "note": "2018 年由日本傳入，2026 仲用；比「躺平」溫和。",
+      "tags": [
+        "後生",
+        "冷面",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-047",
+      "phrase": "chur",
+      "meaning": "好趕、好辛苦、要求好高",
+      "categories": {
+        "age": [
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "complain",
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "今個sem好chur，三個報告。",
+      "situation": "學期或者工作高壓",
+      "avoid": [
+        "對客講會顯得你頂唔住"
+      ],
+      "note": "2010 年代興起嘅港式英語，源頭有幾種講法；2026 仲用，大學、office 都講。",
+      "tags": [
+        "後生",
+        "學生",
+        "抱怨",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-048",
+      "phrase": "chill",
+      "meaning": "輕鬆、唔緊張、慢慢嚟",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "comfort"
+        ],
+        "register": "english-mix",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "禮拜日chill吓啦，唔好諗工作。",
+      "situation": "叫人放鬆",
+      "avoid": [
+        "老細叫你 chill 通常都唔係好事"
+      ],
+      "note": "2015 年後普及；2026 仲用，動詞、形容詞都通。",
+      "tags": [
+        "後生",
+        "學生",
+        "關心",
+        "中英夾雜"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-049",
+      "phrase": "emo",
+      "meaning": "情緒低落、鑽牛角尖",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "english-mix",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "聽完首歌好emo。",
+      "situation": "夜晚聽歌胡思亂想",
+      "avoid": [
+        "對長輩講「emo」佢會以為你病"
+      ],
+      "note": "2021 年後香港後生仔常用；2026 仲活躍。",
+      "tags": [
+        "後生",
+        "學生",
+        "抱怨",
+        "中英夾雜"
+      ],
+      "source": "https://resources.ctgoodjobs.hk/article/37460"
+    },
+    {
+      "id": "hk-genz-050",
+      "phrase": "O嘴",
+      "variants": [
+        "O晒嘴"
+      ],
+      "meaning": "驚訝到嘴巴成個 O 形",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "funny"
+        ],
+        "function": [
+          "surprise"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "見到個價錢即刻O嘴。",
+      "situation": "聽到離譜價錢",
+      "avoid": [
+        "對長輩做反應會似誇張"
+      ],
+      "note": "2000 年代已用；2026 多數講「O晒嘴」，仍然通用。",
+      "tags": [
+        "後生",
+        "學生",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-051",
+      "phrase": "勁正",
+      "variants": [
+        "勁"
+      ],
+      "meaning": "好正、好出色",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "warm",
+          "proud"
+        ],
+        "function": [
+          "praise"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "呢間糖水勁正。",
+      "situation": "大讚食物或者體驗",
+      "avoid": [
+        "對客講會似誇張"
+      ],
+      "note": "「勁」係香港獨有程度副詞，1980 年代已用；2026 後生仔反而多講「超正」「好癲」。",
+      "tags": [
+        "後生",
+        "學生",
+        "讚",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-052",
+      "phrase": "好癲",
+      "meaning": "好誇張、好勁，視乎語氣可以係讚或者驚",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "funny",
+          "proud"
+        ],
+        "function": [
+          "praise"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "呢個show好癲，一定要睇。",
+      "situation": "大讚",
+      "avoid": [
+        "同長輩講「癲」會以為你話人精神病"
+      ],
+      "note": "2020 年代後生仔用「癲」做讚美；2026 仲用。",
+      "tags": [
+        "後生",
+        "學生",
+        "讚",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-053",
+      "phrase": "黐線",
+      "variants": [
+        "痴線"
+      ],
+      "meaning": "離譜、癲咗，用嚟表達難以置信",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "angry",
+          "funny"
+        ],
+        "function": [
+          "surprise"
+        ],
+        "register": "slang",
+        "profanity": 1,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "黐線！咁貴？",
+      "situation": "見到離譜價錢或者安排",
+      "avoid": [
+        "對客或者長輩講一定反面",
+        "真衝突用會升級"
+      ],
+      "note": "1980 年代已有，屬輕微發洩；2026 後生仔仲用，但多數講「癲」。",
+      "tags": [
+        "後生",
+        "學生",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-054",
+      "phrase": "屈機",
+      "meaning": "強到冇得打；規矩上唔公平",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "helpless",
+          "sassy"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "呢個boss太屈機，打十次都輸。",
+      "situation": "打機遇到離譜設定",
+      "avoid": [
+        "對長輩講會聽唔明"
+      ],
+      "note": "2000 年代高登語，2010 年代全民用；2026 仲明，但後生仔多講「離譜」。",
+      "tags": [
+        "後生",
+        "學生",
+        "抱怨",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-055",
+      "phrase": "課金",
+      "meaning": "遊戲或者 App 入面畀錢",
+      "literal": "交學費（日語借詞）",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "helpless",
+          "proud"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "課金課咗三千蚊，仲係抽唔到。",
+      "situation": "打機抽卡",
+      "avoid": [
+        "對家長講一定反面"
+      ],
+      "note": "2015 年後由日本遊戲文化傳入；2026 仲用。",
+      "tags": [
+        "後生",
+        "學生",
+        "抱怨",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-056",
+      "phrase": "抽卡",
+      "meaning": "遊戲抽角色、抽獎",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "抽卡抽到破產。",
+      "situation": "打機抽唔到想要嘅角色",
+      "avoid": [
+        "對唔打機嘅人講會一頭霧水"
+      ],
+      "note": "2015 年後普及；2026 仲用，同「課金」一齊講。",
+      "tags": [
+        "後生",
+        "學生",
+        "抱怨",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-057",
+      "phrase": "豬隊友",
+      "meaning": "累街坊嘅同伴",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "angry",
+          "sassy"
+        ],
+        "function": [
+          "insult"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "又係豬隊友累街坊。",
+      "situation": "打機或者做project被隊友累",
+      "avoid": [
+        "當面叫同事「豬隊友」一定反面"
+      ],
+      "note": "2010 年代由遊戲傳入；2026 仲用，亦用於職場。",
+      "tags": [
+        "後生",
+        "學生",
+        "踩",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-058",
+      "phrase": "carry",
+      "meaning": "一個人頂起全隊",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "proud",
+          "funny"
+        ],
+        "function": [
+          "boast"
+        ],
+        "register": "english-mix",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "你carry我啦，我唔識打。",
+      "situation": "打機要靠隊友",
+      "avoid": [
+        "對上司講「我carry成team」會好寸"
+      ],
+      "note": "2010 年代遊戲語；2026 仲用，工作場合都借。",
+      "tags": [
+        "後生",
+        "學生",
+        "中英夾雜"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-059",
+      "phrase": "lag機",
+      "meaning": "電腦、手機卡住",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "helpless",
+          "complain"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "english-mix",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "手機lag到爆，開個app都要等。",
+      "situation": "部機唔聽話",
+      "avoid": [
+        "對客講會顯得你冇準備"
+      ],
+      "note": "2000 年代已用；2026 仲用。",
+      "tags": [
+        "後生",
+        "學生",
+        "抱怨",
+        "中英夾雜"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-060",
+      "phrase": "爆seed",
+      "meaning": "突然爆發，嬲到或者潛能全開",
+      "literal": "爆 seed（程式種子）",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "street"
+        ],
+        "tone": [
+          "angry"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "阿sir一鬧佢就爆seed。",
+      "situation": "被人踩到爆",
+      "avoid": [
+        "對上司用會好危險"
+      ],
+      "note": "2010 年代由遊戲用語帶起；2026 仲用，偏 90 後、00 後頭。",
+      "tags": [
+        "後生",
+        "學生",
+        "抱怨",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-061",
+      "phrase": "出pool",
+      "meaning": "脫單，開始拍拖",
+      "literal": "離開單身池",
+      "categories": {
+        "age": [
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "proud",
+          "warm"
+        ],
+        "function": [
+          "boast"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "佢終於出pool，仲要係隔籬team。",
+      "situation": "朋友拍拖消息",
+      "avoid": [
+        "對當事人嘅舊曖昧對象講會好尷尬"
+      ],
+      "note": "2019 年後連登興起；2026 仲用，同 A0、O1 同一系列。",
+      "tags": [
+        "後生",
+        "學生",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-062",
+      "phrase": "A0",
+      "variants": [
+        "O1"
+      ],
+      "meaning": "未拍過拖；A0 係零次，O1 係一次",
+      "categories": {
+        "age": [
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "helpless",
+          "funny"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "我A0，唔識答你。",
+      "situation": "被人問感情經驗",
+      "avoid": [
+        "自嘲可以，笑人A0會反感"
+      ],
+      "note": "2019–2020 年連登興起；2026 仲用，配 O1、O2 講拍拖次數。",
+      "tags": [
+        "後生",
+        "學生",
+        "抱怨",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-063",
+      "phrase": "沉船",
+      "meaning": "愛上唔應該愛嘅人，抽唔到身",
+      "literal": "沉船",
+      "categories": {
+        "age": [
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "佢對個客沉船，仲要人哋有男朋友。",
+      "situation": "朋友講感情困局",
+      "avoid": [
+        "當事人面前講等於揭瘡疤"
+      ],
+      "note": "2010 年代高登語，2024 年後又被 Threads 帶返起；2026 仲用。",
+      "tags": [
+        "後生",
+        "學生",
+        "抱怨",
+        "潮語"
+      ],
+      "source": "https://resources.ctgoodjobs.hk/article/37460"
+    },
+    {
+      "id": "hk-genz-064",
+      "phrase": "收兵",
+      "variants": [
+        "觀音兵"
+      ],
+      "meaning": "明知冇結果都留住啲追求者",
+      "categories": {
+        "age": [
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "sassy",
+          "sarcastic"
+        ],
+        "function": [
+          "tease"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "佢一路收兵，你唔好上當。",
+      "situation": "講某人玩弄追求者",
+      "avoid": [
+        "對當事人講等於指責"
+      ],
+      "note": "2010 年代興起；2026 仲用，但開始有啲老套。",
+      "tags": [
+        "後生",
+        "學生",
+        "踩",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-065",
+      "phrase": "中伏",
+      "variants": [
+        "伏"
+      ],
+      "meaning": "中咗陷阱、遇到貨不對辦",
+      "literal": "中埋伏",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "helpless",
+          "complain"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "client"
+        ]
+      },
+      "example": "呢間餐廳中伏，唔好去。",
+      "situation": "試新嘢中招",
+      "avoid": [
+        "對店主講會好尷尬"
+      ],
+      "note": "2000 年代由打機、網購帶起；2026 仲用。",
+      "tags": [
+        "後生",
+        "學生",
+        "抱怨",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-066",
+      "phrase": "奶嘢",
+      "meaning": "出事、中招、撞板",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "street",
+          "office"
+        ],
+        "tone": [
+          "helpless",
+          "angry"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "今次奶嘢喇，老細知咗。",
+      "situation": "做錯事被發現",
+      "avoid": [
+        "對客戶講一定死"
+      ],
+      "note": "1990 年代江湖語；2026 後生仔仍然講，語氣半開玩笑。",
+      "tags": [
+        "公司",
+        "後生",
+        "學生",
+        "抱怨",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-067",
+      "phrase": "炒散",
+      "meaning": "做散工、兼職，冇長工",
+      "categories": {
+        "age": [
+          "young"
+        ],
+        "archetype": [
+          "slacker",
+          "office",
+          "street"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "我炒散，一個禮拜開三日工。",
+      "situation": "講自己工作狀態",
+      "avoid": [
+        "見工時講會令人覺得你唔穩定"
+      ],
+      "note": "1990 年代已有；2020 年代後生仔興「炒散加 freelance」；2026 仲用。",
+      "tags": [
+        "後生",
+        "抱怨",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-069",
+      "phrase": "咁又點",
+      "meaning": "咁又點？so what",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "street"
+        ],
+        "tone": [
+          "sassy",
+          "angry"
+        ],
+        "function": [
+          "challenge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "conflict"
+        ]
+      },
+      "example": "我遲到，咁又點？",
+      "situation": "被人話，反擊",
+      "avoid": [
+        "對上司講等於頂嘴"
+      ],
+      "note": "語氣好重要，平聲可以係玩，重音就係挑機。",
+      "tags": [
+        "後生",
+        "學生",
+        "踩"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-070",
+      "phrase": "所以呢",
+      "meaning": "所以呢？即係你想講咩",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "challenge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "我知我遲到。所以呢？",
+      "situation": "有人長篇大論講你已知嘅嘢",
+      "avoid": [
+        "對長輩講會好冇禮貌"
+      ],
+      "note": "三個字已經收晒人；2026 後生仔仲用。",
+      "tags": [
+        "後生",
+        "學生",
+        "踩"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-071",
+      "phrase": "關你咩事",
+      "variants": [
+        "關你咩事呀"
+      ],
+      "meaning": "唔關你事",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "street"
+        ],
+        "tone": [
+          "angry",
+          "sassy"
+        ],
+        "function": [
+          "refuse"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "conflict"
+        ]
+      },
+      "example": "我幾點返屋企，關你咩事？",
+      "situation": "被人問私事",
+      "avoid": [
+        "對父母講一定反面",
+        "對客講死梗"
+      ],
+      "note": "對朋友講都算硬；軟版係「唔關你事啦」。",
+      "tags": [
+        "家庭",
+        "後生",
+        "學生",
+        "拒絕"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-072",
+      "phrase": "你邊位",
+      "meaning": "你係邊個？憑咩管我",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "street"
+        ],
+        "tone": [
+          "sassy",
+          "cold"
+        ],
+        "function": [
+          "challenge"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "conflict"
+        ]
+      },
+      "example": "你邊位呀？我有同你講過嘢咩？",
+      "situation": "陌生人插手你嘅事",
+      "avoid": [
+        "對長輩講極之冇禮貌"
+      ],
+      "note": "比「你係邊個」更寸；2026 仲用。",
+      "tags": [
+        "後生",
+        "學生",
+        "踩",
+        "冷面",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-073",
+      "phrase": "係咁先",
+      "variants": [
+        "係咁先啦"
+      ],
+      "meaning": "係咁先啦，收線或者走先",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "cold"
+        ],
+        "function": [
+          "farewell"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "我要走先，係咁先。",
+      "situation": "想結束對話",
+      "avoid": [
+        "對客講會似想快啲收線"
+      ],
+      "note": "電話、WhatsApp 都用；中年人一樣講，唔算老套。",
+      "tags": [
+        "後生",
+        "學生",
+        "收尾",
+        "冷面"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-074",
+      "phrase": "算吧啦",
+      "meaning": "算啦，唔好再爭",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "算吧啦，同佢講都嘥氣。",
+      "situation": "爭論冇結果",
+      "avoid": [
+        "對老細講會似放棄"
+      ],
+      "note": "比「算啦」多一分無奈；2026 仲用。",
+      "tags": [
+        "後生",
+        "學生"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-075",
+      "phrase": "慳啲啦",
+      "meaning": "省返啦，你唔使扮嘢、唔好再講",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "street"
+        ],
+        "tone": [
+          "sassy",
+          "sarcastic"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "conflict"
+        ]
+      },
+      "example": "慳啲啦你，邊個信？",
+      "situation": "有人吹牛被你拆穿",
+      "avoid": [
+        "對長輩講極冇禮貌"
+      ],
+      "note": "全句係「慳啲啦你」，語氣好寸；2026 仲用。",
+      "tags": [
+        "後生",
+        "學生",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-076",
+      "phrase": "唔係啩",
+      "meaning": "唔係啩？唔係真㗎？",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "surprise"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "佢哋拍拖？唔係啩。",
+      "situation": "聽到難以置信嘅消息",
+      "avoid": [
+        "對長輩講會似質疑"
+      ],
+      "note": "「啩」係港式語氣詞；比「唔係呀」多一分難以置信。",
+      "tags": [
+        "後生",
+        "學生"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-077",
+      "phrase": "是但你",
+      "meaning": "你話點就點，我唔想再講",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "cold"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "是但你，我唔理喇。",
+      "situation": "講唔通，放棄",
+      "avoid": [
+        "對上司講會似消極抵抗"
+      ],
+      "note": "「是但」加「你」，等於把決定推返對方；比「是但啦」更冷。",
+      "tags": [
+        "後生",
+        "學生",
+        "冷面"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-078",
+      "phrase": "都得",
+      "meaning": "兩樣都 OK，冇所謂",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "cold"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "茶定咖啡？都得。",
+      "situation": "畀人揀嘢",
+      "avoid": [
+        "對要求明確嘅場合講會顯得冇主見"
+      ],
+      "note": "好短好港式；書面會寫「也可以」。",
+      "tags": [
+        "後生",
+        "學生",
+        "冷面"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-079",
+      "phrase": "遲啲先",
+      "meaning": "遲啲先講、遲啲先做",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office",
+          "slacker"
+        ],
+        "tone": [
+          "cold"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "呢件事遲啲先講。",
+      "situation": "唔想即刻答",
+      "avoid": [
+        "對客講「遲啲先」等於冇交帶"
+      ],
+      "note": "最常見嘅拖延式回覆；加「啦」會軟啲。",
+      "tags": [
+        "後生",
+        "學生",
+        "拒絕",
+        "冷面"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-080",
+      "phrase": "下次先",
+      "variants": [
+        "下次先啦"
+      ],
+      "meaning": "下次先啦，婉拒",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "polite",
+          "cold"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "今日唔得閒，下次先啦。",
+      "situation": "婉拒邀約",
+      "avoid": [
+        "講完冇下文就係放飛機"
+      ],
+      "note": "港式婉拒標準答案；講「下次」通常都冇下次。",
+      "tags": [
+        "後生",
+        "學生",
+        "拒絕",
+        "客套",
+        "冷面"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-082",
+      "phrase": "咩呀",
+      "variants": [
+        "咩呀你"
+      ],
+      "meaning": "咩呀？否認、反駁",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "disagree"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family"
+        ]
+      },
+      "example": "咩呀？我冇郁過你啲嘢。",
+      "situation": "被人冤枉",
+      "avoid": [
+        "對長輩講會好冇禮貌"
+      ],
+      "note": "短促、升調，等於「你講乜呀」；2026 中學生仲講。",
+      "tags": [
+        "後生",
+        "學生"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-083",
+      "phrase": "冇嘢呀嘛",
+      "meaning": "你冇嘢呀嘛？覺得對方唔正常",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "sassy",
+          "worried"
+        ],
+        "function": [
+          "challenge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family"
+        ]
+      },
+      "example": "你冇嘢呀嘛？依家先話唔去。",
+      "situation": "對方做咗離譜嘅事",
+      "avoid": [
+        "對長輩講會似質疑精神狀態"
+      ],
+      "note": "半關心半寸；同「你冇事呀嘛」比更寸。",
+      "tags": [
+        "後生",
+        "學生",
+        "踩"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-084",
+      "phrase": "收到",
+      "variants": [
+        "收到你"
+      ],
+      "meaning": "收到、明白，多數係短回覆",
+      "categories": {
+        "age": [
+          "young"
+        ],
+        "archetype": [
+          "office",
+          "student"
+        ],
+        "tone": [
+          "cold"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "friend"
+        ]
+      },
+      "example": "收到，今晚八點前搞掂。",
+      "situation": "WhatsApp 覆上司或者組員",
+      "avoid": [
+        "對長輩講會似太簡短"
+      ],
+      "note": "職場通訊標準回覆；2026 仲用，同「收到你」並行。",
+      "tags": [
+        "後生",
+        "OL",
+        "冷面"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-genz-085",
+      "phrase": "你話事",
+      "meaning": "你決定",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "cold",
+          "polite"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "食咩你話事，我冇所謂。",
+      "situation": "畀對方決定",
+      "avoid": [
+        "對客講「你話事」會顯得冇準備"
+      ],
+      "note": "好港式；「你決定」係書面。",
+      "tags": [
+        "後生",
+        "學生",
+        "客套",
+        "冷面"
+      ],
+      "source": "general"
+    }
+  ]
+}

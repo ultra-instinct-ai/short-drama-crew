@@ -1,0 +1,1609 @@
+{
+  "lang": "zh-cn",
+  "label": "大陆普通话",
+  "shard": "slang",
+  "version": "1.0",
+  "entries": [
+    {
+      "id": "cn-slang-001",
+      "phrase": "破防",
+      "variants": [],
+      "meaning": "心理防线被击穿，一下绷不住了；可以是感动，也可以是崩溃",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "surprise"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "看到那句留言，我直接破防了。",
+      "situation": "刷到扎心视频、被家人一句话戳中",
+      "note": "游戏圈术语（破防＝防御被打破）→ 2021 年后全民化；现在仍常用，不算过时。",
+      "tags": [
+        "潮語",
+        "網絡用語",
+        "年輕人"
+      ],
+      "source": "general",
+      "avoid": [
+        "对长辈说「我破防了」，对方完全听不懂"
+      ]
+    },
+    {
+      "id": "cn-slang-002",
+      "phrase": "emo",
+      "variants": [],
+      "meaning": "情绪低落、有点矫情地伤感",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "今天有点emo，别理我。",
+      "situation": "深夜发朋友圈、失恋、加班到凌晨",
+      "note": "英文词直接当形容词／动词用；2019 年后流行，仍活；正式场合绝不能用。",
+      "tags": [
+        "潮語",
+        "中英夾雜",
+        "網絡用語"
+      ],
+      "source": "general",
+      "avoid": [
+        "30 岁以上的人说「emo」，容易被年轻人觉得装嫩"
+      ]
+    },
+    {
+      "id": "cn-slang-003",
+      "phrase": "整活",
+      "variants": [],
+      "meaning": "搞花样、搞事情，多半为了博眼球或搞笑",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "slacker"
+        ],
+        "tone": [
+          "funny"
+        ],
+        "function": [
+          "joke"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "他又在群里整活了。",
+      "situation": "直播间、宿舍、公司群",
+      "note": "东北话「整」＋「活」，2020 年后网络化；带一点看热闹的意思。",
+      "tags": [
+        "潮語",
+        "網絡用語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-slang-004",
+      "phrase": "绝绝子",
+      "variants": [],
+      "meaning": "太绝了、太棒了（夸张卖萌）",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "surprised"
+        ],
+        "function": [
+          "praise"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "这家火锅绝绝子！",
+      "situation": "小红书笔记、朋友圈、闺蜜聊天",
+      "note": "2020-2021 年巅峰，现已明显过时，年轻人拿来反讽；写 2025 年以后的戏别让主角真心说。",
+      "tags": [
+        "潮語",
+        "網絡用語"
+      ],
+      "source": "general",
+      "avoid": [
+        "2023 年后还挂在嘴边，会被当成「互联网土味」；男性角色说尤其出戏"
+      ]
+    },
+    {
+      "id": "cn-slang-005",
+      "phrase": "栓Q",
+      "variants": [],
+      "meaning": "thank you 的谐音，实际表示无语、无奈",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "栓Q了，又加班。",
+      "situation": "遇到倒霉事、被人坑",
+      "note": "2022 年爆火（英语博主口音梗），2024 年后已显土；现在多用于自嘲。",
+      "tags": [
+        "潮語",
+        "中英夾雜",
+        "網絡用語"
+      ],
+      "source": "general",
+      "avoid": [
+        "对客户、长辈说「栓Q」，对方会真以为你在道谢"
+      ]
+    },
+    {
+      "id": "cn-slang-006",
+      "phrase": "芭比Q了",
+      "variants": [],
+      "meaning": "完蛋了（BBQ 谐音）",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "芭比Q了，手机落车上了。",
+      "situation": "事情搞砸、来不及了",
+      "note": "2022 年流行，现已被「完蛋」「凉了」取代；写 2023 年以前的戏可以用。",
+      "tags": [
+        "潮語",
+        "中英夾雜",
+        "網絡用語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-slang-007",
+      "phrase": "尊嘟假嘟",
+      "variants": [],
+      "meaning": "真的假的（卖萌叠字）",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "shy"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "尊嘟假嘟？你别骗我。",
+      "situation": "闺蜜聊天、粉丝追星、情侣撒娇",
+      "note": "2023 年爆火，来源是可爱腔（夹子音）；主要是女生、粉丝圈用，男性用得带反讽。",
+      "tags": [
+        "潮語",
+        "網絡用語"
+      ],
+      "source": "general",
+      "avoid": [
+        "男角色对同事说「尊嘟假嘟」，会被当油腻；正式场合等于社死"
+      ]
+    },
+    {
+      "id": "cn-slang-008",
+      "phrase": "city不city",
+      "variants": [],
+      "meaning": "洋气不洋气、够不够都市感",
+      "categories": {
+        "age": [
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "funny"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "这咖啡馆city不city？",
+      "situation": "旅游打卡、探店视频、朋友互拍",
+      "note": "2024 年由外国博主带火（「city 不 city 啊」），2025 年迅速退潮；写 2026 年的戏要让人物自嘲或当旧梗用。",
+      "tags": [
+        "潮語",
+        "中英夾雜",
+        "網絡用語"
+      ],
+      "source": "general",
+      "avoid": [
+        "2025 年后说已经过气，属于会被翻白眼的梗"
+      ]
+    },
+    {
+      "id": "cn-slang-009",
+      "phrase": "显眼包",
+      "variants": [],
+      "meaning": "爱出风头、举止夸张好笑的人（贬义偏可爱）",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "tease"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "全公司就他是个显眼包。",
+      "situation": "群里有人发怪图、聚会上抢镜",
+      "note": "2023 年流行，源自「丢人现眼的包」；现在仍活，语气已偏亲昵。",
+      "tags": [
+        "潮語",
+        "網絡用語",
+        "踩"
+      ],
+      "source": "general",
+      "avoid": [
+        "对领导、长辈说「显眼包」，会被认为没大没小"
+      ]
+    },
+    {
+      "id": "cn-slang-010",
+      "phrase": "松弛感",
+      "variants": [],
+      "meaning": "不紧绷、不着力的从容状态",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "designer"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "praise"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "她那种松弛感，装不出来的。",
+      "situation": "夸人气质、夸演技、形容生活方式",
+      "note": "2023 年从时尚、生活方式圈扩散；中产话语，工地、菜市场没人这么说。",
+      "tags": [
+        "潮語",
+        "讚",
+        "網絡用語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-slang-011",
+      "phrase": "搭子",
+      "variants": [],
+      "meaning": "只为某件事凑一起的伙伴（饭搭子、旅游搭子）",
+      "categories": {
+        "age": [
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "缺个饭搭子，中午一起？",
+      "situation": "约饭、找人拼单、找人一起旅游",
+      "note": "2023 年流行；特点是关系轻、不深入，比朋友淡、比陌生人近。",
+      "tags": [
+        "潮語",
+        "網絡用語",
+        "年輕人"
+      ],
+      "source": "general",
+      "avoid": [
+        "对长辈说「找个搭子」，会被理解成找对象"
+      ]
+    },
+    {
+      "id": "cn-slang-012",
+      "phrase": "情绪价值",
+      "variants": [],
+      "meaning": "让人舒服、被理解的那种情绪供给",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "student"
+        ],
+        "tone": [
+          "complain"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "跟他聊天没情绪价值，全是抱怨。",
+      "situation": "吐槽对象、评价朋友、相亲复盘",
+      "note": "2022 年后从心理学词变成恋爱、职场的标尺；也被吐槽成「新型 PUA 话术」。",
+      "tags": [
+        "潮語",
+        "網絡用語"
+      ],
+      "source": "general",
+      "avoid": [
+        "跟长辈说「你要提供情绪价值」，等于当面教训人"
+      ]
+    },
+    {
+      "id": "cn-slang-013",
+      "phrase": "内卷",
+      "variants": [],
+      "meaning": "没有增量的恶性竞争，越努力越累",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "student"
+        ],
+        "tone": [
+          "complain"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "friend"
+        ]
+      },
+      "example": "内卷太严重，卷到没边。",
+      "situation": "加班、考研、孩子补课",
+      "note": "2020 年后全民词；单说「卷」更口语（「太卷了」），「内卷」偏书面分析。",
+      "tags": [
+        "公司",
+        "潮語",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-slang-014",
+      "phrase": "躺平",
+      "variants": [],
+      "meaning": "放弃竞争、低欲望地活着",
+      "categories": {
+        "age": [
+          "young"
+        ],
+        "archetype": [
+          "slacker",
+          "office"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "卷不动了，我躺平。",
+      "situation": "加班到极限、辞职、跟父母解释不想拼",
+      "note": "2021 年爆火，源自贴吧；现在多用于自嘲，真躺平的人不说。",
+      "tags": [
+        "潮語",
+        "抱怨",
+        "上班族"
+      ],
+      "source": "general",
+      "avoid": [
+        "在领导面前说「我躺平」，基本等于自请离职"
+      ]
+    },
+    {
+      "id": "cn-slang-015",
+      "phrase": "摆烂",
+      "variants": [],
+      "meaning": "明知不行就干脆不干、破罐破摔",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "slacker"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "反正做不完，摆烂了。",
+      "situation": "项目没救、考试放弃、感情也不管了",
+      "note": "比「躺平」更主动、更消极：「摆烂」是放弃，「躺平」是不争。",
+      "tags": [
+        "潮語",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-slang-016",
+      "phrase": "麻了",
+      "variants": [],
+      "meaning": "麻木、彻底没感觉了",
+      "categories": {
+        "age": [
+          "young"
+        ],
+        "archetype": [
+          "office",
+          "student"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "friend"
+        ]
+      },
+      "example": "天天改需求，我麻了。",
+      "situation": "反复返工、被念叨、倒霉事连着来",
+      "note": "「人麻了」更完整；语气比「无语」重，比「崩溃」轻。",
+      "tags": [
+        "潮語",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-slang-017",
+      "phrase": "离谱",
+      "variants": [],
+      "meaning": "太夸张、不像话，常带嘲讽",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "student"
+        ],
+        "tone": [
+          "complain"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "这价格离谱了吧？",
+      "situation": "看到天价、听到荒唐安排",
+      "note": "原本是书面词，网络化后变成日常吐槽；「离大谱」是加强版。",
+      "tags": [
+        "抱怨",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-slang-018",
+      "phrase": "上头",
+      "variants": [],
+      "meaning": "一时冲动、情绪上头；也指东西让人着迷",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "surprised"
+        ],
+        "function": [
+          "joke"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "这歌太上头了，循环一天。",
+      "situation": "听歌、追剧、吵架后冲动做事",
+      "note": "双重意思：内容让人上瘾／人情绪失控；「别上头」是劝人冷静。",
+      "tags": [
+        "潮語",
+        "網絡用語"
+      ],
+      "source": "general",
+      "avoid": [
+        "「上头」和「上瘾」不同：上头是短时间的冲动"
+      ]
+    },
+    {
+      "id": "cn-slang-019",
+      "phrase": "社死",
+      "variants": [],
+      "meaning": "当众丢脸到想消失",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "当众叫错名字，社死现场。",
+      "situation": "认错人、发错群、当众摔一跤",
+      "note": "「社会性死亡」的缩写，2019 年后流行；正式场合说「很尴尬」就行。",
+      "tags": [
+        "潮語",
+        "網絡用語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-slang-020",
+      "phrase": "服了",
+      "variants": [],
+      "meaning": "认输、无语，常带讽刺",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "housewife"
+        ],
+        "tone": [
+          "sarcastic"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "我服了，你赢了。",
+      "situation": "对方胡搅蛮缠、事情离谱到极点",
+      "note": "语气是关键：真心佩服还是讽刺，全看拖不拖长音。",
+      "tags": [
+        "直球",
+        "冷面"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-slang-021",
+      "phrase": "你行你上",
+      "variants": [],
+      "meaning": "反呛「你行你来做」",
+      "categories": {
+        "age": [
+          "young"
+        ],
+        "archetype": [
+          "office",
+          "student"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "challenge"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "conflict",
+          "colleague"
+        ]
+      },
+      "example": "你行你上，别光说。",
+      "situation": "被人指手画脚、网上被喷",
+      "note": "2015 年后网络流行，现在已是日常怼人话；带情绪，不适合正式讨论。",
+      "tags": [
+        "直球",
+        "踩"
+      ],
+      "source": "general",
+      "avoid": [
+        "对领导说「你行你上」，后果自负"
+      ]
+    },
+    {
+      "id": "cn-slang-022",
+      "phrase": "有完没完",
+      "variants": [],
+      "meaning": "不耐烦：够了没有",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "housewife",
+          "office"
+        ],
+        "tone": [
+          "angry"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "conflict"
+        ]
+      },
+      "example": "有完没完？说一遍够了。",
+      "situation": "被反复念叨、对方没完没了",
+      "note": "家庭吵架高频句，长辈也常说；语气冲，但不算脏话。",
+      "tags": [
+        "直球",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-slang-023",
+      "phrase": "少管闲事",
+      "variants": [],
+      "meaning": "别插手，跟你没关系",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "street",
+          "housewife"
+        ],
+        "tone": [
+          "angry"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "conflict",
+          "stranger"
+        ]
+      },
+      "example": "少管闲事，跟你有关系吗？",
+      "situation": "邻居多嘴、路人指点、亲戚催婚",
+      "note": "冲突升级的标志句；北京、东北的吵架里出现频率极高。",
+      "tags": [
+        "直球",
+        "踩"
+      ],
+      "source": "general",
+      "avoid": [
+        "对长辈说「少管闲事」，等于撕破脸"
+      ]
+    },
+    {
+      "id": "cn-slang-024",
+      "phrase": "你算老几",
+      "variants": [],
+      "meaning": "你算什么东西（挑衅）",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "street"
+        ],
+        "tone": [
+          "angry"
+        ],
+        "function": [
+          "insult"
+        ],
+        "register": "slang",
+        "profanity": 1,
+        "socialDistance": [
+          "conflict"
+        ]
+      },
+      "example": "你算老几？轮得到你说话？",
+      "situation": "吵架、被人教训、酒桌起冲突",
+      "note": "侮辱性强，但不用脏字；比「你算什么东西」更口语。",
+      "tags": [
+        "踩",
+        "直球"
+      ],
+      "source": "general",
+      "avoid": [
+        "说完这句基本就打起来了，剧里用在临界点"
+      ]
+    },
+    {
+      "id": "cn-slang-025",
+      "phrase": "爱咋咋地",
+      "variants": [],
+      "meaning": "随便吧、我不管了（赌气）",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "street",
+          "dad"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "conflict"
+        ]
+      },
+      "example": "爱咋咋地，我不管了。",
+      "situation": "家里吵完、事情没法收场",
+      "note": "东北、北方口语，「咋」是标志；南方人说会显得怪。",
+      "tags": [
+        "直球",
+        "抱怨",
+        "老派"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-slang-026",
+      "phrase": "随便你",
+      "variants": [],
+      "meaning": "赌气地放手：你爱怎么办怎么办",
+      "categories": {
+        "age": [
+          "mid",
+          "young"
+        ],
+        "archetype": [
+          "mum",
+          "office"
+        ],
+        "tone": [
+          "cold"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "friend"
+        ]
+      },
+      "example": "随便你，反正我话说到这儿。",
+      "situation": "情侣冷战、家长放弃劝说",
+      "note": "大陆家庭冷战经典句；说完一般就摔门、不说话了。",
+      "tags": [
+        "冷面",
+        "直球"
+      ],
+      "source": "general",
+      "avoid": [
+        "说「随便你」通常是最后通牒，不是真同意"
+      ]
+    },
+    {
+      "id": "cn-slang-027",
+      "phrase": "我谢谢你",
+      "variants": [],
+      "meaning": "反讽式感谢：帮了倒忙",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "sarcastic"
+        ],
+        "function": [
+          "thanks"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "我谢谢你啊，净添乱。",
+      "situation": "别人帮倒忙、越帮越乱",
+      "note": "反讽靠语气和「啊」拖长；字幕里最好配合表情。",
+      "tags": [
+        "冷面",
+        "踩"
+      ],
+      "source": "general",
+      "avoid": [
+        "对领导、客户说反话，会被当真或记恨"
+      ]
+    },
+    {
+      "id": "cn-slang-028",
+      "phrase": "就这",
+      "variants": [],
+      "meaning": "轻蔑：就这样？也不过如此",
+      "categories": {
+        "age": [
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "sarcastic"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "conflict"
+        ]
+      },
+      "example": "就这？我还以为多厉害。",
+      "situation": "看完表演、对手放狠话、期待落空",
+      "note": "2020 年后网络流行；两个字极短，适合当 punchline。",
+      "tags": [
+        "踩",
+        "冷面"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-slang-029",
+      "phrase": "真的会谢",
+      "variants": [],
+      "meaning": "反讽：真要谢谢你（其实很无语）",
+      "categories": {
+        "age": [
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "sarcastic"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "真的会谢，又停水。",
+      "situation": "遇到倒霉事、被人拖累",
+      "note": "2022 年前后流行，现在略旧但仍听得懂；00 后还在用。",
+      "tags": [
+        "潮語",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-slang-030",
+      "phrase": "yyds",
+      "variants": [],
+      "meaning": "永远的神，最高级的夸赞",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "proud"
+        ],
+        "function": [
+          "praise"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "这家的锅底yyds。",
+      "situation": "追星、夸食物、夸队友",
+      "note": "「永远的神」拼音缩写；现在用会被年轻人觉得过气，写 2022 年前的青春戏合适。",
+      "tags": [
+        "潮語",
+        "中英夾雜",
+        "網絡用語"
+      ],
+      "source": "general",
+      "avoid": [
+        "2021 年巅峰，2024 年后基本只在反讽或中年人嘴里出现"
+      ]
+    },
+    {
+      "id": "cn-slang-031",
+      "phrase": "拿捏",
+      "variants": [],
+      "meaning": "掌握得恰到好处，或抓住要害",
+      "categories": {
+        "age": [
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "proud"
+        ],
+        "function": [
+          "praise"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "这角色他拿捏得死死的。",
+      "situation": "夸演技、夸穿搭、夸控场",
+      "note": "2022 年后流行（「拿捏了」）；「死死的」是加强语气。",
+      "tags": [
+        "潮語",
+        "讚"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-slang-032",
+      "phrase": "拉胯",
+      "variants": [],
+      "meaning": "掉链子、表现差",
+      "categories": {
+        "age": [
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "complain"
+        ],
+        "function": [
+          "insult"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "这表现太拉胯了。",
+      "situation": "比赛输了、演出翻车、队友不给力",
+      "note": "北方方言词网络化，2021 年后流行；游戏圈先火。",
+      "tags": [
+        "潮語",
+        "踩"
+      ],
+      "source": "general",
+      "avoid": [
+        "当面说同事「拉胯」，很伤人，属于公开否定"
+      ]
+    },
+    {
+      "id": "cn-slang-033",
+      "phrase": "下头",
+      "variants": [],
+      "meaning": "让人瞬间反感、兴致全无",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "complain"
+        ],
+        "function": [
+          "insult"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "他这句话真下头。",
+      "situation": "相亲、约会、看到某人发言",
+      "note": "与「上头」相对；2021 年后流行，多用在恋爱语境。",
+      "tags": [
+        "潮語",
+        "踩",
+        "網絡用語"
+      ],
+      "source": "general",
+      "avoid": [
+        "对长辈、同事说「下头」，对方听不懂而且很失礼"
+      ]
+    },
+    {
+      "id": "cn-slang-034",
+      "phrase": "老铁",
+      "variants": [],
+      "meaning": "兄弟、哥们的东北叫法",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "street",
+          "delivery"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "老铁，帮个忙呗。",
+      "situation": "直播、短视频、东北人互相称呼",
+      "note": "东北话；2018 年直播带货带火全国，现在略油，写东北角色最自然。",
+      "tags": [
+        "潮語",
+        "直球",
+        "老派"
+      ],
+      "source": "general",
+      "avoid": [
+        "南方人、正式场合叫「老铁」，会显得油腻或装"
+      ]
+    },
+    {
+      "id": "cn-slang-035",
+      "phrase": "咋整",
+      "variants": [],
+      "meaning": "怎么办（东北、华北）",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "street",
+          "craftsman"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "这事儿咋整？",
+      "situation": "遇上麻烦、商量对策",
+      "note": "东北、华北口语；赵本山的小品之后全国都听得懂。",
+      "tags": [
+        "直球",
+        "日常"
+      ],
+      "source": "general",
+      "avoid": [
+        "南方角色说「咋整」会出戏，除非他在北方待过"
+      ]
+    },
+    {
+      "id": "cn-slang-036",
+      "phrase": "贼",
+      "variants": [],
+      "meaning": "非常、特别（东北、北京）",
+      "categories": {
+        "age": [
+          "mid",
+          "young"
+        ],
+        "archetype": [
+          "street"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "praise"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "这菜贼好吃。",
+      "situation": "夸东西、形容程度",
+      "note": "东北、北京口语；书面绝对不用。",
+      "tags": [
+        "直球",
+        "日常"
+      ],
+      "source": "general",
+      "avoid": [
+        "南方人说「贼好吃」，会显得刻意学北方腔"
+      ]
+    },
+    {
+      "id": "cn-slang-037",
+      "phrase": "巴适",
+      "variants": [],
+      "meaning": "舒服、妥帖、好（川渝）",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "shopkeeper",
+          "housewife"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "praise"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "stranger"
+        ]
+      },
+      "example": "这火锅吃起巴适得很。",
+      "situation": "重庆、成都人夸食物、夸安排",
+      "note": "川渝标志词；「巴适得板」是加强版，重庆更常说。",
+      "tags": [
+        "讚",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-slang-038",
+      "phrase": "要得",
+      "variants": [],
+      "meaning": "行、可以（川渝）",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "shopkeeper",
+          "craftsman"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "client"
+        ]
+      },
+      "example": "要得，就这么说定了。",
+      "situation": "川渝人答应事情",
+      "note": "西南官话；川渝以外的人用会显得在学方言。",
+      "tags": [
+        "直球",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-slang-039",
+      "phrase": "瓜娃子",
+      "variants": [],
+      "meaning": "傻小子（川渝骂人，熟人之间也带亲昵）",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "street",
+          "elder"
+        ],
+        "tone": [
+          "angry"
+        ],
+        "function": [
+          "insult"
+        ],
+        "register": "slang",
+        "profanity": 1,
+        "socialDistance": [
+          "conflict",
+          "family"
+        ]
+      },
+      "example": "你个瓜娃子，咋不听劝？",
+      "situation": "川渝长辈骂晚辈、朋友互损",
+      "note": "川渝；长辈骂小孩、朋友互称都行，语气决定是疼还是骂。",
+      "tags": [
+        "踩",
+        "直球"
+      ],
+      "source": "general",
+      "avoid": [
+        "对陌生人说「瓜娃子」，就是真骂人，容易打起来"
+      ]
+    },
+    {
+      "id": "cn-slang-040",
+      "phrase": "儿豁",
+      "variants": [],
+      "meaning": "川渝口头禅：我要是骗你，我就是你儿子；既能保证，也能追问真假",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "street"
+        ],
+        "tone": [
+          "surprised"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "儿豁？真出事了？",
+      "situation": "听到不敢相信的消息、要对方发誓没骗人",
+      "note": "川渝；字面拿儿子赌咒，所以既能当保证（「儿豁，真的」），也能当质疑（「儿豁？」＝真的假的）。",
+      "tags": [
+        "直球",
+        "日常"
+      ],
+      "source": "general",
+      "avoid": [
+        "这句话拿儿孙赌咒，带一点粗俗，正式场合别说"
+      ]
+    },
+    {
+      "id": "cn-slang-041",
+      "phrase": "您可真行",
+      "variants": [],
+      "meaning": "北京式反讽：你可真厉害（其实在损）",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "office",
+          "elder"
+        ],
+        "tone": [
+          "sarcastic"
+        ],
+        "function": [
+          "insult"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "conflict"
+        ]
+      },
+      "example": "您可真行，这都能办砸。",
+      "situation": "对方把事情搞砸、帮倒忙",
+      "note": "京腔；北京人用「您」可以极客气，也可以极损，全靠语气。",
+      "tags": [
+        "冷面",
+        "踩",
+        "老派"
+      ],
+      "source": "general",
+      "avoid": [
+        "南方人用「您」，反讽味道出不来，容易变真夸"
+      ]
+    },
+    {
+      "id": "cn-slang-042",
+      "phrase": "甭提了",
+      "variants": [],
+      "meaning": "别提了，全是糟心事",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "office",
+          "housewife"
+        ],
+        "tone": [
+          "complain"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "甭提了，又堵在路上。",
+      "situation": "别人问你最近怎么样",
+      "note": "京腔，「甭」＝不用；中老年北京人常用。",
+      "tags": [
+        "抱怨",
+        "老派"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-slang-043",
+      "phrase": "少来这套",
+      "variants": [],
+      "meaning": "别来这一套，我看穿了",
+      "categories": {
+        "age": [
+          "mid",
+          "young"
+        ],
+        "archetype": [
+          "office",
+          "street"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "refuse"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "conflict",
+          "colleague"
+        ]
+      },
+      "example": "少来这套，我见多了。",
+      "situation": "对方套近乎、装可怜、拍马屁",
+      "note": "冲突句里比较克制的一种，不带脏字；北方更常说。",
+      "tags": [
+        "直球",
+        "踩"
+      ],
+      "source": "general",
+      "avoid": [
+        "对客户说「少来这套」，等于当场撕破脸"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1537 @@
+{
+  "lang": "zh-tw",
+  "label": "台灣國語（網路／年輕／衝突）",
+  "version": "1.0",
+  "entries": [
+    {
+      "id": "tw-slang-001",
+      "phrase": "是在哈囉",
+      "variants": [
+        "在哈囉"
+      ],
+      "meaning": "你在搞什麼、你現在是什麼意思",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "challenge"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "conflict"
+        ]
+      },
+      "example": "你是在哈囉？講三次了。",
+      "situation": "對方狀況外、講話跳針",
+      "avoid": [
+        "對長輩、客戶用會被聽成挑釁"
+      ],
+      "note": "2019 年後爆紅，2020 年代仍是年輕人口頭禪；30 歲以上較少用。",
+      "tags": [
+        "潮語",
+        "踩",
+        "網絡用語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-002",
+      "phrase": "傻眼",
+      "variants": [],
+      "meaning": "愣住、無言以對",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "helpless",
+          "surprised"
+        ],
+        "function": [
+          "surprise"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "我整個傻眼，他居然這樣回。",
+      "situation": "看到離譜的事、被放鳥",
+      "note": "台灣特有；大陸多講「無語」。連說兩次「傻眼」是加強。",
+      "tags": [
+        "潮語",
+        "日常"
+      ],
+      "source": "general",
+      "avoid": [
+        "對方真的受委屈時說「傻眼」，像在看好戲"
+      ]
+    },
+    {
+      "id": "tw-slang-003",
+      "phrase": "傻眼貓咪",
+      "variants": [],
+      "meaning": "傻眼的加強版，帶裝可愛",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "tone": [
+          "funny"
+        ],
+        "function": [
+          "surprise"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "我傻眼貓咪，他直接消失。",
+      "situation": "朋友之間抱怨、講幹話",
+      "avoid": [
+        "現在講會有一點老哏感，除非是故意裝可愛"
+      ],
+      "note": "2017-2019 最紅，2020 後年輕人少講，變成懷舊梗。",
+      "tags": [
+        "潮語",
+        "網絡用語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-004",
+      "phrase": "超派",
+      "variants": [],
+      "meaning": "很兇、很囂張、氣勢很強",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "tease"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "他今天超派的，誰都敢嗆。",
+      "situation": "形容人氣場、也形容態度很衝",
+      "avoid": [
+        "對客戶、長輩說「超派」多半是負面，別亂用"
+      ],
+      "note": "2023 年從「超派鐵拳」事件爆紅，原意偏負面，年輕人也拿來稱讚氣場。",
+      "tags": [
+        "潮語",
+        "年輕人",
+        "網絡用語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-005",
+      "phrase": "很解",
+      "variants": [],
+      "meaning": "很掃興、把氣氛弄壞",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "tone": [
+          "complain"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "你這樣講很解耶。",
+      "situation": "朋友聚會有人講白目話",
+      "avoid": [
+        "對客戶、長輩用會聽不懂，等於沒溝通"
+      ],
+      "note": "2023 年後年輕圈流行，「解」＝解除氣氛、解掉興致。",
+      "tags": [
+        "潮語",
+        "抱怨",
+        "網絡用語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-006",
+      "phrase": "估咩",
+      "variants": [],
+      "meaning": "你在幹嘛",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "你現在估咩？",
+      "situation": "聊天室找人、朋友突然安靜",
+      "avoid": [
+        "正式場合、對客戶不要用，聽起來沒禮貌"
+      ],
+      "note": "網路打字用語，唸出來偏玩笑；長輩完全聽不懂。",
+      "tags": [
+        "潮語",
+        "網絡用語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-007",
+      "phrase": "確診",
+      "variants": [],
+      "meaning": "被判定為某種症狀，開玩笑用法",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "funny"
+        ],
+        "function": [
+          "joke"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "我確診拖延症，報告還沒寫。",
+      "situation": "自嘲、朋友互虧",
+      "avoid": [
+        "真的生病時講會讓人誤會，尤其長輩會當真"
+      ],
+      "note": "2022 疫情後轉成萬用梗：「我確診 XX」，XX 換成任何毛病。",
+      "tags": [
+        "潮語",
+        "網絡用語",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-008",
+      "phrase": "已購買小孩愛吃",
+      "variants": [],
+      "meaning": "網購評價的萬用梗，現在用來敷衍地稱讚",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "tone": [
+          "funny"
+        ],
+        "function": [
+          "joke"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "這家很好吃，已購買小孩愛吃。",
+      "situation": "朋友問好不好吃、業配文底下留言",
+      "avoid": [
+        "對客戶、正式場合用會顯得不正經"
+      ],
+      "note": "2024 年從網購評價爆紅，用來反諷千篇一律的好評。",
+      "tags": [
+        "潮語",
+        "網絡用語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-009",
+      "phrase": "觸爛",
+      "variants": [],
+      "meaning": "太真實了、說得太對",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "這句觸爛，我每天加班就是這樣。",
+      "situation": "看到很中肯的貼文、被說中心聲",
+      "avoid": [
+        "對長輩講完全聽不懂，場合不對就是冷場"
+      ],
+      "note": "2024-2025 年輕圈用；「觸」是 true 的玩笑唸法，等於「太真了」。",
+      "tags": [
+        "潮語",
+        "網絡用語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-010",
+      "phrase": "MZ世代",
+      "variants": [],
+      "meaning": "1990 年代中期到 2010 年代初出生的一代",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "joke"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "我們公司 MZ 世代都準時下班。",
+      "situation": "人資、媒體討論年輕員工",
+      "avoid": [
+        "當著年輕同事的面講，會被覺得在貼標籤"
+      ],
+      "note": "韓國傳來的說法，台灣媒體、HR 愛用；年輕人自己少用來自稱。",
+      "tags": [
+        "潮語",
+        "網絡用語",
+        "公司"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-011",
+      "phrase": "emo",
+      "variants": [],
+      "meaning": "情緒低落、突然感傷",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "english-mix",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "我最近很 emo，別理我。",
+      "situation": "深夜發文、心情不好",
+      "avoid": [
+        "對客戶、長輩講 emo 會被當成裝可憐"
+      ],
+      "note": "台灣年輕人口語借用英文，比「憂鬱」輕很多，也帶自嘲。",
+      "tags": [
+        "潮語",
+        "中英夾雜"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-012",
+      "phrase": "破防",
+      "variants": [],
+      "meaning": "被戳到、心理防線被打破",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "surprise"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "他一句話就讓我破防。",
+      "situation": "被說中傷心事、看感人影片",
+      "avoid": [
+        "對客戶講「破防」太網路，正式場合要換說法"
+      ],
+      "note": "從大陸遊戲圈傳入，台灣年輕人也用；40 歲以上多半聽不懂。",
+      "tags": [
+        "潮語",
+        "網絡用語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-013",
+      "phrase": "走心",
+      "variants": [],
+      "meaning": "講到心裡、真的在意；也指太當真",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "worried"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "你這樣講我會走心耶。",
+      "situation": "被朋友虧、被說中弱點",
+      "avoid": [
+        "台灣的「走心」是受傷，不是大陸的「用心」，用錯會誤會"
+      ],
+      "note": "台灣用法偏「在意、受傷」，跟大陸語感相反。",
+      "tags": [
+        "潮語",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-014",
+      "phrase": "業配",
+      "variants": [],
+      "meaning": "廠商付錢的合作內容",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "designer",
+          "office"
+        ],
+        "tone": [
+          "sarcastic"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "這支影片一看就是業配。",
+      "situation": "看網紅開箱、質疑推薦",
+      "avoid": [
+        "在廠商面前說「這是業配」等於拆台"
+      ],
+      "note": "台灣特有詞（業務配合）；大陸講「帶貨」「廣告」。",
+      "tags": [
+        "潮語",
+        "網絡用語",
+        "白領"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-015",
+      "phrase": "蹭",
+      "variants": [],
+      "meaning": "搭別人的熱度、白吃白喝",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "sarcastic"
+        ],
+        "function": [
+          "insult"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "他只是在蹭流量。",
+      "situation": "網紅跟風、有人靠別人出名",
+      "avoid": [
+        "當面說人「蹭」等於指控，會直接翻臉"
+      ],
+      "note": "台灣網路高頻；「蹭飯」「蹭熱度」都通。",
+      "tags": [
+        "潮語",
+        "踩",
+        "網絡用語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-016",
+      "phrase": "洗版",
+      "variants": [],
+      "meaning": "大量重複發文把版面蓋掉",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "complain"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "社團被廣告洗版了。",
+      "situation": "社群網站、群組被灌訊息",
+      "avoid": [
+        "對客戶說「你們洗版」會像抱怨行銷沒品味"
+      ],
+      "note": "台灣網路用語；新聞、選舉、開箱都常被說洗版。",
+      "tags": [
+        "潮語",
+        "網絡用語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-017",
+      "phrase": "情勒",
+      "variants": [],
+      "meaning": "情緒勒索的簡稱",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "refuse"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "你不要情勒我，我不吃這套。",
+      "situation": "家人、伴侶、主管用情緒逼你就範",
+      "avoid": [
+        "把對方認真的難過說成「情勒」，會二次傷害"
+      ],
+      "note": "台灣 2020 年後高頻，家庭、情侶、職場都適用。",
+      "tags": [
+        "潮語",
+        "拒絕",
+        "網絡用語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-018",
+      "phrase": "躺平",
+      "variants": [],
+      "meaning": "不爭了、放棄努力",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "我已經躺平，加薪隨便。",
+      "situation": "討論買房、升遷、加班文化",
+      "avoid": [
+        "對主管說「我躺平」等於宣告不幹了"
+      ],
+      "note": "從大陸傳入，台灣年輕人也用；長輩聽得懂，但多半是貶意。",
+      "tags": [
+        "潮語",
+        "網絡用語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-019",
+      "phrase": "社恐",
+      "variants": [],
+      "meaning": "社交恐懼，自嘲用",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "tone": [
+          "shy"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "我社恐，尾牙可以不去嗎？",
+      "situation": "要自我介紹、被拉去應酬",
+      "avoid": [
+        "真的社交焦慮的人面前拿來開玩笑，會不體貼"
+      ],
+      "note": "台灣年輕世代高頻，跟「社牛」相對。",
+      "tags": [
+        "潮語",
+        "網絡用語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-020",
+      "phrase": "I人",
+      "variants": [
+        "I 人"
+      ],
+      "meaning": "內向的人，MBTI 梗",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "tone": [
+          "shy"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "我是I人，不要叫我自我介紹。",
+      "situation": "聚餐、聯誼、新環境",
+      "avoid": [
+        "拿去當不社交的藉口，久了自己也信"
+      ],
+      "note": "2023-2024 爆發，連長輩、企業 HR 都在用；相反是「E人」。",
+      "tags": [
+        "潮語",
+        "網絡用語",
+        "年輕人"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-021",
+      "phrase": "直男",
+      "variants": [],
+      "meaning": "不懂察言觀色的男生",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "insult"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "他真的很直男，完全聽不懂暗示。",
+      "situation": "女生聊感情、同事吐槽男友",
+      "avoid": [
+        "當著對方講會直接得罪人"
+      ],
+      "note": "台灣用法偏「不會讀空氣」，不一定指性向。",
+      "tags": [
+        "潮語",
+        "踩",
+        "年輕人"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-022",
+      "phrase": "頂",
+      "variants": [],
+      "meaning": "很厲害、到頂了",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "tone": [
+          "proud"
+        ],
+        "function": [
+          "praise"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "這家牛肉麵很頂。",
+      "situation": "推薦店家、稱讚表現",
+      "avoid": [
+        "對長輩用「頂」會被聽成「頂嘴」"
+      ],
+      "note": "2023 年後年輕圈用，是「頂級」的簡寫。",
+      "tags": [
+        "潮語",
+        "讚",
+        "年輕人"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-023",
+      "phrase": "很尬",
+      "variants": [],
+      "meaning": "很尷尬",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "剛剛那段很尬。",
+      "situation": "冷場、講錯話、被尷尬到",
+      "avoid": [
+        "對客戶說「很尬」太網路，正式場合要換說法"
+      ],
+      "note": "「尬」也可以當動詞：「尬聊」＝硬聊。",
+      "tags": [
+        "潮語",
+        "網絡用語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-024",
+      "phrase": "我沒了",
+      "variants": [],
+      "meaning": "我不行了：笑到不行、受不了、或完蛋了",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "tone": [
+          "funny"
+        ],
+        "function": [
+          "surprise"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "看到那段我沒了。",
+      "situation": "看到很好笑或很離譜的東西",
+      "avoid": [
+        "對長輩講會聽成身體不舒服，要解釋"
+      ],
+      "note": "2023 年後網路高頻，意思看語境；不是真的「沒有了」。",
+      "tags": [
+        "潮語",
+        "網絡用語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-025",
+      "phrase": "笑死",
+      "variants": [],
+      "meaning": "很好笑，也帶嘲笑",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "funny"
+        ],
+        "function": [
+          "joke"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "笑死，他居然當真。",
+      "situation": "朋友講幹話、看到蠢事",
+      "avoid": [
+        "對方認真難過時說「笑死」會很傷"
+      ],
+      "note": "台灣網路最萬用的兩字；面對面講要配表情，不然像嘲諷。",
+      "tags": [
+        "潮語",
+        "網絡用語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-026",
+      "phrase": "有夠扯",
+      "variants": [],
+      "meaning": "太離譜了",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "complain"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "有夠扯，價格翻三倍。",
+      "situation": "遇到不合理的事、被坑",
+      "avoid": [
+        "對客戶的報價講「有夠扯」等於洗臉"
+      ],
+      "note": "「扯」在台灣＝離譜，比「誇張」更口語。",
+      "tags": [
+        "潮語",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-027",
+      "phrase": "太扯了吧",
+      "variants": [],
+      "meaning": "不敢相信、太離譜",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "surprised"
+        ],
+        "function": [
+          "surprise"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "太扯了吧，他遲到兩小時。",
+      "situation": "聽到誇張的事",
+      "avoid": [
+        "對客戶講「太扯」會像質疑對方專業"
+      ],
+      "note": "台灣人表達不敢置信的第一句，語氣比「傻眼」外放。",
+      "tags": [
+        "日常",
+        "踩"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-028",
+      "phrase": "傻爆眼",
+      "variants": [],
+      "meaning": "傻眼的加強版",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "tone": [
+          "surprised"
+        ],
+        "function": [
+          "surprise"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "我傻爆眼，他直接走人。",
+      "situation": "看到極度離譜的場面",
+      "avoid": [
+        "長輩聽不懂，別在正式場合用"
+      ],
+      "note": "「傻眼」的加強版，2020 年代仍有人用。",
+      "tags": [
+        "潮語",
+        "網絡用語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-029",
+      "phrase": "好了啦",
+      "variants": [],
+      "meaning": "夠了、別再講了",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "好了啦，別再吵了。",
+      "situation": "勸架、打斷無限迴圈",
+      "avoid": [
+        "對長輩、客戶用「好了啦」像在打斷，很失禮"
+      ],
+      "note": "台灣吵架、勸架都用的三個字，語氣決定是勸還是嗆。",
+      "tags": [
+        "直球",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-030",
+      "phrase": "你是在大聲什麼",
+      "variants": [],
+      "meaning": "你兇什麼、你憑什麼這麼大聲",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "angry"
+        ],
+        "function": [
+          "challenge"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "conflict"
+        ]
+      },
+      "example": "你是在大聲什麼啦？",
+      "situation": "被人吼、衝突升溫",
+      "avoid": [
+        "這句話一出口通常就吵起來了，對客戶絕對不能用"
+      ],
+      "note": "2021 年超商事件後變成台灣吵架名場面台詞，帶台語氣口。",
+      "tags": [
+        "直球",
+        "踩"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-031",
+      "phrase": "現在是怎樣",
+      "variants": [],
+      "meaning": "現在到底什麼情況",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "angry"
+        ],
+        "function": [
+          "challenge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "conflict"
+        ]
+      },
+      "example": "現在是怎樣，大家都不講話？",
+      "situation": "會議僵住、衝突前的試探",
+      "avoid": [
+        "對客戶說「現在是怎樣」等於開戰"
+      ],
+      "note": "台灣衝突場面的開場句，比「怎麼了」多三分火氣。",
+      "tags": [
+        "直球",
+        "踩"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-032",
+      "phrase": "有事嗎",
+      "variants": [],
+      "meaning": "你有毛病嗎、你針對我嗎",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "challenge"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "conflict"
+        ]
+      },
+      "example": "你有事嗎？幹嘛針對我。",
+      "situation": "被挑釁、被莫名其妙對待",
+      "avoid": [
+        "這句等於挑釁，說給客戶聽會出事"
+      ],
+      "note": "語氣平的是關心，語氣重的是嗆人，全靠語調。",
+      "tags": [
+        "直球",
+        "踩"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-033",
+      "phrase": "少在那邊",
+      "variants": [],
+      "meaning": "別裝了、別來這一套",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "少在那邊裝可憐。",
+      "situation": "看穿對方演戲、朋友互虧",
+      "avoid": [
+        "對不熟的人講會太江湖氣"
+      ],
+      "note": "台灣口語高頻，帶點江湖味，南部更常聽到。",
+      "tags": [
+        "踩",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-034",
+      "phrase": "你要不要聽聽看你在說什麼",
+      "variants": [],
+      "meaning": "你自己聽聽你講的話有多離譜",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "sarcastic"
+        ],
+        "function": [
+          "challenge"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "conflict"
+        ]
+      },
+      "example": "你要不要聽聽看你在說什麼？",
+      "situation": "對方邏輯跳針、講話自相矛盾",
+      "avoid": [
+        "對長輩講會被骂沒大沒小，場合要挑"
+      ],
+      "note": "2022 年政治攻防爆紅，現在用在任何離譜對話。",
+      "tags": [
+        "踩",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-035",
+      "phrase": "你先冷靜",
+      "variants": [],
+      "meaning": "叫對方緩下來",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "cold"
+        ],
+        "function": [
+          "comfort"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "conflict"
+        ]
+      },
+      "example": "你先冷靜，我沒有別的意思。",
+      "situation": "衝突現場、對方情緒上來",
+      "avoid": [
+        "對正在氣頭上的人說「你先冷靜」通常會更火"
+      ],
+      "note": "台灣衝突降溫的標準句，但效果常常相反。",
+      "tags": [
+        "冷面",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-036",
+      "phrase": "講話客氣一點",
+      "variants": [],
+      "meaning": "提醒對方口氣放尊重",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "angry"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "conflict"
+        ]
+      },
+      "example": "講話客氣一點，沒人欠你。",
+      "situation": "被店員、晚輩兇",
+      "avoid": [
+        "自己口氣也差時講這句，只會更難看"
+      ],
+      "note": "台灣長輩、店家常這樣教訓人，是劃線不是吵架。",
+      "tags": [
+        "直球",
+        "踩"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-037",
+      "phrase": "我沒有要跟你吵",
+      "variants": [],
+      "meaning": "我不是來吵架的",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "cold"
+        ],
+        "function": [
+          "disagree"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "conflict"
+        ]
+      },
+      "example": "我沒有要跟你吵，我只是講事實。",
+      "situation": "衝突中想收線",
+      "avoid": [
+        "這句話本身就是吵架的開始，講完通常繼續吵"
+      ],
+      "note": "台灣人吵架少直接罵，多用「我只是講事實」自保。",
+      "tags": [
+        "冷面",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-038",
+      "phrase": "你這樣講就過分了",
+      "variants": [],
+      "meaning": "你這樣說越線了",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "angry"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "conflict"
+        ]
+      },
+      "example": "你這樣講就過分了喔。",
+      "situation": "被影射、被牽拖家人",
+      "avoid": [
+        "對客戶講「過分」等於翻臉，要先確認是不是誤會"
+      ],
+      "note": "台灣人吵架少直接罵，多用「過分」畫線。",
+      "tags": [
+        "直球",
+        "踩"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-039",
+      "phrase": "我們到此為止",
+      "variants": [],
+      "meaning": "結束關係、不再合作",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "cold"
+        ],
+        "function": [
+          "farewell"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "conflict"
+        ]
+      },
+      "example": "我們到此為止，不用再聯絡。",
+      "situation": "分手、拆夥、結束合作",
+      "avoid": [
+        "氣頭上講這句，事後想挽回很難"
+      ],
+      "note": "台灣分手、拆夥的體面說法，比飆罵更冷。",
+      "tags": [
+        "收尾",
+        "冷面"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-040",
+      "phrase": "你再這樣我要走了",
+      "variants": [],
+      "meaning": "最後通牒，通常帶撒嬌",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "threat"
+        ],
+        "function": [
+          "threaten"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "你再這樣我要走了喔。",
+      "situation": "情侶、朋友、家人間的軟威脅",
+      "avoid": [
+        "對客戶、同事用會顯得不成熟"
+      ],
+      "note": "帶「喔」的威脅其實是撒嬌版最後通牒。",
+      "tags": [
+        "直球",
+        "家庭"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-041",
+      "phrase": "我OK",
+      "variants": [
+        "我OK你先請"
+      ],
+      "meaning": "我沒關係，你先",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "cold"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "english-mix",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "我OK，你先請。",
+      "situation": "讓位、讓機會、表面禮讓",
+      "avoid": [
+        "嘴上說 OK 心裡不一定 OK，別當真"
+      ],
+      "note": "台灣網路禮貌式退讓，常用在搶票、搶位、排隊。",
+      "tags": [
+        "中英夾雜",
+        "冷面"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-042",
+      "phrase": "水啦",
+      "variants": [],
+      "meaning": "太棒了、漂亮（台語）",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "proud"
+        ],
+        "function": [
+          "praise"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "水啦，這球進了！",
+      "situation": "看球、事情成了、稱讚表現",
+      "avoid": [
+        "對客戶的專業成果喊「水啦」太隨便"
+      ],
+      "note": "台語「水」＝漂亮，全台通用，不分年齡。",
+      "tags": [
+        "讚",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-slang-043",
+      "phrase": "夭壽喔",
+      "variants": [],
+      "meaning": "太誇張了、嚇死人（台語）",
+      "categories": {
+        "age": [
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "surprised"
+        ],
+        "function": [
+          "surprise"
+        ],
+        "register": "slang",
+        "profanity": 1,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "夭壽喔，這價格。",
+      "situation": "看到離譜價格、嚇到",
+      "avoid": [
+        "對客戶、長輩講會太江湖氣，等於驚呼給人聽"
+      ],
+      "note": "台語感嘆詞，長輩高頻；年輕人用來搞笑。粗口級別 1，屬發洩不屬罵人。",
+      "tags": [
+        "老派",
+        "長輩",
+        "日常"
+      ],
+      "source": "general"
+    }
+  ]
+}

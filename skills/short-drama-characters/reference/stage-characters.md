@@ -40,7 +40,7 @@ relationship carries a `secret` — that is where the reversals come from.
 
 **`bible.speech` is the source of the voice.** `voice.pace` / `videoDirection` and every line's
 `delivery` are written from `rhythm`, `silence` and `forbiddenWords`; `seed script` prints them in
-the `seedNote` and `render dialogue` puts them beside each line for the polish pass.
+the `seedNote` and `render dialogue` puts them beside each line for the dialogue review.
 
 ## Image prompts (English by default; Chinese with `params.imagePromptLang: zh`)
 

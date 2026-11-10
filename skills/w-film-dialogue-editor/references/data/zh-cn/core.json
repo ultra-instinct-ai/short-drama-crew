@@ -1,0 +1,1794 @@
+{
+  "lang": "zh-cn",
+  "label": "大陆普通话",
+  "shard": "core",
+  "version": "1.0",
+  "entries": [
+    {
+      "id": "cn-core-001",
+      "phrase": "您好",
+      "variants": [
+        "您"
+      ],
+      "meaning": "客气的「你」，对长辈、客户、陌生人、服务对象的默认称呼",
+      "categories": {
+        "age": [
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "office",
+          "sales",
+          "waitress"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "stranger"
+        ]
+      },
+      "example": "您好，请问是张先生吗？",
+      "situation": "打电话找人、前台接待、第一次见客户",
+      "note": "「您」在北方（北京、东北、山东）用得比南方密；南方平辈之间多说「你」。服务业、电话销售几乎把它当标配开场。",
+      "tags": [
+        "客套",
+        "開場",
+        "日常"
+      ],
+      "source": "general",
+      "avoid": [
+        "朋友、平辈之间说「您好」会显得生分，像在营业"
+      ]
+    },
+    {
+      "id": "cn-core-002",
+      "phrase": "吃了吗",
+      "variants": [
+        "吃了没",
+        "吃了吗您"
+      ],
+      "meaning": "熟人碰面的招呼，等于「你好」，不是真问吃饭没有",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "housewife",
+          "elder"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family"
+        ]
+      },
+      "example": "哟，吃了吗您呐？",
+      "situation": "老邻居在楼道、小区门口碰面",
+      "note": "北方（北京、山东、东北）老一辈的招呼；南方少见；00 后基本改用「干嘛呢」。",
+      "tags": [
+        "開場",
+        "日常",
+        "老派"
+      ],
+      "source": "general",
+      "avoid": [
+        "对客户、对领导说会显得没分寸，太家常了"
+      ]
+    },
+    {
+      "id": "cn-core-003",
+      "phrase": "干嘛呢",
+      "variants": [
+        "干啥呢",
+        "忙什么呢"
+      ],
+      "meaning": "打招呼问对方在忙什么；语气一重就变成质问「你想干什么」",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "student"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "greet",
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family"
+        ]
+      },
+      "example": "干嘛呢？半天不回消息。",
+      "situation": "微信找朋友、找家人，最常用的开场",
+      "note": "比「你好」自然得多；「干啥呢」偏北方，南方人多说「在干嘛」。",
+      "tags": [
+        "開場",
+        "日常"
+      ],
+      "source": "general",
+      "avoid": [
+        "不熟的人连发两句，像查岗"
+      ]
+    },
+    {
+      "id": "cn-core-004",
+      "phrase": "麻烦您了",
+      "variants": [],
+      "meaning": "托人办事、占了别人时间之后的客气话",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "office",
+          "sales"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "thanks"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client",
+          "stranger"
+        ]
+      },
+      "example": "这事儿麻烦您了，回头请您吃饭。",
+      "situation": "请同事帮忙、让物业跑一趟、托人递话",
+      "note": "客气程度偏高；对方真办完了还会补一句「真是太麻烦您了」。",
+      "tags": [
+        "客套",
+        "日常"
+      ],
+      "source": "general",
+      "avoid": [
+        "平级同事之间天天说，会显得假客气、生分"
+      ]
+    },
+    {
+      "id": "cn-core-005",
+      "phrase": "辛苦啦",
+      "variants": [],
+      "meaning": "对下属、同事、服务人员的一句笼统肯定，未必真觉得辛苦",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "office",
+          "boss"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "praise",
+          "thanks"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "加班到这么晚，辛苦啦。",
+      "situation": "领导对下属、同事之间、点完外卖对骑手",
+      "note": "互联网公司最泛滥的客套，一天能说八遍；实际含义接近「知道了，继续干」。",
+      "tags": [
+        "公司",
+        "客套",
+        "上班族"
+      ],
+      "source": "general",
+      "avoid": [
+        "对上级说「辛苦啦」会显得居高临下，像在点评人家"
+      ]
+    },
+    {
+      "id": "cn-core-006",
+      "phrase": "不好意思",
+      "variants": [],
+      "meaning": "插话、打扰、小失误之前的缓冲，比「对不起」轻",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "office",
+          "student",
+          "sales"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "apology"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "colleague",
+          "client",
+          "friend"
+        ]
+      },
+      "example": "不好意思，让一下。",
+      "situation": "挤地铁、打断别人说话、迟到五分钟",
+      "note": "大陆日常里几乎万能；道歉分量轻重，全看语气拖多长。",
+      "tags": [
+        "客套",
+        "日常"
+      ],
+      "source": "general",
+      "avoid": [
+        "真做错大事还说「不好意思」，显得没诚意，要换成「对不起」"
+      ]
+    },
+    {
+      "id": "cn-core-007",
+      "phrase": "对不起",
+      "variants": [],
+      "meaning": "正式道歉，认错",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "office",
+          "student"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "apology"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "colleague",
+          "client",
+          "family"
+        ]
+      },
+      "example": "对不起，是我弄错了。",
+      "situation": "真的伤到人、办错事、当众失礼",
+      "note": "分量重；说完通常要跟一句补救（我来改、我赔）。",
+      "tags": [
+        "客套",
+        "日常"
+      ],
+      "source": "general",
+      "avoid": [
+        "小事（撞一下、借过）说「对不起」，会把对方吓一跳，用「不好意思」就够"
+      ]
+    },
+    {
+      "id": "cn-core-008",
+      "phrase": "没事儿",
+      "variants": [
+        "没事"
+      ],
+      "meaning": "回应道歉，表示不要紧；也可以是自己没问题",
+      "categories": {
+        "age": [
+          "young",
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "office",
+          "housewife",
+          "street"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "comfort",
+          "agree"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague",
+          "stranger"
+        ]
+      },
+      "example": "没事儿，不碍事。",
+      "situation": "别人道歉、撞到你、耽误你时间",
+      "note": "北方带儿化，南方多说「没事」；语气轻松才是真心。",
+      "tags": [
+        "客套",
+        "日常"
+      ],
+      "source": "general",
+      "avoid": [
+        "拉长音说「没事儿——」多半是记仇了，不是真没事"
+      ]
+    },
+    {
+      "id": "cn-core-009",
+      "phrase": "借过",
+      "variants": [
+        "借过一下",
+        "借光"
+      ],
+      "meaning": "人多时请人让路",
+      "categories": {
+        "age": [
+          "young",
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "office",
+          "student"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger"
+        ]
+      },
+      "example": "借过一下，我下车。",
+      "situation": "地铁、公交、火车站、演唱会人堆里",
+      "note": "「借光」是更老的北京说法，中老年还用，年轻人基本只说「借过」「让一下」。",
+      "tags": [
+        "日常",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-core-010",
+      "phrase": "那行吧",
+      "variants": [],
+      "meaning": "勉强答应，其实不太情愿",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "client",
+          "craftsman"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "friend",
+          "client"
+        ]
+      },
+      "example": "那行吧，就这么办。",
+      "situation": "讨论半天没结果，一方懒得再争",
+      "note": "三个字全是妥协；真愿意会直接说「行」「没问题」。",
+      "tags": [
+        "直球",
+        "日常"
+      ],
+      "source": "general",
+      "avoid": [
+        "对客户说「那行吧」，会被听成敷衍、不情愿"
+      ]
+    },
+    {
+      "id": "cn-core-011",
+      "phrase": "随便",
+      "variants": [],
+      "meaning": "都行、你定；潜台词常是「我懒得想」",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "student",
+          "housewife"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "dismiss",
+          "agree"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "吃什么都行，我随便。",
+      "situation": "点菜、约时间、问对方想去哪儿",
+      "note": "大陆饭桌最经典也最难伺候的回答；真随和的人会补一句「你定，我都吃」。",
+      "tags": [
+        "日常",
+        "直球"
+      ],
+      "source": "general",
+      "avoid": [
+        "点菜时说「随便」，最容易把人惹火，等于把选择题全推给对方"
+      ]
+    },
+    {
+      "id": "cn-core-012",
+      "phrase": "你看着办",
+      "variants": [],
+      "meaning": "交给你决定；也常带「出了事你负责」的施压",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "boss",
+          "office"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "这事儿你看着办吧。",
+      "situation": "领导甩手、甲方不给明确意见",
+      "note": "表面放权，实际是「我不表态，别来问我」；下属听到通常心里一沉。",
+      "tags": [
+        "直球",
+        "公司"
+      ],
+      "source": "general",
+      "avoid": [
+        "对长辈、客户说「你看着办」，像不尊重、推责任"
+      ]
+    },
+    {
+      "id": "cn-core-013",
+      "phrase": "行行行",
+      "variants": [
+        "行行行行"
+      ],
+      "meaning": "敷衍地同意，只想赶紧结束这个话题",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "housewife"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "agree",
+          "dismiss"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "行行行，你说得都对。",
+      "situation": "被念叨、争论没意义、对方又开始讲道理",
+      "note": "重复次数越多越不耐烦；「行行行行」基本等于翻白眼。",
+      "tags": [
+        "直球",
+        "冷面"
+      ],
+      "source": "general",
+      "avoid": [
+        "对客户说「行行行」，等于把人打发了，容易丢单"
+      ]
+    },
+    {
+      "id": "cn-core-014",
+      "phrase": "得嘞",
+      "variants": [],
+      "meaning": "爽快答应「好、马上办」",
+      "categories": {
+        "age": [
+          "young",
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "waitress",
+          "delivery",
+          "office"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "family"
+        ]
+      },
+      "example": "得嘞，马上给您办！",
+      "situation": "饭馆服务员应单、北京人答应差事",
+      "note": "京腔标记，北京及周边；服务业应答也用。",
+      "tags": [
+        "日常",
+        "直球"
+      ],
+      "source": "general",
+      "avoid": [
+        "非北京人硬说得嘞，容易假，像在学相声"
+      ]
+    },
+    {
+      "id": "cn-core-015",
+      "phrase": "甭客气",
+      "variants": [
+        "甭跟我客气"
+      ],
+      "meaning": "不用客气",
+      "categories": {
+        "age": [
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "shopkeeper",
+          "elder"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "甭客气，都是自己人。",
+      "situation": "别人道谢、要还人情",
+      "note": "京腔，「甭」＝不用；中老年北京人常用，年轻人少。",
+      "tags": [
+        "客套",
+        "老派"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-core-016",
+      "phrase": "劳驾",
+      "variants": [
+        "劳驾您"
+      ],
+      "meaning": "麻烦您、借过（老北京的客气话）",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "elder",
+          "office"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger"
+        ]
+      },
+      "example": "劳驾，让一让。",
+      "situation": "老北京人问路、请人让路、请人递个东西",
+      "note": "京腔，中老年为主；外地人听着会觉得文雅。",
+      "tags": [
+        "客套",
+        "老派"
+      ],
+      "source": "general",
+      "avoid": [
+        "年轻人对同龄人说「劳驾」，会显得拿腔拿调"
+      ]
+    },
+    {
+      "id": "cn-core-017",
+      "phrase": "有事儿您说话",
+      "variants": [],
+      "meaning": "客气承诺「有事找我」，多半是场面话",
+      "categories": {
+        "age": [
+          "senior",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "street",
+          "elder"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "encourage"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "有事儿您说话，别客气。",
+      "situation": "酒桌散场、邻居道别、老同事客气",
+      "note": "北方客套，带江湖气；北京、东北的酒桌上最常听到。",
+      "tags": [
+        "客套",
+        "老派"
+      ],
+      "source": "general",
+      "avoid": [
+        "当真天天去找人家办事，很快就没朋友了"
+      ]
+    },
+    {
+      "id": "cn-core-018",
+      "phrase": "改天聚",
+      "variants": [
+        "改天约",
+        "改天一起吃饭"
+      ],
+      "meaning": "客套收尾，多数不会真约",
+      "categories": {
+        "age": [
+          "young",
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "office",
+          "student"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "farewell"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "那先这样，改天聚啊！",
+      "situation": "饭局散场、老同学碰面后告别",
+      "note": "「改天」在大陆社交里＝没有具体日期，等于礼貌的再见。",
+      "tags": [
+        "收尾",
+        "客套"
+      ],
+      "source": "general",
+      "avoid": [
+        "当真追问「哪天」，会让人当场下不来台"
+      ]
+    },
+    {
+      "id": "cn-core-019",
+      "phrase": "先这样",
+      "variants": [],
+      "meaning": "电话、微信里结束对话的收口",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "sales"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "farewell"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client",
+          "friend"
+        ]
+      },
+      "example": "行，先这样，我挂了。",
+      "situation": "电话谈完事、微信聊到没话说",
+      "note": "极短、极中性；客户之间也常用，不算失礼。",
+      "tags": [
+        "收尾",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-core-020",
+      "phrase": "慢走",
+      "variants": [],
+      "meaning": "送客时的客气话",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "shopkeeper",
+          "waitress",
+          "housewife"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "farewell"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "stranger",
+          "friend"
+        ]
+      },
+      "example": "慢走啊，下次再来！",
+      "situation": "小店送客、主人送到门口",
+      "note": "店家、饭馆、理发店用得最多；对平辈朋友说也不算生分。",
+      "tags": [
+        "收尾",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-core-021",
+      "phrase": "欢迎光临",
+      "variants": [],
+      "meaning": "服务业迎客的标准开场",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "waitress",
+          "shopkeeper",
+          "sales"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "client"
+        ]
+      },
+      "example": "欢迎光临，几位？",
+      "situation": "饭馆、便利店、理发店门口",
+      "note": "有时只是机械喊，没有温度；小店老板会升级成「来啦，随便看」。",
+      "tags": [
+        "開場",
+        "客套",
+        "服務員"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-core-022",
+      "phrase": "扫码点单",
+      "variants": [],
+      "meaning": "桌上二维码自己下单，不用叫服务员",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "waitress",
+          "client"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "桌上扫码点单，直接下单就行。",
+      "situation": "连锁餐厅、奶茶店、火锅店入座之后",
+      "note": "2020 年后普及；中老年客人常要问一句「只能扫码吗」，服务员会补「我帮您点」。",
+      "tags": [
+        "餐廳",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-core-023",
+      "phrase": "打包",
+      "variants": [],
+      "meaning": "吃不完的菜带走",
+      "categories": {
+        "age": [
+          "young",
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "client",
+          "waitress",
+          "housewife"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family"
+        ]
+      },
+      "example": "剩下的帮我打包。",
+      "situation": "饭局尾声、家里老人舍不得剩菜",
+      "note": "现在很普遍，不丢面子；长辈心疼剩菜时最爱补一句「都打包，别浪费」。",
+      "tags": [
+        "餐廳",
+        "日常"
+      ],
+      "source": "general",
+      "avoid": [
+        "商务宴请上主动打包，要看跟对方熟不熟，正式场合会显得急"
+      ]
+    },
+    {
+      "id": "cn-core-024",
+      "phrase": "加个微信",
+      "variants": [],
+      "meaning": "交换联系方式，也是办事、搭讪的通用开场",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "sales",
+          "student"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "加个微信吧，有事方便联系。",
+      "situation": "认识新客户、邻居、相亲、二手交易",
+      "note": "大陆最普遍的社交动作，比留电话常见得多；「加个微信」几乎等于「认识一下」。",
+      "tags": [
+        "開場",
+        "日常"
+      ],
+      "source": "general",
+      "avoid": [
+        "异性之间第一次见面就要微信，容易被当成搭讪"
+      ]
+    },
+    {
+      "id": "cn-core-025",
+      "phrase": "多少钱",
+      "variants": [],
+      "meaning": "问价，也是砍价的前奏",
+      "categories": {
+        "age": [
+          "young",
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "housewife",
+          "client"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger"
+        ]
+      },
+      "example": "这个多少钱一斤？",
+      "situation": "菜市场、夜市、路边摊",
+      "note": "超市明码标价不用问；一问就是准备还价。",
+      "tags": [
+        "菜市場",
+        "講價",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-core-026",
+      "phrase": "便宜点儿",
+      "variants": [
+        "便宜点",
+        "能不能便宜点儿"
+      ],
+      "meaning": "砍价的第一句",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "housewife",
+          "client"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "bargain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger"
+        ]
+      },
+      "example": "老板，便宜点儿吧，我常来。",
+      "situation": "菜市场、服装批发、装修报价",
+      "note": "「我常来」「多买点」是标配理由；南方砍价更狠，北方摊主更爱说「给你抹个零」。",
+      "tags": [
+        "菜市場",
+        "講價"
+      ],
+      "source": "general",
+      "avoid": [
+        "在明码标价的商场、连锁店说这句，会显得难缠"
+      ]
+    },
+    {
+      "id": "cn-core-027",
+      "phrase": "太贵了",
+      "variants": [],
+      "meaning": "砍价起手式，也真是嫌贵",
+      "categories": {
+        "age": [
+          "mid",
+          "senior",
+          "young"
+        ],
+        "archetype": [
+          "housewife",
+          "client"
+        ],
+        "tone": [
+          "complain"
+        ],
+        "function": [
+          "complain",
+          "bargain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger"
+        ]
+      },
+      "example": "太贵了，隔壁才卖这个价。",
+      "situation": "菜市场、装修报价、二手车",
+      "note": "说完一般等对方回价；摊主标准回应是「这价真不赚你钱」。",
+      "tags": [
+        "講價",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-core-028",
+      "phrase": "来二斤",
+      "variants": [],
+      "meaning": "北方菜市场按「斤」（500 克）买",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "housewife",
+          "shopkeeper"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger"
+        ]
+      },
+      "example": "来二斤排骨，帮我剁一下。",
+      "situation": "北方菜市场、肉摊",
+      "note": "北方市场口头计量；南方（江浙沪、广东）更常说「半斤」「一斤」。",
+      "tags": [
+        "菜市場",
+        "老派"
+      ],
+      "source": "general",
+      "avoid": [
+        "南方说「二斤」也听得懂，但超市和年轻人多用「克」「公斤」"
+      ]
+    },
+    {
+      "id": "cn-core-029",
+      "phrase": "快递到了",
+      "variants": [],
+      "meaning": "快递员通知件到了，也指「放门口／柜里了」",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "delivery"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "friend"
+        ]
+      },
+      "example": "您的快递放门口了。",
+      "situation": "快递员打电话、发短信、按门铃",
+      "note": "现在多半不打电话，直接短信或放驿站；「放驿站了，自己取一下」是常态。",
+      "tags": [
+        "日常",
+        "小區"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-core-030",
+      "phrase": "外卖到了",
+      "variants": [],
+      "meaning": "骑手通知餐到了",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "delivery"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "colleague"
+        ]
+      },
+      "example": "您好，外卖到了，放前台了。",
+      "situation": "骑手打电话、公司楼下、小区门口",
+      "note": "骑手标准三句：到了、放哪儿、麻烦给个好评。",
+      "tags": [
+        "外賣",
+        "日常",
+        "外賣員"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-core-031",
+      "phrase": "给个五星好评",
+      "variants": [],
+      "meaning": "求好评，平台考核逼出来的话",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "delivery",
+          "waitress"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "client"
+        ]
+      },
+      "example": "麻烦给个五星好评，谢谢啊。",
+      "situation": "外卖送到、网约车下车、修完空调",
+      "note": "骑手、司机、装修师傅都会说；不给也没事，但对方会少一单评分。",
+      "tags": [
+        "外賣",
+        "客套"
+      ],
+      "source": "general",
+      "avoid": [
+        "服务明显不到位还硬要好评，会被直接怼回去"
+      ]
+    },
+    {
+      "id": "cn-core-032",
+      "phrase": "师傅，靠边停",
+      "variants": [
+        "前面路口停",
+        "靠边停一下"
+      ],
+      "meaning": "打车时告诉司机在哪儿停",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "client"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger"
+        ]
+      },
+      "example": "师傅，前面路口靠边停就行。",
+      "situation": "网约车、出租车快到目的地",
+      "note": "「师傅」在大陆是对司机、修理工、装修工的通用尊称。",
+      "tags": [
+        "司機",
+        "日常"
+      ],
+      "source": "general",
+      "avoid": [
+        "在大陆叫司机「司机」不如叫「师傅」自然，尤其是中年人开的车"
+      ]
+    },
+    {
+      "id": "cn-core-033",
+      "phrase": "多吃点儿",
+      "variants": [],
+      "meaning": "长辈劝饭，带关心也带压力",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "mum",
+          "elder",
+          "housewife"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "encourage"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family"
+        ]
+      },
+      "example": "多吃点儿，看你瘦的。",
+      "situation": "回家吃饭、过年、外婆家",
+      "note": "长辈、父母的经典台词；年轻人标准应对是「吃着呢吃着呢」。",
+      "tags": [
+        "家庭",
+        "長輩",
+        "關心"
+      ],
+      "source": "general",
+      "avoid": [
+        "对成年晚辈反复劝饭，会变成挑剔（嫌你瘦、嫌你不吃）"
+      ]
+    },
+    {
+      "id": "cn-core-034",
+      "phrase": "我吃过了",
+      "variants": [],
+      "meaning": "拒绝劝饭、拒绝邀约的挡箭牌",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "student"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "friend"
+        ]
+      },
+      "example": "我吃过了，真吃不下了。",
+      "situation": "长辈夹菜、同事问要不要一起点外卖",
+      "note": "大陆最常见的软拒绝之一；真没吃也说吃过，省得麻烦。",
+      "tags": [
+        "家庭",
+        "拒絕"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-core-035",
+      "phrase": "不用了不用了",
+      "variants": [],
+      "meaning": "客气又坚决地拒绝别人的好意",
+      "categories": {
+        "age": [
+          "young",
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "office",
+          "housewife"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "stranger"
+        ]
+      },
+      "example": "不用了不用了，我自己来。",
+      "situation": "别人要帮你拎东西、要给你倒茶、要送你回家",
+      "note": "重复是礼貌的一部分，只说一遍反而显得冷淡。",
+      "tags": [
+        "拒絕",
+        "客套"
+      ],
+      "source": "general",
+      "avoid": [
+        "对领导、客户连说两次「不用了」，会显得把人推远"
+      ]
+    },
+    {
+      "id": "cn-core-036",
+      "phrase": "下次吧",
+      "variants": [],
+      "meaning": "婉拒邀约，多数没有下次",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "client"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "下次吧，今天真有事。",
+      "situation": "同事约饭、朋友约酒、客户约局",
+      "note": "大陆社交里最安全也最敷衍的拒绝；配套理由要具体（加班、接孩子）。",
+      "tags": [
+        "拒絕",
+        "客套"
+      ],
+      "source": "general",
+      "avoid": [
+        "对方认真约了三次都说「下次吧」，关系基本就凉了"
+      ]
+    },
+    {
+      "id": "cn-core-037",
+      "phrase": "学区房",
+      "variants": [],
+      "meaning": "划进好学校招生范围的房子，价格被炒高",
+      "categories": {
+        "age": [
+          "mid"
+        ],
+        "archetype": [
+          "mum",
+          "dad"
+        ],
+        "tone": [
+          "worried"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family"
+        ]
+      },
+      "example": "为了学区房，把老家的房子都卖了。",
+      "situation": "家庭饭桌、亲戚攀比、买房讨论",
+      "note": "一线城市（北京、上海、深圳）最敏感的话题；2021 年前后政策收紧、多校划片推行，热度降了些，但仍是硬通货。",
+      "tags": [
+        "家庭",
+        "小區"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-core-038",
+      "phrase": "广场舞",
+      "variants": [],
+      "meaning": "中老年人在小区广场集体跳舞，常伴噪音纠纷",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "housewife",
+          "elder"
+        ],
+        "tone": [
+          "complain"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger"
+        ]
+      },
+      "example": "楼下广场舞声音太大，孩子作业都写不了。",
+      "situation": "小区业主群、物业投诉、晚饭后",
+      "note": "大陆小区最经典的邻里矛盾之一；也有年轻人加入跳。",
+      "tags": [
+        "小區",
+        "抱怨",
+        "大媽"
+      ],
+      "source": "general",
+      "avoid": [
+        "当面冲大妈喊「别跳了」，基本必吵，物业出面才是常规解法"
+      ]
+    },
+    {
+      "id": "cn-core-039",
+      "phrase": "找物业",
+      "variants": [],
+      "meaning": "小区里的事找物业管理公司",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "housewife",
+          "office"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "friend"
+        ]
+      },
+      "example": "这事儿得找物业，他们管。",
+      "situation": "漏水、电梯坏了、门禁卡失效",
+      "note": "大陆小区标配「物业」；老小区没物业就找居委会。",
+      "tags": [
+        "小區",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-core-040",
+      "phrase": "楼上装修",
+      "variants": [],
+      "meaning": "楼上开工，电钻声连绵；也是邻里矛盾的常见起点",
+      "categories": {
+        "age": [
+          "mid"
+        ],
+        "archetype": [
+          "housewife",
+          "office"
+        ],
+        "tone": [
+          "complain"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger"
+        ]
+      },
+      "example": "楼上装修，电钻从早上响到现在。",
+      "situation": "小区业主群、跟邻居吐槽、白天在家办公",
+      "note": "大陆装修没有全国统一的静音时段，主要靠物业协调；周末施工最容易吵。",
+      "tags": [
+        "小區",
+        "抱怨",
+        "裝修"
+      ],
+      "source": "general",
+      "avoid": [
+        "直接上门砸门理论容易打起来，正常是先找物业、再报警"
+      ]
+    },
+    {
+      "id": "cn-core-041",
+      "phrase": "哪里哪里",
+      "variants": [],
+      "meaning": "传统谦辞，回应夸奖",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "office",
+          "teacher",
+          "craftsman"
+        ],
+        "tone": [
+          "shy"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client",
+          "family"
+        ]
+      },
+      "example": "哪里哪里，还差得远。",
+      "situation": "被夸孩子、被夸手艺、正式场合",
+      "note": "中老年、正式场合更常用；80 后 90 后多说「没有没有」。",
+      "tags": [
+        "客套",
+        "老派"
+      ],
+      "source": "general",
+      "avoid": [
+        "年轻人之间说「哪里哪里」会显得老派，像在念台词"
+      ]
+    },
+    {
+      "id": "cn-core-042",
+      "phrase": "没有没有",
+      "variants": [],
+      "meaning": "年轻人回应夸奖的谦辞",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "student"
+        ],
+        "tone": [
+          "shy"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "没有没有，随便弄的。",
+      "situation": "同事夸你衣服好看、领导夸你方案",
+      "note": "比「哪里哪里」自然，语气还带点不好意思；连说两遍才够谦。",
+      "tags": [
+        "客套",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-core-043",
+      "phrase": "有话直说",
+      "variants": [],
+      "meaning": "让对方别绕弯子",
+      "categories": {
+        "age": [
+          "mid",
+          "young"
+        ],
+        "archetype": [
+          "office",
+          "street"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "challenge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "friend"
+        ]
+      },
+      "example": "有话直说，别绕弯子。",
+      "situation": "对方暗示半天、领导旁敲侧击、对象阴阳怪气",
+      "note": "直脾气的人常挂嘴边；北方说得更冲，南方会软化成「你直接说吧」。",
+      "tags": [
+        "直球",
+        "日常"
+      ],
+      "source": "general",
+      "avoid": [
+        "对长辈、客户说会被当成没耐心、不懂事"
+      ]
+    },
+    {
+      "id": "cn-core-044",
+      "phrase": "多大点事儿",
+      "variants": [],
+      "meaning": "安慰或轻描淡写：这不算事",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "office",
+          "street",
+          "dad"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "comfort"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "多大点事儿，别往心里去。",
+      "situation": "朋友为小事焦虑、同事被骂两句",
+      "note": "北方口语，重音在「多大」；轻描淡写既可以安慰，也可以是看不起这事。",
+      "tags": [
+        "關心",
+        "直球"
+      ],
+      "source": "general",
+      "avoid": [
+        "对方真受了委屈还说「多大点事儿」，等于否定人家的情绪"
+      ]
+    },
+    {
+      "id": "cn-core-045",
+      "phrase": "保重",
+      "variants": [],
+      "meaning": "道别时让对方照顾好自己",
+      "categories": {
+        "age": [
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "office",
+          "elder"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "farewell"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "路上小心，保重身体。",
+      "situation": "送人上火车、长辈住院出院、同事离职",
+      "note": "分量比「再见」重，带点郑重；年轻人之间说会显得煽情。",
+      "tags": [
+        "收尾",
+        "關心"
+      ],
+      "source": "general"
+    }
+  ]
+}
