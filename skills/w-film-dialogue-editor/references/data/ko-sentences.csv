@@ -1,0 +1,134 @@
+﻿id,shard,sentence,phrase,meaning,tags,register,profanity,tone,function
+ko-core-001,core,"안녕하세요, 처음 뵙겠습니다.",안녕하세요,韓文最基本的敬語招呼，任何場合見面第一句；對長輩、客人、同事都用得。,開場/客套/日常,everyday,0,polite/warm,greet
+ko-core-002,core,"안녕, 오늘 뭐 해?",안녕,半語的「hi」，朋友、同輩、晚輩之間用，語氣輕鬆。,開場/日常/半語,everyday,0,warm/funny,greet
+ko-core-003,core,"수고하셨습니다, 오늘은 제가 정리할게요.",수고하셨습니다,收工、交更、做完一件事對人講嘅「辛苦晒」；下屬對上司、同事對同事都用。,職場/客套/收尾,professional,0,polite/warm,thanks
+ko-core-004,core,도와주셔서 감사합니다.,감사합니다,正式多謝；對客人、長輩、上司，或者收到幫助／禮物都用。,客套/日常/敬語,everyday,0,polite/warm,thanks
+ko-core-005,core,"고마워, 진짜 큰일 났는데 살았어.",고마워,半語的「多謝」，朋友、家人、晚輩之間；加 요 就變半敬語。,日常/半語/客套,everyday,0,warm,thanks
+ko-core-006,core,"늦어서 죄송합니다, 바로 시작하겠습니다.",죄송합니다,正式道歉，認錯、遲到、做錯事、對客戶失誤都用；語氣比 미안 重。,客套/職場/敬語,everyday,0,polite/worried,apology
+ko-core-007,core,"미안, 내가 좀 늦었지.",미안,半語道歉，朋友、家人、情侶之間；口氣軟，帶少少撒嬌。,日常/半語/戀愛,everyday,0,warm/whiny,apology
+ko-core-008,core,"실례합니다, 잠깐 들어가도 될까요?",실례합니다,打擾／借借／入人地方前講嘅「失禮喇」；亦用嚟叫人注意。,客套/開場/敬語,everyday,0,polite,greet/apology
+ko-core-009,core,"저기요, 여기 물 좀 주세요.",저기요,叫侍應／店員／陌生人注意嘅「唔好意思」；韓國餐廳、咖啡店最常用。,餐廳/日常/開場,everyday,0,polite/blunt,greet/question
+ko-core-010,core,"잠시만요, 뒤에 분 아직 안 내리셨어요.",잠시만요,「等等／借借／唔好意思阻一阻」；講電話、行過人前面、要人停一停都用。,日常/客套/地鐵,everyday,0,polite/blunt,urge
+ko-core-011,core,봉투 필요하세요? 일회용 봉투는 백 원이에요.,봉투 필요하세요?,便利店收銀問「要唔要膠袋？」,便利店/店員/日常,everyday,0,polite/blunt,question
+ko-core-012,core,전자레인지에 돌려 드릴까요? 도시락 드시는 거죠?,전자레인지에 돌려 드릴까요?,便利店／超市問「要唔要幫你叮熱？」,便利店/店員/客套,everyday,0,polite/warm,question/encourage
+ko-core-013,core,"아이스 아메리카노 한 잔 주세요, 얼음은 조금만요.",아이스 아메리카노 한 잔 주세요,咖啡店最常見落單；韓國人叫冰美式做「아아」。,咖啡廳/日常/店員,everyday,0,polite/blunt,question
+ko-core-014,core,텀블러 가져오셨어요? 가져오시면 300원 할인돼요.,텀블러 가져오셨어요?,咖啡店問「有冇帶自己杯？」——帶杯有折扣。,咖啡廳/店員/日常,everyday,0,polite/warm,question
+ko-core-015,core,이거 리필 되나요? 반찬 더 주실 수 있어요?,이거 리필 되나요?,餐廳問「呢個可以加添嗎？」（側菜、飯、飲品）,餐廳/日常/客套,everyday,0,polite/warm,question
+ko-core-016,core,계산은 어디서 해요? 카운터에서 하면 되나요?,계산은 어디서 해요?,問「喺邊度埋單？」,餐廳/日常/店舖,everyday,0,polite,question
+ko-core-017,core,"남은 거 포장해 주세요, 버리기 아까워서요.",포장해 주세요,「唔該打包／外賣」；食唔晒帶走或者落外賣單都用。,餐廳/日常/店員,everyday,0,polite,question/urge
+ko-core-018,core,카드 되나요? 현금이 없어서요.,카드 되나요?,問「收唔收卡？」小店、市場攤販都可能只收現金。,店舖/日常/街市,everyday,0,polite/worried,question
+ko-core-019,core,이거 얼마예요? 두 개 사면 깎아 주세요.,얼마예요?,問價錢；最直接、最萬用的購物句。,講價/日常/店舖,everyday,0,polite/blunt,question/bargain
+ko-core-020,core,두 개 살 테니까 깎아 주세요.,깎아 주세요,「可以平啲嗎？」街市、南大門、的士長途可以講；連鎖店唔會減。,講價/街市/店舖,everyday,0,polite/whiny,bargain
+ko-core-021,core,어디서 내려요? 저 강남역까지 가는데요.,어디서 내려요?,巴士／地鐵問「我喺邊度落車？」,地鐵/日常/街頭,everyday,0,polite/worried,question
+ko-core-022,core,역이 어디예요? 이쪽으로 가면 돼요?,역이 어디예요?,問「車站喺邊？」,地鐵/街頭/日常,everyday,0,polite/worried,question
+ko-core-023,core,"여기서 쭉 가다가 왼쪽으로 도세요, 그럼 바로 보여요.",쭉 가다가 왼쪽으로 도세요,指路：「一直行，然後轉左。」,街頭/日常/直球,everyday,0,blunt/polite,urge
+ko-core-024,core,길 미끄러우니까 조심하세요.,조심하세요,「小心啲」；提醒人路滑、有車、講嘢小心。,關心/日常/客套,everyday,0,worried/warm,warn
+ko-core-025,core,"괜찮아요, 저는 됐어요. 고마워요.",괜찮아요,字面「冇事／OK」，但最常係婉拒：「唔使喇，多謝。」,拒絕/客套/日常,everyday,0,polite/warm,refuse-soft/comfort
+ko-core-026,core,"됐어요, 그냥 제가 할게요.",됐어요,「唔使喇／算喇」，比 괜찮아요 硬，帶少少唔耐煩或收線意味。,拒絕/冷面/直球,everyday,0,cold/blunt,refuse/dismiss
+ko-core-027,core,"오늘은 어려울 것 같고, 다음에요.",다음에요,「下次先啦」＝委婉推掉，唔講死。,拒絕/客套/日常,everyday,0,polite/shy,refuse-soft
+ko-core-028,core,"안녕히 계세요, 다음에 또 올게요.",안녕히 계세요,道別：走嘅人對留低嘅人講 계세요；留低嘅人對走嘅人講 가세요。,收尾/客套/敬語,everyday,0,polite/warm,farewell
+ko-core-029,core,"그럼 이따 봐요, 저녁에 또 보자.",그럼 이따 봐요,「咁轉頭見」；同日再見用，唔係「再見」萬用句。,收尾/日常/同事,everyday,0,warm/polite,farewell
+ko-core-030,core,"저는 먼저 들어가겠습니다, 내일 뵙겠습니다.",먼저 들어가겠습니다,「我先走喇」——收工或者聚會早退，對留低嘅人講。,職場/收尾/上司,professional,0,polite,farewell
+ko-core-031,core,"잘 먹겠습니다, 이렇게 차려 주셔서 감사해요.",잘 먹겠습니다,食飯前講嘅「多謝款待／我開動喇」；去人屋企食飯、餐廳上菜前都講。,家庭/餐廳/客套,everyday,0,polite/warm,thanks
+ko-core-032,core,"잘 먹었습니다, 다음에 제가 살게요.",잘 먹었습니다,食完講嘅「多謝招待／我食飽喇」；離座、收碟前講。,家庭/餐廳/收尾,everyday,0,polite/warm,thanks/farewell
+ko-core-033,core,"여보세요, 거기 세탁소죠?",여보세요,電話專用「喂」；面對面講會好怪，甚至似鬧人。,開場/日常/客套,everyday,0,polite/blunt,greet
+ko-core-034,core,"엄마, 나 오늘 늦어.",엄마,「阿媽」；小朋友、成年人都用，口語親暱。어머니 較正式。,家庭/日常,everyday,0,warm/whiny,greet
+ko-core-035,core,"아빠, 오늘 몇 시에 와?",아빠,「阿爸」；口語親暱，아버지 較正式。,家庭/日常,everyday,0,warm,greet
+ko-core-036,core,"할머니, 이거 좀 들어 드릴까요?",할머니,「阿嫲／婆婆」；亦可以叫街上任何上年紀女人（要小心）。,家庭/長輩/關心,everyday,0,warm/polite,greet
+ko-core-037,core,"아저씨, 이거 좀 옮겨 주실 수 있어요?",아저씨,「大叔／先生」；叫中年男人，客氣程度中等，用得唔好會得罪人。,街頭/老派/日常,everyday,0,blunt/polite,greet
+ko-core-038,core,"이모, 여기 반찬 좀 더 주세요.",이모,「姨媽」；亦係叫餐廳阿姐、小店老闆娘嘅親暱叫法（全韓國通用）。,餐廳/阿姨/日常,everyday,0,warm/polite,greet
+ko-core-039,core,밥 먹었어요? 아직이면 같이 먹어요.,밥 먹었어요?,「食咗飯未？」——韓國人當招呼用，唔係真係想約你食飯。,開場/日常/關心,everyday,0,warm/polite,greet
+ko-core-040,core,어디 가세요? 이 시간에 웬일이에요?,어디 가세요?,「去邊呀？」鄰居、同事撞到嘅隨口招呼，唔一定要答。,大廈/開場/日常,everyday,0,warm/gossip,greet/question
+ko-core-041,core,"저 먼저 가 볼게요, 내일 봬요.",먼저 가 볼게요,「我先走喇」；朋友、同事之間，比 들어가겠습니다 輕鬆。,收尾/日常/同事,everyday,0,polite/warm,farewell
+ko-core-042,core,"어서 들어오세요, 밖에 춥죠.",들어오세요,「請入嚟」；開門迎客、叫人入房。,店舖/客套/開場,everyday,0,polite/warm,urge
+ko-core-043,core,"여기 앉으세요, 금방 준비해 드릴게요.",앉으세요,「請坐」；見客、探病、屋企接待。,客套/店舖/日常,everyday,0,polite/warm,urge
+ko-core-044,core,화장실이 어디예요? 급해서요.,화장실이 어디예요?,「洗手間喺邊？」,餐廳/店舖/日常,everyday,0,polite/worried,question
+ko-core-045,core,"죄송한데, 다시 한 번 말씀해 주세요.",다시 한 번 말씀해 주세요,「唔該再講一次」；聽唔清楚、語言不通時嘅救命句。,客套/職場/日常,professional,0,polite/helpless,question/urge
+ko-slang-001,slang,"아 진짜 킹받네, 또 카톡 씹혔어.",킹받네,「超煩／激到我」；킹（king）＋받네，比 짜증나 更誇張、更好笑。,潮語/網絡用語/抱怨,slang,0,complain/funny,complain
+ko-slang-002,slang,"이번 영상 레게노, 조회수 300만이야.",레게노,「傳說級」；레전드（legend）嘅變體，用嚟讚到爆或者反諷。,潮語/網絡用語,internet,0,surprised/funny,praise/surprise
+ko-slang-003,slang,"그건 억까지, 걔가 뭘 잘못했어?",억까,「無理取鬧咁踩」；억울한（冤）＋까（踩），指無理由嘅攻擊。,潮語/網絡用語/踩,slang,0,sassy/complain,complain/disagree
+ko-slang-004,slang,"중꺾마, 오늘도 버티자.",중꺾마,「重要嘅係唔認輸嘅心」；중요한 건 꺾이지 않는 마음 嘅縮寫，用嚟自我鼓勵。,潮語/網絡用語/年輕人,internet,0,proud/warm,encourage
+ko-slang-005,slang,요즘 갓생 살아서 아침 6시에 일어나.,갓생,「神級人生」；갓（god）＋생（生活），指自律、有生產力咁活。,潮語/年輕人/日常,slang,0,proud/funny,boast
+ko-slang-006,slang,TMI지만 어제 소개팅 갔다 왔어.,TMI,「太多唔需要嘅資訊」；講完自己都覺得多餘嘅細節。,網絡用語/外來語/八卦,internet,0,funny/gossip,gossip/joke
+ko-slang-007,slang,이 회사 워라밸은 진짜 좋아.,워라밸,「工作生活平衡」；work-life balance 嘅韓國式縮寫。,外來語/職場/潮語,english-mix,0,polite/complain,complain
+ko-slang-008,slang,"내로남불도 정도가 있지, 자기만 늦는 건 봐주더라.",내로남불,"「自己做得，別人做就唔得」；내가 하면 로맨스, 남이 하면 불륜 嘅縮寫。",潮語/踩/職場,slang,0,sarcastic/complain,complain/insult
+ko-slang-009,slang,미쳤어? 지금 그걸 여기서 말해?,미쳤어?,「你傻咗呀？」嘅半語；可以係真嬲，亦可以係朋友之間嘅驚嘆。,直球/抱怨/半語,slang,1,surprised/angry,challenge/surprise
+ko-slang-010,slang,진짜? 걔가 그걸 혼자 다 했다고?,진짜?,「真係？」——表示唔信、驚訝或者想確認。,直球/日常/半語,everyday,0,surprised/polite,question/surprise
+ko-slang-011,slang,"헐, 이게 얼마야.",헐,「吓？」「有冇搞錯」；短促嘅驚嘆，帶少少難以置信。,直球/日常/年輕人,slang,0,surprised/funny,surprise
+ko-slang-012,slang,"대박, 이걸 여기서 만나네.",대박,「勁呀／癲呀」；可以係讚，亦可以係「唔係啩」。,直球/日常/讚,slang,0,surprised/proud,praise/surprise
+ko-slang-013,slang,"짜증나, 버스 또 놓쳤어.",짜증나,「好煩」；比 킹받네 平實，係真係燥。,抱怨/日常/半語,slang,0,complain/angry,complain
+ko-slang-014,slang,눈팅만 하지 말고 댓글 좀 남겨.,눈팅,「潛水睇文」；눈（眼）＋팅，只睇唔留言。,網絡用語/潮語,internet,0,shy/funny,dismiss
+ko-slang-015,slang,영상 끝까지 보셨으면 좋아요 눌러 주세요.,좋아요 눌러 주세요,「唔該畀個 like」；影片收尾常用。,網絡用語/客套,internet,0,polite/funny,urge
+ko-slang-016,slang,"야, 선 넘네, 그건 아니잖아.",선 넘네,「你踩過界喇」；對方講嘢／做嘢越界時用。,踩/直球/半語,slang,0,sassy/angry,challenge/insult
+ko-slang-017,slang,너 몇 살이야? 어른한테 그렇게 말해?,너 몇 살이야?,「你幾歲呀？」——唔係真係問年齡，係話對方冇大冇細、唔識規矩。,踩/半語/直球,slang,0,sassy/threat,challenge/insult
+ko-slang-018,slang,"닥쳐, 지금 네가 할 말이 아니야.",닥쳐,「收聲」；比 조용히 해 重好多，係直接侮辱。,踩/半語/直球,profanity,2,angry/threat,insult/threaten
+ko-slang-019,slang,"꺼져, 다시는 말 걸지 마.",꺼져,「躝開」；比 닥쳐 更絕，等於切斷關係。,踩/半語/冷面,profanity,2,angry/cold,insult/dismiss
+ko-slang-020,slang,"씨발, 진짜 이게 말이 돼?",씨발,韓國最常見嘅粗口，等於「X你」；多數係發洩，唔一定鬧人。,踩/直球/半語,profanity,3,angry/surprised,insult
+ko-slang-021,slang,"어이없네, 내가 왜 그걸 물어봐?",어이없네,「有冇搞錯」；覺得對方行為荒謬到無話可說。,冷面/抱怨/半語,slang,0,sarcastic/helpless,dismiss/complain
+ko-slang-022,slang,"뭐라는 거야, 한 마디도 못 알아듣겠어.",뭐라는 거야,「你講乜呀？」；聽唔明或者覺得對方講嘢離譜。,冷面/直球/半語,slang,0,sassy/helpless,dismiss/disagree
+ko-slang-023,slang,"아 진짜, 오늘 왜 이래.",아 진짜,「唉，真係」；唔耐煩、火起時嘅口頭禪。,抱怨/日常/半語,everyday,0,complain/helpless,complain
+ko-slang-024,slang,"됐고, 그 얘긴 그만하자.",됐고,「算啦／唔講呢啲」；想截斷話題或者轉台。,冷面/拒絕/半語,slang,0,cold/blunt,dismiss/refuse
+ko-slang-025,slang,뭐하노? 이 시간에 여기서.,뭐하노?,「你做乜呀？」——慶尚道（釜山）腔，帶少少粗魯嘅親切。,方言/街頭/半語,everyday,0,blunt/funny,question/challenge
+ko-slang-026,slang,밥 뭇나? 아침부터 안 보이길래.,밥 뭇나?,「食咗飯未？」——慶尚道腔，等於標準語 밥 먹었어?。,方言/關心/開場,everyday,0,warm/blunt,greet
+ko-slang-027,slang,"편하게 말 놓으셔도 돼요, 저 훨씬 어려요.",말 놓으셔도 돼요,「你同我講半語都得」；由後輩主動放低敬語壓力。,敬語/客套/日常,everyday,0,polite/warm,encourage
+ko-slang-028,slang,너 나한테 반말해? 누구한테.,너 나한테 반말해?,「你同我講半語？」——年齡／輩分被冒犯時嘅反擊。,半語/踩/直球,slang,1,angry/threat,challenge/insult
+ko-slang-029,slang,"눈치 없네, 지금 분위기 보면 알 거 아니야.",눈치 없네,「你真係唔識睇面色」；눈치＝讀空氣嘅能力。,踩/冷面/半語,slang,0,sassy/cold,insult/tease
+ko-slang-030,slang,"분위기 파악 좀 해, 다들 조용하잖아.",분위기 파악 좀 해,「睇下氣氛啦」；叫對方收斂。,踩/直球/半語,slang,0,sassy/angry,urge/insult
+ko-slang-031,slang,지금 장난해? 이게 웃기다고?,지금 장난해?,「你而家同我玩呀？」；覺得對方唔認真、離譜。,踩/直球/半語,slang,0,angry/surprised,challenge/disagree
+ko-slang-032,slang,"알빠 아니야, 네가 알아서 해.",알빠 아니야,「關我咩事」；알 바 아니야 嘅縮寫，態度冷淡。,冷面/潮語/半語,slang,0,cold/sassy,dismiss
+ko-slang-033,slang,너 T야? 위로를 해 줘야지.,너 T야?,「你係 T 呀？」；MBTI 嘅 T（理性型），話對方零共情、唔識安慰人。,潮語/網絡用語/戀愛,internet,0,sassy/funny,tease/insult
+ko-slang-034,slang,걔는 인싸라서 어디 가든 아는 사람이 있어.,인싸,「圈內人」；識玩、多人識、社交活躍。反義 아싸＝圈外人。,潮語/年輕人/校園,slang,0,proud/funny,praise/tease
+ko-slang-035,slang,꼰대 같으니까 그런 소리 하지 마.,꼰대,「老屎忽／說教型長輩」；指愛擺架子、教訓後輩嘅人。,潮語/踩/職場,slang,0,sassy/angry,insult/complain
+ko-slang-036,slang,"오늘은 혼밥할래, 조용히 먹고 싶어.",혼밥,「一個人食飯」；혼자＋밥，中性偏自嘲。,潮語/日常/餐廳,slang,0,helpless/funny,dismiss
+ko-slang-037,slang,"갑분싸, 다들 왜 갑자기 조용해져.",갑분싸,「氣氛突然冷落」；갑자기 분위기 싸해짐 嘅縮寫。,潮語/網絡用語/職場,internet,0,helpless/funny,complain
+ko-slang-038,slang,썸 타는 거야 아니야? 확실히 해.,썸,「曖昧中」；未正式拍拖但互有好感嘅階段。,戀愛/潮語/情侶,slang,0,shy/flirty,question/tease
+ko-slang-039,slang,밀당 그만하고 솔직하게 말해.,밀당,「推拉」；戀愛入面欲擒故縱、唔肯講清楚。,戀愛/潮語/情侶,slang,0,flirty/sassy,tease/complain
+ko-slang-040,slang,"읽씹 당했어, 벌써 사흘째야.",읽씹,「已讀不回」；읽고 씹기，讀咗但唔覆。,網絡用語/戀愛/潮語,internet,0,helpless/complain,complain
+ko-slang-041,slang,그런 친구는 손절하는 게 맞아.,손절,「斬纜」；손절매（止蝕）借過嚟，指斷絕關係。,潮語/踩/日常,slang,0,cold/blunt,dismiss/refuse
+ko-slang-042,slang,덕후라서 그런지 굿즈를 다 모았더라.,덕후,「狂迷／宅」；源自日文オタク，指沉迷某樣嘢嘅人。,動漫/潮語/年輕人,slang,0,proud/funny,boast/tease
+ko-slang-043,slang,어제 한 말 생각나서 이불킥했다.,이불킥,「攞被踢」；瞓覺前諗起尷尬事，尷到踢被。,潮語/網絡用語/年輕人,slang,0,shy/funny,complain/joke
+ko-work-001,work,"네, 확인했습니다. 바로 수정해서 올리겠습니다.",확인했습니다,收到／已確認（回報用）；下屬對上司最標準嘅回應，等於「明白，已處理」。,職場/上司/直球,professional,0,polite/blunt,agree
+ko-work-002,work,"그 건은 바로 처리하겠습니다, 오늘 안으로 연락드릴게요.",바로 처리하겠습니다,即刻處理（承諾式回覆）；比 확인했습니다 更主動。,職場/客套/直球,professional,0,polite,agree/urge
+ko-work-003,work,"팀장님, 보고드릴 게 있습니다. 잠깐 시간 괜찮으세요?",보고드릴 게 있습니다,「我有事要向你報告」——下對上開場。,職場/上司/客套,professional,0,polite/worried,urge/agree
+ko-work-004,work,"팀장님, 이번 주 일정 확인 부탁드립니다.",팀장님,組長（職銜＋님）；叫上司一定用職銜，唔會叫名。,職場/上司/敬語,professional,0,polite,greet
+ko-work-005,work,"과장님, 이 견적서 봐 주실 수 있으세요?",과장님,課長／經理（職銜）。,職場/上司/敬語,professional,0,polite,greet
+ko-work-006,work,"대리님, 이거 제가 맡아도 될까요?",대리님,代理（職銜，入職三至六年），唔係「暫代」。,職場/同事/敬語,professional,0,polite,greet
+ko-work-007,work,"부장님, 회의 자료 준비됐습니다.",부장님,部長（職銜，中高層）。,職場/上司/敬語,professional,0,polite,greet
+ko-work-008,work,오늘 회식 어때요? 팀장님이 한턱 내신대요.,오늘 회식 어때요?,「今晚公司聚餐點呀？」——邀約／探口風。,職場/同事/日常,professional,0,warm/funny,urge
+ko-work-009,work,오늘 고생하셨으니 한 잔 하실래요?,한 잔 하실래요?,「飲返杯？」敬語邀酒。,職場/酒吧/客套,professional,0,warm/polite,urge
+ko-work-010,work,"오늘 야근해야 될 것 같아요, 자료가 아직 안 왔어요.",야근해야 될 것 같아요,「睇嚟要加班」——無奈、預告。,職場/抱怨/同事,everyday,0,complain/helpless,complain
+ko-work-011,work,"오늘은 칼퇴할게요, 약속 있어서요.",칼퇴할게요,「我準時走㗎喇」；칼퇴＝칼같이 퇴근，一夠鐘即閃。,職場/潮語/同事,slang,0,funny/blunt,farewell/boast
+ko-work-012,work,"상사한테 혼났어요, 보고를 안 했대요.",상사한테 혼났어요,「俾上司鬧」——事後吐苦水。,職場/抱怨/同事,everyday,0,complain/helpless,complain
+ko-work-013,work,먼저 간단하게 자기소개 해 주세요.,자기소개 해 주세요,「請自我介紹」——面試開場。,面試/職場/上司,professional,0,polite/blunt,question/urge
+ko-work-014,work,희망 연봉은요? 저희 기준도 같이 말씀드릴게요.,희망 연봉은요?,「期望年薪係幾多？」面試／HR 電話。,面試/職場/講價,professional,0,polite/blunt,question
+ko-work-015,work,지원 동기가 뭐예요? 우리 회사를 어떻게 알게 됐죠?,지원 동기가 뭐예요?,「你點解想應徵？」面試必問。,面試/職場/上司,professional,0,polite/blunt,question
+ko-work-016,work,결과는 언제 알 수 있을까요? 다음 주까지 기다리면 될까요?,결과는 언제 알 수 있을까요?,「幾時知結果？」面試收尾。,面試/職場/客套,professional,0,polite/worried,question
+ko-work-017,work,현장 보고 나서 견적서 보내 드릴게요.,견적서 보내 드릴게요,「我 send 報價單俾你」——裝修／工程。,裝修/客戶/職場,professional,0,polite,agree
+ko-work-018,work,이 부분 철거하면 추가 비용이 발생합니다.,추가 비용이 발생합니다,「會有額外費用」——工程變更時講。,裝修/客戶/講價,professional,0,polite/worried,warn
+ko-work-019,work,"죄송합니다, 일정이 좀 밀렸습니다. 다음 주 화요일엔 끝납니다.",일정이 좀 밀렸습니다,「進度遲咗」——老實交代。,裝修/職場/抱怨,professional,0,worried/polite,complain
+ko-work-020,work,"자재가 늦게 들어와서요, 오늘은 마감만 하고 갈게요.",자재가 늦게 들어와서요,「係因為材料遲到」——解釋用。,裝修/地盤/抱怨,professional,0,helpless/polite,complain
+ko-work-021,work,"시공은 다음 주에 시작합니다, 그 전에 자재 들어옵니다.",시공은 다음 주에 시작합니다,「下星期開工」——施工安排。,裝修/地盤/職場,professional,0,polite/blunt,agree
+ko-work-022,work,"하자 보수는 무상입니다, 1년 안에 생긴 건 다 고쳐 드려요.",하자 보수는 무상입니다,「瑕疵維修免費」——合約講解。,裝修/客戶/職場,professional,0,polite/blunt,agree
+ko-work-023,work,"도면 다시 확인해 주세요, 여기 치수가 안 맞아요.",도면 다시 확인해 주세요,「請再核對圖紙」。,裝修/地盤/職場,professional,0,polite/worried,urge
+ko-work-024,work,"요즘 자재비가 많이 올랐어요, 견적을 다시 봐야 할 것 같습니다.",자재비가 많이 올랐어요,「材料費漲咗好多」。,裝修/講價/客戶,professional,0,complain/helpless,complain
+ko-work-025,work,주문하시겠어요? 준비되시면 불러 주세요.,주문하시겠어요?,「要唔要落單？」服務業。,餐廳/服務員/客套,professional,0,polite/warm,question
+ko-work-026,work,"불편을 드려 죄송합니다, 바로 조치하겠습니다.",불편을 드려 죄송합니다,「造成不便非常抱歉」——客服標準句。,投訴/客套/職場,professional,0,polite/worried,apology
+ko-work-027,work,"제가 바로 확인해서 연락드리겠습니다, 번호 남겨 주세요.",바로 확인해서 연락드리겠습니다,「我即刻查完再聯絡你」。,投訴/職場/客套,professional,0,polite,agree/comfort
+ko-work-028,work,"확인됐습니다, 환불 처리해 드리겠습니다.",환불 처리해 드리겠습니다,「我幫你辦退款」。,投訴/店舖/客套,professional,0,polite,agree/comfort
+ko-work-029,work,"담당자가 자리에 없습니다, 들어오시면 연락드리라고 할게요.",담당자가 자리에 없습니다,「負責人唔喺位」。,投訴/職場/冷面,professional,0,polite/helpless,refuse/dismiss
+ko-work-030,work,"이건 제 권한 밖입니다, 팀장님께 여쭤봐 주세요.",이건 제 권한 밖입니다,「呢件事唔喺我權限範圍」。,職場/拒絕/冷面,professional,0,cold/polite,refuse/dismiss
+ko-work-031,work,첨부 파일 확인 부탁드립니다.,확인 부탁드립니다,「唔該核對一下」——email 常用。,職場/客套/同事,professional,0,polite,urge
+ko-work-032,work,회의 내용은 메일로 정리해서 보내 드리겠습니다.,메일로 정리해서 보내 드리겠습니다,「我整理好 email 俾你」。,職場/同事/客套,professional,0,polite,agree
+ko-work-033,work,"이번 주까지는 어려울 것 같습니다, 다음 주 초엔 가능합니다.",이번 주까지는 어려울 것 같습니다,「今個星期內恐怕做唔到」——婉拒。,拒絕/職場/客套,professional,0,polite/worried,refuse-soft
+ko-work-034,work,일정은 최대한 맞춰 보겠습니다.,최대한 맞춰 보겠습니다,「我盡量配合」。,職場/客套/客戶,professional,0,polite/worried,agree/comfort
+ko-work-035,work,"잠시만 기다려 주세요, 바로 준비해 드릴게요.",잠시만 기다려 주세요,「唔該等一等」——服務業。,店舖/客套/服務員,professional,0,polite,urge
+ko-work-036,work,"책임자 나오세요, 이거 어떻게 된 거예요?",책임자 나오세요,「叫負責人出嚟」——興師問罪。,投訴/抱怨/直球,everyday,0,angry/threat,urge/complain
+ko-work-037,work,사장님 계세요? 어제 맡긴 수선 맡으러 왔어요.,사장님 계세요?,「老闆喺唔喺？」上門搵人。,店舖/老闆/日常,everyday,0,polite,question/greet
+ko-work-038,work,이거 AS 되나요? 산 지 두 달밖에 안 됐어요.,이거 AS 되나요?,「呢件有冇保養／可以維修？」AS＝售後服務。,店舖/外來語/客戶,english-mix,0,polite/worried,question
+ko-work-039,work,"납기일 지켜 주셔야 합니다, 다음 주 현장에 들어가야 해서요.",납기일 지켜 주셔야 합니다,「交貨期一定要守」——採購／工程。,裝修/職場/客戶,professional,0,cold/polite,warn/urge
+ko-work-040,work,"현장 상황 먼저 보러 갈게요, 사진도 찍어 올게요.",현장 상황 먼저 보러 갈게요,「我先去現場睇環境」。,裝修/地盤/客戶,professional,0,polite/blunt,agree
+ko-work-041,work,"철거부터 시작하죠, 자재는 내일 들어옵니다.",철거부터 시작하죠,「由拆嘢開始啦」——開工分派。,裝修/地盤/師傅,professional,0,blunt/polite,urge/agree
+ko-work-042,work,마감은 언제까지면 될까요? 그거에 맞춰 일정 짤게요.,마감은 언제까지면 될까요?,「要幾時前交貨？」問期限。,裝修/職場/客戶,professional,0,polite,question
+ko-work-043,work,"발이 넓으시네요, 어디 가나 아는 분이 다 계세요.",발이 넓으시네요,「你人脈好廣」——字面係腳板闊。,職場/讚/客套,idiom,0,polite/warm,praise
+ko-work-044,work,"윗물이 맑아야 아랫물이 맑다고, 팀장님부터 좀 바뀌셔야죠.",윗물이 맑아야 아랫물이 맑다,「上樑不正下樑歪」——字面：上面水清，下面水才清。,職場/老派/抱怨,proverb,0,sarcastic/blunt,complain/warn
+ko-work-045,work,회의 몇 시예요? 자료는 제가 준비할게요.,회의 몇 시예요?,「會議幾點？」,職場/同事/日常,professional,0,polite/blunt,question

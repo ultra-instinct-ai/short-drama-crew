@@ -1,0 +1,1602 @@
+{
+  "lang": "en",
+  "label": "美式英文",
+  "version": "1.0",
+  "entries": [
+    {
+      "id": "en-slang-001",
+      "phrase": "rizz",
+      "variants": [],
+      "meaning": "撩人嘅魅力、口才；Gen Z 講嘅 charm，多數帶戲謔。",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "slacker"
+        ],
+        "tone": [
+          "sassy",
+          "funny"
+        ],
+        "function": [
+          "tease",
+          "boast"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "He's got zero rizz, and somehow that's his whole personality.",
+      "situation": "朋友之間評論某人識唔識撩",
+      "avoid": [
+        "三十歲以上講會好尷尬；正式場合唔用；唔好用嚟讚長輩"
+      ],
+      "note": "Gen Z／Gen Alpha 用語，取 charisma 中間音；2021 年後爆紅，半衰期短。",
+      "tags": [
+        "潮語",
+        "戀愛",
+        "年輕人",
+        "網絡用語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-002",
+      "phrase": "No cap.",
+      "variants": [
+        "No cap, for real."
+      ],
+      "meaning": "講真、冇吹水；用嚟強調自己句句真。",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [],
+        "tone": [
+          "blunt",
+          "funny"
+        ],
+        "function": [
+          "agree",
+          "boast"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "No cap, that's the best burger in the city.",
+      "situation": "朋友之間強調",
+      "avoid": [
+        "對長輩或客戶講會一頭霧水；連用會好假"
+      ],
+      "note": "AAVE 起源，2020 年前後被 Gen Z 大量借用；cap＝講大話。",
+      "tags": [
+        "潮語",
+        "網絡用語",
+        "年輕人"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-003",
+      "phrase": "Bet.",
+      "variants": [],
+      "meaning": "好、冇問題；Gen Z 嘅「就咁話」，比 okay 更爽快。",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [],
+        "tone": [
+          "blunt",
+          "warm"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "Bet. I'll be outside in five.",
+      "situation": "答應朋友、確認安排",
+      "avoid": [
+        "對上司或客戶講 bet 會令人唔知你應承咗咩；正式場合用 Understood"
+      ],
+      "note": "源自 AAVE 嘅 bet＝同意；今日全美年輕世代通用。",
+      "tags": [
+        "潮語",
+        "年輕人",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-004",
+      "phrase": "It's giving",
+      "variants": [
+        "It's giving...",
+        "It's so giving"
+      ],
+      "meaning": "呢個感覺好……；形容某人／某物散發嘅氣質，後面一定接名詞。",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [],
+        "tone": [
+          "sassy",
+          "funny"
+        ],
+        "function": [
+          "tease",
+          "joke"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "It's giving 'I've never worked retail in my life.'",
+      "situation": "形容穿搭、氣氛、某人行為",
+      "avoid": [
+        "後面唔接名詞就唔通；長輩用會明顯唔自然"
+      ],
+      "note": "Gen Z 句式，源自 It's giving [vibe]。網上用得多，講出口要掌握語速。",
+      "tags": [
+        "潮語",
+        "網絡用語",
+        "年輕人"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-005",
+      "phrase": "Lowkey",
+      "variants": [],
+      "meaning": "有啲、暗暗地；用嚟減弱語氣，等於「其實有少少」。",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [],
+        "tone": [
+          "helpless",
+          "shy"
+        ],
+        "function": [
+          "agree",
+          "complain"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "Lowkey, I've been avoiding that phone call all week.",
+      "situation": "講自己唔想認嘅感受",
+      "avoid": [
+        "對正式場合或者長輩用會好突兀；同 highkey 要分清楚"
+      ],
+      "note": "AAVE／網絡起源，2000 年代已出現，2020 年代 Gen Z 爆紅；用嚟 soft launch 情緒。",
+      "tags": [
+        "潮語",
+        "年輕人",
+        "網絡用語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-006",
+      "phrase": "mid",
+      "variants": [],
+      "meaning": "好普通、唔值一提；比 bad 更刻薄嘅貶。",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [],
+        "tone": [
+          "sassy",
+          "cold"
+        ],
+        "function": [
+          "insult",
+          "complain"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "The pizza was mid, honestly. Like, I don't get the hype.",
+      "situation": "評論食物、電影、某人表現",
+      "avoid": [
+        "對創作者本人講會好傷；長輩聽唔明，會當你講 middle"
+      ],
+      "note": "Gen Z 貶義詞，2020 年後爆紅；mid 等於 mediocre，但更輕蔑。",
+      "tags": [
+        "潮語",
+        "踩",
+        "年輕人"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-007",
+      "phrase": "slaps",
+      "variants": [],
+      "meaning": "好正、好聽；多數用嚟講歌。",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [],
+        "tone": [
+          "funny",
+          "warm"
+        ],
+        "function": [
+          "praise"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "This playlist slaps, though — who made it?",
+      "situation": "聽歌、試耳機、車上播歌",
+      "avoid": [
+        "用嚟講人會好怪；對長輩講會一頭霧水"
+      ],
+      "note": "AAVE 起源，指音樂好聽到似打人；Gen Z 通用。",
+      "tags": [
+        "潮語",
+        "讚",
+        "年輕人"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-008",
+      "phrase": "It's not that deep.",
+      "variants": [],
+      "meaning": "唔使咁認真、冇咁嚴重；用嚟潑冷水或降溫。",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [],
+        "tone": [
+          "sassy",
+          "cold"
+        ],
+        "function": [
+          "dismiss",
+          "comfort"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "It's not that deep — it's just a group chat.",
+      "situation": "朋友為小事上心、網上爭執",
+      "avoid": [
+        "對真正受傷嘅人講等於否定對方；情侶吵架講會火上加油"
+      ],
+      "note": "Gen Z 常用降溫句；語氣一淡就變輕蔑。",
+      "tags": [
+        "潮語",
+        "冷面",
+        "年輕人"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-009",
+      "phrase": "delulu",
+      "variants": [],
+      "meaning": "自欺欺人、諗多咗；delusional 嘅 Gen Z 縮寫。",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [],
+        "tone": [
+          "sassy",
+          "funny"
+        ],
+        "function": [
+          "tease",
+          "insult"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "You're being delulu if you think he's gonna text back.",
+      "situation": "朋友幻想復合、幻想中獎",
+      "avoid": [
+        "對當事人講要熟；用嚟嘲諷陌生人會好刻薄"
+      ],
+      "note": "源自 delusional，K-pop 粉絲圈先用，2022 年後全美年輕世代通用。",
+      "tags": [
+        "潮語",
+        "踩",
+        "年輕人",
+        "戀愛"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-010",
+      "phrase": "the ick",
+      "variants": [],
+      "meaning": "突然反感、被煞到；本來有好感，一下覺得嘔心。",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "sassy",
+          "cold"
+        ],
+        "function": [
+          "dismiss",
+          "tease"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "He said 'hubby' on the first date and I got the ick.",
+      "situation": "約會、曖昧對象做咗件小事",
+      "avoid": [
+        "對長輩用會唔明；同真正厭惡（disgust）唔同，ick 係突然降溫"
+      ],
+      "note": "2010 年代後期英國起源，Gen Z 帶去美國；2023 年爆紅。",
+      "tags": [
+        "潮語",
+        "戀愛",
+        "年輕人"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-011",
+      "phrase": "I can't even.",
+      "variants": [],
+      "meaning": "我真係頂唔順；Millennial 式誇張無語，通常配一個笑。",
+      "categories": {
+        "age": [
+          "mid",
+          "young"
+        ],
+        "archetype": [],
+        "tone": [
+          "funny",
+          "helpless"
+        ],
+        "function": [
+          "dismiss",
+          "joke"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "I can't even — she wore white to the wedding.",
+      "situation": "見到荒謬場面",
+      "avoid": [
+        "2010 年代用語，Gen Z 會覺得老土；正式場合唔用"
+      ],
+      "note": "Millennial 標誌句，2012–2016 最紅；今日用會帶自覺懷舊味。",
+      "tags": [
+        "潮語",
+        "網絡用語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-012",
+      "phrase": "Literally.",
+      "variants": [],
+      "meaning": "真係、離譜到係咁；Millennial 用嚟加強，多數唔係字面意思。",
+      "categories": {
+        "age": [
+          "mid",
+          "young"
+        ],
+        "archetype": [],
+        "tone": [
+          "funny",
+          "blunt"
+        ],
+        "function": [
+          "agree",
+          "boast"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "Literally, I died when he said that.",
+      "situation": "講誇張經歷",
+      "avoid": [
+        "誤用 literally 會被語言警察笑；正式寫作要避免"
+      ],
+      "note": "Millennial 口頭禪，被 Gen Z 嘲為「literally 世代」；2010 年代濫用高峰。",
+      "tags": [
+        "潮語",
+        "網絡用語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-013",
+      "phrase": "This is fine.",
+      "variants": [],
+      "meaning": "冇事、冇事（其實火災）；出自 meme，用嚟自嘲頂唔住。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "sarcastic",
+          "helpless"
+        ],
+        "function": [
+          "joke",
+          "dismiss"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "The client moved the deadline twice. This is fine.",
+      "situation": "明知出事仍然硬撐",
+      "avoid": [
+        "要講得平淡先好笑；配誇張語氣就死"
+      ],
+      "note": "出自 KC Green 嘅 Gunshow 狗仔坐火燒房漫畫，2013 年爆紅；網上世代都識。",
+      "tags": [
+        "網絡用語",
+        "潮語",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-014",
+      "phrase": "Oof.",
+      "variants": [],
+      "meaning": "唉／慘；聽到壞消息嘅即時反應，一個字夠。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "funny",
+          "helpless"
+        ],
+        "function": [
+          "comfort",
+          "surprise"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "Oof. That's gonna leave a mark.",
+      "situation": "朋友仆街、講壞消息、跌錢",
+      "avoid": [
+        "對客戶或正式場合唔用；連續 oof 會變輕蔑"
+      ],
+      "note": "2010 年代網上興起，今日口語都用；年輕世代用得最順。",
+      "tags": [
+        "網絡用語",
+        "潮語",
+        "關心"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-015",
+      "phrase": "ghosted",
+      "variants": [],
+      "meaning": "被人突然失聯；約會／朋友／客戶人間蒸發，冇交代。",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [],
+        "tone": [
+          "complain",
+          "helpless"
+        ],
+        "function": [
+          "complain",
+          "gossip"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "conflict"
+        ]
+      },
+      "example": "He ghosted me after three dates, then liked my post.",
+      "situation": "約會、朋友、客戶突然唔回",
+      "avoid": [
+        "對長輩講會唔明；正式場合用 stopped responding"
+      ],
+      "note": "2010 年代約會 app 文化產物；今日延伸至職場（recruiter ghosted me）。",
+      "tags": [
+        "網絡用語",
+        "戀愛",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-016",
+      "phrase": "ratio'd",
+      "variants": [],
+      "meaning": "被人喺留言區壓過；X／Twitter 上 reply 讚數遠高過原帖，等於被公開打臉。",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [],
+        "tone": [
+          "sassy",
+          "funny"
+        ],
+        "function": [
+          "insult",
+          "gossip"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "conflict"
+        ]
+      },
+      "example": "He posted the worst take of the year and got ratio'd in ten minutes.",
+      "situation": "網上爭論、KOL 出事",
+      "avoid": [
+        "只用喺有 reply／like 機制嘅平台；現實對話講會好怪"
+      ],
+      "note": "X（前 Twitter）文化；ratio 加 'd。平台外使用要當網絡語。",
+      "tags": [
+        "網絡用語",
+        "踩",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-017",
+      "phrase": "receipts",
+      "variants": [],
+      "meaning": "證據、截圖；網上講「我有 proof」嘅意思。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "sassy",
+          "cold"
+        ],
+        "function": [
+          "challenge",
+          "warn"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "conflict"
+        ]
+      },
+      "example": "Show the receipts or stop talking.",
+      "situation": "網上爆料、朋友對質",
+      "avoid": [
+        "現實文件唔叫 receipts，叫 documents；用錯會好突兀"
+      ],
+      "note": "源自 drag culture，指購物收據＝證據；2010 年代後成為網絡常用語。",
+      "tags": [
+        "網絡用語",
+        "八卦",
+        "踩"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-018",
+      "phrase": "touch grass",
+      "variants": [],
+      "meaning": "出去行下、離開網絡；叫人唔好再喺網上發癲。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "sassy",
+          "cold"
+        ],
+        "function": [
+          "dismiss",
+          "insult"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "conflict"
+        ]
+      },
+      "example": "Go touch grass, man. You've been posting all day.",
+      "situation": "網上吵架、朋友沉迷",
+      "avoid": [
+        "對真正有情緒困擾嘅人講會好傷；等於叫人閉嘴"
+      ],
+      "note": "2010 年代後期網上興起，語氣一定帶貶；今日口語都用。",
+      "tags": [
+        "網絡用語",
+        "踩",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-019",
+      "phrase": "It's so over.",
+      "variants": [],
+      "meaning": "完咗、冇得救；網上 mood 用語，通常同 We're so back 成對。",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [],
+        "tone": [
+          "funny",
+          "helpless"
+        ],
+        "function": [
+          "joke",
+          "complain"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "It's so over — the client saw the draft.",
+      "situation": "事情搞砸、自嘲",
+      "avoid": [
+        "真心悲觀場面唔好講，會顯得太輕浮"
+      ],
+      "note": "2023 年後 X／TikTok 興起嘅「so over／so back」循環梗；世代感強。",
+      "tags": [
+        "網絡用語",
+        "潮語",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-020",
+      "phrase": "Not me",
+      "variants": [],
+      "meaning": "唔係我呀（其實就係我）；用嚟自嘲自己做咗件瘀事。",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [],
+        "tone": [
+          "funny",
+          "shy"
+        ],
+        "function": [
+          "joke",
+          "tease"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "Not me crying at a dog food commercial.",
+      "situation": "自嘲、朋友之間認瘀",
+      "avoid": [
+        "語法上係不完整句，唔可以照寫入正式文章；長輩聽唔明"
+      ],
+      "note": "2010 年代後期網上句式，配 -ing 動詞；Gen Z 口語都用。",
+      "tags": [
+        "網絡用語",
+        "潮語",
+        "年輕人"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-021",
+      "phrase": "Are you serious right now?",
+      "variants": [],
+      "meaning": "你而家係咪講真；美式衝突升溫第一句，唔帶粗口但火氣足。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "angry",
+          "surprised"
+        ],
+        "function": [
+          "challenge",
+          "complain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "conflict",
+          "family"
+        ]
+      },
+      "example": "Are you serious right now? You cancelled on my mom?",
+      "situation": "對方講咗荒謬嘢、臨時反口",
+      "avoid": [
+        "對上司講等於開火；對陌生人講要做好吵起來嘅準備"
+      ],
+      "note": "美式口語高頻，right now 係關鍵加重；語氣一沉就變威脅。",
+      "tags": [
+        "直球",
+        "抱怨",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-022",
+      "phrase": "Excuse me?",
+      "variants": [],
+      "meaning": "你講咩話？；美式最常見嘅被冒犯反應，升調，等於「你再講一次試下」。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "angry",
+          "surprised"
+        ],
+        "function": [
+          "challenge",
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "conflict",
+          "stranger"
+        ]
+      },
+      "example": "Excuse me? Say that again, slower.",
+      "situation": "被人侮辱、聽到離譜說話",
+      "avoid": [
+        "同借過嘅 Excuse me 完全唔同，靠升調同眼神；書面要寫 Excuse me?"
+      ],
+      "note": "美式衝突起手式，比 What did you say 更冷；女性用得多，殺傷力一樣。",
+      "tags": [
+        "直球",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-023",
+      "phrase": "You wanna go?",
+      "variants": [],
+      "meaning": "想打架呀？；美式街頭挑釁，唔使粗口都好有火。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "threat",
+          "angry"
+        ],
+        "function": [
+          "threaten",
+          "challenge"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "conflict",
+          "stranger"
+        ]
+      },
+      "example": "You wanna go? 'Cause I've got all night.",
+      "situation": "酒吧、街頭、球場衝突",
+      "avoid": [
+        "講出口通常真係會打；對客戶或家人講會摧毀關係"
+      ],
+      "note": "美式挑釁公式；go 喺呢個語境一定指打交，唔係走。",
+      "tags": [
+        "直球",
+        "街頭",
+        "黑話"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-024",
+      "phrase": "Don't play with me.",
+      "variants": [],
+      "meaning": "唔好同我玩嘢；美式警告，意思係「你玩唔起」。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "threat",
+          "cold"
+        ],
+        "function": [
+          "warn",
+          "threaten"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "conflict",
+          "friend"
+        ]
+      },
+      "example": "Don't play with me. I know what you did.",
+      "situation": "被人試探底線、講大話",
+      "avoid": [
+        "對客戶講會即刻破壞關係；語氣要低，唔好嗌"
+      ],
+      "note": "AAVE 常用句式，今日全美通用；play with＝試底線。",
+      "tags": [
+        "直球",
+        "黑話"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-025",
+      "phrase": "Say it to my face.",
+      "variants": [],
+      "meaning": "當面講；美式衝突經典句，針對背後講壞話。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "angry",
+          "blunt"
+        ],
+        "function": [
+          "challenge",
+          "threaten"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "conflict",
+          "friend"
+        ]
+      },
+      "example": "Say it to my face, not in the group chat.",
+      "situation": "有人背後傳話、網上暗諷",
+      "avoid": [
+        "講完通常已經準備吵；對家人講要用軟啲嘅語氣"
+      ],
+      "note": "美式街頭／校園經典；美國文化特別重視當面講。",
+      "tags": [
+        "直球",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-026",
+      "phrase": "That's a you problem.",
+      "variants": [],
+      "meaning": "呢個係你自己嘅問題；美式極冷淡嘅推卸，等於「關我咩事」。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "sassy",
+          "cold"
+        ],
+        "function": [
+          "dismiss",
+          "refuse"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "conflict",
+          "colleague"
+        ]
+      },
+      "example": "That's a you problem, not a me problem.",
+      "situation": "朋友／同事想你幫手但你唔想",
+      "avoid": [
+        "對客戶或伴侶講會極傷；網上講會即刻被圍"
+      ],
+      "note": "2010 年代後網上流行，Gen Z 用得多；加 not a me problem 更尖。",
+      "tags": [
+        "冷面",
+        "直球",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-027",
+      "phrase": "Watch your mouth.",
+      "variants": [],
+      "meaning": "小心你把口；美式警告，通常喺對方講咗侮辱說話之後。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "threat",
+          "angry"
+        ],
+        "function": [
+          "warn",
+          "threaten"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "conflict",
+          "family"
+        ]
+      },
+      "example": "Watch your mouth. That's my sister you're talking about.",
+      "situation": "家人／朋友被侮辱",
+      "avoid": [
+        "對上司或客戶講等於辭職；講完通常下一步就係衝突"
+      ],
+      "note": "美式家庭／街頭常用；比 Shut up 重好多，屬警告級。",
+      "tags": [
+        "直球",
+        "黑話"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-028",
+      "phrase": "finna",
+      "variants": [],
+      "meaning": "就快、準備去；I'm going to 嘅 AAVE 縮寫。",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [],
+        "tone": [
+          "blunt",
+          "warm"
+        ],
+        "function": [
+          "urge",
+          "farewell"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "I'm finna head out — you need anything?",
+      "situation": "朋友之間講即時打算",
+      "avoid": [
+        "非黑人角色要小心用，容易變模仿；正式場合完全唔用"
+      ],
+      "note": "AAVE 語法（fixing to → finna）。網上廣泛流傳，但現實使用要考慮身份同語境，唔好當笑點。",
+      "tags": [
+        "方言",
+        "潮語",
+        "黑話"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-029",
+      "phrase": "Deadass",
+      "variants": [],
+      "meaning": "講真、冇講笑；紐約起家嘅強調語。",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "street"
+        ],
+        "tone": [
+          "blunt",
+          "funny"
+        ],
+        "function": [
+          "agree",
+          "boast"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "Deadass, I saw him at the deli this morning.",
+      "situation": "朋友之間強調真話",
+      "avoid": [
+        "非紐約／非黑人角色亂用會好假；對長輩講會一頭霧水"
+      ],
+      "note": "紐約（尤其 Bronx、Brooklyn）起源，AAVE 借入主流；2016 年後全美年輕世代用。",
+      "tags": [
+        "方言",
+        "潮語",
+        "黑話"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-030",
+      "phrase": "On God.",
+      "variants": [],
+      "meaning": "我發誓、真嘅；美式街頭／年輕世代強調句。",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [],
+        "tone": [
+          "blunt",
+          "proud"
+        ],
+        "function": [
+          "agree",
+          "boast"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "On God, that's exactly what happened.",
+      "situation": "朋友之間強調",
+      "avoid": [
+        "對宗教長輩講會極冒犯；正式場合唔用"
+      ],
+      "note": "AAVE 起源，用 God 做擔保；網上同街頭都通用，非黑人角色用得小心。",
+      "tags": [
+        "方言",
+        "潮語",
+        "黑話"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-031",
+      "phrase": "Ain't no way.",
+      "variants": [],
+      "meaning": "唔係啩、冇可能；美式雙重否定式嘅難以置信。",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [],
+        "tone": [
+          "surprised",
+          "funny"
+        ],
+        "function": [
+          "surprise",
+          "disagree"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "Ain't no way you paid forty bucks for that.",
+      "situation": "聽到離譜價錢、離譜事情",
+      "avoid": [
+        "雙重否定係 AAVE／南方語法，唔係錯英文；但寫正式文章要改 There's no way"
+      ],
+      "note": "ain't 喺美式口語極普遍；Ain't no way 喺 2020 年代被 Gen Z 帶紅。",
+      "tags": [
+        "方言",
+        "潮語",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-032",
+      "phrase": "period",
+      "variants": [],
+      "meaning": "句號、就咁話；用嚟封頂，等於「唔使再討論」。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "blunt",
+          "sassy"
+        ],
+        "function": [
+          "dismiss",
+          "agree"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "conflict"
+        ]
+      },
+      "example": "That's the best burger in town, period.",
+      "situation": "堅持立場、收結爭論",
+      "avoid": [
+        "連續用會好有攻擊性；對客戶講等於關門"
+      ],
+      "note": "AAVE 用法（periodt 更強）；2010 年代後被主流借用。講出口要有停頓先有力。",
+      "tags": [
+        "方言",
+        "直球",
+        "惜字如金"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-033",
+      "phrase": "on line",
+      "variants": [],
+      "meaning": "排隊；紐約市講法，同英式 queue 相對。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "street"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "I'm on line at the deli and it's not moving.",
+      "situation": "紐約排隊買嘢",
+      "avoid": [
+        "美國其他地方講 in line；用 on line 會被聽出係紐約人（或者新澤西）"
+      ],
+      "note": "紐約市、長島、新澤西特有；網上 on line 亦會被誤解成「上網」。",
+      "tags": [
+        "方言",
+        "日常",
+        "街頭"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-034",
+      "phrase": "hella",
+      "variants": [],
+      "meaning": "好、非常；加州（灣區）加強詞。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "slacker"
+        ],
+        "tone": [
+          "blunt",
+          "funny"
+        ],
+        "function": [
+          "agree",
+          "complain"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "That's hella expensive for a burrito.",
+      "situation": "加州人講價錢、天氣、程度",
+      "avoid": [
+        "東岸人講 hella 會被笑（hella 係加州 stereotype）；正式場合唔用"
+      ],
+      "note": "北加州灣區起源，1990 年代經 hip-hop 擴散；南加州都會用，但密度不同。",
+      "tags": [
+        "方言",
+        "潮語",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-035",
+      "phrase": "wicked",
+      "variants": [],
+      "meaning": "好、非常；新英格蘭（尤其波士頓）加強詞。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "street"
+        ],
+        "tone": [
+          "warm",
+          "funny"
+        ],
+        "function": [
+          "praise",
+          "agree"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "That clam chowder's wicked good.",
+      "situation": "波士頓人形容程度",
+      "avoid": [
+        "英式 wicked 指「好正／邪惡」，同美式新英格蘭用法唔同，唔好混淆"
+      ],
+      "note": "波士頓、麻省南部；同英式 wicked（＝cool）意思唔同。年輕人用得更密。",
+      "tags": [
+        "方言",
+        "潮語",
+        "讚"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-036",
+      "phrase": "Y'all",
+      "variants": [],
+      "meaning": "你哋；南方（同 AAVE）第二人稱複數，今日全美年輕人都在用。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "warm",
+          "blunt"
+        ],
+        "function": [
+          "greet",
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family"
+        ]
+      },
+      "example": "Y'all coming or what?",
+      "situation": "對一群人講話",
+      "avoid": [
+        "正式場合唔用；寫成 ya'll 係錯（正確係 y'all）"
+      ],
+      "note": "美國南方、Texas、AAVE 核心詞；網上普及後全美年輕世代都用，但南方人會聽得出你用得有冇根。",
+      "tags": [
+        "方言",
+        "日常",
+        "年輕人"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-037",
+      "phrase": "ope",
+      "variants": [],
+      "meaning": "哎呀（唔好意思）；中西部人撞到人／要擠過去嘅反射聲。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "street"
+        ],
+        "tone": [
+          "polite",
+          "helpless"
+        ],
+        "function": [
+          "apology",
+          "surprise"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "friend"
+        ]
+      },
+      "example": "Ope, sorry, didn't mean to stop in your way.",
+      "situation": "超市通道、門口、擠過人",
+      "avoid": [
+        "唔係中西部人講會好假；其他地方用 excuse me 更自然"
+      ],
+      "note": "中西部（Minnesota、Wisconsin、Michigan）標誌；網上大量 meme，用嚟認親。",
+      "tags": [
+        "方言",
+        "日常",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-038",
+      "phrase": "What the fuck?",
+      "variants": [],
+      "meaning": "搞咩呀；美式最直接嘅震驚／不滿，p3 級粗口。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "angry",
+          "surprised"
+        ],
+        "function": [
+          "surprise",
+          "complain"
+        ],
+        "register": "profanity",
+        "profanity": 3,
+        "socialDistance": [
+          "friend",
+          "conflict"
+        ]
+      },
+      "example": "What the fuck? Who moved my tools?",
+      "situation": "見到完全估唔到嘅事",
+      "avoid": [
+        "TikTok、YouTube 廣告友善版一定要 bleep 或者改 what the hell；network TV 黃金時段通常唔出；對客戶、長輩唔用"
+      ],
+      "note": "p3 真粗口。f-word 喺美國 cable／串流好常見，但 TikTok／YouTube 演算法會壓；短劇建議改成 What the—（切斷）或者 what the hell。",
+      "tags": [
+        "直球",
+        "抱怨",
+        "街頭"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-039",
+      "phrase": "Holy shit.",
+      "variants": [],
+      "meaning": "嘩屌；美式驚嘆，可以係好可以係壞，語氣重。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "surprised",
+          "funny"
+        ],
+        "function": [
+          "surprise",
+          "praise"
+        ],
+        "register": "profanity",
+        "profanity": 3,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "Holy shit, you actually did it.",
+      "situation": "極度驚訝（好事或壞事）",
+      "avoid": [
+        "TikTok／YouTube 要 bleep；對客戶、長輩、小朋友面前絕對唔用；宗教家庭會反感"
+      ],
+      "note": "p3。美國人當感嘆詞用多過侮辱；但平台上仍屬會被壓嘅字。替代：holy crap（p1）、holy cow（乾淨）。",
+      "tags": [
+        "直球",
+        "街頭"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-040",
+      "phrase": "Are you shitting me?",
+      "variants": [],
+      "meaning": "你耍我呀；美式粗口版嘅難以置信，比 are you kidding me 重好多。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "angry",
+          "surprised"
+        ],
+        "function": [
+          "challenge",
+          "surprise"
+        ],
+        "register": "profanity",
+        "profanity": 3,
+        "socialDistance": [
+          "friend",
+          "conflict"
+        ]
+      },
+      "example": "Are you shitting me? They raised the rent again?",
+      "situation": "聽到荒謬消息",
+      "avoid": [
+        "TikTok 一定要 bleep；對客戶或者唔熟嘅人講會即刻出事；正式場合用 Are you kidding me"
+      ],
+      "note": "p3。美式口語，字面同排泄有關但實際只係表達難以置信；替代：Are you kidding me?（p0）。",
+      "tags": [
+        "直球",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-041",
+      "phrase": "What the hell?",
+      "variants": [],
+      "meaning": "搞咩呀；比 what the fuck 輕好多，仲可以出街。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "surprised",
+          "angry"
+        ],
+        "function": [
+          "surprise",
+          "complain"
+        ],
+        "register": "everyday",
+        "profanity": 1,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "What the hell is that noise?",
+      "situation": "唔滿、驚訝但未至於爆粗",
+      "avoid": [
+        "network TV 可以，但兒童節目唔好；對客戶講仍然會太 casual"
+      ],
+      "note": "p1，美國人當語氣詞；hell 喺 PG-13 電影、network TV 都通行。替代：what the heck（更乾淨）。",
+      "tags": [
+        "直球",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-042",
+      "phrase": "Damn it.",
+      "variants": [],
+      "meaning": "頂；美式輕度發洩，唔算攻擊人。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "helpless",
+          "angry"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "everyday",
+        "profanity": 1,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "Damn it, I left the keys in the truck.",
+      "situation": "撞到嘢、漏帶嘢、出錯",
+      "avoid": [
+        "對小朋友或者宗教家庭要收；對客戶講會顯得失控"
+      ],
+      "note": "p1。美式日常發洩，唔帶攻擊對象；替代：dang it（更乾淨）、darn it（老派）。",
+      "tags": [
+        "日常",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "en-slang-043",
+      "phrase": "Screw that.",
+      "variants": [],
+      "meaning": "算啦、唔做；美式帶火嘅拒絕，屬輕度粗口替代。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "angry",
+          "blunt"
+        ],
+        "function": [
+          "refuse",
+          "dismiss"
+        ],
+        "register": "everyday",
+        "profanity": 1,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "Screw that — I'm not working another weekend.",
+      "situation": "拒絕唔合理要求",
+      "avoid": [
+        "對上司講等於半個辭職；對客戶講會即刻冇咗單生意，用 I'd rather not 穩陣"
+      ],
+      "note": "p1，screw 係 fuck 嘅委婉替代；美式職場、家庭都會講。",
+      "tags": [
+        "拒絕",
+        "直球"
+      ],
+      "source": "general"
+    }
+  ]
+}

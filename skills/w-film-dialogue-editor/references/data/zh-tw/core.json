@@ -1,0 +1,1640 @@
+{
+  "lang": "zh-tw",
+  "label": "台灣國語",
+  "version": "1.0",
+  "entries": [
+    {
+      "id": "tw-core-001",
+      "phrase": "欸",
+      "variants": [],
+      "meaning": "叫住人、開場的發語詞，也帶一點撒嬌或提醒",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "tone": [
+          "blunt",
+          "warm"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "欸，你等一下有空嗎？",
+      "situation": "朋友、同事之間開場，或從後面叫住人",
+      "avoid": [
+        "對客戶、長輩單獨一個「欸」很沒禮貌，要加稱謂"
+      ],
+      "note": "全台通用。北部講得短，南部會拉長成「欸～」，帶撒嬌。",
+      "tags": [
+        "開場",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-002",
+      "phrase": "喔",
+      "variants": [],
+      "meaning": "知道了、收到了。單一個字拉平是敷衍，拉長是不太高興",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "cold",
+          "helpless"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "喔，我知道了。",
+      "situation": "被交代事情、或不想多說的時候",
+      "avoid": [
+        "對客戶只回「喔」像不耐煩，要改說「好的，我了解」"
+      ],
+      "note": "年輕人回訊息只打一個「喔」，等於句點，很傷人。",
+      "tags": [
+        "日常",
+        "冷面"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-003",
+      "phrase": "蛤",
+      "variants": [],
+      "meaning": "沒聽清楚，或不敢相信對方剛剛講的話",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "surprised"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family"
+        ]
+      },
+      "example": "蛤？你再說一次。",
+      "situation": "聽錯、或聽到很離譜的話",
+      "avoid": [
+        "對主管、客戶用「蛤」會顯得沒在聽，改說「不好意思，可以再說一次嗎」"
+      ],
+      "note": "南部腔常拉長成「蛤～」，帶撒嬌，不是生氣。",
+      "tags": [
+        "日常",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-004",
+      "phrase": "耶",
+      "variants": [],
+      "meaning": "句尾語助詞，報告好消息，順便炫一下",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "tone": [
+          "proud",
+          "surprised"
+        ],
+        "function": [
+          "boast"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family"
+        ]
+      },
+      "example": "我搶到票了耶！",
+      "situation": "跟朋友報告好消息、抽到好東西",
+      "avoid": [
+        "對客戶、長輩報告成果用「耶」會太隨便"
+      ],
+      "note": "20-30 歲最常用，40 歲以上很少這樣講。",
+      "tags": [
+        "日常",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-005",
+      "phrase": "餒",
+      "variants": [],
+      "meaning": "提醒、虧人的語助詞，比「喔」軟，帶一點無奈",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "tease"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "你這樣不行餒。",
+      "situation": "同事、朋友做錯小事，半開玩笑提醒",
+      "avoid": [
+        "正式場合、對客戶不要用，會顯得輕浮"
+      ],
+      "note": "台灣特有，2010 年代後在網路與口語大量出現；長輩較少用。",
+      "tags": [
+        "日常",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-006",
+      "phrase": "吼",
+      "variants": [],
+      "meaning": "不耐煩的抗議，帶撒嬌成分",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "complain",
+          "whiny"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family"
+        ]
+      },
+      "example": "吼，你很煩耶！",
+      "situation": "被家人、另一半盧到受不了",
+      "avoid": [
+        "對客戶、同事用「吼」等於直接翻臉"
+      ],
+      "note": "寫成「吼」或「齁」都有人用，語氣偏軟，常出現在女生口中。",
+      "tags": [
+        "日常",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-007",
+      "phrase": "齁",
+      "variants": [],
+      "meaning": "制止對方，或表達無奈",
+      "categories": {
+        "age": [
+          "young",
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "complain",
+          "helpless"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family"
+        ]
+      },
+      "example": "齁，你先聽我講完。",
+      "situation": "對方一直插話、或講都講不聽",
+      "avoid": [
+        "對長輩用「齁」像在管人，會失禮"
+      ],
+      "note": "比「吼」更偏無奈；長輩也會用，例如「齁，好了啦」。",
+      "tags": [
+        "日常",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-008",
+      "phrase": "嘛",
+      "variants": [],
+      "meaning": "本來就是這樣，帶一點撒嬌或理所當然",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "whiny",
+          "warm"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family"
+        ]
+      },
+      "example": "就跟你說過了嘛。",
+      "situation": "對方又犯同樣的錯、或撒嬌討拍",
+      "avoid": [
+        "對客戶用「嘛」會顯得沒耐心"
+      ],
+      "note": "常與「就」連用：「就⋯⋯嘛」，一句一次就好。",
+      "tags": [
+        "日常",
+        "家庭"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-009",
+      "phrase": "啦",
+      "variants": [],
+      "meaning": "催促用，或把話說軟的句尾",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "快一點啦！",
+      "situation": "催人、或不想把話講太硬",
+      "avoid": [
+        "一句塞兩三個「啦」會變綜藝口白，聽起來很假"
+      ],
+      "note": "全台通用。同一句加「啦」比不加軟很多。",
+      "tags": [
+        "日常",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-010",
+      "phrase": "好不好",
+      "variants": [],
+      "meaning": "句尾徵詢，比「好嗎」軟，帶撒嬌",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "warm",
+          "whiny"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family"
+        ]
+      },
+      "example": "我們去吃火鍋，好不好？",
+      "situation": "約人、哄小孩、跟另一半商量",
+      "avoid": [
+        "對客戶提案用「好不好」顯得不專業"
+      ],
+      "note": "台灣獨有的句尾結構，頻率極高，但一句用一次就夠。",
+      "tags": [
+        "日常",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-011",
+      "phrase": "對不對",
+      "variants": [],
+      "meaning": "先講結論再要對方附和，帶一點教訓味",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "sarcastic"
+        ],
+        "function": [
+          "challenge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "我早就講過了，對不對？",
+      "situation": "對方不聽勸、出事之後",
+      "avoid": [
+        "對客戶說「對不對」像在質問，會讓人不舒服"
+      ],
+      "note": "長輩、資深同事的句尾；平輩講會有點嗆。",
+      "tags": [
+        "日常",
+        "踩"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-012",
+      "phrase": "是不是",
+      "variants": [],
+      "meaning": "反問、逼對方承認",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "challenge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family"
+        ]
+      },
+      "example": "你故意的，是不是？",
+      "situation": "抓到對方小動作、看穿對方",
+      "avoid": [
+        "情侶吵架用「是不是」很容易一路升級"
+      ],
+      "note": "語氣上揚是逼問，平的只是確認。",
+      "tags": [
+        "日常",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-013",
+      "phrase": "不好意思",
+      "variants": [],
+      "meaning": "借過、叫服務生、打斷別人的萬用開場",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "apology"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "不好意思，借過一下。",
+      "situation": "人多要人讓路、叫店員、插話前",
+      "avoid": [
+        "真的做錯事要說「對不起」，不是「不好意思」"
+      ],
+      "note": "台灣最常用的開場詞；「對不起」只留給自己真的錯的時候。",
+      "tags": [
+        "客套",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-014",
+      "phrase": "歹勢",
+      "variants": [
+        "拍謝"
+      ],
+      "meaning": "閩南語的道歉，比「不好意思」更口語",
+      "categories": {
+        "age": [
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "apology"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "歹勢，我來晚了。",
+      "situation": "遲到、打擾到人、拜託小事",
+      "avoid": [
+        "對北部客戶、正式場合用「歹勢」會太本土"
+      ],
+      "note": "中南部、長輩、做生意的人高頻；台北年輕人講「拍謝」較多。",
+      "tags": [
+        "客套",
+        "老派"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-015",
+      "phrase": "謝謝你喔",
+      "variants": [],
+      "meaning": "道謝，但語尾上揚會變成酸人",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "thanks"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "謝謝你喔，麻煩你了。",
+      "situation": "同事幫忙、店員服務、鄰居順手",
+      "avoid": [
+        "語尾上揚又拉長就是酸人；對客戶要說「謝謝您」"
+      ],
+      "note": "真誠的「謝謝你喔」語尾是平的，酸人的會翹起來。",
+      "tags": [
+        "客套",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-016",
+      "phrase": "麻煩你",
+      "variants": [],
+      "meaning": "請人做事時的禮貌開頭",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "麻煩你幫我加個湯。",
+      "situation": "餐廳、辦公室請人幫忙",
+      "avoid": [
+        "對上司用「麻煩你」要接「幫我」，否則像在指派"
+      ],
+      "note": "台灣職場最常用；「麻煩你了」放句尾更軟。",
+      "tags": [
+        "客套",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-017",
+      "phrase": "還好啦",
+      "variants": [],
+      "meaning": "被讚美時的謙虛回應",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "shy",
+          "polite"
+        ],
+        "function": [
+          "thanks"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "還好啦，運氣好而已。",
+      "situation": "被誇、被感謝、被說很厲害",
+      "avoid": [
+        "一直「還好啦」會顯得扭捏，兩次就夠"
+      ],
+      "note": "台灣人接受讚美的標準答案，直接說「謝謝」反而少。",
+      "tags": [
+        "客套",
+        "讚"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-018",
+      "phrase": "哪有",
+      "variants": [],
+      "meaning": "否認對方的讚美或指控，帶撒嬌",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "shy"
+        ],
+        "function": [
+          "disagree"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family"
+        ]
+      },
+      "example": "哪有，你亂講。",
+      "situation": "被說「你今天很漂亮」、被虧",
+      "avoid": [
+        "對客戶否認事實用「哪有」會顯得像推託"
+      ],
+      "note": "語氣軟，通常是開心不是生氣；加「啦」變「哪有啦」。",
+      "tags": [
+        "客套",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-019",
+      "phrase": "最好是啦",
+      "variants": [],
+      "meaning": "完全不信，帶諷刺",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "sarcastic"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "最好是啦，他最好會來。",
+      "situation": "朋友講幹話、對方開空頭支票",
+      "avoid": [
+        "對客戶、長輩用「最好是啦」等於當面打臉"
+      ],
+      "note": "「最好」在這裡不是稱讚，是反話。",
+      "tags": [
+        "踩",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-020",
+      "phrase": "真的假的",
+      "variants": [],
+      "meaning": "驚訝、半信半疑",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "surprised"
+        ],
+        "function": [
+          "surprise"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "真的假的？他也太猛了吧。",
+      "situation": "聽到八卦、意外消息",
+      "avoid": [
+        "客戶報價時說「真的假的」會像在質疑對方"
+      ],
+      "note": "連講兩次「真的假的」是台灣人驚訝的標準反應。",
+      "tags": [
+        "日常",
+        "八卦"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-021",
+      "phrase": "有夠",
+      "variants": [],
+      "meaning": "非常，後面多接負面",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "complain"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family"
+        ]
+      },
+      "example": "有夠扯的，他居然這樣講。",
+      "situation": "抱怨、形容很誇張的事",
+      "avoid": [
+        "對客戶說「有夠」偏隨便，正式場合要收"
+      ],
+      "note": "台語語法國語化；「有夠讚」也可以，正面時語氣更嗨。",
+      "tags": [
+        "日常",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-022",
+      "phrase": "先不用",
+      "variants": [],
+      "meaning": "婉拒，口氣軟但不留餘地",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client",
+          "stranger"
+        ]
+      },
+      "example": "先不用，謝謝你。",
+      "situation": "推銷、同事約加班、朋友邀約",
+      "avoid": [
+        "對長輩、客戶說「先不用」要補個理由，否則像拒絕人"
+      ],
+      "note": "「先」是關鍵字，留了面子，但其實就是拒絕。",
+      "tags": [
+        "拒絕",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-023",
+      "phrase": "我再看看",
+      "variants": [],
+      "meaning": "不買、不去的婉拒說法",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "stranger"
+        ]
+      },
+      "example": "我再看看，謝謝。",
+      "situation": "店員推銷、被邀投資、被拉直銷",
+      "avoid": [
+        "對已合作客戶用「我再看看」會讓人覺得被敷衍"
+      ],
+      "note": "台灣店面、業務最常聽到的拒絕；通常不會再回來。",
+      "tags": [
+        "拒絕",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-024",
+      "phrase": "改天再約",
+      "variants": [],
+      "meaning": "社交性的婉拒，通常不會真的約",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "改天再約啦，最近比較忙。",
+      "situation": "不想赴約、想結束對話",
+      "avoid": [
+        "當真去問「哪天」會讓場面很尷尬"
+      ],
+      "note": "台灣社交潤滑劑，等於「再聯絡」，別當承諾。",
+      "tags": [
+        "拒絕",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-025",
+      "phrase": "我考慮一下",
+      "variants": [],
+      "meaning": "不馬上答應，也不直接拒絕",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "我考慮一下，再回你。",
+      "situation": "被推銷、被提案、被邀合作",
+      "avoid": [
+        "拖太久不回應會變失禮，三天內要給答案"
+      ],
+      "note": "業務聽得懂：這通常是婉拒，不是在考慮。",
+      "tags": [
+        "拒絕",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-026",
+      "phrase": "沒關係",
+      "variants": [],
+      "meaning": "原諒、安慰、把事情放下",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "comfort"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "沒關係，你先忙。",
+      "situation": "對方道歉、臨時取消、弄壞小東西",
+      "avoid": [
+        "語氣太輕會變成「我不在意你」，要看著對方說"
+      ],
+      "note": "台灣人避免衝突的高頻句，有時是壓抑，不是真的沒事。",
+      "tags": [
+        "客套",
+        "關心"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-027",
+      "phrase": "辛苦了",
+      "variants": [],
+      "meaning": "對別人的付出表示感謝，帶一點上對下",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "comfort"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "辛苦了，早點休息。",
+      "situation": "同事加班、工班收工、活動結束",
+      "avoid": [
+        "對客戶、長輩說「辛苦了」像在打分數，要改「謝謝您」"
+      ],
+      "note": "台灣職場萬用句，對平輩可以，對上位者要小心。",
+      "tags": [
+        "關心",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-028",
+      "phrase": "加油喔",
+      "variants": [],
+      "meaning": "打氣，帶感情",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "encourage"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "加油喔，你可以的。",
+      "situation": "朋友考試、同事提案前、家人低潮",
+      "avoid": [
+        "對方已經很累時說「加油」會被聽成風涼話"
+      ],
+      "note": "「喔」讓語氣變軟；單說「加油」有時像命令。",
+      "tags": [
+        "關心",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-029",
+      "phrase": "慢慢來",
+      "variants": [],
+      "meaning": "不急，給對方時間",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "comfort"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client",
+          "family"
+        ]
+      },
+      "example": "慢慢來，不急。",
+      "situation": "新人做不好、長輩動作慢、孕婦走樓梯",
+      "avoid": [
+        "對趕時間的客戶說「慢慢來」會被誤會在拖"
+      ],
+      "note": "台灣長輩、主管安撫人的常用句。",
+      "tags": [
+        "關心",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-030",
+      "phrase": "你方便就好",
+      "variants": [],
+      "meaning": "把決定權交回對方，自己不表態",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "你方便就好，我配合。",
+      "situation": "約時間、談安排、訂餐廳",
+      "avoid": [
+        "客戶問專業意見時說這句，會被覺得不負責"
+      ],
+      "note": "客套但有點推責任；對客戶最好補一個建議。",
+      "tags": [
+        "客套",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-031",
+      "phrase": "算我的",
+      "variants": [],
+      "meaning": "這筆我付",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "proud",
+          "warm"
+        ],
+        "function": [
+          "boast"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "這攤算我的，別客氣。",
+      "situation": "聚餐結帳、請客、慶功",
+      "avoid": [
+        "對客戶說「算我的」會變成不當招待"
+      ],
+      "note": "台灣人請客的豪氣說法；晚輩搶付會講「我來我來」。",
+      "tags": [
+        "日常",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-032",
+      "phrase": "你吃飽沒",
+      "variants": [],
+      "meaning": "長輩的招呼語，不是真的問你餓不餓",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family"
+        ]
+      },
+      "example": "你吃飽沒？",
+      "situation": "長輩遇到晚輩、鄰居在巷口打招呼",
+      "avoid": [
+        "對客戶、上司用會太家常，場合不對"
+      ],
+      "note": "中南部更常見；回答「吃了」就好，不用真的報菜單。",
+      "tags": [
+        "日常",
+        "長輩"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-033",
+      "phrase": "阿嬤",
+      "variants": [],
+      "meaning": "奶奶、外婆；也泛指年長的女性長輩",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family"
+        ]
+      },
+      "example": "阿嬤，我回來了。",
+      "situation": "回家、去阿嬤家、被阿嬤餵食",
+      "avoid": [
+        "叫不熟的長輩「阿嬤」會把人叫老，要改叫「阿姨」"
+      ],
+      "note": "台灣小孩的母語感稱呼；北部也通，中南部更親。",
+      "tags": [
+        "家庭",
+        "長輩"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-034",
+      "phrase": "加減吃",
+      "variants": [],
+      "meaning": "閩南語「加減」＝多少吃一點",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family"
+        ]
+      },
+      "example": "加減吃一點啦。",
+      "situation": "長輩勸食、客人客氣說不餓",
+      "avoid": [
+        "對客戶、正式場合用會太本土"
+      ],
+      "note": "長輩、中南部高頻；年輕人少講。",
+      "tags": [
+        "家庭",
+        "長輩",
+        "老派"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-035",
+      "phrase": "手機放下",
+      "variants": [],
+      "meaning": "叫小孩別再滑手機",
+      "categories": {
+        "age": [
+          "mid"
+        ],
+        "archetype": [
+          "mum",
+          "dad"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family"
+        ]
+      },
+      "example": "手機放下，先吃飯。",
+      "situation": "家裡吃飯、小孩一直滑手機",
+      "avoid": [
+        "對別人家的小孩講會越界"
+      ],
+      "note": "台灣家庭日常；軟一點是「手機先收起來好不好」。",
+      "tags": [
+        "家庭",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-036",
+      "phrase": "幾點了還不睡",
+      "variants": [],
+      "meaning": "催小孩去睡覺",
+      "categories": {
+        "age": [
+          "mid"
+        ],
+        "archetype": [
+          "mum",
+          "dad"
+        ],
+        "tone": [
+          "complain"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family"
+        ]
+      },
+      "example": "幾點了還不睡？",
+      "situation": "半夜小孩還在打電動、追劇",
+      "avoid": [
+        "對已成年的孩子講會變控制"
+      ],
+      "note": "台灣爸媽經典句，下一句通常是「明天爬不起來」。",
+      "tags": [
+        "家庭",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-037",
+      "phrase": "騎慢一點",
+      "variants": [],
+      "meaning": "叮嚀騎車小心",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "mum",
+          "dad"
+        ],
+        "tone": [
+          "worried"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family"
+        ]
+      },
+      "example": "騎慢一點，到了打給我。",
+      "situation": "小孩、另一半騎機車出門",
+      "avoid": [
+        "對客戶、同事講會太像家人"
+      ],
+      "note": "台灣機車文化下的爸媽金句，不分南北。",
+      "tags": [
+        "家庭",
+        "關心"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-038",
+      "phrase": "我載你",
+      "variants": [],
+      "meaning": "我開車、騎車送你過去",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "encourage"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "我載你，順路。",
+      "situation": "下雨、對方沒車、東西很多",
+      "avoid": [
+        "對客戶主動說「我載你」要保持距離感"
+      ],
+      "note": "「載」是台灣機車、汽車文化的高頻動詞。",
+      "tags": [
+        "日常",
+        "關心"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-039",
+      "phrase": "大冰拿",
+      "variants": [],
+      "meaning": "大杯冰拿鐵的簡稱，超商、連鎖咖啡的點法",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger"
+        ]
+      },
+      "example": "大冰拿一杯，謝謝。",
+      "situation": "超商寄杯、連鎖咖啡點餐",
+      "avoid": [
+        "對不熟的長輩用簡稱會聽不懂，要講全名"
+      ],
+      "note": "台灣咖啡店的行話式點法；「大熱拿」「中冰美」同結構。",
+      "tags": [
+        "店舖",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-040",
+      "phrase": "內用還是外帶",
+      "variants": [],
+      "meaning": "店員問你要在店裡吃還是帶走",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "waitress",
+          "sales"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger"
+        ]
+      },
+      "example": "內用還是外帶？",
+      "situation": "超商、飲料店、小吃店結帳",
+      "avoid": [
+        "省略成「內用外帶」會顯得趕客人"
+      ],
+      "note": "台灣小吃店、手搖飲一定會問，是點單第一步。",
+      "tags": [
+        "店舖",
+        "服務員"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-041",
+      "phrase": "甜度冰塊",
+      "variants": [],
+      "meaning": "手搖飲問你要多甜、冰塊多少",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "waitress",
+          "sales"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger"
+        ]
+      },
+      "example": "甜度冰塊要調整嗎？",
+      "situation": "飲料店點單、電話訂飲料",
+      "avoid": [
+        "對長輩要主動建議「半糖好不好」，不要只丟問題"
+      ],
+      "note": "台灣手搖飲文化的核心問句；「半糖少冰」是預設答案。",
+      "tags": [
+        "店舖",
+        "服務員"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-042",
+      "phrase": "半糖少冰",
+      "variants": [],
+      "meaning": "手搖飲最常見的點法",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger"
+        ]
+      },
+      "example": "一杯珍奶，半糖少冰。",
+      "situation": "飲料店點單、公司團購",
+      "avoid": [
+        "對第一次喝的長輩用「半糖少冰」還是太甜，可講「微糖去冰」"
+      ],
+      "note": "甜度：全糖／少糖／半糖／微糖／無糖；冰塊：正常／少冰／微冰／去冰。",
+      "tags": [
+        "店舖",
+        "年輕人"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-043",
+      "phrase": "載具要嗎",
+      "variants": [],
+      "meaning": "店員問發票要不要存手機條碼",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "sales"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger"
+        ]
+      },
+      "example": "發票載具要嗎？",
+      "situation": "超商、賣場、加油站結帳",
+      "avoid": [
+        "對觀光客、長輩要解釋「存手機」，不要丟一句就結帳"
+      ],
+      "note": "台灣電子發票特有；「載具」就是手機條碼或悠遊卡。",
+      "tags": [
+        "店舖",
+        "服務員"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "tw-core-044",
+      "phrase": "打統編",
+      "variants": [],
+      "meaning": "結帳時把公司統一編號打進發票，方便報帳",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "office",
+          "client"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "colleague"
+        ]
+      },
+      "example": "要打統編嗎？",
+      "situation": "超商、加油站、計程車報帳",
+      "avoid": [
+        "私人消費打統編會變公司帳，報帳時很麻煩"
+      ],
+      "note": "台灣商務日常；司機、店員都會問「統編要不要」。",
+      "tags": [
+        "店舖",
+        "上班族"
+      ],
+      "source": "general"
+    }
+  ]
+}

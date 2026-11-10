@@ -1,0 +1,146 @@
+# 美式英文對白句庫（全部 133 句，自動生成）
+
+每句＝語料庫一條 entry 嘅 example。格式：句子 ｜ 講法 ｜ 意思 ｜ 標籤
+
+## core  45 句
+
+- How's it going, man? Haven't seen you in a minute. ｜ How's it going? ｜ 最中性嘅美式打招呼，等於「點呀／近排點」；問嘅人多數唔係真想聽你講詳情。 ｜ 開場/日常
+- What's up? You look like you just saw a ghost. ｜ What's up? ｜ 打招呼多過真問你喺做咩；語氣好 casual，等於「喂，點呀」。 ｜ 開場/日常/直球
+- Morning. Coffee's in the back, help yourself. ｜ Morning. ｜ 美國辦公室、電梯、走廊嘅極短招呼，等於「早晨」，唔使加 Good。 ｜ 開場/職場/惜字如金
+- How you been? Last I heard you moved out to Denver. ｜ How you been? ｜ 久無見嘅問候，關心你最近過成點；美式口語會省咗 have。 ｜ 開場/日常/關心
+- Long time no see. You still working at the shop? ｜ Long time no see. ｜ 好久不見；已經係美式固定講法，唔當中文直譯嘅錯英文。 ｜ 開場/日常
+- You good? You've been staring at that screen for an hour. ｜ You good? ｜ 問你仲得唔得、有冇事；美式關心，唔等於撩交嗌。 ｜ 關心/日常/直球
+- How's the family? Your mom still doing the garden thing? ｜ How's the family? ｜ 美式街坊／同事 small talk 嘅標準題，關心你屋企人，但唔會追問。 ｜ 日常/客套/家庭
+- Some weather, huh? My basement's already wet. ｜ Some weather, huh? ｜ 天氣做開場白嘅美式講法，句尾 huh 係等人附和。 ｜ 日常/客套/開場
+- For here or to go? — To go, please. ｜ For here or to go? ｜ 快餐店、咖啡店必問：堂食定外賣。美式用 to go，唔用 takeaway。 ｜ 餐廳/咖啡廳/服務員/日常
+- Need a bag? — Nah, I'm good, thanks. ｜ Need a bag? ｜ 超商、雜貨店收銀問你要唔要袋；美式口語省咗 Do you。 ｜ 便利店/店員/日常
+- Can I get the check when you get a sec? ｜ Can I get the check? ｜ 埋單。美式餐廳講 check，唔講 bill。 ｜ 餐廳/服務員/日常
+- I'll have the same, but no onions. ｜ I'll have the same. ｜ 同對方叫一樣嘅；美式落單標準講法，唔用 I want。 ｜ 餐廳/日常
+- You're all set. Your table's right this way. ｜ You're all set. ｜ 搞掂晒、你可以走／可以用喇；服務業收尾萬用語。 ｜ 客套/服務員/日常
+- Sorry, coming through — hot pan, hot pan. ｜ Sorry, coming through. ｜ 借借、唔該借過；美式人多地方用，語氣輕但直接。 ｜ 餐廳/街頭/日常
+- Where's the restroom? — Back left, past the counter. ｜ Where's the restroom? ｜ 廁所喺邊；美式一定用 restroom／bathroom，唔用 toilet。 ｜ 日常/餐廳
+- Am I going the right way for the train station? ｜ Am I going the right way? ｜ 行錯路未啊？美式問路最自然嘅問法。 ｜ 街頭/日常
+- Hang a left at the light, then it's the second driveway. ｜ Hang a left. ｜ 轉左。美式口語 hang a left，比 turn left 更日常。 ｜ 街頭/日常/司機
+- It's right around the corner from the gas station. ｜ It's right around the corner. ｜ 就喺附近、轉個彎就到；美式最常用嘅「近」講法。 ｜ 街頭/日常
+- Sorry, my bad — I grabbed the wrong folder. ｜ Sorry, my bad. ｜ 認錯、我唔啱；美式口語道歉，語氣輕，唔算正式道歉。 ｜ 客套/日常
+- I appreciate it. Seriously, you didn't have to. ｜ I appreciate it. ｜ 唔該晒、多謝；美式比 thank you 更真誠、更有重量嘅道謝。 ｜ 客套/日常
+- No worries, it happens to everybody. ｜ No worries. ｜ 唔緊要、唔使客氣；輕鬆版本嘅 you're welcome。 ｜ 客套/日常
+- Right? That's exactly what I told him. ｜ Right? ｜ 句尾求附和：係咪呀、你都覺呢；用嚟拉對方入自己陣營。 ｜ 日常/客套
+- I'm good, thanks — I already ate. ｜ I'm good, thanks. ｜ 唔使喇、我夠喇；美式婉拒嘅第一選擇，比 no thank you 自然。 ｜ 拒絕/客套/日常
+- I'm gonna pass on the karaoke, but thanks for asking. ｜ I'm gonna pass. ｜ 我唔去／我唔要；比 no 禮貌，但意思好清楚。 ｜ 拒絕/日常
+- Maybe next time — this week's kinda crazy. ｜ Maybe next time. ｜ 下次啦；美式軟拒絕，通常等於「今次唔會」。 ｜ 拒絕/客套
+- It's fine, really. I just need a minute. ｜ It's fine, really. ｜ 真係冇事；但語氣一沉就係「其實有事，我唔想講」。 ｜ 客套/冷面
+- Sounds good. So I'll text you when I'm outside. ｜ Sounds good. ｜ 好呀、就咁話；美式最常用嘅同意，唔使講 yes。 ｜ 日常/客套
+- You bet — I'll get that out today. ｜ You bet. ｜ 當然啦／冇問題；中西部味重嘅美式答應。 ｜ 日常/老派/客套
+- For sure, man. Anytime. ｜ For sure. ｜ 一定啦／係呀；美式加強同意，語氣比 sure 熱。 ｜ 日常/直球
+- Yeah, no, that's not gonna work for me. ｜ Yeah, no. ｜ 唔係咁／唔好啦；先 yeah 後 no 係美式獨有嘅緩衝，唔係口誤。 ｜ 拒絕/直球/日常
+- I hear you, but the deadline's not moving. ｜ I hear you. ｜ 我明白你講咩；但唔等於我同意，係美式最常用嘅緩衝。 ｜ 職場/關心/冷面
+- That sucks. Did they at least give you a refund? ｜ That sucks. ｜ 好慘、好煩（唔帶粗口嘅同情）；美式安慰，語氣好直接。 ｜ 關心/日常/直球
+- Hang in there — the semester's almost over. ｜ Hang in there. ｜ 頂住、撐落去；美式打氣，用喺對方捱緊嘅時候。 ｜ 關心/日常
+- You got this. Just breathe and start talking. ｜ You got this. ｜ 你得嘅、搞得掂；近年美式最流行嘅打氣。 ｜ 關心/日常/潮語
+- Take your time. We're not in a rush. ｜ Take your time. ｜ 你慢慢嚟、唔急；美式禮貌，反面係催。 ｜ 客套/關心
+- Let me know if you need a ride, okay? ｜ Let me know. ｜ 有消息話我知；美式收尾萬用句，唔等於命令。 ｜ 客套/日常
+- Anyway, I should probably head out. ｜ Anyway, ｜ 講返正題／算啦；用嚟截断話題或者收線嘅美式 filler。 ｜ 日常/開場/收尾
+- I gotta run — my parking meter's about to expire. ｜ I gotta run. ｜ 我要走喇；美式口語 gotta＝got to，係最自然嘅道別開場。 ｜ 收尾/日常
+- See you around. Say hi to your mom for me. ｜ See you around. ｜ 遲啲見；唔一定真係約實，係美式隨口道別。 ｜ 收尾/日常
+- Take it easy, man. Don't let them get to you. ｜ Take it easy. ｜ 保重／慢慢嚟；美式道別，亦可以叫對方冷靜。 ｜ 收尾/老派/關心
+- Have a good one. Drive safe. ｜ Have a good one. ｜ 祝你今日順利；美式店員、同事最常用嘅收尾。 ｜ 收尾/客套/店員
+- Let's grab coffee sometime — I want to hear how the move went. ｜ Let's grab coffee sometime. ｜ 不如搵日飲杯咖啡；美式社交邀約，可以係真心亦可以係客套。 ｜ 日常/客套/戀愛
+- Because I said so. Now get in the car. ｜ Because I said so. ｜ 因為我話事；美式父母終極句，唔會再解釋。 ｜ 家庭/直球
+- Don't wait up — I'll be at the shop till late. ｜ Don't wait up. ｜ 唔好等我返嚟先瞓；美式家庭／情侶夜歸交代。 ｜ 家庭/收尾
+- I mean, y'know, that's not what I said. ｜ I mean, ｜ 我意思係……；用嚟修正、軟化或者鋪墊，係美式最密嘅 filler。 ｜ 日常/直球
+
+## slang  43 句
+
+- He's got zero rizz, and somehow that's his whole personality. ｜ rizz ｜ 撩人嘅魅力、口才；Gen Z 講嘅 charm，多數帶戲謔。 ｜ 潮語/戀愛/年輕人/網絡用語
+- No cap, that's the best burger in the city. ｜ No cap. ｜ 講真、冇吹水；用嚟強調自己句句真。 ｜ 潮語/網絡用語/年輕人
+- Bet. I'll be outside in five. ｜ Bet. ｜ 好、冇問題；Gen Z 嘅「就咁話」，比 okay 更爽快。 ｜ 潮語/年輕人/直球
+- It's giving 'I've never worked retail in my life.' ｜ It's giving ｜ 呢個感覺好……；形容某人／某物散發嘅氣質，後面一定接名詞。 ｜ 潮語/網絡用語/年輕人
+- Lowkey, I've been avoiding that phone call all week. ｜ Lowkey ｜ 有啲、暗暗地；用嚟減弱語氣，等於「其實有少少」。 ｜ 潮語/年輕人/網絡用語
+- The pizza was mid, honestly. Like, I don't get the hype. ｜ mid ｜ 好普通、唔值一提；比 bad 更刻薄嘅貶。 ｜ 潮語/踩/年輕人
+- This playlist slaps, though — who made it? ｜ slaps ｜ 好正、好聽；多數用嚟講歌。 ｜ 潮語/讚/年輕人
+- It's not that deep — it's just a group chat. ｜ It's not that deep. ｜ 唔使咁認真、冇咁嚴重；用嚟潑冷水或降溫。 ｜ 潮語/冷面/年輕人
+- You're being delulu if you think he's gonna text back. ｜ delulu ｜ 自欺欺人、諗多咗；delusional 嘅 Gen Z 縮寫。 ｜ 潮語/踩/年輕人/戀愛
+- He said 'hubby' on the first date and I got the ick. ｜ the ick ｜ 突然反感、被煞到；本來有好感，一下覺得嘔心。 ｜ 潮語/戀愛/年輕人
+- I can't even — she wore white to the wedding. ｜ I can't even. ｜ 我真係頂唔順；Millennial 式誇張無語，通常配一個笑。 ｜ 潮語/網絡用語
+- Literally, I died when he said that. ｜ Literally. ｜ 真係、離譜到係咁；Millennial 用嚟加強，多數唔係字面意思。 ｜ 潮語/網絡用語
+- The client moved the deadline twice. This is fine. ｜ This is fine. ｜ 冇事、冇事（其實火災）；出自 meme，用嚟自嘲頂唔住。 ｜ 網絡用語/潮語/抱怨
+- Oof. That's gonna leave a mark. ｜ Oof. ｜ 唉／慘；聽到壞消息嘅即時反應，一個字夠。 ｜ 網絡用語/潮語/關心
+- He ghosted me after three dates, then liked my post. ｜ ghosted ｜ 被人突然失聯；約會／朋友／客戶人間蒸發，冇交代。 ｜ 網絡用語/戀愛/抱怨
+- He posted the worst take of the year and got ratio'd in ten minutes. ｜ ratio'd ｜ 被人喺留言區壓過；X／Twitter 上 reply 讚數遠高過原帖，等於被公開打臉。 ｜ 網絡用語/踩/潮語
+- Show the receipts or stop talking. ｜ receipts ｜ 證據、截圖；網上講「我有 proof」嘅意思。 ｜ 網絡用語/八卦/踩
+- Go touch grass, man. You've been posting all day. ｜ touch grass ｜ 出去行下、離開網絡；叫人唔好再喺網上發癲。 ｜ 網絡用語/踩/潮語
+- It's so over — the client saw the draft. ｜ It's so over. ｜ 完咗、冇得救；網上 mood 用語，通常同 We're so back 成對。 ｜ 網絡用語/潮語/抱怨
+- Not me crying at a dog food commercial. ｜ Not me ｜ 唔係我呀（其實就係我）；用嚟自嘲自己做咗件瘀事。 ｜ 網絡用語/潮語/年輕人
+- Are you serious right now? You cancelled on my mom? ｜ Are you serious right now? ｜ 你而家係咪講真；美式衝突升溫第一句，唔帶粗口但火氣足。 ｜ 直球/抱怨/日常
+- Excuse me? Say that again, slower. ｜ Excuse me? ｜ 你講咩話？；美式最常見嘅被冒犯反應，升調，等於「你再講一次試下」。 ｜ 直球/抱怨
+- You wanna go? 'Cause I've got all night. ｜ You wanna go? ｜ 想打架呀？；美式街頭挑釁，唔使粗口都好有火。 ｜ 直球/街頭/黑話
+- Don't play with me. I know what you did. ｜ Don't play with me. ｜ 唔好同我玩嘢；美式警告，意思係「你玩唔起」。 ｜ 直球/黑話
+- Say it to my face, not in the group chat. ｜ Say it to my face. ｜ 當面講；美式衝突經典句，針對背後講壞話。 ｜ 直球/抱怨
+- That's a you problem, not a me problem. ｜ That's a you problem. ｜ 呢個係你自己嘅問題；美式極冷淡嘅推卸，等於「關我咩事」。 ｜ 冷面/直球/潮語
+- Watch your mouth. That's my sister you're talking about. ｜ Watch your mouth. ｜ 小心你把口；美式警告，通常喺對方講咗侮辱說話之後。 ｜ 直球/黑話
+- I'm finna head out — you need anything? ｜ finna ｜ 就快、準備去；I'm going to 嘅 AAVE 縮寫。 ｜ 方言/潮語/黑話
+- Deadass, I saw him at the deli this morning. ｜ Deadass ｜ 講真、冇講笑；紐約起家嘅強調語。 ｜ 方言/潮語/黑話
+- On God, that's exactly what happened. ｜ On God. ｜ 我發誓、真嘅；美式街頭／年輕世代強調句。 ｜ 方言/潮語/黑話
+- Ain't no way you paid forty bucks for that. ｜ Ain't no way. ｜ 唔係啩、冇可能；美式雙重否定式嘅難以置信。 ｜ 方言/潮語/直球
+- That's the best burger in town, period. ｜ period ｜ 句號、就咁話；用嚟封頂，等於「唔使再討論」。 ｜ 方言/直球/惜字如金
+- I'm on line at the deli and it's not moving. ｜ on line ｜ 排隊；紐約市講法，同英式 queue 相對。 ｜ 方言/日常/街頭
+- That's hella expensive for a burrito. ｜ hella ｜ 好、非常；加州（灣區）加強詞。 ｜ 方言/潮語/直球
+- That clam chowder's wicked good. ｜ wicked ｜ 好、非常；新英格蘭（尤其波士頓）加強詞。 ｜ 方言/潮語/讚
+- Y'all coming or what? ｜ Y'all ｜ 你哋；南方（同 AAVE）第二人稱複數，今日全美年輕人都在用。 ｜ 方言/日常/年輕人
+- Ope, sorry, didn't mean to stop in your way. ｜ ope ｜ 哎呀（唔好意思）；中西部人撞到人／要擠過去嘅反射聲。 ｜ 方言/日常/客套
+- What the fuck? Who moved my tools? ｜ What the fuck? ｜ 搞咩呀；美式最直接嘅震驚／不滿，p3 級粗口。 ｜ 直球/抱怨/街頭
+- Holy shit, you actually did it. ｜ Holy shit. ｜ 嘩屌；美式驚嘆，可以係好可以係壞，語氣重。 ｜ 直球/街頭
+- Are you shitting me? They raised the rent again? ｜ Are you shitting me? ｜ 你耍我呀；美式粗口版嘅難以置信，比 are you kidding me 重好多。 ｜ 直球/抱怨
+- What the hell is that noise? ｜ What the hell? ｜ 搞咩呀；比 what the fuck 輕好多，仲可以出街。 ｜ 直球/日常
+- Damn it, I left the keys in the truck. ｜ Damn it. ｜ 頂；美式輕度發洩，唔算攻擊人。 ｜ 日常/抱怨
+- Screw that — I'm not working another weekend. ｜ Screw that. ｜ 算啦、唔做；美式帶火嘅拒絕，屬輕度粗口替代。 ｜ 拒絕/直球
+
+## work  45 句
+
+- Let's circle back on the budget after the client call. ｜ Let's circle back. ｜ 我哋遲啲再傾返呢個；corporate-speak 用嚟拖，或者唔想而家決定。 ｜ 職場/公司/同事
+- Let's touch base Thursday and see where the numbers land. ｜ Let's touch base. ｜ 我哋聯絡下／對一對進度；美式商務最常見嘅開會邀約語。 ｜ 職場/同事/客套
+- Do you have the bandwidth to take this one? It's due Friday. ｜ Do you have the bandwidth? ｜ 你有冇時間／精力接呢件事；bandwidth 講人，唔係網絡。 ｜ 職場/公司
+- Let's take this offline — I don't want to get into numbers here. ｜ Let's take this offline. ｜ 我哋私下再傾；會議上截停一個唔適合公開講嘅話題。 ｜ 職場/上司
+- I'll loop you in on the thread so you have the context. ｜ I'll loop you in. ｜ 我拉你入嚟（email／對話）；美式職場接納同事參與。 ｜ 職場/同事
+- Low-hanging fruit first — we can save the hard stuff for Q3. ｜ Low-hanging fruit. ｜ 最容易見效嘅部分；企業用嚟講先做容易嘅事。 ｜ 職場/公司
+- What's the ask here? Am I writing it or just reviewing? ｜ What's the ask? ｜ 你想我做咩／你需要咩；美式商務直接問要求。 ｜ 職場/直球
+- Ping me when you land and I'll send the address. ｜ Ping me. ｜ 有咩就打我／傳訊息我；美式職場講 ping，唔講 contact。 ｜ 職場/同事/潮語
+- Per my last email, the deadline was Friday, not Monday. ｜ Per my last email, ｜ 正如我上一封 email 講過；美式職場最含蓄嘅發火。 ｜ 職場/抱怨/冷面
+- Just following up on the estimate I sent last week. ｜ Just following up. ｜ 跟進一下；美式 email 開場，實際係催你回覆。 ｜ 職場/客套/同事
+- Let's put a pin in the hiring question and finish the deck. ｜ Let's put a pin in it. ｜ 呢個先擺住，遲啲再講；美式開會用嚟封存話題。 ｜ 職場/上司
+- Let's get our ducks in a row before we present to the board. ｜ Let's get our ducks in a row. ｜ 先將嘢排好、準備妥當；美式 idiom，帶少少老派。 ｜ 職場/老派/上司
+- At the end of the day, it's your call, not mine. ｜ At the end of the day, ｜ 講到底、最終；美式總結句開頭，經常用嚟收一個爭論。 ｜ 職場/收尾/直球
+- I need it by EOD — the client's presenting in the morning. ｜ I need it by EOD. ｜ 今日收工前要；美式職場 EOD＝end of day，比 tomorrow 更硬。 ｜ 職場/上司/惜字如金
+- Get it done. I don't care how — just make sure it's right. ｜ Get it done. ｜ 搞掂佢；美式上司式命令，唔想聽解釋。 ｜ 上司/職場/直球
+- That's not what I asked for. I said a one-pager, not twenty slides. ｜ That's not what I asked for. ｜ 我要嘅唔係呢個；美式上司／客戶最直接嘅不滿，唔帶粗口但好硬。 ｜ 上司/抱怨/直球
+- Walk me through it — how did we get from forty to ninety? ｜ Walk me through it. ｜ 由頭講一次畀我聽；美式上司／面試官最常用嘅「你解釋下」。 ｜ 職場/上司/面試
+- I'm on it. Give me till noon. ｜ I'm on it. ｜ 我即刻做；美式下屬最常用嘅接單回應，比 yes sir 自然。 ｜ 下屬/職場/惜字如金
+- Tell me about yourself — and keep it under two minutes. ｜ Tell me about yourself. ｜ 介紹下你自己；美式面試第一句，實際係要你講一個 90 秒故事。 ｜ 面試/職場
+- Where do you see yourself in five years — honestly? ｜ Where do you see yourself in five years? ｜ 五年後你想點；美式面試經典題，測你有冇計劃。 ｜ 面試/職場/老派
+- What's your biggest weakness? — And don't say perfectionism. ｜ What's your biggest weakness? ｜ 你最大缺點係咩；美式面試陷阱題，標準答案是包裝過的優點。 ｜ 面試/職場
+- Do you have any questions for us? — Yeah, what does success look like in month one? ｜ Do you have any questions for us? ｜ 你有咩想問我哋；美式面試收尾，答冇等於唔感興趣。 ｜ 面試/職場/客套
+- We'll be in touch. Thanks for coming in. ｜ We'll be in touch. ｜ 我哋會聯絡你；美式面試／提案收尾，通常等於「唔使等」。 ｜ 面試/職場/拒絕
+- Thanks for coming in. Somebody will reach out by Friday. ｜ Thanks for coming in. ｜ 多謝你嚟；美式面試收尾，語氣中性，唔代表 result。 ｜ 面試/職場/客套
+- I'm not sure this is the right fit — for either of us. ｜ I'm not sure this is the right fit. ｜ 我覺得唔係好啱；美式最禮貌嘅拒絕 offer／提案講法。 ｜ 拒絕/職場/客套
+- Can you give me an estimate before I decide? No pressure. ｜ Can you give me an estimate? ｜ 可唔可以報個價；美式裝修／工程第一步，叫 estimate（通常免費）。 ｜ 裝修/工地/講價/客戶
+- Do we need a permit for this, or can we just frame it out? ｜ Do we need a permit for this? ｜ 呢樣要唔要申請許可；美式裝修必問，冇 permit 會被停工罰款。 ｜ 裝修/工地/師傅
+- That's a change order — you want the outlet moved after drywall. ｜ That's a change order. ｜ 呢個要開變更單；美式裝修加錢加時嘅正式機制，唔係師傅獅子開大口。 ｜ 裝修/工地/師傅/講價
+- What's on the punch list? I saw a gap by the baseboard. ｜ What's on the punch list? ｜ 仲有咩收尾未搞；美式工程完工前嘅清單，一項項捉漏。 ｜ 裝修/工地/師傅
+- It's not up to code — that railing's gotta be forty-two inches. ｜ It's not up to code. ｜ 唔符合建築規例；美式師傅最有力嘅一句，等於「一定要改」。 ｜ 裝修/工地/師傅/直球
+- That's a load-bearing wall. We're not touching it without an engineer. ｜ That's a load-bearing wall. ｜ 嗰幅係主力牆；美式裝修最常聽到嘅「唔可以拆」。 ｜ 裝修/工地/師傅
+- Half up front, half when we're done — that's how I work. ｜ Half up front, half when we're done. ｜ 一半訂金，完工找尾數；美式小型工程最常見嘅付款方式。 ｜ 裝修/講價/師傅
+- I'll have my guy take a look at the wiring on Thursday. ｜ I'll have my guy take a look. ｜ 我叫個師傅去睇下；美式承辦商口吻，唔會自己出手。 ｜ 裝修/師傅/客戶
+- Can I put you on hold for about two minutes? ｜ Can I put you on hold? ｜ 可唔可以等我一下；美式客服標準句，唔講 wait a moment。 ｜ 職場/客套/服務員
+- I understand your frustration, and I want to fix it. ｜ I understand your frustration. ｜ 我明白你唔滿意；美式客服必備安撫句，但唔等於認錯。 ｜ 投訴/客套/服務員
+- Let me look into that and call you back before five. ｜ Let me look into that. ｜ 我幫你查下；美式客服最常用嘅拖延式承諾。 ｜ 投訴/職場/客套
+- I'd like to speak to a manager, please. This is the third time. ｜ I'd like to speak to a manager. ｜ 我要同你上司講；美式投訴升級嘅標準句，講完通常即場有讓步。 ｜ 投訴/客戶/直球
+- I want a refund. The part doesn't even fit. ｜ I want a refund. ｜ 我要退錢；美式消費者最直接嘅要求，唔使講到好婉轉。 ｜ 投訴/客戶/直球
+- That's not what we agreed on. The number was eight, not ten. ｜ That's not what we agreed on. ｜ 我哋講好咗唔係咁；美式談判／找數爭執嘅關鍵句。 ｜ 投訴/講價/職場
+- We're running behind schedule — the tile's back-ordered two weeks. ｜ We're running behind schedule. ｜ 我哋落後咗進度；美式工程／專案最常用嘅壞消息講法。 ｜ 裝修/工地/職場/抱怨
+- That's my final offer — twelve five, and I'll throw in the haul-away. ｜ That's my final offer. ｜ 呢個係我最後價；美式談判封頂句，但通常仍然可以再傾。 ｜ 講價/職場/直球
+- Let's meet in the middle — nine thousand, cash. ｜ Let's meet in the middle. ｜ 大家各讓一步；美式講價最常用嘅折衷句。 ｜ 講價/職場
+- We're way over budget — the plumbing alone ate twenty grand. ｜ We're way over budget. ｜ 我哋超支好多；美式專案／裝修最常見嘅爆數。 ｜ 裝修/講價/抱怨/職場
+- Money doesn't grow on trees — you want it, you work for it. ｜ Money doesn't grow on trees. ｜ 錢唔係樹上面摘落嚟；美式父母／老闆最愛嘅省錢箴言。 ｜ 家庭/老派/拒絕
+- Quid pro quo — I get the intro, you get the footage. ｜ Quid pro quo. ｜ 互換條件、你幫我我幫你；美式商務／法律用嘅拉丁片語，帶交易味。 ｜ 職場/講價/黑話
+

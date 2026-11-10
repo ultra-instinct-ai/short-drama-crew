@@ -22,6 +22,20 @@ budget. **Before writing: `render guideline`, then the scene bibles (anchors, li
 the speakers' `render character` — the bible's `speech` is where the lines come from** (see
 `dialogue-craft.md`). Delete `seedNote` when the scenes are written.
 
+`seedNote.dialogue` points at the user's dialogue skill, **`w-film-dialogue-editor`** (installed
+beside this one): the revision framework, the language guide of every 语体 in the episode
+(`lang-zh-hk.md`, `lang-zh-cn.md`, `lang-zh-tw.md`, `lang-zh-hk-mandarin.md`, `lang-zh-period.md`,
+`lang-en.md`) and, per speaker, the corpus query for someone of their age:
+
+```bash
+node <skills>/w-film-dialogue-editor/scripts/ref.mjs --lang zh-hk list --age young --limit 30
+node <skills>/w-film-dialogue-editor/scripts/ref.mjs --lang zh-hk search 搞掂       # one word
+```
+
+Read the guide before writing the first line and pull phrasing from the corpus — particles, slang,
+swearing levels and trade talk come from there, never from memory. The corpus is a vocabulary of
+real usage, not lines to paste: a line still grows from the person and the moment.
+
 ## Hard rules (all gated)
 
 1. **The duration budget is the wall.** Lines cost `chars ÷ 4.5` s, action beats 2.5 s; the
@@ -102,13 +116,46 @@ scene rather than hopping four.
 | omniscience | lines explain everything | move information into action and delivery |
 | flat ending | ends calm | last beat becomes the cliff, even just a whistle |
 
-## Polish (`render dialogue --ep N`)
+## Dialogue review — required after the script (`dialogue-review`)
 
-When the user asks for a polish, when the dialogue is the visible weakness, or when the register
-gate keeps noting the same scene: `render dialogue --ep 1` prints the 逐句校对表 (原句 / 问题 / 修改句 /
-修改理由 / 导演／演员提示) with each speaker's speech rules in the last column. Fill it per
-`dialogue-craft.md` §3, apply the changes to the flow, re-validate, and append the filled table to
-the screenplay dataset under `## 对白校对`.
+A script is not done when its structural gates are green: every line is then reviewed against the
+语体 guide, the way `w-film-dialogue-editor` reviews a scene, and the review is kept in the episode.
+The storyboard stage cannot start until it is (`validate --stage storyboard` runs the script gates
+too). `params.dialogueReview: off` skips it — only when the user asks.
+
+```bash
+$SD seed  <project> dialogue --ep 1   # dialogueReview: one row per line + the guides to read
+$SD apply <project> dialogue --ep 1   # write the revised lines (and deliveries) into the flow
+$SD validate <project> --stage script --ep 1
+$SD render <project> dialogue --ep 1  # the filled 对白校对 table
+```
+
+1. **Read** the framework (`references/dialogue_revision_framework.md`) and the guide of every 语体
+   `seed dialogue` prints; query the corpus for each speaker it lists.
+2. **Diagnose the episode first** (`diagnosis`: `goal` 场面目标, `conflict` 主要冲突, `subtext` 潜台词核心,
+   `voice` 角色声音问题, `rhythm` 节奏问题) and pick `level` 轻修 / 中修 / 重修. A scene with no goal,
+   obstacle or turn is a script problem — fix the beats, not the words.
+3. **Every row**: `issue` (the problem, or `无：<why it stands>`), `revised` (the new line, or the
+   same line), `reason` when it changed, `note` — the 导演／演员提示 as a playable action
+   ("你不是解释，你是在逼对方认错"), never a mood (自然一点 / 生气 are refused). A row may set
+   `delivery` to replace the beat's parenthetical.
+4. **`selfCheck`**: the guide's 自检清单 (its 快速自檢 / 檢查清單 section; `lang-zh-hk.md` has none —
+   for 粤语 use its §九 常見錯誤 plus the 品質檢查 in the skill's SKILL.md), item by item
+   (`{ item, ok, note }`, at least three); an item that fails says why it stands or the lines are
+   fixed.
+5. `apply dialogue`, then re-validate — a shorter or longer line moves the duration and the dialogue
+   fit downstream.
+
+Editing a line later reopens it: the gate compares every row's `revised` with the script, so a
+changed line fails until it is reviewed again. `seed dialogue` re-run keeps the rows of unchanged
+lines and opens only the moved ones (`--force` resets them all). Cutting or adding a line is done in
+the flow first, then re-seed.
+
+The gate checks: a review exists, the level, all five diagnosis fields, the guide of every speaker's
+语体 listed in `guides`, one row per line and none for a beat that is not a line, the revision
+applied, an issue on every row, a reason on every change, a playable note on every row, and the
+self-check. `render dialogue` prints the filled table — append it to the screenplay dataset under
+`## 对白校对`; `render script`'s 创作自检 gains the row 对白是否已按语体 guide 逐句校对.
 
 ## Sync
 
@@ -122,12 +169,13 @@ wji fs set <id> --merge content=@/tmp/E01-script.md --merge viewMode=content --m
 ## Gates
 
 `script-shape` · `beat-flow` · `duration` · `hook-cliff` · `beats-claimed` · `script-design` ·
-`rhythm` · `filmable` · `dialogue-register` (advisory).
+`rhythm` · `filmable` · `dialogue-review` · `dialogue-register` (advisory).
 
 `render script` writes the reference's episode format — `△（from-to秒）` action lines with the
 seconds derived, `角色（delivery）：line`, `【爽点标记】` after the 爽点, `【钩子标记】` at the end — and
-closes with the 创作自检 table, eight questions answered from the same helpers the gates use. A
-green episode is 16/16; a row that says 否 names what to fix.
+closes with the 创作自检 table, nine questions answered from the same helpers the gates use (the
+ninth is the dialogue review; eight with `dialogueReview: off`). A green episode is 18/18; a row
+that says 否 names what to fix.
 
 ## Dialogue performance pull-fit (Producer gate)
 

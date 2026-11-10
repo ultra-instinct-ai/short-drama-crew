@@ -1,0 +1,1668 @@
+{
+  "lang": "zh-hk",
+  "label": "香港粵語（港式）",
+  "version": "1.0",
+  "entries": [
+    {
+      "id": "hk-rough-001",
+      "phrase": "咩料呀",
+      "meaning": "質問對方係咩來頭、咩事",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "challenge"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "archetype": [
+          "street",
+          "student"
+        ],
+        "socialDistance": [
+          "stranger",
+          "conflict"
+        ]
+      },
+      "example": "你咩料呀？",
+      "situation": "有人踩場、有人無禮貌插嘴",
+      "avoid": [
+        "對客、對長輩用一定反面",
+        "等於挑釁，唔係問問題"
+      ],
+      "note": "「咩料」可以係朋友之間玩，但對陌生人講就係開戰。",
+      "tags": [
+        "地盤",
+        "踩",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-002",
+      "phrase": "你邊位呀",
+      "meaning": "你係邊個（唔認得／唔承認你身份）",
+      "categories": {
+        "age": [
+          "young",
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "challenge"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "conflict"
+        ]
+      },
+      "example": "你邊位呀？我唔識你喎。",
+      "situation": "有人自稱識你、有人越權",
+      "avoid": [
+        "對客、對上司用＝當眾落面"
+      ],
+      "note": "比「你邊個」更寸，因為暗示「你唔夠班」。",
+      "tags": [
+        "踩",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-003",
+      "phrase": "你算老幾",
+      "meaning": "你憑咩（管我）",
+      "categories": {
+        "age": [
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "challenge"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "archetype": [
+          "street",
+          "craftsman"
+        ],
+        "socialDistance": [
+          "conflict",
+          "colleague"
+        ]
+      },
+      "example": "你算老幾呀？我要聽你講？",
+      "situation": "有人指指點點、有人越級指揮",
+      "avoid": [
+        "職場講咗就係反面"
+      ],
+      "note": "老派寸法，地盤、街市最常聽到。",
+      "tags": [
+        "地盤",
+        "踩"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-004",
+      "phrase": "你以為你係邊個",
+      "meaning": "你以為自己係邊個",
+      "categories": {
+        "age": [
+          "young",
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "challenge"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "conflict",
+          "colleague"
+        ]
+      },
+      "example": "你以為你係邊個？老細呀？",
+      "situation": "有人扮大佬",
+      "avoid": [
+        "對真正老細講＝直接頂撞"
+      ],
+      "note": "多數配反問語氣，唔需要粗口都夠狠。",
+      "tags": [
+        "公司",
+        "踩",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-005",
+      "phrase": "你玩嘢呀",
+      "meaning": "你搞事呀？",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "angry"
+        ],
+        "function": [
+          "challenge"
+        ],
+        "register": "slang",
+        "profanity": 1,
+        "socialDistance": [
+          "conflict",
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "你玩嘢呀？講好咗而家反口。",
+      "situation": "有人反口、拖數、搞小動作",
+      "avoid": [
+        "對客講＝投訴升級"
+      ],
+      "note": "「玩嘢」＝玩手段；唔係粗口但好有火。",
+      "tags": [
+        "踩",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-006",
+      "phrase": "少嚟呢套",
+      "meaning": "唔好同我玩呢套",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "refuse"
+        ],
+        "register": "slang",
+        "profanity": 1,
+        "archetype": [
+          "street",
+          "boss"
+        ],
+        "socialDistance": [
+          "conflict",
+          "colleague"
+        ]
+      },
+      "example": "少嚟呢套，我見得多。",
+      "situation": "對方講大話、扮可憐、推責任",
+      "avoid": [
+        "對長輩講好冇禮貌"
+      ],
+      "note": "老江湖式拆穿，語氣要平，越平越狠。",
+      "tags": [
+        "地盤",
+        "拒絕"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-007",
+      "phrase": "你慳啲啦",
+      "meaning": "收聲／唔好浪費氣力",
+      "categories": {
+        "age": [
+          "young",
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "slang",
+        "profanity": 1,
+        "socialDistance": [
+          "conflict",
+          "friend"
+        ]
+      },
+      "example": "你慳啲啦，冇人信你。",
+      "situation": "對方講廢話、吹牛",
+      "avoid": [
+        "對客／長輩用＝直接侮辱"
+      ],
+      "note": "四個字已經等於「你講嘢冇價值」，好傷人。",
+      "tags": [
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-008",
+      "phrase": "唔好扮嘢",
+      "meaning": "唔好扮可憐／扮唔知",
+      "categories": {
+        "age": [
+          "young",
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "slang",
+        "profanity": 1,
+        "socialDistance": [
+          "conflict",
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "唔好扮嘢，你明明知。",
+      "situation": "有人裝傻",
+      "avoid": [
+        "對長輩講＝頂嘴"
+      ],
+      "note": "「扮嘢」係香港最常用嘅拆穿詞。",
+      "tags": [
+        "直球",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-009",
+      "phrase": "你得把口",
+      "meaning": "你淨係得把口（得個講字）",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "insult"
+        ],
+        "register": "slang",
+        "profanity": 1,
+        "archetype": [
+          "craftsman",
+          "street"
+        ],
+        "socialDistance": [
+          "conflict",
+          "colleague"
+        ]
+      },
+      "example": "你得把口，做又做唔到。",
+      "situation": "有人吹牛唔做事",
+      "avoid": [
+        "地盤、工廠講會即刻反面"
+      ],
+      "note": "老師傅鬧徒弟最愛用；等於「講就天下無敵」。",
+      "tags": [
+        "裝修",
+        "師傅",
+        "踩"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-010",
+      "phrase": "你咁叻你嚟做",
+      "meaning": "你咁本事不如你做",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "challenge"
+        ],
+        "register": "slang",
+        "profanity": 1,
+        "archetype": [
+          "craftsman",
+          "boss",
+          "waitress"
+        ],
+        "socialDistance": [
+          "conflict",
+          "colleague"
+        ]
+      },
+      "example": "你咁叻你嚟做呀。",
+      "situation": "有人喺旁邊指指點點",
+      "avoid": [
+        "對客講＝趕客"
+      ],
+      "note": "茶餐廳、地盤嘅經典還擊；講完通常遞件工具畀對方。",
+      "tags": [
+        "裝修",
+        "師傅",
+        "踩"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-011",
+      "phrase": "你好嘢",
+      "meaning": "你好嘢（反話：你真係做得出）",
+      "categories": {
+        "age": [
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "sarcastic"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "conflict",
+          "colleague"
+        ]
+      },
+      "example": "你好嘢，咁都講得出。",
+      "situation": "對方做咗件離譜事",
+      "avoid": [
+        "語氣用錯會變真心讚"
+      ],
+      "note": "三個字可以係真心佩服，亦可以係反話；靠「嘢」拉長。",
+      "tags": [
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-012",
+      "phrase": "犀利喎",
+      "meaning": "犀利喎（反話）",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "sarcastic"
+        ],
+        "function": [
+          "tease"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "conflict"
+        ]
+      },
+      "example": "犀利喎，又遲到。",
+      "situation": "對方做咗件唔值得讚嘅事",
+      "avoid": [
+        "對長輩用反話好易出事"
+      ],
+      "note": "後生仔最常用嘅曲線；尾音一升就係諷刺。",
+      "tags": [
+        "踩",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-013",
+      "phrase": "多謝晒喎",
+      "meaning": "多謝晒（反話）",
+      "categories": {
+        "age": [
+          "young",
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "sarcastic"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "conflict"
+        ]
+      },
+      "example": "多謝晒喎，幫我搞成咁。",
+      "situation": "對方幫倒忙",
+      "avoid": [
+        "對客用＝投訴"
+      ],
+      "note": "「晒」＋「喎」＝反話標記。",
+      "tags": [
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-014",
+      "phrase": "真係多得你唔少",
+      "meaning": "多得你唔少（反話：你害死我）",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "sarcastic"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "真係多得你唔少，成單嘢要重做。",
+      "situation": "對方好心做壞事",
+      "avoid": [
+        "對長輩講會被話頂嘴"
+      ],
+      "note": "長輩都識用；表面道謝，實際怨。",
+      "tags": [
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-015",
+      "phrase": "咪嘈",
+      "meaning": "收聲",
+      "categories": {
+        "age": [
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "angry"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "slang",
+        "profanity": 1,
+        "archetype": [
+          "housewife",
+          "craftsman",
+          "elder"
+        ],
+        "socialDistance": [
+          "family",
+          "conflict",
+          "friend"
+        ]
+      },
+      "example": "咪嘈，我聽唔到電話。",
+      "situation": "太吵、想人閉嘴",
+      "avoid": [
+        "對客講＝失禮"
+      ],
+      "note": "比「收聲」溫和，長輩對細路最常用。",
+      "tags": [
+        "師奶"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-016",
+      "phrase": "收聲",
+      "meaning": "閉嘴",
+      "categories": {
+        "age": [
+          "young",
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "angry"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "slang",
+        "profanity": 1,
+        "socialDistance": [
+          "conflict",
+          "friend",
+          "family"
+        ]
+      },
+      "example": "你收聲啦，我唔想聽。",
+      "situation": "爭執升級",
+      "avoid": [
+        "對任何客、長輩都唔得"
+      ],
+      "note": "語氣一重就變攻擊；劇本用要考慮角色會唔會講。",
+      "tags": [
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-017",
+      "phrase": "收皮",
+      "meaning": "收檔／唔好再搞",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "angry"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "slang",
+        "profanity": 1,
+        "archetype": [
+          "street"
+        ],
+        "socialDistance": [
+          "conflict",
+          "friend"
+        ]
+      },
+      "example": "你收皮啦，唔好再嚟。",
+      "situation": "叫對方停止、收檔",
+      "avoid": [
+        "粗俗，對客／長輩一定反面"
+      ],
+      "note": "有「你間嘢摺埋」嘅意味，攻擊性高。",
+      "tags": [
+        "地盤",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-018",
+      "phrase": "死開",
+      "meaning": "行開、消失",
+      "categories": {
+        "age": [
+          "young",
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "angry"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "slang",
+        "profanity": 1,
+        "socialDistance": [
+          "conflict",
+          "friend"
+        ]
+      },
+      "example": "你死開啦，唔好阻住。",
+      "situation": "叫人讓開",
+      "avoid": [
+        "對長輩講＝鬧交"
+      ],
+      "note": "粗俗版「行開」；街市、地盤常用。",
+      "tags": [
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-019",
+      "phrase": "行開啦",
+      "meaning": "行開（唔好煩我）",
+      "categories": {
+        "age": [
+          "young",
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "angry"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "conflict",
+          "friend",
+          "family"
+        ]
+      },
+      "example": "行開啦，我唔得閒。",
+      "situation": "想打發人",
+      "avoid": [
+        "對客講＝趕客"
+      ],
+      "note": "比「死開」溫和好多；阿駿式直球可以用。",
+      "tags": [
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-020",
+      "phrase": "你唔好煩我",
+      "meaning": "你唔好再煩我",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "angry"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "conflict",
+          "friend",
+          "family"
+        ]
+      },
+      "example": "你唔好煩我，我做緊嘢。",
+      "situation": "被人纏住",
+      "avoid": [
+        "對客／老細講＝唔專業"
+      ],
+      "note": "直白但唔粗；阿駿講會好自然。",
+      "tags": [
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-021",
+      "phrase": "你死啦",
+      "meaning": "你死啦（威脅／戲謔）",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "threat"
+        ],
+        "function": [
+          "threaten"
+        ],
+        "register": "slang",
+        "profanity": 1,
+        "socialDistance": [
+          "friend",
+          "conflict"
+        ]
+      },
+      "example": "你死啦，老細知你就煩。",
+      "situation": "朋友之間玩，或者真威脅",
+      "avoid": [
+        "對真陌生人講＝恐嚇"
+      ],
+      "note": "朋友之間好常見，語氣輕鬆；真衝突就變恐嚇。",
+      "tags": [
+        "公司",
+        "踩",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-022",
+      "phrase": "信唔信我",
+      "meaning": "你信唔信我（會咁做）",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "threat"
+        ],
+        "function": [
+          "threaten"
+        ],
+        "register": "slang",
+        "profanity": 1,
+        "archetype": [
+          "street",
+          "boss"
+        ],
+        "socialDistance": [
+          "conflict",
+          "colleague"
+        ]
+      },
+      "example": "信唔信我即刻同你拆咗佢？",
+      "situation": "用後果逼對方就範",
+      "avoid": [
+        "任何專業場合都唔適合"
+      ],
+      "note": "老江湖式施壓；唔需要講完整句子。",
+      "tags": [
+        "地盤",
+        "踩"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-023",
+      "phrase": "我唔會放過你",
+      "meaning": "我唔會放過你",
+      "categories": {
+        "age": [
+          "young",
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "threat"
+        ],
+        "function": [
+          "threaten"
+        ],
+        "register": "slang",
+        "profanity": 1,
+        "socialDistance": [
+          "conflict"
+        ]
+      },
+      "example": "你搞到我咁，我唔會放過你。",
+      "situation": "重大衝突、報復宣言",
+      "avoid": [
+        "短劇溫馨向唔適合；用咗就變復仇線"
+      ],
+      "note": "太戲劇化，日常好少講；多數出現喺劇集。",
+      "tags": [
+        "踩",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-024",
+      "phrase": "你試下",
+      "meaning": "你試下（做咗你就知）",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "threat"
+        ],
+        "function": [
+          "challenge"
+        ],
+        "register": "slang",
+        "profanity": 1,
+        "socialDistance": [
+          "conflict",
+          "friend"
+        ]
+      },
+      "example": "你試下再講多次。",
+      "situation": "警告對方唔好再行一步",
+      "avoid": [
+        "對客講＝挑釁"
+      ],
+      "note": "三個字已經係最後警告；後面通常有動作。",
+      "tags": [
+        "踩",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-025",
+      "phrase": "你唔好逼我",
+      "meaning": "你唔好逼我（還手）",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "threat"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "slang",
+        "profanity": 1,
+        "socialDistance": [
+          "conflict",
+          "colleague"
+        ]
+      },
+      "example": "你唔好逼我，我唔想搞大。",
+      "situation": "忍到臨界點",
+      "avoid": [
+        "職場講＝關係破裂"
+      ],
+      "note": "香港人嘅「我忍你好耐」；語氣要沉。",
+      "tags": [
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-026",
+      "phrase": "縮骨",
+      "meaning": "縮骨、卸膊",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "insult"
+        ],
+        "register": "slang",
+        "profanity": 1,
+        "archetype": [
+          "craftsman",
+          "office",
+          "street"
+        ],
+        "socialDistance": [
+          "conflict",
+          "colleague"
+        ]
+      },
+      "example": "你又縮骨？明明係你負責。",
+      "situation": "有人推卸責任",
+      "avoid": [
+        "對上司講＝反面"
+      ],
+      "note": "比「卸膊」更難聽，指人格。",
+      "tags": [
+        "裝修",
+        "師傅",
+        "踩"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-027",
+      "phrase": "廢柴",
+      "meaning": "冇用嘅人",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "insult"
+        ],
+        "register": "slang",
+        "profanity": 1,
+        "archetype": [
+          "street",
+          "craftsman"
+        ],
+        "socialDistance": [
+          "conflict",
+          "friend"
+        ]
+      },
+      "example": "廢柴，咁都做唔到。",
+      "situation": "鬧人冇用",
+      "avoid": [
+        "對任何人講都係侮辱人格"
+      ],
+      "note": "重；朋友之間玩都可能反面。",
+      "tags": [
+        "地盤",
+        "踩"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-028",
+      "phrase": "低能",
+      "meaning": "低能、蠢",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "insult"
+        ],
+        "register": "slang",
+        "profanity": 2,
+        "archetype": [
+          "street",
+          "student"
+        ],
+        "socialDistance": [
+          "conflict",
+          "friend"
+        ]
+      },
+      "example": "咁都諗唔到？低能㗎？",
+      "situation": "恥笑人蠢",
+      "avoid": [
+        "侮辱智力，唔建議用喺任何溫馨向作品"
+      ],
+      "note": "prof 2：直接人身攻擊；劇本用要諗清楚角色設定。",
+      "tags": [
+        "地盤",
+        "踩",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-029",
+      "phrase": "白癡",
+      "meaning": "白癡",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "insult"
+        ],
+        "register": "slang",
+        "profanity": 2,
+        "socialDistance": [
+          "conflict",
+          "friend"
+        ]
+      },
+      "example": "你白癡㗎？咁都信。",
+      "situation": "鬧人蠢",
+      "avoid": [
+        "人身攻擊；對客／長輩一定反面"
+      ],
+      "note": "同「低能」同級，但更直接。",
+      "tags": [
+        "踩",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-030",
+      "phrase": "你有病",
+      "meaning": "你有病（唔正常）",
+      "categories": {
+        "age": [
+          "young",
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "insult"
+        ],
+        "register": "slang",
+        "profanity": 1,
+        "socialDistance": [
+          "conflict",
+          "friend",
+          "family"
+        ]
+      },
+      "example": "你有病呀？咁夜仲打嚟。",
+      "situation": "對方行為離譜",
+      "avoid": [
+        "對長輩講＝大不敬"
+      ],
+      "note": "常配「呀」；朋友之間半開玩笑，真用就係侮辱。",
+      "tags": [
+        "踩",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-031",
+      "phrase": "你傻㗎",
+      "meaning": "你傻嘅？",
+      "categories": {
+        "age": [
+          "young",
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "insult"
+        ],
+        "register": "slang",
+        "profanity": 1,
+        "socialDistance": [
+          "conflict",
+          "friend",
+          "family"
+        ]
+      },
+      "example": "你傻㗎？咁都做得出。",
+      "situation": "對方做咗蠢事",
+      "avoid": [
+        "對客／長輩講＝反面"
+      ],
+      "note": "日常好常見，攻擊性中等；加「㗎」會更口語。",
+      "tags": [
+        "踩",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-032",
+      "phrase": "食屎啦你",
+      "meaning": "食屎啦你（極強侮辱）",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "angry"
+        ],
+        "function": [
+          "insult"
+        ],
+        "register": "slang",
+        "profanity": 2,
+        "archetype": [
+          "street"
+        ],
+        "socialDistance": [
+          "conflict"
+        ]
+      },
+      "example": "食屎啦你，講咁多廢話。",
+      "situation": "極端衝突、街頭對罵",
+      "avoid": [
+        "任何日常、職場、家庭場口都唔適合",
+        "等於直接開戰，唔會收得返"
+      ],
+      "note": "廣東話經典侮辱句；香港電影／網絡常見，但現實用出嚟就係結怨。",
+      "tags": [
+        "地盤",
+        "踩",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-033",
+      "phrase": "你收吓聲",
+      "meaning": "收細聲／收聲",
+      "categories": {
+        "age": [
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "angry"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "slang",
+        "profanity": 1,
+        "archetype": [
+          "security",
+          "housewife",
+          "elder"
+        ],
+        "socialDistance": [
+          "family",
+          "conflict",
+          "stranger"
+        ]
+      },
+      "example": "你收吓聲，隔籬聽到。",
+      "situation": "長輩叫細路收細聲",
+      "avoid": [
+        "對客講＝失禮"
+      ],
+      "note": "加「吓」＝溫和版命令；長輩、管理員最常用。",
+      "tags": [
+        "大廈",
+        "管理員",
+        "惜字如金"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-034",
+      "phrase": "你踩過界",
+      "meaning": "你越界",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "slang",
+        "profanity": 1,
+        "archetype": [
+          "street",
+          "boss",
+          "security"
+        ],
+        "socialDistance": [
+          "conflict",
+          "colleague"
+        ]
+      },
+      "example": "你踩過界喇，呢度我話事。",
+      "situation": "有人越權、侵犯地盤",
+      "avoid": [
+        "對客講＝衝突升級"
+      ],
+      "note": "地盤、江湖、辦公室都用；「界」係權力界線。",
+      "tags": [
+        "地盤",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-035",
+      "phrase": "你唔夠班",
+      "meaning": "你未夠級數",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "insult"
+        ],
+        "register": "slang",
+        "profanity": 1,
+        "archetype": [
+          "street",
+          "craftsman"
+        ],
+        "socialDistance": [
+          "conflict",
+          "colleague"
+        ]
+      },
+      "example": "你唔夠班同我講嘢。",
+      "situation": "貶低對方能力／地位",
+      "avoid": [
+        "職場講咗就係侮辱"
+      ],
+      "note": "老派寸法；等於「你未夠資格」。",
+      "tags": [
+        "地盤",
+        "踩"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-036",
+      "phrase": "你玩唔起",
+      "meaning": "你玩唔起（代價你承受唔到）",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "threaten"
+        ],
+        "register": "slang",
+        "profanity": 1,
+        "archetype": [
+          "street"
+        ],
+        "socialDistance": [
+          "conflict"
+        ]
+      },
+      "example": "你玩唔起㗎，收手啦。",
+      "situation": "警告對方退出",
+      "avoid": [
+        "現實用＝挑釁"
+      ],
+      "note": "江湖片對白感；日常多數係講笑。",
+      "tags": [
+        "地盤",
+        "踩",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-037",
+      "phrase": "唔好要我講第二次",
+      "meaning": "唔好要我講第二次（最後警告）",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "cold"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "slang",
+        "profanity": 1,
+        "archetype": [
+          "boss",
+          "craftsman",
+          "security"
+        ],
+        "socialDistance": [
+          "conflict",
+          "colleague"
+        ]
+      },
+      "example": "唔好要我講第二次。",
+      "situation": "已經警告過一次",
+      "avoid": [
+        "對客／下屬用會好壓迫"
+      ],
+      "note": "越平靜越有壓力；標叔型角色會用。",
+      "tags": [
+        "老細",
+        "冷面"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-038",
+      "phrase": "你唔好郁",
+      "meaning": "唔好動",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "cold"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "slang",
+        "profanity": 1,
+        "archetype": [
+          "security",
+          "street"
+        ],
+        "socialDistance": [
+          "conflict",
+          "stranger"
+        ]
+      },
+      "example": "你唔好郁，企喺度。",
+      "situation": "喝停人",
+      "avoid": [
+        "對客講＝衝突"
+      ],
+      "note": "短促命令；管理員、保安常用。",
+      "tags": [
+        "大廈",
+        "管理員",
+        "冷面",
+        "惜字如金"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-039",
+      "phrase": "你搞邊科",
+      "meaning": "你搞咩鬼",
+      "categories": {
+        "age": [
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "archetype": [
+          "security",
+          "elder",
+          "housewife"
+        ],
+        "socialDistance": [
+          "colleague",
+          "conflict",
+          "stranger"
+        ]
+      },
+      "example": "你搞邊科呀？成地都係。",
+      "situation": "見到人搞亂檔",
+      "avoid": [
+        "對客講＝質問"
+      ],
+      "note": "老派問法；長輩見到後生仔亂嚟最愛講。",
+      "tags": [
+        "大廈",
+        "管理員"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-040",
+      "phrase": "唔好同我講嘢",
+      "meaning": "唔好同我講嘢",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "cold"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "conflict",
+          "friend",
+          "family"
+        ]
+      },
+      "example": "唔好同我講嘢，我嬲緊。",
+      "situation": "嬲緊、唔想理人",
+      "avoid": [
+        "對客講＝失禮"
+      ],
+      "note": "香港式冷戰宣言；通常跟住真係唔出聲。",
+      "tags": [
+        "冷面",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-041",
+      "phrase": "你唔好掂我",
+      "meaning": "唔好碰我",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "angry"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "slang",
+        "profanity": 1,
+        "socialDistance": [
+          "conflict",
+          "stranger"
+        ]
+      },
+      "example": "你唔好掂我！",
+      "situation": "身體距離被侵犯",
+      "avoid": [
+        "對客講＝報警級"
+      ],
+      "note": "身體界線警告；語氣要硬。",
+      "tags": [
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-042",
+      "phrase": "仆街",
+      "meaning": "仆街（極常見粗口／感嘆）",
+      "categories": {
+        "age": [
+          "young",
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "angry"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "profanity",
+        "profanity": 3,
+        "archetype": [
+          "street",
+          "craftsman",
+          "office"
+        ],
+        "socialDistance": [
+          "conflict",
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "仆街，又唔記得帶圖則。",
+      "situation": "自己蝦碌、或者鬧人",
+      "avoid": [
+        "本項目未經批准唔准用",
+        "對客、長輩、女性角色用都極不當"
+      ],
+      "note": "香港最常見嘅粗口之一，可以係自責感嘆（仆街，死啦），亦可以係鬧人（你個仆街）。",
+      "tags": [
+        "裝修",
+        "地盤",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-043",
+      "phrase": "唔好扮晒嘢",
+      "meaning": "唔好扮到咁盡",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "slang",
+        "profanity": 1,
+        "socialDistance": [
+          "conflict",
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "唔好扮晒嘢啦，邊個唔知你。",
+      "situation": "有人裝模作樣",
+      "avoid": [
+        "對長輩講＝頂嘴"
+      ],
+      "note": "「扮晒嘢」＝扮到出面；比「扮嘢」重。",
+      "tags": [
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-044",
+      "phrase": "你唔好作大",
+      "meaning": "唔好誇張",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "archetype": [
+          "craftsman",
+          "boss",
+          "client"
+        ],
+        "socialDistance": [
+          "colleague",
+          "conflict",
+          "client"
+        ]
+      },
+      "example": "你唔好作大，實際得三成。",
+      "situation": "有人吹大數",
+      "avoid": [
+        "對客講＝質疑對方"
+      ],
+      "note": "工程、報價、銷售最常用；等於「你報大數」。",
+      "tags": [
+        "裝修",
+        "師傅",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-rough-045",
+      "phrase": "你估你係邊個",
+      "meaning": "你以為自己係邊個",
+      "categories": {
+        "age": [
+          "young",
+          "mid",
+          "senior"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "challenge"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "conflict",
+          "colleague",
+          "friend"
+        ]
+      },
+      "example": "你估你係邊個？我阿媽呀？",
+      "situation": "有人管你",
+      "avoid": [
+        "對上司講＝頂撞"
+      ],
+      "note": "同「你以為你係邊個」相通，語氣輕啲。",
+      "tags": [
+        "家庭",
+        "踩",
+        "潮語"
+      ],
+      "source": "general"
+    }
+  ]
+}

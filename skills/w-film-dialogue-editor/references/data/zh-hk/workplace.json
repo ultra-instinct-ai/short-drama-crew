@@ -1,0 +1,3697 @@
+{
+  "lang": "zh-hk",
+  "shard": "workplace",
+  "entries": [
+    {
+      "id": "hk-work-001",
+      "phrase": "我睇睇先",
+      "variants": [
+        "睇下先",
+        "我睇下先"
+      ],
+      "meaning": "唔係應承，只係拖住；十次有九次最後都冇件事",
+      "literal": "I'll look first",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "sales"
+        ],
+        "tone": [
+          "polite",
+          "cold"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "份 proposal 我睇睇先。",
+      "situation": "同事叫你即刻覆，你唔想應承又唔想反面",
+      "avoid": [
+        "對老細講要補返個時間（「聽日覆你」），唔係會當你 hea"
+      ],
+      "note": "八十年代打工仔已經講到而家；職位愈高愈愛用，因為留白。同「得，即刻做」係相反訊號。",
+      "tags": [
+        "公司",
+        "OL",
+        "拒絕",
+        "客套",
+        "冷面"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-002",
+      "phrase": "呢個要問返老細",
+      "variants": [
+        "要問過老細",
+        "我唔話得事"
+      ],
+      "meaning": "推上去，唔想自己做決定孭飛",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "sales"
+        ],
+        "tone": [
+          "polite",
+          "cold"
+        ],
+        "function": [
+          "refuse-soft",
+          "dismiss"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "呢個要問返老細，我唔話得事。",
+      "situation": "客要求減價或者加急，前線唔想揹",
+      "avoid": [
+        "對客講得多，客會覺得間公司好亂；細公司尤其忌"
+      ],
+      "note": "大公司／連鎖店標準答法。細舖頭會講「我同老細講聲」，聽落軟啲。",
+      "tags": [
+        "公司",
+        "OL",
+        "拒絕",
+        "客套",
+        "冷面"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-003",
+      "phrase": "唔關我事",
+      "variants": [
+        "唔係我負責",
+        "唔喺我嗰瓣"
+      ],
+      "meaning": "即刻撇清，唔想接手，亦唔想被拉落水",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "cold",
+          "blunt"
+        ],
+        "function": [
+          "dismiss",
+          "refuse"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "conflict"
+        ]
+      },
+      "example": "呢單唔關我事，你搵錯人。",
+      "situation": "出事之後有人想拉你落水",
+      "avoid": [
+        "對客講等於話你哋公司內部互相推，一定火上加油"
+      ],
+      "note": "講嗰陣多數會加「你搵阿邊個」，唔加就太硬。同「唔係我負責」比，後者只講範圍，火氣細啲。",
+      "tags": [
+        "公司",
+        "OL",
+        "拒絕",
+        "直球",
+        "冷面"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-004",
+      "phrase": "我幫你 escalate 上去",
+      "variants": [
+        "escalate 上去",
+        "幫你 escalate"
+      ],
+      "meaning": "表面幫你，實際推上去等上面壓落嚟",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "sales"
+        ],
+        "tone": [
+          "polite",
+          "cold"
+        ],
+        "function": [
+          "dismiss",
+          "refuse-soft"
+        ],
+        "register": "english-mix",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "我幫你 escalate 上去先，你等等。",
+      "situation": "客服／下屬夾喺客同老細中間",
+      "avoid": [
+        "真心想解決就唔會講呢句；講完通常冇下文"
+      ],
+      "note": "2010年代跨國企業、銀行帶起，而家連本地公司都講。舊一輩會講「同上面反映下」。",
+      "tags": [
+        "公司",
+        "OL",
+        "拒絕",
+        "客套",
+        "冷面",
+        "中英夾雜"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-005",
+      "phrase": "有難度喎",
+      "variants": [
+        "有啲難度"
+      ],
+      "meaning": "婉轉話做唔到，等你自動收貨",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "craftsman"
+        ],
+        "tone": [
+          "polite",
+          "helpless"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "今個禮拜交？有難度喎。",
+      "situation": "客或者老細壓一個唔合理嘅期",
+      "avoid": [
+        "對老細講要即刻補方案，淨係講「有難度」會被追問到底難喺邊"
+      ],
+      "note": "香港職場「有難度」＝唔得，極少明講「做唔到」。同「冇問題」係一對。",
+      "tags": [
+        "公司",
+        "OL",
+        "拒絕",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-007",
+      "phrase": "我哋唔做呢啲",
+      "meaning": "直接落閘，唔接呢類生意／唔幫呢種忙",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "sales",
+          "office"
+        ],
+        "tone": [
+          "polite",
+          "blunt"
+        ],
+        "function": [
+          "refuse"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "唔好意思，我哋唔做呢啲。",
+      "situation": "客要求一啲唔喺服務範圍嘅嘢",
+      "avoid": [
+        "淨係講呢句會好冷；前面加「唔好意思」，後面補個轉介"
+      ],
+      "note": "對客版；對同事版多數直接講「唔關我哋事」。細公司講呢句要小心，客會覺得你揀生意。",
+      "tags": [
+        "公司",
+        "客戶",
+        "拒絕",
+        "客套",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-008",
+      "phrase": "我同你 follow 緊",
+      "variants": [
+        "follow 緊",
+        "我跟緊"
+      ],
+      "meaning": "話跟緊，其實冇跟；安撫用",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "sales"
+        ],
+        "tone": [
+          "polite",
+          "cold"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "english-mix",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "件事我同你 follow 緊，放心。",
+      "situation": "客第三次追同一件事",
+      "avoid": [
+        "同一件事講三次「follow 緊」就會被睇穿，第四次客會發火"
+      ],
+      "note": "香港辦公室最常見嘅語言煙幕。加英文聽落專業啲；淨係講「我跟緊」樸素啲。",
+      "tags": [
+        "公司",
+        "OL",
+        "客套",
+        "冷面",
+        "中英夾雜"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-009",
+      "phrase": "cc 埋我",
+      "variants": [
+        "cc 我",
+        "cc 埋我一份"
+      ],
+      "meaning": "抄送我；亦係「唔好把我排除在外」嘅姿態",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "english-mix",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "下次 send email cc 埋我。",
+      "situation": "同事同客或者老細私下傾，你想留底",
+      "avoid": [
+        "對老細講「cc 埋我」有啲命令感，加「唔該」或者「得唔得」"
+      ],
+      "note": "九十年代傳真、打字機年代已用 cc（carbon copy），而家純粹指抄送。同「密件抄送」係另一回事。",
+      "tags": [
+        "公司",
+        "OL",
+        "直球",
+        "中英夾雜"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-010",
+      "phrase": "confirm 咗先",
+      "variants": [
+        "confirm 先",
+        "confirm 咗至做"
+      ],
+      "meaning": "要白紙黑字確認，唔好靠口頭；亦係自保",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "sales",
+          "designer"
+        ],
+        "tone": [
+          "blunt",
+          "polite"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "english-mix",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "口講唔算，confirm 咗先做。",
+      "situation": "客或者同事口頭叫你改嘢，你怕日後唔認",
+      "avoid": [
+        "對客講要包裝成「保障你」，唔係會覺得你唔信佢"
+      ],
+      "note": "2000年代後中英夾雜普及；舊一輩講「寫低先」「簽返個」。同「口講無憑」同義，一個英文一個中文。",
+      "tags": [
+        "公司",
+        "OL",
+        "客套",
+        "直球",
+        "中英夾雜"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-011",
+      "phrase": "quote 個價畀我",
+      "variants": [
+        "quote 價",
+        "報個 quote"
+      ],
+      "meaning": "要一個價錢先決定做唔做",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "client",
+          "sales",
+          "craftsman"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge",
+          "bargain"
+        ],
+        "register": "english-mix",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "你 quote 個價畀我先，我唔想估。",
+      "situation": "客格價，或者公司內部要預算",
+      "avoid": [
+        "正式文件仲係寫「報價」；同客講「quote」可以，簽約文件唔好中英夾雜"
+      ],
+      "note": "裝修、印刷、活動、廣告最常講；可以單獨用「quote」做名詞。同「報價」比，口氣快、輕鬆。",
+      "tags": [
+        "公司",
+        "客戶",
+        "講價",
+        "直球",
+        "中英夾雜"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-012",
+      "phrase": "deadline 係幾時",
+      "variants": [
+        "死線幾時",
+        "幾時 deadline"
+      ],
+      "meaning": "追交期；有時係壓你嘅開場白",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "boss",
+          "designer"
+        ],
+        "tone": [
+          "blunt",
+          "worried"
+        ],
+        "function": [
+          "question",
+          "urge"
+        ],
+        "register": "english-mix",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "deadline 係幾時？唔好又話聽日。",
+      "situation": "開會或者一收到工作就即刻問",
+      "avoid": [
+        "對下屬日日問會變催命；問完要即刻排資源"
+      ],
+      "note": "「死線」係直譯，聽落重；「deadline」輕啲、日常啲。後生一輩幾乎唔講「死線」。",
+      "tags": [
+        "公司",
+        "OL",
+        "直球",
+        "中英夾雜"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-013",
+      "phrase": "brief 我一句",
+      "meaning": "快講重點，唔想睇晒文件",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "boss",
+          "office",
+          "designer"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "english-mix",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "你 brief 我一句，我唔睇晒份嘢。",
+      "situation": "老細開會前五分鐘要知大概",
+      "avoid": [
+        "對客唔會用；對客要講「我同你講返個重點」"
+      ],
+      "note": "廣告、公關、製作公司最常用；傳統公司會講「講重點」。",
+      "tags": [
+        "公司",
+        "老細",
+        "直球",
+        "中英夾雜"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-014",
+      "phrase": "個 layout 唔啱",
+      "meaning": "版式、排版唔對，要改",
+      "categories": {
+        "age": [
+          "young"
+        ],
+        "archetype": [
+          "designer",
+          "office"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "disagree"
+        ],
+        "register": "english-mix",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "個 layout 唔啱，左右調轉咗。",
+      "situation": "設計稿畀客或者老細睇第一眼",
+      "avoid": [
+        "對客講完要即刻畀方向，唔係客會覺得你冇主見"
+      ],
+      "note": "設計、廣告行業日常；香港多數唔譯「layout」，講「版」反而少。",
+      "tags": [
+        "公司",
+        "OL",
+        "直球",
+        "中英夾雜"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-015",
+      "phrase": "schedule 好滿",
+      "variants": [
+        "個 schedule 排到爆",
+        "排唔到"
+      ],
+      "meaning": "時間表排滿，冇位插",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "sales"
+        ],
+        "tone": [
+          "complain",
+          "blunt"
+        ],
+        "function": [
+          "refuse-soft",
+          "complain"
+        ],
+        "register": "english-mix",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "今個月 schedule 好滿，插唔到位。",
+      "situation": "客想臨時加急或者插隊",
+      "avoid": [
+        "對客講完要即刻畀下一個可行期，唔係等於耍人"
+      ],
+      "note": "白領通用；裝修、髮型、送貨行會講「個期排到滿」。同「排唔到」比，呢句講狀態。",
+      "tags": [
+        "公司",
+        "OL",
+        "拒絕",
+        "抱怨",
+        "直球",
+        "中英夾雜"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-016",
+      "phrase": "我唔孭呢隻鑊",
+      "variants": [
+        "孭鑊",
+        "唔孭"
+      ],
+      "meaning": "唔肯承擔責任；件事根本唔係我搞",
+      "literal": "I won't carry this wok",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "craftsman"
+        ],
+        "tone": [
+          "blunt",
+          "angry"
+        ],
+        "function": [
+          "refuse",
+          "disagree"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "conflict"
+        ]
+      },
+      "example": "件事唔係我搞嘅，我唔孭。",
+      "situation": "出事開會，有人想搵人認頭",
+      "avoid": [
+        "對老細講要擺證據；淨係講「我唔孭」等於頂頸"
+      ],
+      "note": "由廚房孭鍋引申，八十年代已通用，地盤同寫字樓都講。同「食死貓」比，呢句有得反抗，後者已經硬食。",
+      "tags": [
+        "公司",
+        "OL",
+        "拒絕",
+        "直球",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-017",
+      "phrase": "幫我頂住先",
+      "meaning": "暫時幫我擋住，等我返嚟處理",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "delivery"
+        ],
+        "tone": [
+          "helpless",
+          "polite"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "老細問起，幫我頂住先。",
+      "situation": "你未返到公司或者未搞完，客已經追",
+      "avoid": [
+        "對客唔會用；對客要講「我同事會先跟進」"
+      ],
+      "note": "「頂」係擋，唔係頂嘴。同「幫我頂住個位」一樣，九十年代辦公室已講。",
+      "tags": [
+        "公司",
+        "OL",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-018",
+      "phrase": "食死貓",
+      "meaning": "硬食一個唔屬於自己嘅錯",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "angry",
+          "complain"
+        ],
+        "function": [
+          "complain",
+          "refuse"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "conflict"
+        ]
+      },
+      "example": "你想我食死貓？",
+      "situation": "有人想靜靜雞將個錯入你數",
+      "avoid": [
+        "講「你食死貓」等於話人蠢，只可以自嘲或者講第三者"
+      ],
+      "note": "「死貓」指唔關你事嘅罪名。同「孭鑊」比，「食死貓」強調冤枉，「孭鑊」強調責任。",
+      "tags": [
+        "公司",
+        "OL",
+        "拒絕",
+        "抱怨",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-019",
+      "phrase": "開個短會",
+      "variants": [
+        "開短會",
+        "傾五分鐘"
+      ],
+      "meaning": "老細話短，通常唔短；亦係叫你入房嘅開場白",
+      "categories": {
+        "age": [
+          "mid"
+        ],
+        "archetype": [
+          "boss",
+          "office"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "開個短會，五分鐘搞掂。",
+      "situation": "老細突然叫全組入會議室",
+      "avoid": [
+        "下屬唔會覆「唔得閒」；只可以問「要唔要準備啲咩」"
+      ],
+      "note": "全港打工仔共同創傷，實際四十五分鐘起跳。同「傾兩句」一樣，係預告陷阱。",
+      "tags": [
+        "公司",
+        "老細",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-020",
+      "phrase": "會後再傾",
+      "variants": [
+        "會後講",
+        "會後跟進"
+      ],
+      "meaning": "唔想喺會上糾纏；通常等於拖",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "boss"
+        ],
+        "tone": [
+          "cold",
+          "polite"
+        ],
+        "function": [
+          "dismiss",
+          "refuse-soft"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "呢個會後再傾，唔夠時間。",
+      "situation": "會上有人追一個尷尬問題",
+      "avoid": [
+        "對客講要即刻約實時間，唔係會覺得你迴避"
+      ],
+      "note": "主持會議嘅人講最有效；同一個人講得多，會冇人再敢提問。",
+      "tags": [
+        "公司",
+        "OL",
+        "拒絕",
+        "客套",
+        "冷面"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-021",
+      "phrase": "落咗閘",
+      "variants": [
+        "落閘",
+        "封咗"
+      ],
+      "meaning": "已經決定死，唔再改、唔再傾",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "boss",
+          "office"
+        ],
+        "tone": [
+          "cold",
+          "blunt"
+        ],
+        "function": [
+          "refuse",
+          "dismiss"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "呢件事老細落咗閘，唔好再提。",
+      "situation": "有人想翻案或者再爭取",
+      "avoid": [
+        "對客講「落咗閘」太硬，要講「已經定咗」"
+      ],
+      "note": "由舖頭落閘收工引申；2010年代後連家庭、感情事都用。同「封咗」比，呢句更口語。",
+      "tags": [
+        "公司",
+        "老細",
+        "拒絕",
+        "直球",
+        "冷面",
+        "惜字如金",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-022",
+      "phrase": "今晚要 OT",
+      "variants": [
+        "OT 到夜",
+        "要 OT"
+      ],
+      "meaning": "今晚要加班",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "designer",
+          "delivery"
+        ],
+        "tone": [
+          "complain",
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "english-mix",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "family"
+        ]
+      },
+      "example": "今晚又要 OT，走唔到。",
+      "situation": "六點鐘老細行過嚟放低一疊嘢",
+      "avoid": [
+        "對客講 OT 等於話你公司人手唔夠"
+      ],
+      "note": "「OT」＝overtime，香港獨有咁常用；書面寫「加班」反而似內地用法。",
+      "tags": [
+        "公司",
+        "OL",
+        "抱怨",
+        "中英夾雜"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-023",
+      "phrase": "通頂",
+      "meaning": "通宵做到天光",
+      "categories": {
+        "age": [
+          "young",
+          "mid",
+          "teen"
+        ],
+        "archetype": [
+          "designer",
+          "office",
+          "student",
+          "slacker"
+        ],
+        "tone": [
+          "complain",
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "friend"
+        ]
+      },
+      "example": "尋晚通頂改圖，眼都花。",
+      "situation": "交稿前最後一晚",
+      "avoid": [
+        "對客講會有反效果：客會覺得你冇計劃",
+        "同上司講「我通頂」會被當成日間效率低"
+      ],
+      "note": "設計、廣告、傳媒、IT 最常講；2000年代後連銀行都要通頂。同「開夜」比，「通頂」係完全冇瞓。 ／另註：1990 年代已有；同「熬夜」比更口語，2026 仲用，唔老套。",
+      "tags": [
+        "公司",
+        "OL",
+        "抱怨",
+        "潮語"
+      ],
+      "source": "general",
+      "literal": "通到天光",
+      "variants": [
+        "通頂溫書",
+        "通頂趕"
+      ]
+    },
+    {
+      "id": "hk-work-024",
+      "phrase": "蛇王",
+      "meaning": "返工時間偷懶、唔見人",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "sassy",
+          "gossip"
+        ],
+        "function": [
+          "gossip",
+          "complain"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "佢又去咗蛇王，成個下晝唔見人。",
+      "situation": "茶水間或者走廊講同事",
+      "avoid": [
+        "講人蛇王等於篤背脊，傳返去一定反面"
+      ],
+      "note": "八十年代工廠已經講，指躲起來唔做嘢。而家後生一輩多數講「唔見人」代替。",
+      "tags": [
+        "公司",
+        "OL",
+        "八卦",
+        "抱怨",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-025",
+      "phrase": "射波",
+      "meaning": "推卸責任；將個波射去第二個人",
+      "literal": "shoot the ball",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "sassy",
+          "complain"
+        ],
+        "function": [
+          "complain",
+          "dismiss"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "conflict"
+        ]
+      },
+      "example": "佢最叻射波，咩都話唔關佢事。",
+      "situation": "出事之後互相推",
+      "avoid": [
+        "對老細講同事射波要有實例，唔係變八卦"
+      ],
+      "note": "由足球引申，八十年代已用。同「推波」同義，但「射波」更狠、更似指控。",
+      "tags": [
+        "公司",
+        "OL",
+        "抱怨",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-026",
+      "phrase": "扮工",
+      "meaning": "裝作好忙，其實冇嘢做",
+      "categories": {
+        "age": [
+          "young"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "sarcastic",
+          "gossip"
+        ],
+        "function": [
+          "tease",
+          "complain"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "老細一行過就扮工。",
+      "situation": "裁員風聲，或者老細突然巡場",
+      "avoid": [
+        "對四十五歲以上同事講會聽唔明；佢哋會講「扮忙」"
+      ],
+      "note": "2019年後由連登、IG 帶起，疫情 WFH 期間爆紅。同「扮忙」比，年輕一輩先講「扮工」。",
+      "tags": [
+        "公司",
+        "OL",
+        "踩",
+        "抱怨",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-027",
+      "phrase": "hea",
+      "variants": [
+        "hea 做",
+        "hea 住做"
+      ],
+      "meaning": "求其、懶散、唔用力",
+      "categories": {
+        "age": [
+          "young",
+          "mid",
+          "teen"
+        ],
+        "archetype": [
+          "office",
+          "student",
+          "slacker"
+        ],
+        "tone": [
+          "complain",
+          "sassy"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "friend"
+        ]
+      },
+      "example": "成日 hea 住做，點會準時交。",
+      "situation": "講同事或者下屬態度",
+      "avoid": [
+        "對老細講「hea」等於認自己 hea，唔好亂用",
+        "同上司講「hea」等於自認偷懶"
+      ],
+      "note": "1990年代由「hea 下」帶起，本來指漫無目的咁行；而家泛指唔用力。同「求其」比，「hea」有懶嘅意味。 ／另註：2000 年代興起，2010 年代全民用；2026 仲用，但已由潮語變日常。",
+      "tags": [
+        "公司",
+        "OL",
+        "抱怨",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-028",
+      "phrase": "拍咭走人",
+      "variants": [
+        "打卡走人",
+        "夠鐘走人"
+      ],
+      "meaning": "夠鐘即刻放工，唔理老細面色",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "blunt",
+          "sassy"
+        ],
+        "function": [
+          "farewell"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "夠鐘就拍咭走人。",
+      "situation": "六點正，老細仲喺度望住",
+      "avoid": [
+        "試用期或者新入職唔好咁明顯，會畀人記住"
+      ],
+      "note": "香港講「拍咭」，內地講「打卡」；「打卡」喺香港多數指影相放上網。",
+      "tags": [
+        "公司",
+        "OL",
+        "收尾",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-029",
+      "phrase": "甩轆",
+      "meaning": "出錯、計劃脫軌",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "craftsman",
+          "designer"
+        ],
+        "tone": [
+          "worried",
+          "complain"
+        ],
+        "function": [
+          "complain",
+          "warn"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "個期甩轆，趕唔切交貨。",
+      "situation": "交貨前發現有嘢未搞",
+      "avoid": [
+        "對客講「甩轆」太口語，客會覺得唔專業"
+      ],
+      "note": "由單車甩鏈引申，九十年代已用。同「出咗事」比，「甩轆」講細件事、仲救得返。",
+      "tags": [
+        "公司",
+        "OL",
+        "抱怨",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-030",
+      "phrase": "補鑊",
+      "meaning": "事後補救、收拾殘局",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "craftsman"
+        ],
+        "tone": [
+          "helpless",
+          "sarcastic"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "而家先嚟補鑊，太遲喇。",
+      "situation": "出事之後老闆叫你想辦法",
+      "avoid": [
+        "對客講「我哋補鑊」唔好聽，要講「我哋跟進」"
+      ],
+      "note": "由廚房「補鑊」引申（鑊穿咗要補）。同「補飛」近義，但「補飛」偏賭博、娛樂圈。",
+      "tags": [
+        "公司",
+        "OL",
+        "抱怨",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-031",
+      "phrase": "走數",
+      "meaning": "講好咗唔認、唔覆行承諾",
+      "categories": {
+        "age": [
+          "young",
+          "mid",
+          "teen"
+        ],
+        "archetype": [
+          "client",
+          "boss",
+          "student",
+          "street",
+          "slacker"
+        ],
+        "tone": [
+          "angry",
+          "sassy"
+        ],
+        "function": [
+          "complain",
+          "challenge"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "conflict",
+          "friend"
+        ]
+      },
+      "example": "講好咗又走數，仲信你？",
+      "situation": "客或者判頭講好付款、交貨，最後冇",
+      "avoid": [
+        "對客當面講「你走數」＝反面，多數講「張單仲未收到」",
+        "對客人講會令人覺得你唔可靠"
+      ],
+      "note": "本來指賭債唔還，八十年代已用；而家泛指任何承諾唔認。同「拖數」唔同：拖數仲認，走數唔認。 ／另註：1990 年代已有；同「賴帳」比更口語，2026 仲用。",
+      "tags": [
+        "公司",
+        "客戶",
+        "踩",
+        "抱怨",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-032",
+      "phrase": "拖字訣",
+      "meaning": "用拖延代替拒絕，拖到對方唔記得",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "sassy",
+          "cold"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "idiom",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "佢用拖字訣，拖到你唔記得。",
+      "situation": "講同事或者部門之間嘅手法",
+      "avoid": [
+        "唔好自認用拖字訣，等於話自己唔做嘢"
+      ],
+      "note": "借自武術「拖字訣」，香港辦公室借用。同「拖數」唔同：一個拖事，一個拖錢。",
+      "tags": [
+        "公司",
+        "OL",
+        "抱怨",
+        "冷面",
+        "老派"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-033",
+      "phrase": "追數",
+      "meaning": "追人交貨；亦指追收錢",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "sales",
+          "office",
+          "boss"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "你幫我追數啦，佢又拖。",
+      "situation": "客或者客公司拖咗好耐",
+      "avoid": [
+        "對客講「追數」好硬；對客用「想同你 confirm 返張單」"
+      ],
+      "note": "會計、裝修、批發最常用。「追數」追錢，「追貨」追貨，兩個都講「追」。",
+      "tags": [
+        "公司",
+        "客戶",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-034",
+      "phrase": "交唔切",
+      "meaning": "趕唔上期限",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "designer",
+          "craftsman"
+        ],
+        "tone": [
+          "helpless",
+          "worried"
+        ],
+        "function": [
+          "refuse-soft",
+          "apology"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "今個禮拜交唔切，要遲兩日。",
+      "situation": "明知做唔完要提早講",
+      "avoid": [
+        "唔好最後一刻先講；愈遲講愈大件事"
+      ],
+      "note": "香港講「交唔切」，唔講「來不及」。同「趕唔切」比，一個講交付，一個講時間。",
+      "tags": [
+        "公司",
+        "OL",
+        "拒絕",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-035",
+      "phrase": "幾時交到貨",
+      "meaning": "追成果／追交付",
+      "categories": {
+        "age": [
+          "mid"
+        ],
+        "archetype": [
+          "boss",
+          "client"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge",
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "你幾時交到貨畀我？",
+      "situation": "老細或者客等唔到",
+      "avoid": [
+        "對下屬日日講會變催命；要問「卡喺邊」"
+      ],
+      "note": "「交貨」唔一定係實物，報告、設計稿都叫交貨。同「交唔切」係一對。",
+      "tags": [
+        "公司",
+        "老細",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-036",
+      "phrase": "幾時出糧",
+      "meaning": "幾時發薪",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "delivery",
+          "craftsman",
+          "office"
+        ],
+        "tone": [
+          "worried",
+          "blunt"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "今個月幾時出糧呀？",
+      "situation": "月尾手緊，或者公司拖糧",
+      "avoid": [
+        "對客唔會講；對老細問要睇時機"
+      ],
+      "note": "香港「出糧」＝發薪，「拖糧」係嚴重問題，可以直接報勞工處。",
+      "tags": [
+        "公司",
+        "外賣",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-037",
+      "phrase": "打份工啫",
+      "meaning": "唔使咁搏、唔值得為公司犧牲",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "delivery"
+        ],
+        "tone": [
+          "helpless",
+          "sarcastic"
+        ],
+        "function": [
+          "comfort"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "打份工啫，唔使攞命搏。",
+      "situation": "同事畀老細鬧完，或者想辭職",
+      "avoid": [
+        "對好搏嘅同事或者老細講會好寸，等於話佢傻"
+      ],
+      "note": "「啫」收細件事，帶安慰。同「搵食啫」比，後者更基層、更江湖。",
+      "tags": [
+        "公司",
+        "OL",
+        "關心"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-038",
+      "phrase": "頂唔順",
+      "meaning": "受唔住、捱唔到",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "helpless",
+          "angry"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "我真係頂唔順呢個老細。",
+      "situation": "同朋友或者熟同事私下講",
+      "avoid": [
+        "對老細或者客講等於宣戰"
+      ],
+      "note": "可以指人、工作、天氣。同「受不了」比，呢句地道好多，書面唔會出現。",
+      "tags": [
+        "公司",
+        "OL",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-039",
+      "phrase": "有汗出冇糧出",
+      "meaning": "做足工但收唔到錢",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "craftsman",
+          "delivery",
+          "street"
+        ],
+        "tone": [
+          "complain",
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "proverb",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "做咗兩個月，有汗出冇糧出。",
+      "situation": "地盤、裝修或者判頭拖糧",
+      "avoid": [
+        "對客唔會講；呢句係對判頭或者僱主"
+      ],
+      "note": "地盤、酒樓、工廠老一輩用；2010年代後多數變成口號式引用，仲會上報紙。",
+      "tags": [
+        "裝修",
+        "公司",
+        "師傅",
+        "抱怨",
+        "老派"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-040",
+      "phrase": "做又三十六，唔做又三十六",
+      "meaning": "打份牛工，做多做少一樣，冇回報",
+      "categories": {
+        "age": [
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "sarcastic",
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "proverb",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "做又三十六，唔做又三十六，點會有人搏？",
+      "situation": "講鐵飯碗、大機構心態",
+      "avoid": [
+        "對老細講等於話佢間公司冇前途"
+      ],
+      "note": "一般講法源於五六十年代公務員、警隊月薪三十六元，而家用嚟諷刺做唔做都一樣。老一輩最識，後生一輩多數聽過唔識用。",
+      "tags": [
+        "公司",
+        "OL",
+        "抱怨",
+        "老派"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-041",
+      "phrase": "講就天下無敵",
+      "variants": [
+        "講就天下無敵，做就無能為力"
+      ],
+      "meaning": "講就好叻，做就另一回事",
+      "categories": {
+        "age": [
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "sarcastic",
+          "complain"
+        ],
+        "function": [
+          "complain",
+          "tease"
+        ],
+        "register": "proverb",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "佢講就天下無敵，做就冇影。",
+      "situation": "有人開會吹得好大",
+      "avoid": [
+        "對老細講要好小心，多數背後講"
+      ],
+      "note": "全句係「講就天下無敵，做就無能為力」，八十年代已流行，開會文化愈重愈多人講。",
+      "tags": [
+        "公司",
+        "OL",
+        "踩",
+        "抱怨",
+        "老派"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-042",
+      "phrase": "我哋盡快安排",
+      "meaning": "對客標準答法：唔承諾時間",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "sales",
+          "office"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "comfort",
+          "agree"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "唔好意思，我哋盡快安排。",
+      "situation": "客催，你唔知幾時做到",
+      "avoid": [
+        "講得多客會覺得你拖；最好補個大概時間"
+      ],
+      "note": "對客版。對同事版係「邊有咁快」，兩句講同一件事，一句出街一句入房。",
+      "tags": [
+        "公司",
+        "客戶",
+        "關心",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-043",
+      "phrase": "邊有咁快",
+      "meaning": "內部真實反應：覺得要求離譜",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "craftsman"
+        ],
+        "tone": [
+          "sassy",
+          "complain"
+        ],
+        "function": [
+          "complain",
+          "disagree"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "佢想聽日？邊有咁快。",
+      "situation": "同事轉述客嘅無理要求",
+      "avoid": [
+        "呢句只可以內部講；對客講一定死"
+      ],
+      "note": "同「我哋盡快安排」係同一件事嘅兩面。八十年代已用，而家連後生實習生都識。",
+      "tags": [
+        "公司",
+        "OL",
+        "抱怨",
+        "惜字如金"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-044",
+      "phrase": "報得好平",
+      "meaning": "已經冇乜水位，價錢好實",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "sales",
+          "craftsman"
+        ],
+        "tone": [
+          "polite",
+          "helpless"
+        ],
+        "function": [
+          "bargain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "我哋報得好平㗎喇。",
+      "situation": "客再壓價",
+      "avoid": [
+        "講得多會貶低自己專業；要講清楚包咩唔包咩"
+      ],
+      "note": "對客講法。內部講法係「個客又壓價」。香港講「平」唔講「便宜」。",
+      "tags": [
+        "公司",
+        "客戶",
+        "講價",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-045",
+      "phrase": "個客又壓價",
+      "meaning": "客不停要減價",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "sales",
+          "craftsman"
+        ],
+        "tone": [
+          "complain",
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "個客又壓價，仲要加料。",
+      "situation": "茶水間或者貨 van 入面講",
+      "avoid": [
+        "對客講等於話佢貪，一定反面"
+      ],
+      "note": "對內講法，同「報得好平」一對。裝修、印刷、活動行業最常怨。",
+      "tags": [
+        "公司",
+        "OL",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-046",
+      "phrase": "我幫你催緊師傅",
+      "meaning": "對客安撫：話催緊，其實冇能為力",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "sales",
+          "office"
+        ],
+        "tone": [
+          "polite",
+          "helpless"
+        ],
+        "function": [
+          "comfort"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "我幫你催緊師傅，聽日覆你。",
+      "situation": "客追進度，師傅未到",
+      "avoid": [
+        "講完一定要真係覆；唔覆就變第二個投訴"
+      ],
+      "note": "對客版，通常由客服、跟單講。內部版係「日日催，催咩呀」。",
+      "tags": [
+        "公司",
+        "客戶",
+        "關心",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-047",
+      "phrase": "日日催，催咩呀",
+      "meaning": "內部爆煲：催都冇用",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "craftsman",
+          "office"
+        ],
+        "tone": [
+          "angry",
+          "complain"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "conflict"
+        ]
+      },
+      "example": "日日催，催咩呀？我又唔係唔做。",
+      "situation": "客或者老細連環追",
+      "avoid": [
+        "唔好喺客面前講，一講即死"
+      ],
+      "note": "「催咩呀」帶火；同「趕住都未得」比，後者溫和好多，可以對客講。",
+      "tags": [
+        "裝修",
+        "公司",
+        "師傅",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-048",
+      "phrase": "係我哋疏忽",
+      "meaning": "認低威、承擔，通常為咗平息",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "sales",
+          "boss",
+          "office"
+        ],
+        "tone": [
+          "polite",
+          "helpless"
+        ],
+        "function": [
+          "apology"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "係我哋疏忽，我哋即刻跟。",
+      "situation": "出事要向客道歉",
+      "avoid": [
+        "唔好加「但係」；一加就變推卸"
+      ],
+      "note": "對客版，標準公關句。內部版係「又唔係我錯」。",
+      "tags": [
+        "公司",
+        "客戶",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-049",
+      "phrase": "又唔係我錯",
+      "meaning": "唔肯認，覺得唔關自己事",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "complain",
+          "angry"
+        ],
+        "function": [
+          "disagree",
+          "complain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "又唔係我錯，點解要我道歉？",
+      "situation": "老細要你出面擺平",
+      "avoid": [
+        "對客或者對老細講就係態度問題；私下同熟同事講先得"
+      ],
+      "note": "同「係我哋疏忽」一對。呢句喺香港職場好危險，講一次會被記住。",
+      "tags": [
+        "公司",
+        "OL",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-050",
+      "phrase": "轉頭到",
+      "meaning": "就快到；實際上唔知幾時",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "delivery",
+          "craftsman"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "我到咗樓下，轉頭到。",
+      "situation": "師傅或者外賣遲到，客追",
+      "avoid": [
+        "講咗兩次「轉頭到」就冇人信；要畀個實數"
+      ],
+      "note": "香港萬用時間詞：「轉頭」可以係五分鐘，可以係一個鐘。同「就嚟」一樣彈性。",
+      "tags": [
+        "公司",
+        "外賣",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-051",
+      "phrase": "師傅塞緊車",
+      "meaning": "遲到嘅標準藉口",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "craftsman",
+          "delivery"
+        ],
+        "tone": [
+          "polite",
+          "helpless"
+        ],
+        "function": [
+          "apology"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "師傅塞緊車，轉頭到。",
+      "situation": "客等到燥，打電話嚟追",
+      "avoid": [
+        "塞車用得多會失信；真係唔得就講實話"
+      ],
+      "note": "香港交通現實，所以呢個藉口永遠有人信，但只信一次。同「轉頭到」成日用埋一齊。",
+      "tags": [
+        "裝修",
+        "公司",
+        "師傅",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-052",
+      "phrase": "唔好話我講",
+      "meaning": "先聲明：唔好講出去、唔好話係我講",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "gossip",
+          "worried"
+        ],
+        "function": [
+          "gossip",
+          "warn"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "friend"
+        ]
+      },
+      "example": "唔好話我講㗎，佢兩個唔妥。",
+      "situation": "茶水間開始講是非",
+      "avoid": [
+        "講完呢句，對方多數照講；真秘密唔好講"
+      ],
+      "note": "香港辦公室八卦開場白，通常同「講還講，唔好傳出去」一齊用。老一輩講「呢度講呢度散」。",
+      "tags": [
+        "公司",
+        "OL",
+        "八卦"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-053",
+      "phrase": "我聽講咋",
+      "meaning": "唔負責、唔肯定，聽返嚟",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "gossip"
+        ],
+        "function": [
+          "gossip"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "我聽講咋，唔知真唔真。",
+      "situation": "傳一個未核實嘅消息",
+      "avoid": [
+        "講「聽講」都要有底；傳錯會被人記住"
+      ],
+      "note": "「咋」有降溫作用，等於話「唔好賴我」。同「我肯定」相反。",
+      "tags": [
+        "公司",
+        "OL",
+        "八卦"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-054",
+      "phrase": "講還講，唔好傳出去",
+      "meaning": "講完就算，唔好再傳",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "worried",
+          "gossip"
+        ],
+        "function": [
+          "warn",
+          "gossip"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "講還講，唔好傳出去呀。",
+      "situation": "講完公司重組、邊個走邊個留",
+      "avoid": [
+        "講呢句通常代表件事一定會傳開"
+      ],
+      "note": "同「唔好話我講」一對。2010年代後多數變成 WhatsApp 群組嘅開場。",
+      "tags": [
+        "公司",
+        "OL",
+        "八卦"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-055",
+      "phrase": "擦鞋",
+      "variants": [
+        "擦鞋仔"
+      ],
+      "meaning": "奉承老細、上級",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "sassy",
+          "gossip"
+        ],
+        "function": [
+          "tease",
+          "complain"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "佢好識擦鞋，老細好受。",
+      "situation": "有人當眾讚老細",
+      "avoid": [
+        "對當事人講等於羞辱"
+      ],
+      "note": "「擦鞋」「擦鞋仔」八十年代已用，而家後生一輩有更狠嘅講法。同「識做人」比，「擦鞋」一定係貶。",
+      "tags": [
+        "公司",
+        "OL",
+        "踩",
+        "抱怨",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-056",
+      "phrase": "上位",
+      "meaning": "向上爬、爭取升職",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "sassy",
+          "gossip"
+        ],
+        "function": [
+          "tease"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "佢好想上位，咩都肯做。",
+      "situation": "講同事好搏",
+      "avoid": [
+        "講人「想上位」多數帶貶意，唔好當面講"
+      ],
+      "note": "九十年代由娛樂圈帶起，而家全辦公室通用。同「升職」比，呢個字帶「爭」嘅味道。",
+      "tags": [
+        "公司",
+        "OL",
+        "踩",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-057",
+      "phrase": "傾下人工",
+      "meaning": "同老細講加人工",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "bargain",
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "下個月同老細傾下人工。",
+      "situation": "年尾 appraisal 之前",
+      "avoid": [
+        "唔好同同事周圍講，會傳到老細耳邊"
+      ],
+      "note": "「人工」＝薪金，香港基本詞；「薪水」係書面語。「傾」比「要求」軟。",
+      "tags": [
+        "公司",
+        "OL",
+        "講價",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-058",
+      "phrase": "我遞咗信",
+      "variants": [
+        "遞信"
+      ],
+      "meaning": "交咗辭職信",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "blunt",
+          "cold"
+        ],
+        "function": [
+          "farewell"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "我遞咗信喇，做到月尾。",
+      "situation": "同熟同事私下講",
+      "avoid": [
+        "未想公開就唔好講；香港圈子細，好快傳"
+      ],
+      "note": "「遞信」＝遞辭職信，香港標準講法；「辭職」兩個字反而少講出口。",
+      "tags": [
+        "公司",
+        "OL",
+        "直球",
+        "冷面"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-059",
+      "phrase": "裸辭",
+      "meaning": "未搵到新工就辭職",
+      "categories": {
+        "age": [
+          "young"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "sassy",
+          "gossip"
+        ],
+        "function": [
+          "surprise"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "佢裸辭，話要去旅行三個月。",
+      "situation": "講朋友或者同事突然唔做",
+      "avoid": [
+        "對長輩講要解釋，佢哋多數覺得唔理智"
+      ],
+      "note": "2015年後由內地、台灣傳入，香港後生一輩先用；老一輩講「冇工都敢辭」。",
+      "tags": [
+        "公司",
+        "OL",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-060",
+      "phrase": "過檔",
+      "meaning": "跳去對家公司",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "sales"
+        ],
+        "tone": [
+          "gossip",
+          "sassy"
+        ],
+        "function": [
+          "gossip"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "佢過檔去對家，加咗三成。",
+      "situation": "同事或者行家被挖角",
+      "avoid": [
+        "對舊公司講「過檔」有背叛感，要低調"
+      ],
+      "note": "由傳媒、體育「過檔」引申，九十年代已用。同「跳槽」比，呢個地道；「跳槽」偏書面、內地。",
+      "tags": [
+        "公司",
+        "OL",
+        "八卦"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-061",
+      "phrase": "我哋會通知你",
+      "meaning": "面試或者見客婉轉拒絕：「即係唔請」",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "sales"
+        ],
+        "tone": [
+          "polite",
+          "cold"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "stranger"
+        ]
+      },
+      "example": "我哋會通知你，唔該晒。",
+      "situation": "見完工或者傾完合作，對方唔想即場拒",
+      "avoid": [
+        "見工聽到呢句就唔好等，通常冇通知"
+      ],
+      "note": "香港職場公開秘密。同「你等消息」比，呢句更官方、更似人事部講。",
+      "tags": [
+        "公司",
+        "OL",
+        "拒絕",
+        "客套",
+        "面試",
+        "冷面"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-062",
+      "phrase": "過咗 probation 先傾",
+      "meaning": "試用期滿先講加人工、福利",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "boss",
+          "office"
+        ],
+        "tone": [
+          "cold",
+          "blunt"
+        ],
+        "function": [
+          "dismiss",
+          "refuse-soft"
+        ],
+        "register": "english-mix",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "過咗 probation 先傾加人工啦。",
+      "situation": "新人入職三個月就想加",
+      "avoid": [
+        "呢句係對下屬講；對客完全唔會用"
+      ],
+      "note": "「probation」＝試用期，香港白領普遍用；藍領、地盤會講「試用期」。",
+      "tags": [
+        "公司",
+        "老細",
+        "拒絕",
+        "直球",
+        "冷面",
+        "中英夾雜"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-063",
+      "phrase": "我要投訴",
+      "meaning": "正式投訴，帶壓力",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "client"
+        ],
+        "tone": [
+          "angry",
+          "blunt"
+        ],
+        "function": [
+          "complain",
+          "threaten"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "conflict"
+        ]
+      },
+      "example": "我要投訴你哋個師傅。",
+      "situation": "工程或者服務出問題，客發火",
+      "avoid": [
+        "對前線講冇用，多數要講「我要見你經理」"
+      ],
+      "note": "香港消費者投訴文化強，講完多數會提消委會或者海關。同「我要反映」比，呢句係硬。",
+      "tags": [
+        "公司",
+        "客戶",
+        "踩",
+        "抱怨",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-064",
+      "phrase": "報勞工處",
+      "meaning": "去勞工處投訴，通常講拖糧、欠假",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "delivery",
+          "craftsman",
+          "office"
+        ],
+        "tone": [
+          "threat",
+          "angry"
+        ],
+        "function": [
+          "threaten"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "conflict"
+        ]
+      },
+      "example": "再唔出糧我就報勞工處。",
+      "situation": "公司拖糧或者唔畀假期",
+      "avoid": [
+        "講出口就係反面；講之前最好先書面追一次"
+      ],
+      "note": "香港勞資術語。同「報警」比，呢句係民事、行政途徑，唔算刑事。",
+      "tags": [
+        "公司",
+        "外賣",
+        "踩",
+        "投訴"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-065",
+      "phrase": "影低佢",
+      "meaning": "影相、截圖留底，自保",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "craftsman"
+        ],
+        "tone": [
+          "worried",
+          "blunt"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "你影低佢，第時有咩事都有證據。",
+      "situation": "現場有爭議，或者有人口頭加要求",
+      "avoid": [
+        "影人要問；影到人面或者私隱會有麻煩"
+      ],
+      "note": "智能手機普及後（2010年代）成為職場自保動作；舊一輩講「寫低」。同「截圖」比，呢句包實物同文件。",
+      "tags": [
+        "公司",
+        "OL",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-066",
+      "phrase": "口講無憑",
+      "meaning": "口頭講唔算數，要書面",
+      "categories": {
+        "age": [
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "craftsman"
+        ],
+        "tone": [
+          "blunt",
+          "polite"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "idiom",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "口講無憑，寫低先算。",
+      "situation": "客或者同事口頭加要求",
+      "avoid": [
+        "對客講要包裝成「方便大家」，唔係似唔信人"
+      ],
+      "note": "老一輩常用；後生一輩多數講「confirm 咗先」。兩句同義，一個中文一個英文。",
+      "tags": [
+        "公司",
+        "OL",
+        "客套",
+        "直球",
+        "老派"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-067",
+      "phrase": "出咗事我唔負責",
+      "meaning": "免責聲明：你堅持就你孭",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "craftsman",
+          "designer",
+          "office"
+        ],
+        "tone": [
+          "cold",
+          "blunt"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "你堅持咁做，出咗事我唔負責。",
+      "situation": "客或者老細要一個你唔同意嘅做法",
+      "avoid": [
+        "講完最好 WhatsApp 留底，唔係等於冇講"
+      ],
+      "note": "裝修、設計、工程最常用，通常同「我提醒咗你」連住講。同「我唔孭」比，呢句係事先聲明。",
+      "tags": [
+        "裝修",
+        "公司",
+        "師傅",
+        "直球",
+        "冷面"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-068",
+      "phrase": "是但啦",
+      "variants": [
+        "是但"
+      ],
+      "meaning": "求其、冇所謂；有時帶晦氣",
+      "categories": {
+        "age": [
+          "young",
+          "mid",
+          "teen"
+        ],
+        "archetype": [
+          "office",
+          "slacker",
+          "student"
+        ],
+        "tone": [
+          "helpless",
+          "sassy"
+        ],
+        "function": [
+          "agree",
+          "dismiss"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "friend"
+        ]
+      },
+      "example": "是但啦，你話咁就咁。",
+      "situation": "開會揀方案，你已經唔想爭",
+      "avoid": [
+        "對客講「是但」等於唔專業；要講「由你決定」",
+        "對客講「是但」會顯得唔專業",
+        "情侶講「是但啦」通常會吵"
+      ],
+      "note": "「是但」＝隨便，香港基本詞。喺職場講得多會被人覺得唔上心，後生一輩用得更放。 ／另註：最襟用嘅港式敷衍；「隨便」係書面或者普通話，香港人口語講「是但」。",
+      "tags": [
+        "公司",
+        "OL"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-069",
+      "phrase": "交行貨",
+      "meaning": "求其交差，唔用心",
+      "categories": {
+        "age": [
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "craftsman"
+        ],
+        "tone": [
+          "sassy",
+          "complain"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "呢啲嘢佢一向交行貨。",
+      "situation": "講同事或者供應商質素",
+      "avoid": [
+        "對當事人講等於踩上門"
+      ],
+      "note": "「行貨」原指正式入口貨，引申為「照規格交、冇心機」，八十年代已用。同「hea 做」比，呢句講結果唔講態度。",
+      "tags": [
+        "公司",
+        "OL",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-070",
+      "phrase": "都可以嘅",
+      "meaning": "表面接受，其實唔同意；留白等人自己領會",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "sarcastic",
+          "polite"
+        ],
+        "function": [
+          "disagree"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "你咁做都可以嘅……",
+      "situation": "你唔同意但又唔想拗",
+      "avoid": [
+        "對老細講要補理由，唔係會當你同意"
+      ],
+      "note": "香港人最常用嘅婉轉反對：句尾拖長加停頓就係反對，冇停頓就係真心。",
+      "tags": [
+        "公司",
+        "OL",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-071",
+      "phrase": "我唔係好肯定",
+      "meaning": "婉轉反對，或者婉轉話你錯",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "polite",
+          "worried"
+        ],
+        "function": [
+          "disagree",
+          "refuse-soft"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "我唔係好肯定喎，要再睇。",
+      "situation": "會上有人講錯數",
+      "avoid": [
+        "對客講要即刻補正確資料，唔係等於留難"
+      ],
+      "note": "香港職場唔會直接講「你錯」，會講「我唔係好肯定」。同「我睇睇先」一齊用，殺傷力更大。",
+      "tags": [
+        "公司",
+        "OL",
+        "拒絕",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-072",
+      "phrase": "老細唔喺度",
+      "meaning": "擋人、擋客嘅標準句",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "sales"
+        ],
+        "tone": [
+          "polite",
+          "cold"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "老細唔喺度，你留低電話。",
+      "situation": "客或者追數人上門",
+      "avoid": [
+        "老細明明喺房就唔好講，穿煲好難睇"
+      ],
+      "note": "通常同「我幫你留言」連住用。細公司最常講，因為冇接待處。",
+      "tags": [
+        "公司",
+        "OL",
+        "客套",
+        "冷面"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-073",
+      "phrase": "炒魷",
+      "variants": [
+        "炒魷魚",
+        "畀人炒"
+      ],
+      "meaning": "被解僱，或者解僱人",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "craftsman"
+        ],
+        "tone": [
+          "gossip",
+          "worried"
+        ],
+        "function": [
+          "gossip"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "聽講佢畀人炒魷。",
+      "situation": "公司裁員，或者有人突然唔見",
+      "avoid": [
+        "對當事人講「炒魷」太直接；要講「唔做」"
+      ],
+      "note": "「炒魷魚」省成「炒魷」，八十年代已用。同「起身」一樣係被炒嘅婉轉講法，老一輩較多用「起身」。",
+      "tags": [
+        "公司",
+        "OL",
+        "八卦",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-074",
+      "phrase": "我聽日 send 個報價畀你",
+      "variants": [
+        "send 報價"
+      ],
+      "meaning": "對客承諾出報價",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "sales",
+          "craftsman",
+          "designer"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "english-mix",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "我聽日 send 個報價畀你，你睇下先。",
+      "situation": "睇完場、傾完需求",
+      "avoid": [
+        "講完要真係 send；遲一日客就開始格價"
+      ],
+      "note": "裝修、設計、印刷行業標準句。同「報價」比，「send 報價」多咗一個動作，聽落有交帶。",
+      "tags": [
+        "裝修",
+        "公司",
+        "客戶",
+        "客套",
+        "中英夾雜"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-075",
+      "phrase": "個價包唔包料",
+      "meaning": "問報價有冇包材料",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "client"
+        ],
+        "tone": [
+          "blunt",
+          "worried"
+        ],
+        "function": [
+          "question",
+          "bargain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "你個價包唔包料先？",
+      "situation": "客睇報價單第一句",
+      "avoid": [
+        "唔好假設包；唔寫清楚最後一定拗"
+      ],
+      "note": "裝修行規：報價分「包料」同「淨工」，唔講清楚最易反面。呢句係客嘅自我保護。",
+      "tags": [
+        "公司",
+        "客戶",
+        "講價",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-076",
+      "phrase": "師傅仔",
+      "meaning": "年輕或者下欄師傅，帶少少唔尊重",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "craftsman",
+          "client"
+        ],
+        "tone": [
+          "sassy",
+          "blunt"
+        ],
+        "function": [
+          "tease"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "呢個師傅仔手工幾好。",
+      "situation": "客或者判頭講年輕師傅",
+      "avoid": [
+        "當面叫「師傅仔」有貶意，會反面；叫「師傅」穩陣"
+      ],
+      "note": "行內「師傅仔」指跟班、新手；2000年代後年輕師傅唔受呢套，尤其有自己公司嘅。",
+      "tags": [
+        "裝修",
+        "公司",
+        "師傅",
+        "踩",
+        "直球",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-077",
+      "phrase": "約咗聽日睇場",
+      "meaning": "約實去現場睇環境",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "craftsman",
+          "client",
+          "designer"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "約咗聽日兩點睇場。",
+      "situation": "接單後第一次上門",
+      "avoid": [
+        "對客講「睇場」有啲行內；對客可以講「上嚟睇下環境」"
+      ],
+      "note": "裝修、工程、活動行業都用；「睇場」＝實地勘察。同「度尺」唔同，睇場係睇環境，度尺係量數。",
+      "tags": [
+        "裝修",
+        "公司",
+        "師傅",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-078",
+      "phrase": "你收貨先",
+      "meaning": "驗收，睇過滿意先算",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "craftsman",
+          "client"
+        ],
+        "tone": [
+          "blunt",
+          "polite"
+        ],
+        "function": [
+          "urge",
+          "warn"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "你收貨先，唔啱即刻講。",
+      "situation": "工程做完交場",
+      "avoid": [
+        "收咗貨之後再拗就好難；要寫低執漏清單"
+      ],
+      "note": "「收貨」＝驗收，同「收到貨」同字唔同義，靠語境分辨。裝修最緊要呢一步，口頭收貨好危險。",
+      "tags": [
+        "裝修",
+        "公司",
+        "師傅",
+        "客套",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-079",
+      "phrase": "呢幅牆要翻手",
+      "meaning": "做完要返轉頭重做",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "craftsman"
+        ],
+        "tone": [
+          "complain",
+          "blunt"
+        ],
+        "function": [
+          "complain",
+          "warn"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "呢幅牆要翻手，油漆唔勻。",
+      "situation": "師傅驗收前發現手工唔得",
+      "avoid": [
+        "對客唔好講「翻手」，要講「我哋再做一次」"
+      ],
+      "note": "行內「翻手」＝返手重做，刻意避開「返工」以免同「上班」混淆。同「執手尾」唔同：翻手係做錯重做。",
+      "tags": [
+        "裝修",
+        "公司",
+        "師傅",
+        "抱怨",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-080",
+      "phrase": "天花要補漏",
+      "meaning": "滲水要修補",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "craftsman",
+          "client"
+        ],
+        "tone": [
+          "worried",
+          "blunt"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "天花仲滴水，要補漏。",
+      "situation": "舊樓或者天台單位交場前",
+      "avoid": [
+        "補漏唔係一次搞得完；對客要講清楚可能要做幾次"
+      ],
+      "note": "裝修最易起爭議嘅一項。同「執漏」唔同：補漏係修滲水，執漏係收尾修瑕疵。",
+      "tags": [
+        "裝修",
+        "公司",
+        "師傅",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-081",
+      "phrase": "交樓前要執漏",
+      "variants": [
+        "執漏"
+      ],
+      "meaning": "交場前修好所有瑕疵",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "craftsman",
+          "client"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "warn",
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "交樓前要執漏，唔係業主唔簽。",
+      "situation": "工程尾聲，準備交場",
+      "avoid": [
+        "執漏期要有期限，唔係永遠執唔完"
+      ],
+      "note": "「執漏」係香港裝修核心詞，新樓收樓都講。同「補漏」分工清楚：一個修瑕疵，一個修滲水。",
+      "tags": [
+        "裝修",
+        "公司",
+        "師傅",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-082",
+      "phrase": "呢個師傅手工好",
+      "meaning": "手工＝手勢、工藝水準",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "craftsman",
+          "client"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "praise"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "呢個師傅手工好，批盪好順。",
+      "situation": "睇完現場，或者介紹師傅",
+      "avoid": [
+        "「手工」可以讚，但唔好講「你手工唔得」，等於踩上門"
+      ],
+      "note": "「手工」＝craftsmanship；老一輩講「手勢」，意思一樣，但「手勢」而家少用。",
+      "tags": [
+        "裝修",
+        "公司",
+        "師傅",
+        "讚"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-083",
+      "phrase": "上手留低嘅手尾",
+      "variants": [
+        "執手尾",
+        "上手"
+      ],
+      "meaning": "之前做嗰個人未搞完嘅嘢",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "craftsman"
+        ],
+        "tone": [
+          "complain",
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "上手留低嘅手尾，執足兩日。",
+      "situation": "接手一個做壞咗嘅場",
+      "avoid": [
+        "對客講「上手」等於話前一手唔得，要小心"
+      ],
+      "note": "「手尾」＝收尾工作；「上手」＝前一任，同「下欄」相對。呢句係裝修佬最常怨嘅一句。",
+      "tags": [
+        "裝修",
+        "公司",
+        "師傅",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-084",
+      "phrase": "順便幫我加多個插蘇",
+      "meaning": "追加要求，但當成順便、唔想加錢",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "client"
+        ],
+        "tone": [
+          "polite",
+          "shy"
+        ],
+        "function": [
+          "bargain",
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "順便幫我加多個插蘇得唔得？",
+      "situation": "師傅做到一半，客走過嚟",
+      "avoid": [
+        "「順便」係最貴嘅兩個字；要即刻報價"
+      ],
+      "note": "裝修界名言：客嘅「順便」＝加單。同「加少少」一齊出現，通常跟住就係爭執。",
+      "tags": [
+        "公司",
+        "客戶",
+        "講價",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-085",
+      "phrase": "可唔可以平啲",
+      "meaning": "議價，想減價",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "client"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "bargain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "可唔可以平啲呀師傅？",
+      "situation": "睇完報價",
+      "avoid": [
+        "講完唔好即減；一減就代表原本報高咗"
+      ],
+      "note": "香港講「平」唔講「便宜」。「平啲」係最基本議價句，由街市到裝修都用。",
+      "tags": [
+        "公司",
+        "客戶",
+        "講價",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-086",
+      "phrase": "我老婆話要改",
+      "meaning": "用家人做擋箭牌，要求改設計",
+      "categories": {
+        "age": [
+          "mid"
+        ],
+        "archetype": [
+          "client"
+        ],
+        "tone": [
+          "helpless",
+          "polite"
+        ],
+        "function": [
+          "disagree",
+          "bargain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "我老婆話要改個廳。",
+      "situation": "圖批完又改",
+      "avoid": [
+        "對師傅講太多次會加錢；要問清楚邊個最終決定"
+      ],
+      "note": "香港裝修經典：決策人唔止一個。同「我屋企人話」一樣用法，通常跟住就係「可唔可以唔加錢」。",
+      "tags": [
+        "公司",
+        "家庭",
+        "客戶",
+        "講價",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-087",
+      "phrase": "你張圖同現場唔同",
+      "meaning": "圖則同實際環境有出入",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "client",
+          "craftsman",
+          "designer"
+        ],
+        "tone": [
+          "complain",
+          "worried"
+        ],
+        "function": [
+          "disagree"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "你張圖同現場唔同喎。",
+      "situation": "動工第一日就發現",
+      "avoid": [
+        "動工前一定要對圖；開工後改圖全部加錢"
+      ],
+      "note": "「圖」＝圖則，「現場」＝實際單位。呢句一出，多數代表要加錢或者改期。",
+      "tags": [
+        "公司",
+        "客戶"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-088",
+      "phrase": "又要改圖",
+      "meaning": "設計一改再改",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "designer"
+        ],
+        "tone": [
+          "complain",
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "又要改圖？改到第八版喇。",
+      "situation": "客或者老細改完又改",
+      "avoid": [
+        "對客講要收返改圖費，但要事先講明包幾多版"
+      ],
+      "note": "設計行業共同痛；「改到第八版」係行內笑話，老一輩講「改到唔認得」。",
+      "tags": [
+        "公司",
+        "OL",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-work-089",
+      "phrase": "離晒譜",
+      "meaning": "太誇張、接受唔到；帶火",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "client",
+          "craftsman"
+        ],
+        "tone": [
+          "angry",
+          "complain"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "everyday",
+        "profanity": 1,
+        "socialDistance": [
+          "colleague",
+          "client",
+          "conflict"
+        ]
+      },
+      "example": "三個月都未找數，離晒譜！",
+      "situation": "客或者公司做嘢太離譜",
+      "avoid": [
+        "對客當面講等於鬧上門；只可以對自己人講"
+      ],
+      "note": "屬輕度發洩，唔算粗口，由老一輩到後生都用。同「過分」比，呢句火氣大好多，但未到粗口級。",
+      "tags": [
+        "公司",
+        "OL",
+        "抱怨"
+      ],
+      "source": "general"
+    }
+  ]
+}

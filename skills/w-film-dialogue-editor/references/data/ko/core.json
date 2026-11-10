@@ -1,0 +1,1839 @@
+{
+  "lang": "ko",
+  "label": "韓文",
+  "version": "1.0",
+  "entries": [
+    {
+      "id": "ko-core-001",
+      "phrase": "안녕하세요",
+      "variants": [],
+      "romanization": "annyeonghaseyo",
+      "meaning": "韓文最基本的敬語招呼，任何場合見面第一句；對長輩、客人、同事都用得。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "polite",
+          "warm"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "client",
+          "colleague",
+          "friend"
+        ]
+      },
+      "example": "안녕하세요, 처음 뵙겠습니다.",
+      "situation": "客人入舖、新人見同事、街坊碰面，任何正式或半正式開場。",
+      "avoid": [
+        "對朋友用會顯得生硬有距離，朋友之間講 안녕",
+        "語尾要放平，唔好拉高變問句，否則變咗反問"
+      ],
+      "note": "敬語的萬能招呼；對熟人連續用會俾人覺得你當佢外人。",
+      "tags": [
+        "開場",
+        "客套",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-002",
+      "phrase": "안녕",
+      "variants": [],
+      "romanization": "annyeong",
+      "meaning": "半語的「hi」，朋友、同輩、晚輩之間用，語氣輕鬆。",
+      "categories": {
+        "age": [
+          "kid",
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "warm",
+          "funny"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family"
+        ]
+      },
+      "example": "안녕, 오늘 뭐 해?",
+      "situation": "同學喺校門撞到、後輩打招呼。",
+      "avoid": [
+        "對長輩、上司用就係冇禮貌，一定要加 하세요",
+        "初次見面用 안녕 會俾人覺得你唔識規矩"
+      ],
+      "note": "半語；對唔熟嘅同齡人都要謹慎，韓國年齡界線好緊。",
+      "tags": [
+        "開場",
+        "日常",
+        "半語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-003",
+      "phrase": "수고하셨습니다",
+      "variants": [
+        "수고하셨어요"
+      ],
+      "romanization": "sugohasyeotseumnida",
+      "meaning": "收工、交更、做完一件事對人講嘅「辛苦晒」；下屬對上司、同事對同事都用。",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "polite",
+          "warm"
+        ],
+        "function": [
+          "thanks"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "수고하셨습니다, 오늘은 제가 정리할게요.",
+      "situation": "收工時對同事、同客交帶完之後。",
+      "avoid": [
+        "對客人講會有居高臨下嘅感覺，應該用 감사합니다",
+        "場合太輕鬆用半語 수고했어 就夠"
+      ],
+      "note": "職場高頻；嚴格禮節上對高層用 수고 많으셨습니다 更穩陣。",
+      "tags": [
+        "職場",
+        "客套",
+        "收尾"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-004",
+      "phrase": "감사합니다",
+      "variants": [
+        "감사해요"
+      ],
+      "romanization": "gamsahamnida",
+      "meaning": "正式多謝；對客人、長輩、上司，或者收到幫助／禮物都用。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "polite",
+          "warm"
+        ],
+        "function": [
+          "thanks"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "stranger",
+          "colleague",
+          "family"
+        ]
+      },
+      "example": "도와주셔서 감사합니다.",
+      "situation": "客人幫手、收禮、正式道謝。",
+      "avoid": [
+        "朋友之間講會太生硬，口語用 고마워",
+        "唔好用嚟回應讚美自己，會顯得造作"
+      ],
+      "note": "감사합니다 偏書面正式；日常講 고맙습니다 更軟。",
+      "tags": [
+        "客套",
+        "日常",
+        "敬語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-005",
+      "phrase": "고마워",
+      "variants": [
+        "고마워요",
+        "고맙습니다"
+      ],
+      "romanization": "gomawo",
+      "meaning": "半語的「多謝」，朋友、家人、晚輩之間；加 요 就變半敬語。",
+      "categories": {
+        "age": [
+          "kid",
+          "teen",
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "thanks"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family"
+        ]
+      },
+      "example": "고마워, 진짜 큰일 났는데 살았어.",
+      "situation": "朋友幫手、屋企人之間。",
+      "avoid": [
+        "對長輩、客戶用會失禮，要講 고맙습니다／감사합니다",
+        "對上司用 고마워 會被視為唔識大體"
+      ],
+      "note": "半語；고마워요 半敬語可以對唔太熟嘅人。",
+      "tags": [
+        "日常",
+        "半語",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-006",
+      "phrase": "죄송합니다",
+      "variants": [
+        "죄송해요"
+      ],
+      "romanization": "joesonghamnida",
+      "meaning": "正式道歉，認錯、遲到、做錯事、對客戶失誤都用；語氣比 미안 重。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "polite",
+          "worried"
+        ],
+        "function": [
+          "apology"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague",
+          "stranger",
+          "family"
+        ]
+      },
+      "example": "늦어서 죄송합니다, 바로 시작하겠습니다.",
+      "situation": "見客遲到、做錯報價、服務失誤。",
+      "avoid": [
+        "朋友之間講會好生硬誇張，用 미안 就夠",
+        "小事用 죄송합니다 會令人以為好嚴重"
+      ],
+      "note": "韓文道歉分級好清楚：미안 < 미안해요 < 죄송합니다。",
+      "tags": [
+        "客套",
+        "職場",
+        "敬語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-007",
+      "phrase": "미안",
+      "variants": [
+        "미안해",
+        "미안해요"
+      ],
+      "romanization": "mian",
+      "meaning": "半語道歉，朋友、家人、情侶之間；口氣軟，帶少少撒嬌。",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "warm",
+          "whiny"
+        ],
+        "function": [
+          "apology"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family"
+        ]
+      },
+      "example": "미안, 내가 좀 늦었지.",
+      "situation": "朋友等咗你、情侶耍花槍。",
+      "avoid": [
+        "對長輩／客戶用就係唔尊重，要講 죄송합니다",
+        "做錯大事用 미안 會俾人覺得你唔當回事"
+      ],
+      "note": "半語；미안해요 加 요 可對半熟嘅人。",
+      "tags": [
+        "日常",
+        "半語",
+        "戀愛"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-008",
+      "phrase": "실례합니다",
+      "variants": [],
+      "romanization": "sillyehamnida",
+      "meaning": "打擾／借借／入人地方前講嘅「失禮喇」；亦用嚟叫人注意。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "greet",
+          "apology"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "client"
+        ]
+      },
+      "example": "실례합니다, 잠깐 들어가도 될까요?",
+      "situation": "入會議室、穿過人群、問路前開場。",
+      "avoid": [
+        "朋友之間用會好奇怪，直接講 저기요 或者 잠깐만",
+        "唔好當『對唔住』用，撞到人要用 죄송합니다"
+      ],
+      "note": "偏正式；餐廳叫人唔會用呢句，用 저기요。",
+      "tags": [
+        "客套",
+        "開場",
+        "敬語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-009",
+      "phrase": "저기요",
+      "variants": [],
+      "romanization": "jeogiyo",
+      "meaning": "叫侍應／店員／陌生人注意嘅「唔好意思」；韓國餐廳、咖啡店最常用。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "polite",
+          "blunt"
+        ],
+        "function": [
+          "greet",
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "client"
+        ]
+      },
+      "example": "저기요, 여기 물 좀 주세요.",
+      "situation": "餐廳舉手叫侍應、店舖問價。",
+      "avoid": [
+        "對上司或長輩用會太隨便，要叫職銜",
+        "連續大聲叫會令人反感，一次就夠"
+      ],
+      "note": "韓國餐廳冇招手文化，多數直接叫 저기요。",
+      "tags": [
+        "餐廳",
+        "日常",
+        "開場"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-010",
+      "phrase": "잠시만요",
+      "variants": [
+        "잠깐만요"
+      ],
+      "romanization": "jamsimanyo",
+      "meaning": "「等等／借借／唔好意思阻一阻」；講電話、行過人前面、要人停一停都用。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "polite",
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "잠시만요, 뒤에 분 아직 안 내리셨어요.",
+      "situation": "地鐵落車、遞嘢前、電話中對方要等。",
+      "avoid": [
+        "對長輩講 잠깐만 冇 요 會好冇禮貌",
+        "用嚟打斷上司講話要加 죄송하지만"
+      ],
+      "note": "잠깐만요 更口語；兩者都係半敬語。",
+      "tags": [
+        "日常",
+        "客套",
+        "地鐵"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-011",
+      "phrase": "봉투 필요하세요?",
+      "variants": [],
+      "romanization": "bongtu piryohaseyo",
+      "meaning": "便利店收銀問「要唔要膠袋？」",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "polite",
+          "blunt"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "봉투 필요하세요? 일회용 봉투는 백 원이에요.",
+      "situation": "便利店收銀、外賣落單。",
+      "avoid": [
+        "對客人講半語 봉투 필요해? 就係趕客",
+        "唔好加『당연히』之類語氣，會變寸"
+      ],
+      "note": "韓國便利店膠袋要收費，所以店員一定問。",
+      "tags": [
+        "便利店",
+        "店員",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-012",
+      "phrase": "전자레인지에 돌려 드릴까요?",
+      "variants": [
+        "전자레인지에 데워 드릴까요?"
+      ],
+      "romanization": "jeonjareinjie dollyeo deurilkkayo",
+      "meaning": "便利店／超市問「要唔要幫你叮熱？」",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "polite",
+          "warm"
+        ],
+        "function": [
+          "question",
+          "encourage"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "전자레인지에 돌려 드릴까요? 도시락 드시는 거죠?",
+      "situation": "便利店買便當、即食麵。",
+      "avoid": [
+        "對唔熟客人用半語會失禮",
+        "呢句係服務語，對朋友用會好怪"
+      ],
+      "note": "韓國便利店有微波爐，店員主動問係常態。",
+      "tags": [
+        "便利店",
+        "店員",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-013",
+      "phrase": "아이스 아메리카노 한 잔 주세요",
+      "variants": [
+        "아아 한 잔 주세요"
+      ],
+      "romanization": "aiseu amerikano han jan juseyo",
+      "meaning": "咖啡店最常見落單；韓國人叫冰美式做「아아」。",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "student"
+        ],
+        "tone": [
+          "polite",
+          "blunt"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "stranger"
+        ]
+      },
+      "example": "아이스 아메리카노 한 잔 주세요, 얼음은 조금만요.",
+      "situation": "咖啡店落單、外賣自取。",
+      "avoid": [
+        "對店員用半語 아이스 아메리카노 하나 係好冇禮貌",
+        "『아아』只係口語簡稱，正式落單要用全名"
+      ],
+      "note": "『아아』＝아이스 아메리카노，韓國咖啡店共通語，2020 年代後幾乎人人用。",
+      "tags": [
+        "咖啡廳",
+        "日常",
+        "店員"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-014",
+      "phrase": "텀블러 가져오셨어요?",
+      "variants": [],
+      "romanization": "teombeulleo gajyeo osyeosseoyo",
+      "meaning": "咖啡店問「有冇帶自己杯？」——帶杯有折扣。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "polite",
+          "warm"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "텀블러 가져오셨어요? 가져오시면 300원 할인돼요.",
+      "situation": "連鎖咖啡店落單。",
+      "avoid": [
+        "問得太急，客人未決定會覺得被推銷",
+        "對長輩用半語會失禮"
+      ],
+      "note": "韓國咖啡店減塑政策，텀블러 折扣係常見對白。",
+      "tags": [
+        "咖啡廳",
+        "店員",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-015",
+      "phrase": "이거 리필 되나요?",
+      "variants": [],
+      "romanization": "igeo ripil doenaeyo",
+      "meaning": "餐廳問「呢個可以加添嗎？」（側菜、飯、飲品）",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "polite",
+          "warm"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "이거 리필 되나요? 반찬 더 주실 수 있어요?",
+      "situation": "韓食店加반찬、快餐加汽水。",
+      "avoid": [
+        "自助式餐廳唔使問，直接去拎",
+        "對長輩用半語問會失禮"
+      ],
+      "note": "韓國多數小菜（반찬）可以免費添，但連鎖店未必。",
+      "tags": [
+        "餐廳",
+        "日常",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-016",
+      "phrase": "계산은 어디서 해요?",
+      "variants": [
+        "계산 어디서 해요?"
+      ],
+      "romanization": "gyesaneun eodiseo haeyo",
+      "meaning": "問「喺邊度埋單？」",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "stranger"
+        ]
+      },
+      "example": "계산은 어디서 해요? 카운터에서 하면 되나요?",
+      "situation": "餐廳食完、小店買完。",
+      "avoid": [
+        "對店員用半語 계산 어디서 해 會冇禮貌",
+        "韓國多數係去櫃檯埋單，唔係舉手叫埋單"
+      ],
+      "note": "韓國餐廳唔興『埋單』手勢，直接去櫃檯。",
+      "tags": [
+        "餐廳",
+        "日常",
+        "店舖"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-017",
+      "phrase": "포장해 주세요",
+      "variants": [
+        "포장이요"
+      ],
+      "romanization": "pojanghae juseyo",
+      "meaning": "「唔該打包／外賣」；食唔晒帶走或者落外賣單都用。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "question",
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "남은 거 포장해 주세요, 버리기 아까워서요.",
+      "situation": "餐廳食剩、咖啡店外賣。",
+      "avoid": [
+        "自助餐或放題唔可以打包，講之前要問",
+        "對店員用半語 포장해 줘 會好冇禮貌"
+      ],
+      "note": "韓國外賣叫 포장，堂食叫 매장；兩者都係點餐時講。",
+      "tags": [
+        "餐廳",
+        "日常",
+        "店員"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-018",
+      "phrase": "카드 되나요?",
+      "variants": [
+        "카드 돼요?"
+      ],
+      "romanization": "kadeu doenaeyo",
+      "meaning": "問「收唔收卡？」小店、市場攤販都可能只收現金。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "polite",
+          "worried"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "stranger"
+        ]
+      },
+      "example": "카드 되나요? 현금이 없어서요.",
+      "situation": "街市、小店、的士付款前。",
+      "avoid": [
+        "對長輩店主直接問會顯得唔信任，可以講 카드도 되세요?",
+        "唔好講半語 카드 돼? 對店主失禮"
+      ],
+      "note": "韓國幾乎全國無現金，但傳統市場仍有現金價。",
+      "tags": [
+        "店舖",
+        "日常",
+        "街市"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-019",
+      "phrase": "얼마예요?",
+      "variants": [],
+      "romanization": "eolmayeyo",
+      "meaning": "問價錢；最直接、最萬用的購物句。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "polite",
+          "blunt"
+        ],
+        "function": [
+          "question",
+          "bargain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "stranger"
+        ]
+      },
+      "example": "이거 얼마예요? 두 개 사면 깎아 주세요.",
+      "situation": "街市、小店、的士。",
+      "avoid": [
+        "對長輩用半語 얼마야 會好冇禮貌",
+        "高級店直接問價會顯得市儈，先讚兩句再問"
+      ],
+      "note": "韓國標價清楚，但市場仍可議價。",
+      "tags": [
+        "講價",
+        "日常",
+        "店舖"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-020",
+      "phrase": "깎아 주세요",
+      "variants": [
+        "좀 깎아 주세요"
+      ],
+      "romanization": "kkakka juseyo",
+      "meaning": "「可以平啲嗎？」街市、南大門、的士長途可以講；連鎖店唔會減。",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "housewife",
+          "client"
+        ],
+        "tone": [
+          "polite",
+          "whiny"
+        ],
+        "function": [
+          "bargain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "두 개 살 테니까 깎아 주세요.",
+      "situation": "街市買生果、買多件衫。",
+      "avoid": [
+        "連鎖店、百貨公司講會尷尬，職員無權",
+        "口氣太硬會變投訴，要帶笑"
+      ],
+      "note": "韓國議價文化比香港弱，只限市場同老店。",
+      "tags": [
+        "講價",
+        "街市",
+        "店舖"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-021",
+      "phrase": "어디서 내려요?",
+      "variants": [],
+      "romanization": "eodiseo naeryeoyo",
+      "meaning": "巴士／地鐵問「我喺邊度落車？」",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "polite",
+          "worried"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger"
+        ]
+      },
+      "example": "어디서 내려요? 저 강남역까지 가는데요.",
+      "situation": "巴士上問司機、地鐵問路。",
+      "avoid": [
+        "對司機用半語會失禮",
+        "地鐵冇人報站，最好先自己睇app"
+      ],
+      "note": "首爾巴士有韓英雙語報站，但外地線路未必。",
+      "tags": [
+        "地鐵",
+        "日常",
+        "街頭"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-022",
+      "phrase": "역이 어디예요?",
+      "variants": [
+        "지하철역이 어디예요?"
+      ],
+      "romanization": "yeogi eodiyeyo",
+      "meaning": "問「車站喺邊？」",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "polite",
+          "worried"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger"
+        ]
+      },
+      "example": "역이 어디예요? 이쪽으로 가면 돼요?",
+      "situation": "街頭問路、落錯車。",
+      "avoid": [
+        "對長輩用半語會失禮",
+        "唔好抓住陌生人手臂問，韓國人會避"
+      ],
+      "note": "首爾地鐵站名多數有英文，講英文都可以。",
+      "tags": [
+        "地鐵",
+        "街頭",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-023",
+      "phrase": "쭉 가다가 왼쪽으로 도세요",
+      "variants": [
+        "쭉 가서 왼쪽으로 도세요"
+      ],
+      "romanization": "jjuk gadaga oenjjogeuro doseyo",
+      "meaning": "指路：「一直行，然後轉左。」",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "blunt",
+          "polite"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "client"
+        ]
+      },
+      "example": "여기서 쭉 가다가 왼쪽으로 도세요, 그럼 바로 보여요.",
+      "situation": "街頭被人問路、司機指路。",
+      "avoid": [
+        "對長輩要用 드세요 之類更高敬語",
+        "呢句係命令形，對客人要加 요 軟化"
+      ],
+      "note": "쭉＝一直；韓國人指路多數配手勢。",
+      "tags": [
+        "街頭",
+        "日常",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-024",
+      "phrase": "조심하세요",
+      "variants": [
+        "조심해요"
+      ],
+      "romanization": "josimhaseyo",
+      "meaning": "「小心啲」；提醒人路滑、有車、講嘢小心。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "worried",
+          "warm"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "friend",
+          "client"
+        ]
+      },
+      "example": "길 미끄러우니까 조심하세요.",
+      "situation": "落雨送客、地盤提醒、長輩出門口。",
+      "avoid": [
+        "對上司講會有指教意味，要講 조심하시길 바랍니다",
+        "半語 조심해 只可以對朋友、晚輩"
+      ],
+      "note": "同時可以係諷刺：講嘢唔小心時，韓國人會冷冷講 한 번 조심하시죠。",
+      "tags": [
+        "關心",
+        "日常",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-025",
+      "phrase": "괜찮아요",
+      "variants": [
+        "괜찮습니다"
+      ],
+      "romanization": "gwaenchanayo",
+      "meaning": "字面「冇事／OK」，但最常係婉拒：「唔使喇，多謝。」",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "polite",
+          "warm"
+        ],
+        "function": [
+          "refuse-soft",
+          "comfort"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "client",
+          "stranger"
+        ]
+      },
+      "example": "괜찮아요, 저는 됐어요. 고마워요.",
+      "situation": "有人讓座、請你食嘢、街頭推銷。",
+      "avoid": [
+        "語氣要軟；講得太短太快會變冷拒絕",
+        "長輩問你身體時，答 괜찮아요 係報平安，唔係拒絕"
+      ],
+      "note": "一句兩用：慰問答覆 vs 婉拒；靠語調分。",
+      "tags": [
+        "拒絕",
+        "客套",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-026",
+      "phrase": "됐어요",
+      "variants": [
+        "됐습니다"
+      ],
+      "romanization": "dwaesseoyo",
+      "meaning": "「唔使喇／算喇」，比 괜찮아요 硬，帶少少唔耐煩或收線意味。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "cold",
+          "blunt"
+        ],
+        "function": [
+          "refuse",
+          "dismiss"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "stranger"
+        ]
+      },
+      "example": "됐어요, 그냥 제가 할게요.",
+      "situation": "同事想幫手但你唔想欠人情、被推銷。",
+      "avoid": [
+        "對長輩／客戶講會好冷淡，等於叫對方收聲",
+        "想維持關係就唔好用呢句收尾"
+      ],
+      "note": "半敬語但偏冷；加笑容講可以救返。",
+      "tags": [
+        "拒絕",
+        "冷面",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-027",
+      "phrase": "다음에요",
+      "variants": [
+        "다음에 할게요"
+      ],
+      "romanization": "daeumeyo",
+      "meaning": "「下次先啦」＝委婉推掉，唔講死。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "polite",
+          "shy"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "오늘은 어려울 것 같고, 다음에요.",
+      "situation": "同事約酒、朋友約局、客戶催。",
+      "avoid": [
+        "連續用會俾人覺得你永遠都唔得閒",
+        "對上司講 다음에요 有啲冇大冇細，要加 이유"
+      ],
+      "note": "韓國人婉拒首選，比 됐어요 溫和好多。",
+      "tags": [
+        "拒絕",
+        "客套",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-028",
+      "phrase": "안녕히 계세요",
+      "variants": [
+        "안녕히 가세요"
+      ],
+      "romanization": "annyeonghi gyeseyo",
+      "meaning": "道別：走嘅人對留低嘅人講 계세요；留低嘅人對走嘅人講 가세요。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "polite",
+          "warm"
+        ],
+        "function": [
+          "farewell"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "stranger",
+          "colleague",
+          "family"
+        ]
+      },
+      "example": "안녕히 계세요, 다음에 또 올게요.",
+      "situation": "離開店舖、送客、收線。",
+      "avoid": [
+        "掉轉講會好怪：你自己走但講 안녕히 가세요 就係叫對方走",
+        "朋友之間用會太生硬，講 잘 가 或者 이따 봐"
+      ],
+      "note": "韓國人好重視呢個方向之分，講錯會即時覺得你唔熟韓文。",
+      "tags": [
+        "收尾",
+        "客套",
+        "敬語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-029",
+      "phrase": "그럼 이따 봐요",
+      "variants": [
+        "이따 봐요"
+      ],
+      "romanization": "geureom itta bwayo",
+      "meaning": "「咁轉頭見」；同日再見用，唔係「再見」萬用句。",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "warm",
+          "polite"
+        ],
+        "function": [
+          "farewell"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "그럼 이따 봐요, 저녁에 또 보자.",
+      "situation": "放工、落堂、分開行。",
+      "avoid": [
+        "對唔會再見嘅人講會奇怪，要用 안녕히 계세요",
+        "『이따』係今日之內，唔係下次"
+      ],
+      "note": "이따＝稍後（同日）；내일／다음에 才是另一日。",
+      "tags": [
+        "收尾",
+        "日常",
+        "同事"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-030",
+      "phrase": "먼저 들어가겠습니다",
+      "variants": [],
+      "romanization": "meonjeo deureogagetseumnida",
+      "meaning": "「我先走喇」——收工或者聚會早退，對留低嘅人講。",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "boss"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "farewell"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "저는 먼저 들어가겠습니다, 내일 뵙겠습니다.",
+      "situation": "收工、飯局早退。",
+      "avoid": [
+        "對朋友講會太生硬，用 먼저 갈게",
+        "唔好一句都唔講就消失，韓國職場好介意"
+      ],
+      "note": "職場標準收工語；配 수고하셨습니다 更完整。",
+      "tags": [
+        "職場",
+        "收尾",
+        "上司"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-031",
+      "phrase": "잘 먹겠습니다",
+      "variants": [],
+      "romanization": "jal meokgetseumnida",
+      "meaning": "食飯前講嘅「多謝款待／我開動喇」；去人屋企食飯、餐廳上菜前都講。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "polite",
+          "warm"
+        ],
+        "function": [
+          "thanks"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "client",
+          "colleague",
+          "friend"
+        ]
+      },
+      "example": "잘 먹겠습니다, 이렇게 차려 주셔서 감사해요.",
+      "situation": "上菜、去朋友屋企食飯。",
+      "avoid": [
+        "對平輩用半語 잘 먹을게 就夠",
+        "漏講會俾長輩覺得你冇家教"
+      ],
+      "note": "韓國家庭同職場飯局都好重視呢句。",
+      "tags": [
+        "家庭",
+        "餐廳",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-032",
+      "phrase": "잘 먹었습니다",
+      "variants": [],
+      "romanization": "jal meogeotseumnida",
+      "meaning": "食完講嘅「多謝招待／我食飽喇」；離座、收碟前講。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "polite",
+          "warm"
+        ],
+        "function": [
+          "thanks",
+          "farewell"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "client",
+          "colleague",
+          "friend"
+        ]
+      },
+      "example": "잘 먹었습니다, 다음에 제가 살게요.",
+      "situation": "食完飯、去人屋企做客。",
+      "avoid": [
+        "對朋友用半語 잘 먹었어 就夠",
+        "食剩好多講呢句會顯得諷刺"
+      ],
+      "note": "配『다음에 제가 살게요』係韓國飯局標準收尾。",
+      "tags": [
+        "家庭",
+        "餐廳",
+        "收尾"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-033",
+      "phrase": "여보세요",
+      "variants": [],
+      "romanization": "yeoboseyo",
+      "meaning": "電話專用「喂」；面對面講會好怪，甚至似鬧人。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "polite",
+          "blunt"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "client",
+          "colleague",
+          "family"
+        ]
+      },
+      "example": "여보세요, 거기 세탁소죠?",
+      "situation": "接電話、打電話。",
+      "avoid": [
+        "面對面叫人唔可以用 여보세요",
+        "對住配偶叫 여보세요 係另一個意思（喂／親愛的），只限夫妻"
+      ],
+      "note": "여보 本身係『老公／老婆』稱呼，所以對陌生人講 여보세요 只限電話。",
+      "tags": [
+        "開場",
+        "日常",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-034",
+      "phrase": "엄마",
+      "variants": [
+        "어머니"
+      ],
+      "romanization": "eomma",
+      "meaning": "「阿媽」；小朋友、成年人都用，口語親暱。어머니 較正式。",
+      "categories": {
+        "age": [
+          "kid",
+          "teen",
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "mum",
+          "kid"
+        ],
+        "tone": [
+          "warm",
+          "whiny"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family"
+        ]
+      },
+      "example": "엄마, 나 오늘 늦어.",
+      "situation": "屋企叫阿媽、打電話。",
+      "avoid": [
+        "對別人嘅媽媽要用 어머니，唔可以直接叫 엄마",
+        "公開場合大聲叫 엄마 會顯得幼稚"
+      ],
+      "note": "成人都叫 엄마，唔等於幼稚；어머니 係敬語形。",
+      "tags": [
+        "家庭",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-035",
+      "phrase": "아빠",
+      "variants": [
+        "아버지"
+      ],
+      "romanization": "appa",
+      "meaning": "「阿爸」；口語親暱，아버지 較正式。",
+      "categories": {
+        "age": [
+          "kid",
+          "teen",
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "dad"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family"
+        ]
+      },
+      "example": "아빠, 오늘 몇 시에 와?",
+      "situation": "屋企、家庭戲。",
+      "avoid": [
+        "對別人爸爸要講 아버님／아버지",
+        "成年男人對爸爸用 아빠 冇問題，唔係幼稚"
+      ],
+      "note": "아버지 較正式、아버님 更敬。",
+      "tags": [
+        "家庭",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-036",
+      "phrase": "할머니",
+      "variants": [],
+      "romanization": "halmeoni",
+      "meaning": "「阿嫲／婆婆」；亦可以叫街上任何上年紀女人（要小心）。",
+      "categories": {
+        "age": [
+          "elder"
+        ],
+        "archetype": [
+          "elder",
+          "mum"
+        ],
+        "tone": [
+          "warm",
+          "polite"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "stranger"
+        ]
+      },
+      "example": "할머니, 이거 좀 들어 드릴까요?",
+      "situation": "屋企、讓座、敬老場口。",
+      "avoid": [
+        "對唔熟嘅長者直接叫 할머니 可能被嫌老，公共場所叫 어르신 更安全",
+        "半語叫 할매 只限部分地區方言"
+      ],
+      "note": "어르신＝長輩（敬稱）；釜山一帶會用 할매。",
+      "tags": [
+        "家庭",
+        "長輩",
+        "關心"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-037",
+      "phrase": "아저씨",
+      "variants": [],
+      "romanization": "ajeossi",
+      "meaning": "「大叔／先生」；叫中年男人，客氣程度中等，用得唔好會得罪人。",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "street",
+          "delivery"
+        ],
+        "tone": [
+          "blunt",
+          "polite"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger"
+        ]
+      },
+      "example": "아저씨, 이거 좀 옮겨 주실 수 있어요?",
+      "situation": "街頭問路、叫司機、叫送貨。",
+      "avoid": [
+        "對年輕男人叫 아저씨 會令人唔高興（嫌老）",
+        "女性中年叫 아주머니 同樣敏感，最安全係 저기요"
+      ],
+      "note": "韓國年齡敏感，아저씨 界線約 40 歲以上。",
+      "tags": [
+        "街頭",
+        "老派",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-038",
+      "phrase": "이모",
+      "variants": [],
+      "romanization": "imo",
+      "meaning": "「姨媽」；亦係叫餐廳阿姐、小店老闆娘嘅親暱叫法（全韓國通用）。",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "waitress",
+          "shopkeeper",
+          "housewife"
+        ],
+        "tone": [
+          "warm",
+          "polite"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "stranger",
+          "client"
+        ]
+      },
+      "example": "이모, 여기 반찬 좀 더 주세요.",
+      "situation": "小餐廳叫阿姐、家庭戲。",
+      "avoid": [
+        "對年輕女店員叫 이모 會得罪人，只限中年以上",
+        "連鎖店用 이모 唔適合，太親密"
+      ],
+      "note": "韓國小店文化：叫 이모 係親切，唔係親屬關係。",
+      "tags": [
+        "餐廳",
+        "阿姨",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-039",
+      "phrase": "밥 먹었어요?",
+      "variants": [
+        "식사 하셨어요?"
+      ],
+      "romanization": "bap meogeosseoyo",
+      "meaning": "「食咗飯未？」——韓國人當招呼用，唔係真係想約你食飯。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "warm",
+          "polite"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "stranger",
+          "family"
+        ]
+      },
+      "example": "밥 먹었어요? 아직이면 같이 먹어요.",
+      "situation": "同事下午碰面、長輩打招呼。",
+      "avoid": [
+        "對客戶講會太家常，正式場合用 안녕하세요",
+        "唔好當係真邀請；要約就要另外講"
+      ],
+      "note": "等同中文『食咗未』，係關心唔係邀約。",
+      "tags": [
+        "開場",
+        "日常",
+        "關心"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-040",
+      "phrase": "어디 가세요?",
+      "variants": [],
+      "romanization": "eodi gaseyo",
+      "meaning": "「去邊呀？」鄰居、同事撞到嘅隨口招呼，唔一定要答。",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "security",
+          "housewife"
+        ],
+        "tone": [
+          "warm",
+          "gossip"
+        ],
+        "function": [
+          "greet",
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "stranger"
+        ]
+      },
+      "example": "어디 가세요? 이 시간에 웬일이에요?",
+      "situation": "電梯、走廊撞到鄰居。",
+      "avoid": [
+        "對唔熟嘅人問會好似查家宅",
+        "對上司問會太親密，改用 안녕하세요"
+      ],
+      "note": "韓國大廈管理員、鄰居好興咁問；答『네, 잠깐요』就夠。",
+      "tags": [
+        "大廈",
+        "開場",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-041",
+      "phrase": "먼저 가 볼게요",
+      "variants": [
+        "먼저 갈게요"
+      ],
+      "romanization": "meonjeo ga bolgeyo",
+      "meaning": "「我先走喇」；朋友、同事之間，比 들어가겠습니다 輕鬆。",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "polite",
+          "warm"
+        ],
+        "function": [
+          "farewell"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "저 먼저 가 볼게요, 내일 봬요.",
+      "situation": "聚會早退、放工。",
+      "avoid": [
+        "對上司用會太隨便，要講 먼저 들어가겠습니다",
+        "唔好靜靜走，韓國人會覺得你唔尊重"
+      ],
+      "note": "『-볼게요』帶試探語氣，比 갈게요 軟。",
+      "tags": [
+        "收尾",
+        "日常",
+        "同事"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-042",
+      "phrase": "들어오세요",
+      "variants": [],
+      "romanization": "deureooseyo",
+      "meaning": "「請入嚟」；開門迎客、叫人入房。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "polite",
+          "warm"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "friend",
+          "family"
+        ]
+      },
+      "example": "어서 들어오세요, 밖에 춥죠.",
+      "situation": "店舖迎客、屋企開門。",
+      "avoid": [
+        "對長輩要留意語尾，唔好省略 요",
+        "半語 들어와 只對朋友、晚輩"
+      ],
+      "note": "『어서』＝快啲，加咗更熱情。",
+      "tags": [
+        "店舖",
+        "客套",
+        "開場"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-043",
+      "phrase": "앉으세요",
+      "variants": [],
+      "romanization": "anjeuseyo",
+      "meaning": "「請坐」；見客、探病、屋企接待。",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "polite",
+          "warm"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "여기 앉으세요, 금방 준비해 드릴게요.",
+      "situation": "見客、髮型屋、診所。",
+      "avoid": [
+        "半語 앉아 對客人係趕客",
+        "配手勢要手掌向上，唔好用食指指"
+      ],
+      "note": "韓國手勢文化：手掌向上＝請，食指指人＝挑釁。",
+      "tags": [
+        "客套",
+        "店舖",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-044",
+      "phrase": "화장실이 어디예요?",
+      "variants": [],
+      "romanization": "hwajangsiri eodiyeyo",
+      "meaning": "「洗手間喺邊？」",
+      "categories": {
+        "age": [],
+        "archetype": [],
+        "tone": [
+          "polite",
+          "worried"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "client"
+        ]
+      },
+      "example": "화장실이 어디예요? 급해서요.",
+      "situation": "餐廳、商場、公司。",
+      "avoid": [
+        "對店員用半語會失禮",
+        "韓國好多餐廳洗手間要問密碼"
+      ],
+      "note": "韓國餐廳洗手間多數喺店外或要密碼，問店員最快。",
+      "tags": [
+        "餐廳",
+        "店舖",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-core-045",
+      "phrase": "다시 한 번 말씀해 주세요",
+      "variants": [
+        "다시 말씀해 주시겠어요?"
+      ],
+      "romanization": "dasi han beon malsseumhae juseyo",
+      "meaning": "「唔該再講一次」；聽唔清楚、語言不通時嘅救命句。",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "student"
+        ],
+        "tone": [
+          "polite",
+          "helpless"
+        ],
+        "function": [
+          "question",
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague",
+          "stranger"
+        ]
+      },
+      "example": "죄송한데, 다시 한 번 말씀해 주세요.",
+      "situation": "開會聽唔清、電話收得差、外國人問路。",
+      "avoid": [
+        "對朋友用會太生硬，講 다시 말해 줘",
+        "連續問三次會令人唔耐煩，可以改問 메모해 주시겠어요?"
+      ],
+      "note": "敬語版；半語 다시 말해 봐。",
+      "tags": [
+        "客套",
+        "職場",
+        "日常"
+      ],
+      "source": "general"
+    }
+  ]
+}

@@ -42,11 +42,12 @@ plays every seat in turn, in the same order, with the same gates.
 | `short-drama-outline` | brief, skeleton, 创作指引, 分集目录 |
 | `short-drama-characters` | 人物圣经, identityEn, image / voice prompts, characters canvas |
 | `short-drama-art` | scene / prop sheets, scenes / props canvases |
-| `short-drama-script` | per-episode 谈话+行动 scripts, dialogue polish |
+| `short-drama-script` | per-episode 谈话+行动 scripts, the required dialogue review |
 | `short-drama-storyboard` | segments, cuts, video prompts, episode canvas |
 | `short-drama-sound` | voices; the episode's BGM + sound design scored over the edit, Seed Audio briefs |
 | `ads` | commercials and ad creative: formats, product photography, styles, product identity, banner sizes, compliance |
 | `social-media` | every platform's image / video specs, hooks, covers, copy; an episode into teasers and posters, an ad master into every placement |
+| `w-film-dialogue-editor` | the user's dialogue skill (vendored, do not edit here): 8 language guides + corpus via `scripts/ref.mjs`, read while writing lines and in the required dialogue review |
 | `wji` | the CLI itself: auth, workspaces, fsnodes, assets, generation, canvas |
 
 Paths inside a skill are relative to its folder; the engine, schema and fixture live only in

@@ -38,11 +38,12 @@ Director, Social Media Manager, Operator, Proofreader).
 | `short-drama-outline` | brief, skeleton, 创作指引, 分集目录 |
 | `short-drama-characters` | 人物圣经, identityEn, image / voice prompts, characters canvas |
 | `short-drama-art` | scene / prop sheets and canvases |
-| `short-drama-script` | per-episode scripts, dialogue polish |
+| `short-drama-script` | per-episode scripts, the required dialogue review |
 | `short-drama-storyboard` | segments, cuts, video prompts, episode canvas |
 | `short-drama-sound` | voices; the episode's BGM + sound design scored over the edit, Seed Audio briefs |
 | `ads` | commercials and ad creative: formats and durations, product photography and lighting, styles, product identity across generations, banner sizes, compliance |
 | `social-media` | every platform's image / video specs (global + 小红书 / 抖音 / 视频号 / B站 / 公众号 …), hooks, covers, copy; turns an episode into teasers and posters or an ad master into every placement |
+| `w-film-dialogue-editor` | the user's dialogue skill — language guides + corpus for the required dialogue review (vendored as shipped; re-sync from a new release, do not edit here) |
 | `wji` | the CLI itself (mirrored from [wji-cli](https://github.com/ultra-instinct-ai/wji-cli); do not edit here) |
 
 The skills follow the [Agent Skills](https://agentskills.io) spec, so every host reads the same

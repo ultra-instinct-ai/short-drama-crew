@@ -1,0 +1,1829 @@
+{
+  "lang": "ko",
+  "label": "韓文",
+  "version": "1.0",
+  "entries": [
+    {
+      "id": "ko-work-001",
+      "phrase": "확인했습니다",
+      "variants": [],
+      "romanization": "hwaginhaetseumnida",
+      "meaning": "收到／已確認（回報用）；下屬對上司最標準嘅回應，等於「明白，已處理」。",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "polite",
+          "blunt"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "네, 확인했습니다. 바로 수정해서 올리겠습니다.",
+      "situation": "上司交帶完、客件收到之後。",
+      "avoid": [
+        "對客人講會太內部；對客戶要講 확인 부탁드립니다 或 알겠습니다",
+        "半語 확인했어 對上司係大忌"
+      ],
+      "note": "職場萬能回應；韓國上司最想聽呢四個字。",
+      "tags": [
+        "職場",
+        "上司",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-002",
+      "phrase": "바로 처리하겠습니다",
+      "variants": [],
+      "romanization": "baro cheorihagetseumnida",
+      "meaning": "即刻處理（承諾式回覆）；比 확인했습니다 更主動。",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "sales"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "agree",
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "그 건은 바로 처리하겠습니다, 오늘 안으로 연락드릴게요.",
+      "situation": "客訴、上司急件。",
+      "avoid": [
+        "做唔到就唔好講，韓國職場好重視承諾",
+        "對朋友講會太公式"
+      ],
+      "note": "加具體時間（오늘 안으로／내일 오전）更可信。",
+      "tags": [
+        "職場",
+        "客套",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-003",
+      "phrase": "보고드릴 게 있습니다",
+      "variants": [],
+      "romanization": "bogodeuril ge itseumnida",
+      "meaning": "「我有事要向你報告」——下對上開場。",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "polite",
+          "worried"
+        ],
+        "function": [
+          "urge",
+          "agree"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "팀장님, 보고드릴 게 있습니다. 잠깐 시간 괜찮으세요?",
+      "situation": "敲門入上司房、事後匯報。",
+      "avoid": [
+        "對平輩用會太生硬，講 얘기 좀 할게",
+        "唔好一開口就講壞消息，先問對方有冇時間"
+      ],
+      "note": "보고 係下對上專用動詞，唔可以對下屬用。",
+      "tags": [
+        "職場",
+        "上司",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-004",
+      "phrase": "팀장님",
+      "variants": [],
+      "romanization": "timjangnim",
+      "meaning": "組長（職銜＋님）；叫上司一定用職銜，唔會叫名。",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "office",
+          "boss"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "팀장님, 이번 주 일정 확인 부탁드립니다.",
+      "situation": "公司走廊、會議前。",
+      "avoid": [
+        "直接叫上司名字係極失禮",
+        "팀장 後面漏咗 님 就變平輩叫法"
+      ],
+      "note": "韓國職場叫職銜唔叫名，係硬規矩。",
+      "tags": [
+        "職場",
+        "上司",
+        "敬語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-005",
+      "phrase": "과장님",
+      "variants": [],
+      "romanization": "gwajangnim",
+      "meaning": "課長／經理（職銜）。",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "과장님, 이 견적서 봐 주실 수 있으세요?",
+      "situation": "中小企業最常見職級。",
+      "avoid": [
+        "韓國職級同實際職務未必一致，亂叫會尷尬",
+        "初入職最好先問點稱呼"
+      ],
+      "note": "職級排序：사원 → 대리 → 과장 → 차장 → 부장。",
+      "tags": [
+        "職場",
+        "上司",
+        "敬語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-006",
+      "phrase": "대리님",
+      "variants": [],
+      "romanization": "daerimnim",
+      "meaning": "代理（職銜，入職三至六年），唔係「暫代」。",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "대리님, 이거 제가 맡아도 될까요?",
+      "situation": "同事之間、交帶工作。",
+      "avoid": [
+        "唔好以為 대리 係「代理」而唔敢叫",
+        "對女性同事一樣叫 대리님，唔會加 씨"
+      ],
+      "note": "職級：사원→대리→과장。",
+      "tags": [
+        "職場",
+        "同事",
+        "敬語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-007",
+      "phrase": "부장님",
+      "variants": [],
+      "romanization": "bujangnim",
+      "meaning": "部長（職銜，中高層）。",
+      "categories": {
+        "age": [
+          "senior",
+          "mid"
+        ],
+        "archetype": [
+          "boss",
+          "office"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "부장님, 회의 자료 준비됐습니다.",
+      "situation": "部門會議、簽核。",
+      "avoid": [
+        "部長多數年紀大，語氣要更敬",
+        "唔熟就唔好開玩笑"
+      ],
+      "note": "부장 係部門主管，有些公司 부장 已近退休。",
+      "tags": [
+        "職場",
+        "上司",
+        "敬語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-008",
+      "phrase": "오늘 회식 어때요?",
+      "variants": [],
+      "romanization": "oneul hoesik eottaeyo",
+      "meaning": "「今晚公司聚餐點呀？」——邀約／探口風。",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "warm",
+          "funny"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "오늘 회식 어때요? 팀장님이 한턱 내신대요.",
+      "situation": "放工前同事吹水、組內約飯。",
+      "avoid": [
+        "對上司用會好似你發起，要講 회식 하시는 거죠?",
+        "唔想飲就唔好問完又推"
+      ],
+      "note": "회식＝公司聚餐，通常有 1차（食）2차（酒）。",
+      "tags": [
+        "職場",
+        "同事",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-009",
+      "phrase": "한 잔 하실래요?",
+      "variants": [],
+      "romanization": "han jan hasillaeyo",
+      "meaning": "「飲返杯？」敬語邀酒。",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "office",
+          "boss"
+        ],
+        "tone": [
+          "warm",
+          "polite"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "오늘 고생하셨으니 한 잔 하실래요?",
+      "situation": "2차 去酒吧、客戶飯局。",
+      "avoid": [
+        "對唔飲酒嘅人強推會出事，韓國近年大力反強迫飲酒",
+        "對上司要等對方先舉杯"
+      ],
+      "note": "韓國飲酒禮儀：長輩先舉杯、側身飲、雙手接杯。",
+      "tags": [
+        "職場",
+        "酒吧",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-010",
+      "phrase": "야근해야 될 것 같아요",
+      "variants": [],
+      "romanization": "yageunhaeya doel geot gatayo",
+      "meaning": "「睇嚟要加班」——無奈、預告。",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "complain",
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "오늘 야근해야 될 것 같아요, 자료가 아직 안 왔어요.",
+      "situation": "放工前、交更。",
+      "avoid": [
+        "對上司講會似投訴工作量，要加原因",
+        "唔好成日講，會變標籤"
+      ],
+      "note": "야근＝加班；韓國工時長，呢句係共同語言。",
+      "tags": [
+        "職場",
+        "抱怨",
+        "同事"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-011",
+      "phrase": "칼퇴할게요",
+      "variants": [
+        "칼퇴"
+      ],
+      "romanization": "kaltoehalgeyo",
+      "meaning": "「我準時走㗎喇」；칼퇴＝칼같이 퇴근，一夠鐘即閃。",
+      "categories": {
+        "age": [
+          "young"
+        ],
+        "archetype": [
+          "office",
+          "slacker"
+        ],
+        "tone": [
+          "funny",
+          "blunt"
+        ],
+        "function": [
+          "farewell",
+          "boast"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "오늘은 칼퇴할게요, 약속 있어서요.",
+      "situation": "放工鐘響、同事互寸。",
+      "avoid": [
+        "對上司講會好似你唔肯做，要睇氣氛",
+        "正式文件唔好用"
+      ],
+      "note": "2020 年代職場潮語；老一輩唔一定識。",
+      "tags": [
+        "職場",
+        "潮語",
+        "同事"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-012",
+      "phrase": "상사한테 혼났어요",
+      "variants": [],
+      "romanization": "sangsahante honnasseoyo",
+      "meaning": "「俾上司鬧」——事後吐苦水。",
+      "categories": {
+        "age": [
+          "young"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "complain",
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "friend"
+        ]
+      },
+      "example": "상사한테 혼났어요, 보고를 안 했대요.",
+      "situation": "茶水間、放工後。",
+      "avoid": [
+        "對上司本人講會變抱怨",
+        "혼나다 只適用上對下，反過來要講 지적했다"
+      ],
+      "note": "半語 혼났어；동생、후배 都用得。",
+      "tags": [
+        "職場",
+        "抱怨",
+        "同事"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-013",
+      "phrase": "자기소개 해 주세요",
+      "variants": [],
+      "romanization": "jagisogae hae juseyo",
+      "meaning": "「請自我介紹」——面試開場。",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "boss",
+          "office"
+        ],
+        "tone": [
+          "polite",
+          "blunt"
+        ],
+        "function": [
+          "question",
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "먼저 간단하게 자기소개 해 주세요.",
+      "situation": "面試、新同事入職。",
+      "avoid": [
+        "對客人講會好怪，呢句係面試專用",
+        "唔好加『간단하게』又即刻打斷"
+      ],
+      "note": "韓國面試標準開場，通常一分鐘。",
+      "tags": [
+        "面試",
+        "職場",
+        "上司"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-014",
+      "phrase": "희망 연봉은요?",
+      "variants": [],
+      "romanization": "huimang yeonbongeunyo",
+      "meaning": "「期望年薪係幾多？」面試／HR 電話。",
+      "categories": {
+        "age": [
+          "mid"
+        ],
+        "archetype": [
+          "boss",
+          "office"
+        ],
+        "tone": [
+          "polite",
+          "blunt"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "희망 연봉은요? 저희 기준도 같이 말씀드릴게요.",
+      "situation": "面試最後一輪、HR 電話。",
+      "avoid": [
+        "問得太直接會嚇親人，要先講公司範圍",
+        "韓國多數講年薪唔講月薪"
+      ],
+      "note": "年薪制普遍；回答通常講「前職 기준 +10%」。",
+      "tags": [
+        "面試",
+        "職場",
+        "講價"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-015",
+      "phrase": "지원 동기가 뭐예요?",
+      "variants": [],
+      "romanization": "jiwon donggiga mwoyeyo",
+      "meaning": "「你點解想應徵？」面試必問。",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "boss"
+        ],
+        "tone": [
+          "polite",
+          "blunt"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "지원 동기가 뭐예요? 우리 회사를 어떻게 알게 됐죠?",
+      "situation": "面試。",
+      "avoid": [
+        "對在職同事講會好怪",
+        "『돈 벌려고요』唔可以照講"
+      ],
+      "note": "韓國面試好重視『你對公司有幾了解』。",
+      "tags": [
+        "面試",
+        "職場",
+        "上司"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-016",
+      "phrase": "결과는 언제 알 수 있을까요?",
+      "variants": [],
+      "romanization": "gyeolgwaneun eonje al su isseulkkayo",
+      "meaning": "「幾時知結果？」面試收尾。",
+      "categories": {
+        "age": [
+          "young"
+        ],
+        "archetype": [
+          "office",
+          "student"
+        ],
+        "tone": [
+          "polite",
+          "worried"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "결과는 언제 알 수 있을까요? 다음 주까지 기다리면 될까요?",
+      "situation": "面試完、等 offer。",
+      "avoid": [
+        "問得太急會顯得冇耐性",
+        "唔好問『떨어졌죠?』"
+      ],
+      "note": "韓國多數一至兩星期內通知。",
+      "tags": [
+        "面試",
+        "職場",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-017",
+      "phrase": "견적서 보내 드릴게요",
+      "variants": [],
+      "romanization": "gyeonjeokseo bonae deurilgeyo",
+      "meaning": "「我 send 報價單俾你」——裝修／工程。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "craftsman",
+          "designer"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "현장 보고 나서 견적서 보내 드릴게요.",
+      "situation": "睇完樓、報價。",
+      "avoid": [
+        "未睇現場就報價，韓國師傅會覺得唔專業",
+        "對客人用半語 보낼게 會失禮"
+      ],
+      "note": "견적서＝報價單；韓國裝修多數分 자재비／인건비。",
+      "tags": [
+        "裝修",
+        "客戶",
+        "職場"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-018",
+      "phrase": "추가 비용이 발생합니다",
+      "variants": [],
+      "romanization": "chuga biyongi balsaenghamnida",
+      "meaning": "「會有額外費用」——工程變更時講。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "craftsman"
+        ],
+        "tone": [
+          "polite",
+          "worried"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "conflict"
+        ]
+      },
+      "example": "이 부분 철거하면 추가 비용이 발생합니다.",
+      "situation": "現場發現舊喉、改圖。",
+      "avoid": [
+        "講之前一定要有相／錄音，否則客人會覺得你亂收費",
+        "唔好臨尾先講，會變衝突"
+      ],
+      "note": "韓國裝修最常吵嘅就係 추가 비용。",
+      "tags": [
+        "裝修",
+        "客戶",
+        "講價"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-019",
+      "phrase": "일정이 좀 밀렸습니다",
+      "variants": [],
+      "romanization": "iljeongi jom millyeotseumnida",
+      "meaning": "「進度遲咗」——老實交代。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "craftsman"
+        ],
+        "tone": [
+          "worried",
+          "polite"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "죄송합니다, 일정이 좀 밀렸습니다. 다음 주 화요일엔 끝납니다.",
+      "situation": "交更、向客交代。",
+      "avoid": [
+        "只講 밀렸습니다 唔講新日期，客人會更嬲",
+        "對上司要即刻提替代方案"
+      ],
+      "note": "工地常用 공정（工序）講進度。",
+      "tags": [
+        "裝修",
+        "職場",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-020",
+      "phrase": "자재가 늦게 들어와서요",
+      "variants": [],
+      "romanization": "jajaega neutge deureowaseoyo",
+      "meaning": "「係因為材料遲到」——解釋用。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "craftsman"
+        ],
+        "tone": [
+          "helpless",
+          "polite"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "자재가 늦게 들어와서요, 오늘은 마감만 하고 갈게요.",
+      "situation": "工地、向客人解釋。",
+      "avoid": [
+        "成日用呢句會變藉口",
+        "對客人講要同時講幾時到貨"
+      ],
+      "note": "자재＝材料；韓國建材等貨期長。",
+      "tags": [
+        "裝修",
+        "地盤",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-021",
+      "phrase": "시공은 다음 주에 시작합니다",
+      "variants": [],
+      "romanization": "sigongeun daeum jue sijakhamnida",
+      "meaning": "「下星期開工」——施工安排。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "craftsman",
+          "designer"
+        ],
+        "tone": [
+          "polite",
+          "blunt"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "시공은 다음 주에 시작합니다, 그 전에 자재 들어옵니다.",
+      "situation": "簽約後、開工前。",
+      "avoid": [
+        "對客人用半語會失禮",
+        "시공 係工程用語，朋友之間唔會講"
+      ],
+      "note": "시공＝施工；口語都會講 공사。",
+      "tags": [
+        "裝修",
+        "地盤",
+        "職場"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-022",
+      "phrase": "하자 보수는 무상입니다",
+      "variants": [],
+      "romanization": "haja bosuneun musangimnida",
+      "meaning": "「瑕疵維修免費」——合約講解。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "craftsman",
+          "designer"
+        ],
+        "tone": [
+          "polite",
+          "blunt"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "하자 보수는 무상입니다, 1년 안에 생긴 건 다 고쳐 드려요.",
+      "situation": "交樓、簽約解釋保養。",
+      "avoid": [
+        "唔好講到 무상 就萬能，範圍要寫清楚",
+        "對客人要用淺白啲再解釋一次"
+      ],
+      "note": "하자＝瑕疵／甩漏；韓國裝修合約一定有 하자 보수 條款。",
+      "tags": [
+        "裝修",
+        "客戶",
+        "職場"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-023",
+      "phrase": "도면 다시 확인해 주세요",
+      "variants": [],
+      "romanization": "domyeon dasi hwagin hae juseyo",
+      "meaning": "「請再核對圖紙」。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "designer",
+          "craftsman"
+        ],
+        "tone": [
+          "polite",
+          "worried"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "도면 다시 확인해 주세요, 여기 치수가 안 맞아요.",
+      "situation": "工地對圖、開工前。",
+      "avoid": [
+        "對客人用半語會好冇禮貌",
+        "發現問題要即講，唔好等做完先講"
+      ],
+      "note": "도면＝圖紙；치수＝尺寸。",
+      "tags": [
+        "裝修",
+        "地盤",
+        "職場"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-024",
+      "phrase": "자재비가 많이 올랐어요",
+      "variants": [],
+      "romanization": "jajaebiga mani ollasseoyo",
+      "meaning": "「材料費漲咗好多」。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "craftsman",
+          "client"
+        ],
+        "tone": [
+          "complain",
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "요즘 자재비가 많이 올랐어요, 견적을 다시 봐야 할 것 같습니다.",
+      "situation": "報價前、同客講加價。",
+      "avoid": [
+        "唔好一句就加價，要列明邊樣加",
+        "再加『요즘 다 그래요』會變推卸"
+      ],
+      "note": "2022 年後韓國建材漲價，係常見對白。",
+      "tags": [
+        "裝修",
+        "講價",
+        "客戶"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-025",
+      "phrase": "주문하시겠어요?",
+      "variants": [],
+      "romanization": "jumunhasigesseoyo",
+      "meaning": "「要唔要落單？」服務業。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "waitress",
+          "sales"
+        ],
+        "tone": [
+          "polite",
+          "warm"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "주문하시겠어요? 준비되시면 불러 주세요.",
+      "situation": "餐廳、咖啡店櫃檯。",
+      "avoid": [
+        "對客人用半語 주문할래? 係趕客",
+        "客人未睇完餐牌就問會造成壓力"
+      ],
+      "note": "韓國餐廳多數自己去櫃檯落單，唔一定有人問。",
+      "tags": [
+        "餐廳",
+        "服務員",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-026",
+      "phrase": "불편을 드려 죄송합니다",
+      "variants": [],
+      "romanization": "bulpyeoneul deuryeo joesonghamnida",
+      "meaning": "「造成不便非常抱歉」——客服標準句。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "sales",
+          "office"
+        ],
+        "tone": [
+          "polite",
+          "worried"
+        ],
+        "function": [
+          "apology"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "불편을 드려 죄송합니다, 바로 조치하겠습니다.",
+      "situation": "客訴、延誤、系統壞。",
+      "avoid": [
+        "只講對唔住冇方案，客人會更嬲",
+        "朋友之間講會好造作"
+      ],
+      "note": "客服訓練第一句；配具體補償更有效。",
+      "tags": [
+        "投訴",
+        "客套",
+        "職場"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-027",
+      "phrase": "바로 확인해서 연락드리겠습니다",
+      "variants": [],
+      "romanization": "baro hwaginhaeseo yeollakdeurigetseumnida",
+      "meaning": "「我即刻查完再聯絡你」。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "sales",
+          "office"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "agree",
+          "comfort"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "제가 바로 확인해서 연락드리겠습니다, 번호 남겨 주세요.",
+      "situation": "電話客服、前線應對。",
+      "avoid": [
+        "講完唔跟進係大忌",
+        "對上司講會似拖延，要俾時間"
+      ],
+      "note": "韓國客服最常講嘅緩兵句。",
+      "tags": [
+        "投訴",
+        "職場",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-028",
+      "phrase": "환불 처리해 드리겠습니다",
+      "variants": [],
+      "romanization": "hwanbul cheorihae deurigetseumnida",
+      "meaning": "「我幫你辦退款」。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "sales",
+          "shopkeeper"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "agree",
+          "comfort"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "확인됐습니다, 환불 처리해 드리겠습니다.",
+      "situation": "退貨、服務失誤。",
+      "avoid": [
+        "唔好未確認就承諾，韓國客人會錄音",
+        "退款政策要講清楚期限"
+      ],
+      "note": "환불＝退款；카드 취소 係信用卡取消。",
+      "tags": [
+        "投訴",
+        "店舖",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-029",
+      "phrase": "담당자가 자리에 없습니다",
+      "variants": [],
+      "romanization": "damdangjaga jarie eopseumnida",
+      "meaning": "「負責人唔喺位」。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "office",
+          "sales"
+        ],
+        "tone": [
+          "polite",
+          "helpless"
+        ],
+        "function": [
+          "refuse",
+          "dismiss"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "담당자가 자리에 없습니다, 들어오시면 연락드리라고 할게요.",
+      "situation": "前線擋客、電話轉接。",
+      "avoid": [
+        "講完就收線會激嬲客人，一定要接下一步",
+        "唔好用嚟擋熟人"
+      ],
+      "note": "前線標準擋法；韓國客訴好介意『唔知道』。",
+      "tags": [
+        "投訴",
+        "職場",
+        "冷面"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-030",
+      "phrase": "이건 제 권한 밖입니다",
+      "variants": [],
+      "romanization": "igeon je gwolhan bakkimnida",
+      "meaning": "「呢件事唔喺我權限範圍」。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "office",
+          "sales"
+        ],
+        "tone": [
+          "cold",
+          "polite"
+        ],
+        "function": [
+          "refuse",
+          "dismiss"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "이건 제 권한 밖입니다, 팀장님께 여쭤봐 주세요.",
+      "situation": "客戶要求超權、跨部門。",
+      "avoid": [
+        "對上司講會似頂撞",
+        "只講唔得但唔轉介，客人會覺得你推卸"
+      ],
+      "note": "配『담당자 연결해 드리겠습니다』就唔會咁冷。",
+      "tags": [
+        "職場",
+        "拒絕",
+        "冷面"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-031",
+      "phrase": "확인 부탁드립니다",
+      "variants": [],
+      "romanization": "hwagin butakdeurimnida",
+      "meaning": "「唔該核對一下」——email 常用。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "첨부 파일 확인 부탁드립니다.",
+      "situation": "email、群組交帶。",
+      "avoid": [
+        "對上司用會似指派工作，要加 검토",
+        "口頭講會太生硬"
+      ],
+      "note": "韓國 email 標準收尾，比 확인해 주세요 更商務。",
+      "tags": [
+        "職場",
+        "客套",
+        "同事"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-032",
+      "phrase": "메일로 정리해서 보내 드리겠습니다",
+      "variants": [],
+      "romanization": "meillo jeongnihaeseo bonae deurigetseumnida",
+      "meaning": "「我整理好 email 俾你」。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "회의 내용은 메일로 정리해서 보내 드리겠습니다.",
+      "situation": "開完會、口頭講完重要事。",
+      "avoid": [
+        "講完唔 send 就係職場死罪",
+        "對朋友講會太公式"
+      ],
+      "note": "韓國職場重視『말로 한 건 없다』，一定要留紀錄。",
+      "tags": [
+        "職場",
+        "同事",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-033",
+      "phrase": "이번 주까지는 어려울 것 같습니다",
+      "variants": [],
+      "romanization": "ibeon jukkjajineun eoryeoul geot gatseumnida",
+      "meaning": "「今個星期內恐怕做唔到」——婉拒。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "office",
+          "craftsman"
+        ],
+        "tone": [
+          "polite",
+          "worried"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "이번 주까지는 어려울 것 같습니다, 다음 주 초엔 가능합니다.",
+      "situation": "推期、拒絕急單。",
+      "avoid": [
+        "只講做唔到會變拒絕，要俾替代時間",
+        "對上司用要講理由"
+      ],
+      "note": "韓國人婉拒鍾意用 -것 같습니다 軟化。",
+      "tags": [
+        "拒絕",
+        "職場",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-034",
+      "phrase": "최대한 맞춰 보겠습니다",
+      "variants": [],
+      "romanization": "choedaehan matchwo bogetseumnida",
+      "meaning": "「我盡量配合」。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "office",
+          "sales"
+        ],
+        "tone": [
+          "polite",
+          "worried"
+        ],
+        "function": [
+          "agree",
+          "comfort"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "일정은 최대한 맞춰 보겠습니다.",
+      "situation": "客要急、上司壓期。",
+      "avoid": [
+        "講完做唔到會失信，唔好乜都應",
+        "對客人講要加具體範圍"
+      ],
+      "note": "韓國職場萬用太極手，但要跟進。",
+      "tags": [
+        "職場",
+        "客套",
+        "客戶"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-035",
+      "phrase": "잠시만 기다려 주세요",
+      "variants": [],
+      "romanization": "jamsiman gidaryeo juseyo",
+      "meaning": "「唔該等一等」——服務業。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "sales",
+          "waitress"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "잠시만 기다려 주세요, 바로 준비해 드릴게요.",
+      "situation": "櫃檯、電話、排隊。",
+      "avoid": [
+        "講完要真係快返，唔好消失",
+        "對客人用半語會趕客"
+      ],
+      "note": "韓國服務業標準句；加 손님 更客氣。",
+      "tags": [
+        "店舖",
+        "客套",
+        "服務員"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-036",
+      "phrase": "책임자 나오세요",
+      "variants": [],
+      "romanization": "chaegimja naoseyo",
+      "meaning": "「叫負責人出嚟」——興師問罪。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "client",
+          "housewife"
+        ],
+        "tone": [
+          "angry",
+          "threat"
+        ],
+        "function": [
+          "urge",
+          "complain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "conflict",
+          "client"
+        ]
+      },
+      "example": "책임자 나오세요, 이거 어떻게 된 거예요?",
+      "situation": "客訴爆煲、店舖嘈交。",
+      "avoid": [
+        "對店員用會變人身攻擊，要清楚講問題",
+        "有 CCTV 嘅連鎖店，語氣要收"
+      ],
+      "note": "投訴升級句；半語命令形，火氣好重。",
+      "tags": [
+        "投訴",
+        "抱怨",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-037",
+      "phrase": "사장님 계세요?",
+      "variants": [],
+      "romanization": "sajangnim gyeseyo",
+      "meaning": "「老闆喺唔喺？」上門搵人。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "client",
+          "shopkeeper"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "question",
+          "greet"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "stranger"
+        ]
+      },
+      "example": "사장님 계세요? 어제 맡긴 수선 맡으러 왔어요.",
+      "situation": "小店、洗衣店、餐廳找老闆。",
+      "avoid": [
+        "對大型連鎖店講會怪，應該問 직원분",
+        "사장님 亦係對客人嘅敬稱，唔一定指店主"
+      ],
+      "note": "韓國 사장님 有兩個意思：店主／客人（稱呼對方老闆）。",
+      "tags": [
+        "店舖",
+        "老闆",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-038",
+      "phrase": "이거 AS 되나요?",
+      "variants": [],
+      "romanization": "igeo eiseu doenaeyo",
+      "meaning": "「呢件有冇保養／可以維修？」AS＝售後服務。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "client",
+          "shopkeeper"
+        ],
+        "tone": [
+          "polite",
+          "worried"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "english-mix",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "이거 AS 되나요? 산 지 두 달밖에 안 됐어요.",
+      "situation": "電器店、手機維修。",
+      "avoid": [
+        "對長輩講 AS 可能聽唔明，要講 수리",
+        "正式書面要寫 A/S"
+      ],
+      "note": "AS 係韓國式英文縮寫（After Service），全國通用。",
+      "tags": [
+        "店舖",
+        "外來語",
+        "客戶"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-039",
+      "phrase": "납기일 지켜 주셔야 합니다",
+      "variants": [],
+      "romanization": "napgiil jikyeo jusyeoya hamnida",
+      "meaning": "「交貨期一定要守」——採購／工程。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "boss",
+          "craftsman"
+        ],
+        "tone": [
+          "cold",
+          "polite"
+        ],
+        "function": [
+          "warn",
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "납기일 지켜 주셔야 합니다, 다음 주 현장에 들어가야 해서요.",
+      "situation": "採購追貨、工地。",
+      "avoid": [
+        "對合作廠商講太硬會影響關係，要加原因",
+        "口氣唔好變威脅"
+      ],
+      "note": "납기일＝交貨期；韓國工程文件常用。",
+      "tags": [
+        "裝修",
+        "職場",
+        "客戶"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-040",
+      "phrase": "현장 상황 먼저 보러 갈게요",
+      "variants": [],
+      "romanization": "hyeonjang sanghwang meonjeo boreo galgeyo",
+      "meaning": "「我先去現場睇環境」。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "craftsman",
+          "designer"
+        ],
+        "tone": [
+          "polite",
+          "blunt"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "현장 상황 먼저 보러 갈게요, 사진도 찍어 올게요.",
+      "situation": "接 job 前、開工前。",
+      "avoid": [
+        "唔去現場就報價會被師傅笑",
+        "對客人講要約時間"
+      ],
+      "note": "현장＝現場；韓國裝修第一步一定係 답사（勘察）。",
+      "tags": [
+        "裝修",
+        "地盤",
+        "客戶"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-041",
+      "phrase": "철거부터 시작하죠",
+      "variants": [],
+      "romanization": "cheolgobuteo sijakhajyo",
+      "meaning": "「由拆嘢開始啦」——開工分派。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "craftsman",
+          "street"
+        ],
+        "tone": [
+          "blunt",
+          "polite"
+        ],
+        "function": [
+          "urge",
+          "agree"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "철거부터 시작하죠, 자재는 내일 들어옵니다.",
+      "situation": "工地開工、分派工作。",
+      "avoid": [
+        "對客人講會太隨便，要講 철거부터 진행하겠습니다",
+        "철거 前要確認煤氣水電"
+      ],
+      "note": "철거＝拆除；하죠 帶提議語氣，同事之間常用。",
+      "tags": [
+        "裝修",
+        "地盤",
+        "師傅"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-042",
+      "phrase": "마감은 언제까지면 될까요?",
+      "variants": [],
+      "romanization": "magameun eonjekkajimyeon doelkkayo",
+      "meaning": "「要幾時前交貨？」問期限。",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "craftsman",
+          "designer"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "마감은 언제까지면 될까요? 그거에 맞춰 일정 짤게요.",
+      "situation": "接 job、報價前。",
+      "avoid": [
+        "唔問清楚就開工，後面一定吵",
+        "對客人用半語會失禮"
+      ],
+      "note": "마감＝截稿／完工期限；裝修同設計都用。",
+      "tags": [
+        "裝修",
+        "職場",
+        "客戶"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-043",
+      "phrase": "발이 넓으시네요",
+      "variants": [],
+      "romanization": "bari neolbeusineyo",
+      "literal": "腳板好闊",
+      "meaning": "「你人脈好廣」——字面係腳板闊。",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "office",
+          "sales"
+        ],
+        "tone": [
+          "polite",
+          "warm"
+        ],
+        "function": [
+          "praise"
+        ],
+        "register": "idiom",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "발이 넓으시네요, 어디 가나 아는 분이 다 계세요.",
+      "situation": "應酬、介紹人脈。",
+      "avoid": [
+        "對晚輩講會似奉承，語氣要自然",
+        "唔好對唔熟嘅人講，會似拍馬屁"
+      ],
+      "note": "韓國慣用語：발이 넓다＝交遊廣闊。",
+      "tags": [
+        "職場",
+        "讚",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-044",
+      "phrase": "윗물이 맑아야 아랫물이 맑다",
+      "variants": [],
+      "romanization": "winmuri malgaya araenmuri makda",
+      "meaning": "「上樑不正下樑歪」——字面：上面水清，下面水才清。",
+      "categories": {
+        "age": [
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "office",
+          "street"
+        ],
+        "tone": [
+          "sarcastic",
+          "blunt"
+        ],
+        "function": [
+          "complain",
+          "warn"
+        ],
+        "register": "proverb",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "conflict"
+        ]
+      },
+      "example": "윗물이 맑아야 아랫물이 맑다고, 팀장님부터 좀 바뀌셔야죠.",
+      "situation": "公司怨氣、長輩教訓。",
+      "avoid": [
+        "當面講上級就係宣戰，只可以背後或者半開玩笑",
+        "對客人講會令人一頭霧水"
+      ],
+      "note": "韓國俗語，用嚟講上司同下屬嘅關係。",
+      "tags": [
+        "職場",
+        "老派",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-work-045",
+      "phrase": "회의 몇 시예요?",
+      "variants": [],
+      "romanization": "hoeui myeot siyeyo",
+      "meaning": "「會議幾點？」",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "polite",
+          "blunt"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "회의 몇 시예요? 자료는 제가 준비할게요.",
+      "situation": "公司走廊、群組。",
+      "avoid": [
+        "對上司用半語會失禮",
+        "韓國會議時間常改，要再確認"
+      ],
+      "note": "회의＝會議；公司仲有 보고 회의、티타임 等講法。",
+      "tags": [
+        "職場",
+        "同事",
+        "日常"
+      ],
+      "source": "general"
+    }
+  ]
+}

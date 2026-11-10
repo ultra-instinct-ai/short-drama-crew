@@ -1,0 +1,2476 @@
+{
+  "lang": "zh-hk",
+  "label": "香港粵語（港式）",
+  "version": "1.0",
+  "entries": [
+    {
+      "id": "hk-core-001",
+      "phrase": "唔該",
+      "meaning": "勞煩／多謝，用於服務同幫忙",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "thanks"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "friend",
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "唔該，借借。",
+      "situation": "人多要人讓路，或者人哋幫咗你手",
+      "avoid": [
+        "收到禮物、讚美人，要用「多謝」，唔係「唔該」"
+      ],
+      "note": "香港最常用嘅一個詞。可以係請求（唔該借借），亦可以係答謝（唔該晒）。",
+      "tags": [
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-002",
+      "phrase": "多謝",
+      "meaning": "多謝，用於禮物、讚美、餽贈",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "thanks"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "friend",
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "多謝你份禮物。",
+      "situation": "收禮、畀人讚、人哋請食飯",
+      "avoid": [
+        "叫人讓路、叫人幫手，唔好講「多謝」，要用「唔該」"
+      ],
+      "note": "「多謝」擺明係受咗人恩惠；「唔該」係勞煩人。香港人分得好清楚。",
+      "tags": [
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-003",
+      "phrase": "唔好意思",
+      "meaning": "打擾人之前嘅緩衝，或者細微認錯",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "apology"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "colleague",
+          "client",
+          "family"
+        ]
+      },
+      "example": "唔好意思，阻你一陣。",
+      "situation": "要打斷人、要問嘢、遲到少少",
+      "note": "比「對唔住」輕。真做錯事、傷到人要升級用「對唔住」。",
+      "tags": [
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-004",
+      "phrase": "對唔住",
+      "meaning": "正式道歉",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "apology"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "friend",
+          "colleague",
+          "client",
+          "stranger"
+        ]
+      },
+      "example": "對唔住，係我搞錯。",
+      "situation": "真做錯、傷到人、要認錯",
+      "note": "香港人日常好少講，講得出口通常係真係覺得嚴重。",
+      "tags": [
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-005",
+      "phrase": "冇問題",
+      "meaning": "得，我可以",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "client",
+          "family"
+        ]
+      },
+      "example": "冇問題，我幫你搞。",
+      "situation": "人哋求你幫忙、問你得唔得",
+      "note": "服務行業常用；講嘅時候通常帶笑。",
+      "tags": [
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-006",
+      "phrase": "得啦",
+      "meaning": "夠喇／唔想再講",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "cold"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "得啦，我知喇。",
+      "situation": "人哋講到第三四次，你唔想再聽",
+      "avoid": [
+        "對客戶講會好冇禮貌",
+        "對長輩講要小心，會被話「乜嘢態度」"
+      ],
+      "note": "兩個字，睇語氣可以係冇耐性，亦可以係安撫（「得啦得啦」）。",
+      "tags": [
+        "冷面"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-007",
+      "phrase": "是但",
+      "meaning": "是但啦，你揀",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "是但啦，你話事。",
+      "situation": "揀唔落、唔想煩、唔想負責任",
+      "avoid": [
+        "對客講「是但」等於唔專業"
+      ],
+      "note": "「是但」同「求其」唔同：是但＝我唔揀；求其＝做得馬虎。",
+      "tags": [
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-008",
+      "phrase": "求其",
+      "meaning": "求其做住先，唔認真",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "family"
+        ]
+      },
+      "example": "求其食啲嘢先。",
+      "situation": "趕時間、唔講究、暫時頂住",
+      "avoid": [
+        "同客講「求其」會令人覺得你交行貨"
+      ],
+      "note": "「求其」有貶義，等於 hea 做；但朋友之間講「求其啦」係放鬆。",
+      "tags": [
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-009",
+      "phrase": "你話呢",
+      "meaning": "反問，答案好明顯",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "你話呢？我似唔似好得閒？",
+      "situation": "人哋問一條答案擺明嘅問題",
+      "avoid": [
+        "對客、對老細用會好寸"
+      ],
+      "note": "語氣一升就係寸；語氣一沉就係無奈。",
+      "tags": [
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-010",
+      "phrase": "我點知",
+      "meaning": "我唔知，亦都唔關我事",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "我點知呀？我又唔係佢。",
+      "situation": "被追問一啲你根本冇可能知嘅事",
+      "note": "常配「呀」拉長，帶少少委屈。",
+      "tags": [
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-011",
+      "phrase": "係咩",
+      "meaning": "真係？帶質疑",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "係咩？我聽講唔係喎。",
+      "situation": "人哋講嘢你唔信，或者想佢再解釋",
+      "note": "兩個字可以好中性（真係咩？），亦可以好寸（係咩～）。",
+      "tags": [
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-012",
+      "phrase": "咁嘅",
+      "meaning": "嫌棄、唔收貨",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "咁嘅？你認真啲啦。",
+      "situation": "人哋交嘅嘢唔及格",
+      "note": "通常係「咁嘅？」獨立成句，配一個皺眉。",
+      "tags": [
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-013",
+      "phrase": "即係點",
+      "meaning": "追問，要求對方講清楚",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client",
+          "friend"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ]
+      },
+      "example": "即係點？你講清楚。",
+      "situation": "對方講到一舊雲，你要一個答案",
+      "note": "阿駿式直球：唔幫對方補完，直接要佢講白。 ／另註：直球核心句，聽唔明曖昧就問「即係點」；2026 後生仔常用。",
+      "tags": [
+        "學生",
+        "直球"
+      ],
+      "source": "general",
+      "avoid": [
+        "對客講會似唔耐煩"
+      ]
+    },
+    {
+      "id": "hk-core-014",
+      "phrase": "有冇搞錯",
+      "meaning": "唔滿、覺得荒謬",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "complain"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague",
+          "stranger"
+        ]
+      },
+      "example": "有冇搞錯，又話今日交貨？",
+      "situation": "被人拖數、被人放飛機、安排混亂",
+      "avoid": [
+        "對客講會變成投訴；要睇你係唔係想升級"
+      ],
+      "note": "香港人常用嘅溫和發洩，唔算粗口。",
+      "tags": [
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-015",
+      "phrase": "離譜",
+      "meaning": "太誇張、唔合理",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "complain"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "everyday",
+        "profanity": 1,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "加價加到咁，真係離譜。",
+      "situation": "價錢、安排、行為超出常理",
+      "note": "prof 1：情緒宣洩但唔粗俗，長輩都講。",
+      "tags": [
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-016",
+      "phrase": "頂",
+      "meaning": "頂唔順嘅短促發洩",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "complain"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "everyday",
+        "profanity": 1,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "family"
+        ]
+      },
+      "example": "頂，又漏帶鎖匙。",
+      "situation": "小事先衰、自己蝦碌",
+      "avoid": [
+        "喺長輩、客面前講要收細聲"
+      ],
+      "note": "單字，唔係粗口，但屬於「唔好聽」嘅一類。",
+      "tags": [
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-017",
+      "phrase": "癡線",
+      "meaning": "黐線，話人／事唔正常",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "complain"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "everyday",
+        "profanity": 1,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "family"
+        ]
+      },
+      "example": "癡線，咁夜仲開工？",
+      "situation": "見到唔合理嘅事",
+      "avoid": [
+        "直接話人「癡線」係侮辱，要小心"
+      ],
+      "note": "原本寫「黐線」，口語多寫「癡線」。",
+      "tags": [
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-018",
+      "phrase": "唔係化",
+      "meaning": "唔係吖嘛，難以置信",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "surprised"
+        ],
+        "function": [
+          "surprise"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "唔係化？你又唔記得？",
+      "situation": "聽到離譜消息",
+      "note": "帶少少責備，多數對熟人講。",
+      "tags": [
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-019",
+      "phrase": "咁都得",
+      "meaning": "咁樣都可以？",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "surprised"
+        ],
+        "function": [
+          "surprise"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "咁都得？佢真係當人傻。",
+      "situation": "見到有人鑽空子、rule 都唔跟",
+      "note": "可以係佩服，亦可以係恥笑，睇尾音。",
+      "tags": [
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-020",
+      "phrase": "算啦",
+      "meaning": "唔好再拗，放過件事",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "算啦，同佢講都嘥氣。",
+      "situation": "爭拗落去冇結果",
+      "note": "「算啦」係收兵；「算數」係唔追究、唔找數，兩個唔同。",
+      "tags": [
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-021",
+      "phrase": "算數",
+      "meaning": "唔計較、唔再追究",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "cold"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "呢次算數，下次唔好。",
+      "situation": "畀最後一次機會",
+      "note": "有「我記住」嘅意味，唔係真大方。",
+      "tags": [
+        "冷面"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-022",
+      "phrase": "唔使",
+      "meaning": "唔需要",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "refuse"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "friend",
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "唔使喇，我自己嚟。",
+      "situation": "人哋想幫你、想請你",
+      "avoid": [
+        "講得太快會似拒絕好意，加「唔該」會軟啲"
+      ],
+      "note": "「唔使」＋「喇」＝客氣拒絕；「唔使」＋「你」＝有啲硬。",
+      "tags": [
+        "拒絕",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-023",
+      "phrase": "唔使客氣",
+      "meaning": "唔需要多謝",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "refuse"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "唔使客氣，舉手之勞。",
+      "situation": "人哋多謝你",
+      "note": "服務行業標準收尾；太多次會似推開人。",
+      "tags": [
+        "拒絕",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-024",
+      "phrase": "咁好啦",
+      "meaning": "就咁決定",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "client",
+          "family"
+        ]
+      },
+      "example": "咁好啦，聽日見。",
+      "situation": "傾完嘢、拍板",
+      "note": "香港人拍板好少講「好的」，多數「好呀」「咁好啦」「就咁」。",
+      "tags": [
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-025",
+      "phrase": "睇下點",
+      "meaning": "睇下情況再算",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "睇下點先啦，而家講唔埋。",
+      "situation": "未肯定、要等消息",
+      "note": "常用嚟拖，但唔算講大話。",
+      "tags": [
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-026",
+      "phrase": "睇住先",
+      "meaning": "睇實、小心啲",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "worried"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "你睇住先，唔好亂嚟。",
+      "situation": "交帶人睇實件事，或者提人小心",
+      "note": "「睇住」有兩個意思：睇實（monitor）／小心（watch out）。",
+      "tags": [
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-027",
+      "phrase": "慢慢嚟",
+      "meaning": "唔急，一步一步",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "comfort"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "friend",
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "慢慢嚟，唔急。",
+      "situation": "安慰新手、叫人唔好急",
+      "note": "對客講係好嘅服務語言；對自己人講係真心。",
+      "tags": [
+        "關心"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-028",
+      "phrase": "搞掂",
+      "meaning": "搞好了",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "搞掂，你睇下。",
+      "situation": "完成任務、交貨",
+      "note": "香港最常用嘅「完成」；唔會講「完成了」。",
+      "tags": [
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-029",
+      "phrase": "搞唔掂",
+      "meaning": "做唔嚟、應付唔到",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "呢單我搞唔掂，要你幫手。",
+      "situation": "能力或時間唔夠",
+      "note": "認低威但唔算認錯，係求救訊號。",
+      "tags": [
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-030",
+      "phrase": "頂住先",
+      "meaning": "臨時撐住",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "comfort"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "family"
+        ]
+      },
+      "example": "頂住先，下個月請人。",
+      "situation": "資源不足但要繼續",
+      "note": "工程、餐廳、辦公室都用；有「捱」嘅意味。",
+      "tags": [
+        "關心"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-031",
+      "phrase": "撐住",
+      "meaning": "捱住、唔好放棄",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "encourage"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "撐住呀，好快完。",
+      "situation": "鼓勵人捱過難關",
+      "note": "比「加油」地道；香港人好少講「加油」。",
+      "tags": [
+        "關心"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-032",
+      "phrase": "冇事",
+      "meaning": "唔緊要、唔使擔心",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "comfort"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "friend",
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "冇事，甩少少啫。",
+      "situation": "安撫人、淡化問題",
+      "avoid": [
+        "真係有大事就唔好講「冇事」，會似隱瞞"
+      ],
+      "note": "香港人淡化問題嘅慣用語；有時係真，有時係唔想講。",
+      "tags": [
+        "關心"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-033",
+      "phrase": "唔緊要",
+      "meaning": "唔重要、唔使介意",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "comfort"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "friend",
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "唔緊要，下次小心啲。",
+      "situation": "人哋道歉、出小錯",
+      "note": "比「冇事」正式少少，對客都用得。",
+      "tags": [
+        "關心"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-034",
+      "phrase": "唔怪得之",
+      "meaning": "明白咗點解",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "surprised"
+        ],
+        "function": [
+          "surprise"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "唔怪得之你咁攰，原來通宵。",
+      "situation": "知道原因之後恍然大悟",
+      "note": "亦講「唔怪得」。多數帶「之」或者「啦」。",
+      "tags": [
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-035",
+      "phrase": "早講啦",
+      "meaning": "你早啲講就好",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "complain"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "早講啦，我啱啱做完。",
+      "situation": "人哋太遲先講重要資訊",
+      "note": "責備但唔重；通常帶無奈。",
+      "tags": [
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-036",
+      "phrase": "我早知",
+      "meaning": "我早就知道",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "proud"
+        ],
+        "function": [
+          "boast"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "我早知佢會咁講。",
+      "situation": "證明自己有先見之明",
+      "note": "香港人嘅「馬後炮」自嘲式認叻。",
+      "tags": [
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-037",
+      "phrase": "唔知喎",
+      "meaning": "我唔知（唔關我事）",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "cold"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "family"
+        ]
+      },
+      "example": "唔知喎，你問返佢。",
+      "situation": "推走一個問題",
+      "avoid": [
+        "對客講「唔知喎」＝趕客"
+      ],
+      "note": "「喎」字令語氣變成推卸；冇咗個「喎」就係中性。",
+      "tags": [
+        "冷面"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-038",
+      "phrase": "你決定",
+      "meaning": "你話事，我唔想揀",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "cold"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "你決定啦，我冇所謂。",
+      "situation": "唔想負責任、唔想再討論",
+      "note": "表面尊重，實際抽離。",
+      "tags": [
+        "冷面"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-039",
+      "phrase": "你鍾意啦",
+      "meaning": "隨便你（冷)",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "cold"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "你鍾意啦，我唔理。",
+      "situation": "嬲緊、放棄勸",
+      "avoid": [
+        "對客講會好冷漠"
+      ],
+      "note": "同「你決定」比，「你鍾意啦」有火。",
+      "tags": [
+        "冷面"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-040",
+      "phrase": "咁又係",
+      "meaning": "都係嘅，你講得啱",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "咁又係，冇得輸。",
+      "situation": "被人講服",
+      "note": "香港人讓步嘅典型講法，唔會講「你說得對」。",
+      "tags": [
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-041",
+      "phrase": "講真",
+      "meaning": "老實講",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "family"
+        ]
+      },
+      "example": "講真，你覺得得唔得？",
+      "situation": "要對方講真心話",
+      "note": "開場白，好過「說實話」。",
+      "tags": [
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-042",
+      "phrase": "真係㗎",
+      "meaning": "真嘅？",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "surprised"
+        ],
+        "function": [
+          "surprise"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "真係㗎？唔好呃我。",
+      "situation": "聽到意外消息",
+      "note": "同「係咩」比，「真係㗎」較真心，「係咩」較質疑。",
+      "tags": [
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-043",
+      "phrase": "講呢啲",
+      "meaning": "唔好講呢啲（轉話題）",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "講呢啲？你唔好轉話題。",
+      "situation": "有人講中痛處、或者想帶過一件事",
+      "avoid": [
+        "對長輩講會顯得頂嘴"
+      ],
+      "note": "有兩個用法：唔想聽（轉話題）／唔好講客氣話（唔使多謝）。靠語氣分。",
+      "tags": [
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-044",
+      "phrase": "你唔明㗎喇",
+      "meaning": "你唔會明白",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "cold"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "你唔明㗎喇，你未試過。",
+      "situation": "唔想解釋、劃清界線",
+      "avoid": [
+        "對客、對伴侶講好傷人"
+      ],
+      "note": "香港式收線；講完通常唔會再解釋。",
+      "tags": [
+        "冷面"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-045",
+      "phrase": "到時先算",
+      "meaning": "到時再算",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "到時先算啦，而家煩都冇用。",
+      "situation": "唔想計劃、想逃避",
+      "note": "典型香港人拖延哲學；配「啦」會更放鬆。",
+      "tags": [
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-046",
+      "phrase": "執生",
+      "meaning": "臨場應變",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "encourage"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "friend",
+          "family"
+        ]
+      },
+      "example": "冇稿㗎，你執生啦。",
+      "situation": "交帶一件冇既定做法嘅事",
+      "note": "香港職場核心詞：冇人教你，自己搞。",
+      "tags": [
+        "關心",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-047",
+      "phrase": "頂硬上",
+      "meaning": "明知辛苦都要上",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "encourage"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "friend",
+          "family"
+        ]
+      },
+      "example": "唔夠人，都要頂硬上。",
+      "situation": "硬着頭皮做",
+      "note": "有種悲壯感；標叔型角色會用。",
+      "tags": [
+        "關心"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-048",
+      "phrase": "走先",
+      "meaning": "我先走",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "farewell"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "我走先喇，聽日見。",
+      "situation": "離開一個場合",
+      "note": "唔會講「我先走了」；一定係「走先」。",
+      "tags": [
+        "客套",
+        "惜字如金"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-049",
+      "phrase": "遲啲傾",
+      "meaning": "遲啲再講",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "farewell"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "遲啲傾，唔得閒住。",
+      "situation": "收線、完結對話",
+      "note": "客氣版收線；可以係真，可以係唔想再傾。",
+      "tags": [
+        "收尾",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-050",
+      "phrase": "得閒飲茶",
+      "meaning": "有機會再見（社交收尾）",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "farewell"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "client",
+          "stranger"
+        ]
+      },
+      "example": "得閒飲茶啦。",
+      "situation": "完結一次見面、應酬收尾",
+      "note": "香港人嘅「再聯絡」；九成唔會真係約。長輩好常用。",
+      "tags": [
+        "飲茶",
+        "收尾",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-051",
+      "phrase": "下次啦",
+      "meaning": "今次唔得（婉拒）",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "今次唔得閒，下次啦。",
+      "situation": "婉拒邀請",
+      "note": "「下次」＝冇下次，但唔會講死。",
+      "tags": [
+        "拒絕",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-052",
+      "phrase": "睇下先",
+      "meaning": "睇下情況先（拖）",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague",
+          "friend"
+        ]
+      },
+      "example": "我睇下先，覆你。",
+      "situation": "未想答覆、要拖時間",
+      "note": "銷售、客服最常用；唔算講大話但通常冇下文。",
+      "tags": [
+        "拒絕",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-053",
+      "phrase": "問下先",
+      "meaning": "要問過人先（拖）",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "呢個要問下先，我唔話得事。",
+      "situation": "唔想即刻答、要推上去",
+      "note": "基層員工嘅擋箭牌；阿駿用會好有效。",
+      "tags": [
+        "拒絕",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-054",
+      "phrase": "盡量啦",
+      "meaning": "我會盡量（但唔保證）",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ],
+        "archetype": [
+          "office",
+          "sales",
+          "craftsman"
+        ]
+      },
+      "example": "我盡量啦，唔敢包。",
+      "situation": "唔想應承死",
+      "note": "香港職場最常用嘅「軟拒絕」；等於「多數唔得」。 ／另註：「盡量」係香港職場最大嘅暗號：講得愈輕，愈做唔到。同「一定得」完全相反。",
+      "tags": [
+        "OL",
+        "拒絕",
+        "客套"
+      ],
+      "source": "general",
+      "avoid": [
+        "對客講完最好補一個確實時間，唔係會覺得你耍佢"
+      ]
+    },
+    {
+      "id": "hk-core-055",
+      "phrase": "冇所謂",
+      "meaning": "我冇意見",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "我冇所謂，你哋話事。",
+      "situation": "唔想參與決定",
+      "note": "「冇所謂」唔等於贊成，好多時係唔想理。",
+      "tags": [
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-056",
+      "phrase": "好過冇",
+      "meaning": "差過冇，但都叫有",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "comfort"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "得兩嚿水，好過冇啦。",
+      "situation": "接受一個唔理想嘅結果",
+      "note": "香港人務實嘅自我安慰。",
+      "tags": [
+        "關心"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-057",
+      "phrase": "講你都唔信",
+      "meaning": "你唔會相信",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "surprised"
+        ],
+        "function": [
+          "surprise"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "講你都唔信，我今朝撞到佢。",
+      "situation": "準備講一件離奇事",
+      "note": "開場白，等於「你猜都猜唔到」。",
+      "tags": [
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-058",
+      "phrase": "你估我唔知",
+      "meaning": "你以為我唔知？",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "challenge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "你估我唔知你借咗我把遮？",
+      "situation": "對方以為你唔知，其實你知",
+      "note": "寸但唔算攻擊；阿駿語氣可以好平。",
+      "tags": [
+        "踩"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-059",
+      "phrase": "你講咩呀",
+      "meaning": "聽唔明／唔認同",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "family",
+          "client"
+        ]
+      },
+      "example": "你講咩呀？我聽唔明。",
+      "situation": "對方講得含糊",
+      "note": "阿駿招牌：唔追問意思，直接話聽唔明。",
+      "tags": [
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-060",
+      "phrase": "等陣",
+      "meaning": "等一等",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "client",
+          "family"
+        ]
+      },
+      "example": "等陣，我睇睇。",
+      "situation": "要人停一停",
+      "note": "比「請等一下」自然；同「等陣先」相通。",
+      "tags": [
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-061",
+      "phrase": "轉頭",
+      "meaning": "遲啲、轉個頭",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "轉頭覆你。",
+      "situation": "應承人遲少少再跟進",
+      "note": "香港時間單位：轉頭＝幾分鐘到幾個鐘，唔一定真。",
+      "tags": [
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-062",
+      "phrase": "頭先",
+      "meaning": "剛才",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "family"
+        ]
+      },
+      "example": "頭先邊個打嚟？",
+      "situation": "講返啱啱發生嘅事",
+      "note": "唔會講「剛才」。",
+      "tags": [
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-063",
+      "phrase": "差唔多",
+      "meaning": "差不多、接近",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "client",
+          "family"
+        ]
+      },
+      "example": "差唔多搞完。",
+      "situation": "交代進度",
+      "note": "香港人好少講「差不多」，多數「差唔多」。",
+      "tags": [
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-064",
+      "phrase": "睇怕",
+      "meaning": "恐怕、睇嚟",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "worried"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "family"
+        ]
+      },
+      "example": "睇怕今日都做唔完。",
+      "situation": "預感結果唔好",
+      "note": "帶悲觀；配「都」更肯定。",
+      "tags": [
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-065",
+      "phrase": "唔出奇",
+      "meaning": "唔意外",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "cold"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "family"
+        ]
+      },
+      "example": "佢會咁做，唔出奇。",
+      "situation": "對一件事唔覺得驚訝",
+      "note": "香港人對荒謬事嘅標準回應。",
+      "tags": [
+        "冷面"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-066",
+      "phrase": "一於",
+      "meaning": "一於咁話，決定咗",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "proud"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "一於咁話，星期五開工。",
+      "situation": "拍板",
+      "note": "比較老派／街坊；後生仔少講。",
+      "tags": [
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-067",
+      "phrase": "至緊要",
+      "meaning": "最緊要",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "encourage"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "至緊要人冇事。",
+      "situation": "安慰、總結",
+      "note": "老派講法，「最緊要」較新。",
+      "tags": [
+        "關心"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-068",
+      "phrase": "你講晒",
+      "meaning": "你講晒喇（你贏）",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "你講晒啦，我唔講。",
+      "situation": "爭拗到尾、唔想再爭",
+      "note": "表面讓步，實際係「你贏晒」。",
+      "tags": [
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-069",
+      "phrase": "有咩幫到你",
+      "meaning": "有咩可以幫你（服務用語）",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "stranger"
+        ]
+      },
+      "example": "有咩幫到你呀？",
+      "situation": "店員、客服、接待",
+      "note": "香港服務業標準開場；語氣要輕。",
+      "tags": [
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-core-070",
+      "phrase": "即管講",
+      "meaning": "有咩就講",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "encourage"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "有咩問題即管講。",
+      "situation": "鼓勵人開口",
+      "note": "「即管」＝隨便、唔怕；長輩常用。",
+      "tags": [
+        "關心"
+      ],
+      "source": "general"
+    }
+  ]
+}

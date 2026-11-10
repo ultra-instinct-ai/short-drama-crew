@@ -1,0 +1,1897 @@
+{
+  "lang": "ko",
+  "label": "韓文",
+  "version": "1.0",
+  "entries": [
+    {
+      "id": "ko-slang-001",
+      "phrase": "킹받네",
+      "variants": [],
+      "romanization": "kingbatne",
+      "meaning": "「超煩／激到我」；킹（king）＋받네，比 짜증나 更誇張、更好笑。",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "slacker"
+        ],
+        "tone": [
+          "complain",
+          "funny"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "아 진짜 킹받네, 또 카톡 씹혔어.",
+      "situation": "同朋友呻、網上留言。",
+      "avoid": [
+        "對長輩、客戶講會聽唔明，甚至覺得你幼稚",
+        "正式場合、書面文件一律唔用"
+      ],
+      "note": "2021 年左右開始紅；2026 年仍然係 20 代常用，但 10 代開始覺得舊。",
+      "tags": [
+        "潮語",
+        "網絡用語",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-002",
+      "phrase": "레게노",
+      "variants": [],
+      "romanization": "regeno",
+      "meaning": "「傳說級」；레전드（legend）嘅變體，用嚟讚到爆或者反諷。",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "slacker"
+        ],
+        "tone": [
+          "surprised",
+          "funny"
+        ],
+        "function": [
+          "praise",
+          "surprise"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "이번 영상 레게노, 조회수 300만이야.",
+      "situation": "網上留言、朋友吹水。",
+      "avoid": [
+        "對長輩講會一頭霧水",
+        "用嚟讚人時要睇語氣，講得太平會變反諷"
+      ],
+      "note": "2020-2022 高峰期；現在偏舊，後生用會覺得你扮後生。",
+      "tags": [
+        "潮語",
+        "網絡用語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-003",
+      "phrase": "억까",
+      "variants": [],
+      "romanization": "eokka",
+      "meaning": "「無理取鬧咁踩」；억울한（冤）＋까（踩），指無理由嘅攻擊。",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "sassy",
+          "complain"
+        ],
+        "function": [
+          "complain",
+          "disagree"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "conflict"
+        ]
+      },
+      "example": "그건 억까지, 걔가 뭘 잘못했어?",
+      "situation": "網上護航、朋友被圍攻。",
+      "avoid": [
+        "對當事人講會似幫倒忙",
+        "唔好對上司講，會變質疑判斷"
+      ],
+      "note": "2020 年代網絡用語；까 本身係「踩」嘅黑話。",
+      "tags": [
+        "潮語",
+        "網絡用語",
+        "踩"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-004",
+      "phrase": "중꺾마",
+      "variants": [],
+      "romanization": "jungkkeokma",
+      "meaning": "「重要嘅係唔認輸嘅心」；중요한 건 꺾이지 않는 마음 嘅縮寫，用嚟自我鼓勵。",
+      "categories": {
+        "age": [
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "slacker"
+        ],
+        "tone": [
+          "proud",
+          "warm"
+        ],
+        "function": [
+          "encourage"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "중꺾마, 오늘도 버티자.",
+      "situation": "考試、追夢、連敗之後。",
+      "avoid": [
+        "對長輩講會唔知你講乜",
+        "用嚟安慰人時唔好太輕佻"
+      ],
+      "note": "2022 世界盃後爆紅；2026 年偏舊，多用嚟自嘲。",
+      "tags": [
+        "潮語",
+        "網絡用語",
+        "年輕人"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-005",
+      "phrase": "갓생",
+      "variants": [],
+      "romanization": "gatssaeng",
+      "meaning": "「神級人生」；갓（god）＋생（生活），指自律、有生產力咁活。",
+      "categories": {
+        "age": [
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "proud",
+          "funny"
+        ],
+        "function": [
+          "boast"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "요즘 갓생 살아서 아침 6시에 일어나.",
+      "situation": "自嘲式炫耀、減肥打卡。",
+      "avoid": [
+        "對真係好摺嘅朋友講會似串",
+        "對長輩講會覺得你浮誇"
+      ],
+      "note": "2020 年代初流行；常配『갓생 살기』。",
+      "tags": [
+        "潮語",
+        "年輕人",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-006",
+      "phrase": "TMI",
+      "variants": [],
+      "romanization": "ti-em-ai",
+      "meaning": "「太多唔需要嘅資訊」；講完自己都覺得多餘嘅細節。",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "funny",
+          "gossip"
+        ],
+        "function": [
+          "gossip",
+          "joke"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "TMI지만 어제 소개팅 갔다 왔어.",
+      "situation": "朋友聚會、網上留言開場。",
+      "avoid": [
+        "對客戶、長輩講會冇禮貌",
+        "正式匯報唔可以用"
+      ],
+      "note": "英文縮寫，韓國 2010 年代後通用；意思同英文一樣。",
+      "tags": [
+        "網絡用語",
+        "外來語",
+        "八卦"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-007",
+      "phrase": "워라밸",
+      "variants": [],
+      "romanization": "worabal",
+      "meaning": "「工作生活平衡」；work-life balance 嘅韓國式縮寫。",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "polite",
+          "complain"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "english-mix",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "friend"
+        ]
+      },
+      "example": "이 회사 워라밸은 진짜 좋아.",
+      "situation": "見工、同事比較公司。",
+      "avoid": [
+        "對上司講會似暗示公司剝削",
+        "老一輩未必識，要解釋"
+      ],
+      "note": "韓國 2018 年後因為每週 52 小時工作制而爆紅。",
+      "tags": [
+        "外來語",
+        "職場",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-008",
+      "phrase": "내로남불",
+      "variants": [],
+      "romanization": "naeronambul",
+      "meaning": "「自己做得，別人做就唔得」；내가 하면 로맨스, 남이 하면 불륜 嘅縮寫。",
+      "categories": {
+        "age": [
+          "young",
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "office",
+          "housewife"
+        ],
+        "tone": [
+          "sarcastic",
+          "complain"
+        ],
+        "function": [
+          "complain",
+          "insult"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "friend",
+          "conflict"
+        ]
+      },
+      "example": "내로남불도 정도가 있지, 자기만 늦는 건 봐주더라.",
+      "situation": "公司、家庭、政治討論。",
+      "avoid": [
+        "對當事人當面講就係宣戰",
+        "對長輩講會好唔客氣"
+      ],
+      "note": "2010 年代後期開始流行，已經入咗日常語。",
+      "tags": [
+        "潮語",
+        "踩",
+        "職場"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-009",
+      "phrase": "미쳤어?",
+      "variants": [],
+      "romanization": "michyeosseo",
+      "meaning": "「你傻咗呀？」嘅半語；可以係真嬲，亦可以係朋友之間嘅驚嘆。",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "surprised",
+          "angry"
+        ],
+        "function": [
+          "challenge",
+          "surprise"
+        ],
+        "register": "slang",
+        "profanity": 1,
+        "socialDistance": [
+          "friend",
+          "family"
+        ]
+      },
+      "example": "미쳤어? 지금 그걸 여기서 말해?",
+      "situation": "朋友講錯嘢、情侶吵架。",
+      "avoid": [
+        "對長輩、客戶講就係侮辱",
+        "朋友之間講要帶笑，唔係會真嗌交"
+      ],
+      "note": "p1 屬輕微發洩；半語，只對平輩或晚輩。",
+      "tags": [
+        "直球",
+        "抱怨",
+        "半語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-010",
+      "phrase": "진짜?",
+      "variants": [],
+      "romanization": "jinjja",
+      "meaning": "「真係？」——表示唔信、驚訝或者想確認。",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "surprised",
+          "polite"
+        ],
+        "function": [
+          "question",
+          "surprise"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "진짜? 걔가 그걸 혼자 다 했다고?",
+      "situation": "聽八卦、確認消息。",
+      "avoid": [
+        "對長輩用半語 진짜? 要加 요：진짜요?",
+        "連續講會顯得敷衍"
+      ],
+      "note": "萬能反應詞；진짜요? 就係半敬語。",
+      "tags": [
+        "直球",
+        "日常",
+        "半語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-011",
+      "phrase": "헐",
+      "variants": [],
+      "romanization": "heol",
+      "meaning": "「吓？」「有冇搞錯」；短促嘅驚嘆，帶少少難以置信。",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "surprised",
+          "funny"
+        ],
+        "function": [
+          "surprise"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "헐, 이게 얼마야.",
+      "situation": "睇到價錢、聽到消息。",
+      "avoid": [
+        "對長輩講會太隨便",
+        "正式場合唔用"
+      ],
+      "note": "單字感嘆詞；2020 年代後仍然常用。",
+      "tags": [
+        "直球",
+        "日常",
+        "年輕人"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-012",
+      "phrase": "대박",
+      "variants": [],
+      "romanization": "daebak",
+      "meaning": "「勁呀／癲呀」；可以係讚，亦可以係「唔係啩」。",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "student",
+          "office",
+          "housewife"
+        ],
+        "tone": [
+          "surprised",
+          "proud"
+        ],
+        "function": [
+          "praise",
+          "surprise"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "대박, 이걸 여기서 만나네.",
+      "situation": "驚喜、讚人、睇到離譜嘢。",
+      "avoid": [
+        "對客戶講會太隨便",
+        "連講三次會變口頭禪，冇晒力"
+      ],
+      "note": "韓國國民級感嘆詞，年齡層好廣。",
+      "tags": [
+        "直球",
+        "日常",
+        "讚"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-013",
+      "phrase": "짜증나",
+      "variants": [],
+      "romanization": "jjajeungna",
+      "meaning": "「好煩」；比 킹받네 平實，係真係燥。",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "complain",
+          "angry"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "짜증나, 버스 또 놓쳤어.",
+      "situation": "等車、加班、排隊。",
+      "avoid": [
+        "對客戶講會出事",
+        "對長輩講會似發脾氣"
+      ],
+      "note": "半語；敬語係 짜증나요。",
+      "tags": [
+        "抱怨",
+        "日常",
+        "半語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-014",
+      "phrase": "눈팅",
+      "variants": [],
+      "romanization": "nunting",
+      "meaning": "「潛水睇文」；눈（眼）＋팅，只睇唔留言。",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "shy",
+          "funny"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "눈팅만 하지 말고 댓글 좀 남겨.",
+      "situation": "論壇、群組、直播。",
+      "avoid": [
+        "對長輩講會聽唔明",
+        "正式場合唔用"
+      ],
+      "note": "韓國網絡術語，2000 年代已有，仲在用。",
+      "tags": [
+        "網絡用語",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-015",
+      "phrase": "좋아요 눌러 주세요",
+      "variants": [],
+      "romanization": "joayo nulleo juseyo",
+      "meaning": "「唔該畀個 like」；影片收尾常用。",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "student",
+          "designer"
+        ],
+        "tone": [
+          "polite",
+          "funny"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "friend"
+        ]
+      },
+      "example": "영상 끝까지 보셨으면 좋아요 눌러 주세요.",
+      "situation": "YouTube、IG 收尾。",
+      "avoid": [
+        "直播以外嘅場合講會好奇怪",
+        "對長輩講會太網絡"
+      ],
+      "note": "韓國創作者標準收尾；配 구독 更完整。",
+      "tags": [
+        "網絡用語",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-016",
+      "phrase": "선 넘네",
+      "variants": [],
+      "romanization": "seon neomne",
+      "meaning": "「你踩過界喇」；對方講嘢／做嘢越界時用。",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "student"
+        ],
+        "tone": [
+          "sassy",
+          "angry"
+        ],
+        "function": [
+          "challenge",
+          "insult"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "conflict",
+          "colleague"
+        ]
+      },
+      "example": "야, 선 넘네, 그건 아니잖아.",
+      "situation": "同事講錯笑話、朋友寸過龍。",
+      "avoid": [
+        "對上司講等於反面",
+        "對長輩講係極唔客氣"
+      ],
+      "note": "『선을 넘다』（越線）嘅口語短句，2010 年代後常用。",
+      "tags": [
+        "踩",
+        "直球",
+        "半語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-017",
+      "phrase": "너 몇 살이야?",
+      "variants": [],
+      "romanization": "neo myeot sariya",
+      "meaning": "「你幾歲呀？」——唔係真係問年齡，係話對方冇大冇細、唔識規矩。",
+      "categories": {
+        "age": [
+          "young",
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "office",
+          "street"
+        ],
+        "tone": [
+          "sassy",
+          "threat"
+        ],
+        "function": [
+          "challenge",
+          "insult"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "conflict",
+          "colleague"
+        ]
+      },
+      "example": "너 몇 살이야? 어른한테 그렇게 말해?",
+      "situation": "後輩頂嘴、下屬唔識分寸。",
+      "avoid": [
+        "對真係細路講會變真問年齡",
+        "外地人會真係答年齡，語氣要配表情"
+      ],
+      "note": "韓國年齡階序重，呢句等於用年齡壓人，殺傷力好大。",
+      "tags": [
+        "踩",
+        "半語",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-018",
+      "phrase": "닥쳐",
+      "variants": [],
+      "romanization": "dakchyeo",
+      "meaning": "「收聲」；比 조용히 해 重好多，係直接侮辱。",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "street",
+          "slacker"
+        ],
+        "tone": [
+          "angry",
+          "threat"
+        ],
+        "function": [
+          "insult",
+          "threaten"
+        ],
+        "register": "profanity",
+        "profanity": 2,
+        "socialDistance": [
+          "conflict",
+          "friend"
+        ]
+      },
+      "example": "닥쳐, 지금 네가 할 말이 아니야.",
+      "situation": "衝突、嗌交、地盤互罵。",
+      "avoid": [
+        "對長輩、上司講就係直接翻臉，之後冇得補救",
+        "寫給平台審查：p2 已屬攻擊性語言，一般綜藝、廣告、品牌片唔可以出"
+      ],
+      "note": "半語命令形，本身就係壓人；韓國放送會 bleep 或改字幕。只可以對平輩／晚輩用，對長輩用係嚴重侮辱。",
+      "tags": [
+        "踩",
+        "半語",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-019",
+      "phrase": "꺼져",
+      "variants": [],
+      "romanization": "kkeojyeo",
+      "meaning": "「躝開」；比 닥쳐 更絕，等於切斷關係。",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "street",
+          "slacker"
+        ],
+        "tone": [
+          "angry",
+          "cold"
+        ],
+        "function": [
+          "insult",
+          "dismiss"
+        ],
+        "register": "profanity",
+        "profanity": 2,
+        "socialDistance": [
+          "conflict",
+          "friend"
+        ]
+      },
+      "example": "꺼져, 다시는 말 걸지 마.",
+      "situation": "分手、反面、被纏住。",
+      "avoid": [
+        "對家人、長輩講會造成長期裂痕",
+        "平台尺度：p2 攻擊性，短劇要 15 禁以上，廣告／合家歡內容一定唔可以出"
+      ],
+      "note": "半語；敬語 꺼지세요 一樣侮辱，只係禮貌啲包裝。對任何人都係重話。",
+      "tags": [
+        "踩",
+        "半語",
+        "冷面"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-020",
+      "phrase": "씨발",
+      "variants": [],
+      "romanization": "ssibal",
+      "meaning": "韓國最常見嘅粗口，等於「X你」；多數係發洩，唔一定鬧人。",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "street",
+          "slacker",
+          "craftsman"
+        ],
+        "tone": [
+          "angry",
+          "surprised"
+        ],
+        "function": [
+          "insult"
+        ],
+        "register": "profanity",
+        "profanity": 3,
+        "socialDistance": [
+          "conflict",
+          "friend"
+        ]
+      },
+      "example": "씨발, 진짜 이게 말이 돼?",
+      "situation": "撞親、爆螺絲、收到壞消息。",
+      "avoid": [
+        "任何平台嘅廣告、品牌片、合家歡時段一律唔可以出",
+        "對長輩、客戶講係即時反面，甚至會報警"
+      ],
+      "note": "p3 真粗口：韓國放送法下要 bleep／剪走，OTT 15 禁以上先可以保留；短劇寫實向可用，但要有分級。半語，唔論對象都係侮辱。",
+      "tags": [
+        "踩",
+        "直球",
+        "半語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-021",
+      "phrase": "어이없네",
+      "variants": [],
+      "romanization": "eoieomne",
+      "meaning": "「有冇搞錯」；覺得對方行為荒謬到無話可說。",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "housewife"
+        ],
+        "tone": [
+          "sarcastic",
+          "helpless"
+        ],
+        "function": [
+          "dismiss",
+          "complain"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "conflict"
+        ]
+      },
+      "example": "어이없네, 내가 왜 그걸 물어봐?",
+      "situation": "聽到離譜要求、被屈。",
+      "avoid": [
+        "對上司講會變頂嘴",
+        "對長輩講會好冇禮貌"
+      ],
+      "note": "半語；敬語 어이없어요 就溫和好多。",
+      "tags": [
+        "冷面",
+        "抱怨",
+        "半語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-022",
+      "phrase": "뭐라는 거야",
+      "variants": [],
+      "romanization": "mworaneun geoya",
+      "meaning": "「你講乜呀？」；聽唔明或者覺得對方講嘢離譜。",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "sassy",
+          "helpless"
+        ],
+        "function": [
+          "dismiss",
+          "disagree"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "conflict"
+        ]
+      },
+      "example": "뭐라는 거야, 한 마디도 못 알아듣겠어.",
+      "situation": "吵架、聽唔明對方邏輯。",
+      "avoid": [
+        "對長輩、客戶講係挑釁",
+        "正式場合要講 무슨 말씀이신지"
+      ],
+      "note": "半語；敬語版 무슨 말씀이세요? 完全另一個禮貌程度。",
+      "tags": [
+        "冷面",
+        "直球",
+        "半語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-023",
+      "phrase": "아 진짜",
+      "variants": [],
+      "romanization": "a jinjja",
+      "meaning": "「唉，真係」；唔耐煩、火起時嘅口頭禪。",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "student",
+          "office",
+          "mum"
+        ],
+        "tone": [
+          "complain",
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "아 진짜, 오늘 왜 이래.",
+      "situation": "小朋友唔聽話、開會拖延。",
+      "avoid": [
+        "對客戶講會失禮",
+        "對長輩講要加 요：아 진짜요"
+      ],
+      "note": "『아』＋『진짜』，語氣重音放 진짜。同單獨講 진짜? 唔同。",
+      "tags": [
+        "抱怨",
+        "日常",
+        "半語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-024",
+      "phrase": "됐고",
+      "variants": [],
+      "romanization": "dwaetgo",
+      "meaning": "「算啦／唔講呢啲」；想截斷話題或者轉台。",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "cold",
+          "blunt"
+        ],
+        "function": [
+          "dismiss",
+          "refuse"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "됐고, 그 얘긴 그만하자.",
+      "situation": "朋友翻舊帳、同事又想加班。",
+      "avoid": [
+        "對上司用會似打斷",
+        "對長輩講係冇大冇細"
+      ],
+      "note": "半語；뒤에 말 붙여 轉話題：됐고 밥이나 먹자。",
+      "tags": [
+        "冷面",
+        "拒絕",
+        "半語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-025",
+      "phrase": "뭐하노?",
+      "variants": [],
+      "romanization": "mwohano",
+      "meaning": "「你做乜呀？」——慶尚道（釜山）腔，帶少少粗魯嘅親切。",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "street",
+          "student",
+          "craftsman"
+        ],
+        "tone": [
+          "blunt",
+          "funny"
+        ],
+        "function": [
+          "question",
+          "challenge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family"
+        ]
+      },
+      "example": "뭐하노? 이 시간에 여기서.",
+      "situation": "釜山街頭、朋友撞到。",
+      "avoid": [
+        "首爾用會被當成挑釁或者扮嘢",
+        "對長輩用 -노 尾會好唔尊重"
+      ],
+      "note": "경상도 사투리；-노 語尾係地域標記，唔係標準語。",
+      "tags": [
+        "方言",
+        "街頭",
+        "半語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-026",
+      "phrase": "밥 뭇나?",
+      "variants": [],
+      "romanization": "bap munna",
+      "meaning": "「食咗飯未？」——慶尚道腔，等於標準語 밥 먹었어?。",
+      "categories": {
+        "age": [
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "street",
+          "elder",
+          "craftsman"
+        ],
+        "tone": [
+          "warm",
+          "blunt"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "stranger"
+        ]
+      },
+      "example": "밥 뭇나? 아침부터 안 보이길래.",
+      "situation": "釜山、大邱街坊打招呼。",
+      "avoid": [
+        "首爾人講會覺得你扮地域口音",
+        "對客戶、上司用會唔專業"
+      ],
+      "note": "경상도 사투리；뭇나 係 먹었나 嘅方言形，長輩之間好常見。",
+      "tags": [
+        "方言",
+        "關心",
+        "開場"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-027",
+      "phrase": "말 놓으셔도 돼요",
+      "variants": [],
+      "romanization": "mal noeusyeodo dwaeyo",
+      "meaning": "「你同我講半語都得」；由後輩主動放低敬語壓力。",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "student"
+        ],
+        "tone": [
+          "polite",
+          "warm"
+        ],
+        "function": [
+          "encourage"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client",
+          "friend"
+        ]
+      },
+      "example": "편하게 말 놓으셔도 돼요, 저 훨씬 어려요.",
+      "situation": "新同事、客戶年紀大過你。",
+      "avoid": [
+        "由晚輩主動講係體貼；由長輩逼人講半語就係施壓",
+        "講完對方唔一定真係敢放，唔好催"
+      ],
+      "note": "韓國敬語階序嘅潤滑句；反過來 요즘 것들은 唔識 존댓말 就係投訴。",
+      "tags": [
+        "敬語",
+        "客套",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-028",
+      "phrase": "너 나한테 반말해?",
+      "variants": [],
+      "romanization": "neo nahante banmalhae",
+      "meaning": "「你同我講半語？」——年齡／輩分被冒犯時嘅反擊。",
+      "categories": {
+        "age": [
+          "young",
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "office",
+          "street",
+          "elder"
+        ],
+        "tone": [
+          "angry",
+          "threat"
+        ],
+        "function": [
+          "challenge",
+          "insult"
+        ],
+        "register": "slang",
+        "profanity": 1,
+        "socialDistance": [
+          "conflict",
+          "colleague"
+        ]
+      },
+      "example": "너 나한테 반말해? 누구한테.",
+      "situation": "後輩頂嘴、新同事唔識規矩。",
+      "avoid": [
+        "對真係朋友用會變無聊",
+        "外地人唔知韓國規矩，會被嚇親"
+      ],
+      "note": "p1 屬語氣壓迫，未到粗口；但等於宣戰，之後好難修補。半語。",
+      "tags": [
+        "半語",
+        "踩",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-029",
+      "phrase": "눈치 없네",
+      "variants": [],
+      "romanization": "nunchi eomne",
+      "meaning": "「你真係唔識睇面色」；눈치＝讀空氣嘅能力。",
+      "categories": {
+        "age": [
+          "young",
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "office",
+          "housewife"
+        ],
+        "tone": [
+          "sassy",
+          "cold"
+        ],
+        "function": [
+          "insult",
+          "tease"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "family"
+        ]
+      },
+      "example": "눈치 없네, 지금 분위기 보면 알 거 아니야.",
+      "situation": "同事講錯場合、親戚問尷尬問題。",
+      "avoid": [
+        "對上司講等於話佢蠢",
+        "對長輩講會好唔客氣"
+      ],
+      "note": "半語；敬語 눈치 없으시네요 已經帶刺。",
+      "tags": [
+        "踩",
+        "冷面",
+        "半語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-030",
+      "phrase": "분위기 파악 좀 해",
+      "variants": [],
+      "romanization": "bunwigi paak jom hae",
+      "meaning": "「睇下氣氛啦」；叫對方收斂。",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "student"
+        ],
+        "tone": [
+          "sassy",
+          "angry"
+        ],
+        "function": [
+          "urge",
+          "insult"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "conflict"
+        ]
+      },
+      "example": "분위기 파악 좀 해, 다들 조용하잖아.",
+      "situation": "聚會講錯嘢、開會亂講。",
+      "avoid": [
+        "對上司講係當眾打臉",
+        "對長輩講係極唔識死"
+      ],
+      "note": "半語命令形；加 좀 會軟少少，但仍然係指責。",
+      "tags": [
+        "踩",
+        "直球",
+        "半語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-031",
+      "phrase": "지금 장난해?",
+      "variants": [],
+      "romanization": "jigeum jangnanhae",
+      "meaning": "「你而家同我玩呀？」；覺得對方唔認真、離譜。",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "student"
+        ],
+        "tone": [
+          "angry",
+          "surprised"
+        ],
+        "function": [
+          "challenge",
+          "disagree"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "conflict"
+        ]
+      },
+      "example": "지금 장난해? 이게 웃기다고?",
+      "situation": "開會講笑、情侶耍賴。",
+      "avoid": [
+        "對客戶講會即刻死",
+        "對長輩講係挑釁"
+      ],
+      "note": "半語；敬語 지금 장난하세요? 都可以好有火。",
+      "tags": [
+        "踩",
+        "直球",
+        "半語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-032",
+      "phrase": "알빠 아니야",
+      "variants": [],
+      "romanization": "alppa aniya",
+      "meaning": "「關我咩事」；알 바 아니야 嘅縮寫，態度冷淡。",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "slacker"
+        ],
+        "tone": [
+          "cold",
+          "sassy"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "알빠 아니야, 네가 알아서 해.",
+      "situation": "同事推卸、朋友八卦。",
+      "avoid": [
+        "對上司、客戶講係自殺式",
+        "對長輩講係極唔尊重"
+      ],
+      "note": "2020 年代網絡紅起；알빠노 係更粗嘅變體。",
+      "tags": [
+        "冷面",
+        "潮語",
+        "半語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-033",
+      "phrase": "너 T야?",
+      "variants": [],
+      "romanization": "neo tiya",
+      "meaning": "「你係 T 呀？」；MBTI 嘅 T（理性型），話對方零共情、唔識安慰人。",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "sassy",
+          "funny"
+        ],
+        "function": [
+          "tease",
+          "insult"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family"
+        ]
+      },
+      "example": "너 T야? 위로를 해 줘야지.",
+      "situation": "情侶、朋友傾心事。",
+      "avoid": [
+        "對唔熟嘅人講會真係得罪",
+        "長輩唔識 MBTI，會一頭霧水"
+      ],
+      "note": "MBTI 熱潮（2020 年代）帶起；T／F 係韓國人日常分類人嘅方式。",
+      "tags": [
+        "潮語",
+        "網絡用語",
+        "戀愛"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-034",
+      "phrase": "인싸",
+      "variants": [],
+      "romanization": "inssa",
+      "meaning": "「圈內人」；識玩、多人識、社交活躍。反義 아싸＝圈外人。",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "proud",
+          "funny"
+        ],
+        "function": [
+          "praise",
+          "tease"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "걔는 인싸라서 어디 가든 아는 사람이 있어.",
+      "situation": "校園、公司迎新。",
+      "avoid": [
+        "對內向嘅人講 아싸 會傷人",
+        "對長輩講會聽唔明"
+      ],
+      "note": "insider 嘅韓國式讀音；아싸 同時係「好嘢」嘅感嘆詞，靠上下文分。",
+      "tags": [
+        "潮語",
+        "年輕人",
+        "校園"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-035",
+      "phrase": "꼰대",
+      "variants": [],
+      "romanization": "kkondae",
+      "meaning": "「老屎忽／說教型長輩」；指愛擺架子、教訓後輩嘅人。",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "student"
+        ],
+        "tone": [
+          "sassy",
+          "angry"
+        ],
+        "function": [
+          "insult",
+          "complain"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "friend",
+          "conflict"
+        ]
+      },
+      "example": "꼰대 같으니까 그런 소리 하지 마.",
+      "situation": "後輩私下呻上司、網上抱怨。",
+      "avoid": [
+        "當面叫上司 꼰대 就係直接開戰",
+        "對長輩講係極侮辱"
+      ],
+      "note": "2010 年代後爆紅；年輕一輩用嚟形容任何年齡嘅說教者，唔一定係老人。",
+      "tags": [
+        "潮語",
+        "踩",
+        "職場"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-036",
+      "phrase": "혼밥",
+      "variants": [],
+      "romanization": "honbap",
+      "meaning": "「一個人食飯」；혼자＋밥，中性偏自嘲。",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "student"
+        ],
+        "tone": [
+          "helpless",
+          "funny"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "오늘은 혼밥할래, 조용히 먹고 싶어.",
+      "situation": "放飯、出差。",
+      "avoid": [
+        "對長輩講會覺得你冇朋友",
+        "對客戶講會太私人"
+      ],
+      "note": "2010 年代後成為日常詞；혼술（一個人飲酒）同類。",
+      "tags": [
+        "潮語",
+        "日常",
+        "餐廳"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-037",
+      "phrase": "갑분싸",
+      "variants": [],
+      "romanization": "gapbunssa",
+      "meaning": "「氣氛突然冷落」；갑자기 분위기 싸해짐 嘅縮寫。",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "student"
+        ],
+        "tone": [
+          "helpless",
+          "funny"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "갑분싸, 다들 왜 갑자기 조용해져.",
+      "situation": "有人講錯嘢、上司入房。",
+      "avoid": [
+        "對長輩講會聽唔明",
+        "正式場合唔用"
+      ],
+      "note": "2010 年代後期網絡用語，已入日常。",
+      "tags": [
+        "潮語",
+        "網絡用語",
+        "職場"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-038",
+      "phrase": "썸",
+      "variants": [],
+      "romanization": "sseom",
+      "meaning": "「曖昧中」；未正式拍拖但互有好感嘅階段。",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "shy",
+          "flirty"
+        ],
+        "function": [
+          "question",
+          "tease"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family"
+        ]
+      },
+      "example": "썸 타는 거야 아니야? 확실히 해.",
+      "situation": "朋友追問關係、情侶未確認。",
+      "avoid": [
+        "對長輩講會太露骨",
+        "對當事人講要睇交情"
+      ],
+      "note": "英文 some 嘅韓國式讀法；썸 타다 係固定配搭。",
+      "tags": [
+        "戀愛",
+        "潮語",
+        "情侶"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-039",
+      "phrase": "밀당",
+      "variants": [],
+      "romanization": "mildang",
+      "meaning": "「推拉」；戀愛入面欲擒故縱、唔肯講清楚。",
+      "categories": {
+        "age": [
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "flirty",
+          "sassy"
+        ],
+        "function": [
+          "tease",
+          "complain"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family"
+        ]
+      },
+      "example": "밀당 그만하고 솔직하게 말해.",
+      "situation": "朋友分析訊息、情侶拉扯。",
+      "avoid": [
+        "對唔熟嘅人講會太八卦",
+        "長輩聽唔明"
+      ],
+      "note": "밀고 당기기 嘅縮寫；韓國戀愛綜藝常用詞。",
+      "tags": [
+        "戀愛",
+        "潮語",
+        "情侶"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-040",
+      "phrase": "읽씹",
+      "variants": [],
+      "romanization": "ikssip",
+      "meaning": "「已讀不回」；읽고 씹기，讀咗但唔覆。",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "helpless",
+          "complain"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family"
+        ]
+      },
+      "example": "읽씹 당했어, 벌써 사흘째야.",
+      "situation": "傳訊息等回覆、曖昧期。",
+      "avoid": [
+        "對長輩講會覺得你計較",
+        "正式溝通唔應該用"
+      ],
+      "note": "2010 年代後期爆紅；配 씹씹（完全冇讀）更狠。",
+      "tags": [
+        "網絡用語",
+        "戀愛",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-041",
+      "phrase": "손절",
+      "variants": [],
+      "romanization": "sonjeol",
+      "meaning": "「斬纜」；손절매（止蝕）借過嚟，指斷絕關係。",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "student"
+        ],
+        "tone": [
+          "cold",
+          "blunt"
+        ],
+        "function": [
+          "dismiss",
+          "refuse"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "그런 친구는 손절하는 게 맞아.",
+      "situation": "朋友出賣、同事長期抽水。",
+      "avoid": [
+        "對家人用會太絕",
+        "對上司講會變威脅"
+      ],
+      "note": "源自炒股止蝕；2018 年後變成日常人際用語。",
+      "tags": [
+        "潮語",
+        "踩",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-042",
+      "phrase": "덕후",
+      "variants": [],
+      "romanization": "deokhu",
+      "meaning": "「狂迷／宅」；源自日文オタク，指沉迷某樣嘢嘅人。",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "designer"
+        ],
+        "tone": [
+          "proud",
+          "funny"
+        ],
+        "function": [
+          "boast",
+          "tease"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "덕후라서 그런지 굿즈를 다 모았더라.",
+      "situation": "動漫、偶像、遊戲話題。",
+      "avoid": [
+        "對唔熟嘅人講會似標籤",
+        "對長輩講會聽唔明"
+      ],
+      "note": "2000 年代後傳入；덕질（追星行為）同源。",
+      "tags": [
+        "動漫",
+        "潮語",
+        "年輕人"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ko-slang-043",
+      "phrase": "이불킥",
+      "variants": [],
+      "romanization": "ibulkik",
+      "meaning": "「攞被踢」；瞓覺前諗起尷尬事，尷到踢被。",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "shy",
+          "funny"
+        ],
+        "function": [
+          "complain",
+          "joke"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "어제 한 말 생각나서 이불킥했다.",
+      "situation": "深夜後悔、酒醒。",
+      "avoid": [
+        "對長輩講會唔知你講乜",
+        "正式場合唔用"
+      ],
+      "note": "2010 年代網絡用語，畫面感強，適合拍誇張反應。",
+      "tags": [
+        "潮語",
+        "網絡用語",
+        "年輕人"
+      ],
+      "source": "general"
+    }
+  ]
+}

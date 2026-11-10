@@ -1,0 +1,3632 @@
+{
+  "lang": "zh-hk",
+  "entries": [
+    {
+      "id": "hk-older-001",
+      "phrase": "你個仔讀邊間呀",
+      "variants": [
+        "你個女讀邊間呀"
+      ],
+      "meaning": "師奶打開話題嘅標準問法；表面關心，實際想知你仔女讀邊間、屋企咩料",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "housewife",
+          "mum"
+        ],
+        "tone": [
+          "gossip"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "friend"
+        ]
+      },
+      "example": "你個仔讀邊間呀？聽講嗰間好難入喎。",
+      "situation": "電梯口、校門外、街市排隊，撞到隔籬座嘅家長",
+      "avoid": [
+        "對方仔女冇讀書或者讀特殊學校，問呢句好傷",
+        "喺公司問同事會似查家宅"
+      ],
+      "note": "80 年代師奶已經用；而家部分家長改問「你小朋友喺邊度補習」，一樣狠。",
+      "tags": [
+        "師奶",
+        "長輩"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-002",
+      "phrase": "我個仔嗰時都係咁",
+      "meaning": "用自己仔女做比較，表面安慰，其實想講自己嗰個更叻",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "housewife",
+          "mum",
+          "dad"
+        ],
+        "tone": [
+          "proud"
+        ],
+        "function": [
+          "boast"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "我個仔嗰時都係咁，最後考全級第一。",
+      "situation": "一班家長傾緊仔女成績，有人想插一腳",
+      "avoid": [
+        "對方仔女考得差，講呢句等於踩多腳"
+      ],
+      "note": "師奶比較仔女嘅溫和版；「我個仔唔使你教」係升級版。新一輩家長多數講「我個都係咁㗎」淡化。",
+      "tags": [
+        "師奶",
+        "長輩"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-003",
+      "phrase": "邊有咁叻呀",
+      "meaning": "有人讚你仔女或者讚你，你即刻謙虛否認，其實心裡面好受",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "housewife",
+          "mum",
+          "dad"
+        ],
+        "tone": [
+          "shy"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "stranger"
+        ]
+      },
+      "example": "邊有咁叻呀，佢都係好彩。",
+      "situation": "街坊讚你個仔考得好，你即刻擺手",
+      "avoid": [
+        "真心讚你嘅人，你一路否認會好尷尬，最後要接一句「多謝」"
+      ],
+      "note": "香港家長式謙虛；後生多數直接講「多謝」，少咗呢種推讓。",
+      "tags": [
+        "師奶",
+        "長輩",
+        "拒絕"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-004",
+      "phrase": "你知唔知呀",
+      "meaning": "八卦開場引子，講完停一停等對方追問",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "housewife",
+          "security",
+          "elder"
+        ],
+        "tone": [
+          "gossip"
+        ],
+        "function": [
+          "gossip"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "stranger"
+        ]
+      },
+      "example": "你知唔知呀？三樓嗰家尋晚搬走咗。",
+      "situation": "管理處門口、垃圾房、街市排隊，有是非想講",
+      "avoid": [
+        "對唔熟嘅人講，會覺得你多事"
+      ],
+      "note": "忠叔、師奶都愛用；後生多數直接講「喂，你聽講未」。",
+      "tags": [
+        "師奶",
+        "長輩",
+        "八卦"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-005",
+      "phrase": "我聽講咋，唔知真唔真",
+      "meaning": "講是非之前先卸責，表示唔係我親眼見、唔係我講嘅",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "housewife",
+          "security"
+        ],
+        "tone": [
+          "gossip"
+        ],
+        "function": [
+          "gossip"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "stranger"
+        ]
+      },
+      "example": "我聽講咋，唔知真唔真，佢兩公婆好似分開住。",
+      "situation": "街坊之間傳消息，先撇清責任",
+      "avoid": [
+        "呢句只係卸責，對方一樣當你係傳是非嗰個"
+      ],
+      "note": "師奶是非圈嘅標準卸責句；短版係「我聽講咋」，同「唔好話我講」連用最齊。新一輩會講「聽講咋喎」。",
+      "tags": [
+        "師奶",
+        "長輩",
+        "八卦"
+      ],
+      "source": "general",
+      "variants": [
+        "我聽講咋"
+      ]
+    },
+    {
+      "id": "hk-older-006",
+      "phrase": "唔好話我講㗎",
+      "meaning": "講秘密之前嘅封口聲明，等對方應承唔爆你出嚟",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "housewife",
+          "security",
+          "elder"
+        ],
+        "tone": [
+          "gossip"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "唔好話我講㗎，聽講佢個仔俾人炒咗。",
+      "situation": "走廊、樓梯口，壓低聲講人哋家事",
+      "avoid": [
+        "講完一樣會傳開，唔好當真保密"
+      ],
+      "note": "師奶是非圈嘅儀式；新一輩講「唔好話我話」。",
+      "tags": [
+        "師奶",
+        "長輩"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-007",
+      "phrase": "離晒大譜",
+      "meaning": "指事情離譜到唔可以接受，比「唔合理」重好多",
+      "categories": {
+        "age": [
+          "senior",
+          "elder",
+          "mid"
+        ],
+        "archetype": [
+          "housewife",
+          "elder",
+          "shopkeeper"
+        ],
+        "tone": [
+          "complain"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "everyday",
+        "profanity": 1,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "stranger"
+        ]
+      },
+      "example": "加租加到咁，真係離晒大譜。",
+      "situation": "收到加租信、見到瘋狂收費、被人無理對待",
+      "avoid": [
+        "對老細或者客戶講，等於當面開火"
+      ],
+      "note": "老中青都講；淨講「離譜」輕啲，「離晒大譜」係加重版，長輩最愛用。",
+      "tags": [
+        "師奶",
+        "長輩",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-008",
+      "phrase": "你估佢點呀",
+      "meaning": "講是非中途賣關子，引對方追問落去",
+      "categories": {
+        "age": [
+          "senior"
+        ],
+        "archetype": [
+          "housewife"
+        ],
+        "tone": [
+          "gossip"
+        ],
+        "function": [
+          "gossip"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "你估佢點呀？第二日就去退租。",
+      "situation": "一班師奶喺公園講緊隔籬屋嘅事",
+      "note": "師奶講故仔嘅節奏；後生講嘢少用呢種停頓。",
+      "tags": [
+        "師奶",
+        "長輩",
+        "八卦"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-009",
+      "phrase": "我同你講呀",
+      "meaning": "長輩起手式，表示跟住落嚟嘅嘢你要聽實",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "security",
+          "elder",
+          "housewife"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "friend",
+          "stranger"
+        ]
+      },
+      "example": "我同你講呀，你個水錶好似有問題。",
+      "situation": "管理員截住你、長輩有話要講",
+      "avoid": [
+        "對客戶或者上司用，會似教訓人"
+      ],
+      "note": "忠叔式口頭禪，第一個字拖長講；後生開會唔會咁講。",
+      "tags": [
+        "大廈",
+        "長輩",
+        "管理員",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-010",
+      "phrase": "你聽我講句",
+      "meaning": "長輩要講道理之前嘅開場，後面多數係人生大道理",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "elder",
+          "dad",
+          "craftsman"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "friend"
+        ]
+      },
+      "example": "你聽我講句，後生唔好淨係睇錢。",
+      "situation": "飲完茶、飯後，長輩忽然正經",
+      "avoid": [
+        "對平輩或者上級講，會越權"
+      ],
+      "note": "50 歲以上男性長輩常用；後生多數扮聽，心裡面翻白眼。",
+      "tags": [
+        "長輩",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-011",
+      "phrase": "而家啲後生",
+      "meaning": "長輩感嘆新一代唔同晒嘅起手式，後面多數跟一句負評",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "elder",
+          "dad",
+          "mum",
+          "craftsman"
+        ],
+        "tone": [
+          "complain"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "而家啲後生，做兩日就話唔做。",
+      "situation": "飲茶、搭車、看更亭，講起後輩",
+      "avoid": [
+        "當住後生面講，等於開地圖炮"
+      ],
+      "note": "60+ 最常用；70 後都會講，但多數補一句「我以前都係咁」緩和。",
+      "tags": [
+        "長輩",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-012",
+      "phrase": "到你大個就知",
+      "meaning": "唔想解釋，用「你將來自然會明」收尾",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "elder",
+          "mum",
+          "dad"
+        ],
+        "tone": [
+          "cold"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family"
+        ]
+      },
+      "example": "而家講你都唔會明，到你大個就知。",
+      "situation": "細路問點解唔可以，長輩直接收線",
+      "note": "長輩對細路同後輩；等於唔答你，細路最怕聽到。",
+      "tags": [
+        "長輩",
+        "冷面"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-013",
+      "phrase": "我食鹽多過你食米",
+      "meaning": "我經驗多過你，你唔夠班同我拗",
+      "literal": "I've eaten more salt than you've eaten rice.",
+      "categories": {
+        "age": [
+          "elder",
+          "senior"
+        ],
+        "archetype": [
+          "elder",
+          "craftsman",
+          "dad"
+        ],
+        "tone": [
+          "proud"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "proverb",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "我食鹽多過你食米，你唔好同我爭。",
+      "situation": "後生提出新做法，老師傅唔接受",
+      "avoid": [
+        "對真係比你資深嘅人講，會好尷尬"
+      ],
+      "note": "老派金句，60+ 最愛；後生覺得老土，但一聽就明。新一代版本係「我玩呢行嗰陣你仲讀緊書」。",
+      "tags": [
+        "長輩",
+        "老派"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-014",
+      "phrase": "你識咩呀",
+      "meaning": "一句打斷對方，表示你根本唔夠班出聲",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "craftsman",
+          "street",
+          "elder",
+          "shopkeeper"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "conflict"
+        ]
+      },
+      "example": "你識咩呀？我做咗三十年。",
+      "situation": "地盤、廚房、街市，老師傅頂後生",
+      "avoid": [
+        "對客或者後輩用，好傷人"
+      ],
+      "note": "語氣好重，等於叫對方收聲；地盤同酒樓廚房最常聽到。",
+      "tags": [
+        "裝修",
+        "師傅",
+        "長輩",
+        "惜字如金"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-015",
+      "phrase": "講你又唔聽",
+      "variants": [
+        "講你又唔聽，聽你又唔明"
+      ],
+      "meaning": "鬧人唔聽勸；完整版係「講你又唔聽，聽你又唔明」",
+      "categories": {
+        "age": [
+          "senior",
+          "elder",
+          "mid"
+        ],
+        "archetype": [
+          "mum",
+          "housewife",
+          "elder"
+        ],
+        "tone": [
+          "complain"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "friend"
+        ]
+      },
+      "example": "講你又唔聽，而家出事啦。",
+      "situation": "阿媽對仔女、師傅對學徒，出事之後",
+      "avoid": [
+        "對下屬講完等於定佢罪，好難返轉頭"
+      ],
+      "note": "阿媽萬能句；完整版仲有「明你又唔做」。",
+      "tags": [
+        "家庭",
+        "長輩",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-016",
+      "phrase": "好心你啦",
+      "meaning": "帶不耐煩咁勸人，其實係話你唔好再咁落去",
+      "categories": {
+        "age": [
+          "senior",
+          "elder",
+          "mid"
+        ],
+        "archetype": [
+          "housewife",
+          "mum",
+          "elder"
+        ],
+        "tone": [
+          "complain"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "friend"
+        ]
+      },
+      "example": "好心你啦，件衫咁都着得出街。",
+      "situation": "見到親友做啲唔妥嘅事，忍唔住出聲",
+      "avoid": [
+        "對唔熟嘅人講，等於寸人"
+      ],
+      "note": "師奶、阿媽最常用，後面多數跟一句負評。",
+      "tags": [
+        "師奶",
+        "長輩"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-017",
+      "phrase": "細路仔唔識世界",
+      "meaning": "幫細路或者後輩講好話，暗示唔好同佢計較",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "elder",
+          "mum",
+          "security"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "comfort"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "細路仔唔識世界，你唔好同佢計。",
+      "situation": "後輩得罪人，長輩出嚟打圓場",
+      "avoid": [
+        "用嚟擋真係做錯嘅事，會似縱容"
+      ],
+      "note": "而家多數講「後生仔唔識世界」；仲講「細路仔」嗰個已經係老派。",
+      "tags": [
+        "長輩",
+        "關心"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-018",
+      "phrase": "唔好話我唔提你",
+      "meaning": "事先警告，出事唔好怪我冇講",
+      "categories": {
+        "age": [
+          "senior",
+          "elder",
+          "mid"
+        ],
+        "archetype": [
+          "elder",
+          "craftsman",
+          "security",
+          "street"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "friend",
+          "family"
+        ]
+      },
+      "example": "唔好話我唔提你，呢單嘢有手尾。",
+      "situation": "後輩準備做一件唔穩陣嘅事",
+      "avoid": [
+        "講完唔幫手，會似撇清責任"
+      ],
+      "note": "同「我早講咗」係前後句；老一輩最講究「講明先」。",
+      "tags": [
+        "長輩",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-019",
+      "phrase": "平啲啦老細",
+      "meaning": "講價開場白，唔一定預期成功，但唔講唔安樂",
+      "categories": {
+        "age": [
+          "senior",
+          "elder",
+          "mid"
+        ],
+        "archetype": [
+          "housewife",
+          "elder",
+          "shopkeeper"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "bargain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "friend"
+        ]
+      },
+      "example": "平啲啦老細，我買兩斤。",
+      "situation": "街市、排檔、五金舖",
+      "avoid": [
+        "連鎖店、超市講價冇人理，會好尷尬"
+      ],
+      "note": "街市通用；後生多數唔敢講，寧願行多兩檔。",
+      "tags": [
+        "街市",
+        "公司",
+        "師奶",
+        "長輩",
+        "講價",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-020",
+      "phrase": "打個折頭啦",
+      "meaning": "要求減價，多數用喺幫襯開嘅小店",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "housewife",
+          "shopkeeper"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "bargain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "friend"
+        ]
+      },
+      "example": "我幫襯咁多年，打個折頭啦。",
+      "situation": "熟客買嘢，想攞平少少",
+      "avoid": [
+        "對大公司講，職員冇權，只會難做人"
+      ],
+      "note": "「折頭」係老派講法，後生多數講「打折」；街市照講。",
+      "tags": [
+        "師奶",
+        "長輩",
+        "講價",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-021",
+      "phrase": "搭條蔥得唔得",
+      "variants": [
+        "搭條蔥"
+      ],
+      "meaning": "買菜要檔主送多條蔥，係街市小便宜文化",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "housewife",
+          "shopkeeper"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "bargain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger"
+        ]
+      },
+      "example": "搭條蔥得唔得呀，老闆？",
+      "situation": "買完菜，臨走補一句",
+      "avoid": [
+        "喺超市講會好突兀"
+      ],
+      "note": "師奶同檔主之間嘅默契，檔主多數笑住照俾；後生覺得冇必要。",
+      "tags": [
+        "師奶",
+        "長輩",
+        "講價"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-022",
+      "phrase": "秤唔夠喎",
+      "meaning": "質疑檔主呃秤，係街市最直接嘅指控",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "housewife",
+          "shopkeeper"
+        ],
+        "tone": [
+          "complain"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "conflict"
+        ]
+      },
+      "example": "秤唔夠喎，你睇下個磅。",
+      "situation": "買完海鮮、豬肉，覺得斤両有問題",
+      "avoid": [
+        "冇證據就講，好易炒大件事"
+      ],
+      "note": "老一輩先敢當場講；後生多數唔出聲，返到屋企先鬧。",
+      "tags": [
+        "街市",
+        "師奶",
+        "長輩",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-023",
+      "phrase": "呢啲唔靚，換過",
+      "meaning": "買餸買生果時直接要求換，唔接受次貨",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "housewife",
+          "shopkeeper"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "refuse"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger"
+        ]
+      },
+      "example": "呢啲唔靚，換過第二檔。",
+      "situation": "檔主執咗啲爛嘅俾你",
+      "avoid": [
+        "對酒樓侍應講會得罪廚房"
+      ],
+      "note": "師奶本色，講嘅時候唔會客氣，檔主都慣。",
+      "tags": [
+        "師奶",
+        "長輩",
+        "拒絕",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-024",
+      "phrase": "有冇新鮮啲㗎",
+      "meaning": "嫌貨唔夠新，多數係壓價前奏",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "housewife",
+          "shopkeeper"
+        ],
+        "tone": [
+          "complain"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger"
+        ]
+      },
+      "example": "有冇新鮮啲㗎？呢啲睇落放咗兩日。",
+      "situation": "魚檔、菜檔，睇唔上眼擺出面嗰批",
+      "note": "等於叫檔主由後欄拎新貨；後生會直接問「有冇靚啲」。",
+      "tags": [
+        "街市",
+        "師奶",
+        "長輩"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-025",
+      "phrase": "咁貴嘅",
+      "meaning": "對價錢表達不滿，多數跟住講價或者走人",
+      "categories": {
+        "age": [
+          "senior",
+          "elder",
+          "mid"
+        ],
+        "archetype": [
+          "housewife",
+          "elder"
+        ],
+        "tone": [
+          "complain"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger"
+        ]
+      },
+      "example": "咁貴嘅？隔籬檔平你三蚊。",
+      "situation": "格價之後，發現呢檔貴",
+      "note": "師奶格價後嘅標準反應，講完多數真係走。",
+      "tags": [
+        "師奶",
+        "長輩",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-026",
+      "phrase": "我買開都唔係呢個價",
+      "meaning": "用熟客價施壓，暗示你收貴我",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "housewife",
+          "shopkeeper"
+        ],
+        "tone": [
+          "complain"
+        ],
+        "function": [
+          "bargain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "friend"
+        ]
+      },
+      "example": "我買開都唔係呢個價，你加咗咁多？",
+      "situation": "幫襯開嘅舖頭突然加價",
+      "note": "街市、五金舖、藥房都用；檔主多數答「來貨貴咗」。",
+      "tags": [
+        "師奶",
+        "長輩",
+        "講價"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-027",
+      "phrase": "靚姐，今日啲菜好靚",
+      "meaning": "檔主叫師奶做「靚姐」，順口讚貨，係做生意嘅開場",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "shopkeeper"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "client"
+        ]
+      },
+      "example": "靚姐，今日啲菜好靚，睇下啦。",
+      "situation": "街市菜檔、魚檔招客",
+      "note": "「靚姐」係老派叫法，對 40 歲以上女客最有效；後生檔主多數叫「靚女」。",
+      "tags": [
+        "店舖",
+        "長輩",
+        "開場"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-028",
+      "phrase": "阿太，買咩呀",
+      "meaning": "舊式舖頭叫已婚女客做「阿太」，係一種尊重",
+      "categories": {
+        "age": [
+          "elder"
+        ],
+        "archetype": [
+          "shopkeeper"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "client"
+        ]
+      },
+      "example": "阿太，買咩呀？今日啲豬肉新鮮。",
+      "situation": "街市、雜貨舖、藥材舖",
+      "avoid": [
+        "對後生女客叫「阿太」會得罪人"
+      ],
+      "note": "70 至 90 年代常用；而家好少聽，只剩舊區老舖，寫年代戲好用。",
+      "tags": [
+        "店舖",
+        "長輩",
+        "開場",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-029",
+      "phrase": "唔該借借",
+      "meaning": "叫人讓路，師奶買餸、搭車必備",
+      "categories": {
+        "age": [
+          "senior",
+          "elder",
+          "mid"
+        ],
+        "archetype": [
+          "housewife",
+          "elder",
+          "delivery"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger"
+        ]
+      },
+      "example": "唔該借借，我趕住交數。",
+      "situation": "街市窄巷、地鐵門口、酒樓走廊",
+      "avoid": [
+        "唔講直接撞過去，好易嗌交"
+      ],
+      "note": "長輩講得最順；後生多數講「唔好意思，借借」。",
+      "tags": [
+        "師奶",
+        "長輩",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-030",
+      "phrase": "靚仔，飲咩呀",
+      "variants": [
+        "靚仔"
+      ],
+      "meaning": "茶餐廳伙記叫男客嘅通用稱呼，同外貌無關，十幾歲叫到六十歲",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "waitress",
+          "shopkeeper"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "client"
+        ]
+      },
+      "example": "靚仔，飲咩呀？今日有例湯。",
+      "situation": "茶餐廳落單，伙記行埋嚟",
+      "avoid": [
+        "對女客叫「靚仔」會出事，要叫「靚女」"
+      ],
+      "note": "茶記文化；後生伙記開始改叫「先生」，老伙記照叫「靚仔」。",
+      "tags": [
+        "茶記",
+        "長輩",
+        "伙記",
+        "開場"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-031",
+      "phrase": "靚女，幾位呀",
+      "meaning": "帶位問人數，順口叫女客靚女",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "waitress"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "client"
+        ]
+      },
+      "example": "靚女，幾位呀？埋邊有位。",
+      "situation": "酒樓、茶餐廳門口帶位",
+      "avoid": [
+        "對男客講係玩嘢，會撩交嗌"
+      ],
+      "note": "女客由十幾歲到八十歲都叫「靚女」，師奶聽到會好受。",
+      "tags": [
+        "茶記",
+        "長輩",
+        "伙記",
+        "開場"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-032",
+      "phrase": "阿姐，唔該",
+      "variants": [
+        "阿姐"
+      ],
+      "meaning": "叫中年以上女侍應嘅通用稱呼，比「小姐」地道",
+      "categories": {
+        "age": [
+          "senior",
+          "elder",
+          "mid"
+        ],
+        "archetype": [
+          "waitress",
+          "housewife"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "client"
+        ]
+      },
+      "example": "阿姐，唔該加杯水。",
+      "situation": "茶餐廳、酒樓要人幫手",
+      "avoid": [
+        "對後生女侍應叫「阿姐」會得罪人"
+      ],
+      "note": "後生叫「阿妹」或者直接「唔該」；「阿姐」係熟客先叫得。",
+      "tags": [
+        "茶記",
+        "長輩",
+        "伙記",
+        "開場",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-033",
+      "phrase": "唔該埋單",
+      "variants": [
+        "埋單",
+        "唔該埋數"
+      ],
+      "meaning": "叫伙記結帳，茶餐廳最實用一句",
+      "categories": {
+        "age": [
+          "senior",
+          "elder",
+          "mid"
+        ],
+        "archetype": [
+          "waitress",
+          "housewife",
+          "craftsman"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "client"
+        ]
+      },
+      "example": "唔該埋單！",
+      "situation": "食完飯，舉手叫伙記",
+      "avoid": [
+        "酒樓多數講「唔該埋數」或者直接叫部長"
+      ],
+      "note": "茶餐廳標準句；後生會加手勢講「唔該，埋單」。",
+      "tags": [
+        "茶記",
+        "長輩",
+        "伙記",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-034",
+      "phrase": "飛沙走奶",
+      "meaning": "齋啡，走糖走奶；水吧同伙記之間嘅暗語",
+      "literal": "fly the sand, walk the milk",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "waitress",
+          "craftsman"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "colleague"
+        ]
+      },
+      "example": "一杯咖啡，飛沙走奶，唔該。",
+      "situation": "茶餐廳落單，水吧師傅一聽就明",
+      "avoid": [
+        "同遊客或者後生講，多數聽唔明"
+      ],
+      "note": "「沙」即係糖；老伙記、的士司機最熟。後生多數直接講「齋啡」。",
+      "tags": [
+        "茶記",
+        "長輩",
+        "伙記",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-035",
+      "phrase": "茶走",
+      "meaning": "奶茶走砂糖，改用煉奶",
+      "categories": {
+        "age": [
+          "senior",
+          "elder",
+          "mid"
+        ],
+        "archetype": [
+          "waitress",
+          "craftsman",
+          "office"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "colleague"
+        ]
+      },
+      "example": "一杯熱奶茶，茶走。",
+      "situation": "茶餐廳落單",
+      "note": "老派飲法，而家仲有好多人叫；後生會講「奶茶走甜」。",
+      "tags": [
+        "茶記",
+        "長輩",
+        "伙記",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-036",
+      "phrase": "搭枱得唔得",
+      "meaning": "問可唔可以同陌生人坐同一張枱，茶餐廳午市必問",
+      "categories": {
+        "age": [
+          "senior",
+          "elder",
+          "mid"
+        ],
+        "archetype": [
+          "waitress",
+          "housewife",
+          "craftsman"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger"
+        ]
+      },
+      "example": "搭枱得唔得呀？我食得好快。",
+      "situation": "午市冇位，伙記帶你埋去四人卡位",
+      "avoid": [
+        "高級餐廳講呢句會好怪"
+      ],
+      "note": "茶餐廳文化；後生會講「可以搭枱嗎」，少咗陣味。",
+      "tags": [
+        "茶記",
+        "長輩",
+        "伙記",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-037",
+      "phrase": "呢度唔准泊車",
+      "meaning": "管理員／看更制止違泊嘅標準句",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "security"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "conflict"
+        ]
+      },
+      "example": "呢度唔准泊車㗎，你泊過對面。",
+      "situation": "屋苑門口、消防通道",
+      "avoid": [
+        "對業主講得太硬，會俾人投訴"
+      ],
+      "note": "忠叔式口吻；多數加「㗎」收尾，語氣唔算鬧。",
+      "tags": [
+        "大廈",
+        "長輩",
+        "管理員",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-038",
+      "phrase": "你屋企漏緊水",
+      "meaning": "通知住戶漏水，通常係樓下投訴上嚟",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "security",
+          "craftsman"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "client"
+        ]
+      },
+      "example": "你屋企漏緊水，樓下天花都濕晒。",
+      "situation": "管理員拍門、打電話",
+      "avoid": [
+        "語氣太急會嚇親長者住戶"
+      ],
+      "note": "舊樓最常發生；管理員講完多數補一句「你返去睇下」。",
+      "tags": [
+        "家庭",
+        "大廈",
+        "長輩",
+        "管理員",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-039",
+      "phrase": "有人投訴你",
+      "meaning": "管理員轉達投訴，通常唔會講係邊個",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "security"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "conflict"
+        ]
+      },
+      "example": "有人投訴你，話你夜晚好嘈。",
+      "situation": "屋苑走廊、看更亭",
+      "avoid": [
+        "唔好追問係邊個，管理員多數唔會講"
+      ],
+      "note": "老派管理員會加一句「我唔知呀，你自己檢討下」。",
+      "tags": [
+        "大廈",
+        "長輩",
+        "管理員",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-040",
+      "phrase": "我幫你睇住",
+      "meaning": "應承幫你留意，係管理員、街坊嘅人情",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "security",
+          "shopkeeper",
+          "elder"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "comfort"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "friend"
+        ]
+      },
+      "example": "你啲貨放門口，我幫你睇住。",
+      "situation": "送貨上門冇人收、臨時放低嘢",
+      "note": "舊區人情味；新式屋苑管理員多數講「我哋唔負責看管」。",
+      "tags": [
+        "大廈",
+        "長輩",
+        "管理員",
+        "關心"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-041",
+      "phrase": "呢排多咗啲陌生人",
+      "meaning": "管理員或者街坊提醒你小心，暗示有可疑人",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "security",
+          "elder"
+        ],
+        "tone": [
+          "worried"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "friend"
+        ]
+      },
+      "example": "呢排多咗啲陌生人，你出入小心啲。",
+      "situation": "大廈連環被人爆竊之後",
+      "note": "長輩式關心；講完多數跟一句「夜返就叫我陪你」。",
+      "tags": [
+        "大廈",
+        "長輩",
+        "管理員"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-042",
+      "phrase": "你問返業主",
+      "meaning": "管理員推返個責任俾業主，唔會答你",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "security"
+        ],
+        "tone": [
+          "cold"
+        ],
+        "function": [
+          "refuse"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "client"
+        ]
+      },
+      "example": "呢啲我唔知㗎，你問返業主。",
+      "situation": "住戶投訴裝修、漏水、加租",
+      "note": "管理員自保句；老派會加「我打份工咋」。",
+      "tags": [
+        "大廈",
+        "長輩",
+        "管理員",
+        "拒絕",
+        "冷面"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-043",
+      "phrase": "我打份工咋",
+      "meaning": "前線用嚟推責任，表示自己冇權、唔好難為我",
+      "categories": {
+        "age": [
+          "senior",
+          "elder",
+          "mid"
+        ],
+        "archetype": [
+          "security",
+          "waitress",
+          "sales"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "refuse"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "client",
+          "conflict"
+        ]
+      },
+      "example": "我打份工咋，你唔好難為我。",
+      "situation": "住戶或者客人堅持要你破例",
+      "avoid": [
+        "對老細講，等於話佢唔撐你"
+      ],
+      "note": "香港前線萬能擋箭牌；後生版本係「我都係照做」。",
+      "tags": [
+        "大廈",
+        "長輩",
+        "管理員",
+        "拒絕"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-044",
+      "phrase": "做咗幾十年，未見過咁嘅",
+      "meaning": "老師傅表示你嘅做法前所未見，多數係話你唔得",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "craftsman",
+          "street",
+          "elder"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "做咗幾十年，未見過有人咁裝法。",
+      "situation": "學徒亂咁做，師傅行過睇到",
+      "avoid": [
+        "對客講會顯得成行都唔專業"
+      ],
+      "note": "老師傅萬能句；語氣平淡但殺傷力大。",
+      "tags": [
+        "裝修",
+        "師傅",
+        "長輩",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-045",
+      "phrase": "唔好急，慢慢嚟",
+      "meaning": "叫對方唔好心急，按部就班做",
+      "categories": {
+        "age": [
+          "senior",
+          "elder",
+          "mid"
+        ],
+        "archetype": [
+          "craftsman",
+          "elder",
+          "dad"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "comfort"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "唔好急，慢慢嚟，做錯就要拆返。",
+      "situation": "學徒手忙腳亂、後輩趕工",
+      "avoid": [
+        "趕死線前講，會俾人覺得你唔想交貨"
+      ],
+      "note": "師傅帶人嘅口頭禪；同「慢工出細貨」一齊用最多。",
+      "tags": [
+        "裝修",
+        "師傅",
+        "長輩",
+        "關心"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-046",
+      "phrase": "呢個位唔得",
+      "meaning": "一句否定你嘅做法，唔會解釋",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "craftsman"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "refuse"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "呢個位唔得，你睇下條陣。",
+      "situation": "現場決定點做，師傅一句否決",
+      "note": "惜字如金型師傅嘅典型句；想知原因要你自己問。",
+      "tags": [
+        "裝修",
+        "師傅",
+        "長輩",
+        "拒絕",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-047",
+      "phrase": "一分錢一分貨",
+      "meaning": "價錢平就唔好要求高質素",
+      "categories": {
+        "age": [
+          "senior",
+          "elder",
+          "mid"
+        ],
+        "archetype": [
+          "craftsman",
+          "shopkeeper",
+          "boss"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "disagree"
+        ],
+        "register": "idiom",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "一分錢一分貨，你想要靚料就加錢。",
+      "situation": "客人嫌貴、要求多多",
+      "avoid": [
+        "對客講得太直，會覺得你寸"
+      ],
+      "note": "老派做生意金句；後生 sales 多數講「性價比」。",
+      "tags": [
+        "裝修",
+        "師傅",
+        "長輩",
+        "直球",
+        "老派"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-048",
+      "phrase": "手工嘅嘢，呃唔到人",
+      "meaning": "手工差一定睇得出，呃唔到行家",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "craftsman"
+        ],
+        "tone": [
+          "proud"
+        ],
+        "function": [
+          "boast"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "手工嘅嘢，呃唔到人，你摸下個角。",
+      "situation": "交貨前自己檢查，順便教育客人",
+      "note": "老師傅自慢句，行業口語多過固定諺語；配摸牆角、拉水平尺呢啲動作最好拍。",
+      "tags": [
+        "裝修",
+        "師傅",
+        "長輩"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-049",
+      "phrase": "有電，唔好亂嚟",
+      "meaning": "警告現場有電，唔好亂碰",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "craftsman",
+          "street"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "family"
+        ]
+      },
+      "example": "有電，唔好亂嚟，我熄咗總掣先。",
+      "situation": "裝修現場，學徒想自己動手",
+      "avoid": [
+        "講完一定要真係斷電，唔係等於玩命"
+      ],
+      "note": "水電師傅最緊要一句；講嘅時候多數會用手擋住你。",
+      "tags": [
+        "裝修",
+        "師傅",
+        "長輩",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-050",
+      "phrase": "你企開啲",
+      "meaning": "叫人行開，唔好阻住或者有危險",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "craftsman",
+          "street",
+          "security"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "family"
+        ]
+      },
+      "example": "你企開啲，呢度跌嘢落嚟。",
+      "situation": "地盤、維修現場",
+      "note": "短、硬、冇尾音，係老師傅命令式；對客講要加「唔該」。",
+      "tags": [
+        "裝修",
+        "師傅",
+        "長輩",
+        "直球",
+        "惜字如金"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-051",
+      "phrase": "收工啦，聽日再講",
+      "meaning": "唔想再討論，用收工收線",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "craftsman",
+          "street",
+          "boss"
+        ],
+        "tone": [
+          "cold"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "收工啦，聽日再講。",
+      "situation": "收工前仲拗緊點做",
+      "note": "地盤文化；講完真係會轉身走。",
+      "tags": [
+        "裝修",
+        "師傅",
+        "長輩",
+        "冷面",
+        "惜字如金"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-052",
+      "phrase": "唔拆唔知",
+      "meaning": "唔拆開睇過唔知入面爛成點；引申為唔試過唔知",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "craftsman",
+          "street"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "唔拆唔知，一拆就見曬啲舊喉。",
+      "situation": "舊樓裝修，打開牆身",
+      "note": "裝修行業金句；客聽到會驚，師傅講得好淡然。",
+      "tags": [
+        "裝修",
+        "師傅",
+        "長輩",
+        "惜字如金"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-053",
+      "phrase": "水路唔順，你住落就知",
+      "meaning": "水電做得唔好，住落先會出事",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "craftsman"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "水路唔順，你住落就知，到時拆返更貴。",
+      "situation": "客人想慳錢唔改舊喉",
+      "avoid": [
+        "講完要俾方案，唔好淨係嚇人"
+      ],
+      "note": "水電行業口語，唔係固定諺語；「住落就知」係長輩常用嘅尾巴，語氣要平淡先夠老江湖。",
+      "tags": [
+        "裝修",
+        "師傅",
+        "長輩",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-054",
+      "phrase": "你估做戲呀",
+      "meaning": "鬧人要求離地、唔實際",
+      "categories": {
+        "age": [
+          "senior",
+          "elder",
+          "mid"
+        ],
+        "archetype": [
+          "craftsman",
+          "street",
+          "boss"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "conflict"
+        ]
+      },
+      "example": "你估做戲呀？三分鐘邊做得完。",
+      "situation": "客人或者上司提出唔現實嘅要求",
+      "avoid": [
+        "對客講等於直接寸，好易失單"
+      ],
+      "note": "老派港式寸法；後生會講「你估拍戲咩」。",
+      "tags": [
+        "裝修",
+        "師傅",
+        "長輩"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-055",
+      "phrase": "你唔好阻住我做嘢",
+      "meaning": "叫對方唔好妨礙，通常係師傅對多口嘅人",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "craftsman",
+          "street",
+          "security"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "family"
+        ]
+      },
+      "example": "你唔好阻住我做嘢，有咩事收工講。",
+      "situation": "業主企喺現場不停問，師傅趕工",
+      "avoid": [
+        "對客講要客氣啲，唔係會俾人投訴"
+      ],
+      "note": "惜字如金型師傅；講完會繼續做，唔會望你。",
+      "tags": [
+        "裝修",
+        "師傅",
+        "長輩",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-056",
+      "phrase": "呢度我話事",
+      "meaning": "宣示話事權，唔接受你插嘴",
+      "categories": {
+        "age": [
+          "senior",
+          "elder",
+          "mid"
+        ],
+        "archetype": [
+          "street",
+          "shopkeeper",
+          "boss",
+          "craftsman"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "challenge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "conflict"
+        ]
+      },
+      "example": "呢度我話事，你照做就得。",
+      "situation": "地盤、舖頭、家庭糾紛，有人質疑決定",
+      "avoid": [
+        "對客或者老細講，等於反面"
+      ],
+      "note": "老派江湖式；後生講會加粗口，語氣更重。",
+      "tags": [
+        "地盤",
+        "長輩",
+        "踩",
+        "直球",
+        "惜字如金"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-057",
+      "phrase": "俾面你咋",
+      "meaning": "我係睇你面子先讓步，唔係怕你",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "street",
+          "boss",
+          "elder"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "conflict",
+          "friend"
+        ]
+      },
+      "example": "俾面你咋，換著第二個我唔會讓。",
+      "situation": "勉強答應對方要求之後補一句",
+      "avoid": [
+        "對真心幫你嘅人講，會好無情"
+      ],
+      "note": "老派談判收尾；等於講「唔好當我認輸」。",
+      "tags": [
+        "地盤",
+        "長輩"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-058",
+      "phrase": "你咁樣好蝕底",
+      "meaning": "提醒你咁做會吃虧",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "elder",
+          "mum",
+          "dad",
+          "craftsman"
+        ],
+        "tone": [
+          "worried"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "你咁樣好蝕底，人工又唔加。",
+      "situation": "後輩蝕住做、唔識爭",
+      "note": "長輩式分析；「蝕底」係港式核心詞，後生都講，但長輩用嚟教訓人。",
+      "tags": [
+        "長輩"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-059",
+      "phrase": "飲咗茶未呀",
+      "meaning": "長輩式打招呼，唔係真係問你飲茶未，等於「早晨」",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "elder",
+          "shopkeeper",
+          "security",
+          "housewife"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "friend",
+          "family"
+        ]
+      },
+      "example": "飲咗茶未呀？入嚟坐低先。",
+      "situation": "早上街舖、看更亭、親戚上門",
+      "note": "老一輩打招呼；後生多數講「食咗飯未」或者直接「早晨」。",
+      "tags": [
+        "長輩",
+        "開場"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-060",
+      "phrase": "食咗飯未",
+      "meaning": "香港式打招呼，唔係真係問你食飯未",
+      "categories": {
+        "age": [
+          "senior",
+          "elder",
+          "mid"
+        ],
+        "archetype": [
+          "elder",
+          "mum",
+          "dad",
+          "security"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "friend",
+          "family"
+        ]
+      },
+      "example": "食咗飯未呀？未就一齊。",
+      "situation": "走廊撞到、舖頭見到熟客",
+      "note": "老中青都講；新一代多數用「Hi」代替。",
+      "tags": [
+        "長輩",
+        "開場"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-061",
+      "phrase": "你瘦咗喎",
+      "meaning": "長輩式關心，等於話你近排辛苦；唔一定真係瘦",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "mum",
+          "elder",
+          "housewife"
+        ],
+        "tone": [
+          "worried"
+        ],
+        "function": [
+          "comfort"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "friend"
+        ]
+      },
+      "example": "你瘦咗喎，係咪又唔記得食飯？",
+      "situation": "好耐冇見嘅親戚、街坊",
+      "avoid": [
+        "對減肥中嘅人講會好尷尬",
+        "對唔熟嘅人講身形係無禮"
+      ],
+      "note": "香港長輩最愛；同「肥咗喎」係一對，但後者得罪人多。",
+      "tags": [
+        "家庭",
+        "長輩",
+        "關心"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-062",
+      "phrase": "食多啲啦",
+      "meaning": "長輩夾餸、叫你食多啲，係疼你嘅表現",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "mum",
+          "elder",
+          "housewife"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "encourage"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "friend"
+        ]
+      },
+      "example": "食多啲啦，我特登煲咗湯。",
+      "situation": "去長輩屋企食飯、飲茶",
+      "avoid": [
+        "對方有飲食限制就唔好猛夾"
+      ],
+      "note": "唔食會被話「唔俾面」；長輩嘅愛用食物表達。",
+      "tags": [
+        "家庭",
+        "長輩",
+        "關心"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-063",
+      "phrase": "慢慢行",
+      "meaning": "送到門口、收線時叫對方小心行，係長輩式收尾",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "elder",
+          "housewife",
+          "shopkeeper"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "farewell"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "friend",
+          "stranger"
+        ]
+      },
+      "example": "慢慢行呀，唔好急。",
+      "situation": "送到門口、離開舖頭",
+      "avoid": [
+        "對趕時間嘅人講會好怪"
+      ],
+      "note": "舊式禮貌；後生多數講「拜拜」「小心啲」。",
+      "tags": [
+        "長輩",
+        "收尾"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-064",
+      "phrase": "後生仔，唔好咁心急",
+      "meaning": "長輩勸你唔好心急，多數跟住講自己嘅經驗",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "elder",
+          "craftsman",
+          "dad"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "comfort"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "後生仔，唔好咁心急，慢慢儲錢。",
+      "situation": "後輩急住上車、急住轉工",
+      "note": "同「唔好急，慢慢嚟」比，呢句有身份差距，係長輩對後輩。",
+      "tags": [
+        "長輩",
+        "關心"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-065",
+      "phrase": "執輸行頭，慘過敗家",
+      "variants": [
+        "執輸行頭慘過敗家"
+      ],
+      "meaning": "蝕底排第一，慘過敗家；用嚟勸人唔好執輸、要搶先",
+      "literal": "to be first in losing out is worse than ruining the family",
+      "categories": {
+        "age": [
+          "senior",
+          "elder",
+          "mid"
+        ],
+        "archetype": [
+          "housewife",
+          "elder",
+          "street",
+          "shopkeeper"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "proverb",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "friend"
+        ]
+      },
+      "example": "執輸行頭，慘過敗家，你快啲去排隊。",
+      "situation": "排隊搶平貨、派籌、限量發售",
+      "avoid": [
+        "用嚟催人做危險或者蝕底嘅事，就變咗推人去死"
+      ],
+      "note": "師奶排隊文化嘅金句；後生版本係一句「唔好執輸」。",
+      "tags": [
+        "師奶",
+        "長輩",
+        "直球",
+        "老派"
+      ],
+      "source": "https://words.hk/zidin/執輸行頭慘過敗家"
+    },
+    {
+      "id": "hk-older-066",
+      "phrase": "食碗面，反碗底",
+      "variants": [
+        "食碗面反碗底"
+      ],
+      "meaning": "忘恩負義，食你嘅飯轉頭害你",
+      "literal": "eat from the bowl, then turn the bowl upside down",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "street",
+          "elder",
+          "boss"
+        ],
+        "tone": [
+          "angry"
+        ],
+        "function": [
+          "insult"
+        ],
+        "register": "proverb",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "conflict",
+          "family"
+        ]
+      },
+      "example": "我當佢自己人，佢食碗面反碗底。",
+      "situation": "講起被下屬或者親人出賣",
+      "avoid": [
+        "當面指住人講，等於正式反面"
+      ],
+      "note": "老一輩最恨嘅一種人；同義單詞係「反骨」，後生多數講「反骨」。",
+      "tags": [
+        "地盤",
+        "長輩",
+        "踩",
+        "老派"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-067",
+      "phrase": "有早知，冇乞兒",
+      "variants": [
+        "有早知冇乞兒"
+      ],
+      "meaning": "有早知就冇乞兒；即係冇後悔藥，事後孔明冇用",
+      "literal": "if everyone knew in advance, there would be no beggars",
+      "categories": {
+        "age": [
+          "senior",
+          "elder",
+          "mid"
+        ],
+        "archetype": [
+          "elder",
+          "mum",
+          "dad",
+          "street"
+        ],
+        "tone": [
+          "sarcastic"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "proverb",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "有早知，冇乞兒啦，而家講咩都遲。",
+      "situation": "有人事後話「早知就唔咁做」",
+      "avoid": [
+        "人哋已經好後悔，仲講呢句等於踩多腳"
+      ],
+      "note": "長輩最愛用嚟截住事後孔明；後生會直接講「事後孔明」。",
+      "tags": [
+        "長輩",
+        "老派"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-068",
+      "phrase": "大雞唔食細米",
+      "meaning": "有本事嘅人唔會吼細錢、唔肯做濕碎事",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "elder",
+          "street",
+          "craftsman",
+          "boss"
+        ],
+        "tone": [
+          "sarcastic"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "proverb",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "friend"
+        ]
+      },
+      "example": "佢大雞唔食細米，呢啲幾百蚊嘅單唔會接。",
+      "situation": "講人揀工、唔肯做濕碎嘢",
+      "avoid": [
+        "對真正搵唔到食嘅人講，好傷"
+      ],
+      "note": "老派評人句；後生講「唔吼」或者「睇唔上眼」。",
+      "tags": [
+        "長輩",
+        "老派"
+      ],
+      "source": "https://jyutjyu.com/word/大雞唔食細米"
+    },
+    {
+      "id": "hk-older-069",
+      "phrase": "講就天下無敵，做就無能為力",
+      "variants": [
+        "講就天下無敵，做就有心無力"
+      ],
+      "meaning": "講就叻到不得了，做起上嚟乜都做唔到",
+      "categories": {
+        "age": [
+          "senior",
+          "elder",
+          "mid"
+        ],
+        "archetype": [
+          "street",
+          "craftsman",
+          "boss",
+          "elder"
+        ],
+        "tone": [
+          "sarcastic"
+        ],
+        "function": [
+          "insult"
+        ],
+        "register": "proverb",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "friend"
+        ]
+      },
+      "example": "講就天下無敵，做就無能為力，你估我未見過？",
+      "situation": "開會時有人吹到好大",
+      "avoid": [
+        "對老細講等於挑戰佢"
+      ],
+      "note": "地盤同公司都講；長輩用嚟寸後生吹水。",
+      "tags": [
+        "地盤",
+        "長輩",
+        "踩",
+        "老派"
+      ],
+      "source": "https://en.wiktionary.org/wiki/講就天下無敵，做就無能為力"
+    },
+    {
+      "id": "hk-older-070",
+      "phrase": "泥水佬開門口——過得自己過得人",
+      "variants": [
+        "過得自己過得人"
+      ],
+      "meaning": "做嘢要有標準，要過到自己嗰關，亦要過到人哋嗰關",
+      "literal": "a bricklayer making a doorway — it must pass yourself and pass others",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "craftsman",
+          "street",
+          "elder"
+        ],
+        "tone": [
+          "proud"
+        ],
+        "function": [
+          "encourage"
+        ],
+        "register": "proverb",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "過得自己過得人，呢幅牆我唔會咁交貨。",
+      "situation": "師傅唔肯交行貨",
+      "avoid": [
+        "用嚟合理化交唔到貨，就變咗自我安慰"
+      ],
+      "note": "裝修、泥水行業嘅職業倫理金句；老一輩工匠仲講，後生多數講「過到自己嗰關」。",
+      "tags": [
+        "裝修",
+        "師傅",
+        "長輩",
+        "關心",
+        "老派"
+      ],
+      "source": "https://yue.wiktionary.org/wiki/泥水佬開門口——過得自己過得人"
+    },
+    {
+      "id": "hk-older-071",
+      "phrase": "阿崩叫狗——越叫越走",
+      "variants": [
+        "阿崩叫狗"
+      ],
+      "meaning": "你越叫，對方越走；講細路或者下屬叫極唔聽",
+      "literal": "a gap-toothed man calling his dog — the more he calls, the further it runs",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "mum",
+          "elder",
+          "housewife"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "proverb",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "friend"
+        ]
+      },
+      "example": "阿崩叫狗，越叫越走，你話我點教？",
+      "situation": "阿媽叫仔女做功課、叫極都唔返屋企",
+      "avoid": [
+        "對當事人講等於話佢係狗，會反面"
+      ],
+      "note": "老一輩湊仔金句；後生媽媽多數講「叫極都唔聽」。",
+      "tags": [
+        "家庭",
+        "長輩",
+        "抱怨",
+        "老派"
+      ],
+      "source": "https://www.ourchinastory.com/zh/1513/阿崩叫狗-愈叫愈走"
+    },
+    {
+      "id": "hk-older-072",
+      "phrase": "牛皮燈籠——點極唔明",
+      "variants": [
+        "牛皮燈籠"
+      ],
+      "meaning": "蠢到教極唔明",
+      "literal": "a lantern made of cowhide — no matter how you light it, it won't shine through",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "elder",
+          "craftsman",
+          "mum",
+          "street"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "insult"
+        ],
+        "register": "proverb",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "family",
+          "friend"
+        ]
+      },
+      "example": "講咗三次你都唔明，真係牛皮燈籠。",
+      "situation": "教人教到火起",
+      "avoid": [
+        "對客或者下屬講，會好侮辱"
+      ],
+      "note": "老派罵人句，長輩用得多；後生會講「你個腦裝咩」。",
+      "tags": [
+        "長輩",
+        "踩",
+        "老派"
+      ],
+      "source": "https://yue.wiktionary.org/wiki/牛皮燈籠"
+    },
+    {
+      "id": "hk-older-073",
+      "phrase": "蘇州過後冇艇搭",
+      "variants": [
+        "蘇州過後無艇搭"
+      ],
+      "meaning": "過咗就冇，機會要走就要把握",
+      "categories": {
+        "age": [
+          "senior",
+          "elder",
+          "mid"
+        ],
+        "archetype": [
+          "elder",
+          "shopkeeper",
+          "boss",
+          "street"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "proverb",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "蘇州過後冇艇搭，呢個價你今日唔要就冇。",
+      "situation": "賣樓、賣車、限量優惠、相親",
+      "avoid": [
+        "用嚟逼人即刻決定，會好壓迫"
+      ],
+      "note": "做生意同長輩都講；後生多數講「手快有手慢冇」。",
+      "tags": [
+        "長輩",
+        "直球",
+        "老派"
+      ],
+      "source": "https://words.hk/zidin/蘇州過後冇艇搭"
+    },
+    {
+      "id": "hk-older-074",
+      "phrase": "一啖砂糖一啖屎",
+      "meaning": "對人一時好一時差，軟硬兼施",
+      "literal": "one mouthful of sugar, one mouthful of shit",
+      "categories": {
+        "age": [
+          "senior",
+          "elder",
+          "mid"
+        ],
+        "archetype": [
+          "street",
+          "office",
+          "boss",
+          "elder"
+        ],
+        "tone": [
+          "sarcastic"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "proverb",
+        "profanity": 1,
+        "socialDistance": [
+          "colleague",
+          "family"
+        ]
+      },
+      "example": "佢對下屬一啖砂糖一啖屎，你估好受？",
+      "situation": "講老細、講惡奶奶",
+      "avoid": [
+        "對當事人講，等於直接話佢玩人"
+      ],
+      "note": "老派職場同家庭用語；後生會講「又哄又打」。",
+      "tags": [
+        "地盤",
+        "長輩",
+        "抱怨",
+        "老派"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-075",
+      "phrase": "好佬怕爛佬，爛佬怕潑婦",
+      "meaning": "惡人自有惡人磨，斯文人最怕唔講理嘅人",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "street",
+          "elder",
+          "housewife"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "proverb",
+        "profanity": 0,
+        "socialDistance": [
+          "conflict",
+          "friend"
+        ]
+      },
+      "example": "好佬怕爛佬，爛佬怕潑婦，你同佢講道理冇用。",
+      "situation": "遇到唔講理嘅鄰居或者客人",
+      "avoid": [
+        "當住女人面講「潑婦」，一定反面"
+      ],
+      "note": "老一輩街坊智慧；「潑婦」呢個詞已經老派，後生唔會咁講人。",
+      "tags": [
+        "地盤",
+        "長輩",
+        "抱怨",
+        "老派"
+      ],
+      "source": "https://jyutdictionary.com/dictionary/entry/好佬怕爛佬，爛佬怕潑婦"
+    },
+    {
+      "id": "hk-older-076",
+      "phrase": "冇咁大個頭，唔好戴咁大頂帽",
+      "meaning": "能力唔夠就唔好貪大、唔好認大嚟做",
+      "categories": {
+        "age": [
+          "senior",
+          "elder",
+          "mid"
+        ],
+        "archetype": [
+          "elder",
+          "boss",
+          "craftsman",
+          "street"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "proverb",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "friend",
+          "family"
+        ]
+      },
+      "example": "冇咁大個頭，唔好戴咁大頂帽，你接唔接得住？",
+      "situation": "後輩想接大單、想認叻",
+      "avoid": [
+        "對已經接咗嘅人講，等於判死刑"
+      ],
+      "note": "老派勸世句；後生會講「你估你食得住？」",
+      "tags": [
+        "長輩",
+        "直球",
+        "老派"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-077",
+      "phrase": "針唔拮到肉唔知痛",
+      "meaning": "唔關自己事就唔會明人哋有幾痛",
+      "categories": {
+        "age": [
+          "senior",
+          "elder",
+          "mid"
+        ],
+        "archetype": [
+          "elder",
+          "mum",
+          "street"
+        ],
+        "tone": [
+          "sarcastic"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "proverb",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "針唔拮到肉唔知痛，到你俾人炒就明。",
+      "situation": "有人對你嘅苦況講風涼話",
+      "avoid": [
+        "對真係安慰緊你嘅人講，會好傷"
+      ],
+      "note": "長輩、師奶都用；等於「你唔喺我位置」。",
+      "tags": [
+        "長輩",
+        "抱怨",
+        "老派"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-078",
+      "phrase": "唔見棺材唔流眼淚",
+      "meaning": "冇危機感，唔到大難臨頭都唔知驚、唔肯收手",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "mum",
+          "elder",
+          "street",
+          "boss"
+        ],
+        "tone": [
+          "angry"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "proverb",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "唔見棺材唔流眼淚，講極你都唔聽。",
+      "situation": "仔女或者下屬搞到好大件事先肯收手",
+      "avoid": [
+        "對病人或者真係出事嘅人講，好涼薄"
+      ],
+      "note": "老派罵人句；後生會講「唔撞板唔知死」。",
+      "tags": [
+        "家庭",
+        "長輩",
+        "抱怨",
+        "老派"
+      ],
+      "source": "https://words.hk/zidin/唔見棺材唔流眼淚"
+    },
+    {
+      "id": "hk-older-079",
+      "phrase": "打爛沙盆問到篤",
+      "meaning": "凡事追問到底，問到冇嘢好問",
+      "literal": "smash the clay pot and ask all the way to the bottom",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "elder",
+          "housewife",
+          "security"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "proverb",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "你打爛沙盆問到篤，邊個話你知㗎？",
+      "situation": "有人問嘢問到好盡，或者追問人哋私事",
+      "avoid": [
+        "對唔熟嘅人講，等於話佢八卦"
+      ],
+      "note": "老派形容人尋根究底，問到人煩；「沙盆」即沙煲，原本係「問（璺）到篤」嘅諧音雙關。後生已經唔識「沙盆」呢個詞，但句嘢仲聽到。",
+      "tags": [
+        "長輩",
+        "老派"
+      ],
+      "source": "https://jyutjyu.com/word/打爛沙盆問到篤"
+    },
+    {
+      "id": "hk-older-080",
+      "phrase": "三個女人一個墟",
+      "meaning": "女人一多就嘈到拆天",
+      "categories": {
+        "age": [
+          "senior",
+          "elder",
+          "mid"
+        ],
+        "archetype": [
+          "housewife",
+          "waitress",
+          "office",
+          "elder"
+        ],
+        "tone": [
+          "funny"
+        ],
+        "function": [
+          "joke"
+        ],
+        "register": "proverb",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "family"
+        ]
+      },
+      "example": "三個女人一個墟，你睇下佢哋把聲。",
+      "situation": "一班師奶或者女同事傾到好嘈",
+      "avoid": [
+        "當住女同事面講，等於話人哋嘈，好易得罪"
+      ],
+      "note": "老一輩常用，帶少少性別定型；而家講要小心，多數用嚟自嘲。",
+      "tags": [
+        "師奶",
+        "長輩",
+        "老派"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-081",
+      "phrase": "邊有咁大隻蛤乸隨街跳",
+      "meaning": "邊有咁好嘅事，唔好信；用嚟踢爆騙局或者吹水",
+      "literal": "where would such a big frog be hopping around in the street?",
+      "categories": {
+        "age": [
+          "senior",
+          "elder",
+          "mid"
+        ],
+        "archetype": [
+          "elder",
+          "housewife",
+          "street",
+          "shopkeeper"
+        ],
+        "tone": [
+          "sarcastic"
+        ],
+        "function": [
+          "disagree"
+        ],
+        "register": "proverb",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "stranger",
+          "colleague"
+        ]
+      },
+      "example": "邊有咁大隻蛤乸隨街跳？咁着數點會輪到你。",
+      "situation": "有人介紹筍盤、投資、中獎",
+      "avoid": [
+        "對方真心分享好消息，就唔好潑冷水"
+      ],
+      "note": "老一輩防騙金句；後生照用，但多數講「有冇咁着數」。",
+      "tags": [
+        "長輩",
+        "老派"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-082",
+      "phrase": "食得鹹魚抵得渴",
+      "meaning": "想得到就要受得住代價，唔好怨",
+      "literal": "if you eat salted fish, you must put up with the thirst",
+      "categories": {
+        "age": [
+          "senior",
+          "elder",
+          "mid"
+        ],
+        "archetype": [
+          "street",
+          "elder",
+          "craftsman",
+          "boss"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "proverb",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "colleague",
+          "friend"
+        ]
+      },
+      "example": "食得鹹魚抵得渴，你揀得就唔好怨。",
+      "situation": "後輩呻自己揀嘅路辛苦",
+      "avoid": [
+        "對真係被剝削嘅人講，等於幫僱主講嘢"
+      ],
+      "note": "老派硬淨價值觀；後生聽到會覺得涼薄，但長輩真係咁講。",
+      "tags": [
+        "地盤",
+        "長輩",
+        "直球",
+        "老派"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-083",
+      "phrase": "精人出口，笨人出手",
+      "meaning": "聰明人淨係出主意，笨人去做兼承受結果",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "street",
+          "elder",
+          "boss"
+        ],
+        "tone": [
+          "sarcastic"
+        ],
+        "function": [
+          "tease"
+        ],
+        "register": "proverb",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "friend"
+        ]
+      },
+      "example": "精人出口，笨人出手，佢永遠企喺後面。",
+      "situation": "講人閃避、唔肯承擔",
+      "note": "街頭智慧；老一輩用嚟教後生唔好做刀。",
+      "tags": [
+        "地盤",
+        "長輩",
+        "踩",
+        "老派"
+      ],
+      "source": "https://words.hk/zidin/精人出口，笨人出手"
+    },
+    {
+      "id": "hk-older-084",
+      "phrase": "有碗話碗，有碟話碟",
+      "meaning": "有嗰句講嗰句，照事實講，唔轉彎",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "elder",
+          "craftsman",
+          "security",
+          "street"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "proverb",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "friend",
+          "family"
+        ]
+      },
+      "example": "有碗話碗，有碟話碟，你唔好怪我直。",
+      "situation": "講真話之前先聲明",
+      "avoid": [
+        "用嚟包裝自己口沒遮攔，會好討厭"
+      ],
+      "note": "老一輩講真話嘅開場；後生會講「有嗰句講嗰句」。",
+      "tags": [
+        "長輩",
+        "直球",
+        "老派"
+      ],
+      "source": "https://words.hk/zidin/有碗話碗，有碟話碟"
+    },
+    {
+      "id": "hk-older-085",
+      "phrase": "十個煲九個蓋",
+      "variants": [
+        "十個沙煲九個蓋"
+      ],
+      "meaning": "資源唔夠，拆東牆補西牆，遲早爆",
+      "categories": {
+        "age": [
+          "senior",
+          "elder",
+          "mid"
+        ],
+        "archetype": [
+          "shopkeeper",
+          "boss",
+          "housewife",
+          "street"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "idiom",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "family",
+          "client"
+        ]
+      },
+      "example": "公司十個煲九個蓋，邊度都唔夠人。",
+      "situation": "講財困、人手不足",
+      "note": "老派做生意用語；後生會講「冚唔切」。",
+      "tags": [
+        "公司",
+        "店舖",
+        "長輩",
+        "抱怨",
+        "老派"
+      ],
+      "source": "https://en.wiktionary.org/wiki/十個煲九個蓋"
+    },
+    {
+      "id": "hk-older-086",
+      "phrase": "一時唔偷雞就做保長",
+      "variants": [
+        "一時唔偷雞做保長"
+      ],
+      "meaning": "平時做開衰嘢嘅人，一停手就反過嚟教訓人",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "street",
+          "elder",
+          "office"
+        ],
+        "tone": [
+          "sarcastic"
+        ],
+        "function": [
+          "tease"
+        ],
+        "register": "proverb",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "friend"
+        ]
+      },
+      "example": "佢一時唔偷雞就做保長，尋日仲話我遲到。",
+      "situation": "講雙重標準嘅人",
+      "avoid": [
+        "對真係改過嘅人講，等於唔俾機會"
+      ],
+      "note": "老派諷刺句；「保長」呢個詞後生已經唔識，但句嘢仲有人講。",
+      "tags": [
+        "地盤",
+        "長輩",
+        "踩",
+        "老派"
+      ],
+      "source": "https://words.hk/zidin/一時唔偷雞就做保長"
+    },
+    {
+      "id": "hk-older-087",
+      "phrase": "一沉百踩",
+      "meaning": "一失勢就個個踩上嚟",
+      "categories": {
+        "age": [
+          "senior",
+          "elder",
+          "mid"
+        ],
+        "archetype": [
+          "street",
+          "boss",
+          "office"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "idiom",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "friend"
+        ]
+      },
+      "example": "娛樂圈一沉百踩，你唔紅就冇人理。",
+      "situation": "講人失勢、被落井下石",
+      "note": "老派江湖用語；後生會講「踩多兩腳」。",
+      "tags": [
+        "地盤",
+        "長輩",
+        "抱怨",
+        "老派"
+      ],
+      "source": "https://jyutjyu.com/word/一沉百踩"
+    },
+    {
+      "id": "hk-older-088",
+      "phrase": "混吉",
+      "meaning": "白做一場、得個吉；亦指白撞、無功而還",
+      "literal": "to end up with 'gut' (from 吉水, the tasteless free tea) — to come away with nothing",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "waitress",
+          "shopkeeper",
+          "elder",
+          "street"
+        ],
+        "tone": [
+          "sarcastic"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "idiom",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "friend"
+        ]
+      },
+      "example": "搞咗半日，混吉一場。",
+      "situation": "白等、白做、被人耍",
+      "avoid": [
+        "對客人講「混吉」等於話佢白撞，好侮辱"
+      ],
+      "note": "源自茶餐廳免費「吉水」，老一輩最熟；後生多數講「得個吉」「白做」。",
+      "tags": [
+        "茶記",
+        "長輩",
+        "伙記",
+        "老派"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "hk-older-089",
+      "phrase": "一盅兩件",
+      "meaning": "一盅茶加兩件點心，就係飲茶嘅基本享受；用嚟講唔使搞咁多、簡單就夠",
+      "literal": "one pot of tea, two dim sum items",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "elder",
+          "dad",
+          "mum",
+          "housewife"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "idiom",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "friend"
+        ]
+      },
+      "example": "唔使去咁遠，一盅兩件咪算囉。",
+      "situation": "一家人商量去邊度飲茶，長輩想簡單啲",
+      "avoid": [
+        "對想食好啲嘅人講，會似掃興"
+      ],
+      "note": "老一輩飲茶文化嘅核心講法；後生多數講「去飲茶」或者「食點心」，已經少講「一盅兩件」。",
+      "tags": [
+        "飲茶",
+        "長輩",
+        "老派"
+      ],
+      "source": "general"
+    }
+  ]
+}

@@ -1,0 +1,1648 @@
+{
+  "lang": "zh-cn",
+  "label": "大陆普通话",
+  "shard": "work",
+  "version": "1.0",
+  "entries": [
+    {
+      "id": "cn-work-001",
+      "phrase": "对齐",
+      "variants": [],
+      "meaning": "开会时把说法、口径、认知统一；互联网黑话第一号",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "这个需求咱们先对齐一下。",
+      "situation": "周会、需求评审、跨部门沟通",
+      "note": "2018 年后在互联网公司泛滥，2023 年后被大规模吐槽；传统行业、体制内听到会反感。",
+      "tags": [
+        "公司",
+        "上班族",
+        "白領"
+      ],
+      "source": "general",
+      "avoid": [
+        "对传统行业老板、对父母说「对齐」，会被当成装腔"
+      ]
+    },
+    {
+      "id": "cn-work-002",
+      "phrase": "赋能",
+      "variants": [],
+      "meaning": "给资源、给能力；说得好听，实际常是一句空话",
+      "categories": {
+        "age": [
+          "mid",
+          "young"
+        ],
+        "archetype": [
+          "office",
+          "boss"
+        ],
+        "tone": [
+          "proud"
+        ],
+        "function": [
+          "boast"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "我们要用数据赋能一线。",
+      "situation": "汇报 PPT、领导讲话、行业论坛",
+      "note": "互联网黑话代表词，2019-2022 年顶峰，现已被玩成梗；让年轻人说带自嘲，让老板说显土。",
+      "tags": [
+        "公司",
+        "白領"
+      ],
+      "source": "general",
+      "avoid": [
+        "对客户、对老员工说「赋能」，最容易被当忽悠"
+      ]
+    },
+    {
+      "id": "cn-work-003",
+      "phrase": "抓手",
+      "variants": [],
+      "meaning": "切入点、着力点；领导问「抓手在哪儿」＝从哪儿下手",
+      "categories": {
+        "age": [
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "boss"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "这项目没抓手，先放一放。",
+      "situation": "项目立项、找增长点、年中汇报",
+      "note": "领导爱用；基层私下会翻成「从哪儿下手」。",
+      "tags": [
+        "公司",
+        "白領"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-work-004",
+      "phrase": "打磨",
+      "variants": [],
+      "meaning": "反复修改细节，把东西做细",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "designer",
+          "office"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "方案再打磨打磨，明天过会。",
+      "situation": "交稿前、设计评审、写 PPT",
+      "note": "比「改」好听，实际就是加班改；设计、文案圈最常用。",
+      "tags": [
+        "公司",
+        "白領"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-work-005",
+      "phrase": "落地",
+      "variants": [],
+      "meaning": "真正执行、做成，而不是停在 PPT 上",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "boss"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "challenge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "这想法好听，怎么落地？",
+      "situation": "评审会、领导追问、方案被质疑",
+      "note": "互联网最爱的动词；反义词是「飘着」「空中楼阁」。",
+      "tags": [
+        "公司",
+        "直球"
+      ],
+      "source": "general",
+      "avoid": [
+        "对客户说「落不了地」，等于当面否掉人家的需求"
+      ]
+    },
+    {
+      "id": "cn-work-006",
+      "phrase": "复盘",
+      "variants": [],
+      "meaning": "事后把过程捋一遍、找问题",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "周五复盘一下这次投放。",
+      "situation": "项目结束、出了事故、周会",
+      "note": "本来是围棋词、又是联想的说法，现在全行业通用；写得好是总结，写不好是追责。",
+      "tags": [
+        "公司",
+        "上班族"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-work-007",
+      "phrase": "颗粒度",
+      "variants": [],
+      "meaning": "细致程度，细到哪一层",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "designer"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "这块颗粒度太粗了，拆细点。",
+      "situation": "拆任务、写需求、对数据口径",
+      "note": "典型黑话，2021 年后被吐槽最多；说「不够细」意思一样，但显得不专业。",
+      "tags": [
+        "公司",
+        "白領"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-work-008",
+      "phrase": "闭环",
+      "variants": [],
+      "meaning": "有始有终，事情有反馈、能收回来",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "boss"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "这事儿得形成闭环，别烂尾。",
+      "situation": "项目跟进、客户投诉处理",
+      "note": "「闭环」说多了，连买菜都有人说要「形成闭环」；老员工听了会翻白眼。",
+      "tags": [
+        "公司",
+        "白領"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-work-009",
+      "phrase": "拉通",
+      "variants": [],
+      "meaning": "把几个部门、几个人叫到一起对齐",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "我拉通一下技术和运营。",
+      "situation": "跨部门协作、出了问题互相甩锅时",
+      "note": "「拉通」比「协调」硬，隐含「我说了算」；职级越高越爱说。",
+      "tags": [
+        "公司",
+        "上班族"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-work-010",
+      "phrase": "打法",
+      "variants": [],
+      "meaning": "一套策略、做法",
+      "categories": {
+        "age": [
+          "mid"
+        ],
+        "archetype": [
+          "boss",
+          "office"
+        ],
+        "tone": [
+          "proud"
+        ],
+        "function": [
+          "boast"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "这套打法在别的城市跑通了。",
+      "situation": "汇报、分享会、销售培训",
+      "note": "军事词商业化，销售、运营圈最爱；「打法」后面常跟「跑通」「复制」。",
+      "tags": [
+        "公司",
+        "白領"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-work-011",
+      "phrase": "收到",
+      "variants": [],
+      "meaning": "职场应答：知道了、马上办",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "收到，马上处理。",
+      "situation": "微信工作群、领导派活",
+      "note": "大陆职场最标准的两字回复；年轻人也用它表示「别再啰嗦了」。",
+      "tags": [
+        "公司",
+        "上班族",
+        "惜字如金"
+      ],
+      "source": "general",
+      "avoid": [
+        "对领导只回一个「收到」不带时间点，会被追着问进度"
+      ]
+    },
+    {
+      "id": "cn-work-012",
+      "phrase": "我尽量",
+      "variants": [],
+      "meaning": "嘴上答应，实际约等于「多半不行」",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "我尽量，但不敢保证。",
+      "situation": "领导压时间、客户提无理要求",
+      "note": "职场保命话；配套动作是先把难处说一遍。",
+      "tags": [
+        "公司",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-work-013",
+      "phrase": "我再想想",
+      "variants": [],
+      "meaning": "委婉拒绝；「想想」之后通常没有下文",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "client"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "我再想想吧，回头给你答复。",
+      "situation": "被推销、被拉投资、客户压完价",
+      "note": "大陆商务里最礼貌的关门方式，比「不行」体面。",
+      "tags": [
+        "公司",
+        "拒絕"
+      ],
+      "source": "general",
+      "avoid": [
+        "当真的人会追着问「想得怎么样」，销售最怕这句"
+      ]
+    },
+    {
+      "id": "cn-work-014",
+      "phrase": "我们研究一下",
+      "variants": [],
+      "meaning": "拖住对方的官方话术，基本等于没戏",
+      "categories": {
+        "age": [
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "sales"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "这个我们研究一下，有消息通知您。",
+      "situation": "客服、招商、办事窗口、面试之后",
+      "note": "机构对个人的标准婉拒；「有消息通知您」＝没有消息。",
+      "tags": [
+        "公司",
+        "客套",
+        "客戶"
+      ],
+      "source": "general",
+      "avoid": [
+        "真信了去等通知，通常永远等不到"
+      ]
+    },
+    {
+      "id": "cn-work-015",
+      "phrase": "这个不归我管",
+      "variants": [],
+      "meaning": "划清界限，不接这摊事",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "office",
+          "security"
+        ],
+        "tone": [
+          "cold"
+        ],
+        "function": [
+          "refuse"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "colleague"
+        ]
+      },
+      "example": "这个不归我管，你找别人吧。",
+      "situation": "窗口办事、公司内部推活",
+      "note": "大陆办事最常听到的一句；后面标准补一句「你去问一下隔壁」。",
+      "tags": [
+        "公司",
+        "拒絕",
+        "冷面"
+      ],
+      "source": "general",
+      "avoid": [
+        "对老板说这句，基本等于准备走人"
+      ]
+    },
+    {
+      "id": "cn-work-016",
+      "phrase": "排期满了",
+      "variants": [],
+      "meaning": "没档期接活，最体面的拒绝",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "craftsman",
+          "office",
+          "boss"
+        ],
+        "tone": [
+          "cold"
+        ],
+        "function": [
+          "refuse"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "不好意思，这个月排期满了。",
+      "situation": "装修队、设计工作室、修空调的师傅",
+      "note": "装修旺季（3-5 月、9-11 月）真会满；也是抬价的前奏。",
+      "tags": [
+        "公司",
+        "拒絕",
+        "客戶"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-work-017",
+      "phrase": "按流程走",
+      "variants": [],
+      "meaning": "不给通融，照规矩办",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "office",
+          "security"
+        ],
+        "tone": [
+          "cold"
+        ],
+        "function": [
+          "refuse"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "这个得按流程走，我做不了主。",
+      "situation": "办事窗口、报销、请假、合同审批",
+      "note": "体制内、大公司最常用；「我做不了主」是配套。",
+      "tags": [
+        "公司",
+        "冷面"
+      ],
+      "source": "general",
+      "avoid": [
+        "求人办事时说「能不能通融一下」，对方回这句就没戏了"
+      ]
+    },
+    {
+      "id": "cn-work-018",
+      "phrase": "我请示一下",
+      "variants": [],
+      "meaning": "我不能拍板，得问领导",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "sales"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "这个我请示一下领导再答复您。",
+      "situation": "下属面对客户、销售面对折扣、物业面对投诉",
+      "note": "大陆职场层级感的直接体现；「请示」只对上级用。",
+      "tags": [
+        "公司",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-work-019",
+      "phrase": "辛苦一下",
+      "variants": [],
+      "meaning": "领导让加班、加活的委婉命令",
+      "categories": {
+        "age": [
+          "mid"
+        ],
+        "archetype": [
+          "boss"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "大家辛苦一下，今晚赶出来。",
+      "situation": "项目上线前、临时加需求",
+      "note": "大陆职场最典型的软命令；「辛苦了」是事后，「辛苦一下」是事前。",
+      "tags": [
+        "公司",
+        "老闆",
+        "直球"
+      ],
+      "source": "general",
+      "avoid": [
+        "频繁说「辛苦一下」，团队很快就散了"
+      ]
+    },
+    {
+      "id": "cn-work-020",
+      "phrase": "明天要",
+      "variants": [],
+      "meaning": "领导派活时给死线",
+      "categories": {
+        "age": [
+          "mid"
+        ],
+        "archetype": [
+          "boss"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "这个明天要，先放一放别的。",
+      "situation": "快下班时、周五下午",
+      "note": "大陆互联网的「明天要」文化；配套是「今晚加个班」。",
+      "tags": [
+        "公司",
+        "老闆"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-work-021",
+      "phrase": "我不管过程",
+      "variants": [],
+      "meaning": "老板只要结果",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "boss"
+        ],
+        "tone": [
+          "angry"
+        ],
+        "function": [
+          "challenge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "我不管过程，我只要结果。",
+      "situation": "汇报不达标、项目延期",
+      "note": "老板经典台词，销售公司、装修公司老板最爱；听着霸气，实际常是甩锅。",
+      "tags": [
+        "公司",
+        "老闆",
+        "直球"
+      ],
+      "source": "general",
+      "avoid": [
+        "对下属长期这么说，等于鼓励糊弄"
+      ]
+    },
+    {
+      "id": "cn-work-022",
+      "phrase": "你自己想想",
+      "variants": [],
+      "meaning": "批评之前的起手式，让你自己认错",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "boss",
+          "teacher"
+        ],
+        "tone": [
+          "cold"
+        ],
+        "function": [
+          "challenge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "你自己想想，这方案能过吗？",
+      "situation": "领导找你谈话、方案被打回",
+      "note": "后面通常跟着一顿骂；比直接骂更难受。",
+      "tags": [
+        "公司",
+        "冷面"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-work-023",
+      "phrase": "包工头",
+      "variants": [],
+      "meaning": "带一队人干活的施工头儿，不是公司老板",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "craftsman",
+          "street"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "包工头说了，明天带人进场。",
+      "situation": "业主跟装修队对接、工地开工",
+      "note": "包工头带工人按项目结算；装修公司对业主的是「项目经理」，工地实际干活的还是包工头的人。",
+      "tags": [
+        "裝修",
+        "工地",
+        "師傅"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-work-024",
+      "phrase": "半包",
+      "variants": [],
+      "meaning": "装修承包方式：包人工和辅料，主材自己买",
+      "categories": {
+        "age": [
+          "mid",
+          "young"
+        ],
+        "archetype": [
+          "craftsman",
+          "client"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "我们做半包，主材您自己买。",
+      "situation": "装修报价、跟装修公司谈单",
+      "note": "半包＝人工＋辅料；全包＝连主材；清包＝只出人工。三种报价差很多，吵起来多半是一开始没说清。",
+      "tags": [
+        "裝修",
+        "工地",
+        "講價"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-work-025",
+      "phrase": "报价单",
+      "variants": [],
+      "meaning": "装修、工程列明项目和价格的单子",
+      "categories": {
+        "age": [
+          "mid"
+        ],
+        "archetype": [
+          "craftsman",
+          "office"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "报价单我发您，您先看看。",
+      "situation": "装修谈价、比价、签合同前",
+      "note": "装修报价单最容易藏猫腻：项目拆得越细，增项越多；业主标准动作是拿两家的单子逐项对。",
+      "tags": [
+        "裝修",
+        "客戶",
+        "講價"
+      ],
+      "source": "general",
+      "avoid": [
+        "只看总价不看单价和工程量，后期增项一定超预算"
+      ]
+    },
+    {
+      "id": "cn-work-026",
+      "phrase": "增项",
+      "variants": [],
+      "meaning": "合同之外新增的收费项目",
+      "categories": {
+        "age": [
+          "mid"
+        ],
+        "archetype": [
+          "craftsman",
+          "client"
+        ],
+        "tone": [
+          "complain"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "这是增项，得另外算钱。",
+      "situation": "拆墙发现管道、改水电超出米数、临时加柜子",
+      "note": "装修纠纷的核心词；行规是「先签字再干」，业主怕的就是「干了才说」。",
+      "tags": [
+        "裝修",
+        "講價",
+        "抱怨"
+      ],
+      "source": "general",
+      "avoid": [
+        "开工前不说清、做完了才报增项，是装修投诉第一位的原因"
+      ]
+    },
+    {
+      "id": "cn-work-027",
+      "phrase": "水电改造",
+      "variants": [],
+      "meaning": "重新布水管电线，装修里最容易被加钱的一项",
+      "categories": {
+        "age": [
+          "mid"
+        ],
+        "archetype": [
+          "craftsman",
+          "client"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "水电改造按米算，走多少算多少。",
+      "situation": "老房翻新、拆完墙之后",
+      "note": "老房必做；报价方式有「按米」「按点位」「包干」三种，按米最容易超支。",
+      "tags": [
+        "裝修",
+        "工地"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-work-028",
+      "phrase": "隐蔽工程",
+      "variants": [],
+      "meaning": "做完就被封起来、看不见的工程（水电、防水）",
+      "categories": {
+        "age": [
+          "mid"
+        ],
+        "archetype": [
+          "craftsman"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "水电是隐蔽工程，做完就看不见了。",
+      "situation": "装修验收、跟业主解释为什么贵",
+      "note": "行业术语，业主也常挂在嘴边；验收要拍照留底。",
+      "tags": [
+        "裝修",
+        "工地",
+        "師傅"
+      ],
+      "source": "general",
+      "avoid": [
+        "隐蔽工程省钱的业主，后面返工要砸墙，代价最大"
+      ]
+    },
+    {
+      "id": "cn-work-029",
+      "phrase": "验收",
+      "variants": [],
+      "meaning": "业主到场检查工程是否合格",
+      "categories": {
+        "age": [
+          "mid"
+        ],
+        "archetype": [
+          "client",
+          "craftsman"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "明天验收，您得到场。",
+      "situation": "水电验收、泥木验收、竣工验收",
+      "note": "装修分几次验收，每次都要签字；业主不到场，师傅就往下做。",
+      "tags": [
+        "裝修",
+        "工地",
+        "客戶"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-work-030",
+      "phrase": "监理",
+      "variants": [],
+      "meaning": "第三方替业主盯工地的人",
+      "categories": {
+        "age": [
+          "mid"
+        ],
+        "archetype": [
+          "craftsman",
+          "office"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "这事儿找监理，他签字才算。",
+      "situation": "装修公司请监理、业主自己买监理服务",
+      "note": "大陆装修监理普及度不高，多数业主自己盯；有监理的工地，师傅会规矩很多。",
+      "tags": [
+        "裝修",
+        "工地"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-work-031",
+      "phrase": "这活儿干得漂亮",
+      "variants": [],
+      "meaning": "夸手艺好、做得利索",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "client",
+          "craftsman"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "praise"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "这活儿干得漂亮，边角都齐。",
+      "situation": "业主验完工、师傅之间互相认可",
+      "note": "装修圈夸人最高级就是「活儿漂亮」；验收看的全是细节：边角、留缝、平整度。",
+      "tags": [
+        "裝修",
+        "讚",
+        "師傅"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-work-032",
+      "phrase": "你这是糊弄我",
+      "variants": [],
+      "meaning": "指责对方敷衍、糊弄事",
+      "categories": {
+        "age": [
+          "mid"
+        ],
+        "archetype": [
+          "client"
+        ],
+        "tone": [
+          "angry"
+        ],
+        "function": [
+          "challenge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "conflict"
+        ]
+      },
+      "example": "你这是糊弄我吧？墙都没找平。",
+      "situation": "业主发现做工差、材料被换",
+      "note": "装修吵架高频句；师傅标准回法是「你说哪儿不行，我改」。",
+      "tags": [
+        "裝修",
+        "踩",
+        "抱怨"
+      ],
+      "source": "general",
+      "avoid": [
+        "没证据就喊「糊弄」，容易把师傅逼成对立面"
+      ]
+    },
+    {
+      "id": "cn-work-033",
+      "phrase": "加钱",
+      "variants": [],
+      "meaning": "要改可以，得另外收钱",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "craftsman"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "bargain"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "要改可以，得加钱。",
+      "situation": "业主临时改设计、加柜子、换材料",
+      "note": "师傅最直接的一句；行内叫「变更」，先签变更单再动工。",
+      "tags": [
+        "裝修",
+        "講價",
+        "直球"
+      ],
+      "source": "general",
+      "avoid": [
+        "合同里写死的项目再要加钱，业主一定投诉"
+      ]
+    },
+    {
+      "id": "cn-work-034",
+      "phrase": "按图施工",
+      "variants": [],
+      "meaning": "照图纸做，别自己发挥",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "craftsman",
+          "designer"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "warn"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "按图施工，别自己改。",
+      "situation": "设计师交底、工地开会",
+      "note": "装修行业铁律；师傅自作主张改了，验收必吵。",
+      "tags": [
+        "裝修",
+        "工地",
+        "師傅"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-work-035",
+      "phrase": "进度款",
+      "variants": [],
+      "meaning": "按工程进度分批付的钱",
+      "categories": {
+        "age": [
+          "mid"
+        ],
+        "archetype": [
+          "craftsman",
+          "client"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "王哥，进度款结一下吧。",
+      "situation": "水电做完、泥木完工，包工头来要钱",
+      "note": "装修一般分三四笔：开工款、进度款、尾款；催款话术从客气到翻脸。",
+      "tags": [
+        "裝修",
+        "講價",
+        "客戶"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-work-036",
+      "phrase": "尾款",
+      "variants": [],
+      "meaning": "最后一笔钱，验收完再付",
+      "categories": {
+        "age": [
+          "mid"
+        ],
+        "archetype": [
+          "client",
+          "craftsman"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "bargain"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "尾款验收完再付，行吧？",
+      "situation": "竣工、收房、结账",
+      "note": "业主手里最后的筹码；装修公司最怕尾款拖半年。",
+      "tags": [
+        "裝修",
+        "講價"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-work-037",
+      "phrase": "你这报价有水分",
+      "variants": [],
+      "meaning": "怀疑报价虚高、藏了利润",
+      "categories": {
+        "age": [
+          "mid"
+        ],
+        "archetype": [
+          "client"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "challenge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "conflict"
+        ]
+      },
+      "example": "你这报价有水分吧？",
+      "situation": "比价、砍价、找第二家来看",
+      "note": "业主砍价常用句；行内回应是「您看哪项高，我拆给您看」。",
+      "tags": [
+        "裝修",
+        "講價",
+        "客戶"
+      ],
+      "source": "general",
+      "avoid": [
+        "当面说「有水分」等于说人家骗人，容易谈崩"
+      ]
+    },
+    {
+      "id": "cn-work-038",
+      "phrase": "你给个实在价",
+      "variants": [],
+      "meaning": "让对方报底价，别再绕",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "client"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "bargain"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "你给个实在价，行的话今天就定。",
+      "situation": "装修、买车、批发市场",
+      "note": "「实在价」＝最低价；配套动作是「今天定」，摊主最吃这套。",
+      "tags": [
+        "講價",
+        "客戶",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-work-039",
+      "phrase": "工期拖了",
+      "variants": [],
+      "meaning": "完工时间往后拖",
+      "categories": {
+        "age": [
+          "mid"
+        ],
+        "archetype": [
+          "client"
+        ],
+        "tone": [
+          "complain"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "工期拖了半个月，什么时候能完？",
+      "situation": "业主催进度、材料没到、人手不够",
+      "note": "装修合同一般写工期和违约金，但真拖了很少赔。",
+      "tags": [
+        "裝修",
+        "抱怨",
+        "客戶"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-work-040",
+      "phrase": "人手不够",
+      "variants": [],
+      "meaning": "工人排不开，得等",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "craftsman"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "现在人手不够，得等两天。",
+      "situation": "旺季、师傅接了太多单",
+      "note": "装修旺季（春秋两季）真实存在；「等两天」可能是一周。",
+      "tags": [
+        "裝修",
+        "工地",
+        "師傅"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-work-041",
+      "phrase": "这活儿没法干",
+      "variants": [],
+      "meaning": "条件太差、干不下去，准备撂挑子",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "craftsman"
+        ],
+        "tone": [
+          "angry"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "conflict"
+        ]
+      },
+      "example": "这活儿没法干，图纸跟现场对不上。",
+      "situation": "图纸和现场不符、业主反复改、材料不到位",
+      "note": "师傅罢工的标准开场；下一句是「你让设计师来一趟」。",
+      "tags": [
+        "裝修",
+        "工地",
+        "抱怨"
+      ],
+      "source": "general",
+      "avoid": [
+        "业主听到这句，通常意味着一场大吵或换队伍"
+      ]
+    },
+    {
+      "id": "cn-work-042",
+      "phrase": "工资什么时候发",
+      "variants": [],
+      "meaning": "讨薪",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "craftsman"
+        ],
+        "tone": [
+          "complain"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "工资什么时候发？都拖两个月了。",
+      "situation": "工厂、工地、小公司拖欠工资",
+      "note": "大陆讨薪高频句；工地更常说「工钱」，年底讨薪是固定新闻。",
+      "tags": [
+        "公司",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "cn-work-043",
+      "phrase": "你先自我介绍一下",
+      "variants": [],
+      "meaning": "面试开场，让候选人自我介绍",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "boss",
+          "office"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "你先自我介绍一下吧。",
+      "situation": "面试、见客户团队、入职介绍",
+      "note": "大陆面试几乎固定从这句开始；候选人标准起手是「我叫 X，毕业于……」。",
+      "tags": [
+        "公司",
+        "面試",
+        "老闆"
+      ],
+      "source": "general",
+      "avoid": [
+        "对同级同事说「你先自我介绍一下」，会显得拿架子"
+      ]
+    },
+    {
+      "id": "cn-work-044",
+      "phrase": "期望薪资多少",
+      "variants": [],
+      "meaning": "面试必问：你想要多少钱",
+      "categories": {
+        "age": [
+          "mid"
+        ],
+        "archetype": [
+          "boss",
+          "office"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "你期望薪资多少？",
+      "situation": "面试二面、HR 谈薪",
+      "note": "大陆面试的标准问法；正式说「期望薪资」，口语说「你想要多少」。",
+      "tags": [
+        "公司",
+        "面試"
+      ],
+      "source": "general",
+      "avoid": [
+        "报太高直接出局，报太低后面很难加；常被要求「说个范围」"
+      ]
+    },
+    {
+      "id": "cn-work-045",
+      "phrase": "回去等通知",
+      "variants": [],
+      "meaning": "面试结束语，多半是没戏",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "boss",
+          "office"
+        ],
+        "tone": [
+          "cold"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "行，你先回去等通知。",
+      "situation": "面试结束、HR 收尾",
+      "note": "大陆面试最标准的婉拒；有戏的会当场说下一轮时间。",
+      "tags": [
+        "公司",
+        "面試",
+        "拒絕"
+      ],
+      "source": "general",
+      "avoid": [
+        "真以为有戏，等了半个月没消息是常态"
+      ]
+    }
+  ]
+}

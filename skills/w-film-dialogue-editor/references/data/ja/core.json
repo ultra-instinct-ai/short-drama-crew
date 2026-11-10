@@ -1,0 +1,1978 @@
+{
+  "lang": "ja",
+  "label": "日文",
+  "version": "1.0",
+  "entries": [
+    {
+      "id": "ja-core-001",
+      "phrase": "すみません",
+      "variants": [
+        "すみませんでした",
+        "すいません"
+      ],
+      "romanization": "sumimasen",
+      "meaning": "最萬能嘅一聲：叫人、道歉、道謝、開場都用得，語氣客氣但唔算真心認錯",
+      "literal": "不會結束（済む的否定）",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "apology",
+          "greet"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "colleague",
+          "client",
+          "friend"
+        ]
+      },
+      "example": "すみません、ちょっといいですか。",
+      "situation": "街上想叫住陌生人問路，或者喺店舖叫店員",
+      "avoid": [
+        "對上司正式認錯要用「申し訳ありません」；只講「すみません」會似敷衍"
+      ],
+      "note": "東京標準語最常用。語尾升高＝叫人；語尾壓低＝道歉。關西人會講「すんません」。",
+      "tags": [
+        "客套",
+        "日常",
+        "敬語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-002",
+      "phrase": "ありがとうございます",
+      "variants": [
+        "ありがとうございました"
+      ],
+      "romanization": "arigatou gozaimasu",
+      "meaning": "正式嘅多謝，對客人、上司、陌生人；謝嘅係對方嘅好意，唔係單純一個服務",
+      "literal": "有難う＝難得有",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "office"
+        ],
+        "tone": [
+          "warm",
+          "polite"
+        ],
+        "function": [
+          "thanks"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "ありがとうございます、助かりました。",
+      "situation": "收禮、受幫忙、客人道謝",
+      "avoid": [
+        "對朋友熟人講會太生硬、有距離，用「ありがとう」就夠"
+      ],
+      "note": "「ありがとうございました」用於已完成嘅事（買完、走人時）；「ありがとうございます」用於仍在發生嘅事。時態錯會好怪。",
+      "tags": [
+        "客套",
+        "敬語",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-003",
+      "phrase": "ありがとう",
+      "variants": [
+        "ありがと",
+        "あざす"
+      ],
+      "romanization": "arigatou",
+      "meaning": "朋友、家人、平輩之間嘅多謝，輕鬆但有真心",
+      "literal": "有難う＝難得有",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "thanks"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "ありがとう、助かった。",
+      "situation": "朋友幫手、家人遞嘢",
+      "avoid": [
+        "對客戶、上司單講「ありがとう」太 casual，一定要加「ございます」"
+      ],
+      "note": "年輕人會講「ありがと」「あざーす」；「あざす」係男性後輩用語，對上司講會失禮。",
+      "tags": [
+        "日常",
+        "客套",
+        "敬語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-004",
+      "phrase": "ごめんなさい",
+      "variants": [
+        "ごめんなさいね"
+      ],
+      "romanization": "gomen nasai",
+      "meaning": "真心認錯，承認自己唔啱；比「すみません」重感情",
+      "literal": "御免＝請寬免",
+      "categories": {
+        "age": [
+          "kid",
+          "teen",
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "worried"
+        ],
+        "function": [
+          "apology"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "friend",
+          "colleague",
+          "stranger"
+        ]
+      },
+      "example": "ごめんなさい、遅れました。",
+      "situation": "真係覺得自己做錯，想對方原諒",
+      "avoid": [
+        "商務、對客戶用「ごめんなさい」太孩子氣、太私人，要用「申し訳ございません」"
+      ],
+      "note": "「ごめん」係平輩用；「ごめんなさい」有低頭認錯感；「ごめんね」較軟、帶感情，親密關係常用。",
+      "tags": [
+        "日常",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-005",
+      "phrase": "ごめん",
+      "variants": [
+        "ごめんね",
+        "ごめんよ"
+      ],
+      "romanization": "gomen",
+      "meaning": "平輩、朋友、家人之間嘅對唔住，輕量道歉",
+      "literal": "御免＝請寬免",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "student",
+          "slacker"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "apology"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "ごめん、待たせた。",
+      "situation": "朋友之間遲到、借咗嘢未還",
+      "avoid": [
+        "對上司講「ごめん」係平輩語，非常失禮；一定要用「申し訳ありません」"
+      ],
+      "note": "男性之間最常用；女性對親近人講「ごめんね」。",
+      "tags": [
+        "日常",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-006",
+      "phrase": "お疲れさまです",
+      "variants": [
+        "お疲れさま",
+        "お疲れさまでした"
+      ],
+      "romanization": "otsukaresama desu",
+      "meaning": "辛苦晒——走廊相遇、交接、收工都用；係招呼，唔係真係讚對方辛苦",
+      "literal": "御疲れ様＝您辛苦了",
+      "categories": {
+        "age": [
+          "young",
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "office",
+          "boss"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "greet",
+          "farewell"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "お疲れさまです。先ほどメール送りました。",
+      "situation": "公司走廊、電梯、交更，或者同日第二次見面",
+      "avoid": [
+        "對客戶講好怪，佢唔係你同事"
+      ],
+      "note": "上司對下屬可講「ご苦労さま」；下屬對上司講「ご苦労さま」係大忌，等於當對方係下屬——日本職場最出名嘅地雷。",
+      "tags": [
+        "職場",
+        "敬語",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-007",
+      "phrase": "もしもし",
+      "variants": [],
+      "romanization": "moshi moshi",
+      "meaning": "喂——電話專用開場，確認對方有聽",
+      "literal": "喂（源自「申す」）",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "delivery",
+          "office"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "client",
+          "stranger"
+        ]
+      },
+      "example": "もしもし、今ちょっといい？",
+      "situation": "接電話、打電話第一句",
+      "avoid": [
+        "面對面叫人講「もしもし」極失禮，尤其對長輩、客戶"
+      ],
+      "note": "男女通用，老一輩拉長「もしもーし」；近年年輕人少講，接電話直接「もしもし？」。",
+      "tags": [
+        "日常",
+        "開場"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-008",
+      "phrase": "失礼します",
+      "variants": [
+        "失礼しました"
+      ],
+      "romanization": "shitsurei shimasu",
+      "meaning": "打擾／告辭——入房、離開、掛電話前都用，係一條界線問候",
+      "literal": "失禮了",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "office",
+          "security"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "greet",
+          "farewell"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "失礼します。お時間いただきます。",
+      "situation": "敲門入會議室、離開客戶公司、掛電話前",
+      "avoid": [
+        "對朋友講會太生硬；朋友之間用「じゃあね」"
+      ],
+      "note": "掛線講「失礼します」比「さようなら」商務得多；「失礼しました」係做完失禮嘢之後補一句。",
+      "tags": [
+        "敬語",
+        "職場",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-009",
+      "phrase": "お願いします",
+      "variants": [
+        "お願いいたします"
+      ],
+      "romanization": "onegai shimasu",
+      "meaning": "麻煩你／拜託——點餐、遞文件、請求，萬能請求句",
+      "literal": "拜託您",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "client"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague",
+          "stranger"
+        ]
+      },
+      "example": "これ、お願いします。",
+      "situation": "便利店、餐廳點單，或者遞文件請對方處理",
+      "avoid": [
+        "對上級請求要講「お願いいたします」，單用「お願いします」容易變命令口氣"
+      ],
+      "note": "便利店、餐廳點單最常聽；拉長「お願いしまーす」係店員叫單。",
+      "tags": [
+        "客套",
+        "日常",
+        "敬語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-010",
+      "phrase": "大丈夫です",
+      "variants": [
+        "大丈夫",
+        "だいじょうぶです"
+      ],
+      "romanization": "daijoubu desu",
+      "meaning": "表面「冇問題」，實際有三義：真係冇事／唔需要／婉轉拒絕。要聽語氣同上下文",
+      "literal": "不要緊、沒問題",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "client",
+          "sales"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "refuse-soft",
+          "agree"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague",
+          "friend",
+          "stranger"
+        ]
+      },
+      "example": "大丈夫です、自分でできます。",
+      "situation": "店員問要唔要袋、同事問要唔要幫手",
+      "avoid": [
+        "對客戶用「大丈夫です」拒絕，對方可能聽成「收到」而繼續做；要清楚講「結構です」或「遠慮します」"
+      ],
+      "note": "日本最出名嘅曖昧語。語調平＝OK；語調上揚再停＝婉拒。呢條一定要寫入劇本嘅反應鏡頭，否則觀眾會誤讀。",
+      "tags": [
+        "拒絕",
+        "客套",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-011",
+      "phrase": "結構です",
+      "variants": [
+        "けっこうです"
+      ],
+      "romanization": "kekkou desu",
+      "meaning": "唔需要——明確婉拒，語氣偏硬、有距離",
+      "literal": "結構＝足夠",
+      "categories": {
+        "age": [
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "client"
+        ],
+        "tone": [
+          "cold"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague",
+          "stranger"
+        ]
+      },
+      "example": "結構です、もう十分いただきました。",
+      "situation": "店員推銷、有人想送嘢、被問要唔要再添",
+      "avoid": [
+        "對送禮、請客等好意講「結構です」會顯得寸、拒人千里"
+      ],
+      "note": "比「大丈夫です」清楚，但較冷；寫平假名「けっこうです」會軟少少。",
+      "tags": [
+        "拒絕",
+        "冷面",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-012",
+      "phrase": "ちょっと…",
+      "variants": [
+        "ちょっと",
+        "ちょっとね"
+      ],
+      "romanization": "chotto",
+      "meaning": "「有啲…」講一半就停，等於拒絕／有難處，日本人最常用嘅軟釘",
+      "literal": "一點點…",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "office",
+          "client"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague",
+          "friend"
+        ]
+      },
+      "example": "ちょっと、今日は難しいですね。",
+      "situation": "被邀約、被推銷、想推卻但又唔想講死",
+      "avoid": [
+        "對外國人、客戶只講「ちょっと…」會一頭霧水，要補一句原因"
+      ],
+      "note": "講「ちょっと」就停，對方自動收線。年輕人之間「ちょっと」都可以係「喂等等」。",
+      "tags": [
+        "拒絕",
+        "日常",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-013",
+      "phrase": "袋いりますか",
+      "variants": [
+        "袋、ご利用ですか",
+        "レジ袋いりますか"
+      ],
+      "romanization": "fukuro irimasu ka",
+      "meaning": "要唔要膠袋——便利店、超市收銀問句",
+      "literal": "需要袋子嗎",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "sales",
+          "shopkeeper"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "袋いりますか。",
+      "situation": "便利店收銀，掃完貨問客人",
+      "avoid": [
+        "收銀對客人講「袋いる？」太隨便；正式要講「袋、ご利用ですか」"
+      ],
+      "note": "2020 年膠袋收費後，標準問法變成「レジ袋、ご利用ですか」；「袋いりますか」係舊式，鄉下小店仍然講。",
+      "tags": [
+        "便利店",
+        "店員",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-014",
+      "phrase": "温めますか",
+      "variants": [
+        "お温めしますか"
+      ],
+      "romanization": "atatamemasu ka",
+      "meaning": "要唔要加熱——便利店買便當、飯糰",
+      "literal": "要加熱嗎",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "sales",
+          "shopkeeper"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "温めますか。",
+      "situation": "便利店收銀，客人買便當",
+      "avoid": [
+        "省略「か」講「温めます？」較隨便，正式服務要講「お温めしますか」"
+      ],
+      "note": "便利店定番；關西語調較高較快，句子一樣。",
+      "tags": [
+        "便利店",
+        "店員",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-015",
+      "phrase": "レジ袋有料です",
+      "variants": [
+        "レジ袋は有料です"
+      ],
+      "romanization": "reji-bukuro yuuryou desu",
+      "meaning": "膠袋要收錢，通常加一句確認",
+      "literal": "收銀袋要收費",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "sales",
+          "shopkeeper"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "question",
+          "warn"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "レジ袋有料ですけど、よろしいですか。",
+      "situation": "便利店收銀，客人未帶袋",
+      "avoid": [
+        "講「袋、金かかります」好粗暴，服務業絕對唔可以"
+      ],
+      "note": "2020 年 7 月起全日本有料；都市便利店多數收費，部分小店仍派免費薄袋。",
+      "tags": [
+        "便利店",
+        "店員",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-016",
+      "phrase": "店内でお召し上がりですか",
+      "variants": [
+        "お持ち帰りですか"
+      ],
+      "romanization": "tennai de omeshiagari desu ka",
+      "meaning": "堂食定外賣——快餐店、咖啡店收銀問句",
+      "literal": "要在店內用餐嗎",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "waitress",
+          "sales"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "店内でお召し上がりですか、お持ち帰りですか。",
+      "situation": "快餐店、咖啡店落單，客人未講清楚",
+      "avoid": [
+        "講「ここで食べますか」文法冇錯，但唔夠服務語感；連鎖店一定用「店内でお召し上がりですか」"
+      ],
+      "note": "「お持ち帰り」＝外賣；部分店會先問「お持ち帰りですか」。",
+      "tags": [
+        "餐廳",
+        "店員",
+        "服務員"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-017",
+      "phrase": "お会計お願いします",
+      "variants": [
+        "お会計",
+        "ごちそうさま、お会計"
+      ],
+      "romanization": "okaikei onegai shimasu",
+      "meaning": "埋單——叫店員結帳",
+      "literal": "拜託結帳",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "client"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "すみません、お会計お願いします。",
+      "situation": "食完想走，叫店員埋單",
+      "avoid": [
+        "對店員講「会計！」好無禮；「お会計」個「お」係必需"
+      ],
+      "note": "餐廳、居酒屋通用；關西老一輩講「お愛想」，客人講係找數，店家講係趕客。",
+      "tags": [
+        "餐廳",
+        "服務員",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-018",
+      "phrase": "お水ください",
+      "variants": [
+        "お水いただけますか",
+        "お冷ください"
+      ],
+      "romanization": "omizu kudasai",
+      "meaning": "要杯水——餐廳、居酒屋常用",
+      "literal": "請給我水",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "client"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "すみません、お水ください。",
+      "situation": "坐低未上水，或者食到一半想添",
+      "avoid": [
+        "單講「水！」係命令；要加「ください」或「いただけますか」"
+      ],
+      "note": "日本餐廳自來水免費，通常會自動上；要熱水講「お湯」，要茶講「お茶」，居酒屋講「お冷」。",
+      "tags": [
+        "餐廳",
+        "服務員",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-019",
+      "phrase": "ごちそうさまでした",
+      "variants": [
+        "ごちそうさま",
+        "ごちそうさん"
+      ],
+      "romanization": "gochisousama deshita",
+      "meaning": "食完／受人請之後嘅多謝，帶「多謝招待」",
+      "literal": "多謝款待（馳走＝奔走張羅）",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "client"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "thanks"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "client",
+          "family"
+        ]
+      },
+      "example": "ごちそうさまでした、おいしかったです。",
+      "situation": "食完離開餐廳，或者受人請客之後",
+      "avoid": [
+        "對平輩朋友講全句會太正式，可簡化成「ごちそうさま」"
+      ],
+      "note": "離開餐廳講一句好自然；對請客者講係感恩。「ごちそうさん」係關西、較隨意。",
+      "tags": [
+        "餐廳",
+        "客套",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-020",
+      "phrase": "いただきます",
+      "variants": [],
+      "romanization": "itadakimasu",
+      "meaning": "開動——食之前嘅固定一句，表示對食物同招待嘅感謝",
+      "literal": "我領受了（頂く）",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "kid",
+          "mum"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "いただきます。",
+      "situation": "開飯前，一個人食都會講",
+      "avoid": [
+        "對上司長輩要等對方講「どうぞ」先講，搶先講會失禮"
+      ],
+      "note": "一個人食飯都會講，係習慣。商務飯局要等最上位者起筷，上司未講「いただきます」你唔好郁筷子。",
+      "tags": [
+        "餐廳",
+        "家庭",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-021",
+      "phrase": "どうぞ",
+      "variants": [
+        "はい、どうぞ"
+      ],
+      "romanization": "douzo",
+      "meaning": "請——遞嘢、讓坐、叫人入房、叫人起筷",
+      "literal": "請",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "sales",
+          "waitress"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "urge",
+          "agree"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague",
+          "friend",
+          "stranger"
+        ]
+      },
+      "example": "どうぞ、お入りください。",
+      "situation": "遞文件、讓坐、請客人入房",
+      "avoid": [
+        "對客戶單講「どうぞ」略隨便，正式要講「どうぞお召し上がりください」"
+      ],
+      "note": "「はい、どうぞ」係最常見嘅遞物句。",
+      "tags": [
+        "客套",
+        "日常",
+        "敬語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-022",
+      "phrase": "よろしくお願いします",
+      "variants": [
+        "よろしくお願いいたします",
+        "よろしくね"
+      ],
+      "romanization": "yoroshiku onegai shimasu",
+      "meaning": "請多指教——自我介紹、開會、拜託之後嘅萬能收尾",
+      "literal": "請多多拜託",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "sales"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague",
+          "stranger"
+        ]
+      },
+      "example": "よろしくお願いします。",
+      "situation": "初次見面、開會開場、email 結尾",
+      "avoid": [
+        "對客戶第一次見要講「よろしくお願いいたします」，「します」略隨便"
+      ],
+      "note": "日本社會嘅萬能膠；email 結尾基本必備。朋友之間講「よろしくね」。",
+      "tags": [
+        "客套",
+        "職場",
+        "敬語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-023",
+      "phrase": "おかげさまで",
+      "variants": [
+        "おかげさまで元気です"
+      ],
+      "romanization": "okagesama de",
+      "meaning": "託福——回應「你好嗎」「生意好嗎」嘅客套，唔一定真係好",
+      "literal": "託您的福",
+      "categories": {
+        "age": [
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "shopkeeper",
+          "boss"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "thanks",
+          "greet"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague",
+          "friend"
+        ]
+      },
+      "example": "おかげさまで、元気です。",
+      "situation": "長輩、客戶問候近況",
+      "avoid": [
+        "對熟人講會顯得生疏做作，甚至聽落有啲諷刺"
+      ],
+      "note": "商務、長輩面前必備；年輕人私下多講「まあ、ぼちぼち」。",
+      "tags": [
+        "客套",
+        "老派",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-024",
+      "phrase": "お大事に",
+      "variants": [
+        "お大事にしてください",
+        "お大事にね"
+      ],
+      "romanization": "odaiji ni",
+      "meaning": "保重——對病人、受傷者、感冒嘅人講",
+      "literal": "請保重",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "office",
+          "mum"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "farewell",
+          "comfort"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "client",
+          "family"
+        ]
+      },
+      "example": "お大事にしてください。",
+      "situation": "探病、同事感冒、睇完醫生",
+      "avoid": [
+        "對健康人講「お大事に」好怪，會令人以為佢有病"
+      ],
+      "note": "探病、睇醫生、同事感冒都講；單獨講「お大事に」都自然。",
+      "tags": [
+        "關心",
+        "客套",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-025",
+      "phrase": "いってきます",
+      "variants": [
+        "行ってきます"
+      ],
+      "romanization": "ittekimasu",
+      "meaning": "我出門喇——離家、離開公司外出時講",
+      "literal": "我去了就回來",
+      "categories": {
+        "age": [
+          "kid",
+          "teen",
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "kid",
+          "office"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "farewell"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "いってきます。",
+      "situation": "出門口返工、返學",
+      "avoid": [
+        "對同事講「いってきます」係「我去拜訪客戶」，唔係收工"
+      ],
+      "note": "屋企人一定回「いってらっしゃい」；獨居都會講，係習慣。",
+      "tags": [
+        "家庭",
+        "日常",
+        "開場"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-026",
+      "phrase": "いってらっしゃい",
+      "variants": [
+        "行ってらっしゃい",
+        "いってらっしゃいませ"
+      ],
+      "romanization": "itterasshai",
+      "meaning": "路上小心——送人出門",
+      "literal": "請去吧",
+      "categories": {
+        "age": [
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "mum",
+          "dad"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "farewell",
+          "encourage"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "いってらっしゃい、気をつけてね。",
+      "situation": "送家人出門口",
+      "avoid": [
+        "對上司講「いってらっしゃい」係以上對下，會失禮"
+      ],
+      "note": "家人、學校、公司前輩對後輩都用；服務業送客講「いってらっしゃいませ」。",
+      "tags": [
+        "家庭",
+        "關心",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-027",
+      "phrase": "ただいま",
+      "variants": [],
+      "romanization": "tadaima",
+      "meaning": "我返嚟喇——返到屋企、返到公司講",
+      "literal": "我現在（回來了）",
+      "categories": {
+        "age": [
+          "kid",
+          "teen",
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "kid",
+          "office"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "colleague"
+        ]
+      },
+      "example": "ただいま。",
+      "situation": "返到屋企開門第一句",
+      "avoid": [
+        "職場講「ただいま」＝「我返嚟公司喇」（出完外勤），唔係收工"
+      ],
+      "note": "家人回「おかえり」。「ただいま」亦係「而家」嘅意思（ただいま何時ですか）。",
+      "tags": [
+        "家庭",
+        "日常",
+        "開場"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-028",
+      "phrase": "おかえり",
+      "variants": [
+        "おかえりなさい",
+        "おかえりなさいませ"
+      ],
+      "romanization": "okaeri",
+      "meaning": "你返嚟喇——迎接返到屋企嘅人",
+      "literal": "您回來了",
+      "categories": {
+        "age": [
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "mum",
+          "housewife"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "friend"
+        ]
+      },
+      "example": "おかえり、ごはんできてるよ。",
+      "situation": "家人返到屋企",
+      "avoid": [
+        "對上司、客戶講「おかえり」係當佢細路，極失禮"
+      ],
+      "note": "全句係「おかえりなさい」；家人、情侶用短版。服務業「おかえりなさいませ」係歡迎客人。",
+      "tags": [
+        "家庭",
+        "日常",
+        "開場"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-029",
+      "phrase": "おじゃまします",
+      "variants": [
+        "おじゃましました"
+      ],
+      "romanization": "ojama shimasu",
+      "meaning": "打擾喇——入屋、入上司房之前講",
+      "literal": "打擾了",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "craftsman",
+          "client"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "greet"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "おじゃまします。",
+      "situation": "去人屋企、入上司房",
+      "avoid": [
+        "入自己房、入會議室唔一定要講；入人屋企就一定講"
+      ],
+      "note": "離開時講「おじゃましました」。",
+      "tags": [
+        "客套",
+        "敬語",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-030",
+      "phrase": "おかまいなく",
+      "variants": [],
+      "romanization": "okamainaku",
+      "meaning": "唔使招呼我——客氣推辭主人嘅招待",
+      "literal": "請不必招呼我",
+      "categories": {
+        "age": [
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "client",
+          "elder"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "refuse-soft"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "おかまいなく、すぐ帰りますので。",
+      "situation": "去人屋企，主人想招呼你食嘢",
+      "avoid": [
+        "對熱情主人講完要解釋一句，否則顯得冷淡"
+      ],
+      "note": "老派、長輩用語；年輕人多講「大丈夫です、気にしないでください」。",
+      "tags": [
+        "客套",
+        "老派",
+        "拒絕"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-031",
+      "phrase": "遠慮なく",
+      "variants": [],
+      "romanization": "enryo naku",
+      "meaning": "唔好客氣、隨便——真心叫對方放開，唔使拘謹",
+      "literal": "不必客氣",
+      "categories": {
+        "age": [
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "boss",
+          "elder"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "encourage"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "遠慮なく言ってください。",
+      "situation": "請對方講真心話、唔好拘謹",
+      "avoid": [
+        "講「遠慮しないで」係朋友語氣，對客戶要用「遠慮なく」"
+      ],
+      "note": "「遠慮」係日本文化核心詞；叫「遠慮なく」＝真心叫放開，但對方多數仍然會客氣。",
+      "tags": [
+        "客套",
+        "關心",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-032",
+      "phrase": "申し訳ありません",
+      "variants": [
+        "申し訳ございません",
+        "申し訳ないです"
+      ],
+      "romanization": "moushiwake arimasen",
+      "meaning": "非常抱歉——正式、有責任嘅道歉，商務最重級",
+      "literal": "沒有辯解的餘地",
+      "categories": {
+        "age": [
+          "young",
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "office",
+          "boss"
+        ],
+        "tone": [
+          "worried",
+          "polite"
+        ],
+        "function": [
+          "apology"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague",
+          "stranger"
+        ]
+      },
+      "example": "申し訳ありません、手配が遅れました。",
+      "situation": "對客戶、上司交代自己做錯／遲咗",
+      "avoid": [
+        "對朋友講「申し訳ありません」太誇張，似做戲"
+      ],
+      "note": "商務道歉最重；「申し訳ございません」更重，對客戶用。「すみません」＝輕，「申し訳ありません」＝重。",
+      "tags": [
+        "敬語",
+        "職場",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-033",
+      "phrase": "ご迷惑おかけしました",
+      "variants": [
+        "迷惑かけてごめん"
+      ],
+      "romanization": "gomeiwaku okake shimashita",
+      "meaning": "麻煩到你——為自己造成嘅不便道歉",
+      "literal": "給您添麻煩了",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "craftsman"
+        ],
+        "tone": [
+          "worried"
+        ],
+        "function": [
+          "apology"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "ご迷惑おかけしました。",
+      "situation": "工程延誤、交貨出錯，向對方道歉",
+      "avoid": [
+        "講「迷惑かけた」漏「ご」係平輩語，對客戶會失禮"
+      ],
+      "note": "商務道歉定番；email 開頭都常用。",
+      "tags": [
+        "敬語",
+        "職場",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-034",
+      "phrase": "お手数おかけします",
+      "variants": [
+        "お手数ですが",
+        "お手数かけます"
+      ],
+      "romanization": "otesuu okake shimasu",
+      "meaning": "麻煩到你——拜託人之前嘅前置客氣",
+      "literal": "勞煩您動手",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "sales"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "apology",
+          "urge"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "お手数おかけしますが、ご確認ください。",
+      "situation": "請人幫手、請人睇文件之前",
+      "avoid": [
+        "對朋友講會太見外"
+      ],
+      "note": "商務 email、電話必備；「お手数ですが」係較輕版本。",
+      "tags": [
+        "敬語",
+        "職場",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-035",
+      "phrase": "助かります",
+      "variants": [
+        "助かった",
+        "助かる"
+      ],
+      "romanization": "tasukarimasu",
+      "meaning": "幫到手、好感激——同事之間嘅實際感謝",
+      "literal": "得救了",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "craftsman"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "thanks"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "助かります、ありがとうございます。",
+      "situation": "同事幫你執手尾、頂更",
+      "avoid": [
+        "對上司講「助かるよ」係上對下語氣"
+      ],
+      "note": "同事之間最常用，比「ありがとう」多一層「你真係幫到我」。",
+      "tags": [
+        "職場",
+        "客套",
+        "關心"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-036",
+      "phrase": "じゃあ、また明日",
+      "variants": [
+        "また明日",
+        "じゃあね"
+      ],
+      "romanization": "jaa, mata ashita",
+      "meaning": "咁聽日見——收工、放學嘅收尾",
+      "literal": "那麼，明天見",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "student"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "farewell"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "friend"
+        ]
+      },
+      "example": "じゃあ、また明日。",
+      "situation": "收工、放學，各自走",
+      "avoid": [
+        "對客戶唔可以講「また明日」，會似約定"
+      ],
+      "note": "「じゃあ」係口語轉接；正式講「それでは、失礼します」。",
+      "tags": [
+        "收尾",
+        "職場",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-037",
+      "phrase": "おやすみなさい",
+      "variants": [
+        "おやすみ",
+        "おやすみー"
+      ],
+      "romanization": "oyasuminasai",
+      "meaning": "晚安——臨瞓前",
+      "literal": "請好好休息",
+      "categories": {
+        "age": [
+          "kid",
+          "teen",
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "mum",
+          "kid"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "farewell"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "family",
+          "friend"
+        ]
+      },
+      "example": "おやすみなさい。",
+      "situation": "臨瞓前，同屋企人或者情侶講",
+      "avoid": [
+        "對同事收工講「おやすみ」好怪（除非深夜）；收工要講「お疲れさま」"
+      ],
+      "note": "家人、情侶用；messages 會打「おやすみー」。",
+      "tags": [
+        "家庭",
+        "收尾",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-038",
+      "phrase": "いくらですか",
+      "variants": [
+        "おいくらですか",
+        "いくら"
+      ],
+      "romanization": "ikura desu ka",
+      "meaning": "幾多錢——問價",
+      "literal": "多少錢",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "client",
+          "housewife"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "question",
+          "bargain"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "stranger"
+        ]
+      },
+      "example": "これ、いくらですか。",
+      "situation": "街市、小店、二手舖問價",
+      "avoid": [
+        "對高級店、客戶講「いくら？」太直接，要講「おいくらですか」"
+      ],
+      "note": "市場、居酒屋直接講「いくら」都可以；百貨公司要「おいくら」。",
+      "tags": [
+        "講價",
+        "日常",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-039",
+      "phrase": "これください",
+      "variants": [
+        "これをください"
+      ],
+      "romanization": "kore kudasai",
+      "meaning": "要呢個——點餐、買嘢最實用一句",
+      "literal": "請給我這個",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "client",
+          "shopkeeper"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "urge"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "これください。",
+      "situation": "指住餐牌、貨品落單",
+      "avoid": [
+        "店員對客人唔可以講「これください」，要講「こちらでよろしいですか」"
+      ],
+      "note": "口語常省略「を」；指住講「これ」＋「ください」就成。",
+      "tags": [
+        "日常",
+        "直球",
+        "店員"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-040",
+      "phrase": "何時までやってますか",
+      "variants": [
+        "営業時間は何時までですか",
+        "何時までですか"
+      ],
+      "romanization": "nanji made yattemasu ka",
+      "meaning": "開到幾點——問店舖、餐廳、設施收幾點",
+      "literal": "做到幾點",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "client"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger",
+          "client"
+        ]
+      },
+      "example": "すみません、何時までやってますか。",
+      "situation": "夜晚想入店，先問收幾點",
+      "avoid": [
+        "省略講「何時まで？」太隨便，對店員要加「ですか」"
+      ],
+      "note": "「営業時間は何時までですか」係較正式版本。",
+      "tags": [
+        "日常",
+        "客套",
+        "店員"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-041",
+      "phrase": "この辺にコンビニありますか",
+      "variants": [
+        "この近くにコンビニありますか"
+      ],
+      "romanization": "kono hen ni konbini arimasu ka",
+      "meaning": "附近有冇便利店——問路定番",
+      "literal": "這附近有便利店嗎",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "student",
+          "delivery"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger"
+        ]
+      },
+      "example": "すみません、この辺にコンビニありますか。",
+      "situation": "街頭問路",
+      "avoid": [
+        "問路要先講「すみません」，唔好直接問"
+      ],
+      "note": "日本便利店密度高，多數行兩步就有。",
+      "tags": [
+        "街頭",
+        "日常",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-042",
+      "phrase": "駅はどちらですか",
+      "variants": [
+        "駅はどこですか"
+      ],
+      "romanization": "eki wa dochira desu ka",
+      "meaning": "車站喺邊——問路",
+      "literal": "車站是哪邊",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "student",
+          "client"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "stranger"
+        ]
+      },
+      "example": "すみません、駅はどちらですか。",
+      "situation": "出咗地鐵站唔識行",
+      "avoid": [
+        "「駅はどこ？」文法正確但較隨便，對陌生人要講「どちら」"
+      ],
+      "note": "「どちら」係「どこ」嘅禮貌版，問路必用。",
+      "tags": [
+        "街頭",
+        "日常",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-043",
+      "phrase": "ほんと？",
+      "variants": [
+        "ほんと",
+        "本当？"
+      ],
+      "romanization": "honto?",
+      "meaning": "真嘅？——驚訝／確認，帶少少唔信",
+      "literal": "真的？",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "surprised"
+        ],
+        "function": [
+          "question",
+          "surprise"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "ほんと？それ、聞いてないよ。",
+      "situation": "聽到意料之外嘅消息",
+      "avoid": [
+        "對上司講「ほんと？」太 casual，要講「本当ですか」"
+      ],
+      "note": "年輕人常寫「ほんと」；關西講「ほんま」。",
+      "tags": [
+        "日常",
+        "直球",
+        "年輕人"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-044",
+      "phrase": "そうですか",
+      "variants": [
+        "そうなんだ",
+        "そうですか…"
+      ],
+      "romanization": "sou desu ka",
+      "meaning": "係咩——聽完之後嘅回應；升調係「係呀？」，降調係「哦，是咁的」",
+      "literal": "是這樣嗎",
+      "categories": {
+        "age": [],
+        "archetype": [
+          "office",
+          "boss"
+        ],
+        "tone": [
+          "cold"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client",
+          "friend"
+        ]
+      },
+      "example": "そうですか。",
+      "situation": "聽完對方解釋，但唔想表態",
+      "avoid": [
+        "語調一沉嘅「そうですか」＝唔信／唔滿意，對客戶好易得罪"
+      ],
+      "note": "日本曖昧文化代表作；寫劇本要用語氣同反應交代真正意思。",
+      "tags": [
+        "冷面",
+        "日常",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-core-045",
+      "phrase": "なるほど",
+      "variants": [
+        "なるほどね"
+      ],
+      "romanization": "naruhodo",
+      "meaning": "原來如此——表示明白對方講嘅嘢",
+      "literal": "原來如此（成る程）",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "sales"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "everyday",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "friend",
+          "client"
+        ]
+      },
+      "example": "なるほど、よくわかりました。",
+      "situation": "聽完解釋、對方講明原因",
+      "avoid": [
+        "對上司、客戶用「なるほど」有上對下味（我明你講乜），商務要用「おっしゃる通りです」"
+      ],
+      "note": "同事、朋友最常用嘅附和；連講兩次「なるほどね」係思考中。",
+      "tags": [
+        "日常",
+        "客套",
+        "敬語"
+      ],
+      "source": "general"
+    }
+  ]
+}

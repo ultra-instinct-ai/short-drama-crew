@@ -1,0 +1,1927 @@
+{
+  "lang": "ja",
+  "label": "日文",
+  "version": "1.0",
+  "entries": [
+    {
+      "id": "ja-slang-001",
+      "phrase": "エモい",
+      "variants": [
+        "エモ",
+        "エモすぎ"
+      ],
+      "romanization": "emoi",
+      "meaning": "好有情懷、好感動——見到舊相、聽到首歌、黃昏天色，心入面一揪",
+      "literal": "emo＋い（和製形容詞）",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "designer"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "praise"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "この写真、エモいな。",
+      "situation": "朋友聚會睇舊相、聽住一首歌",
+      "avoid": [
+        "對上司、長輩講「エモい」會聽唔明；正式場合要講「感慨深い」"
+      ],
+      "note": "2000 年代後半從音樂圈興起，2010 年代全國化；長輩多數唔識。關西都用。",
+      "tags": [
+        "潮語",
+        "年輕人",
+        "網絡用語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-002",
+      "phrase": "草",
+      "variants": [
+        "草草",
+        "wwww"
+      ],
+      "romanization": "kusa",
+      "meaning": "好笑——網上笑聲，「www」形似草所以叫草",
+      "literal": "草",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "slacker"
+        ],
+        "tone": [
+          "funny"
+        ],
+        "function": [
+          "joke",
+          "agree"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "草、それ完全に俺だわ。",
+      "situation": "網上睇到一條中晒自己嘅帖",
+      "avoid": [
+        "對上司、客戶講「草」極失禮；面對面講都係年輕人限定"
+      ],
+      "note": "網上用「www」＝笑；「草」係 2010 年代後半主流。長輩睇唔明。",
+      "tags": [
+        "網絡用語",
+        "潮語",
+        "年輕人"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-003",
+      "phrase": "それな",
+      "variants": [
+        "それなー",
+        "それなんだよな"
+      ],
+      "romanization": "sore na",
+      "meaning": "完全同意——「就是說啊」，帶共鳴",
+      "literal": "那是啊",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "それな、ほんとそれ。",
+      "situation": "朋友講中你心聲",
+      "avoid": [
+        "對上司講「それな」係平輩語，會議上用會失禮"
+      ],
+      "note": "2010 年代年輕人用語，已開始退潮；關西版係「せやな」。",
+      "tags": [
+        "潮語",
+        "年輕人",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-004",
+      "phrase": "ぴえん",
+      "variants": [
+        "ぴえんぴえん",
+        "ぴえーん"
+      ],
+      "romanization": "pien",
+      "meaning": "慘、想喊——但用可愛化包裝，唔係真喊",
+      "literal": "哭聲擬音（日文「ぴえーん」）",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "whiny"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "課題終わらない、ぴえん。",
+      "situation": "趕功課、排隊排好耐",
+      "avoid": [
+        "對上司、客戶講會似撒嬌、唔專業；真係傷心時講會顯得輕浮"
+      ],
+      "note": "2018 年女子高生流行語；2020 年代已算舊，長輩都會講嚟搞笑。",
+      "tags": [
+        "潮語",
+        "網絡用語",
+        "年輕人"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-005",
+      "phrase": "推し",
+      "variants": [
+        "推し活",
+        "推しメン"
+      ],
+      "romanization": "oshi",
+      "meaning": "本命——最支持嘅偶像、角色、演員",
+      "literal": "推す（推薦）嘅名詞形",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "praise"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "推しが尊い。",
+      "situation": "睇演唱會、追劇、睇動畫",
+      "avoid": [
+        "對唔識動漫文化嘅長輩講會一頭霧水"
+      ],
+      "note": "由 AKB48 總選舉文化普及，2010 年代全國化；「推し活」＝追星活動。",
+      "tags": [
+        "動漫",
+        "潮語",
+        "年輕人"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-006",
+      "phrase": "ガチ",
+      "variants": [
+        "ガチで",
+        "マジでガチ"
+      ],
+      "romanization": "gachi",
+      "meaning": "認真、真係——唔係講笑",
+      "literal": "がちんこ（真打）嘅略",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "slacker"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "agree",
+          "urge"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "ガチでやばいって。",
+      "situation": "講一件真係好嚴重嘅事",
+      "avoid": [
+        "對上司講「ガチで」太 casual；商務要講「本当に」"
+      ],
+      "note": "源自「ガチンコ」（真打）；「ガチ勢」＝認真玩家。",
+      "tags": [
+        "潮語",
+        "年輕人",
+        "遊戲"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-007",
+      "phrase": "ワンチャン",
+      "variants": [
+        "ワンチャンある",
+        "ワンチャンいける"
+      ],
+      "romanization": "wanchan",
+      "meaning": "有機會、博一博——未必得但試得過",
+      "literal": "one chance 嘅和製英語",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "flirty"
+        ],
+        "function": [
+          "encourage"
+        ],
+        "register": "english-mix",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "ワンチャン、間に合うかも。",
+      "situation": "趕尾班車、排隊博最後一個位",
+      "avoid": [
+        "對客戶講「ワンチャン」太輕浮，商務要講「可能性はあります」"
+      ],
+      "note": "和製英語源自 one chance；2010 年代年輕人用語，長輩聽唔明。",
+      "tags": [
+        "外來語",
+        "潮語",
+        "年輕人"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-008",
+      "phrase": "わかりみ",
+      "variants": [
+        "わかりみが深い",
+        "わかる"
+      ],
+      "romanization": "wakarimi",
+      "meaning": "我懂、共感到爆——「わかり」＋「み」嘅造詞",
+      "literal": "わかり＋み（共感名詞化）",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "わかりみが深い。",
+      "situation": "朋友講中你嘅處境",
+      "avoid": [
+        "對長輩、上司講會聽唔明；正式場合要講「よくわかります」"
+      ],
+      "note": "2018 年流行，由「○○み」構詞潮帶起；而家已經算舊，多用嚟自嘲。",
+      "tags": [
+        "網絡用語",
+        "潮語",
+        "年輕人"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-009",
+      "phrase": "やばい",
+      "variants": [
+        "ヤバい",
+        "やば"
+      ],
+      "romanization": "yabai",
+      "meaning": "大鑊／勁正——好壞都用，靠語氣分辨",
+      "literal": "危ない（危險）嘅轉音",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "student",
+          "slacker"
+        ],
+        "tone": [
+          "surprised"
+        ],
+        "function": [
+          "surprise",
+          "complain"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "やばい、財布忘れた。",
+      "situation": "出門口先發現冇帶銀包",
+      "avoid": [
+        "對客戶、上司講「やばい」太 casual；正式要講「大変です」"
+      ],
+      "note": "1980 年代已出現，一直用到今日；好壞兩極係佢特色。",
+      "tags": [
+        "潮語",
+        "年輕人",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-010",
+      "phrase": "だるい",
+      "variants": [
+        "だる",
+        "だりぃ"
+      ],
+      "romanization": "darui",
+      "meaning": "好懶、好煩——身體重、提唔起勁",
+      "literal": "怠い",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "slacker"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "complain"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "今日、だるいわ。",
+      "situation": "返工返學前、天氣翳焗",
+      "avoid": [
+        "對上司講「だるい」＝對工作不滿，好易出事"
+      ],
+      "note": "關西都講，語尾會拖「だる〜」；正式場合唔可以用。",
+      "tags": [
+        "潮語",
+        "年輕人",
+        "抱怨"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-011",
+      "phrase": "ウケる",
+      "variants": [
+        "ウケるんだけど",
+        "うける"
+      ],
+      "romanization": "ukeru",
+      "meaning": "好笑到忍唔住——帶少少嘲笑",
+      "literal": "受ける（受けが良い）口語",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "funny"
+        ],
+        "function": [
+          "joke"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "ウケる、それ本気で言ってる？",
+      "situation": "朋友講咗句荒謬嘢",
+      "avoid": [
+        "對當事人講「ウケる」＝嘲笑，好易反枱"
+      ],
+      "note": "「受ける」嘅口語；拍攝現場講「ウケる」多數係真笑。",
+      "tags": [
+        "潮語",
+        "年輕人",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-012",
+      "phrase": "マジで？",
+      "variants": [
+        "マジ？",
+        "マジか"
+      ],
+      "romanization": "maji de?",
+      "meaning": "真嘅？認真？——驚訝加少少唔信",
+      "literal": "真面目（まじめ）嘅轉音",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "surprised"
+        ],
+        "function": [
+          "question",
+          "surprise"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "マジで？信じられない。",
+      "situation": "聽到難以置信嘅消息",
+      "avoid": [
+        "對上司講「マジで？」太 casual，要講「本当ですか」"
+      ],
+      "note": "1980 年代至今長青；女性會拉長「マジでー？」。",
+      "tags": [
+        "潮語",
+        "年輕人",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-013",
+      "phrase": "うそ",
+      "variants": [
+        "うそでしょ",
+        "うっそ"
+      ],
+      "romanization": "uso",
+      "meaning": "唔係啩——聽到嘅嘢難以置信",
+      "literal": "嘘",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "surprised"
+        ],
+        "function": [
+          "surprise",
+          "question"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "うそ、それ本当？",
+      "situation": "朋友講咗個驚人消息",
+      "avoid": [
+        "對客戶講「うそ」會被當成指控對方講大話"
+      ],
+      "note": "拉長「うそー」係撒嬌；短促「うそ」係真驚訝。",
+      "tags": [
+        "潮語",
+        "日常",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-014",
+      "phrase": "ありえん",
+      "variants": [
+        "ありえない",
+        "ありえんし"
+      ],
+      "romanization": "arien",
+      "meaning": "唔可能、離譜——接受唔到",
+      "literal": "有り得ない 嘅關東年輕人省略形",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "angry"
+        ],
+        "function": [
+          "disagree",
+          "complain"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "ありえん、そんなの聞いてない。",
+      "situation": "臨時改規矩、被放飛機",
+      "avoid": [
+        "對上司講「ありえん」係直接否定，好易出事"
+      ],
+      "note": "年輕人省略形；正式講「ありえない」。",
+      "tags": [
+        "潮語",
+        "年輕人",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-015",
+      "phrase": "めっちゃ",
+      "variants": [
+        "めちゃ",
+        "めっちゃくちゃ"
+      ],
+      "romanization": "meccha",
+      "meaning": "超、好——程度加強",
+      "literal": "めちゃくちゃ 嘅關西略",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "praise",
+          "complain"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "めっちゃうまい。",
+      "situation": "食到好嘢、睇到好戲",
+      "avoid": [
+        "對客戶講「めっちゃ」太 casual，商務要講「とても」"
+      ],
+      "note": "關西起源（めちゃくちゃ），90 年代全國化；東京年輕人都用。",
+      "tags": [
+        "方言",
+        "潮語",
+        "年輕人"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-016",
+      "phrase": "知らんけど",
+      "variants": [
+        "知らんけどね",
+        "知らんけどな"
+      ],
+      "romanization": "shiran kedo",
+      "meaning": "「唔知啦」——講完自己觀點加一句免責，帶自嘲",
+      "literal": "不知道，但是",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "student",
+          "slacker"
+        ],
+        "tone": [
+          "sarcastic"
+        ],
+        "function": [
+          "dismiss"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "たぶんそうやと思う、知らんけど。",
+      "situation": "講完自己意見即刻加免責",
+      "avoid": [
+        "對客戶講「知らんけど」＝唔負責，商務大忌"
+      ],
+      "note": "關西腔起，2010 年代全國網上化；等於「我講咗，信不信由你」。",
+      "tags": [
+        "方言",
+        "潮語",
+        "網絡用語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-017",
+      "phrase": "なんでやねん",
+      "variants": [
+        "なんでや",
+        "なんでやねん！"
+      ],
+      "romanization": "nande yanen",
+      "meaning": "點會咁呀——關西吐槽定番，等於「你搞咩呀」",
+      "literal": "為什麼呀（關西腔）",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "student",
+          "slacker"
+        ],
+        "tone": [
+          "funny"
+        ],
+        "function": [
+          "disagree",
+          "tease"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "なんでやねん、そこ突っ込むとこちゃうやろ。",
+      "situation": "朋友做咗件唔合理嘅事",
+      "avoid": [
+        "對上司、客戶用關西腔吐槽會失禮；東京人講會好假"
+      ],
+      "note": "關西（大阪）ツッコミ 代表句；吉本興業節目帶紅全國。",
+      "tags": [
+        "方言",
+        "潮語",
+        "動漫"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-018",
+      "phrase": "ほんま",
+      "variants": [
+        "ほんまに",
+        "ほんま？"
+      ],
+      "romanization": "honma",
+      "meaning": "真嘅——關西版「ほんと」",
+      "literal": "本真（ほんま）",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "student",
+          "shopkeeper"
+        ],
+        "tone": [
+          "surprised"
+        ],
+        "function": [
+          "question",
+          "agree"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "ほんま？それは知らんかった。",
+      "situation": "關西朋友講咗單新聞",
+      "avoid": [
+        "東京人刻意講「ほんま」會好做作"
+      ],
+      "note": "關西基本詞；「ほんまに」＝真的。",
+      "tags": [
+        "方言",
+        "潮語",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-019",
+      "phrase": "あかん",
+      "variants": [
+        "あかんわ",
+        "あかんで"
+      ],
+      "romanization": "akan",
+      "meaning": "唔得、死喇——關西版「だめ」",
+      "literal": "明かん（＝いけない）",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "student",
+          "housewife"
+        ],
+        "tone": [
+          "helpless"
+        ],
+        "function": [
+          "refuse",
+          "warn"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "あかん、間に合わへん。",
+      "situation": "趕唔切、做錯嘢",
+      "avoid": [
+        "對東京客戶講「あかん」會聽得明，但覺得你唔專業"
+      ],
+      "note": "關西萬能詞；「あかんわ」＝死喇，「あかんで」＝唔可以。",
+      "tags": [
+        "方言",
+        "潮語",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-020",
+      "phrase": "せやな",
+      "variants": [
+        "せやせや",
+        "せやで"
+      ],
+      "romanization": "seya na",
+      "meaning": "係喎——關西版「それな」「そうだね」",
+      "literal": "そうだな（關西腔）",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "student",
+          "shopkeeper"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "せやな、そう思うわ。",
+      "situation": "關西朋友附和",
+      "avoid": [
+        "對東京人講「せやな」會聽唔明；商務場合一定唔用"
+      ],
+      "note": "關西日常附和；東京版係「そうだね」。",
+      "tags": [
+        "方言",
+        "潮語",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-021",
+      "phrase": "おおきに",
+      "variants": [
+        "おおきにさん"
+      ],
+      "romanization": "ookini",
+      "meaning": "多謝——關西（京都、大阪）嘅感謝",
+      "literal": "大きに（大大地）",
+      "categories": {
+        "age": [
+          "young",
+          "mid",
+          "senior",
+          "elder"
+        ],
+        "archetype": [
+          "shopkeeper",
+          "elder"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "thanks"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend",
+          "colleague"
+        ]
+      },
+      "example": "おおきに、助かったわ。",
+      "situation": "關西街坊、老舖多謝客人",
+      "avoid": [
+        "對東京人講「おおきに」會聽得明，但覺得你扮關西"
+      ],
+      "note": "京都商人用語；大阪人日常都用，比「ありがとう」親切。",
+      "tags": [
+        "方言",
+        "客套",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-022",
+      "phrase": "まいど",
+      "variants": [
+        "毎度"
+      ],
+      "romanization": "maido",
+      "meaning": "你好／多謝——關西生意人招呼，等於「いつもありがとう」",
+      "literal": "毎度（每次都）",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "shopkeeper",
+          "elder"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "greet",
+          "thanks"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "client",
+          "colleague"
+        ]
+      },
+      "example": "まいど、いつもおおきに。",
+      "situation": "大阪商店街、老舖門口",
+      "avoid": [
+        "對東京客戶講「まいど」會一頭霧水"
+      ],
+      "note": "大阪商店街最常聽；「毎度おおきに」係完整版。",
+      "tags": [
+        "方言",
+        "客套",
+        "街頭"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-023",
+      "phrase": "は？",
+      "variants": [
+        "はぁ？",
+        "は？今"
+      ],
+      "romanization": "ha?",
+      "meaning": "下？——聽唔明，或者挑機；語氣一沉就係開火",
+      "literal": "は（反問）",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "street",
+          "slacker"
+        ],
+        "tone": [
+          "angry"
+        ],
+        "function": [
+          "challenge",
+          "question"
+        ],
+        "register": "slang",
+        "profanity": 1,
+        "socialDistance": [
+          "conflict"
+        ]
+      },
+      "example": "は？今なんて言った？",
+      "situation": "被人寸、被人質疑",
+      "avoid": [
+        "對上司講「は？」＝當眾挑戰，幾乎等於衝突"
+      ],
+      "note": "語調決定一切：升調＝聽唔清；壓低拉長＝唔耐煩、想打交。",
+      "tags": [
+        "直球",
+        "年輕人",
+        "日常"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-024",
+      "phrase": "ふざけんな",
+      "variants": [
+        "ふざけんなよ",
+        "ふざけるな"
+      ],
+      "romanization": "fuzaken na",
+      "meaning": "唔好玩啦、你講咩呀——動真火嘅反擊",
+      "literal": "ふざけるな（別胡鬧）",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "street",
+          "slacker"
+        ],
+        "tone": [
+          "angry"
+        ],
+        "function": [
+          "insult",
+          "threaten"
+        ],
+        "register": "profanity",
+        "profanity": 2,
+        "socialDistance": [
+          "conflict"
+        ]
+      },
+      "example": "ふざけんなよ、ふざけんな！",
+      "situation": "被人玩、被人出賣",
+      "avoid": [
+        "p2：對上司、客戶講一定出事；平台尺度要配衝突鋪陳，唔可以無故爆"
+      ],
+      "note": "男性用語為主；女性講「ふざけないで」較軟。日劇、動畫衝突場面常見。",
+      "tags": [
+        "直球",
+        "黑話",
+        "年輕人"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-025",
+      "phrase": "てめえ",
+      "variants": [
+        "てめぇ",
+        "てめー"
+      ],
+      "romanization": "temee",
+      "meaning": "你條友——極侮辱嘅第二人稱",
+      "literal": "手前（てまえ）嘅轉音",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "street"
+        ],
+        "tone": [
+          "threat"
+        ],
+        "function": [
+          "insult",
+          "threaten"
+        ],
+        "register": "profanity",
+        "profanity": 2,
+        "socialDistance": [
+          "conflict"
+        ]
+      },
+      "example": "てめえ、誰に向かって言ってんだ。",
+      "situation": "黑道、打架場面開火",
+      "avoid": [
+        "p2：只限黑道、打架場面；對任何人講都係挑釁"
+      ],
+      "note": "江戶時代「手前」演變，現代係罵人；動漫反派常用，現實講會出事。",
+      "tags": [
+        "黑話",
+        "直球",
+        "動漫"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-026",
+      "phrase": "この野郎",
+      "variants": [
+        "このやろう",
+        "コノヤロー"
+      ],
+      "romanization": "kono yarou",
+      "meaning": "你個死嘢——粗魯罵人，帶挑釁",
+      "literal": "這個野郎（野郎＝小子）",
+      "categories": {
+        "age": [
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "street"
+        ],
+        "tone": [
+          "angry"
+        ],
+        "function": [
+          "insult",
+          "threaten"
+        ],
+        "register": "profanity",
+        "profanity": 2,
+        "socialDistance": [
+          "conflict"
+        ]
+      },
+      "example": "この野郎、覚えてろよ。",
+      "situation": "老派衝突、工地吵架",
+      "avoid": [
+        "p2：對長輩、客戶講等於宣戰；平台要標衝突提示"
+      ],
+      "note": "老派罵法，昭和感重；現代年輕人少講，多數喺動漫、劇集聽到。",
+      "tags": [
+        "黑話",
+        "老派",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-027",
+      "phrase": "ボケ",
+      "variants": [
+        "ボケ！",
+        "あほ"
+      ],
+      "romanization": "boke",
+      "meaning": "傻仔／你傻呀——關西式罵人，同時係搞笑吐槽",
+      "literal": "呆け（發呆、傻）",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "street",
+          "student"
+        ],
+        "tone": [
+          "sassy"
+        ],
+        "function": [
+          "insult",
+          "tease"
+        ],
+        "register": "profanity",
+        "profanity": 2,
+        "socialDistance": [
+          "conflict",
+          "friend"
+        ]
+      },
+      "example": "ボケ、何言うてんねん。",
+      "situation": "關西朋友之間互寸",
+      "avoid": [
+        "p2：關西人之間係玩笑，對東京人講會當真挑釁"
+      ],
+      "note": "關西漫才嘅「ボケ／ツッコミ」結構；罵人時語氣要短促。關西「アホ」係親密、「バカ」係侮辱，東京大致相反。",
+      "tags": [
+        "方言",
+        "黑話",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-028",
+      "phrase": "カス",
+      "variants": [
+        "クソカス",
+        "カスが"
+      ],
+      "romanization": "kasu",
+      "meaning": "廢物、渣——人身攻擊，最重級",
+      "literal": "粕（渣滓）",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "street"
+        ],
+        "tone": [
+          "angry"
+        ],
+        "function": [
+          "insult",
+          "threaten"
+        ],
+        "register": "profanity",
+        "profanity": 3,
+        "socialDistance": [
+          "conflict"
+        ]
+      },
+      "example": "カス、消えろよ。",
+      "situation": "極端衝突、黑道場面",
+      "avoid": [
+        "p3：真粗口，地面電視 NG；TikTok／Shorts 有刪片風險，要靠 bleep 或切斷"
+      ],
+      "note": "日本放送禁止用語級；只限黑道、極端衝突角色。同級仲有「ゴミ」「死ね」，唔建議喺品牌短劇用。",
+      "tags": [
+        "黑話",
+        "直球",
+        "老派"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-029",
+      "phrase": "草生える",
+      "variants": [
+        "草生えた",
+        "草"
+      ],
+      "romanization": "kusa haeru",
+      "meaning": "笑到生草——網上「太好笑」",
+      "literal": "草が生える（長草）",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "funny"
+        ],
+        "function": [
+          "joke"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "草生えるわ、その返し。",
+      "situation": "睇到一句神回覆",
+      "avoid": [
+        "對上司講會聽唔明；正式場合要講「とても面白いです」"
+      ],
+      "note": "2010 年代網上語；「草」係名詞版，兩者並用。近年已算舊。",
+      "tags": [
+        "網絡用語",
+        "潮語",
+        "年輕人"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-030",
+      "phrase": "炎上",
+      "variants": [
+        "炎上した",
+        "炎上案件"
+      ],
+      "romanization": "enjou",
+      "meaning": "網上燒起來——公關災難、被大量網民圍攻",
+      "literal": "炎上（燒山）",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "designer"
+        ],
+        "tone": [
+          "worried"
+        ],
+        "function": [
+          "warn",
+          "gossip"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "client"
+        ]
+      },
+      "example": "SNSで炎上してるよ、あの店。",
+      "situation": "公司出咗事、網上被圍攻",
+      "avoid": [
+        "對客戶講「炎上」要小心，會令對方更慌；正式公關用「批判が殺到」"
+      ],
+      "note": "2010 年代變成網絡用語，日本企業最怕；出自「炎上」＝燒山。",
+      "tags": [
+        "網絡用語",
+        "職場",
+        "八卦"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-031",
+      "phrase": "エゴサ",
+      "variants": [
+        "エゴサーチ",
+        "エゴサした"
+      ],
+      "romanization": "egosa",
+      "meaning": "自我搜尋——上網搜自己、自己公司嘅名",
+      "literal": "ego-search 嘅略",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "student",
+          "office"
+        ],
+        "tone": [
+          "worried"
+        ],
+        "function": [
+          "gossip"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "friend"
+        ]
+      },
+      "example": "エゴサしたら、自分の名前が出てきた。",
+      "situation": "做完訪問、出完 post 之後",
+      "avoid": [
+        "對上司講「エゴサ」太隨意；正式要講「自己検索」"
+      ],
+      "note": "ego-search 嘅略語，2000 年代後半起；藝人、公關日常。",
+      "tags": [
+        "網絡用語",
+        "外來語",
+        "職場"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-032",
+      "phrase": "バズる",
+      "variants": [
+        "バズった",
+        "バズってる"
+      ],
+      "romanization": "bazuru",
+      "meaning": "爆紅——短時間內大量人講",
+      "literal": "buzz＋る（和製動詞）",
+      "categories": {
+        "age": [
+          "teen",
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "student",
+          "designer"
+        ],
+        "tone": [
+          "proud"
+        ],
+        "function": [
+          "boast",
+          "praise"
+        ],
+        "register": "english-mix",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "friend"
+        ]
+      },
+      "example": "あの動画、バズってるよ。",
+      "situation": "短片突然好多 view",
+      "avoid": [
+        "對客戶講「バズる」要小心，爆紅唔一定係好事"
+      ],
+      "note": "buzz＋る 嘅和製動詞；2010 年代起流行。",
+      "tags": [
+        "網絡用語",
+        "外來語",
+        "潮語"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-033",
+      "phrase": "鍵アカ",
+      "variants": [
+        "鍵アカウント",
+        "鍵"
+      ],
+      "romanization": "kagi aka",
+      "meaning": "私人帳戶——要批准先睇到嘅 account",
+      "literal": "鍵＋アカウント（鎖帳號）",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student"
+        ],
+        "tone": [
+          "cold"
+        ],
+        "function": [
+          "warn",
+          "dismiss"
+        ],
+        "register": "internet",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "鍵アカだから、気をつけて。",
+      "situation": "講人壞話之前提醒對方",
+      "avoid": [
+        "對長輩講「鍵アカ」聽唔明"
+      ],
+      "note": "account 略成「アカ」；「鍵」＝鎖。年輕人、藝人分身都用。",
+      "tags": [
+        "網絡用語",
+        "潮語",
+        "年輕人"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-034",
+      "phrase": "よろしかったでしょうか",
+      "variants": [
+        "よろしいでしょうか"
+      ],
+      "romanization": "yoroshikatta deshou ka",
+      "meaning": "「唔知咁樣好唔好呢」——用過去式問現在，係典型バイト敬語誤用",
+      "literal": "よろしい（好）＋過去式",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "waitress",
+          "sales"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "question"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "こちらでよろしかったでしょうか。",
+      "situation": "便利店、餐廳店員確認客人意願",
+      "avoid": [
+        "對上司、長輩講係錯敬語；正確係「よろしいでしょうか」"
+      ],
+      "note": "コンビニ、飲食店バイト敬語代表；2000 年代被大肆批評，而家仍周圍聽。",
+      "tags": [
+        "敬語",
+        "職場",
+        "服務員"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-035",
+      "phrase": "お伺いさせていただきます",
+      "variants": [
+        "お伺いいたします",
+        "伺わせていただきます"
+      ],
+      "romanization": "oukagai sasete itadakimasu",
+      "meaning": "「我會去拜訪」——但「伺う」本身已含謙讓，再加「させていただく」變二重敬語",
+      "literal": "伺う＋させていただく（二重敬語）",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "sales",
+          "office"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "明日、お伺いさせていただきます。",
+      "situation": "約好去客戶公司",
+      "avoid": [
+        "對上司講係錯敬語；正確係「伺います」或「お伺いいたします」"
+      ],
+      "note": "二重敬語代表；商務 email 極常見，連日本人都照用。",
+      "tags": [
+        "敬語",
+        "職場",
+        "客套"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-036",
+      "phrase": "こちらコーヒーになります",
+      "variants": [
+        "コーヒーになります"
+      ],
+      "romanization": "kochira koohii ni narimasu",
+      "meaning": "「呢個係咖啡」——但「になります」係「變成」，用嚟講「係」係誤用",
+      "literal": "こちら＋になる（變化）",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "waitress",
+          "sales"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "こちらコーヒーになります、どうぞ。",
+      "situation": "餐廳上菜、便利店遞咖啡",
+      "avoid": [
+        "對上司、長輩講係錯敬語；正確係「コーヒーです」"
+      ],
+      "note": "飲食店バイト敬語代表；「〜になります」氾濫到連新聞都討論。",
+      "tags": [
+        "敬語",
+        "服務員",
+        "餐廳"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-037",
+      "phrase": "千円からお預かりします",
+      "variants": [
+        "千円お預かりします",
+        "千円から預かります"
+      ],
+      "romanization": "sen en kara oazukari shimasu",
+      "meaning": "「由一千円開始收你錢」——「から」用錯，係便利店バイト敬語",
+      "literal": "千円から（從一千円起）",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "sales",
+          "shopkeeper"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "千円からお預かりします。",
+      "situation": "便利店收銀找錢",
+      "avoid": [
+        "對客人講「から」係語病；正確係「千円お預かりします」"
+      ],
+      "note": "コンビニバイト敬語經典例子；2000 年代被電視節目狂插。",
+      "tags": [
+        "敬語",
+        "便利店",
+        "服務員"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-038",
+      "phrase": "お水のほうお持ちしました",
+      "variants": [
+        "お水のほう",
+        "〜のほう"
+      ],
+      "romanization": "omizu no hou omochi shimashita",
+      "meaning": "「水嘅方面我拎咗嚟」——「のほう」無意義，係バイト敬語",
+      "literal": "お水のほう（水的方面）",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "waitress"
+        ],
+        "tone": [
+          "polite"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "client"
+        ]
+      },
+      "example": "お水のほうお持ちしました。",
+      "situation": "餐廳上水",
+      "avoid": [
+        "對上司、客戶講「のほう」係語病；正確係「お水お持ちしました」"
+      ],
+      "note": "2000 年代被批評嘅バイト敬語；而家仍常見於飲食店。",
+      "tags": [
+        "敬語",
+        "服務員",
+        "餐廳"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-039",
+      "phrase": "了解しました",
+      "variants": [
+        "了解です",
+        "了解"
+      ],
+      "romanization": "ryoukai shimashita",
+      "meaning": "明白——但對上司用會被視為上對下，正確係「承知しました」",
+      "literal": "了解（理解）＋しました",
+      "categories": {
+        "age": [
+          "young",
+          "mid"
+        ],
+        "archetype": [
+          "office",
+          "slacker"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "agree"
+        ],
+        "register": "professional",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague"
+        ]
+      },
+      "example": "了解しました、すぐやります。",
+      "situation": "回覆同事、上司交帶",
+      "avoid": [
+        "對上司、客戶講「了解しました」有上對下味，日本職場會扣分"
+      ],
+      "note": "年輕人覺得冇問題，但 40 歲以上上司多數介意；商務一律用「承知しました」。",
+      "tags": [
+        "敬語",
+        "職場",
+        "年輕人"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-040",
+      "phrase": "エグい",
+      "variants": [
+        "エグ",
+        "えぐい"
+      ],
+      "romanization": "egui",
+      "meaning": "好狠、好誇張——形容程度過分，好壞都用",
+      "literal": "抉る（挖、刺）嘅轉音",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "slacker"
+        ],
+        "tone": [
+          "surprised"
+        ],
+        "function": [
+          "surprise",
+          "complain"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "エグい、そんな金額？",
+      "situation": "見到離譜價錢、離譜傷勢",
+      "avoid": [
+        "對客戶講「エグい」太 casual；商務要講「厳しい」"
+      ],
+      "note": "源自「えぐる」（挖），2010 年代年輕人用語；關西都講。",
+      "tags": [
+        "潮語",
+        "年輕人",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-041",
+      "phrase": "チルい",
+      "variants": [
+        "チル",
+        "チルってる"
+      ],
+      "romanization": "chirui",
+      "meaning": "好 chill、好放鬆——舒服到唔想動",
+      "literal": "chill＋い（和製形容詞）",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "designer"
+        ],
+        "tone": [
+          "warm"
+        ],
+        "function": [
+          "praise"
+        ],
+        "register": "english-mix",
+        "profanity": 0,
+        "socialDistance": [
+          "friend"
+        ]
+      },
+      "example": "このカフェ、チルいね。",
+      "situation": "放假去咖啡店、聽 lo-fi",
+      "avoid": [
+        "對長輩講會聽唔明；正式場合要講「落ち着く」"
+      ],
+      "note": "chill＋い 嘅和製形容詞，2020 年代流行；已開始退潮。",
+      "tags": [
+        "外來語",
+        "潮語",
+        "年輕人"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-042",
+      "phrase": "うざい",
+      "variants": [
+        "うざ",
+        "うぜぇ"
+      ],
+      "romanization": "uzai",
+      "meaning": "好煩、好討厭——對人或事嘅不耐煩",
+      "literal": "うざったい 嘅略",
+      "categories": {
+        "age": [
+          "teen",
+          "young"
+        ],
+        "archetype": [
+          "student",
+          "slacker"
+        ],
+        "tone": [
+          "angry"
+        ],
+        "function": [
+          "insult",
+          "complain"
+        ],
+        "register": "slang",
+        "profanity": 1,
+        "socialDistance": [
+          "friend",
+          "conflict"
+        ]
+      },
+      "example": "うざい、もうほっといて。",
+      "situation": "被人纏住、被人煩",
+      "avoid": [
+        "對上司、客戶講「うざい」一定出事；p1 都只限平輩"
+      ],
+      "note": "1990 年代年輕人用語，長青至今；男性講「うぜぇ」更粗。",
+      "tags": [
+        "潮語",
+        "年輕人",
+        "直球"
+      ],
+      "source": "general"
+    },
+    {
+      "id": "ja-slang-043",
+      "phrase": "すんません",
+      "variants": [
+        "すんまへん",
+        "すいません"
+      ],
+      "romanization": "sunmasen",
+      "meaning": "唔好意思——「すみません」嘅口語、粗豪版",
+      "literal": "済まない（すまない）嘅轉音",
+      "categories": {
+        "age": [
+          "young",
+          "mid",
+          "senior"
+        ],
+        "archetype": [
+          "craftsman",
+          "street"
+        ],
+        "tone": [
+          "blunt"
+        ],
+        "function": [
+          "apology"
+        ],
+        "register": "slang",
+        "profanity": 0,
+        "socialDistance": [
+          "colleague",
+          "friend"
+        ]
+      },
+      "example": "すんません、遅れました。",
+      "situation": "工地、體育系、關西商業場景",
+      "avoid": [
+        "對客戶講「すんません」太隨便；商務要講「申し訳ありません」"
+      ],
+      "note": "職人、關西、體育系最愛；「すんまへん」係關西版。",
+      "tags": [
+        "直球",
+        "方言",
+        "職場"
+      ],
+      "source": "general"
+    }
+  ]
+}

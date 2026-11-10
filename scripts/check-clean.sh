@@ -26,6 +26,9 @@ if hits=$(grep -rn "高潮" "${targets[@]}" 2>/dev/null | grep -vE '高潮(收�
 fi
 
 # 2. skill frontmatter
+# w-film-dialogue-editor is the user's skill vendored as shipped (re-synced, never hand-edited):
+# its description is longer than 1024, so only its name is checked.
+vendored='w-film-dialogue-editor'
 for dir in skills/*/; do
   skill="${dir%/}"; base="$(basename "$skill")"
   f="$skill/SKILL.md"
@@ -33,6 +36,7 @@ for dir in skills/*/; do
   name="$(awk '/^---$/{c++; next} c==1 && /^name:/{sub(/^name:[ ]*/,""); print; exit}' "$f")"
   [ "$name" = "$base" ] || { say "✗ $f: name '$name' != folder '$base'"; fail=1; }
   desc="$(awk '/^---$/{c++; next} c==1 && /^description:/{d=1; sub(/^description:[ ]*>?-?[ ]*/,""); print; next} c==1 && d && /^[a-z-]+:/{exit} c==1 && d{print}' "$f" | tr -d '\n')"
+  [ "$base" = "$vendored" ] && continue
   len=$(printf '%s' "$desc" | wc -m | tr -d ' ')
   [ "$len" -le 1024 ] || { say "✗ $f: description is $len chars (> 1024)"; fail=1; }
   [ "$len" -ge 40 ] || { say "✗ $f: description too short ($len)"; fail=1; }
