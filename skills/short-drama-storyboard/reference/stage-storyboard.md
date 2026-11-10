@@ -92,6 +92,16 @@ into the prompt.
   notes, the subtitles-off sentence in the prompt's language unless `params.subtitles`, on H3 the
   other person on screen during a line has `lips remain completely closed`, `<d>` holds only the
   line, and in sheets mode every person on screen is bound by `@imageK` inside their own shot.
+- **Reference binding** (gate `ref-binding`) — the picture plan has to survive into the delivery
+  text. Every picture gets **one** legend line saying what it is: a person by age / hair / clothes
+  from the character bible (two people described in the same words is how faces get swapped), the
+  room by its name, a prop by its name. Every picture that is *not* a person also says what may
+  **not** be copied from it (*take only its light ratios, contrast and colour temperature — never
+  its composition or its people*). Every person and every prop is bound by its label again **inside
+  its own shot**, the room is named once per segment (`Every shot stays inside @image1 …`), no
+  connected picture may go unused, and a sheets segment may not carry more pictures than the model
+  takes. Wording patterns and the six roles: `reference/reference-binding.md`; proofread text that
+  is not yet in the project file with `reference/prompt-audit.mjs`.
 - **`params.speechLeadSeconds`** (0.5) is added to the dialogue-fit check: a 4.0 s line needs a
   5 s cut.
 - A prop may carry **`textPolicy { mode: readable | symbolic | blank, text }`** (gate
@@ -531,4 +541,4 @@ $SD manifest <project> --ep 1                 # must be clean before the episode
 
 `segments` · `timing` (durations, the speech lead-in **and** the reference caps) · `cut-content` ·
 `photography` · `video-prompt` · `shot-purpose` · `boundary-contrast` · `framing-axis` · `continuity` · `motion` · `sound`
-· `visual-plan` · `text-policy` · `prompt-hygiene` · `audio-track` · `boundary-contrast-episode` (advisory) · `storyboard-advice` (advisory).
+· `visual-plan` · `text-policy` · `prompt-hygiene` · `ref-binding` · `audio-track` · `boundary-contrast-episode` (advisory) · `storyboard-advice` (advisory).

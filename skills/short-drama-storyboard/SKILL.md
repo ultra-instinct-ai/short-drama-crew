@@ -71,6 +71,14 @@ cinematography preset's guide (`../short-drama-core/reference/cinematography-<pr
   `craft-shots.md`.
 - **Prompts are delivery text**: no ids, files or notes, subtitles off, the other person's lips
   closed while one speaks (H3), everyone bound by `@imageK` in their own shot.
+- **Every picture says what it is, and what NOT to copy from it** (gate `ref-binding`). The model
+  reads one string: a legend line that only says "a character sheet" for two different people is
+  how faces get swapped, and a shot that never names its `@imageK` is a shot where the model
+  invents the face or the prop. So: one legend line per picture, naming the person by age / hair /
+  clothes from the character bible (a room by its name, a prop by its name); every non-person
+  picture says *take only its light ratios, never its composition or its people*; the room is
+  named once for the whole segment; every prop in shot is bound by its label in that shot. Details
+  and the wording patterns: `reference/reference-binding.md`.
 - **Everything the node references is addressed by its label, everywhere it applies.** WJI
   numbers connected references per type from 1: `@image1…` sheets or keyframes, `@video1…` the
   previous clip when `params.videoReferences: previous` is on, `@audio1…` the voice samples of
@@ -92,7 +100,11 @@ cinematography preset's guide (`../short-drama-core/reference/cinematography-<pr
    the segment `prompt` from `prompt segment`. Delete `seedScenes` and `plan` when done.
    `$SD validate <project> --stage storyboard --ep N`.
 2. Sync: shot folder `shot/E0N`, one `shot` dataset per segment (`video_prompt` = the prompt,
-   content = `$SD render <project> segment E0N-01`).
+   content = `$SD render <project> segment E0N-01`). Before an image is generated from a prompt
+   that was written or edited by hand (or copied from a production run), proofread its reference
+   binding: `$SD validate` runs the gate, and for text that is not yet in the project file
+   `node reference/prompt-audit.mjs` (shipped alongside this skill) reports per-shot unbound
+   people and props, indistinguishable legend lines and unused pictures.
 3. `E0N` canvas (`wji canvas create E0N`): display nodes for every sheet the episode uses plus
    the voice nodes of whoever speaks; one video node per segment `--from` those nodes **in legend
    order** (the order is the numbering — a reconnect redoes the whole set), the mode's model,

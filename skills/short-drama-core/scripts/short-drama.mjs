@@ -543,6 +543,53 @@ export function identityOf(character) {
   return String(character?.identityEn || '').trim() || 'the person in this shot';
 }
 
+/** The drama-language identity, for a Chinese legend: two people must never read the same line. */
+export function identityZh(character) {
+  const p = character?.profile || {};
+  const clean = (v) => (v && !/^(不詳|不详|未知|n\/a|unknown)$/i.test(String(v).trim()) ? String(v).trim() : '');
+  const bits = [clean(p.ageRange), clean(p.gender), clean(p.appearance || p.identity)].filter(Boolean);
+  return String(bits.join('，') || '').trim();
+}
+
+/**
+ * What a picture IS, said in the legend, so the model never has to guess whether @image3 is the
+ * room, a person or a prop — and, for a reference that is not a person, what NOT to copy from it.
+ * One legend line per picture; nothing else in the prompt repeats it.
+ */
+/** A short English handle from an English art prompt, so an English legend can name a room or a prop
+ *  without breaking the "prompt must be English apart from dialogue" rule (and without using an id). */
+function plainPhrase(text, maxWords = 10) {
+  const s = String(text || '').trim();
+  if (!s || /[\u4e00-\u9fff]/.test(s)) return '';
+  const head = s.replace(/^(product photograph of|a|an|the)\s+/i, '').split(/[,.;(]/)[0].trim();
+  return head.split(/\s+/).filter(Boolean).slice(0, maxWords).join(' ');
+}
+
+export function sheetUse(ref, project) {
+  const id = String(ref.entity || '');
+  const ch = characterById(project, id);
+  const pr = propById(project, id);
+  const sc = sceneById(project, id);
+  if (ref.asset && /^lighting:/.test(ref.asset)) return 'the same environment in the lighting state to use \u2014 take only its light ratios, contrast and colour temperature, never its composition or its people';
+  if (/^C\d/.test(id) && ch) return `the character sheet of ${identityOf(ch)} \u2014 match face, hair and clothes exactly, and nothing else in the frame`;
+  if (/^P\d/.test(id) && pr) return `the prop to reproduce exactly${plainPhrase(pr.image?.prompt || pr.states?.[0]?.prompt) ? `: ${plainPhrase(pr.image?.prompt || pr.states?.[0]?.prompt)}` : ''} \u2014 only this object, not the surface it sits on`;
+  if (sc) return `the environment${plainPhrase(sc.lighting?.[0]?.prompt) ? `: ${plainPhrase(sc.lighting[0].prompt)}` : ''} \u2014 match its layout, materials and wear exactly; take no person from it, not ever`;
+  if (ref.asset === 'headshot') return 'the headshot that supplies one person\u2019s face \u2014 match face and hair only';
+  return 'a reference image for this segment';
+}
+export function sheetZh(ref, project) {
+  const id = String(ref.entity || '');
+  const ch = characterById(project, id);
+  const pr = propById(project, id);
+  const sc = sceneById(project, id);
+  if (ref.asset && /^lighting:/.test(ref.asset)) return '同一场景的光线状态：只照它的光比、反差与色温，不要照它的构图与人物';
+  if (/^C\d/.test(id) && ch) return `人物三视图（${identityZh(ch)}）：严格还原面容、发型与服装`;
+  if (/^P\d/.test(id) && pr) return `需要严格还原的道具：${pr.name || id}`;
+  if (sc) return `环境（${sc.name || id}），严格还原布局、材质与旧痕；这张图里没有人，不要照它的人物`;
+  if (ref.asset === 'headshot') return '一张人头特写，只照面容与发型';
+  return '本段参考图';
+}
+
 export const CAMERAS = [
   'Static Shot', 'Push In', 'Pull Out', 'Zoom In', 'Zoom Out', 'Pan Left', 'Pan Right',
   'Truck Left', 'Truck Right', 'Tilt Up', 'Tilt Down', 'Pedestal Up', 'Pedestal Down',
@@ -1736,6 +1783,52 @@ function propConditionTexts(prop) {
   for (const st of prop.states || []) if (st.prompt) texts.push([`state "${st.state || ''}"`, st.prompt]);
   return texts;
 }
+
+// ── reference binding helpers ───────────────────────────────────────────────
+// The storyboard's picture plan has to survive into the delivery text. The model reads ONE string:
+// a shot that never names its @imageK falls back to whatever it last saw, and two pictures the
+// legend describes in the same words are two pictures the model will swap.
+const ID_STOPWORDS = new Set(['the', 'and', 'with', 'her', 'his', 'one', 'man', 'woman', 'from', 'this']);
+function identityTokens(ch) {
+  const out = new Set();
+  const add = (text) => {
+    for (const w of String(text || '').toLowerCase().split(/[^a-z0-9\u4e00-\u9fff]+/)) if (w.length > 2 && !ID_STOPWORDS.has(w)) out.add(w);
+    for (const run of String(text || '').match(/[\u4e00-\u9fff]+/g) || []) {
+      if (run.length <= 3) out.add(run);
+      else for (let i = 0; i + 1 < run.length; i++) out.add(run.slice(i, i + 2));
+    }
+  };
+  add(ch?.identityEn);
+  add(ch?.profile?.appearance);
+  add(ch?.profile?.identity);
+  const g = ch?.profile?.gender;
+  if (g) out.add(g === '男' ? '男' : '女');
+  return out;
+}
+/** The legend text that belongs to one label: from its `@imageN` to the next label. */
+function legendSpanOf(head, label) {
+  const m = new RegExp(`${label}(?!\\d)`).exec(head);
+  if (!m) return '';
+  const rest = head.slice(m.index + label.length);
+  const next = rest.search(/@image\d+/);
+  return (next < 0 ? rest : rest.slice(0, next)).trim();
+}
+/** Per-shot text for every family: h3 / wan / seedance sheets have a parser, keyframes are read here. */
+function referenceShotTexts(prompt, mode, params) {
+  const texts = shotTexts(prompt, mode.family, params.references);
+  if (texts.size) return texts;
+  const map = new Map();
+  const re = /(?:^|\n)\s*From @image(\d+)[^\n]*([\s\S]*?)(?=\n\s*From @image\d+|\n\s*\n|$)/g;
+  for (let m; (m = re.exec(prompt)); ) map.set(Number(m[1]), m[0]);
+  return map;
+}
+/** label per sheet entity (people, props and the room), for the binding checks. */
+function sheetLabelsOf(images) {
+  const m = new Map();
+  for (const r of images) if (r.asset === 'sheet' || r.asset === 'headshot') if (!m.has(r.entity)) m.set(r.entity, r.label);
+  return m;
+}
+const NEGATIVE_REF = /not its|never its|only its|no person|take no person|not the composition|只照|唔照|不要照|只取|这张图里没有人|不要照它的人物/i;
 
 export const GATES = [
   // ── outline ───────────────────────────────────────────────────────────
@@ -3699,6 +3792,70 @@ export const GATES = [
     }
     return out;
   }),
+  gate('ref-binding', 'storyboard', '参考图绑定: every picture says in the legend WHAT it is (and what not to copy from it), everyone and everything on screen is bound by its @imageK inside that shot, and no connected picture goes unused', (ctx) => {
+    const { project, params } = ctx;
+    const out = [];
+    if (params.references !== 'sheets') return out;
+    const mode = videoModel(params);
+    for (const [, e] of ctx.episodes) {
+      for (const seg of e.storyboard?.segments || []) {
+        const prompt = String(seg.prompt || '').trim();
+        if (!prompt) continue;
+        const refs = segmentReferences(project, e, seg);
+        const images = refs.filter((r) => r.kind === 'image');
+        if (!images.length) continue;
+        if (images.length > mode.maxRefs) out.push(`${seg.id}: ${images.length} picture references, but ${mode.model} takes at most ${mode.maxRefs} — split the segment, or drop a picture that earns nothing`);
+        const shotStart = prompt.search(/(?:^|\n)\s*(?:\[Shot\s*1\]|镜头\s*1|Shot\s*1)\b/);
+        const head = shotStart < 0 ? prompt : prompt.slice(0, shotStart);
+        // 1. one legend line per picture, and it says what the picture IS
+        const legendLines = head.split('\n').filter((l) => /^@image\d+\b/.test(l.trim()));
+        for (const r of images) {
+          const mine = legendLines.filter((l) => l.trim().startsWith(r.label));
+          if (!mine.length) out.push(`${seg.id}: ${r.label} (${r.why}) is connected but the legend never gives it a line — the model cannot know the picture exists`);
+          else if (mine.length > 1) out.push(`${seg.id}: ${r.label} gets ${mine.length} legend lines — one line per picture, or the model reads them as different things`);
+          if (mine.length && /^(@image\d+ is\s*)?a reference image/i.test(mine[0].trim().replace(/^@image\d+ is\s*/, ''))) out.push(`${seg.id}: ${r.label} says only "a reference image" — say whether it is the place, a person, the prop, or a light / moment to copy`);
+        }
+        // 2. a picture that is not a person must say what NOT to copy from it
+        for (const r of images) {
+          if (/^C\d/.test(String(r.entity))) continue;
+          const span = legendSpanOf(head, r.label);
+          if (span && !NEGATIVE_REF.test(span)) out.push(`${seg.id}: ${r.label} (${r.role || 'not a person'}) never says what NOT to take from it — a light or moment reference must say "only its light ratios / not its composition or people", or the model copies its faces`);
+        }
+        // 3. two people must not read the same in the legend
+        const chars = uniq((seg.cuts || []).flatMap((c) => c.characters || [])).filter((id) => id !== 'VO');
+        const byEntity = new Map(images.map((r) => [r.entity, r]));
+        const seenSpans = new Map();
+        for (const id of chars) {
+          const r = byEntity.get(id);
+          if (!r) { out.push(`${seg.id}: ${characterById(project, id)?.name || id} is on screen, but no picture supplies them`); continue; }
+          const span = legendSpanOf(head, r.label).toLowerCase();
+          const key = span.replace(/\s+/g, ' ').trim();
+          if (key && seenSpans.has(key)) out.push(`${seg.id}: ${r.label} and ${seenSpans.get(key)} read exactly the same in the legend — two people described in the same words are two people the model swaps`);
+          else if (key) seenSpans.set(key, r.label);
+          const hits = [...identityTokens(characterById(project, id))].filter((t) => span.includes(t)).length;
+          if (span && hits < 2) out.push(`${seg.id}: ${r.label} never says WHICH person it is (no age / hair / clothes from the character bible) — "@image2, @image3 are character sheets" is how faces get swapped`);
+        }
+        // 4. what is in shot is bound inside that shot
+        const texts = referenceShotTexts(prompt, mode, params);
+        const labels = sheetLabelsOf(images);
+        (seg.cuts || []).forEach((c, k) => {
+          const text = texts.get(k + 1) || '';
+          if (!text) return;
+          for (const id of c.props || []) {
+            const label = labels.get(id);
+            if (label && !text.includes(label)) out.push(`${seg.id} shot ${k + 1}: ${propById(project, id)?.name || id} is in shot but the shot never binds ${label} — the prop is invented on screen`);
+          }
+        });
+        // 5. a picture connected but never used outside the legend earns nothing
+        const body = shotStart < 0 ? prompt : prompt.slice(shotStart);
+        for (const r of images) {
+          if (r.role === 'environment' || r.role === 'lighting') continue;
+          if (!body.includes(r.label)) out.push(`${seg.id}: ${r.label} (${r.why}) is connected but used in no shot — that is a picture the model will not look at`);
+        }
+      }
+    }
+    return out;
+  }),
   gate('two-person-framing', 'storyboard', 'sheets mode, two-person segments: a single names only its person, every look has a screen direction toward the other, the sides are locked, over-the-shoulder is said', (ctx) => {
     const { project, params } = ctx;
     const out = [];
@@ -4582,22 +4739,25 @@ export function segmentReferences(project, episode, seg) {
   // Optional per-segment image ref plan (Director Strategy B etc.) — pictures only; voices/video still appended below.
   if (Array.isArray(seg.refOverride) && seg.refOverride.length) {
     for (const r of seg.refOverride) {
+      const pinned = { entity: r.entity, asset: r.asset || 'sheet' };
+      const notTake = r.notTake ? ` \u2014 take only what it is for, not ${r.notTake}` : '';
       refs.push({
         entity: r.entity,
         asset: r.asset || 'sheet',
         why: r.why || `${r.entity}:${r.asset || 'sheet'}`,
-        use: r.use || 'a reference image for this segment',
-        zh: r.zh || '',
+        use: r.use || r.take || `${sheetUse(pinned, project)}${notTake}`,
+        zh: r.zh || r.takeZh || sheetZh(pinned, project),
+        role: r.role || null,
         kind: 'image',
         faceOf: r.faceOf || null,
       });
     }
   } else {
-    refs.push({ entity: scene.sceneId, asset: 'sheet', why: `environment: ${sceneEntity.name || scene.sceneId}${scene.lighting ? ` (${scene.lighting})` : ''}`, use: 'the environment \u2014 match its layout, materials and wear exactly', zh: '环境，严格还原布局、材质与旧痕' });
-    if (scene.lighting && sceneEntity.wji?.assets?.lighting?.[scene.lighting]) refs.push({ entity: scene.sceneId, asset: `lighting:${scene.lighting}`, why: `lighting state ${scene.lighting}`, use: 'the same environment in the lighting state to use', zh: '同一场景的光线状态' });
+    refs.push({ entity: scene.sceneId, asset: 'sheet', role: 'environment', why: `environment: ${sceneEntity.name || scene.sceneId}${scene.lighting ? ` (${scene.lighting})` : ''}`, use: sheetUse({ entity: scene.sceneId, asset: 'sheet' }, project), zh: sheetZh({ entity: scene.sceneId, asset: 'sheet' }, project) });
+    if (scene.lighting && sceneEntity.wji?.assets?.lighting?.[scene.lighting]) refs.push({ entity: scene.sceneId, asset: `lighting:${scene.lighting}`, role: 'lighting', why: `lighting state ${scene.lighting}`, use: sheetUse({ entity: scene.sceneId, asset: `lighting:${scene.lighting}` }, project), zh: sheetZh({ entity: scene.sceneId, asset: `lighting:${scene.lighting}` }, project) });
     const seen = new Set();
-    if (params.humanReferences !== false) for (const c of seg.cuts || []) for (const id of c.characters || []) if (!seen.has(id)) { seen.add(id); refs.push({ entity: id, asset: 'sheet', why: `face and clothes of ${characterById(project, id)?.name || id}`, use: 'the character sheet of one person in this segment \u2014 match face, hair and clothes exactly', zh: '人物三视图，严格还原面容、发型与服装' }); }
-    for (const c of seg.cuts || []) for (const id of c.props || []) if (!seen.has(id)) { seen.add(id); refs.push({ entity: id, asset: 'sheet', why: `prop ${propById(project, id)?.name || id}`, use: 'the prop to reproduce exactly', zh: '需要严格还原的道具' }); }
+    if (params.humanReferences !== false) for (const c of seg.cuts || []) for (const id of c.characters || []) if (!seen.has(id)) { seen.add(id); refs.push({ entity: id, asset: 'sheet', role: 'character', why: `face and clothes of ${characterById(project, id)?.name || id}`, use: sheetUse({ entity: id, asset: 'sheet' }, project), zh: sheetZh({ entity: id, asset: 'sheet' }, project) }); }
+    for (const c of seg.cuts || []) for (const id of c.props || []) if (!seen.has(id)) { seen.add(id); refs.push({ entity: id, asset: 'sheet', role: 'prop', why: `prop ${propById(project, id)?.name || id}`, use: sheetUse({ entity: id, asset: 'sheet' }, project), zh: sheetZh({ entity: id, asset: 'sheet' }, project) }); }
     refs.forEach((r) => (r.kind = 'image'));
   }
   // The clip before this one, when the project asks for it: the cheapest continuity there is — the
@@ -4752,6 +4912,19 @@ export function promptSkeleton(project, episode, segmentId) {
     return [sidesLine(axis, whoOf, framingLang)];
   };
   const othersOnScreen = (c, speaker) => (c.characters || []).filter((id) => id !== speaker && id !== c.ots).map((id) => (params.references === 'sheets' && sheetLabels.get(id) ? `the person in ${sheetLabels.get(id)}` : identityOf(characterById(project, id))));
+  // A prop on screen is bound by its label INSIDE that shot — a prop named only in the legend is a
+  // prop the model designs itself the moment it appears. Same rule people already had.
+  const propOf = (c, lang = 'en') => (c.props || []).map((id) => sheetLabels.get(id)).filter(Boolean)
+    .map((label) => (lang === 'zh' ? `道具严格照 ${label}；` : `the prop is ${label}, reproduced exactly; `)).join('');
+  // The environment is one picture for the whole segment: say once that it does not change, so the
+  // model does not re-invent the room between shots.
+  const sceneLine = (lang = 'en') => {
+    const label = sheetLabels.get(scene?.sceneId);
+    if (!label || params.references !== 'sheets') return '';
+    return lang === 'zh'
+      ? `整段都在 ${label} 的空间里：布局、材质与旧痕不变，不要重新设计场景。`
+      : `Every shot stays inside ${label} \u2014 its layout, materials and wear do not change; do not redesign the room.`;
+  };
   let video;
   if (mode.family === 'h3') {
     const sheets = params.references === 'sheets';
@@ -4767,14 +4940,14 @@ export function promptSkeleton(project, episode, segmentId) {
       // In sheets mode the cut's own `frame` goes into the prompt and already carries the lens, the
       // light and the foreground (gated there), so only the shot size and camera move are added.
       const body = sheets
-        ? `${framingOf(c)}${c.frame || '…'} ${SIZES[c.size] || c.size}, ${c.camera}.`
+        ? `${framingOf(c)}${c.frame || '…'} ${SIZES[c.size] || c.size}, ${c.camera}. ${propOf(c, framingLang)}`
         : `… anchor on @image${k + 1} · ${SIZES[c.size] || c.size}, ${c.camera}, ${cameraPhrase(c, params)}. ${lightPhrase(c)}.${foregroundPhrase(c)}`;
       return `${head}${body} ${motionSentence(c)} ${idleOf(c)}${cameraClause(c)} ${d}${lips}`.replace(/\s+/g, ' ').trim();
     });
     // Keyframes are aligned by the alignment line; the voices are named either way.
     const voiceLegend = allRefs.filter((r) => r.kind !== 'image').map((r) => `${r.label} is ${r.use}.`);
     const lead = sheets
-      ? [...allRefs.map((r) => `${r.label} is ${r.use}.`), ...sidesOf()]
+      ? [...allRefs.map((r) => `${r.label} is ${r.use}.`), ...[sceneLine(framingLang)].filter(Boolean), ...sidesOf()]
       : [h3AlignmentLine(cuts), ...voiceLegend];
     const look = sheets ? [`Look: ${lookOf()}.`, ''] : [];
     const soundscape = [sound.ambience || '…', ...cuts.map((c, k) => (sfxOf(k) ? `at [Shot ${k + 1}] ${sfxOf(k)}` : '')).filter(Boolean)].join('; ');
@@ -4785,18 +4958,18 @@ export function promptSkeleton(project, episode, segmentId) {
       // Wan's prompt is Chinese: the lens and the light direction translate, the note and the
       // foreground are the author's English prose, so they are left as blanks to write in Chinese.
       const shot = `${cameraPhrase(c, params, 'zh')}。${LIGHT_DIRECTIONS_ZH[c.light?.direction] || '…'}，…。前景：${c.foreground ? '…（虚化）' : '无'}。`;
-      return [`${wanShotHeader(cuts, k)}${framingOf(c)}…${shot}${motionSentence(c, 'zh')}${idleOf(c)}${cameraClause(c, 'zh')}`, ...talk].join('\n');
+      return [`${wanShotHeader(cuts, k)}${framingOf(c)}…${shot}${motionSentence(c, 'zh')}${idleOf(c)}${propOf(c, 'zh')}${cameraClause(c, 'zh')}`, ...talk].join('\n');
     });
     const sfxAll = cuts.map((c, k) => (sfxOf(k) ? `镜头${k + 1}：${sfxOf(k)}` : '')).filter(Boolean).join('；');
     video = [
-      params.references === 'sheets' ? wanSheetLegendLine(allRefs) : wanLegendLine(cuts, allRefs), ...sidesOf(), '',
+      params.references === 'sheets' ? wanSheetLegendLine(allRefs) : wanLegendLine(cuts, allRefs), ...[sceneLine('zh')].filter(Boolean), ...sidesOf(), '',
       ...blocks.flatMap((b) => [b, '']),
       ...(cine && params.references === 'sheets' ? [`画面：${cine.videoPhraseZh}${params.lookPhraseZh ? `，${params.lookPhraseZh}` : ''}。`, ''] : []),
       ...(grammarLines(seg, params, 'zh').length ? [...grammarLines(seg, params, 'zh'), ''] : []),
       `音频：对白为${accent || '…'}，环境音${sound.ambience || '…'}${sfxAll ? `；${sfxAll}` : ''}${clipMusic ? `；配乐：${clipMusic}` : params.audioTrack === 'post' ? '；无配乐' : ''}。${params.subtitles ? '' : `${NO_SUBTITLES.zh}。`}`,
     ].join('\n');
   } else if (params.references === 'sheets') {
-    const legend = [...allRefs.map((r) => `${r.label} is ${r.use}.`), ...sidesOf()];
+    const legend = [...allRefs.map((r) => `${r.label} is ${r.use}.`), ...[sceneLine(framingLang)].filter(Boolean), ...sidesOf()];
     const shots = cuts.map((c, k) => {
       const talk = dialogue[k].map((l) => {
         const base = `${l.speakerRef}${l.direction ? `, ${l.direction},` : ''} says: ${l.line}`;
@@ -4807,7 +4980,7 @@ export function promptSkeleton(project, episode, segmentId) {
         return `${base} while ${others.join(' and ')} ${others.length > 1 ? 'do' : 'does'} not speak, ${LIPS_CLOSED}`;
       }).join(' ');
       // The frame already carries the lens, the light and the foreground — do not repeat them.
-      return `Shot ${k + 1} (${starts[k].toFixed(1)}–${(starts[k] + Number(c.seconds)).toFixed(1)} s, ${SIZES[c.size] || c.size}, ${c.camera}): ${framingOf(c)}${c.frame || '…'} ${motionSentence(c)} ${idleOf(c)}${cameraClause(c)} ${talk}`.replace(/\s+/g, ' ').trim();
+      return `Shot ${k + 1} (${starts[k].toFixed(1)}–${(starts[k] + Number(c.seconds)).toFixed(1)} s, ${SIZES[c.size] || c.size}, ${c.camera}): ${framingOf(c)}${c.frame || '…'} ${motionSentence(c)} ${idleOf(c)}${propOf(c, framingLang)}${cameraClause(c)} ${talk}`.replace(/\s+/g, ' ').trim();
     });
     const sfxAll = cuts.map((c, k) => (sfxOf(k) ? `shot ${k + 1}: ${sfxOf(k)}` : '')).filter(Boolean).join('; ');
     video = [...legend, '', ...shots, '', ...actionLine, `Look: ${lookOf()}. Maintain continuity in character identities, clothing, prop ownership, scene layout and the camera axis across every shot.`, `Sound: ${sound.ambience || '…'}${sfxAll ? `; ${sfxAll}` : ''}.${accent && dialogue.flat().length ? ` All dialogue in ${accent}.` : ''}${clipMusic ? ` Music: ${clipMusic}.` : ' No music.'}${params.subtitles ? '' : ` ${NO_SUBTITLES.en[0].toUpperCase()}${NO_SUBTITLES.en.slice(1)}.`}`].join('\n');
@@ -4823,7 +4996,7 @@ export function promptSkeleton(project, episode, segmentId) {
         if (!others.length) return base;
         return `${base} while ${others.join(' and ')} ${others.length > 1 ? 'do' : 'does'} not speak, ${LIPS_CLOSED}`;
       }).join(' ');
-      return `From @image${k + 1} (${starts[k].toFixed(1)}–${(starts[k] + Number(c.seconds)).toFixed(1)} s): ${motionSentence(c)} ${cameraClause(c)} ${talk}`.replace(/\s+/g, ' ').trim();
+      return `From @image${k + 1} (${starts[k].toFixed(1)}–${(starts[k] + Number(c.seconds)).toFixed(1)} s): ${motionSentence(c)} ${propOf(c, framingLang)}${cameraClause(c)} ${talk}`.replace(/\s+/g, ' ').trim();
     });
     const sfxAll = cuts.map((c, k) => (sfxOf(k) ? `from @image${k + 1}: ${sfxOf(k)}` : '')).filter(Boolean).join('; ');
     video = [...anchors, ...states, '', ...script, '', ...actionLine, 'Maintain continuity in character identities, clothing, prop ownership, scene layout and the camera axis.', `Sound: ${sound.ambience || '…'}${sfxAll ? `; ${sfxAll}` : ''}.${accent && dialogue.flat().length ? ` All dialogue in ${accent}.` : ''}${clipMusic ? ` Music: ${clipMusic}.` : ' No music.'}${params.subtitles ? '' : ` ${NO_SUBTITLES.en[0].toUpperCase()}${NO_SUBTITLES.en.slice(1)}.`}`].join('\n');

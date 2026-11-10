@@ -2443,10 +2443,41 @@ const breaks = (gateId, project, episode, needle) => {
   eq(slug('E01-01 便利店 / 夜班'), 'e01-01-便利店-夜班', 'slug keeps CJK, drops separators');
 }
 
+// ── ref-binding (参考图绑定) ─────────────────────────────────────────────────
+{
+  // The picture plan has to survive into the delivery text: a legend line that names WHO/WHAT each
+  // picture is, a "not its composition / its people" clause on everything that is not a person, and
+  // the label named again inside every shot that depends on it.
+  const p = clone(PROJECT);
+  p.params.video = 'seedance';
+  p.params.references = 'sheets';
+  p.params.videoDuration = 'auto';
+  const e = clone(E01);
+  const seg = e.storyboard.segments[3];
+  const refs = segmentReferences(p, e, seg).filter((r) => r.kind === 'image');
+  const legend = refs.map((r) => `${r.label} is ${r.use}.`).join('\n');
+  const shots = seg.cuts
+    .map((c, k) => `Shot ${k + 1} (${k}.0\u2013${k + 1}.0 s, medium shot, Static Shot): ${refs.map((r) => r.label).join(' and ')} hold.`)
+    .join('\n');
+  const good = `${legend}\n\n${shots}`;
+  const bound = clone(e);
+  bound.storyboard.segments[3].prompt = good;
+  eq(failures('ref-binding', p, bound).filter((m) => m.startsWith('E01-04')).length, 0, 'ref-binding passes a fully bound prompt');
+  const generic = clone(e);
+  generic.storyboard.segments[3].prompt = good.replace(/@image2 is the character sheet of [^\n]*/, '@image2 is the character sheet of one person in this segment \u2014 match face, hair and clothes exactly.');
+  breaks('ref-binding', p, generic, 'never says WHICH person');
+  const noNegative = clone(e);
+  noNegative.storyboard.segments[3].prompt = good.replace(/@image1 is the environment[^\n]*/, '@image1 is the environment \u2014 match its layout, materials and wear exactly.');
+  breaks('ref-binding', p, noNegative, 'never says what NOT');
+  const unused = clone(e);
+  unused.storyboard.segments[3].prompt = `${legend}\n\n${shots.replaceAll('@image2', 'a person')}`;
+  breaks('ref-binding', p, unused, 'used in no shot');
+}
+
 // ── gate inventory (crew engine) ────────────────────────────────────────────
 {
-  eq(GATES.length, 69, 'gate count');
-  eq(GATES.filter((g) => !g.advisory).length, 63, 'hard gate count');
+  eq(GATES.length, 70, 'gate count');
+  eq(GATES.filter((g) => !g.advisory).length, 64, 'hard gate count');
   eq(GATES.filter((g) => g.advisory).length, 6, 'advisory gate count');
   ok(!GATES.find((g) => g.id === 'boundary-contrast').advisory, 'boundary-contrast is hard');
   ok(GATES.find((g) => g.id === 'boundary-contrast-episode').advisory, 'boundary-contrast-episode is advisory');
@@ -2568,8 +2599,8 @@ const breaks = (gateId, project, episode, needle) => {
   const results = runGates(makeContext(PROJECT, { 1: E01 }));
   const rep = formatGates(results);
   eq(Object.keys(rep).sort().join(','), 'advisory,failed,hard,lines,notes,summary,text', 'formatGates shape');
-  eq(rep.summary, '✓ 63 gate(s) passed, 6 advisory (1 note)', 'fixture summary');
-  eq(rep.failed, 0, 'nothing failed'); eq(rep.hard, 63, 'hard count'); eq(rep.advisory, 6, 'advisory count');
+  eq(rep.summary, '✓ 64 gate(s) passed, 6 advisory (1 note)', 'fixture summary');
+  eq(rep.failed, 0, 'nothing failed'); eq(rep.hard, 64, 'hard count'); eq(rep.advisory, 6, 'advisory count');
   // The fixture now raises one advisory (E01-03 carries the 爽点 and is not cut as faceslap),
   // exactly as it does in the wji-cli copy — advisory lines print, failures still must not.
   eq(rep.lines.filter((l) => l.includes('✗')).length, 0, 'a green run prints no failed gates');

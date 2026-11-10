@@ -43,6 +43,29 @@ character's `primaryAudio` all match, and the old opposing voice samples are str
 You may message the Producer with priority when a FAIL must stop a spend. Do not fan out to the
 whole crew unless the Producer asks.
 
+## Prompt reference binding (gate `ref-binding`)
+
+A prompt is the one artefact whose *meaning* no stage used to read: two character sheets described
+in the same words, or a shot that never names its `@imageK`, is a prompt that generates someone
+else's face or an invented prop. For every episode you audit:
+
+- `$SD validate <project> --stage storyboard --ep N` must be green on `ref-binding` (and the
+  sheets-mode picture cap: `refs` more than the model takes is a FAIL, not a style note).
+- A prompt written, edited or copied by hand into `shot/E0N` or a `shot` dataset is read against
+  `short-drama-storyboard/reference/reference-binding.md` — or run the shipped checker:
+
+```bash
+node <skills>/short-drama-storyboard/reference/prompt-audit.mjs \
+  --project <project> --ep N --segment E0N-k --prompt <file>
+```
+
+- FAIL when: a legend line describes two different people identically; a picture is only
+  "a reference image"; a non-person picture (room, lighting, moment, style) has no
+  *take only … / not its composition or its people* clause; a person or a prop that is in shot is
+  not bound by its label inside that shot; a connected picture is used in no shot; the canvas order
+  and the `@imageN` order disagree (then `refOverride` must pin them).
+- Evidence is the validation line plus the prompt sentence, quoted.
+
 ## Engine (read-only)
 
 ```bash
