@@ -63,7 +63,7 @@ on that:
 
 | rule | what | hard? |
 | --- | --- | --- |
-| `open-wide` | the first fight segment of a scene opens on a `wide` / `extreme-wide`; later fight segments in the scene contain at least one | hard, waivable |
+| `open-wide` | the first fight segment of a scene opens on a `wide` / `extreme-wide` (on 9:16 a full-body `medium-wide` also counts); later fight segments in the scene contain at least one | hard, waivable |
 | `one-move` | `motion.action` has at most one fight verb (punches, kicks, shoots, slashes, blocks, throws, swerves… / 出拳, 踢, 开枪, 劈, 格挡…) and no chaining ("then", "接着", "连环") | hard, waivable |
 | `impact-reaction` | a cut with `move.impact` is followed by a `reaction` or `consequence` cut, unless it is itself a `consequence` (the result shown in the same shot) | hard, waivable |
 | `no-graphic` | no dismemberment, decapitation, severed limbs or organs — providers refuse them even with blood allowed | hard, waivable (the provider may still refuse) |

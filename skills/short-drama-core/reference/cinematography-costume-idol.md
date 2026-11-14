@@ -54,10 +54,12 @@ tubes, LEDs, street lights, screens are refused).
 This look lives on two scales at once: **the world is huge and empty, the couple is close and
 glowing.** Cut between them.
 
-### 全景 / 大全景 with 大量留白 (gated)
+### Stepping back with 大量留白 (gated)
 
-**Every segment has at least one `wide` or `extreme-wide` cut, and its frame says where the
-`negative space` is** (gated). The empty part of the frame is the fantasy: the world is bigger
+**Every segment has at least one cut that steps back, and its frame says where the
+`negative space` is** (gated). On 16:9 that is a `wide` or `extreme-wide`; on 9:16 a `medium-wide`
+or `medium` with the space above or below the figure does it — keep the 远景 / 大远景 for the vistas
+the story needs (a new place, the couple alone in the world). The empty part of the frame is the fantasy: the world is bigger
 than the people in it.
 
 - **What fills the negative space**: sky and clouds, a sea of mist, a still lake, a snow field, an
@@ -82,7 +84,8 @@ than the people in it.
 - **Palaces and ceremonies are symmetrical**: centred axis, the throne or the gate in the middle,
   people in rows. Low `height` for power.
 - **Foregrounds**: gauze curtains, blossom branches, bead curtains, lantern tassels, lattice
-  windows, drifting petals near the lens. At least half the cuts (gated).
+  windows, drifting petals near the lens — when the set really has them on the camera's side. Up to
+  ~60 % of the cuts at `high` (a ceiling, not a quota; see `stage-storyboard.md` → Foreground).
 - **Frame within a frame**: moon gates, lattice windows, the gap in a folding screen, the space
   under an oil-paper umbrella.
 

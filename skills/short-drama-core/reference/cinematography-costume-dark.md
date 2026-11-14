@@ -52,10 +52,11 @@ period lighting`. **No electric light exists** (gated).
 
 ## 3. Composition — vast wides with 留白, power and threat
 
-### 全景 / 大全景 with 大量留白 (gated)
+### Stepping back with 大量留白 (gated)
 
-As in `costume-idol`, **every segment has at least one `wide` or `extreme-wide` cut, and its
-frame says where the `negative space` is** (gated). Here the empty space is heavy, not airy: the
+As in `costume-idol`, **every segment has at least one cut that steps back, and its frame says
+where the `negative space` is** (gated): a `wide` / `extreme-wide`, or on 9:16 a `medium-wide` /
+`medium` that leaves the space — the 远景 / 大远景 kept for where the story needs the scale. Here the empty space is heavy, not airy: the
 world is vast and indifferent, and the people in it are small against power, war and history.
 
 - **What fills the negative space**: darkness (a black throne hall with one pool of candlelight,
@@ -82,7 +83,8 @@ world is vast and indifferent, and the people in it are small against power, war
 - **Power by height and position**: the emperor high and centred, the minister low and off-axis;
   `height: low` for the one who holds power, `high` for the one who has lost it.
 - **Foregrounds**: lattice screens, candle flames, bead curtains, the edge of a folding screen,
-  spears and banners, a shoulder in armour. At least half the cuts (gated). Shooting *through*
+  spears and banners, a shoulder in armour — only what the set holds and the shot needs
+  (`params.foregroundLevel` is a ceiling, not a quota). Shooting *through*
   screens is the intrigue genre: someone is always watching.
 - **Silhouettes** against a lit doorway or a burning city are allowed and strong.
 

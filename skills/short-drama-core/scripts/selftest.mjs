@@ -14,7 +14,7 @@ import {
   paramsOf, parseEpRange, promptSkeleton, renderCharacter, renderOutline, renderProp, renderScene, renderScript,
   renderSegment, runGates, seedScript, seedStoryboard, seedanceAnchors, slug, timestamp, writeJsonFile,
   wanLegendLine, wanSheetLegendLine, wanShotHeader, segmentReferences, imageReferences, audioReferences, voiceSamplePrompt, voiceSampleSeconds, nonWhitespace,
-  speechDirection, cameraPhrase, lightPhrase, idlePhrase, idleSentence, IDLE_MAX_CHARS, eyelinePhrase, eyelineValid, onlyInFramePhrase, overShoulderPhrase, sidesLine, foregroundPhrase, foregroundBand, foregroundForLook, focalOf, LIGHT_DIRECTIONS, identityOf, isEnglish,
+  speechDirection, cameraPhrase, lightPhrase, idlePhrase, idleSentence, IDLE_MAX_CHARS, eyelinePhrase, eyelineValid, onlyInFramePhrase, overShoulderPhrase, sidesLine, foregroundPhrase, foregroundBand, foregroundForLook, SIZES, stepsBack, isVerticalRatio, rosterPhrase, placementValid, cutInstant, focalOf, LIGHT_DIRECTIONS, identityOf, isEnglish,
   renderGuideline, renderDialogue, seedDialogue, applyDialogue, dialogueRefs, DIALOGUE_GUIDES, corpusAge, scriptSelfCheck, beatOffsets, turnPoints, parseAge, talkAndAction, normalizeRegister, REGISTERS, REGISTER_ACCENT,
   cutStart, segmentCharacters, keyScenes, shotTexts, motionSentence, cameraClause, PURPOSE_KINDS, ANGLES, HEIGHTS, NO_SUBTITLES, LIPS_CLOSED,
   audioPrompt, musicOf, cueSeconds, AUDIO_MODEL, AUDIO_MAX_CHARS, AUDIO_MAX_SECONDS, scoreSheet, smpte,
@@ -885,13 +885,27 @@ const breaks = (gateId, project, episode, needle) => {
   eq(foregroundPhrase({ foreground: '' }), '', 'a clean frame adds nothing');
   ok(foregroundPhrase({ foreground: '\u6536\u94f6\u53f0' }, 'zh').includes('\u524d\u666f'), 'the Chinese foreground phrase says 前景');
   const noFg = clone(E01); noFg.storyboard.segments.forEach((seg) => seg.cuts.forEach((c) => { c.foreground = ''; }));
-  // The fixture sits at `high`: no foreground at all is too few there, and fine at `low`.
-  breaks('photography', PROJECT, noFg, 'params.foregroundLevel high allows');
+  // The level is a ceiling, not a quota: the fixture sits at `high` with 7 of 23 cuts and that is fine,
+  // and an episode of clean frames is fine at any level. Only going past the ceiling is noted (advisory).
   const asLevel = (level) => ({ ...PROJECT, params: { ...PROJECT.params, foregroundLevel: level } });
-  ok(!failures('photography', asLevel('low'), noFg).some((f) => f.includes('foregroundLevel')), 'low accepts an episode of clean frames');
-  breaks('photography', asLevel('low'), E01, 'params.foregroundLevel low allows');
-  breaks('photography', asLevel('medium'), E01, 'params.foregroundLevel medium allows');
+  for (const level of ['low', 'medium', 'high']) {
+    ok(!failures('photography', asLevel(level), noFg).some((f) => f.includes('foreground')), `${level} accepts an episode of clean frames`);
+    ok(!failures('storyboard-advice', asLevel(level), noFg).some((f) => f.includes('foreground')), `${level} says nothing about too few foregrounds`);
+  }
+  ok(!failures('photography', PROJECT, E01).some((f) => f.includes('foregroundLevel')), 'photography never gates the foreground share');
+  ok(!failures('storyboard-advice', asLevel('medium'), E01).some((f) => f.includes('foregroundLevel')), 'medium: 7 of 23 is under the ceiling');
+  ok(failures('storyboard-advice', asLevel('low'), E01).some((f) => f.includes('params.foregroundLevel low')), 'low: 7 of 23 is past the ~20 % ceiling, as advice');
+  const allFg = clone(E01); allFg.storyboard.segments.forEach((seg) => seg.cuts.forEach((c) => { if (!c.foreground) { c.foreground = 'a doorframe'; c.frame += ' a doorframe sits in the immediate foreground, thrown well out of focus.'; } }));
+  ok(failures('storyboard-advice', PROJECT, allFg).some((f) => f.includes('params.foregroundLevel high')), 'high: every cut is past the ~60 % ceiling');
+  ok(!failures('photography', PROJECT, allFg).some((f) => f.includes('foregroundLevel')), 'too many is advice, not a failure');
   breaks('params', asLevel('sometimes'), E01, 'params.foregroundLevel must be one of');
+  // medium-wide: a full-body rung between wide and medium; on a vertical ratio it (or a medium) steps back.
+  eq(focalOf({ size: 'medium-wide' }), '32mm', 'a medium-wide defaults to 32mm');
+  ok(isVerticalRatio('9:16') && !isVerticalRatio('16:9'), 'vertical means taller than wide');
+  const tall = { ratio: '9:16' }, flat = { ratio: '16:9' };
+  ok(stepsBack({ size: 'medium-wide' }, tall) && stepsBack({ size: 'medium' }, tall) && !stepsBack({ size: 'close' }, tall), 'on 9:16 a medium-wide or medium steps back');
+  ok(!stepsBack({ size: 'medium' }, tall, { medium: false }), 'a fight wants full bodies, not a medium');
+  ok(!stepsBack({ size: 'medium-wide' }, flat) && stepsBack({ size: 'wide' }, flat), 'on 16:9 only a wide steps back');
   const levelFor = (params) => paramsOf({ params }).foregroundLevel;
   eq(levelFor({}), 'medium', 'the default level is medium');
   eq(levelFor({ composition: 'standard', cinematography: 'low-key', genre: '复仇' }), 'medium', 'a standard look stays medium');
@@ -902,10 +916,11 @@ const breaks = (gateId, project, episode, needle) => {
   eq(levelFor({ genre: '美感優先' }), 'high', 'a 美感優先 genre defaults to high');
   eq(levelFor({ composition: 'art-first', foregroundLevel: 'low' }), 'low', 'a named level beats the look');
   eq(foregroundForLook({ cinematography: 'costume-dark' }), 'medium', 'the dark costume preset is not 唯美');
-  eq(foregroundBand('low', 40).max, 10, 'low allows a quarter of the cuts');
-  eq(foregroundBand('medium', 40).min, 10, 'medium starts at a quarter');
-  eq(foregroundBand('medium', 40).max, 20, 'medium stops at half');
-  eq(foregroundBand('high', 40).min, 20, 'high starts at half');
+  eq(foregroundBand('low', 40).max, 8, 'low aims at most a fifth of the cuts');
+  eq(foregroundBand('medium', 40).min, 8, 'medium starts at a fifth');
+  eq(foregroundBand('medium', 40).max, 16, 'medium stops at 40 %');
+  eq(foregroundBand('high', 40).min, 16, 'high starts at 40 %');
+  eq(foregroundBand('high', 40).max, 24, 'high stops at 60 %');
   ok(foregroundBand('nope', 40) === null, 'an unknown level has no band');
   for (const [k, pr] of Object.entries(CINEMATOGRAPHY_PRESETS)) if (pr) ok(!/foreground/i.test(pr.videoPhrase) && !/前景/.test(pr.videoPhraseZh), `${k} leaves the foreground to the level`);
   const missingFg = clone(E01); delete missingFg.storyboard.segments[0].cuts[0].foreground;
@@ -999,6 +1014,43 @@ const breaks = (gateId, project, episode, needle) => {
   ok(sidesLine({ screenLeft: 'A', screenRight: 'B' }, (id) => id, 'zh').includes('A始终在画面左侧'), 'the Chinese sides line');
   // Keyframes carry the blocking in their pictures: the gate stays out of the way.
   eq(failures('two-person-framing', PROJECT, E01).length, 0, 'keyframes mode is exempt');
+
+  // Headcount: a shot of two or more people places each one and counts them, in both modes.
+  passes('headcount', PROJECT, E01);
+  ok(okSeg.prompt.includes('Two people in frame: '), 'the sheets skeleton counts a two-shot');
+  eq(only(failures('headcount', p, okEp)).length, 0, 'the sheets skeleton writes the roster the gate asks for');
+  const twoShotK = okSeg.cuts.findIndex((c) => (c.characters || []).length === 2);
+  const noPlace = framed(); delete noPlace.seg.cuts[twoShotK].placement;
+  ok(only(failures('headcount', p, noPlace.ep)).some((m) => m.includes('placement.C01 is required')), 'placement is required with two people');
+  const badPlace = framed(); badPlace.seg.cuts[twoShotK].placement.C01 = 'behind';
+  ok(only(failures('headcount', p, badPlace.ep)).some((m) => m.includes('is not valid')), 'a placement outside the vocabulary is refused');
+  const flipped = framed(); flipped.seg.cuts[twoShotK].placement = { C01: 'left', C02: 'right' };
+  ok(only(failures('headcount', p, flipped.ep)).some((m) => m.includes('holds screen left on this axis')), 'a placement against the axis is caught');
+  const unsaid = framed(); unsaid.seg.prompt = unsaid.seg.prompt.replace(/Two people in frame: .*? no one else\. /, '');
+  ok(only(failures('headcount', p, unsaid.ep)).some((m) => m.includes('must count who is in frame')), 'a two-shot that does not count its people fails');
+  const kfDrop = clone(E01); const kSeg = kfDrop.storyboard.segments.find((x) => x.id === 'E01-05');
+  kSeg.prompt = kSeg.prompt.replace(/Two people in frame: .*? no one else\. /, '');
+  breaks('headcount', PROJECT, kfDrop, 'must count who is in frame');
+  const crowd = clone(E01); const wideCut = crowd.storyboard.segments.find((x) => x.id === 'E01-05').cuts[2];
+  wideCut.characters = ['C01', 'C02', 'C03']; wideCut.placement.C03 = 'center far'; delete wideCut.note;
+  breaks('headcount', PROJECT, crowd, '3 people in a wide');
+  const stray = clone(E01); stray.storyboard.segments[0].cuts[1].placement = { C02: 'left' };
+  breaks('headcount', PROJECT, stray, 'names someone who is not in characters');
+  ok(placementValid('left') && placementValid('right far') && placementValid('center near'), 'valid placements');
+  ok(!placementValid('far') && !placementValid('left far away') && !placementValid('middle'), 'placements outside the vocabulary');
+  const r = rosterPhrase({ characters: ['B', 'A'], placement: { A: 'left', B: 'right far' } }, (id) => id, 'en', { positions: { A: 'at the door' }, facing: { B: 'away' } });
+  eq(r, 'Two people in frame: A on screen left, at the door; B on screen right in the background, seen from behind — both clearly visible, no one else.', 'the roster reads left to right with depth and back-turned figures');
+  ok(rosterPhrase({ characters: ['A', 'B', 'C'], placement: { A: 'left', B: 'center', C: 'right' } }, (id) => id).includes('all 3 clearly visible'), 'three people are all counted');
+  eq(rosterPhrase({ characters: ['A', 'B'], ots: 'A', placement: {} }, (id) => id), '', 'over-the-shoulder has its own line');
+  eq(rosterPhrase({ characters: ['A'] }, (id) => id), '', 'a single has its own line');
+  ok(rosterPhrase({ characters: ['A', 'B'], placement: { A: 'left', B: 'right far' } }, (id) => id, 'zh').startsWith('画面中共有两人：A在画面左侧；B在画面右侧后景'), 'the Chinese roster');
+  // Keyframes: each sheet is tied to its place, and the picture's prompt counts the people.
+  const kf = promptSkeleton(PROJECT, E01, 'E01-05').keyframes[2];
+  ok(kf.prompt.includes('the character sheet of the person on screen right in the background'), 'a keyframe ties a sheet to its place in the frame');
+  ok(/Two people in frame: the person in @image\d+ on screen left/.test(kf.prompt), 'a keyframe counts its people by their sheets');
+  // 9:16 wides with two people are noted (the fixture's carry a note saying why).
+  const bareWide = clone(E01); delete bareWide.storyboard.segments.find((x) => x.id === 'E01-05').cuts[2].note;
+  ok(failures('storyboard-advice', PROJECT, bareWide).some((m) => m.includes('2 people in a wide on 9:16')), 'two people in a bare 9:16 wide are noted');
 }
 
 {
@@ -1140,14 +1192,23 @@ const breaks = (gateId, project, episode, needle) => {
     });
     const noWide = clone(e);
     for (const seg of noWide.storyboard.segments) for (const c of seg.cuts) if (c.size === 'wide' || c.size === 'extreme-wide') { c.focal = focalOf(c); c.size = 'medium'; }
-    breaks('photography', p, noWide, 'no wide or extreme-wide cut');
-    const full = clone(noWide); const c0 = full.storyboard.segments[0].cuts[0];
+    // On 9:16 a medium that leaves the negative space steps back as well as a wide; on 16:9 it does not.
+    ok(!failures('photography', p, noWide).some((m) => m.startsWith('E01-01') && m.includes('steps back')), 'on 9:16 a medium with negative space is enough');
+    const landscape = (x) => ({ ...x, params: { ...x.params, ratio: '16:9' } });
+    breaks('photography', landscape(p), noWide, 'no wide or extreme-wide cut');
+    const cramped = clone(noWide); cramped.storyboard.segments.forEach((seg) => seg.cuts.forEach((c) => { c.frame = c.frame.replace(/ Vast negative space\./g, ''); }));
+    breaks('photography', p, cramped, 'no cut steps back');
+    const mw = clone(cramped); const m0 = mw.storyboard.segments.map((seg) => seg.cuts[0]);
+    m0.forEach((c) => { c.frame = c.frame.replace(SIZES[c.size], SIZES['medium-wide']) + ' Vast negative space.'; c.size = 'medium-wide'; c.focal = focalOf(c); });
+    ok(!failures('photography', p, mw).some((m) => m.includes('steps back')), 'on 9:16 a medium-wide with negative space is enough');
+    const full = clone(cramped); const c0 = full.storyboard.segments[0].cuts[0];
     c0.focal = focalOf(c0); c0.size = 'extreme-wide';
     breaks('photography', p, full, 'built on negative space');
     ok(!failures('photography', PROJECT, noWide).some((m) => m.includes('wide or extreme-wide')), 'other presets do not ask for wides');
     eq(initProject({ title: 't', episodes: 1, minutes: 1, genre: '仙侠' }).params.camera.aperture, 'T1.3', 'costume-idol brings a T1.3 package');
     const dark = clone(PROJECT); dark.params.cinematography = 'costume-dark';
-    breaks('photography', dark, noWide, 'no wide or extreme-wide cut');
+    breaks('photography', landscape(dark), noWide, 'no wide or extreme-wide cut');
+    breaks('photography', dark, cramped, 'no cut steps back');
     breaks('photography', dark, full, 'built on negative space');
   }
   ok(CINEMATOGRAPHY_PRESETS['period-nostalgia'].maxStop === 4, 'nostalgia may stop down to T4 for the period detail');
@@ -1889,6 +1950,9 @@ const breaks = (gateId, project, episode, needle) => {
   const unmarked = clone(fight()); breaks('grammar', PROJECT, unmarked, 'params.action is none');
   const narrow = fight(); const n0 = narrow.storyboard.segments[3].cuts[0]; n0.focal = focalOf(n0); n0.size = 'medium';
   breaks('action', p, narrow, 'opens on a wide');
+  const fullBody = fight(); const f0 = fullBody.storyboard.segments[3].cuts[0]; f0.size = 'medium-wide'; f0.focal = focalOf(f0);
+  ok(!failures('action', p, fullBody).some((m) => m.includes('opens on')), 'on 9:16 a fight may open on a medium-wide');
+  breaks('action', { ...p, params: { ...p.params, ratio: '16:9' } }, fullBody, 'opens on a wide or extreme-wide');
   const waived = clone(narrow); waived.storyboard.segments[3].actionExceptions = [{ rule: 'open-wide', reason: 'user asked to open on the fist' }];
   passes('action', p, waived);
   const noReason = clone(narrow); noReason.storyboard.segments[3].actionExceptions = [{ rule: 'open-wide', reason: '' }];
@@ -2070,9 +2134,13 @@ const breaks = (gateId, project, episode, needle) => {
   const plain = art(); plain.storyboard.segments[0].cuts.forEach((c) => { c.composition = ['thirds']; c.frame += ` ${COMPOSITION_DEVICES.thirds}.`; });
   breaks('composition', pa, plain, 'art-first needs at least 50 %');
   const noWide = art(); noWide.storyboard.segments[0].cuts.forEach((c) => { if (['wide', 'extreme-wide'].includes(c.size)) { c.focal = focalOf(c); c.size = 'medium'; } });
-  breaks('composition', pa, noWide, 'steps back to the whole composition');
-  const waived = clone(noWide); waived.storyboard.segments[0].exceptions = [{ rule: 'art-wide', reason: 'user: all close for this one' }];
-  ok(!failures('composition', pa, waived).some((m) => m.startsWith('E01-01') && m.includes('whole composition')), 'art-wide waivable');
+  const paWide = { ...pa, params: { ...pa.params, ratio: '16:9' } };
+  breaks('composition', paWide, noWide, 'steps back to the whole composition');
+  ok(!failures('composition', pa, noWide).some((m) => m.startsWith('E01-01') && m.includes('whole composition')), 'on 9:16 a medium steps back for art-first');
+  const allClose = art(); allClose.storyboard.segments[0].cuts.forEach((c) => { if (!['close', 'extreme-close'].includes(c.size)) { c.focal = focalOf(c); c.size = 'close'; } });
+  breaks('composition', pa, allClose, 'no cut steps back');
+  const waived = clone(allClose); waived.storyboard.segments[0].exceptions = [{ rule: 'art-wide', reason: 'user: all close for this one' }];
+  ok(!failures('composition', pa, waived).some((m) => m.startsWith('E01-01') && m.includes('steps back')), 'art-wide waivable');
   passes('composition', PROJECT, E01);
   ok(grammarLines({}, paramsOf(pa)).some((l) => l.startsWith('Composition: ')), 'art-first adds a Composition line');
   ok(promptSkeleton(pa, art(), 'E01-01').video.prompt.includes(COMPOSITION_STYLES['art-first'].videoPhrase), 'the skeleton writes it');
@@ -2561,8 +2629,8 @@ const breaks = (gateId, project, episode, needle) => {
 
 // ── gate inventory (crew engine) ────────────────────────────────────────────
 {
-  eq(GATES.length, 71, 'gate count');
-  eq(GATES.filter((g) => !g.advisory).length, 65, 'hard gate count');
+  eq(GATES.length, 72, 'gate count');
+  eq(GATES.filter((g) => !g.advisory).length, 66, 'hard gate count');
   eq(GATES.filter((g) => g.advisory).length, 6, 'advisory gate count');
   ok(!GATES.find((g) => g.id === 'boundary-contrast').advisory, 'boundary-contrast is hard');
   ok(GATES.find((g) => g.id === 'boundary-contrast-episode').advisory, 'boundary-contrast-episode is advisory');
@@ -2684,8 +2752,8 @@ const breaks = (gateId, project, episode, needle) => {
   const results = runGates(makeContext(PROJECT, { 1: E01 }));
   const rep = formatGates(results);
   eq(Object.keys(rep).sort().join(','), 'advisory,failed,hard,lines,notes,summary,text', 'formatGates shape');
-  eq(rep.summary, '✓ 65 gate(s) passed, 6 advisory (1 note)', 'fixture summary');
-  eq(rep.failed, 0, 'nothing failed'); eq(rep.hard, 65, 'hard count'); eq(rep.advisory, 6, 'advisory count');
+  eq(rep.summary, '✓ 66 gate(s) passed, 6 advisory (1 note)', 'fixture summary');
+  eq(rep.failed, 0, 'nothing failed'); eq(rep.hard, 66, 'hard count'); eq(rep.advisory, 6, 'advisory count');
   // The fixture now raises one advisory (E01-03 carries the 爽点 and is not cut as faceslap),
   // exactly as it does in the wji-cli copy — advisory lines print, failures still must not.
   eq(rep.lines.filter((l) => l.includes('✗')).length, 0, 'a green run prints no failed gates');

@@ -78,7 +78,7 @@ from what it is told.
   foreground, which keeps both people in every line.
 - **Foregrounds are pretty things, thrown out of focus**: flowers on the café table, fairy
   lights, falling petals or snow near the lens, rain on the glass, a curtain edge, the rim of a
-  cup. At least half the cuts have one (gated). Aim for most.
+  cup — when the scene really has one. Up to ~60 % of the cuts at `high`; a ceiling, not a quota.
 - **Frame within a frame**: a window, a doorway, the space under an umbrella. It gives the couple
   a small private world.
 - **Inserts are romance beats**: fingers almost touching, a hand on a sleeve, the shared

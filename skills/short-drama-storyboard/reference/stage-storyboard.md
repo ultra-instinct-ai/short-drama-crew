@@ -55,7 +55,9 @@ Three worksheets, all deleted once the segments are written:
    `hand-painted anime film still`), `params.ratio`. No names: identity
    comes from the sheet references.
 4. `camera` from the H3 vocabulary (`Static Shot`, `Push In`, `Tracking Shot`, `Pan Left`…);
-   `characters` / `props` ⊆ the scene's; > 3 people on screen needs a `note` (staging).
+   `characters` / `props` ⊆ the scene's; > 3 people on screen needs a `note` (staging), and so do
+   3 or more in a wide. With two or more people, `placement` puts each one in the frame and the
+   frame describes every one of them (gate `headcount`, `craft-shots.md` → Everyone the shot holds).
 
 ## Shot language — purpose, axes, boundaries, motion, sound
 
@@ -125,7 +127,7 @@ Three things a real crew decides per set-up and a prompt usually forgets. All th
 ```
 
 Per cut, `focal` is the focal length and `aperture` an optional override. Leave `focal` out and the
-shot size decides it, the way a crew would: `extreme-wide` 18mm, `wide` 25mm, `medium` 40mm,
+shot size decides it, the way a crew would: `extreme-wide` 18mm, `wide` 25mm, `medium-wide` 32mm, `medium` 40mm,
 `close` 75mm, `extreme-close` 100mm macro. Every `frame` must then carry the phrase verbatim:
 
 ```
@@ -175,15 +177,25 @@ tables are in `../../short-drama-core/reference/cinematography.md` and the prese
 
 `foreground` names what sits between the lens and the subject — a console edge, a curtain of rain
 off an awning, a blurred shoulder, a doorframe — and the frame prompt says it is thrown out of focus.
-`""` is a deliberately clean frame.
+`""` is a deliberately clean frame, and a clean frame is always a correct answer.
 
-**How often** is `params.foregroundLevel`, gated across the episode so scenes can differ:
+**A foreground is allowed, never owed.** Give a cut one only when the scene already holds something
+on the camera's side of the action that means something for *this* shot. If nothing in the scene
+does, shoot it clean — whatever the level says. An invented object (a random plant, a stray bottle,
+a blurred stranger) reads as clutter or an extra person and costs more than it buys.
 
-| Level | Cuts with a foreground | Use |
+**How much at most** is `params.foregroundLevel`, a rough ceiling over the whole episode, not a
+quota and not a hard limit:
+
+| Level | Cuts with a foreground, at most | Use |
 |---|---|---|
-| `low` | up to 25 % | clean, direct, face-led; only where the story asks for one |
-| `medium` (default) | 25–50 % | where the story or the shot type gives a reason |
-| `high` (default for 唯美 / 美感优先) | 50 % or more | a layered, voyeuristic or crowded look; soft, composed beauty |
+| `low` | ~20 % | clean, direct, face-led; only where the story asks for one |
+| `medium` (default) | ~20–40 % | where the story or the shot type gives a reason |
+| `high` (default for 唯美 / 美感优先) | ~40–60 % | a layered, voyeuristic or crowded look; soft, composed beauty |
+
+Falling short is fine — even at `high`, an episode whose scenes offer only a few real foregrounds
+keeps only those. Going past the ceiling is an advisory note (`storyboard-advice`), not a failure:
+look at each one again and keep it only if it passes the test below.
 
 唯美 / 美感优先 means `composition: art-first`, `cinematography: sweet-romance` or `costume-idol`, or a genre
 that says 唯美 or 美感. Naming `foregroundLevel` overrides this.
@@ -200,10 +212,18 @@ loses no meaning, shoot the cut clean.
 3. **Shot size decides how much.** A wide can take a large shape on one edge; a medium one edge; a close
    a soft sliver, never near the eyes or mouth; an extreme close-up almost never.
 
-Take it from the scene: it must already be there and on the camera's side of the action. Keep it off
-the face, the mouth, the key prop and the action. Prefer simple still shapes (edges, frames, shoulders)
-over foreground faces and hands, which can read as an extra person. Do not repeat one object across
-cuts unless it is a story motif. At `high`, keep the same reasons and simply use them more.
+**The test, every time** — all four, or the cut is clean:
+- **It is there.** The object is already in this scene (the location sheet, the script, the props on
+  the set) and physically between this camera position and the subject. Never add one to fill a share.
+- **It means something.** It carries one of the story reasons above, or it is the place itself
+  (the establishing layer). "It looks nice" is enough only under a 唯美 look, and only for a real
+  object of that place.
+- **It stays out of the way.** Off the face, the mouth, the key prop and the action; never the key
+  prop itself thrown out of focus.
+- **It reads.** A simple still shape (an edge, a frame, a shoulder, a curtain) over faces and hands,
+  which can read as an extra person. No one object repeated across cuts unless it is a story motif.
+
+At `high`, keep the same reasons and use them wherever the scene genuinely offers them — not more.
 
 Directing feel (not gated): reverse angles for dialogue (asker's close-up, answerer's close-up);
 the first cut of an episode moves; a key action gets its own 2 s insert; a reaction shot after a
@@ -430,7 +450,13 @@ that enters the frame (a boat, a car, a gate) needs its own sheet reference or i
 every frame.
 
 **First segment first.** Generate its keyframes, download them, check against the sheets (same
-world, same faces, right size, nobody extra), fix, then continue. An episode is 30–40 keyframes;
+world, same faces, right size, nobody extra, **nobody missing**), fix, then continue.
+
+**Headcount check, every keyframe** (and every clip in sheets mode): count the people in the image
+against the cut's `characters`, and check each one is where `placement` puts them. A keyframe with a
+person missing is regenerated before it is used — the clip trusts the picture over the text, so a
+missing person never comes back. On a second miss, step the cut in (wide → medium-wide), move the
+missing person nearer (`far` → mid), or turn them toward the camera. An episode is 30–40 keyframes;
 a wrong direction costs the whole batch — which is why this is opt-in and the default references
 the sheets directly.
 

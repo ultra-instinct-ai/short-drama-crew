@@ -91,7 +91,7 @@ yourself to turn a gate green. The old `actionExceptions` key and `action: true`
 | `faceslap` | the proof on screen; ≥ 2 reactions after it (this segment and the next one in the scene) |
 | `comedy` | a setup before every punchline (in the scene); laugh room after it |
 | `action-advice` · `grammar-advice` | rhythm, signature shots, 打脸 craft, comedy craft, the 爽点 link (advisory) |
-| `composition` | art-first: every cut's devices named and in the frame, ≥ 50 % negative space / symmetry / monumental scale, a wide per segment |
+| `composition` | art-first: every cut's devices named and in the frame, ≥ 50 % negative space / symmetry / monumental scale, a cut per segment that steps back (a wide; on 9:16 a medium-wide or medium) |
 | `no-ip-names` | no film, franchise or performer names anywhere |
 
 ## 6. Adding a grammar or a style

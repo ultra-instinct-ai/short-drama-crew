@@ -19,7 +19,7 @@
 //            [--market mainland|overseas]                            (mainland holds the supernatural to a rational explanation)
 //            [--format short|medium|movie]                            (短剧 1–3 min, 中剧 4–15 min, 电影 in ~5-minute parts — see FORMATS)
 //            [--register 台湾国语]                                      (语体 — decides how lines are written and the accent spoken)
-//            [--foreground low|medium|high]                             (how often cuts shoot past a foreground — see FOREGROUND_LEVELS)
+//            [--foreground low|medium|high]                             (the most cuts that may shoot past a foreground — see FOREGROUND_LEVELS)
 //            [--image-lang en|zh]                                       (language of the character / scene / prop image prompts)
 //   validate <project> [--stage outline|characters|art|script|storyboard] [--ep 1-3]
 //   checkup  <project> [--stage …] [--ep …]            every gate with ✓/✗, exit 0
@@ -206,12 +206,14 @@ export const AUDIO_MAX_REFS = 3;
  * `bed` (ambience + sfx + music) / `full` (the bed plus the lines): a Seed Audio node per segment.
  */
 export const AUDIO_TRACK_MODES = ['post', 'none', 'bed', 'full'];
-// Share of an episode's cuts that may carry a foreground. Measured per episode, not per segment, so a
-// siege can be full of them and a quiet confession can have none.
+// Rough share of an episode's cuts that may carry a foreground — a ceiling and a guide, not a quota.
+// A cut gets one only when the scene already has something on the camera's side that means something
+// for that shot; falling short of `min` is fine (never invent an object to reach it), going past `max`
+// is only an advisory. Measured per episode, so a siege can be full of them and a confession can have none.
 export const FOREGROUND_LEVELS = Object.freeze({
-  low: { min: 0, max: 0.25 },
-  medium: { min: 0.25, max: 0.5 },
-  high: { min: 0.5, max: 1 },
+  low: { min: 0, max: 0.2 },
+  medium: { min: 0.2, max: 0.4 },
+  high: { min: 0.4, max: 0.6 },
 });
 /**
  * The level a project gets when it does not name one: `high` for 唯美 or 美感优先 — the art-first
@@ -347,7 +349,9 @@ export const FACINGS = ['screen-left', 'screen-right', 'camera', 'away'];
 /** Why the camera moves — or deliberately does not. */
 export const CAMERA_MOTIVATIONS = ['reveal', 'pressure', 'alignment', 'relationship', 'transition', 'stillness'];
 /** The size ladder, for "how many steps did this cut jump". */
-export const SIZE_ORDER = ['extreme-wide', 'wide', 'medium', 'close', 'extreme-close'];
+export const SIZE_ORDER = ['extreme-wide', 'wide', 'medium-wide', 'medium', 'close', 'extreme-close'];
+/** Rung on the ladder; `medium-wide` sits half a step between wide and medium so jump counts stay as they were. */
+const SIZE_RANK = { 'extreme-wide': 0, wide: 1, 'medium-wide': 1.5, medium: 2, close: 3, 'extreme-close': 4 };
 /** Words that describe a sequence, which a frozen frame cannot hold. */
 export const SEQUENCE_WORDS_EN = ['then', 'before', 'after that', 'afterwards', 'begins to', 'starts to', 'next,', 'finally', 'first,'];
 export const SEQUENCE_WORDS_ZH = ['先', '再', '随后', '隨後', '然后', '然後', '最终', '最終', '接着', '接著', '之后', '之後'];
@@ -363,6 +367,7 @@ export const PROP_SCALES_ZH = { handheld: '手持尺寸', tabletop: '桌面尺�
 export const SIZES = {
   'extreme-wide': 'extreme wide shot',
   wide: 'wide shot',
+  'medium-wide': 'medium wide shot',
   medium: 'medium shot',
   close: 'close-up',
   'extreme-close': 'extreme close-up',
@@ -371,6 +376,7 @@ export const SIZES = {
 export const SIZES_ZH = {
   'extreme-wide': '大远景',
   wide: '远景',
+  'medium-wide': '中全景',
   medium: '中景',
   close: '特写',
   'extreme-close': '大特写',
@@ -379,6 +385,7 @@ export const SIZES_ZH = {
 export const FOCAL_BY_SIZE = {
   'extreme-wide': '18mm',
   wide: '25mm',
+  'medium-wide': '32mm',
   medium: '40mm',
   close: '75mm',
   'extreme-close': '100mm macro',
@@ -515,11 +522,62 @@ export function overShoulderPhrase(who, side, lang = 'en') {
     ? `越过${who}的肩拍摄：其肩与后脑虚化在画面${side === 'left' ? '左' : '右'}下方前景，看不到其脸。`
     : `Over-the-shoulder from behind ${who}: their shoulder and the back of their head soft in the lower-${side} foreground, their face not visible.`;
 }
+// Who is in a shot of two or more people. A model drops the figure it was told least about — the
+// smallest, the farthest, the one with their back turned, most often in a wide — so a shot with two or
+// more people counts them and puts each one on a place in the frame (cut.placement, gate headcount).
+export const PLACEMENT_SIDES = ['left', 'center', 'right'];
+export const PLACEMENT_DEPTHS = ['near', 'mid', 'far'];
+/** "left" · "right far" · "center near" — screen side, then depth (mid when left out). */
+export function parsePlacement(value) {
+  const words = String(value || '').trim().split(/\s+/).filter(Boolean);
+  return { side: words[0], depth: words[1] || 'mid', extra: words.length > 2 };
+}
+export function placementValid(value) {
+  const p = parsePlacement(value);
+  return PLACEMENT_SIDES.includes(p.side) && PLACEMENT_DEPTHS.includes(p.depth) && !p.extra;
+}
+export function placementWords(value, lang = 'en') {
+  const p = parsePlacement(value);
+  if (lang === 'zh') return `${{ left: '画面左侧', center: '画面中央', right: '画面右侧' }[p.side] || ''}${{ near: '前景', mid: '', far: '后景' }[p.depth] || ''}`;
+  return `${{ left: 'on screen left', center: 'in the centre of the frame', right: 'on screen right' }[p.side] || ''}${{ near: ' in the foreground', mid: '', far: ' in the background' }[p.depth] || ''}`;
+}
+const COUNT_EN = ['No one', 'One person', 'Two people', 'Three people', 'Four people', 'Five people', 'Six people'];
+const COUNT_ZH = ['无人', '一人', '两人', '三人', '四人', '五人', '六人'];
+/** The boundary a cut opens on: its own start on a segment's first cut, the previous cut's end after. */
+export function cutInstant(cuts, k) {
+  const b = k === 0 ? cuts?.[0]?.start : cuts?.[k - 1]?.end;
+  return isObject(b) ? b : {};
+}
+/**
+ * "Two people in frame: <who> on screen left, behind the counter; <who> on screen right in the
+ * background, seen from behind — both clearly visible, no one else." Empty for a single or an
+ * over-the-shoulder (they have their own lines). `instant` is the boundary the cut opens on.
+ */
+export function rosterPhrase(cut, whoOf, lang = 'en', instant = {}) {
+  const chars = (cut?.characters || []).filter(Boolean);
+  if (chars.length < 2 || cut.ots) return '';
+  const zh = lang === 'zh';
+  // Read left to right, the way the frame is looked at.
+  const order = (id) => PLACEMENT_SIDES.indexOf(parsePlacement(cut.placement?.[id]).side);
+  const bits = [...chars].sort((x, y) => order(x) - order(y)).map((id) => {
+    const place = cut.placement?.[id] ? placementWords(cut.placement[id], lang) : '';
+    const back = instant.facing?.[id] === 'away';
+    if (zh) return `${whoOf(id)}${place ? `在${place}` : ''}${back ? '，背对镜头' : ''}`;
+    const where = String(instant.positions?.[id] || '').trim();
+    return `${whoOf(id)}${place ? ` ${place}` : ''}${where ? `, ${where}` : ''}${back ? ', seen from behind' : ''}`;
+  });
+  const n = chars.length;
+  if (zh) return `画面中共有${COUNT_ZH[n] || `${n}人`}：${bits.join('；')}——${n === 2 ? '两人' : `${n}人`}都完整清晰可见，没有其他人。`;
+  return `${COUNT_EN[n] || `${n} people`} in frame: ${bits.join('; ')} — ${n === 2 ? 'both' : `all ${n}`} clearly visible, no one else.`;
+}
+
 /** What a shot opens with in a two-person segment: who is in frame, then where each person looks. */
 export function shotFraming(cut, seg, whoOf, lang = 'en') {
   if (segmentCharacters(seg).length < 2) return '';
   const chars = cut.characters || [];
   const parts = [];
+  const roster = rosterPhrase(cut, whoOf, lang, cutInstant(seg.cuts || [], (seg.cuts || []).indexOf(cut)));
+  if (roster) parts.push(roster);
   if (cut.ots) parts.push(overShoulderPhrase(whoOf(cut.ots), seg.axis?.screenLeft === cut.ots ? 'left' : 'right', lang));
   else if (chars.length === 1) parts.push(onlyInFramePhrase(whoOf(chars[0]), lang));
   for (const id of chars) if (id !== cut.ots && cut.eyeline?.[id]) parts.push(eyelinePhrase(cut.eyeline[id], whoOf(id), lang));
@@ -781,8 +839,8 @@ export function imagePromptKit(params) {
  * `preferredShare` of the cuts with people in a segment are keyed from `preferredLight`; no cut is
  * slower than `maxStop`. `anachronisms`, when set, is what a `light.source` may not be in that era.
  * Optional: `kit` (the lens and stop `init` gives the camera package), `bokehShare` (that share of
- * a segment's cuts say `bokeh` in the frame), `widePerSegment` (every segment has that many `wide` /
- * `extreme-wide` cuts, and each of those frames says `negative space`).
+ * a segment's cuts say `bokeh` in the frame), `widePerSegment` (every segment has that many cuts that step back —
+ * `wide` / `extreme-wide`, or on a vertical ratio a `medium-wide` / `medium` — whose frames say `negative space`).
  * The phrases never name a nationality: that would pull every face towards it whatever the
  * character sheets say.
  */
@@ -945,6 +1003,15 @@ export function cinematographyForGenre(genre) {
  * segments (across an episode) should contain at least once.
  */
 const isWide = (c) => c.size === 'wide' || c.size === 'extreme-wide';
+/** Portrait (9:16 and the like): a third of the width, so room is made in depth, not with a big wide. */
+export const isVerticalRatio = (ratio) => { const [w, h] = String(ratio || '').split(':').map(Number); return h > w; };
+/**
+ * A cut that steps back. Landscape needs a wide / extreme-wide; on a vertical ratio a medium-wide or
+ * a medium does the same job (pass `{ medium: false }` when only full bodies will do, as in a fight).
+ * A wide on 9:16 is still right when the story needs the scale, or to open a new scene.
+ */
+export const stepsBack = (c, params, { medium = true } = {}) => isWide(c)
+  || (isVerticalRatio(params?.ratio) && (c.size === 'medium-wide' || (medium && c.size === 'medium')));
 const saysSlowMo = (c) => /slow[- ]?motion|slow-mo|升格|慢动作|慢鏡|慢镜/i.test(`${c.motion?.action || ''} ${c.motion?.result || ''} ${c.cameraNote?.path || ''} ${c.cameraNote?.hold || ''} ${c.frame || ''}`);
 const shaky = (c) => c.camera === 'Shake Slightly' || c.camera === 'Shake Strongly';
 export const ACTION_STYLES = {
@@ -953,7 +1020,7 @@ export const ACTION_STYLES = {
     videoPhrase: 'grounded tactical gun-fu action, close-quarters gunplay fused with judo throws and joint locks, long unbroken takes framed wide enough to see full bodies, efficient precise movement with no wasted motion, muzzle flashes lighting the dark and spent casings falling',
     videoPhraseZh: '写实战术枪斗动作，近身枪战融合柔道摔投与关节技，长镜头不间断，景别足以看清全身动作，动作精准利落毫不拖泥带水，枪口火光照亮黑暗，弹壳纷纷落地',
     cutSeconds: [3.5, 5],
-    needs: [{ what: 'a long take (a cut of 4 s or more)', test: (c) => Number(c.seconds) >= 4 }, { what: 'a wide or medium full-body cut', test: (c) => isWide(c) || c.size === 'medium' }],
+    needs: [{ what: 'a long take (a cut of 4 s or more)', test: (c) => Number(c.seconds) >= 4 }, { what: 'a wide or medium full-body cut', test: (c) => isWide(c) || c.size === 'medium-wide' || c.size === 'medium' }],
     look: 'low-key',
   },
   'hk-kungfu': {
@@ -961,7 +1028,7 @@ export const ACTION_STYLES = {
     videoPhrase: 'classic kung fu action choreography, crisp full-body fight framing, rapid exchanges of strikes and blocks, everyday objects used as weapons, snappy speed-ramped impacts with the key hit repeated from a second angle, playful physical comedy between blows',
     videoPhraseZh: '经典功夫动作设计，全身入画的清晰打斗构图，拳脚攻防快速往来，随手拿起身边物件当武器，打击点快慢变速，关键一击换角度重复，招式之间带着诙谐的肢体喜剧',
     cutSeconds: [2, 3],
-    needs: [{ what: 'a locked-off wide or medium that shows the whole exchange', test: (c) => c.camera === 'Static Shot' && (isWide(c) || c.size === 'medium') }],
+    needs: [{ what: 'a locked-off wide or medium that shows the whole exchange', test: (c) => c.camera === 'Static Shot' && (isWide(c) || c.size === 'medium-wide' || c.size === 'medium') }],
     look: 'none',
   },
   'wuxia-fantasy': {
@@ -1058,7 +1125,7 @@ export const IP_NAMES_RE = /\bjohn wick\b|\bmatrix\b|\bmarvel\b|\bavengers?\b|\b
  * `segment.composition`). `standard` adds nothing. `art-first` (艺术优先) puts the composition
  * before coverage in any genre: every cut names its composition devices (COMPOSITION_DEVICES),
  * whose phrases go in the frame; at least `signatureShare` of a segment's cuts use a signature
- * device; every segment steps back to a wide at least once; the prompt carries a Composition line.
+ * device; every segment steps back at least once (a wide; on a vertical ratio a medium-wide or medium will do); the prompt carries a Composition line.
  */
 export const COMPOSITION_DEVICES = {
   'negative-space': 'vast negative space',
@@ -1148,7 +1215,7 @@ export const COMEDY_STYLES = {
     videoPhraseZh: '冷面处境喜剧，对称的固定机位画面刻意多停一拍，角色面无表情地反应，尴尬的沉默本身就是笑点，不做夸张表情',
     hold: 3,
     cutSeconds: [3, 5],
-    needs: [{ what: 'a locked-off wide or medium (Static Shot)', test: (c) => c.camera === 'Static Shot' && (isWide(c) || c.size === 'medium') }],
+    needs: [{ what: 'a locked-off wide or medium (Static Shot)', test: (c) => c.camera === 'Static Shot' && (isWide(c) || c.size === 'medium-wide' || c.size === 'medium') }],
   },
   romcom: {
     label: '甜宠喜剧 — flustered blushes and double-takes, misunderstandings in bright frames, cute timing',
@@ -1574,7 +1641,7 @@ export function segmentCharacters(seg) {
   for (const c of seg?.cuts || []) for (const id of c.characters || []) if (!out.includes(id)) out.push(id);
   return out;
 }
-const sizeIndex = (size) => SIZE_ORDER.indexOf(size);
+const sizeIndex = (size) => (size in SIZE_RANK ? SIZE_RANK[size] : -1);
 /** Does this cut claim a beat that carries `ref` ([sceneIndex, beatIndex]) — same scene, in range. */
 function cutClaims(seg, cut, ref) {
   if (!Array.isArray(ref) || ref.length !== 2 || !Array.isArray(cut.beats)) return false;
@@ -3409,16 +3476,14 @@ export const GATES = [
     }
     return out;
   }),
-  gate('photography', 'storyboard', 'every cut names its lens and stop, its key-light direction, and a foreground share within params.foregroundLevel; the cinematography preset (named source, preferred light, wide open)', (ctx) => {
+  gate('photography', 'storyboard', 'every cut names its lens and stop, its key-light direction and its foreground (or a clean frame); the cinematography preset (named source, preferred light, wide open)', (ctx) => {
     const { project, params } = ctx;
     const out = [];
     const kit = params.camera || DEFAULT_PARAMS.camera;
     const look = cinematographyOf(params);
-    for (const [epId, e] of ctx.episodes) {
-      let epCuts = 0, epForeground = 0;
+    for (const [, e] of ctx.episodes) {
       for (const seg of e.storyboard?.segments || []) {
         const cuts = seg.cuts || [];
-        epCuts += cuts.length;
         let withPeople = 0, shaped = 0, withBokeh = 0, wides = 0;
         cuts.forEach((c, k) => {
           const where = `${seg.id} cut ${k + 1}`;
@@ -3442,11 +3507,9 @@ export const GATES = [
           // Foreground.
           const fg = String(c.foreground || '').trim();
           if (fg) {
-            epForeground += 1;
             if (frame.trim() && !frame.includes(fg)) out.push(`${where}: frame prompt must name the foreground "${fg}"`);
             if (frame.trim() && !/out of focus|foreground blur|defocus|bokeh|soft foreground/i.test(frame)) out.push(`${where}: the foreground is named but never said to be out of focus`);
           }
-          else if (c.ots) epForeground += 1;   // the near shoulder is the foreground
           if (c.foreground === undefined) out.push(`${where}: foreground is required — name what sits between the lens and the subject, or "" for a deliberately clean frame`);
           if (!look) return;
           // The cinematography preset: a named source, no banned light on a person, shot wide open.
@@ -3464,18 +3527,18 @@ export const GATES = [
           const n = stopNumber(stop);
           if (stop && !(n <= look.maxStop)) out.push(`${where}: aperture ${stop} is too slow — shoot wide open, T${look.maxStop} or faster`);
           if (/bokeh/i.test(frame)) withBokeh += 1;
-          if (c.size === 'wide' || c.size === 'extreme-wide') {
+          if (isWide(c)) {
             wides += 1;
             if (look.widePerSegment && frame.trim() && !/negative space/i.test(frame)) out.push(`${where}: a ${SIZES[c.size]} in ${params.cinematography} is built on negative space — say where it is ("negative space")`);
           }
+          // On 9:16 a medium-wide or medium that leaves the space does the stepping back.
+          else if (stepsBack(c, params) && /negative space/i.test(frame)) wides += 1;
         });
         if (look && look.bokehShare && cuts.length && withBokeh < look.bokehShare * cuts.length) out.push(`${seg.id}: only ${withBokeh} of ${cuts.length} frames name their bokeh — at least ${Math.round(look.bokehShare * 100)} % must say what melts into bokeh behind or in front of the subject (params.cinematography ${params.cinematography})`);
-        if (look && look.widePerSegment && cuts.length && wides < look.widePerSegment) out.push(`${seg.id}: no wide or extreme-wide cut — ${params.cinematography} needs at least ${look.widePerSegment} per segment, a 全景 / 大全景 with vast negative space`);
+        if (look && look.widePerSegment && cuts.length && wides < look.widePerSegment) out.push(isVerticalRatio(params.ratio)
+          ? `${seg.id}: no cut steps back — ${params.cinematography} needs at least ${look.widePerSegment} per segment: on ${params.ratio} a medium-wide or medium whose frame leaves vast negative space, or a wide / extreme-wide when the story needs the scale`
+          : `${seg.id}: no wide or extreme-wide cut — ${params.cinematography} needs at least ${look.widePerSegment} per segment, a 远景 / 大远景 with vast negative space`);
         if (look && withPeople && shaped < look.preferredShare * withPeople) out.push(`${seg.id}: only ${shaped} of ${withPeople} cuts with people are ${look.preferredWhat} (${look.preferredLight.join(' / ')}) — at least ${Math.round(look.preferredShare * 100)} % must (params.cinematography ${params.cinematography}); re-stage the person against the source or move the camera`);
-      }
-      const band = foregroundBand(params.foregroundLevel, epCuts);
-      if (band && (epForeground < band.min || epForeground > band.max)) {
-        out.push(`E${pad2(epId)}: ${epForeground} of ${epCuts} cuts have a foreground — params.foregroundLevel ${params.foregroundLevel} allows ${band.min}–${band.max}. Change which cuts carry one (story first), or change the level`);
       }
     }
     return out;
@@ -3993,6 +4056,45 @@ export const GATES = [
     }
     return out;
   }),
+  gate('headcount', 'storyboard', 'a shot of two or more people puts each one on a place in the frame (placement) and the shot text counts them; three or more in a wide carry a staging note', (ctx) => {
+    const { project, params } = ctx;
+    const out = [];
+    const family = videoModel(params).family;
+    const lang = videoModel(params).promptLang === 'zh' ? 'zh' : 'en';
+    for (const [, e] of ctx.episodes) {
+      for (const seg of e.storyboard?.segments || []) {
+        const cuts = seg.cuts || [];
+        const axis = isObject(seg.axis) ? seg.axis : null;
+        const labels = params.references === 'sheets' ? characterLabels(segmentReferences(project, e, seg)) : new Map();
+        const whoOf = (id) => labels.get(id) || identityOf(characterById(project, id));
+        const prompt = String(seg.prompt || '');
+        const texts = prompt.trim() ? shotTexts(prompt, family, params.references) : new Map();
+        cuts.forEach((c, k) => {
+          const where = `${seg.id} cut ${k + 1}`;
+          const chars = c.characters || [];
+          if (isWide(c) && chars.length >= 3 && !String(c.note || '').trim()) out.push(`${where}: ${chars.length} people in a ${c.size} — small figures are the ones a model drops; stage them (who is where, in depth) in note, or step in to a medium-wide`);
+          for (const id of Object.keys(isObject(c.placement) ? c.placement : {})) if (!chars.includes(id)) out.push(`${where}: placement.${id} names someone who is not in characters`);
+          if (chars.length < 2 || c.ots) return;
+          let complete = true;
+          for (const id of chars) {
+            const v = c.placement?.[id];
+            if (!v) { out.push(`${where}: placement.${id} is required — with ${chars.length} people in frame, say where each one is: "left|center|right" plus "near|far" when not mid-ground`); complete = false; }
+            else if (!placementValid(v)) { out.push(`${where}: placement.${id} "${v}" is not valid — "left|center|right", optionally followed by "near" or "far"`); complete = false; }
+          }
+          if (!complete) return;
+          if (axis && c.axisSide !== 'cross') {
+            for (const [id, side, other] of [[axis.screenLeft, 'left', 'right'], [axis.screenRight, 'right', 'left']]) {
+              if (id && chars.includes(id) && parsePlacement(c.placement[id]).side === other) out.push(`${where}: ${id} holds screen ${side} on this axis, but placement puts them ${other} — fix the placement or mark the cut axisSide "cross"`);
+            }
+          }
+          const text = texts.get(k + 1);
+          const phrase = rosterPhrase(c, whoOf, lang, cutInstant(cuts, k));
+          if (text && !text.includes(phrase)) out.push(`${where}: the shot must count who is in frame — paste "${phrase}"`);
+        });
+      }
+    }
+    return out;
+  }),
   gate('idle-motion', 'storyboard', 'sheets mode: in a cut with two or more visible faces, everyone but the one carrying the action has a small motion of their own, written into the shot', (ctx) => {
     const { project, params } = ctx;
     const out = [];
@@ -4043,17 +4145,23 @@ export const GATES = [
     }
     return out;
   }),
-  gate('storyboard-advice', 'storyboard', 'shot craft advice: 9:16 wides need depth, size jumps, a segment that only tightens, long frames, negative-form motion (advisory)', (ctx) => {
+  gate('storyboard-advice', 'storyboard', 'shot craft advice: foreground share past params.foregroundLevel, 9:16 wides need depth, size jumps, a segment that only tightens, long frames, negative-form motion (advisory)', (ctx) => {
     const { params } = ctx;
     const out = [];
-    const vertical = (() => { const [w, h] = String(params.ratio).split(':').map(Number); return h > w; })();
-    for (const [, e] of ctx.episodes) {
+    const vertical = isVerticalRatio(params.ratio);
+    for (const [epId, e] of ctx.episodes) {
+      // Foreground share: a ceiling, never a quota — below the level is fine, so only "too many" is said.
+      const allCuts = (e.storyboard?.segments || []).flatMap((seg) => seg.cuts || []);
+      const withFg = allCuts.filter((c) => String(c.foreground || '').trim() || c.ots).length;
+      const band = foregroundBand(params.foregroundLevel, allCuts.length);
+      if (band && withFg > band.max) out.push(`E${pad2(epId)}: ${withFg} of ${allCuts.length} cuts have a foreground — more than the ~${Math.round(FOREGROUND_LEVELS[params.foregroundLevel].max * 100)} % params.foregroundLevel ${params.foregroundLevel} aims for. Keep the ones the shot gives a reason for and shoot the rest clean`);
       for (const seg of e.storyboard?.segments || []) {
         const cuts = seg.cuts || [];
         let ups = 0, downs = 0;
         cuts.forEach((c, k) => {
           const where = `${seg.id} cut ${k + 1}`;
-          if (vertical && ['wide', 'extreme-wide'].includes(c.size) && !String(c.background || '').trim() && !String(c.note || '').trim()) out.push(`${where}: a ${c.size} on 9:16 has a third of the width — carry the geography in depth (background) or say why the wide is needed (note)`);
+          if (vertical && isWide(c) && (c.characters || []).length >= 2 && !String(c.note || '').trim()) out.push(`${where}: ${(c.characters || []).length} people in a ${c.size} on ${params.ratio} are small side by side — the usual way one goes missing; a medium-wide keeps everyone readable, or say in note why the wide is needed`);
+          if (vertical && ['wide', 'extreme-wide'].includes(c.size) && !String(c.background || '').trim() && !String(c.note || '').trim()) out.push(`${where}: a ${c.size} on ${params.ratio} has a third of the width — a medium-wide or medium usually makes the room; keep the wide only when the story needs the scale or it opens a new place, and then carry the geography in depth (background) or say why (note)`);
           if (k > 0) {
             const d = sizeIndex(c.size) - sizeIndex(cuts[k - 1].size);
             if (Math.abs(d) > 2 && !String(c.note || '').trim()) out.push(`${where}: jumps ${Math.abs(d)} size steps from cut ${k} — the ladder moves a step or two; a bigger jump needs an attention reason (say it in note)`);
@@ -4086,8 +4194,10 @@ export const GATES = [
         // open-wide: the first fight segment of a scene opens on the geography; later ones reset to it once.
         if (!waived.has('open-wide') && cuts.length) {
           const first = !openedScenes.has(seg.sceneIndex);
-          if (first && !isWide(cuts[0])) out.push(`${seg.id}: a fight opens on a wide or extreme-wide — show where everyone is before the first blow (or waive open-wide on the user's request)`);
-          if (!first && !cuts.some(isWide)) out.push(`${seg.id}: a fight segment with no wide — reset the geography once (or waive open-wide on the user's request)`);
+          const geo = (c) => stepsBack(c, params, { medium: false });
+          const opener = isVerticalRatio(params.ratio) ? 'a wide, extreme-wide or (on a vertical ratio) a medium-wide' : 'a wide or extreme-wide';
+          if (first && !geo(cuts[0])) out.push(`${seg.id}: a fight opens on ${opener} — show where everyone is before the first blow (or waive open-wide on the user's request)`);
+          if (!first && !cuts.some(geo)) out.push(`${seg.id}: a fight segment with no ${opener} — reset the geography once (or waive open-wide on the user's request)`);
         }
         openedScenes.add(seg.sceneIndex);
         cuts.forEach((c, k) => {
@@ -4290,7 +4400,9 @@ export const GATES = [
           }
         });
         if (cuts.length && !waived.has('signature-share') && signed < art.signatureShare * cuts.length) out.push(`${seg.id}: only ${signed} of ${cuts.length} cuts use ${art.signature.join(' / ')} — art-first needs at least ${Math.round(art.signatureShare * 100)} % (or waive signature-share on the user's request)`);
-        if (cuts.length && !waived.has('art-wide') && cuts.filter(isWide).length < art.widePerSegment) out.push(`${seg.id}: no wide or extreme-wide — an art-first segment steps back to the whole composition at least once (or waive art-wide on the user's request)`);
+        if (cuts.length && !waived.has('art-wide') && cuts.filter((c) => stepsBack(c, params)).length < art.widePerSegment) out.push(isVerticalRatio(params.ratio)
+          ? `${seg.id}: no cut steps back — an art-first segment shows the whole composition at least once: on ${params.ratio} a medium-wide or medium is enough, a wide when the story needs the scale (or waive art-wide on the user's request)`
+          : `${seg.id}: no wide or extreme-wide — an art-first segment steps back to the whole composition at least once (or waive art-wide on the user's request)`);
       }
     }
     return out;
@@ -4996,6 +5108,9 @@ export function promptSkeleton(project, episode, segmentId) {
   const framingLang = videoModel(params).promptLang === 'zh' ? 'zh' : 'en';
   const idleOf = (c) => (params.references === 'sheets' ? idleSentence(c, whoOf, framingLang) : '');
   const framingOf = (c) => (params.references === 'sheets' ? shotFraming(c, seg, whoOf, framingLang) : '');
+  // Keyframes mode: the picture already holds everyone, but the clip still loses a figure the text
+  // never mentions, so the shot counts them too (by identity — the @imageN labels are frames).
+  const rosterOf = (c) => { const r = rosterPhrase(c, whoOf, framingLang, cutInstant(cuts, cuts.indexOf(c))); return r ? `${r} ` : ''; };
   const sidesOf = () => {
     const axis = isObject(seg.axis) ? seg.axis : null;
     if (params.references !== 'sheets' || !axis?.screenLeft || !axis?.screenRight || cuts.some((c) => c.axisSide === 'cross')) return [];
@@ -5031,7 +5146,7 @@ export function promptSkeleton(project, episode, segmentId) {
       // light and the foreground (gated there), so only the shot size and camera move are added.
       const body = sheets
         ? `${framingOf(c)}${c.frame || '…'} ${SIZES[c.size] || c.size}, ${c.camera}. ${propOf(c, framingLang)}`
-        : `… anchor on @image${k + 1} · ${SIZES[c.size] || c.size}, ${c.camera}, ${cameraPhrase(c, params)}. ${lightPhrase(c)}.${foregroundPhrase(c)}`;
+        : `… anchor on @image${k + 1} · ${rosterOf(c)}${SIZES[c.size] || c.size}, ${c.camera}, ${cameraPhrase(c, params)}. ${lightPhrase(c)}.${foregroundPhrase(c)}`;
       return `${head}${body} ${motionSentence(c)} ${idleOf(c)}${cameraClause(c)} ${d}${lips}`.replace(/\s+/g, ' ').trim();
     });
     // Keyframes are aligned by the alignment line; the voices are named either way.
@@ -5086,7 +5201,7 @@ export function promptSkeleton(project, episode, segmentId) {
         if (!others.length) return base;
         return `${base} while ${others.join(' and ')} ${others.length > 1 ? 'do' : 'does'} not speak, ${LIPS_CLOSED}`;
       }).join(' ');
-      return `From @image${k + 1} (${starts[k].toFixed(1)}–${(starts[k] + Number(c.seconds)).toFixed(1)} s): ${motionSentence(c)} ${propOf(c, framingLang)}${cameraClause(c)} ${talk}`.replace(/\s+/g, ' ').trim();
+      return `From @image${k + 1} (${starts[k].toFixed(1)}–${(starts[k] + Number(c.seconds)).toFixed(1)} s): ${rosterOf(c)}${motionSentence(c)} ${propOf(c, framingLang)}${cameraClause(c)} ${talk}`.replace(/\s+/g, ' ').trim();
     });
     const sfxAll = cuts.map((c, k) => (sfxOf(k) ? `from @image${k + 1}: ${sfxOf(k)}` : '')).filter(Boolean).join('; ');
     video = [...anchors, ...states, '', ...script, '', ...actionLine, 'Maintain continuity in character identities, clothing, prop ownership, scene layout and the camera axis.', `Sound: ${sound.ambience || '…'}${sfxAll ? `; ${sfxAll}` : ''}.${accent && dialogue.flat().length ? ` All dialogue in ${accent}.` : ''}${clipMusic ? ` Music: ${clipMusic}.` : ' No music.'}${params.subtitles ? '' : ` ${NO_SUBTITLES.en[0].toUpperCase()}${NO_SUBTITLES.en.slice(1)}.`}`].join('\n');
@@ -5098,11 +5213,21 @@ export function promptSkeleton(project, episode, segmentId) {
     const refs = [];
     refs.push({ entity: scene.sceneId, asset: 'sheet', why: `environment: ${sceneEntity.name || scene.sceneId}${scene.lighting ? ` (${scene.lighting})` : ''}`, use: 'the environment — match its layout, materials and wear exactly', zh: '环境，严格还原布局、材质与旧痕' });
     if (scene.lighting && sceneEntity.wji?.assets?.lighting?.[scene.lighting]) refs.push({ entity: scene.sceneId, asset: `lighting:${scene.lighting}`, why: `lighting state ${scene.lighting}`, use: 'the same environment in the lighting state to use', zh: '同一场景的光线状态' });
-    for (const id of c.characters || []) refs.push({ entity: id, asset: 'sheet', why: `face and clothes of ${characterById(project, id)?.name || id}`, use: 'the character sheet of one person in this frame — match face, hair and clothes exactly', zh: '人物三视图，严格还原面容、发型与服装' });
+    const instant = cutInstant(cuts, k);
+    const many = (c.characters || []).length >= 2 && !c.ots;
+    for (const id of c.characters || []) {
+      // With two or more people, each sheet is tied to its place in the frame, so no sheet is left over.
+      const place = many && c.placement?.[id] ? placementWords(c.placement[id]) : '';
+      const where = many ? String(instant.positions?.[id] || '').trim() : '';
+      const at = [place, where].filter(Boolean).join(', ');
+      refs.push({ entity: id, asset: 'sheet', why: `face and clothes of ${characterById(project, id)?.name || id}`, use: `the character sheet of ${at ? `the person ${at}` : 'one person in this frame'} — match face, hair and clothes exactly`, zh: '人物三视图，严格还原面容、发型与服装' });
+    }
     for (const id of c.props || []) refs.push({ entity: id, asset: 'sheet', why: `prop ${propById(project, id)?.name || id}`, use: 'the prop to reproduce exactly', zh: '需要严格还原的道具' });
     refs.forEach((r, i) => (r.label = `@image${i + 1}`));
     const prefix = refs.map((r) => `${r.label} is ${r.use}`).join('; ');
-    return { cut: k + 1, name: `${seg.id} f${k + 1}`, ratio: params.ratio, references: refs, prompt: `${prefix}. ${c.frame}` };
+    const labelOf = new Map(refs.filter((r) => r.asset === 'sheet' && (c.characters || []).includes(r.entity)).map((r) => [r.entity, `the person in ${r.label}`]));
+    const roster = rosterPhrase(c, (id) => labelOf.get(id) || id, 'en', instant);
+    return { cut: k + 1, name: `${seg.id} f${k + 1}`, ratio: params.ratio, references: refs, prompt: `${prefix}. ${roster ? `${roster} ` : ''}${c.frame}` };
   });
 
   return {

@@ -41,8 +41,9 @@ N+1 (`params.boundaryContrastCuts`, default 2). Same-scene segment handoffs stay
 
 | 景别 | what it carries |
 | --- | --- |
-| 远景 `extreme-wide` | geography, the person swallowed by the space; no expression |
-| 全景 `wide` | the room, who controls the door, group power |
+| 大远景 `extreme-wide` | geography, the person swallowed by the space; no expression |
+| 远景 `wide` | the room, who controls the door, group power |
+| 中全景 `medium-wide` | full bodies with room around them — blocking, who stands where; on 9:16 the usual way to make space |
 | 中景 `medium` | interaction, hands, two-person strategy, blocking |
 | 近景 `close` | a decision, evidence, a hidden reaction |
 | 特写 `extreme-close` | one face, one hand, one wound — the only fact in frame; the space is gone |
@@ -55,10 +56,14 @@ close-up; in the distance between two people, do not cut in. A segment that only
 nowhere to go by its middle (`storyboard-advice`).
 
 **9:16 narrows the ladder.** Wides carry information sideways, and a phone has a third of the
-width. Vertical drama plays in medium / close / extreme-close, and space is built in **depth**:
-foreground, mid-ground, background — a doorframe, a counter edge, a shoulder in front, the room
-behind (`foreground`, `background`). A wide on 9:16 must say why (`note`) or carry a `background`
-that does the geography.
+width. Vertical drama plays in medium-wide / medium / close / extreme-close, and space is built in
+**depth** — mid-ground and background, the room behind (`background`), a foreground where the scene
+really has one. **To give a moment room, step back to a `medium-wide` or a `medium`, not to a wide**:
+on 9:16 they count as stepping back wherever a rule asks for it (the costume presets, art-first, a
+fight's opening geography takes the medium-wide). A `wide` / `extreme-wide` on 9:16 is still right
+when the story needs it — the scale of a place, someone swallowed by it, a new location being
+established after a scene change — and then it must say why (`note`) or carry a `background` that
+does the geography.
 
 
 
@@ -124,6 +129,31 @@ segment` writes the phrases for you:
 - **Crossing the axis** is legal with a neutral shot, an in-shot crossing, a deliberate
   disorientation or a re-established geography — `axisSide: cross` with a `note` that says which;
   the new working side is then inherited by the cuts after it.
+
+### Everyone the shot holds is in the shot (gate `headcount`, both reference modes)
+
+A model drops the figure it was told least about — the smallest, the farthest, the one with their
+back turned — and a wide on 9:16 makes all three likely. So a shot with two or more people (not an
+over-the-shoulder) **counts them and puts each one on a place in the frame**:
+
+- **`placement: { C01: "right far", C02: "left" }`** for everyone in `characters` — `left` /
+  `center` / `right`, then `near` (foreground) or `far` (background) when not mid-ground. It follows
+  the axis: the `screenLeft` person is never placed `right` unless the cut is `axisSide: cross`.
+- `prompt segment` turns it into the roster line, read left to right, with each person's position
+  from the boundary the cut opens on and "seen from behind" for anyone facing away:
+  `Two people in frame: @image4 on screen left, on the stool; @image3 on screen right in the
+  background, behind the counter — both clearly visible, no one else.` The gate requires it in the
+  shot's text (keyframes mode names people by identity, sheets mode by their sheet).
+- In keyframes mode the keyframe's own prompt ties every character sheet to its place
+  (`@image3 is the character sheet of the person on screen right in the background…`) and counts
+  the people by their sheets, so no sheet is left over.
+- **Keep the people big enough to survive.** Two people in a 9:16 wide are small side by side —
+  step in to a `medium-wide` unless the wide is the point (say why in `note`; advisory). Three or more
+  in a wide need a staging `note` (gated): who is where, in depth, and what makes each one readable.
+- **A figure who cannot be recognised by the face is described by what can be seen**: build,
+  clothes, hair from behind. The roster carries their identity; the `frame` must not reduce them to
+  "a figure".
+- **Count them in the result** — see the headcount check in `stage-storyboard.md`.
 - Three or more people: draw the **directed relationship** first (who protects / presses /
   watches whom, from which beat), then place bodies, facing, distance and lines of action; one
   representative reaction beats a row of identical gasps; background people do not change sides
