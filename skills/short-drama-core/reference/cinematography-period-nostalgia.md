@@ -69,7 +69,8 @@ period film look`.
 - **Medium-wide more than close-up.** The room is part of the character. Keep people in their
   space with room around them; save the close-up for the emotional peak.
 - **Foregrounds are period objects**, thrown out of focus: the mug, a bead curtain, laundry on the
-  line, a bicycle wheel, the net curtain. At least half the cuts have one (gated).
+  line, a bicycle wheel, the net curtain — only where the room really has one
+  (`params.foregroundLevel` is a ceiling, not a quota).
 - **Tableau shots** for families and groups: people arranged around the table or the courtyard
   like an old photograph, the camera at eye height, level and still.
 

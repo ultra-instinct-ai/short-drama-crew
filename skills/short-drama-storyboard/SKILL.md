@@ -32,14 +32,15 @@ cinematography preset's guide (`../short-drama-core/reference/cinematography-<pr
   preset's preferred direction (the table in
   `../short-drama-core/reference/cinematography.md`). Compose as the guide says and stay within the preset's stop (T2.8; T2 for `sweet-romance` and `costume-idol`,
   which start on a T1.3 package and name their bokeh; T4 for `period-nostalgia`). Both costume
-  presets also need a 全景 / 大全景 with negative space in every segment. For `sweet-romance` and
+  presets also need a cut that steps back with negative space in every segment (a 远景 / 大远景;
+  on 9:16 a medium-wide or medium is enough). For `sweet-romance` and
   `costume-idol`, shoot the 甜宠 set pieces (心动对视, 回眸, 共伞…) as
   `../short-drama-core/reference/cinematography-sweet-romance.md` §6 lays out.
 - **Each segment is cut in its grammar.** Set `grammar` on a segment whose kind differs from the
   drama's default (`"action"`, `"faceslap"`, `"comedy"`, `"drama"`, or several:
   `["action", "comedy"]`) and read the guide of each grammar used before cutting it:
   `action` (`action.md`, `action-<style>.md`) breaks the fight into moves (拆招) — one move per cut
-  (`move: { kind, impact }`), open on a wide, a reaction or consequence after every impact;
+  (`move: { kind, impact }`), open on a wide (on 9:16 a full-body medium-wide), a reaction or consequence after every impact;
   `faceslap` (`grammar-faceslap.md`) is pressure, the calm, the entrance, **the proof on screen**,
   **a cascade of at least two reactions** — the 爽点 of a 打脸 / 身份揭露 / 智商碾压 / 复仇 episode is
   cut this way; `comedy` (`grammar-comedy.md`) needs **a setup before every punchline** (`gag`) and
@@ -52,8 +53,9 @@ cinematography preset's guide (`../short-drama-core/reference/cinematography-<pr
   (`../short-drama-core/reference/composition-art-first.md`).
 - Every cut is a set-up: besides its beats and framing it carries the **lens** (`focal`, or let
   the shot size pick it), the **key light relative to the camera** (`light.direction` +
-  `light.note`), the **foreground** if the story gives one a reason (how often is
-  `params.foregroundLevel`: `low` / `medium` / `high`), its `purpose` (kind + what changes),
+  `light.note`), the **foreground** only if the scene has a real object that means something for that shot —
+  otherwise `""` (`params.foregroundLevel` `low` / `medium` / `high` is a ceiling, ~20 / 40 / 60 %,
+  never a quota), its `purpose` (kind + what changes),
   the three framing axes (`angle`, `height`, `axisSide` against the segment's `axis`), its
   `start` / `end` boundaries (positions, facing, gaze, hands, held props per person — the next
   cut begins where these end), `motion` (cue → one visible action → landing) and `cameraNote`
@@ -69,6 +71,9 @@ cinematography preset's guide (`../short-drama-core/reference/cinematography-<pr
   over-the-shoulder (`ots`) for the exchange, a clean single for the punchline. A single names only
   its person; every look states a screen direction (`eyeline`); the sides stay locked. See
   `craft-shots.md`.
+- **Two or more people in a shot** (gate `headcount`, both modes): `placement` puts each one in
+  the frame (`left|center|right`, plus `near` / `far`) and the shot carries the roster line that
+  counts them; 3+ in a wide need a staging `note`; on 9:16 prefer a medium-wide for two people.
 - **Prompts are delivery text**: no ids, files or notes, subtitles off, the other person's lips
   closed while one speaks (H3), everyone bound by `@imageK` in their own shot.
 - **Every picture says what it is, and what NOT to copy from it** (gate `ref-binding`). The model
@@ -112,7 +117,8 @@ cinematography preset's guide (`../short-drama-core/reference/cinematography-<pr
    `fixed` duration mode.
 4. The **Operator** generates segment by segment after the Producer relays the cost approval;
    download and check the first clip against the sheets (same world, same faces, right size,
-   nobody extra) before the rest. Stay under the queue cap. A `wan-3.0-ref` rejection from
+   nobody extra, nobody missing — count the people in every shot against its `characters`)
+   before the rest. Stay under the queue cap. A `wan-3.0-ref` rejection from
    DashScope's content filter (`DataInspectionFailed`) charges nothing and is partly random —
    retry the same node 8–12 times, then **shorten** the prompt.
 5. **No BGM in the clips.** With `params.audioTrack: post` (the default) a clip carries dialogue,

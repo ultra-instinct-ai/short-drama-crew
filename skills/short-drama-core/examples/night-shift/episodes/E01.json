@@ -217,6 +217,10 @@
               "C01",
               "C03"
             ],
+            "placement": {
+              "C01": "left",
+              "C03": "right"
+            },
             "props": [
               "P01"
             ],
@@ -406,9 +410,9 @@
               "direction": "front-left",
               "note": "cold store light spills through the glass door onto the left of her face and dies off across her cheek"
             },
-            "foreground": "the out-of-focus trash bag in her other hand",
+            "foreground": "",
             "background": "the rain-streaked awning edge above",
-            "frame": "close-up of a young East Asian woman in a faded navy jacket standing in a store doorway at night, alert tired eyes, mouth open mid-question, a silver anti-static bag clutched against her chest, rain-streaked awning edge above, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 75mm at T1.5, keyed three-quarter from camera left, cold store light spills through the glass door onto the left of her face and dies off across her cheek. the out-of-focus trash bag in her other hand sits in the immediate foreground, thrown well out of focus. 9:16 vertical, cinematic film still"
+            "frame": "close-up of a young East Asian woman in a faded navy jacket standing in a store doorway at night, alert tired eyes, mouth open mid-question, a silver anti-static bag clutched against her chest, rain-streaked awning edge above, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 75mm at T1.5, keyed three-quarter from camera left, cold store light spills through the glass door onto the left of her face and dies off across her cheek. 9:16 vertical, cinematic film still"
           },
           {
             "beats": [
@@ -523,13 +527,13 @@
               "direction": "top",
               "note": "the awning tube light directly overhead skims the bag and leaves her knuckles in shadow"
             },
-            "foreground": "the blurred store doorframe at the edge of the lens",
+            "foreground": "",
             "background": "",
-            "frame": "extreme close-up of a young woman's hands holding a silver-grey translucent anti-static bag at night under an awning, fingers pressing the plastic to reveal the rectangular outline of a 3.5-inch hard drive, a half-torn white label faintly visible through the bag, cool white light, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 100mm macro at T1.5, keyed from directly above, the awning tube light directly overhead skims the bag and leaves her knuckles in shadow. the blurred store doorframe at the edge of the lens sits in the immediate foreground, thrown well out of focus. 9:16 vertical, cinematic film still",
+            "frame": "extreme close-up of a young woman's hands holding a silver-grey translucent anti-static bag at night under an awning, fingers pressing the plastic to reveal the rectangular outline of a 3.5-inch hard drive, a half-torn white label faintly visible through the bag, cool white light, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 100mm macro at T1.5, keyed from directly above, the awning tube light directly overhead skims the bag and leaves her knuckles in shadow. 9:16 vertical, cinematic film still",
             "note": "the cut from his exit to her hands is the jump the cold open pays off: the street, then the thing he left"
           }
         ],
-        "prompt": "How the reference pictures align with the target video — @image1 (from Shot 1) aligns with the 0.00-second mark of the target video; @image2 (from Shot 2) aligns with the 3.00-second mark of the target video; @image3 (from Shot 3) aligns with the 7.00-second mark of the target video; @image4 (from Shot 4) aligns with the 10.00-second mark of the target video; @image5 (from Shot 5) aligns with the 12.00-second mark of the target video.\n@audio1 is the voice of the tall man in the black hooded raincoat — speak their lines in it, matching its timbre, pitch, pace and accent.\n@audio2 is the voice of the young woman in the faded navy jacket — speak their lines in it, matching its timbre, pitch, pace and accent.\n\nintegrated_multimodal_description:\n[Shot 1] Cinematic, live-action, cool blue-grey palette. The cold open follows @image1: under a dripping striped awning in heavy night rain, a young night-shift clerk in a faded navy jacket steps out of the glass door with a trash bag as a tall man in a black hooded raincoat presses a silver anti-static bag into her free hand; a tracking shot follows her from the doorway as the bag lands in her hand.\n[Shot 2] At 00:03.000, the camera cuts to the close-up of @image2: a static shot holds on the hooded man's stubbled jaw, and the man in the hooded raincoat, speaking in @audio1, hushed and fast with almost no pauses, flat and nasal, barely above a whisper, says without looking at her: <d>[Chinese] 帮我收着。明天有人来拿。</d>\n[Shot 3] At 00:07.000, the shot cuts to @image3: a slow push in toward the clerk's face as she clutches the bag to her chest, and the young woman in the navy jacket, speaking in @audio2, quiet and slightly fast, clipping the ends of phrases, flat and guarded, calls after him: <d>[Chinese] 你是谁？我们不代收——</d>\n[Shot 4] At 00:10.000, the camera cuts to the wide framing of @image4: a static shot from the lit doorway as the man walks away without turning, his black raincoat dissolving into the rain and darkness past the puddles.\n[Shot 5] At 00:12.000, the shot cuts to @image5: a slow push in on her hands as her fingers press the translucent bag and the rectangular outline of a hard drive shows through the plastic.\n\noverall_soundscape: All dialogue in standard Mandarin. Heavy rain drumming on the fabric awning and splashing in the puddles, the glass door hissing shut behind her, wet footsteps receding into the street, the faint crackle of plastic as her fingers press the bag. No subtitles, no captions, no on-screen dialogue text.\n\nnon_diegetic_music: N/A",
+        "prompt": "How the reference pictures align with the target video — @image1 (from Shot 1) aligns with the 0.00-second mark of the target video; @image2 (from Shot 2) aligns with the 3.00-second mark of the target video; @image3 (from Shot 3) aligns with the 7.00-second mark of the target video; @image4 (from Shot 4) aligns with the 10.00-second mark of the target video; @image5 (from Shot 5) aligns with the 12.00-second mark of the target video.\n@audio1 is the voice of the tall man in the black hooded raincoat — speak their lines in it, matching its timbre, pitch, pace and accent.\n@audio2 is the voice of the young woman in the faded navy jacket — speak their lines in it, matching its timbre, pitch, pace and accent.\n\nintegrated_multimodal_description:\n[Shot 1] Cinematic, live-action, cool blue-grey palette. The cold open follows @image1: Two people in frame: the young woman in the faded navy jacket on screen left, in the glass doorway, one step out under the awning; the tall man in the black hooded raincoat on screen right, under the awning at arm's length from her, screen right — both clearly visible, no one else. under a dripping striped awning in heavy night rain, a young night-shift clerk in a faded navy jacket steps out of the glass door with a trash bag as a tall man in a black hooded raincoat presses a silver anti-static bag into her free hand; a tracking shot follows her from the doorway as the bag lands in her hand.\n[Shot 2] At 00:03.000, the camera cuts to the close-up of @image2: a static shot holds on the hooded man's stubbled jaw, and the man in the hooded raincoat, speaking in @audio1, hushed and fast with almost no pauses, flat and nasal, barely above a whisper, says without looking at her: <d>[Chinese] 帮我收着。明天有人来拿。</d>\n[Shot 3] At 00:07.000, the shot cuts to @image3: a slow push in toward the clerk's face as she clutches the bag to her chest, and the young woman in the navy jacket, speaking in @audio2, quiet and slightly fast, clipping the ends of phrases, flat and guarded, calls after him: <d>[Chinese] 你是谁？我们不代收——</d>\n[Shot 4] At 00:10.000, the camera cuts to the wide framing of @image4: a static shot from the lit doorway as the man walks away without turning, his black raincoat dissolving into the rain and darkness past the puddles.\n[Shot 5] At 00:12.000, the shot cuts to @image5: a slow push in on her hands as her fingers press the translucent bag and the rectangular outline of a hard drive shows through the plastic.\n\noverall_soundscape: All dialogue in standard Mandarin. Heavy rain drumming on the fabric awning and splashing in the puddles, the glass door hissing shut behind her, wet footsteps receding into the street, the faint crackle of plastic as her fingers press the bag. No subtitles, no captions, no on-screen dialogue text.\n\nnon_diegetic_music: N/A",
         "wji": {
           "datasetId": "",
           "nodes": {
@@ -725,6 +729,10 @@
               "C01",
               "C02"
             ],
+            "placement": {
+              "C02": "left",
+              "C01": "right"
+            },
             "props": [],
             "end": {
               "positions": {
@@ -816,9 +824,9 @@
               "direction": "top",
               "note": "the overhead tube catches the top of his cheekbones and the crow’s feet, the fill coming back off the white counter"
             },
-            "foreground": "steam rising off an out-of-focus lunchbox",
+            "foreground": "",
             "background": "shelves blurred behind him",
-            "frame": "close-up of a stocky East Asian man in his sixties smiling with deep crow's feet, chopsticks in hand, harsh cool fluorescent light from above, convenience store shelves blurred behind, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 75mm at T1.5, keyed from directly above, the overhead tube catches the top of his cheekbones and the crow’s feet, the fill coming back off the white counter. steam rising off an out-of-focus lunchbox sits in the immediate foreground, thrown well out of focus. 9:16 vertical, cinematic film still"
+            "frame": "close-up of a stocky East Asian man in his sixties smiling with deep crow's feet, chopsticks in hand, harsh cool fluorescent light from above, convenience store shelves blurred behind, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 75mm at T1.5, keyed from directly above, the overhead tube catches the top of his cheekbones and the crow’s feet, the fill coming back off the white counter. 9:16 vertical, cinematic film still"
           },
           {
             "beats": [
@@ -881,7 +889,7 @@
             "frame": "close-up over an older man's shoulder of a silver anti-static bag lying on a convenience store counter, his chopsticks frozen just above a bowl of oden in the foreground, harsh cool white light, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 75mm at T1.5, keyed three-quarter from camera left, the counter lamp from camera left rakes across the silver bag and makes its creases legible. his blurred shoulder and chopsticks in the near frame sits in the immediate foreground, thrown well out of focus. 9:16 vertical, cinematic film still"
           }
         ],
-        "prompt": "How the reference pictures align with the target video — @image1 (from Shot 1) aligns with the 0.00-second mark of the target video; @image2 (from Shot 2) aligns with the 2.00-second mark of the target video; @image3 (from Shot 3) aligns with the 5.00-second mark of the target video; @image4 (from Shot 4) aligns with the 10.00-second mark of the target video; @image5 (from Shot 5) aligns with the 13.00-second mark of the target video.\n@audio1 is the voice of the stocky man in his sixties with a grey crew cut — speak their lines in it, matching its timbre, pitch, pace and accent.\n@audio2 is the voice of the young woman in the faded navy jacket — speak their lines in it, matching its timbre, pitch, pace and accent.\n\nintegrated_multimodal_description:\n[Shot 1] Cinematic, live-action, cool fluorescent palette. Following @image1, a static shot: the young clerk in the navy jacket steps behind the checkout counter and sets the silver anti-static bag down on the counter under the green CCTV monitor.\n[Shot 2] At 00:02.000, the camera cuts to the wide view of @image2: a static shot down the aisle as a stocky older man with a grey crew cut carries a bowl of oden to the counter and sits down on the stool.\n[Shot 3] At 00:05.000, the shot cuts to @image3: a static shot across the counter; the stocky man in his sixties, speaking in @audio1, slow and gravelly, low in the chest, pausing between clauses as if deciding, eats a mouthful without looking up and says <d>[Chinese] 又是你值夜班。</d> while she does not speak and her lips remain completely closed; then the young woman in the navy jacket, speaking in @audio2, quiet and slightly fast, clipping the ends of phrases, flat and guarded, answers, her eyes still on the bag: <d>[Chinese] 陈叔，你怎么天天半夜来。</d> while his lips remain completely closed\n[Shot 4] At 00:10.000, the camera cuts to the close-up of @image4: a static shot on the older man's face as he smiles, crow's feet deepening, and the stocky man in his sixties, speaking in @audio1, slow and gravelly, low in the chest, pausing between clauses as if deciding, says <d>[Chinese] 老了，睡不着。</d>\n[Shot 5] At 00:13.000, the shot cuts to @image5: a slow push in over his shoulder toward the anti-static bag on the counter as his chopsticks stop in mid-air above the bowl.\n\noverall_soundscape: All dialogue in standard Mandarin. The low hum of the oden warmer and a faint electrical buzz from the flickering light panel, a plastic bag crackling as it is set down, a stool scraping on tile, chopsticks tapping a ceramic bowl, quiet slurping. No subtitles, no captions, no on-screen dialogue text.\n\nnon_diegetic_music: N/A",
+        "prompt": "How the reference pictures align with the target video — @image1 (from Shot 1) aligns with the 0.00-second mark of the target video; @image2 (from Shot 2) aligns with the 2.00-second mark of the target video; @image3 (from Shot 3) aligns with the 5.00-second mark of the target video; @image4 (from Shot 4) aligns with the 10.00-second mark of the target video; @image5 (from Shot 5) aligns with the 13.00-second mark of the target video.\n@audio1 is the voice of the stocky man in his sixties with a grey crew cut — speak their lines in it, matching its timbre, pitch, pace and accent.\n@audio2 is the voice of the young woman in the faded navy jacket — speak their lines in it, matching its timbre, pitch, pace and accent.\n\nintegrated_multimodal_description:\n[Shot 1] Cinematic, live-action, cool fluorescent palette. Following @image1, a static shot: the young clerk in the navy jacket steps behind the checkout counter and sets the silver anti-static bag down on the counter under the green CCTV monitor.\n[Shot 2] At 00:02.000, the camera cuts to the wide view of @image2: a static shot down the aisle as a stocky older man with a grey crew cut carries a bowl of oden to the counter and sits down on the stool.\n[Shot 3] At 00:05.000, the shot cuts to @image3: Two people in frame: the stocky man in his sixties with a grey crew cut on screen left, on the stool at the customer side of the counter; the young woman in the faded navy jacket on screen right — both clearly visible, no one else. a static shot across the counter; the stocky man in his sixties, speaking in @audio1, slow and gravelly, low in the chest, pausing between clauses as if deciding, eats a mouthful without looking up and says <d>[Chinese] 又是你值夜班。</d> while she does not speak and her lips remain completely closed; then the young woman in the navy jacket, speaking in @audio2, quiet and slightly fast, clipping the ends of phrases, flat and guarded, answers, her eyes still on the bag: <d>[Chinese] 陈叔，你怎么天天半夜来。</d> while his lips remain completely closed\n[Shot 4] At 00:10.000, the camera cuts to the close-up of @image4: a static shot on the older man's face as he smiles, crow's feet deepening, and the stocky man in his sixties, speaking in @audio1, slow and gravelly, low in the chest, pausing between clauses as if deciding, says <d>[Chinese] 老了，睡不着。</d>\n[Shot 5] At 00:13.000, the shot cuts to @image5: a slow push in over his shoulder toward the anti-static bag on the counter as his chopsticks stop in mid-air above the bowl.\n\noverall_soundscape: All dialogue in standard Mandarin. The low hum of the oden warmer and a faint electrical buzz from the flickering light panel, a plastic bag crackling as it is set down, a stool scraping on tile, chopsticks tapping a ceramic bowl, quiet slurping. No subtitles, no captions, no on-screen dialogue text.\n\nnon_diegetic_music: N/A",
         "wji": {
           "datasetId": "",
           "nodes": {
@@ -989,9 +997,9 @@
               "direction": "front-right",
               "note": "the cabinet glow holds the right of his face; as he stops chewing nothing moves but the light on his jaw"
             },
-            "foreground": "the blurred edge of an open lunchbox",
+            "foreground": "",
             "background": "",
-            "frame": "close-up of a stocky East Asian man in his sixties at a convenience store counter, face still, chopsticks motionless, eyes on something below the frame, harsh cool fluorescent light, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 75mm at T1.5, keyed three-quarter from camera right, the cabinet glow holds the right of his face; as he stops chewing nothing moves but the light on his jaw. the blurred edge of an open lunchbox sits in the immediate foreground, thrown well out of focus. 9:16 vertical, cinematic film still"
+            "frame": "close-up of a stocky East Asian man in his sixties at a convenience store counter, face still, chopsticks motionless, eyes on something below the frame, harsh cool fluorescent light, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 75mm at T1.5, keyed three-quarter from camera right, the cabinet glow holds the right of his face; as he stops chewing nothing moves but the light on his jaw. 9:16 vertical, cinematic film still"
           },
           {
             "beats": [
@@ -1044,9 +1052,9 @@
               "direction": "top",
               "note": "flat overhead light, no modelling — the shrug reads as posture, not expression"
             },
-            "foreground": "the out-of-focus counter edge",
+            "foreground": "",
             "background": "the green CCTV monitor above her",
-            "frame": "medium shot of a young East Asian woman clerk in a navy jacket behind a convenience store counter shrugging, a silver anti-static bag on the counter in front of her, the green CCTV monitor above, harsh cool white light, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 40mm at T1.5, keyed from directly above, flat overhead light, no modelling — the shrug reads as posture, not expression. the out-of-focus counter edge sits in the immediate foreground, thrown well out of focus. 9:16 vertical, cinematic film still"
+            "frame": "medium shot of a young East Asian woman clerk in a navy jacket behind a convenience store counter shrugging, a silver anti-static bag on the counter in front of her, the green CCTV monitor above, harsh cool white light, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 40mm at T1.5, keyed from directly above, flat overhead light, no modelling — the shrug reads as posture, not expression. 9:16 vertical, cinematic film still"
           },
           {
             "beats": [
@@ -1067,6 +1075,10 @@
               "C01",
               "C02"
             ],
+            "placement": {
+              "C02": "left",
+              "C01": "right"
+            },
             "props": [
               "P01"
             ],
@@ -1110,9 +1122,9 @@
               "direction": "side-left",
               "note": "the counter lamp skims low across the surface so the hand throws a long shadow toward the lens"
             },
-            "foreground": "the blurred silver bag in the near foreground",
+            "foreground": "",
             "background": "the counter top",
-            "frame": "close-up on a convenience store counter at night, an older man's thick hand reaching for a silver anti-static bag while a young woman's hand sweeps the bag off the counter into an open red drawer with worn corners below, harsh cool light, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 75mm at T1.5, keyed from hard camera left, across the face, the counter lamp skims low across the surface so the hand throws a long shadow toward the lens. the blurred silver bag in the near foreground sits in the immediate foreground, thrown well out of focus. 9:16 vertical, cinematic film still"
+            "frame": "close-up on a convenience store counter at night, an older man's thick hand reaching for a silver anti-static bag while a young woman's hand sweeps the bag off the counter into an open red drawer with worn corners below, harsh cool light, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 75mm at T1.5, keyed from hard camera left, across the face, the counter lamp skims low across the surface so the hand throws a long shadow toward the lens. 9:16 vertical, cinematic film still"
           },
           {
             "beats": [
@@ -1167,9 +1179,9 @@
               "direction": "front-left",
               "note": "the counter lamp picks out the tendons on the back of her hand and leaves her face half in shadow"
             },
-            "foreground": "the blurred corner of the red drawer",
+            "foreground": "",
             "background": "",
-            "frame": "close-up of a young East Asian woman in a navy jacket behind a counter, one hand pressed flat on a closed red drawer, jaw set, looking straight ahead, harsh cool fluorescent light, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 75mm at T1.5, keyed three-quarter from camera left, the counter lamp picks out the tendons on the back of her hand and leaves her face half in shadow. the blurred corner of the red drawer sits in the immediate foreground, thrown well out of focus. 9:16 vertical, cinematic film still"
+            "frame": "close-up of a young East Asian woman in a navy jacket behind a counter, one hand pressed flat on a closed red drawer, jaw set, looking straight ahead, harsh cool fluorescent light, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 75mm at T1.5, keyed three-quarter from camera left, the counter lamp picks out the tendons on the back of her hand and leaves her face half in shadow. 9:16 vertical, cinematic film still"
           },
           {
             "beats": [
@@ -1223,12 +1235,12 @@
               "direction": "front-right",
               "note": "the drinks cabinet fills his face from camera right as he leans in, the fluorescents rimming the crew cut"
             },
-            "foreground": "a blurred shelf edge across the lower frame",
+            "foreground": "",
             "background": "the oden bowl steaming in front of him",
-            "frame": "close-up of a stocky older East Asian man with a grey crew cut at a convenience store counter, speaking quietly with his head slightly tilted, eyes on the clerk, oden bowl steaming in the foreground, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 75mm at T1.5, keyed three-quarter from camera right, the drinks cabinet fills his face from camera right as he leans in, the fluorescents rimming the crew cut. a blurred shelf edge across the lower frame sits in the immediate foreground, thrown well out of focus. 9:16 vertical, cinematic film still"
+            "frame": "close-up of a stocky older East Asian man with a grey crew cut at a convenience store counter, speaking quietly with his head slightly tilted, eyes on the clerk, oden bowl steaming in the foreground, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 75mm at T1.5, keyed three-quarter from camera right, the drinks cabinet fills his face from camera right as he leans in, the fluorescents rimming the crew cut. 9:16 vertical, cinematic film still"
           }
         ],
-        "prompt": "How the reference pictures align with the target video — @image1 (from Shot 1) aligns with the 0.00-second mark of the target video; @image2 (from Shot 2) aligns with the 2.00-second mark of the target video; @image3 (from Shot 3) aligns with the 7.00-second mark of the target video; @image4 (from Shot 4) aligns with the 10.00-second mark of the target video; @image5 (from Shot 5) aligns with the 12.00-second mark of the target video.\n@audio1 is the voice of the stocky man in his sixties with a grey crew cut — speak their lines in it, matching its timbre, pitch, pace and accent.\n@audio2 is the voice of the young woman in the faded navy jacket — speak their lines in it, matching its timbre, pitch, pace and accent.\n\nintegrated_multimodal_description:\n[Shot 1] Cinematic, live-action, cool fluorescent palette. Following @image1, a static shot on the older man's still face, chopsticks motionless; the stocky man in his sixties, speaking in @audio1, slow and gravelly, low in the chest, pausing between clauses as if deciding, asks without changing tone: <d>[Chinese] 这是什么？</d>\n[Shot 2] At 00:02.000, the camera cuts to @image2: a static shot of the young clerk shrugging behind the counter, the bag in front of her, as the young woman in the navy jacket, speaking in @audio2, quiet and slightly fast, clipping the ends of phrases, flat and guarded, says <d>[Chinese] 刚才一个人放这儿的，说明天有人来拿。</d>\n[Shot 3] At 00:07.000, the shot cuts to the close-up of @image3: a static shot on the counter as the older man sets his bowl down and his thick hand reaches for the bag, and the clerk's hand gets there first, sweeping the bag into the red drawer and pushing it shut.\n[Shot 4] At 00:10.000, the camera cuts to @image4: a static shot on the clerk, one hand flat on the closed red drawer, and the young woman in the navy jacket, speaking in @audio2, quiet and slightly fast, clipping the ends of phrases, flat and guarded, says <d>[Chinese] 别人的东西。</d>\n[Shot 5] At 00:12.000, the shot cuts to @image5: a slow push in on the older man's face as he tilts his head slightly and the stocky man in his sixties, speaking in @audio1, slow and gravelly, low in the chest, pausing between clauses as if deciding, asks very lightly: <d>[Chinese] 小夏，那个人穿雨衣？</d>\n\noverall_soundscape: All dialogue in standard Mandarin. The hum of the oden warmer, a ceramic bowl set down on the counter, a plastic bag sliding across laminate, a wooden drawer slamming shut, then near silence under the fluorescent buzz. No subtitles, no captions, no on-screen dialogue text.\n\nnon_diegetic_music: N/A",
+        "prompt": "How the reference pictures align with the target video — @image1 (from Shot 1) aligns with the 0.00-second mark of the target video; @image2 (from Shot 2) aligns with the 2.00-second mark of the target video; @image3 (from Shot 3) aligns with the 7.00-second mark of the target video; @image4 (from Shot 4) aligns with the 10.00-second mark of the target video; @image5 (from Shot 5) aligns with the 12.00-second mark of the target video.\n@audio1 is the voice of the stocky man in his sixties with a grey crew cut — speak their lines in it, matching its timbre, pitch, pace and accent.\n@audio2 is the voice of the young woman in the faded navy jacket — speak their lines in it, matching its timbre, pitch, pace and accent.\n\nintegrated_multimodal_description:\n[Shot 1] Cinematic, live-action, cool fluorescent palette. Following @image1, a static shot on the older man's still face, chopsticks motionless; the stocky man in his sixties, speaking in @audio1, slow and gravelly, low in the chest, pausing between clauses as if deciding, asks without changing tone: <d>[Chinese] 这是什么？</d>\n[Shot 2] At 00:02.000, the camera cuts to @image2: a static shot of the young clerk shrugging behind the counter, the bag in front of her, as the young woman in the navy jacket, speaking in @audio2, quiet and slightly fast, clipping the ends of phrases, flat and guarded, says <d>[Chinese] 刚才一个人放这儿的，说明天有人来拿。</d>\n[Shot 3] At 00:07.000, the shot cuts to the close-up of @image3: Two people in frame: the stocky man in his sixties with a grey crew cut on screen left; the young woman in the faded navy jacket on screen right, behind the counter — both clearly visible, no one else. a static shot on the counter as the older man sets his bowl down and his thick hand reaches for the bag, and the clerk's hand gets there first, sweeping the bag into the red drawer and pushing it shut.\n[Shot 4] At 00:10.000, the camera cuts to @image4: a static shot on the clerk, one hand flat on the closed red drawer, and the young woman in the navy jacket, speaking in @audio2, quiet and slightly fast, clipping the ends of phrases, flat and guarded, says <d>[Chinese] 别人的东西。</d>\n[Shot 5] At 00:12.000, the shot cuts to @image5: a slow push in on the older man's face as he tilts his head slightly and the stocky man in his sixties, speaking in @audio1, slow and gravelly, low in the chest, pausing between clauses as if deciding, asks very lightly: <d>[Chinese] 小夏，那个人穿雨衣？</d>\n\noverall_soundscape: All dialogue in standard Mandarin. The hum of the oden warmer, a ceramic bowl set down on the counter, a plastic bag sliding across laminate, a wooden drawer slamming shut, then near silence under the fluorescent buzz. No subtitles, no captions, no on-screen dialogue text.\n\nnon_diegetic_music: N/A",
         "wji": {
           "datasetId": "",
           "nodes": {
@@ -1293,6 +1305,10 @@
               "C01",
               "C02"
             ],
+            "placement": {
+              "C02": "left",
+              "C01": "right far"
+            },
             "props": [],
             "start": {
               "positions": {
@@ -1362,7 +1378,8 @@
             },
             "foreground": "the blurred drinks cabinet in the near foreground",
             "background": "the black glass doors streaked with rain",
-            "frame": "wide shot inside a convenience store at night, a young woman clerk in a navy jacket behind the checkout counter looking up, a stocky older man in a grey zip jacket standing with his back to her, facing the black glass doors streaked with rain, harsh cool fluorescent light, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 25mm at T1.5, keyed from directly above, the overheads split the room into two pools with the counter dark between them. the blurred drinks cabinet in the near foreground sits in the immediate foreground, thrown well out of focus. 9:16 vertical, cinematic film still"
+            "frame": "wide shot inside a convenience store at night, a young woman clerk in a navy jacket behind the checkout counter looking up, a stocky older man in a grey zip jacket standing with his back to her, facing the black glass doors streaked with rain, harsh cool fluorescent light, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 25mm at T1.5, keyed from directly above, the overheads split the room into two pools with the counter dark between them. the blurred drinks cabinet in the near foreground sits in the immediate foreground, thrown well out of focus. 9:16 vertical, cinematic film still",
+            "note": "the wide holds the empty floor between them — he stands apart from her, facing the doors"
           },
           {
             "beats": [
@@ -1415,9 +1432,9 @@
               "direction": "backlight",
               "note": "the window behind him turns him into a shape; only the reflection in the glass carries detail"
             },
-            "foreground": "the out-of-focus counter surface",
+            "foreground": "",
             "background": "his faint reflection in the black glass",
-            "frame": "close-up from behind of a stocky East Asian man in his sixties with a grey crew cut, his reflection faint in the black rain-streaked glass door of a convenience store, cool white light on the back of his head, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 75mm at T1.5, backlit from directly behind the subject, the window behind him turns him into a shape; only the reflection in the glass carries detail. the out-of-focus counter surface sits in the immediate foreground, thrown well out of focus. 9:16 vertical, cinematic film still"
+            "frame": "close-up from behind of a stocky East Asian man in his sixties with a grey crew cut, his reflection faint in the black rain-streaked glass door of a convenience store, cool white light on the back of his head, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 75mm at T1.5, backlit from directly behind the subject, the window behind him turns him into a shape; only the reflection in the glass carries detail. 9:16 vertical, cinematic film still"
           },
           {
             "beats": [
@@ -1438,6 +1455,10 @@
               "C02",
               "C01"
             ],
+            "placement": {
+              "C02": "left",
+              "C01": "right"
+            },
             "props": [],
             "end": {
               "positions": {
@@ -1481,9 +1502,9 @@
               "direction": "front-left",
               "note": "the pan carries him out of the cabinet glow into the overheads, and the shadow under his brow deepens as he turns"
             },
-            "foreground": "a blurred shelf of cup noodles sliding through frame",
+            "foreground": "",
             "background": "the oden warmer glowing",
-            "frame": "medium shot inside a convenience store at night, a stocky older man in a grey zip jacket turning around to face the young woman clerk behind the counter, the two looking directly at each other for the first time, oden warmer glowing between them, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 40mm at T1.5, keyed three-quarter from camera left, the pan carries him out of the cabinet glow into the overheads, and the shadow under his brow deepens as he turns. a blurred shelf of cup noodles sliding through frame sits in the immediate foreground, thrown well out of focus. 9:16 vertical, cinematic film still"
+            "frame": "medium shot inside a convenience store at night, a stocky older man in a grey zip jacket turning around to face the young woman clerk behind the counter, the two looking directly at each other for the first time, oden warmer glowing between them, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 40mm at T1.5, keyed three-quarter from camera left, the pan carries him out of the cabinet glow into the overheads, and the shadow under his brow deepens as he turns. 9:16 vertical, cinematic film still"
           },
           {
             "beats": [
@@ -1542,7 +1563,7 @@
             "frame": "close-up of a stocky East Asian man in his sixties looking straight into the lens with a grave expression, deep crow's feet, grey crew cut, harsh cool fluorescent light from above, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 75mm at T1.5, keyed three-quarter from camera right, the cabinet glow hits him three-quarter from camera right; as the lens pushes in the fill falls away and the grave look hardens. 9:16 vertical, cinematic film still"
           }
         ],
-        "prompt": "How the reference pictures align with the target video — @image1 (from Shot 1) aligns with the 0.00-second mark of the target video; @image2 (from Shot 2) aligns with the 2.00-second mark of the target video; @image3 (from Shot 3) aligns with the 6.00-second mark of the target video; @image4 (from Shot 4) aligns with the 9.00-second mark of the target video.\n@audio1 is the voice of the stocky man in his sixties with a grey crew cut — speak their lines in it, matching its timbre, pitch, pace and accent.\n\nintegrated_multimodal_description:\n[Shot 1] Cinematic, live-action, cool fluorescent palette. Following @image1, a static shot: the young clerk looks up from the counter to find the older man already on his feet, standing with his back to her and facing the rain-streaked glass doors.\n[Shot 2] At 00:02.000, the camera cuts to @image2: a static shot from behind the older man, his faint reflection in the black glass, and the stocky man in his sixties, speaking in @audio1, slow and gravelly, low in the chest, pausing between clauses as if deciding, says with his back to her: <d>[Chinese] 三年前，这店里丢过一样东西。</d>\n[Shot 3] At 00:06.000, the shot cuts to @image3: a slow pan left follows him as he turns around and looks the clerk in the eye for the first time.\n[Shot 4] At 00:09.000, the camera cuts to the close-up of @image4: a slow push in on his grave face as the stocky man in his sixties, speaking in @audio1, slow and gravelly, low in the chest, pausing between clauses as if deciding, says one word at a time: <d>[Chinese] 别把它交给任何人。</d>\n\noverall_soundscape: All dialogue in standard Mandarin. Rain against the glass doors, the fluorescent buzz, a jacket rustling as he turns, the oden warmer humming; no other voices. No subtitles, no captions, no on-screen dialogue text.\n\nnon_diegetic_music: A single sustained low cello note, barely audible, entering under the last line.",
+        "prompt": "How the reference pictures align with the target video — @image1 (from Shot 1) aligns with the 0.00-second mark of the target video; @image2 (from Shot 2) aligns with the 2.00-second mark of the target video; @image3 (from Shot 3) aligns with the 6.00-second mark of the target video; @image4 (from Shot 4) aligns with the 9.00-second mark of the target video.\n@audio1 is the voice of the stocky man in his sixties with a grey crew cut — speak their lines in it, matching its timbre, pitch, pace and accent.\n\nintegrated_multimodal_description:\n[Shot 1] Cinematic, live-action, cool fluorescent palette. Following @image1, a static shot: Two people in frame: the stocky man in his sixties with a grey crew cut on screen left, standing between the stool and the glass doors, his back to the counter, seen from behind; the young woman in the faded navy jacket on screen right in the background, behind the counter — both clearly visible, no one else. the young clerk looks up from the counter to find the older man already on his feet, standing with his back to her and facing the rain-streaked glass doors.\n[Shot 2] At 00:02.000, the camera cuts to @image2: a static shot from behind the older man, his faint reflection in the black glass, and the stocky man in his sixties, speaking in @audio1, slow and gravelly, low in the chest, pausing between clauses as if deciding, says with his back to her: <d>[Chinese] 三年前，这店里丢过一样东西。</d>\n[Shot 3] At 00:06.000, the shot cuts to @image3: Two people in frame: the stocky man in his sixties with a grey crew cut on screen left, standing between the stool and the glass doors, his back to the counter, seen from behind; the young woman in the faded navy jacket on screen right — both clearly visible, no one else. a slow pan left follows him as he turns around and looks the clerk in the eye for the first time.\n[Shot 4] At 00:09.000, the camera cuts to the close-up of @image4: a slow push in on his grave face as the stocky man in his sixties, speaking in @audio1, slow and gravelly, low in the chest, pausing between clauses as if deciding, says one word at a time: <d>[Chinese] 别把它交给任何人。</d>\n\noverall_soundscape: All dialogue in standard Mandarin. Rain against the glass doors, the fluorescent buzz, a jacket rustling as he turns, the oden warmer humming; no other voices. No subtitles, no captions, no on-screen dialogue text.\n\nnon_diegetic_music: A single sustained low cello note, barely audible, entering under the last line.",
         "wji": {
           "datasetId": "",
           "nodes": {
@@ -1679,9 +1700,9 @@
               "direction": "side-left",
               "note": "the counter lamp rakes across the worn corners; the silver catches a hard specular line as the frame tilts up"
             },
-            "foreground": "the blurred rim of the counter above the drawer",
+            "foreground": "",
             "background": "",
-            "frame": "extreme close-up of a red convenience store drawer with worn corners slightly ajar, the silver corner of an anti-static bag showing in the gap, a steaming bowl of oden blurred on the counter above, harsh cool light, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 100mm macro at T1.5, keyed from hard camera left, across the face, the counter lamp rakes across the worn corners; the silver catches a hard specular line as the frame tilts up. the blurred rim of the counter above the drawer sits in the immediate foreground, thrown well out of focus. 9:16 vertical, cinematic film still"
+            "frame": "extreme close-up of a red convenience store drawer with worn corners slightly ajar, the silver corner of an anti-static bag showing in the gap, a steaming bowl of oden blurred on the counter above, harsh cool light, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 100mm macro at T1.5, keyed from hard camera left, across the face, the counter lamp rakes across the worn corners; the silver catches a hard specular line as the frame tilts up. 9:16 vertical, cinematic film still"
           },
           {
             "beats": [
@@ -1737,9 +1758,9 @@
               "direction": "top",
               "note": "the overhead tube leaves her lowered eyes completely in shadow"
             },
-            "foreground": "a blurred stack of receipts on the counter",
+            "foreground": "",
             "background": "the green CCTV glow behind her",
-            "frame": "close-up of a young East Asian woman in a navy jacket behind a counter at night, head lowered, eyes fixed downward, lips closed, the green glow of a CCTV monitor on her cheek, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 75mm at T1.5, keyed from directly above, the overhead tube leaves her lowered eyes completely in shadow. a blurred stack of receipts on the counter sits in the immediate foreground, thrown well out of focus. 9:16 vertical, cinematic film still"
+            "frame": "close-up of a young East Asian woman in a navy jacket behind a counter at night, head lowered, eyes fixed downward, lips closed, the green glow of a CCTV monitor on her cheek, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 75mm at T1.5, keyed from directly above, the overhead tube leaves her lowered eyes completely in shadow. 9:16 vertical, cinematic film still"
           },
           {
             "beats": [
@@ -1760,6 +1781,10 @@
               "C01",
               "C02"
             ],
+            "placement": {
+              "C02": "left",
+              "C01": "right far"
+            },
             "props": [],
             "end": {
               "positions": {
@@ -1800,9 +1825,10 @@
               "direction": "top",
               "note": "both pools of fluorescent light are even and cold; the two people sit in separate ones"
             },
-            "foreground": "the out-of-focus drinks cabinet down the near side",
+            "foreground": "",
             "background": "the empty rain beyond the glass door",
-            "frame": "wide shot inside a convenience store at night, a young woman clerk behind the counter and a stocky older man standing near the aisle both turning their heads toward the glass entrance door, brass wind chimes above the door, nothing but rain outside, harsh cool fluorescent light, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 25mm at T1.5, keyed from directly above, both pools of fluorescent light are even and cold; the two people sit in separate ones. the out-of-focus drinks cabinet down the near side sits in the immediate foreground, thrown well out of focus. 9:16 vertical, cinematic film still"
+            "frame": "wide shot inside a convenience store at night, a young woman clerk behind the counter and a stocky older man standing near the aisle both turning their heads toward the glass entrance door, brass wind chimes above the door, nothing but rain outside, harsh cool fluorescent light, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 25mm at T1.5, keyed from directly above, both pools of fluorescent light are even and cold; the two people sit in separate ones. 9:16 vertical, cinematic film still",
+            "note": "the wide is the reveal — both turn to a door with no one in it"
           },
           {
             "beats": [
@@ -1853,12 +1879,12 @@
               "direction": "back-right",
               "note": "the rain-streaked window behind camera right rims his profile in cold blue while the store light fills the other side"
             },
-            "foreground": "the blurred counter edge",
+            "foreground": "",
             "background": "",
-            "frame": "close-up profile of a stocky East Asian man in his sixties with a grey crew cut looking toward a rain-streaked glass door, not turning back, cool white light on his face, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 75mm at T1.5, rim-lit from behind camera right, the rain-streaked window behind camera right rims his profile in cold blue while the store light fills the other side. the blurred counter edge sits in the immediate foreground, thrown well out of focus. 9:16 vertical, cinematic film still"
+            "frame": "close-up profile of a stocky East Asian man in his sixties with a grey crew cut looking toward a rain-streaked glass door, not turning back, cool white light on his face, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 75mm at T1.5, rim-lit from behind camera right, the rain-streaked window behind camera right rims his profile in cold blue while the store light fills the other side. 9:16 vertical, cinematic film still"
           }
         ],
-        "prompt": "How the reference pictures align with the target video — @image1 (from Shot 1) aligns with the 0.00-second mark of the target video; @image2 (from Shot 2) aligns with the 3.00-second mark of the target video; @image3 (from Shot 3) aligns with the 6.00-second mark of the target video; @image4 (from Shot 4) aligns with the 9.00-second mark of the target video.\n@audio1 is the voice of the stocky man in his sixties with a grey crew cut — speak their lines in it, matching its timbre, pitch, pace and accent.\n\nintegrated_multimodal_description:\n[Shot 1] Cinematic, live-action, cool fluorescent palette. Following @image1, a slow tilt up from the red drawer, ajar with the silver corner of the bag showing, to the steaming bowl of oden still on the counter.\n[Shot 2] At 00:03.000, the camera cuts to @image2: a static shot on the clerk's lowered face, lips completely closed, as the young woman, quiet and slightly fast, clipping the ends of phrases, flat and guarded, says in an off-screen voiceover while her lips remain completely closed: <d>[Chinese] 他怎么知道那人穿雨衣。</d>\n[Shot 3] At 00:06.000, the shot cuts to the wide view of @image3: a static shot as the brass wind chimes above the door ring once and both of them turn their heads toward the entrance at the same moment; outside there is only rain.\n[Shot 4] At 00:09.000, the camera cuts to @image4: a static shot on the older man's profile as he keeps looking at the door and the stocky man in his sixties, speaking in @audio1, slow and gravelly, low in the chest, pausing between clauses as if deciding, says without turning back: <d>[Chinese] 锁上门。</d>\n\noverall_soundscape: All dialogue in standard Mandarin. The fluorescent buzz and the oden warmer hum, a sudden single ring of brass wind chimes, rain hammering the glass, then a held silence. No subtitles, no captions, no on-screen dialogue text.\n\nnon_diegetic_music: The low cello note swells slightly on the chime and cuts off with the last line.",
+        "prompt": "How the reference pictures align with the target video — @image1 (from Shot 1) aligns with the 0.00-second mark of the target video; @image2 (from Shot 2) aligns with the 3.00-second mark of the target video; @image3 (from Shot 3) aligns with the 6.00-second mark of the target video; @image4 (from Shot 4) aligns with the 9.00-second mark of the target video.\n@audio1 is the voice of the stocky man in his sixties with a grey crew cut — speak their lines in it, matching its timbre, pitch, pace and accent.\n\nintegrated_multimodal_description:\n[Shot 1] Cinematic, live-action, cool fluorescent palette. Following @image1, a slow tilt up from the red drawer, ajar with the silver corner of the bag showing, to the steaming bowl of oden still on the counter.\n[Shot 2] At 00:03.000, the camera cuts to @image2: a static shot on the clerk's lowered face, lips completely closed, as the young woman, quiet and slightly fast, clipping the ends of phrases, flat and guarded, says in an off-screen voiceover while her lips remain completely closed: <d>[Chinese] 他怎么知道那人穿雨衣。</d>\n[Shot 3] At 00:06.000, the shot cuts to the wide view of @image3: Two people in frame: the stocky man in his sixties with a grey crew cut on screen left; the young woman in the faded navy jacket on screen right in the background, behind the counter — both clearly visible, no one else. a static shot as the brass wind chimes above the door ring once and both of them turn their heads toward the entrance at the same moment; outside there is only rain.\n[Shot 4] At 00:09.000, the camera cuts to @image4: a static shot on the older man's profile as he keeps looking at the door and the stocky man in his sixties, speaking in @audio1, slow and gravelly, low in the chest, pausing between clauses as if deciding, says without turning back: <d>[Chinese] 锁上门。</d>\n\noverall_soundscape: All dialogue in standard Mandarin. The fluorescent buzz and the oden warmer hum, a sudden single ring of brass wind chimes, rain hammering the glass, then a held silence. No subtitles, no captions, no on-screen dialogue text.\n\nnon_diegetic_music: The low cello note swells slightly on the chime and cuts off with the last line.",
         "wji": {
           "datasetId": "",
           "nodes": {

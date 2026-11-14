@@ -30,7 +30,8 @@ verbatim in the frame:
 - `composition-device` — every cut names at least one device, and its phrase is in the frame.
 - `signature-share` — at least **half** the cuts of a segment use a signature device:
   `negative-space`, `symmetry` or `grand-scale`.
-- `art-wide` — every segment has at least one `wide` or `extreme-wide`.
+- `art-wide` — every segment steps back at least once: a `wide` or `extreme-wide`, or on 9:16 a
+  `medium-wide` or `medium` (keep the wide for where the story needs the scale).
 - The prompt carries the `Composition:` line (`构图：` for `wan`); `prompt segment` writes it.
 
 **Advisory** (`grammar-advice`): cuts average 3 s or more, so a composed frame can be seen (not in

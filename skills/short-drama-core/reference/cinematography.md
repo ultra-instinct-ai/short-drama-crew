@@ -55,8 +55,8 @@ storyboard (stage 5).
 | `low-key` | `low-key practical lighting` | `frontal`, `ambient` | `side-*`, `back-*`, `backlight` | default (T1.5) | T2.8 | — | — |
 | `sweet-romance` | `soft romantic lighting` | `underlight`, `top` | `front-left`, `front-right`, `back-*`, `backlight` | Master Prime **T1.3** | **T2** | ≥ 50 % of frames name their `bokeh` | — |
 | `period-nostalgia` | `nostalgic period film look` | `frontal`, `underlight` | `front-left`, `front-right`, `side-*`, `back-left`, `back-right` | default (T1.5) | **T4** | — | LEDs, smartphones, laptops, tablets, flat screens, ring lights |
-| `costume-idol` | `ethereal costume drama lighting` | `underlight`, `top` | `front-left`, `front-right`, `back-*`, `backlight` | Master Prime **T1.3** | **T2** | ≥ 50 % `bokeh`; every segment has a `wide` / `extreme-wide` whose frame says `negative space` | anything electric |
-| `costume-dark` | `low-key firelit period lighting` | `frontal`, `ambient` | `side-*`, `back-*`, `backlight` | default (T1.5) | T2.8 | every segment has a `wide` / `extreme-wide` whose frame says `negative space` | anything electric |
+| `costume-idol` | `ethereal costume drama lighting` | `underlight`, `top` | `front-left`, `front-right`, `back-*`, `backlight` | Master Prime **T1.3** | **T2** | ≥ 50 % `bokeh`; every segment steps back (a `wide` / `extreme-wide`; on 9:16 a `medium-wide` / `medium`) with a frame that says `negative space` | anything electric |
+| `costume-dark` | `low-key firelit period lighting` | `frontal`, `ambient` | `side-*`, `back-*`, `backlight` | default (T1.5) | T2.8 | every segment steps back (a `wide` / `extreme-wide`; on 9:16 a `medium-wide` / `medium`) with a frame that says `negative space` | anything electric |
 | `scifi-hard` | `grounded hard science fiction lighting` | `frontal`, `ambient` | `side-*`, `back-left`, `back-right`, `top` | default (T1.5) | T2.8 | — | magic, holograms, force fields, energy glows |
 | `scifi-soft` | `luminous soft science fiction lighting` | `frontal`, `ambient` | `side-*`, `back-*`, `backlight` | default (T1.5) | T2.8 | — | — |
 
