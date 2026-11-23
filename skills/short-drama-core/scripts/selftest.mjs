@@ -20,6 +20,7 @@ import {
   audioPrompt, musicOf, cueSeconds, AUDIO_MODEL, AUDIO_MAX_CHARS, AUDIO_MAX_SECONDS, scoreSheet, smpte,
   VIDEO_MODELS, VIDEO_MODES, DEFAULT_PARAMS, videoModel, videoResolutionFor, nearestResolution, segmentPlan, videoReferences,
   formatGates, displayName, imagePrompt, imagePromptKit, foldZh, IMAGE_PROMPT_LANGS,
+  HORROR, HORROR_RULES, SCARE_CUTS, THREAT_RUNGS, maxCutFor, DV_KIT, DV_LOOK, DV_RE, HORROR_STYLES, horrorStyleForGenre, horrorStyleOf, THREAT_KINDS, isHorrorLook,
 } from './short-drama.mjs';
 import { spawnSync } from 'node:child_process';
 import { copyFileSync, existsSync, symlinkSync } from 'node:fs';
@@ -1996,8 +1997,8 @@ const breaks = (gateId, project, episode, needle) => {
 
 {
   // Grammars: each segment is cut in its own grammar(s), else the drama's default; they combine.
-  eq(GRAMMARS.join(' '), 'drama action faceslap comedy', 'four grammars');
-  eq(GRAMMAR_RULES.length, 11, 'eleven waivable rules across the grammars and the composition');
+  eq(GRAMMARS.join(' '), 'drama action faceslap comedy horror', 'five grammars');
+  eq(GRAMMAR_RULES.length, 16, 'sixteen waivable rules across the grammars and the composition');
   const base = paramsOf(PROJECT);
   eq(base.grammar, 'drama', 'drama is the default grammar');
   eq(grammarsOf({}, base).join(), 'drama', 'a segment without its own grammar takes the default');
@@ -2145,6 +2146,256 @@ const breaks = (gateId, project, episode, needle) => {
   ok(grammarLines({}, paramsOf(pa)).some((l) => l.startsWith('Composition: ')), 'art-first adds a Composition line');
   ok(promptSkeleton(pa, art(), 'E01-01').video.prompt.includes(COMPOSITION_STYLES['art-first'].videoPhrase), 'the skeleton writes it');
   breaks('grammar', pa, art(), 'must carry "Composition:');
+}
+
+{
+  // Horror: the look (most of the frame black), the scare-cycle grammar, the struggle, found footage.
+  eq(cinematographyForGenre('民国灵异'), 'horror', 'a ghost story is lit as horror, even in a period setting');
+  eq(cinematographyForGenre('规则怪谈'), 'horror', '规则怪谈 is horror');
+  eq(cinematographyForGenre('都市惊悚'), 'low-key', 'a thriller alone stays low-key');
+  eq(grammarForGenre('灵异恐怖'), 'horror', 'horror cuts every segment in the scare cycle by default');
+  eq(grammarForGenre('恐怖喜剧'), 'comedy', 'a horror comedy is a comedy first');
+  eq(actionForGenre('驱魔'), 'horror-struggle', 'an exorcist fights as a struggle');
+  eq(actionForGenre('恐怖动作'), 'horror-struggle', 'horror action is a struggle');
+  const hi = initProject({ title: 't', episodes: 1, minutes: 1.5, genre: '民俗灵异恐怖' }).params;
+  eq(`${hi.cinematography} ${hi.grammar} ${hi.story.includes('horror')}`, 'horror horror true', 'init composes a horror drama');
+  const look = CINEMATOGRAPHY_PRESETS.horror;
+  ok(look.bannedLight.includes('frontal') && look.preferredLight.includes('underlight') && look.preferredLight.includes('top'), 'horror bans even light and allows under / top light');
+  ok(!IP_NAMES_RE.test(`${look.videoPhrase} ${look.videoPhraseZh} ${HORROR.videoPhrase} ${HORROR.videoPhraseZh}`), 'horror names no film');
+  ok(!ETHNICITY_WORDS.test(look.videoPhrase), 'the horror look names no nationality');
+
+  // photography under the horror look: one named source, no beautifiers, supernatural light kept local.
+  const ph = clone(PROJECT); ph.params.cinematography = 'horror';
+  const dark = () => {
+    const e = clone(E01);
+    for (const seg of e.storyboard.segments) seg.cuts.forEach((c) => {
+      c.frame = c.frame.replace(LIGHT_DIRECTIONS[c.light.direction], LIGHT_DIRECTIONS['side-left']) + ' Horror low-key lighting, most of the frame in darkness, lit only by the flickering tube.';
+      c.light = { ...c.light, direction: 'side-left', source: 'the flickering tube' };
+    });
+    return e;
+  };
+  passes('photography', ph, dark());
+  const pretty = dark(); pretty.storyboard.segments[0].cuts[0].frame += ' Warm golden light.';
+  breaks('photography', ph, pretty, 'makes the frame beautiful');
+  const flood = dark(); const f0 = flood.storyboard.segments[0].cuts[0];
+  f0.frame = f0.frame.replace('the flickering tube', 'the talisman flame'); f0.light.source = 'the talisman flame';
+  breaks('photography', ph, flood, 'supernatural light');
+  f0.frame += ' A small flame that lights only his fingers.';
+  ok(!failures('photography', ph, flood).some((m) => m.includes('supernatural light')), 'a talisman flame that lights only the fingers is fine');
+  const flat = dark(); const fl = flat.storyboard.segments[0].cuts[1];
+  fl.frame = fl.frame.replace(LIGHT_DIRECTIONS['side-left'], LIGHT_DIRECTIONS.frontal); fl.light.direction = 'frontal';
+  breaks('photography', ph, flat, 'evenly lit face is not horror');
+  const wux = clone(ph); wux.params.action = 'wuxia-fantasy';
+  breaks('params', wux, null, 'horror-struggle');
+
+  // The horror grammar: holds, still reveals, dread pace, rationed scares, the reveal ladder.
+  // E01-02 (15 s, 5 cuts) re-cut as a 7 s hold → 5 s build → 3 s scare.
+  const cycle = () => {
+    const e = clone(E01);
+    const seg = e.storyboard.segments[1]; seg.grammar = 'horror';
+    seg.cuts = seg.cuts.slice(0, 3);
+    [7, 5, 3].forEach((s, k) => { seg.cuts[k].seconds = s; });
+    Object.assign(seg.cuts[2], { scare: 'scare', camera: 'Static Shot' });
+    return e;
+  };
+  passes('horror', PROJECT, cycle());
+  ok(maxCutFor(cycle().storyboard.segments[1], paramsOf(PROJECT)) === HORROR.maxHoldSeconds, 'a horror segment holds up to 10 s');
+  ok(!failures('timing', PROJECT, cycle()).some((m) => m.startsWith('E01-02 cut 1:') && m.includes('must be')), 'a 7 s hold is legal in a horror segment');
+  const long = clone(E01); long.storyboard.segments[1].cuts[0].seconds = 7;
+  breaks('timing', PROJECT, long, 'must be 2–5');
+  // A 3 s cut, then the scare, then a 9 s aftermath: the pace is slow, but nothing is held before the scare.
+  const cold = cycle(); const cs = cold.storyboard.segments[1].cuts; cs[0].seconds = 3;
+  Object.assign(cs[1], { seconds: 3, scare: 'scare', camera: 'Static Shot' }); delete cs[2].scare; cs[2].seconds = 9;
+  breaks('horror', PROJECT, cold, 'no hold of 4 s');
+  const pushed = cycle(); pushed.storyboard.segments[1].cuts[2].camera = 'Push In';
+  breaks('horror', PROJECT, pushed, 'the camera moves (Push In)');
+  const jolt = cycle(); jolt.storyboard.segments[1].cuts[2].camera = 'Shake Strongly';
+  passes('horror', PROJECT, jolt);
+  const busy = clone(E01); busy.storyboard.segments[1].grammar = 'horror';
+  breaks('horror', PROJECT, busy, 'dread averages 4 s');
+  const panic = clone(busy); panic.storyboard.segments[1].panic = true;
+  passes('horror', PROJECT, panic);
+  const waived = clone(cold); waived.storyboard.segments[1].exceptions = [{ rule: 'horror-hold', reason: 'user: the scare comes out of nowhere here' }];
+  passes('horror', PROJECT, waived);
+  const many = cycle(); for (const seg of many.storyboard.segments.slice(2)) seg.cuts[seg.cuts.length - 1].scare = 'scare';
+  breaks('horror', PROJECT, many, 'about one per 20 s');
+  const cats = cycle(); cats.storyboard.segments[0].cuts[1].scare = 'false-alarm'; cats.storyboard.segments[0].cuts[3].scare = 'false-alarm';
+  breaks('horror', PROJECT, cats, 'at most 1 false alarm per real scare');
+  const odd = cycle(); odd.storyboard.segments[0].cuts[0].scare = 'boo';
+  breaks('horror', PROJECT, odd, 'scare must be one of');
+  // The ladder: a lower rung first, the full reveal once, brief, in the last third (or from revealEp).
+  const ladder = () => {
+    const e = cycle();
+    e.storyboard.segments[1].cuts[0].threat = 'sound';
+    const last = e.storyboard.segments[4]; const lc = last.cuts[last.cuts.length - 1];
+    Object.assign(lc, { threat: 'full', seconds: 2 });
+    return e;
+  };
+  passes('horror', PROJECT, ladder());
+  const early = ladder(); early.storyboard.segments[1].cuts[2].threat = 'full';
+  breaks('horror', PROJECT, early, 'belongs in the last third');
+  const cold2 = ladder(); delete cold2.storyboard.segments[1].cuts[0].threat;
+  breaks('horror', PROJECT, cold2, 'before any lower rung');
+  const lingering = ladder(); const lg = lingering.storyboard.segments[4].cuts; lg[lg.length - 1].seconds = 4;
+  breaks('horror', PROJECT, lingering, 'keep it to 3 s');
+  const later = clone(PROJECT); later.outline = { ...later.outline, horror: { threat: { revealEp: 3, character: 'C02' } } };
+  breaks('horror', later, ladder(), 'before outline.horror.threat.revealEp');
+  ok(failures('horror', later, ladder()).some((m) => m.includes('the threat (C02) is in frame')), 'the threat character in frame must name its rung');
+  const badRung = cycle(); badRung.storyboard.segments[0].cuts[0].threat = 'face';
+  breaks('horror', PROJECT, badRung, 'threat must be one of');
+  passes('horror', PROJECT, E01);
+  eq(SCARE_CUTS.length + THREAT_RUNGS.length + HORROR_RULES.length, 13, 'scare kinds, ladder rungs and waivable horror rules');
+
+  // The Horror line rides in the prompt like every grammar.
+  const hl = grammarLines(cycle().storyboard.segments[1], paramsOf(PROJECT));
+  ok(hl.some((l) => l.startsWith('Horror: ')), 'a horror segment carries a Horror line');
+  ok(promptSkeleton(PROJECT, cycle(), 'E01-02').video.prompt.includes(HORROR.videoPhrase), 'the skeleton writes it');
+  breaks('grammar', PROJECT, cycle(), 'must carry "Horror:');
+  const wanH = clone(PROJECT); wanH.params.video = 'wan'; wanH.params.videoResolution = '480P';
+  ok(promptSkeleton(wanH, cycle(), 'E01-02').video.prompt.includes('恐怖：'), 'wan writes 恐怖：');
+
+  // Advice: the promised scares, handheld drift on dread, hero tracking, long prompts, black named.
+  const promised = clone(PROJECT); promised.outline.episodes = promised.outline.episodes.map((x) => (x.ep === 1 ? { ...x, scares: ['惊吓'] } : x));
+  const quiet = clone(E01); quiet.storyboard.segments[1].grammar = 'horror';
+  ok(failures('horror-advice', promised, quiet).some((m) => m.includes('promises a real scare')), 'a promised scare with no scare cut is noted');
+  const drift = cycle(); drift.storyboard.segments[1].cuts[0].camera = 'Shake Slightly';
+  ok(failures('horror-advice', PROJECT, drift).some((m) => m.includes('handheld drift')), 'handheld drift on dread is noted');
+  const wordy = cycle(); wordy.storyboard.segments[1].prompt = 'x'.repeat(HORROR.maxPromptChars + 1);
+  ok(failures('horror-advice', PROJECT, wordy).some((m) => m.includes('average into a bland')), 'a long horror prompt is noted');
+  const lit = cycle(); lit.storyboard.segments[1].cuts[0].frame = 'Medium shot of the counter, lit by the tube.';
+  ok(failures('horror-advice', ph, lit).some((m) => m.includes('how much of it is black')), 'a horror frame that never names the dark is noted');
+  ok(GATES.find((g) => g.id === 'horror-advice').advisory, 'horror-advice never fails validate');
+
+  // horror-struggle: a fight against something stronger.
+  const hs = ACTION_STYLES['horror-struggle'];
+  eq(hs.look, 'horror', 'the struggle belongs to the horror look');
+  ok(!/wire|qi|beam/i.test(hs.videoPhrase), 'no wire-work, qi or beams in the struggle');
+
+  // Found footage: the camcorder in the fiction, never a cinema package or a film still.
+  const dvi = initProject({ title: 't', episodes: 1, minutes: 1.5, genre: '伪纪录片恐怖', footage: 'dv' }).params;
+  eq(dvi.camera.body, DV_KIT.body, 'init --footage dv sets the camcorder kit');
+  eq(dvi.lookPhrase, DV_LOOK, 'and the found-footage look phrase');
+  ok(DV_RE.test(dvi.lookPhrase), 'the DV look reads as DV');
+  assert.throws(() => initProject({ title: 't', episodes: 1, minutes: 1, genre: 'g', footage: 'vhs' }), /--footage/, 'init rejects an unknown footage');
+  const dvp = clone(PROJECT); dvp.params.lookPhrase = DV_LOOK;
+  breaks('dv-consistency', dvp, E01, 'is a cinema package');
+  dvp.params.camera = { ...DV_KIT };
+  passes('dv-consistency', dvp, E01);
+  // Keyframes need the style's film still in every frame, so only sheets mode is held to it.
+  const still = clone(E01); still.storyboard.segments[0].cuts[0].frame += ' Cinematic film still.';
+  passes('dv-consistency', dvp, still);
+  const dvs = clone(dvp); dvs.params.references = 'sheets';
+  breaks('dv-consistency', dvs, still, 'cinematic film still');
+  passes('dv-consistency', PROJECT, still);
+}
+
+{
+  // Horror sub-genres: period horror, jump scares, zombies (a horde), the apocalypse.
+  eq(cinematographyForGenre('古代恐怖'), 'costume-horror', '古代恐怖 is lit by fire and moon');
+  eq(cinematographyForGenre('聊斋志怪'), 'costume-horror', '聊斋志怪 is period horror');
+  eq(cinematographyForGenre('港式僵尸喜剧'), 'costume-horror', '僵尸 is period horror');
+  eq(grammarForGenre('港式僵尸喜剧'), 'comedy', 'a 僵尸 comedy is cut as comedy');
+  eq(cinematographyForGenre('民国灵异'), 'horror', '民国 had electric light — plain horror');
+  eq(cinematographyForGenre('丧尸'), 'horror', 'zombies are horror');
+  eq(cinematographyForGenre('末日丧尸'), 'apocalypse', 'a zombie apocalypse is lit as the world after');
+  eq(cinematographyForGenre('末世重生囤货'), 'apocalypse', '末世囤货 has the apocalypse look');
+  eq(grammarForGenre('末世重生囤货'), 'drama', 'but is cut as drama, not horror');
+  eq(storyForGenre('末日废土').join(), 'scifi', '末日 / 废土 are science fiction stories');
+  ok(storyForGenre('末日丧尸').includes('horror') && storyForGenre('末日丧尸').includes('scifi'), 'a zombie apocalypse is both');
+  eq(actionForGenre('丧尸动作'), 'zombie-horde', 'zombie action fights a horde');
+  eq(actionForGenre('末日丧尸'), 'zombie-horde', 'a zombie apocalypse fights a horde');
+  eq(actionForGenre('丧尸'), 'none', 'a quiet zombie horror has no fight style by itself');
+  eq(horrorStyleForGenre('鬼屋惊吓'), 'jump', '惊吓 / 鬼屋 read jump');
+  eq(horrorStyleForGenre('灵异'), 'dread', 'everything else is dread');
+  const zi = initProject({ title: 't', episodes: 1, minutes: 1.5, genre: '丧尸动作' }).params;
+  eq(`${zi.cinematography} ${zi.grammar} ${zi.action} ${zi.violence} ${zi.horrorStyle}`, 'horror horror zombie-horde implied dread', 'init composes zombie action, gore implied on the mainland');
+  eq(initProject({ title: 't', episodes: 1, minutes: 1.5, genre: '丧尸动作', market: 'overseas' }).params.violence, 'blood', 'overseas keeps the default');
+  eq(initProject({ title: 't', episodes: 1, minutes: 1.5, genre: '惊吓' }).params.horrorStyle, 'jump', 'init reads the horror style');
+  eq(initProject({ title: 't', episodes: 1, minutes: 1.5, genre: '都市' }).params.horrorStyle, undefined, 'no horror style outside horror');
+  assert.throws(() => initProject({ title: 't', episodes: 1, minutes: 1, genre: '恐怖', horrorStyle: 'gore' }), /--horror-style/, 'init rejects an unknown horror style');
+  const badStyle = clone(PROJECT); badStyle.params.horrorStyle = 'gore';
+  breaks('params', badStyle, null, 'params.horrorStyle');
+  ok(isHorrorLook({ cinematography: 'costume-horror' }) && !isHorrorLook({ cinematography: 'apocalypse' }), 'both horror looks are horror; the apocalypse is not');
+  const za = ACTION_STYLES['zombie-horde'];
+  ok(!/blood|gore|guts|dismember|血|内脏/i.test(`${za.videoPhrase} ${za.videoPhraseZh}`), 'the horde phrase carries no gore');
+
+  // costume-horror: the horror rules, nothing electric.
+  const pc = clone(PROJECT); pc.params.cinematography = 'costume-horror';
+  const candle = () => {
+    const e = clone(E01);
+    for (const seg of e.storyboard.segments) seg.cuts.forEach((c) => {
+      c.frame = c.frame.replace(LIGHT_DIRECTIONS[c.light.direction], LIGHT_DIRECTIONS['side-left']) + ' Period horror lighting, most of the frame in darkness, lit only by the carried candle.';
+      c.light = { ...c.light, direction: 'side-left', source: 'the carried candle' };
+    });
+    return e;
+  };
+  passes('photography', pc, candle());
+  const torch = candle(); const t0 = torch.storyboard.segments[0].cuts[0];
+  t0.frame = t0.frame.replace('the carried candle', 'the fluorescent tube'); t0.light.source = 'the fluorescent tube';
+  breaks('photography', pc, torch, 'does not exist in this era');
+  const gold = candle(); gold.storyboard.segments[0].cuts[0].frame += ' Beautiful painterly glow.';
+  breaks('photography', pc, gold, 'makes the frame beautiful');
+  const wuxH = clone(pc); wuxH.params.action = 'wuxia-fantasy';
+  breaks('params', wuxH, null, 'horror-struggle');
+
+  // apocalypse: only what survivors run; the city is dead.
+  const pa = clone(PROJECT); pa.params.cinematography = 'apocalypse';
+  const ruin = () => {
+    const e = clone(E01);
+    for (const seg of e.storyboard.segments) seg.cuts.forEach((c) => {
+      c.frame = c.frame.replace(LIGHT_DIRECTIONS[c.light.direction], LIGHT_DIRECTIONS['side-left']) + ' Post-apocalyptic survival lighting from the barrel fire.';
+      c.light = { ...c.light, direction: 'side-left', source: 'the barrel fire' };
+    });
+    return e;
+  };
+  passes('photography', pa, ruin());
+  const neon = ruin(); const n0 = neon.storyboard.segments[0].cuts[0];
+  n0.frame = n0.frame.replace('the barrel fire', 'the neon sign'); n0.light.source = 'the neon sign';
+  breaks('photography', pa, neon, 'city before the fall');
+
+  // Jump style: more scares, two fake-outs per scare, the threat flashing in full on the scare.
+  const pj = clone(PROJECT); pj.params.horrorStyle = 'jump';
+  eq(horrorStyleOf(paramsOf(pj)).secondsPerScare, 12, 'jump hits about every 12 s');
+  const jumpy = () => {
+    const e = clone(E01);
+    const seg = e.storyboard.segments[1]; seg.grammar = 'horror';
+    seg.cuts = seg.cuts.slice(0, 3); [7, 5, 3].forEach((x, k) => { seg.cuts[k].seconds = x; });
+    Object.assign(seg.cuts[0], { threat: 'sound' });
+    Object.assign(seg.cuts[1], { scare: 'false-alarm' });
+    Object.assign(seg.cuts[2], { scare: 'scare', camera: 'Static Shot', threat: 'full', seconds: 2 });
+    seg.cuts[0].seconds = 8;
+    return e;
+  };
+  passes('horror', pj, jumpy());
+  breaks('horror', PROJECT, jumpy(), 'belongs in the last third');
+  const fourScares = jumpy(); for (const seg of fourScares.storyboard.segments.slice(2, 5)) seg.cuts[seg.cuts.length - 1].scare = 'scare';
+  ok(!failures('horror', pj, fourScares).some((m) => m.includes('about one per')), 'four scares in ~68 s are fine for jump');
+  breaks('horror', PROJECT, fourScares, 'about one per 20 s');
+  const twoCats = jumpy(); twoCats.storyboard.segments[0].cuts[1].scare = 'false-alarm';
+  ok(!failures('horror', pj, twoCats).some((m) => m.includes('false alarm')), 'two fake-outs per scare are fine for jump');
+  breaks('horror', PROJECT, twoCats, 'false alarm');
+  const lingerJ = jumpy(); lingerJ.storyboard.segments[1].cuts[2].seconds = 3;
+  breaks('horror', pj, lingerJ, 'keep it to 2 s');
+  const fullQuiet = jumpy(); delete fullQuiet.storyboard.segments[1].cuts[2].scare;
+  breaks('horror', pj, fullQuiet, 'flashes in full only on the scare');
+  ok(grammarLines(jumpy().storyboard.segments[1], paramsOf(pj))[0].includes(HORROR_STYLES.jump.videoPhrase), 'the jump style adds to the Horror line');
+  ok(!grammarLines(jumpy().storyboard.segments[1], paramsOf(PROJECT))[0].includes(HORROR_STYLES.jump.videoPhrase), 'dread does not');
+
+  // A horde: held back until the outbreak, then on screen as the story needs.
+  const ph = clone(PROJECT); ph.outline = { ...ph.outline, horror: { threat: { kind: 'horde' } } };
+  const swarm = () => {
+    const e = jumpy();
+    e.storyboard.segments[1].cuts[2].seconds = 3;
+    const last = e.storyboard.segments[4]; last.cuts[0].threat = 'full'; last.cuts[1].threat = 'full';
+    return e;
+  };
+  ok(!failures('horror', ph, swarm()).some((m) => m.includes('full')), 'a horde may be seen in full again after its first sighting, anywhere in the episode');
+  breaks('horror', PROJECT, swarm(), 'a second full reveal');
+  const early = clone(ph); early.outline.horror.threat.revealEp = 2;
+  breaks('horror', early, swarm(), 'before outline.horror.threat.revealEp');
+  const bad = clone(PROJECT); bad.outline = { ...bad.outline, horror: { threat: { kind: 'swarm' } } };
+  breaks('horror', bad, E01, 'threat.kind must be one of');
+  eq(THREAT_KINDS.join(), 'single,horde', 'two threat kinds');
 }
 
 {
@@ -2629,9 +2880,9 @@ const breaks = (gateId, project, episode, needle) => {
 
 // ── gate inventory (crew engine) ────────────────────────────────────────────
 {
-  eq(GATES.length, 72, 'gate count');
-  eq(GATES.filter((g) => !g.advisory).length, 66, 'hard gate count');
-  eq(GATES.filter((g) => g.advisory).length, 6, 'advisory gate count');
+  eq(GATES.length, 75, 'gate count');
+  eq(GATES.filter((g) => !g.advisory).length, 68, 'hard gate count');
+  eq(GATES.filter((g) => g.advisory).length, 7, 'advisory gate count');
   ok(!GATES.find((g) => g.id === 'boundary-contrast').advisory, 'boundary-contrast is hard');
   ok(GATES.find((g) => g.id === 'boundary-contrast-episode').advisory, 'boundary-contrast-episode is advisory');
   eq(DEFAULT_PARAMS.boundaryContrastCuts, 2, 'boundaryContrastCuts default');
@@ -2752,8 +3003,8 @@ const breaks = (gateId, project, episode, needle) => {
   const results = runGates(makeContext(PROJECT, { 1: E01 }));
   const rep = formatGates(results);
   eq(Object.keys(rep).sort().join(','), 'advisory,failed,hard,lines,notes,summary,text', 'formatGates shape');
-  eq(rep.summary, '✓ 66 gate(s) passed, 6 advisory (1 note)', 'fixture summary');
-  eq(rep.failed, 0, 'nothing failed'); eq(rep.hard, 66, 'hard count'); eq(rep.advisory, 6, 'advisory count');
+  eq(rep.summary, '✓ 68 gate(s) passed, 7 advisory (1 note)', 'fixture summary');
+  eq(rep.failed, 0, 'nothing failed'); eq(rep.hard, 68, 'hard count'); eq(rep.advisory, 7, 'advisory count');
   // The fixture now raises one advisory (E01-03 carries the 爽点 and is not cut as faceslap),
   // exactly as it does in the wji-cli copy — advisory lines print, failures still must not.
   eq(rep.lines.filter((l) => l.includes('✗')).length, 0, 'a green run prints no failed gates');

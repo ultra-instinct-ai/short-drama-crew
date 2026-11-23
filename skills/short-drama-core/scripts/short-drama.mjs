@@ -7,13 +7,15 @@
 //            [--video h3|seedance|seedance2|seedance2fast|wan]   (decides the segment length — see VIDEO_MODELS)
 //            [--resolution 480P|…] [--accent "台灣口音國語"] [--style photoreal|realistic|ghibli]
 //            [--references sheets|keyframes] [--duration auto|fixed] [--look "shallow depth of field"] [--lang zh] [--adapt 原創]
-//            [--cinematography low-key|sweet-romance|period-nostalgia|costume-idol|costume-dark|scifi-hard|scifi-soft|none]
+//            [--cinematography low-key|sweet-romance|period-nostalgia|costume-idol|costume-dark|scifi-hard|scifi-soft|horror|costume-horror|apocalypse|none]
 //                                                                      (lighting & composition — see CINEMATOGRAPHY_PRESETS; picked from the genre when omitted)
-//            [--action gun-fu|hk-kungfu|wuxia-fantasy|historical-realist|bullet-time|superhero|street-brawl|car-chase|none]
+//            [--action gun-fu|hk-kungfu|wuxia-fantasy|historical-realist|bullet-time|superhero|street-brawl|car-chase|horror-struggle|zombie-horde|none]
 //            [--violence blood|implied]                              (how fights are cut — see ACTION_STYLES)
-//            [--grammar drama|action|faceslap|comedy] [--comedy slapstick|deadpan|romcom|none]
+//            [--grammar drama|action|faceslap|comedy|horror] [--comedy slapstick|deadpan|romcom|none]
 //                                                                      (the default segment grammar and the comedy style — see GRAMMARS)
 //            [--composition standard|art-first]                      (艺术优先 framing in any genre — see COMPOSITION_STYLES)
+//            [--footage cinema|dv]                                   (dv: found footage — the camcorder kit and look phrase, see DV_KIT)
+//            [--horror-style dread|jump]                              (slow-burn or jump-scare horror — see HORROR_STYLES; read from the genre)
 //            [--story revenge,sweet,mystery,comedy,angst,family,palace,cultivation,scifi,horror]
 //                                                                      (how the story is written — see STORY_GENRES; read from the genre when omitted)
 //            [--market mainland|overseas]                            (mainland holds the supernatural to a rational explanation)
@@ -829,6 +831,14 @@ export function imagePromptKit(params) {
   };
 }
 
+// Shared by the two horror looks (and the costume looks' era check).
+const COSTUME_ANACHRONISMS = /\b(electric|electricity|light ?bulbs?|bulbs?|neon|fluorescent|led|street ?lights?|lamp ?posts?|screens?|phones?|televisions?|tv)\b/i;
+// The beautifiers: words that make a frame safe and attractive. Checked in every cut's frame.
+const HORROR_REFUSED = /\b(golden|bokeh|beautiful|painterly|soft fill|cinematic warm|warm glow)\b/i;
+// Supernatural light stays small: it lights only what it touches, never the whole set.
+const HORROR_LOCAL_LIGHT = /\b(talisman|charm|seal|spell|rune|ritual|magic|glow(ing)?|aura|qi|spirit|mirror glint)\b|符|咒|法阵|法陣|灵光|靈光/i;
+const HORROR_LOCAL_MUST = /\blights? only\b|\bonly lights?\b|只照亮|只照到/i;
+
 /**
  * The drama's lighting and composition, orthogonal to the render style (`params.style`). Each
  * preset has a guide in reference/cinematography-<key>.md; the gates read only the fields below.
@@ -914,7 +924,7 @@ export const CINEMATOGRAPHY_PRESETS = {
     // 全景 / 大全景 with 大量留白: the world is part of the fantasy, so every segment steps back once
     // (both costume presets do).
     widePerSegment: 1,
-    anachronisms: /\b(electric|electricity|light ?bulbs?|bulbs?|neon|fluorescent|led|street ?lights?|lamp ?posts?|screens?|phones?|televisions?|tv)\b/i,
+    anachronisms: COSTUME_ANACHRONISMS,
   },
   // 古装写实暗黑 / 权谋 / 武侠: fire and lattice light only, faces carved out of the dark, real texture.
   'costume-dark': {
@@ -931,7 +941,7 @@ export const CINEMATOGRAPHY_PRESETS = {
     maxStop: 2.8,
     // 全景 / 大全景 with 大量留白, as in costume-idol — here the empty space is darkness, smoke and sky.
     widePerSegment: 1,
-    anachronisms: /\b(electric|electricity|light ?bulbs?|bulbs?|neon|fluorescent|led|street ?lights?|lamp ?posts?|screens?|phones?|televisions?|tv)\b/i,
+    anachronisms: COSTUME_ANACHRONISMS,
   },
   // 硬科幻: engineered, plausible, lit by instruments, work lights and a harsh single sun.
   'scifi-hard': {
@@ -964,8 +974,92 @@ export const CINEMATOGRAPHY_PRESETS = {
     preferredShare: 0.5,
     maxStop: 2.8,
   },
+  // 恐怖 / 灵异 / 惊悚 / 都市怪谈 / 伪纪录片: darkness is the subject — one hard source carves a path
+  // through a mostly black frame; faces only partly lit; the threat kept in shadow or out of focus.
+  // Not low-key with a ghost added: low-key makes a thriller beautiful, horror makes the viewer search
+  // the frame. Guide: reference/cinematography-horror.md.
+  horror: {
+    label: 'horror: most of the frame black, one hard motivated source, cold desaturated, faces partly lit, the threat unseen',
+    framePhrase: 'horror low-key lighting, most of the frame in darkness',
+    videoPhrase: 'horror cinematography: most of the frame in deep darkness, a single hard motivated source, cold desaturated colour, faces only partly lit from the side, below or behind, underexposed with crushed blacks, long uneasy holds, the threat kept in shadow or out of focus, no warm golden light, no glow flooding the scene, no evenly lit faces',
+    videoPhraseZh: '恐怖片摄影：画面大部分沉入黑暗，单一硬光源，冷调低饱和，人脸只被侧光、底光或逆光照亮一部分，欠曝暗部压黑，长时间不安的停留，威胁藏在阴影或失焦处，不要暖金色光，不要光效铺满画面，不要均匀照亮的人脸',
+    sourceHint: 'the one hard source the light comes from (a flashlight beam, a phone screen, a flickering tube, a single bare bulb, a candle carried, moonlight through a gap), not a film light',
+    // A face fully and evenly lit is not horror.
+    bannedLight: ['frontal', 'ambient'],
+    bannedWhy: 'lights the whole face evenly, and an evenly lit face is not horror — put the source beside, below, above or behind the person',
+    // 侧光 / 逆光 / 剪影 / 底光（鬼故事光） / 顶光.
+    preferredLight: ['side-left', 'side-right', 'back-left', 'back-right', 'backlight', 'underlight', 'top'],
+    preferredWhat: 'lit from the side, behind, below or above',
+    preferredShare: 0.6,
+    maxStop: 2.8,
+    refusedWords: HORROR_REFUSED,
+    refusedWhy: 'makes the frame beautiful and safe (cinematography-horror.md §10) — describe the dark, the one source and what stays hidden',
+    localLight: HORROR_LOCAL_LIGHT,
+    localLightMust: HORROR_LOCAL_MUST,
+    horror: true,
+  },
+  // 古代恐怖 / 古装灵异 / 聊斋志怪 / 民俗古装 / 僵尸: the horror rules in a world lit only by fire and
+  // the sky — a candle carried down a corridor, a paper lantern, moonlight through lattice. Nothing
+  // electric. Guide: reference/cinematography-costume-horror.md.
+  'costume-horror': {
+    label: 'period horror: most of the frame black, one flame or the moon, faces partly lit, nothing electric',
+    framePhrase: 'period horror lighting, most of the frame in darkness',
+    videoPhrase: 'period horror cinematography: most of the frame in deep darkness, lit only by a single candle, oil lamp, paper lantern or moonlight through lattice, cold desaturated colour with the flame the only warmth, faces only partly lit from the side, below or behind, underexposed with crushed blacks, long uneasy holds, the threat kept in shadow, behind paper screens or out of focus, no warm golden light, no glow flooding the scene, no evenly lit faces',
+    videoPhraseZh: '古代恐怖片摄影：画面大部分沉入黑暗，光线只来自一支蜡烛、一盏油灯、一盏纸灯笼或透过窗棂的月光，冷调低饱和，只有火光带一点暖，人脸只被侧光、底光或逆光照亮一部分，欠曝暗部压黑，长时间不安的停留，威胁藏在阴影、纸屏风后或失焦处，不要暖金色光，不要光效铺满画面，不要均匀照亮的人脸',
+    sourceHint: 'the one period source the light comes from (a candle carried, an oil lamp, a paper lantern, a dying brazier, moonlight through lattice or a torn paper window), never an electric light',
+    bannedLight: ['frontal', 'ambient'],
+    bannedWhy: 'lights the whole face evenly, and an evenly lit face is not horror — put the flame beside, below or behind the person',
+    preferredLight: ['side-left', 'side-right', 'back-left', 'back-right', 'backlight', 'underlight', 'top'],
+    preferredWhat: 'lit from the side, behind, below or above',
+    preferredShare: 0.6,
+    maxStop: 2.8,
+    anachronisms: COSTUME_ANACHRONISMS,
+    refusedWords: HORROR_REFUSED,
+    refusedWhy: 'makes the frame beautiful and safe (cinematography-horror.md §10) — describe the dark, the one flame and what stays hidden',
+    localLight: HORROR_LOCAL_LIGHT,
+    localLightMust: HORROR_LOCAL_MUST,
+    horror: true,
+  },
+  // 末日 / 末世 / 废土 / 丧尸末日: the world after — ruins, dust and ash, a harsh sun or a fire, and
+  // only what survivors run (generators, torches, headlights). Not horror and not neon: the city
+  // is dead. Guide: reference/cinematography-apocalypse.md.
+  apocalypse: {
+    label: 'post-apocalyptic: ruins, dust and ash, harsh sun or firelight, only survivor light, the city dead',
+    framePhrase: 'post-apocalyptic survival lighting',
+    videoPhrase: 'gritty post-apocalyptic cinematography, a ruined world of collapsed concrete, rust and overgrowth, dust and ash hanging in the air, harsh bleached daylight or the flicker of fires, flares and flashlights, at night only what survivors run, generator bulbs and headlights, the dead city dark behind them, a desaturated palette of ash grey, rust and sick yellow, faces grimy and lit hard from the side or above, a handheld documentary urgency',
+    videoPhraseZh: '粗粝的末日废土影调，坍塌的水泥、锈迹与疯长的植物，空气中悬浮着尘土与灰烬，惨白刺眼的日光或篝火、信号弹与手电的闪烁，夜里只有幸存者点亮的光，发电机灯泡与车头灯，身后死去的城市一片漆黑，灰烬灰、铁锈红与病态黄的低饱和色调，人脸脏污，被侧面或头顶的硬光照亮，纪实般急迫的手持感',
+    sourceHint: 'what still burns or runs after the fall (the harsh sun through a broken roof, a fire in a barrel, a flare, a flashlight, a generator bulb, car headlights), never a working city light',
+    bannedLight: ['frontal'],
+    bannedWhy: 'reads as a clean studio portrait — the world after the fall is lit hard from the side or above',
+    preferredLight: ['side-left', 'side-right', 'back-left', 'back-right', 'backlight', 'top'],
+    preferredWhat: 'lit hard from the side, behind or above',
+    preferredShare: 0.5,
+    maxStop: 4,
+    anachronisms: /\b(neon|holograms?|holographic|street ?lights?|billboards?|shop windows?|city lights?|skyline lights?|working screens?|chandeliers?)\b/i,
+    anachronismWhy: 'is a light of the city before the fall — after it only fires, the sun and what survivors run are lit',
+  },
   none: null,
 };
+
+/**
+ * Found-footage / DV mode (cinematography-horror.md §8): the camera is in the story, so the frame
+ * names the camcorder a character is holding, never a cinema package or a "cinematic film still".
+ * `init --footage dv` sets this kit and look phrase; the `dv-consistency` gate holds them together.
+ */
+export const DV_KIT = { body: 'handheld consumer DV camcorder', lens: 'built-in zoom lens', aperture: 'f/1.8' };
+export const DV_LOOK = 'footage from a handheld consumer DV camcorder carried by a character in the story, the camera-mounted light the only key, video noise in the shadows, blown highlights, auto-exposure pumping, focus hunting, off-centre unprofessional framing';
+export const DV_LOOK_ZH = '故事中角色手持的家用DV摄像机拍下的画面，机头灯是唯一主光，暗部有视频噪点，高光过曝，自动曝光忽明忽暗，对焦来回寻找，构图偏离中心、不专业';
+export const DV_RE = /\b(dv|camcorder|found[- ]footage|vhs|home video|handycam)\b|摄像机拍下|攝像機拍下|伪纪录|偽紀錄|家用dv|手持dv/i;
+const CINEMA_KIT_RE = /\b(arri|alexa|red (komodo|v-raptor|monstro)|venice|zeiss|cooke|master prime|supreme prime|panavision|anamorphic)\b/i;
+
+/** A genre that is horror (not just a thriller): the look, the default grammar and the story genre follow it. */
+export const HORROR_GENRE_RE = /恐怖|灵异|靈異|怪谈|怪談|诡异|詭異|鬼|驱魔|驅魔|伪纪录|偽紀錄|惊吓|驚嚇|吓人|嚇人|志怪|聊斋|聊齋|丧尸|喪屍|僵尸|殭屍|感染者|zombie|jump ?scare|found[- ]?footage|horror|haunt/i;
+/** Horror set before electric light: the horror rules with a fire-and-moon world. */
+export const COSTUME_HORROR_RE = /古代|古装|古裝|古风|古風|聊斋|聊齋|志怪|僵尸|殭屍|宫廷|宮廷|江湖|武侠|武俠|仙侠|仙俠|wuxia|xianxia|costume/i;
+/** The world after the fall. */
+export const APOCALYPSE_RE = /末日|末世|废土|廢土|核战|核戰|天灾|天災|apocalyp|wasteland/i;
+/** A horde threat: the monsters are many and seen once the outbreak starts. */
+export const ZOMBIE_RE = /丧尸|喪屍|感染者|活死人|zombie|undead|horde/i;
 
 /** The cinematography preset in force, or null when the project opts out. */
 export function cinematographyOf(params) {
@@ -979,6 +1073,11 @@ export function cinematographyOf(params) {
  */
 export function cinematographyForGenre(genre) {
   const g = String(genre || '');
+  // The world after the fall has its own look, zombies or not; 末世囤货 is lit as the apocalypse too.
+  if (APOCALYPSE_RE.test(g)) return 'apocalypse';
+  // Horror wins over the setting: a ghost story is lit as horror — by fire and moon when it is set
+  // before electric light. 惊悚 alone stays low-key (a thriller); with a ghost, a curse or a rulebook it is horror.
+  if (HORROR_GENRE_RE.test(g)) return COSTUME_HORROR_RE.test(g) ? 'costume-horror' : 'horror';
   const romance = /甜宠|甜寵|恋爱|戀愛|爱情|愛情|浪漫|韩风|韓風|韩剧|韓劇|偶像|romance|romantic|rom-?com/i;
   if (/古装|古裝|古偶|仙侠|仙俠|玄幻|宫廷|宮廷|宫斗|宮鬥|武侠|武俠|江湖|权谋|權謀|历史|歷史|wuxia|xianxia|costume|historical/i.test(g)) {
     if (/古偶|仙侠|仙俠|玄幻/i.test(g) || romance.test(g)) return 'costume-idol';
@@ -1079,6 +1178,26 @@ export const ACTION_STYLES = {
     needs: [{ what: 'a Tracking Shot alongside the cars', test: (c) => c.camera === 'Tracking Shot' }, { what: 'a cut inside the car (medium / close on the driver)', test: (c) => c.size === 'close' || c.size === 'medium' }],
     look: 'none',
   },
+  // A fight in a horror story is a struggle against something stronger, not a duel
+  // (cinematography-horror.md §7): no wire-work, no glowing beams, one clear image per beat.
+  'horror-struggle': {
+    label: '恐怖搏斗 — outmatched in the dark, short ugly confused moves, the threat half-seen, ritual tools physical',
+    videoPhrase: 'a desperate struggle in the dark, the fighter outmatched, short ugly confused moves lit only by the swinging light, the threat half-seen, ritual tools kept physical with fire, sparks and smoke, every exchange ending worse for the hero',
+    videoPhraseZh: '黑暗中的绝望挣扎，主角明显处于下风，动作短促、难看、混乱，只被摇晃的光源照亮，威胁只露出一半，法器保持实物质感，只有火焰、火星与烟，每一次交锋都让主角更糟',
+    cutSeconds: [2.5, 4],
+    needs: [{ what: 'a handheld cut (Shake Slightly / Shake Strongly)', test: shaky }, { what: 'a close insert on one clear image (the charm, the hand, the lid)', test: (c) => c.size === 'close' || c.size === 'extreme-close' }],
+    look: 'horror',
+  },
+  // 丧尸动作 / 末日丧尸: survivors against a horde — the geography of the choke point, the mass
+  // moving as one, makeshift blunt weapons, a bite shown by its consequence. Never gore.
+  'zombie-horde': {
+    label: '丧尸围城 — the horde as one mass, choke points and barricades, blunt makeshift weapons, the bite by its consequence',
+    videoPhrase: 'desperate survival action against a horde of the infected, wide shots that show the choke point, the barricade and the way out, the horde surging forward as one mass, survivors swinging blunt makeshift weapons, short frantic exchanges, a bite shown only by its consequence, the camera handheld among the survivors',
+    videoPhraseZh: '绝望的求生动作，对抗成群的感染者，全景交代瓶颈通道、路障与出口，尸潮如同一个整体涌来，幸存者挥舞临时找来的钝器，交锋短促慌乱，被咬只通过后果表现，摄影机手持混在幸存者之中',
+    cutSeconds: [2.5, 4],
+    needs: [{ what: 'a wide or high shot that shows the horde and the choke point', test: (c) => isWide(c) || c.height === 'high' || c.height === 'top' }, { what: 'a handheld cut among the survivors (Shake Slightly / Shake Strongly)', test: shaky }],
+    look: 'horror',
+  },
   none: null,
 };
 
@@ -1090,6 +1209,8 @@ export function actionOf(params) {
 /** An action style a genre names outright; anything less clear stays `none` and is asked. */
 export function actionForGenre(genre) {
   const g = String(genre || '');
+  if (ZOMBIE_RE.test(g) && (/动作|動作|打斗|打鬥|搏斗|搏鬥|求生|生存|围城|圍城|action|survival/i.test(g) || APOCALYPSE_RE.test(g))) return 'zombie-horde';
+  if (/驱魔|驅魔|捉鬼|抓鬼|除灵|除靈|exorcis/i.test(g) || (HORROR_GENRE_RE.test(g) && /动作|動作|打斗|打鬥|搏斗|搏鬥|action/i.test(g))) return 'horror-struggle';
   if (/飞车|飛車|追车|追車|赛车|賽車|car ?chase/i.test(g)) return 'car-chase';
   if (/超级英雄|超級英雄|超能力|superhero/i.test(g)) return 'superhero';
   if (/子弹时间|子彈時間|bullet[- ]?time/i.test(g)) return 'bullet-time';
@@ -1179,11 +1300,12 @@ export function compositionForGenre(genre) {
  * style. Grammars combine: `['action', 'comedy']` is a comic fight, and every rule of each applies.
  * Guide: reference/grammar.md.
  */
-export const GRAMMARS = ['drama', 'action', 'faceslap', 'comedy'];
+export const GRAMMARS = ['drama', 'action', 'faceslap', 'comedy', 'horror'];
 export const FACESLAP_RULES = ['reveal-insert', 'reaction-chain'];
 export const COMEDY_RULES = ['punchline-reaction', 'setup-first'];
+export const HORROR_RULES = ['horror-hold', 'still-reveal', 'dread-pace', 'scare-ration', 'reveal-ladder'];
 /** Every rule a segment may waive through `exceptions` when the user asks. */
-export const GRAMMAR_RULES = [...ACTION_RULES, ...FACESLAP_RULES, ...COMEDY_RULES, ...COMPOSITION_RULES];
+export const GRAMMAR_RULES = [...ACTION_RULES, ...FACESLAP_RULES, ...COMEDY_RULES, ...HORROR_RULES, ...COMPOSITION_RULES];
 export const GAG_KINDS = ['setup', 'build', 'punchline'];
 
 /** 爽剧打脸: the turning of the tables — pressure, the proof, a cascade of faces. */
@@ -1193,6 +1315,78 @@ export const FACESLAP = {
   videoPhraseZh: '扬眉吐气的反转打脸，被看低的主角以低角度从容亮相，证据在果断的特写中揭晓，众人震惊的表情接连出现，全场态度瞬间反转',
   minReactions: 2,
 };
+/**
+ * 恐怖: the scare cycle (reference/grammar-horror.md). A horror segment is cut by rhythm, not by
+ * coverage: quiet → build → false alarm → relief → the real scare → aftermath. A cut may be marked
+ * `scare: false-alarm | scare | reveal`; a cut where the threat is present or implied names its rung
+ * on the reveal ladder `threat: sound | trace | shape | part | full`. Holds may run past
+ * `params.maxCutSeconds`, up to `maxHoldSeconds`.
+ */
+export const SCARE_CUTS = ['false-alarm', 'scare', 'reveal'];
+export const THREAT_RUNGS = ['sound', 'trace', 'shape', 'part', 'full'];
+export const HORROR = {
+  label: '恐怖 — the scare cycle: long holds, the threat withheld, one short scare after the silence',
+  videoPhrase: 'a slow-burn horror build, long uneasy holds in which almost nothing moves, the threat kept unseen, in shadow or out of focus, near silence before anything happens',
+  videoPhraseZh: '慢热的恐怖铺垫，长时间不安的停留，画面里几乎没有动静，威胁始终不露面，藏在阴影或失焦处，事情发生前近乎寂静',
+  // A scare is preceded by a hold of this long in the same generation.
+  holdSeconds: 4,
+  // A dread hold may run this long, past params.maxCutSeconds.
+  maxHoldSeconds: 10,
+  // Dread passages average at least this per cut (≤ 1 cut per 4 s).
+  dreadCutSeconds: 4,
+  // About one real scare per this many seconds of the episode.
+  secondsPerScare: 20,
+  // The full reveal is brief.
+  revealMaxSeconds: 3,
+  // The camera never moves into a reveal — except the jolt (a shake) or a camera a character holds.
+  stillCameras: ['Static Shot', 'Shake Slightly', 'Shake Strongly', 'POV'],
+  // A horror segment's prompt beyond this many characters averages into a bland, bright frame (advisory).
+  maxPromptChars: 4000,
+};
+/**
+ * How a horror drama scares (`params.horrorStyle`). `dread` (slow-burn: J-horror, psychological,
+ * 灵异) rations the scares and shows the threat in full once, late. `jump` (the haunted-house
+ * jump-scare film, 惊吓, short vertical horror) hits more often, sets up each hit with fake-outs, and
+ * may flash the threat in full on every scare — briefly. Both keep the hold before the scare and
+ * the still camera on it: that is what makes a jump scare land instead of feel cheap.
+ */
+export const HORROR_STYLES = {
+  dread: {
+    label: '慢热惊悚 — few scares, long holds, the threat shown in full once and late',
+    secondsPerScare: 20,
+    falseAlarmsPerScare: 1,
+    fullOnce: true,
+    fullLate: true,
+    fullMaxSeconds: 3,
+  },
+  jump: {
+    label: '惊吓 — a hit every 12 s or so, fake-outs before the real one, the threat flashing in full on the scare',
+    videoPhrase: 'sudden hard scares after quiet, the threat appearing without warning in a flash of light or between cuts, gone as fast',
+    videoPhraseZh: '寂静之后的突然惊吓，威胁毫无预兆地在一道闪光或剪辑之间出现，又转瞬消失',
+    secondsPerScare: 12,
+    falseAlarmsPerScare: 2,
+    fullOnce: false,
+    fullLate: false,
+    fullMaxSeconds: 2,
+  },
+};
+export function horrorStyleOf(params) {
+  return HORROR_STYLES[params?.horrorStyle] || HORROR_STYLES.dread;
+}
+/** 惊吓 / 吓人 / jump scare / 鬼屋 / 密室 → jump; everything else horror is dread. */
+export function horrorStyleForGenre(genre) {
+  return /惊吓|驚嚇|吓人|嚇人|jump ?scare|鬼屋|密室|haunted house|funhouse/i.test(String(genre || '')) ? 'jump' : 'dread';
+}
+/** The threat kinds: one presence held back, or a horde seen once it breaks out. */
+export const THREAT_KINDS = ['single', 'horde'];
+/** A horror look (either era). */
+export const isHorrorLook = (params) => Boolean(cinematographyOf(params)?.horror);
+const isRealScare = (c) => c?.scare === 'scare' || c?.scare === 'reveal';
+/** The longest a cut in this segment may run: horror holds go past params.maxCutSeconds. */
+export function maxCutFor(seg, params) {
+  return grammarsOf(seg, params).includes('horror') ? Math.max(Number(params.maxCutSeconds) || 0, HORROR.maxHoldSeconds) : Number(params.maxCutSeconds);
+}
+
 /** The 爽点 types a 打脸 payoff is the natural way to cut. */
 export const FACESLAP_SATISFACTION = ['打脸', '身份揭露', '智商碾压', '复仇'];
 
@@ -1251,7 +1445,9 @@ function waivedRules(seg) {
 
 /** A comedy genre makes comedy the default grammar; everything else is drama. */
 export function grammarForGenre(genre) {
-  return /喜剧|喜劇|搞笑|爆笑|无厘头|無厘頭|沙雕|comedy|sitcom/i.test(String(genre || '')) ? 'comedy' : 'drama';
+  const g = String(genre || '');
+  if (/喜剧|喜劇|搞笑|爆笑|无厘头|無厘頭|沙雕|comedy|sitcom/i.test(g)) return 'comedy';
+  return HORROR_GENRE_RE.test(g) ? 'horror' : 'drama';
 }
 
 /** The comedy style a comedy genre implies; `none` when the genre is not a comedy. */
@@ -1272,6 +1468,11 @@ export function grammarLines(seg, params, lang = 'en') {
   if (g.includes('action') && action) out.push(zh ? `动作：${action.videoPhraseZh}。` : `Action: ${action.videoPhrase}.`);
   if (g.includes('faceslap')) out.push(zh ? `爽点：${FACESLAP.videoPhraseZh}。` : `Payoff: ${FACESLAP.videoPhrase}.`);
   if (g.includes('comedy') && comedy) out.push(zh ? `喜剧：${comedy.videoPhraseZh}。` : `Comedy: ${comedy.videoPhrase}.`);
+  if (g.includes('horror')) {
+    const hs = horrorStyleOf(params);
+    const extra = hs.videoPhrase ? (zh ? `，${hs.videoPhraseZh}` : `, ${hs.videoPhrase}`) : '';
+    out.push(zh ? `恐怖：${HORROR.videoPhraseZh}${extra}。` : `Horror: ${HORROR.videoPhrase}${extra}.`);
+  }
   const art = compositionOf(seg, params);
   if (art) out.push(zh ? `构图：${art.videoPhraseZh}。` : `Composition: ${art.videoPhrase}.`);
   return out;
@@ -1394,8 +1595,8 @@ export function storyForGenre(genre) {
   if (/家庭|伦理|倫理|婆媳|萌宝|萌寶|认亲|認親|寻亲|尋親|亲情|親情|豪门恩怨|豪門恩怨|family/i.test(g)) out.push('family');
   if (/宫斗|宮鬥|宅斗|宅鬥|权谋|權謀|夺嫡|奪嫡|palace intrigue/i.test(g)) out.push('palace');
   if (/修仙|玄幻|系统|系統|异能|異能|升级|升級|神医|神醫|cultivation|xianxia|litrpg/i.test(g)) out.push('cultivation');
-  if (/科幻|末世|时间循环|時間循環|穿越时空|穿越時空|赛博|賽博|星际|星際|未来|未來|囤货|囤貨|sci-?fi|science fiction|cyberpunk/i.test(g)) out.push('scifi');
-  if (/恐怖|灵异|靈異|惊悚|驚悚|怪谈|怪談|诡异|詭異|民俗|horror/i.test(g)) out.push('horror');
+  if (/科幻|末世|末日|废土|廢土|时间循环|時間循環|穿越时空|穿越時空|赛博|賽博|星际|星際|未来|未來|囤货|囤貨|sci-?fi|science fiction|cyberpunk/i.test(g)) out.push('scifi');
+  if (HORROR_GENRE_RE.test(g) || /惊悚|驚悚|民俗/.test(g)) out.push('horror');
   return out;
 }
 
@@ -1978,8 +2179,11 @@ export const GATES = [
     if (!MARKETS.includes(params.market)) out.push(`params.market must be one of ${MARKETS.join(' / ')}`);
     for (const k of asList(params.story)) if (!Object.hasOwn(STORY_GENRES, k)) out.push(`params.story "${k}" is not one of ${Object.keys(STORY_GENRES).join(' / ')}`);
     if (!Object.hasOwn(COMPOSITION_STYLES, params.composition)) out.push(`params.composition must be one of ${Object.keys(COMPOSITION_STYLES).join(' / ')}`);
+    if (params.horrorStyle !== undefined && !Object.hasOwn(HORROR_STYLES, params.horrorStyle)) out.push(`params.horrorStyle must be one of ${Object.keys(HORROR_STYLES).join(' / ')}`);
     if (!Object.hasOwn(COMEDY_STYLES, params.comedy)) out.push(`params.comedy must be one of ${Object.keys(COMEDY_STYLES).join(' / ')}`);
     if (!Object.hasOwn(CINEMATOGRAPHY_PRESETS, params.cinematography)) out.push(`params.cinematography must be one of ${Object.keys(CINEMATOGRAPHY_PRESETS).join(' / ')}`);
+    // Horror is a struggle against something stronger; wire-work flight and power spectacle turn it into wuxia.
+    if (isHorrorLook(params) && ['wuxia-fantasy', 'superhero'].includes(params.action)) out.push(`params.cinematography ${params.cinematography} with params.action ${params.action} turns the scare into a fantasy fight — use action horror-struggle (cinematography-horror.md §7)`);
     if (!IMAGE_PROMPT_LANGS.includes(params.imagePromptLang)) out.push(`params.imagePromptLang must be one of ${IMAGE_PROMPT_LANGS.join(' / ')} (the language of the character / scene / prop image prompts)`);
     if (!/^\d+:\d+$/.test(String(params.ratio))) out.push('params.ratio must look like 9:16');
     if (!project.title) out.push('title is required');
@@ -2925,7 +3129,8 @@ export const GATES = [
       });
     }
     if (!waived.has('early-threat') && Number(threat.firstSignEp) !== 1) out.push('恐怖: the first sign of the threat is in E01 (outline.horror.threat.firstSignEp) — within the first seconds');
-    if (!waived.has('hide-the-monster') && runsAtLeast(params, 10)) {
+    // A horde breaks out early (the outbreak is the premise); the dread is who is bitten next, not what it looks like.
+    if (!waived.has('hide-the-monster') && runsAtLeast(params, 10) && threat.kind !== 'horde') {
       if (!(Number(threat.revealEp) >= Math.ceil(0.5 * N))) out.push(`恐怖: the threat is fully shown in E${pad2(threat.revealEp)} — hold it past the half (E${pad2(Math.ceil(0.5 * N))}); the unseen is scarier`);
       if (asList(threat.glimpseEps).filter((e) => Number(e) < Number(threat.revealEp)).length < 2) out.push('恐怖: fewer than two glimpses before the reveal (threat.glimpseEps)');
     }
@@ -3403,7 +3608,7 @@ export const GATES = [
     }
     return out;
   }),
-  gate('timing', 'storyboard', 'cut 2–5 s, dialogue fits, segment inside the model\u2019s duration range, reference caps, episode within target ± tolerance', (ctx) => {
+  gate('timing', 'storyboard', 'cut 2–5 s (horror holds to 10 s), dialogue fits, segment inside the model\u2019s duration range, reference caps, episode within target ± tolerance', (ctx) => {
     const { project, params } = ctx;
     const out = [];
     for (const [ep, e] of ctx.episodes) {
@@ -3413,7 +3618,8 @@ export const GATES = [
         let segSeconds = 0;
         (seg.cuts || []).forEach((c, k) => {
           const s = Number(c.seconds);
-          if (!(s >= params.minCutSeconds && s <= params.maxCutSeconds)) out.push(`${seg.id} cut ${k + 1}: ${c.seconds} s, must be ${params.minCutSeconds}–${params.maxCutSeconds}`);
+          const maxCut = maxCutFor(seg, params);
+          if (!(s >= params.minCutSeconds && s <= maxCut)) out.push(`${seg.id} cut ${k + 1}: ${c.seconds} s, must be ${params.minCutSeconds}–${maxCut}${maxCut > params.maxCutSeconds ? ' (a horror hold)' : ''}`);
           segSeconds += s || 0;
           if (scene && Array.isArray(c.beats)) {
             const talk = dialogueSeconds(scene, c.beats, params);
@@ -3518,6 +3724,9 @@ export const GATES = [
           if (!source) out.push(`${where}: light.source is required — ${look.sourceHint}`);
           else if (look.anachronisms && look.anachronisms.test(source)) out.push(`${where}: light.source "${source}" ${look.anachronismWhy || 'does not exist in this era'} (params.cinematography ${params.cinematography}) — ${look.sourceHint}`);
           else if (frame.trim() && !frame.includes(source)) out.push(`${where}: frame prompt must name the light source "${source}"`);
+          const refused = look.refusedWords && frame.match(look.refusedWords);
+          if (refused) out.push(`${where}: frame says "${refused[0]}" — it ${look.refusedWhy} (params.cinematography ${params.cinematography})`);
+          if (look.localLight && look.localLight.test(source) && frame.trim() && !look.localLightMust.test(frame)) out.push(`${where}: light.source "${source}" is a supernatural light — keep it small and local: say what it "lights only" (a hand, the edge of a face, a few feet of floor), never the whole set (params.cinematography ${params.cinematography})`);
           const people = (c.characters || []).length > 0;
           if (people) {
             withPeople += 1;
@@ -4330,7 +4539,7 @@ export const GATES = [
     const { project, params } = ctx;
     const out = [];
     const style = comedyOf(params);
-    const dark = ['low-key', 'costume-dark'].includes(params.cinematography);
+    const dark = ['low-key', 'costume-dark', 'horror', 'costume-horror'].includes(params.cinematography);
     for (const [ep, e] of ctx.episodes) {
       const segs = e.storyboard?.segments || [];
       // The 爽点 of a 打脸-type episode is cut as a 打脸.
@@ -4403,6 +4612,111 @@ export const GATES = [
         if (cuts.length && !waived.has('art-wide') && cuts.filter((c) => stepsBack(c, params)).length < art.widePerSegment) out.push(isVerticalRatio(params.ratio)
           ? `${seg.id}: no cut steps back — an art-first segment shows the whole composition at least once: on ${params.ratio} a medium-wide or medium is enough, a wide when the story needs the scale (or waive art-wide on the user's request)`
           : `${seg.id}: no wide or extreme-wide — an art-first segment steps back to the whole composition at least once (or waive art-wide on the user's request)`);
+      }
+    }
+    return out;
+  }),
+  gate('horror', 'storyboard', '恐怖 segments: a hold of 4 s or more before every scare, the camera still on a reveal, dread averaging 4 s a cut, scares rationed (about one per 20 s, a false alarm only with a real scare), the threat up the reveal ladder and shown in full once, late and briefly (waivable per segment when the user asks)', (ctx) => {
+    const { project, params } = ctx;
+    const out = [];
+    const threat = project.outline?.horror?.threat || {};
+    const revealEp = Number(threat.revealEp) || 0;
+    const style = horrorStyleOf(params);
+    const horde = threat.kind === 'horde';
+    if (threat.kind !== undefined && !THREAT_KINDS.includes(threat.kind)) out.push(`outline.horror.threat.kind must be one of ${THREAT_KINDS.join(' / ')}`);
+    // A horde is held back until it breaks out; after that it is on screen as the story needs.
+    const brokenOut = (ep) => horde && revealEp && Number(ep) > revealEp;
+    let hordeSeen = false;
+    const glimpsedBefore = (ep) => asList(threat.glimpseEps).some((x) => Number(x) < ep);
+    for (const [ep, e] of ctx.episodes) {
+      const segs = e.storyboard?.segments || [];
+      const total = segs.reduce((a, s) => a + (s.cuts || []).reduce((b, c) => b + (Number(c.seconds) || 0), 0), 0);
+      let t = 0, real = 0, falseAlarms = 0, fulls = 0, lowerSeen = glimpsedBefore(Number(ep));
+      for (const seg of segs) {
+        const cuts = seg.cuts || [];
+        const gs = grammarsOf(seg, params);
+        const horror = gs.includes('horror');
+        const waived = waivedRules(seg);
+        cuts.forEach((c, k) => {
+          const where = `${seg.id} cut ${k + 1}`;
+          const start = t;
+          t += Number(c.seconds) || 0;
+          if (c.scare !== undefined && !SCARE_CUTS.includes(c.scare)) { out.push(`${where}: scare must be one of ${SCARE_CUTS.join(' / ')}`); return; }
+          if (c.threat !== undefined && !THREAT_RUNGS.includes(c.threat)) { out.push(`${where}: threat must be one of ${THREAT_RUNGS.join(' / ')} (the reveal ladder)`); return; }
+          if (threat.character && (c.characters || []).includes(threat.character) && !['shape', 'part', 'full'].includes(c.threat)) out.push(`${where}: the threat (${threat.character}) is in frame — say how much of it is shown: threat shape (silhouette, shadow, out of focus) / part (a hand, hair, eyes) / full (or keep it off screen with sound / trace)`);
+          if (c.threat && c.threat !== 'full') lowerSeen = true;
+          if (c.scare === 'false-alarm') falseAlarms += 1;
+          if (isRealScare(c)) {
+            real += 1;
+            if (!waived.has('scare-ration') && real > Math.max(1, Math.floor(total / style.secondsPerScare))) out.push(`${where}: real scare ${real} in a ${round2(total)} s episode — about one per ${style.secondsPerScare} s (horrorStyle ${params.horrorStyle || 'dread'}); every scare costs dread, cut this one to a build or a false alarm (or waive scare-ration on the user's request)`);
+            if (horror && !waived.has('horror-hold') && !cuts.slice(0, k).some((x) => !isRealScare(x) && Number(x.seconds) >= HORROR.holdSeconds)) out.push(`${where}: a scare with no hold of ${HORROR.holdSeconds} s or more before it in this segment — the scare lands after a quiet the viewer has searched (or waive horror-hold on the user's request)`);
+            if (horror && !waived.has('still-reveal') && !HORROR.stillCameras.includes(c.camera)) out.push(`${where}: the camera moves (${c.camera}) on the scare — a move into a reveal tells the viewer it is coming; hold still (Static Shot), jolt (Shake Slightly / Shake Strongly) or stay in the character's POV (or waive still-reveal on the user's request)`);
+          }
+          if (c.threat === 'full') {
+            fulls += 1;
+            if (waived.has('reveal-ladder')) return;
+            // After the outbreak (or after its first full sighting) a horde is simply there.
+            if (brokenOut(ep) || (horde && hordeSeen)) return;
+            if (revealEp && Number(ep) < revealEp) out.push(`${where}: the threat is shown in full in E${pad2(ep)}, before outline.horror.threat.revealEp E${pad2(revealEp)} — show a shape or a part (or waive reveal-ladder on the user's request)`);
+            if (!revealEp && !horde && style.fullLate && total && start < (2 / 3) * total) out.push(`${where}: the full reveal starts at ${round2(start)} s of ${round2(total)} s — it belongs in the last third (or set outline.horror.threat.revealEp, or waive reveal-ladder on the user's request)`);
+            if (!lowerSeen) out.push(`${where}: the threat is shown in full before any lower rung of the ladder (sound, trace, shape, part) — build up to it (or waive reveal-ladder on the user's request)`);
+            if (Number(c.seconds) > style.fullMaxSeconds) out.push(`${where}: the full reveal runs ${c.seconds} s — keep it to ${style.fullMaxSeconds} s or less, then cut away (or waive reveal-ladder on the user's request)`);
+            if (!horde && !style.fullOnce && !isRealScare(c)) out.push(`${where}: in a jump-scare drama the threat flashes in full only on the scare itself — mark the cut scare / reveal, or show a shape or a part (or waive reveal-ladder on the user's request)`);
+            if (!horde && style.fullOnce && fulls > 1) out.push(`${where}: a second full reveal in E${pad2(ep)} — the full reveal happens once (or waive reveal-ladder on the user's request)`);
+            if (horde) hordeSeen = true;
+          }
+        });
+        if (horror && !gs.includes('action') && seg.panic !== true && cuts.length && !waived.has('dread-pace')) {
+          const secs = cuts.reduce((a, c) => a + (Number(c.seconds) || 0), 0);
+          if (secs / cuts.length < HORROR.dreadCutSeconds) out.push(`${seg.id}: ${cuts.length} cuts in ${round2(secs)} s (average ${round2(secs / cuts.length)} s) — dread averages ${HORROR.dreadCutSeconds} s a cut or more (at most ${Math.max(1, Math.floor(secs / HORROR.dreadCutSeconds))} cuts here); fast cutting releases the tension. Mark the run after a scare panic: true if it is the panic (or waive dread-pace on the user's request)`);
+        }
+      }
+      if (falseAlarms > style.falseAlarmsPerScare * real && segs.length) {
+        const seg = segs.find((s) => (s.cuts || []).some((c) => c.scare === 'false-alarm'));
+        if (!waivedRules(seg).has('scare-ration')) out.push(`E${pad2(ep)}: ${falseAlarms} false alarm${falseAlarms === 1 ? '' : 's'} and ${real} real scare${real === 1 ? '' : 's'} — at most ${style.falseAlarmsPerScare} false alarm${style.falseAlarmsPerScare === 1 ? '' : 's'} per real scare (horrorStyle ${params.horrorStyle || 'dread'}); the fake-out sets up the real one (or waive scare-ration on the user's request)`);
+      }
+    }
+    return out;
+  }),
+  gate('horror-advice', 'storyboard', 'horror craft: the scares the outline promised, frames that say how much is black, handheld only for fear, no hero tracking, no symmetry by default, short prompts (advisory)', (ctx) => {
+    const { project, params } = ctx;
+    const out = [];
+    const look = isHorrorLook(params);
+    for (const [ep, e] of ctx.episodes) {
+      const segs = e.storyboard?.segments || [];
+      const horrorSegs = segs.filter((s) => grammarsOf(s, params).includes('horror'));
+      if (!look && !horrorSegs.length) continue;
+      const planned = asList((project.outline?.episodes || []).find((x) => Number(x.ep) === Number(ep))?.scares);
+      const cuts = segs.flatMap((s) => s.cuts || []);
+      if (planned.some((x) => ['惊吓', '揭示', '规则惩罚'].includes(x)) && !cuts.some(isRealScare)) out.push(`E${pad2(ep)}: the outline promises a real scare (${planned.join(' / ')}) but no cut is marked scare: scare / reveal`);
+      if (look && params.composition === 'art-first') out.push(`E${pad2(ep)}: art-first symmetry reads as safe and beautiful — in horror use it only where something is too perfect (cinematography-horror.md §2)`);
+      for (const seg of horrorSegs) {
+        const fight = grammarsOf(seg, params).includes('action') || seg.panic === true;
+        const prompt = String(seg.prompt || '');
+        if (prompt.length > HORROR.maxPromptChars) out.push(`${seg.id}: prompt is ${prompt.length} characters — horror prompts over ${HORROR.maxPromptChars} average into a bland, bright frame; cut the legends and the devices per shot`);
+        (seg.cuts || []).forEach((c, k) => {
+          const where = `${seg.id} cut ${k + 1}`;
+          if (!fight && !isRealScare(c) && c.camera === 'Shake Slightly' && !DV_RE.test(String(params.lookPhrase || ''))) out.push(`${where}: handheld drift on a dread cut — handheld is a character's fear, not a filter; lock it off and keep the shake for the scare`);
+          if (!fight && c.camera === 'Tracking Shot') out.push(`${where}: a tracking shot alongside reads as confidence — shoot the walk from behind, from ahead backing away, or from the dark at the end of the corridor`);
+          if (look && c.frame && !/dark|black|shadow|underexposed|unlit|night/i.test(c.frame)) out.push(`${where}: the frame never says what is dark — how much of it is black? (name the darkness: "the rest of the frame falls to black")`);
+        });
+      }
+    }
+    return out;
+  }, { advisory: true }),
+  gate('dv-consistency', 'storyboard', 'found footage / DV: a camcorder look is shot on the camcorder — no cinema package, no "cinematic film still"', (ctx) => {
+    const { params } = ctx;
+    if (!DV_RE.test(`${params.lookPhrase || ''} ${params.lookPhraseZh || ''}`)) return [];
+    const out = [];
+    const kit = params.camera || DEFAULT_PARAMS.camera;
+    if (CINEMA_KIT_RE.test(`${kit.body} ${kit.lens}`)) out.push(`params.camera (${kit.body}, ${kit.lens}) is a cinema package but the look is found footage — the model averages the two toward clean cinema; set params.camera to the camcorder (${DV_KIT.body}, ${DV_KIT.lens}, ${DV_KIT.aperture}), as init --footage dv does`);
+    // Keyframe mode needs the style's "film still" in every frame, so the check is for sheets mode.
+    if (params.references !== 'keyframes') {
+      for (const [, e] of ctx.episodes) {
+        for (const seg of e.storyboard?.segments || []) {
+          if (/cinematic film still/i.test(String(seg.prompt || ''))) out.push(`${seg.id}: prompt says "cinematic film still" in a found-footage drama — name the camcorder in the fiction instead`);
+          (seg.cuts || []).forEach((c, k) => { if (/cinematic film still/i.test(String(c.frame || ''))) out.push(`${seg.id} cut ${k + 1}: frame says "cinematic film still" in a found-footage drama`); });
+        }
       }
     }
     return out;
@@ -5827,6 +6141,11 @@ export function initProject(opts) {
   for (const k of opts.story ? String(opts.story).split(/[,\s]+/).filter(Boolean) : []) if (!Object.hasOwn(STORY_GENRES, k)) throw new Error(`--story must be a list of ${Object.keys(STORY_GENRES).join(' / ')}`);
   if (opts.composition && !Object.hasOwn(COMPOSITION_STYLES, opts.composition)) throw new Error(`--composition must be one of ${Object.keys(COMPOSITION_STYLES).join(' / ')}`);
   if (opts.comedy && !Object.hasOwn(COMEDY_STYLES, opts.comedy)) throw new Error(`--comedy must be one of ${Object.keys(COMEDY_STYLES).join(' / ')}`);
+  if (opts.footage && !['cinema', 'dv'].includes(opts.footage)) throw new Error('--footage must be cinema or dv');
+  if (opts.horrorStyle && !Object.hasOwn(HORROR_STYLES, opts.horrorStyle)) throw new Error(`--horror-style must be one of ${Object.keys(HORROR_STYLES).join(' / ')}`);
+  const horrorGenre = HORROR_GENRE_RE.test(String(opts.genre || ''));
+  const market = opts.market || DEFAULT_PARAMS.market;
+  const dv = opts.footage === 'dv';
   return {
     version: VERSION,
     title: String(opts.title),
@@ -5844,7 +6163,8 @@ export function initProject(opts) {
       references: opts.references || DEFAULT_PARAMS.references,
       // `auto` unless this model has no autoDuration parameter.
       videoDuration: opts.duration || (mode.autoDuration ? DEFAULT_PARAMS.videoDuration : 'fixed'),
-      lookPhrase: opts.look || DEFAULT_PARAMS.lookPhrase,
+      lookPhrase: opts.look || (dv ? DV_LOOK : DEFAULT_PARAMS.lookPhrase),
+      ...(dv && !opts.look ? { lookPhraseZh: DV_LOOK_ZH } : {}),
       style: opts.style || DEFAULT_PARAMS.style,
       imagePromptLang: opts.imageLang || DEFAULT_PARAMS.imagePromptLang,
       ...(opts.foreground ? { foregroundLevel: opts.foreground } : {}),
@@ -5852,16 +6172,20 @@ export function initProject(opts) {
       cinematography: cine,
       // Named, or read from the genre only when it names an action style outright.
       action: opts.action || actionForGenre(opts.genre),
-      violence: opts.violence || DEFAULT_PARAMS.violence,
+      // Zombie gore is refused by providers and a red line on the mainland: implied unless asked.
+      violence: opts.violence || (ZOMBIE_RE.test(String(opts.genre || '')) && market === 'mainland' ? 'implied' : DEFAULT_PARAMS.violence),
+      ...(opts.horrorStyle || horrorGenre ? { horrorStyle: opts.horrorStyle || horrorStyleForGenre(opts.genre) } : {}),
       // A comedy genre cuts every segment as comedy unless the segment says otherwise.
       grammar: opts.grammar || grammarForGenre(opts.genre),
       composition: opts.composition || compositionForGenre(opts.genre),
       story: opts.story ? String(opts.story).split(/[,\s]+/).filter(Boolean) : storyForGenre(opts.genre),
-      market: opts.market || DEFAULT_PARAMS.market,
+      market,
       format,
       comedy: opts.comedy || (opts.grammar === 'comedy' && comedyForGenre(opts.genre) === 'none' ? 'slapstick' : comedyForGenre(opts.genre)),
       // A preset that asks for a faster lens brings its own package.
       ...(CINEMATOGRAPHY_PRESETS[cine]?.kit ? { camera: { ...DEFAULT_PARAMS.camera, ...CINEMATOGRAPHY_PRESETS[cine].kit } } : {}),
+      // Found footage: the camera is in the story, so the frames name the camcorder, not a cinema package.
+      ...(dv ? { camera: { ...DV_KIT } } : {}),
       register: normalizeRegister(opts.register || DEFAULT_PARAMS.register),
     },
     source: { kind: opts.source || 'original', path: opts.sourcePath || '', note: '' },
@@ -6004,7 +6328,7 @@ function main(argv) {
       resolution: flag(rest, '--resolution'), accent: flag(rest, '--accent'),
       references: flag(rest, '--references'), duration: flag(rest, '--duration'), look: flag(rest, '--look'),
       register: flag(rest, '--register'), imageLang: flag(rest, '--image-lang'), foreground: flag(rest, '--foreground'),
-      cinematography: flag(rest, '--cinematography'), action: flag(rest, '--action'), violence: flag(rest, '--violence'), grammar: flag(rest, '--grammar'), comedy: flag(rest, '--comedy'), composition: flag(rest, '--composition'), story: flag(rest, '--story'), market: flag(rest, '--market'), format: flag(rest, '--format'),
+      cinematography: flag(rest, '--cinematography'), action: flag(rest, '--action'), violence: flag(rest, '--violence'), grammar: flag(rest, '--grammar'), comedy: flag(rest, '--comedy'), composition: flag(rest, '--composition'), story: flag(rest, '--story'), market: flag(rest, '--market'), format: flag(rest, '--format'), footage: flag(rest, '--footage'), horrorStyle: flag(rest, '--horror-style'),
       source: flag(rest, '--source'), sourcePath: flag(rest, '--source-path'),
     });
     const paths = projectPaths(dir);

@@ -63,6 +63,9 @@ Craft in `../../short-drama-core/reference/cinematography-<preset>.md`; not gate
 | `costume-dark` | fire crackle, wind, rain on tiles, armour creaking, distant drums; **`silence`** in the court before a verdict; violence carried by sound and consequence rather than choreography |
 | `scifi-hard` | hums, fans, relays, alarms, radio chatter with squelch, breathing in a helmet; **silence in vacuum** (only the suit's breathing and radio); music sparse — a low drone, a single piano line |
 | `scifi-soft` | rain, crowds in many languages, synth hums, holographic chimes, drones passing; music synthwave / ambient pads |
+| `costume-horror` | as `horror`, with period sounds: wind through paper windows, a temple bell, the creak of a coffin lid, a wooden fish (木鱼) in the dark, a 唢呐 far off; score in post as `horror` |
+| `apocalypse` | wind across empty streets, a loose sheet of metal banging, a generator, a crackling radio, crows, the horde's distant roar; music sparse — a low pulse, a lone guitar or a drone; silence in the dead city |
+| `horror` | room tone and one small diegetic sound per hold (a drip, the tube's buzz, a scrape, breath) — write the silence: `near silence, only the hum of the tube`; off-screen sound is the first rung of the reveal ladder; score in post: a low drone that lowers before the scare, **silence just before the hit**, one stinger on it, ringing silence after; never melody over a dread hold |
 
 ### By segment grammar (`segment.grammar`, else `params.grammar`)
 
@@ -73,6 +76,7 @@ Craft in `../../short-drama-core/reference/grammar-faceslap.md` §3, `grammar-co
 | --- | --- |
 | `faceslap` | `silence` or `drop` under the insult, **`enter` / `swell` on the entrance or the proof**, full through the reaction cascade; sfx: the document slapped on the table, the gasp, the cup falling, the murmur rising |
 | `comedy` | **silence before the punchline** (a `silence` cue or a pause in the ambience); `slapstick` — cartoon sfx on every beat (boing, whoosh, record scratch) and a comic sting after the punchline; `deadpan` — no comic sfx, often no music, the ambience (clock, fly, fridge hum) fills the hold; `romcom` — playful pops and plinks, a heartbeat, a cute sting, the OST entering on the blush |
+| `horror` | the scare cycle in sound (`../../short-drama-core/reference/grammar-horror.md`): the drone thins through the build, a small sharp sound on the false alarm then nothing, **silence before the scare**, the stinger on the `scare` / `reveal` cut (post), ringing silence in the aftermath |
 | `action` | **every impact gets an sfx on its cut**; the music `drop`s out before the decisive blow; per style: `bullet-time` stretched / pitched-down sound then snap back, `gun-fu` driving low synth, `hk-kungfu` exaggerated whooshes and snaps with a comic sting, `historical-realist` metal on metal and often no score, `street-brawl` none or a low drone, `car-chase` engines then the silence after the crash |
 
 ## SFX + special short-drama FX

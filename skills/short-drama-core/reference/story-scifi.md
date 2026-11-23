@@ -1,7 +1,8 @@
 # Story genre `scifi` — 科幻
 
 末世 / 末世重生囤货 · 时间循环 · 穿越时空 · AI 觉醒 · 克隆 · 赛博朋克 · 星际. This is the **story** side; the
-look is `scifi-hard` / `scifi-soft` (`cinematography-scifi-*.md`). Shared machinery: `story.md`.
+look is `scifi-hard` / `scifi-soft` (`cinematography-scifi-*.md`), or `apocalypse` for 末日 / 末世 / 废土
+(`cinematography-apocalypse.md`). Shared machinery: `story.md`.
 
 ## 1. The promise — one "what if", followed all the way
 

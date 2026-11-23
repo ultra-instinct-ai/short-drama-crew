@@ -54,7 +54,9 @@ each outline episode `scares: [氛围 / 假警报 / 惊吓 / 揭示 / 规则惩�
 ## 3. The episode
 
 - **The scare cycle**: quiet → build (sound drops, focus narrows) → a false alarm → relief → the real
-  scare, often from a misdirected angle. Ration the false alarms.
+  scare, often from a misdirected angle. Ration the false alarms. How it is shot and cut, and the
+  storyboard gates that hold it: `cinematography-horror.md` (the look) and `grammar-horror.md`
+  (`scare` / `threat` on the cuts, the hold before the scare, the reveal ladder).
 - **The 60-second template** (TikTok horror): 0–3 s a hook (a sound, an image, a line of text); set up a
   pattern and crack it a little each pass; the turn; a lingering image — the cliff.
 - **Imply, don't show**: "let the mind supply the rest" — Blumhouse avoids CGI because the imagined is
@@ -63,6 +65,16 @@ each outline episode `scares: [氛围 / 假警报 / 惊吓 / 揭示 / 规则惩�
 - **Vary the mechanism**: 《逃出绝命岛》 was criticised for repeating "狼来了" (she warns, nobody listens,
   someone dies) until it bored. Mark the escalation with an `intensity` per episode if you track it; put a
   quieter breather after a peak.
+
+- **Sub-genres** and how they are shot: **古代 / 聊斋 / 志怪 / 僵尸** — `costume-horror`, lit by
+  fire and moon (period settings get more leeway on the mainland, never a ghost confirmed real);
+  **jump-scare** (惊吓 / 鬼屋 / 密室) — `horrorStyle: jump`, more frequent hits each set up by a
+  fake-out; **zombies** (丧尸 / 感染者) — `threat.kind: horde`: the outbreak early (the premise), the
+  dread is *who* is bitten next and what the survivors do to each other; `zombie-horde` fights;
+  **末日 / 末世** — the `apocalypse` look, often with `scifi` (the countdown, foreknowledge).
+- **Zombies on the mainland**: gore and 画风观感不适 are red lines; `init` sets `violence: implied`.
+  The infection is explained by 科学 (a virus, an experiment, a leak) and written as 感染者 /
+  变异者; the bite is shown by its consequence, never in flesh.
 
 ## 4. Characters
 
