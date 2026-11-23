@@ -19,6 +19,7 @@ project file: `prompt-audit.mjs` (shipped in `reference/`).
 | 道具 prop | `@image4` 係邊件道具 | 外形、材質、尺寸、標記 | 枱面、背景、手 |
 | 瞬間 moment | `@image6` 係「撞擊一瞬間」 | 打光方向、反差、剪影形狀 | 背景細節、其他鏡頭嘅走位 |
 | 風格 style | `@image7` 係風格板 | 質感、顆粒、調色 | 題材、人物、構圖 |
+| 俯視站位 layout (`params.topView: on`) | `@image8` 係同一空間嘅正上方俯拍＋標記，每個顏色點＝邊張人物圖 | 每個人坐邊、面向、每個鏡頭嘅機位 | 俯視圖本身、點、箭頭、文字、編號（絕不入畫）|
 
 Two consequences the model actually obeys:
 

@@ -14,6 +14,7 @@
 //            [--grammar drama|action|faceslap|comedy|horror] [--comedy slapstick|deadpan|romcom|none]
 //                                                                      (the default segment grammar and the comedy style — see GRAMMARS)
 //            [--composition standard|art-first]                      (艺术优先 framing in any genre — see COMPOSITION_STYLES)
+//            [--top-view off|on]                                      (top-view plan: an overhead photo per scene with marks per segment — top-view-plan.md)
 //            [--footage cinema|dv]                                   (dv: found footage — the camcorder kit and look phrase, see DV_KIT)
 //            [--horror-style dread|jump]                              (slow-burn or jump-scare horror — see HORROR_STYLES; read from the genre)
 //            [--story revenge,sweet,mystery,comedy,angst,family,palace,cultivation,scifi,horror]
@@ -31,6 +32,8 @@
 //   seed     <project> storyboard --ep N [--force]    beat worksheet, visual-plan worksheet + empty segments from the script
 //   render   <project> outline | guideline | character C01 | scene S01 | prop P01 | script --ep N | dialogue --ep N | segment E01-01
 //   prompt   <project> segment E01-01                 derived video-prompt skeleton + keyframe reference plan
+//   topview  <project> segment E01-01 [--image <top-view sheet>] [--out <png>]
+//                                                      the top-view overlay (params.topView on): marks + cameras over the sheet, via headless Chrome
 //   prompt   <project> voice C01                       the acted sample text for the voice node
 //   prompt   <project> image C01|S01|P01 [--asset headshot|sheet|lighting:<state>|state:<state>] [--json]
 //                                                      the image node's prompt, in params.imagePromptLang (+ negative, ratio, reference)
@@ -47,6 +50,7 @@ import { copyFileSync, existsSync, mkdirSync, readFileSync, realpathSync, writeF
 import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { homedir } from 'node:os';
+import { execFileSync } from 'node:child_process';
 
 // ── constants ───────────────────────────────────────────────────────────────
 
@@ -69,6 +73,8 @@ export const DEFAULT_PARAMS = Object.freeze({
   maxAudioRefs: 3,
   maxVideoRefs: 3,
   videoReferences: 'none',
+  // The top-view plan (top-view-plan.md): off unless the project turns it on at setup.
+  topView: 'off',
   videoResolution: '720P',
   speechAccent: '',
   // The production's camera package. Every frame prompt names it, so two shots cut together.
@@ -245,6 +251,75 @@ export const DURATION_MODES = ['fixed', 'auto'];
  */
 export const VIDEO_REFERENCE_MODES = ['none', 'previous'];
 export const IMAGE_PROMPT_LANGS = ['en', 'zh'];
+
+/**
+ * The top-view plan (reference/top-view-plan.md). With `params.topView: on` every scene gets a
+ * top-view sheet — an overhead photo of the set, generated from its scene sheet — and every segment
+ * marks on it where each person sits and faces and where each cut's camera stands. `topview` draws
+ * those marks over the photo and the overlay goes into the clip as one more `@image`. Measured on
+ * Seedance 2.5 Ref (Nov 2026, 4-person dinner): the photo with marks held seats, screen sides, the
+ * over-the-shoulder side and the wide's seating across two segments with no position words in the
+ * prompt; an abstract diagram did not. Positions are fractions of the photo (0–1, origin top left;
+ * cameras may stand outside it, up to TOP_VIEW_MARGIN beyond an edge).
+ */
+export const TOP_VIEW_MODES = ['off', 'on'];
+export const TOP_VIEW_MARGIN = 0.5;
+/** Marker colours, in reference order of the people in a segment; the prompt legend ties each to a sheet. */
+export const TOP_VIEW_COLORS = [
+  { hex: '#2F5DA8', en: 'blue', zh: '蓝' }, { hex: '#C0392B', en: 'red', zh: '红' }, { hex: '#E3A400', en: 'yellow', zh: '黄' },
+  { hex: '#2E8B57', en: 'green', zh: '绿' }, { hex: '#8E44AD', en: 'purple', zh: '紫' }, { hex: '#E67E22', en: 'orange', zh: '橙' },
+  { hex: '#16A085', en: 'teal', zh: '青' }, { hex: '#F5F5F5', en: 'white', zh: '白' },
+];
+const TOP_VIEW_SENSOR_MM = 36.7;   // full-frame-ish width: the lens field of view the wedge is drawn with
+/** Horizontal field of view (radians) of a focal like "50mm"; 35 mm when it cannot be read. */
+export function topViewFov(focal) {
+  const mm = Number(String(focal || '').match(/(\d+(?:\.\d+)?)/)?.[1]) || 35;
+  return 2 * Math.atan(TOP_VIEW_SENSOR_MM / (2 * mm));
+}
+const isPoint = (p, margin = 0) => Array.isArray(p) && p.length === 2 && p.every((v) => typeof v === 'number' && Number.isFinite(v) && v >= -margin && v <= 1 + margin);
+/** Where a camera looks: a point, or the position of the person it names. */
+function topViewAim(tv, cam) {
+  if (typeof cam?.aim === 'string') return tv?.positions?.[cam.aim]?.at || null;
+  return cam?.aim || null;
+}
+/**
+ * What one camera sees. Coordinates are on a 16:9 photo, so x is stretched to keep angles true.
+ * Returns each person's horizontal angle off the lens axis (negative = screen left) and whether
+ * they fall inside the lens's field of view.
+ */
+export function topViewSees(tv, cam, focal) {
+  const aim = topViewAim(tv, cam);
+  if (!isPoint(cam?.at, TOP_VIEW_MARGIN) || !isPoint(aim, TOP_VIEW_MARGIN)) return null;
+  const sx = 16 / 9;
+  const d = [(aim[0] - cam.at[0]) * sx, aim[1] - cam.at[1]];
+  const half = topViewFov(focal) / 2;
+  const out = {};
+  for (const [id, p] of Object.entries(tv.positions || {})) {
+    if (!isPoint(p?.at)) continue;
+    const v = [(p.at[0] - cam.at[0]) * sx, p.at[1] - cam.at[1]];
+    const angle = Math.atan2(d[0] * v[1] - d[1] * v[0], d[0] * v[0] + d[1] * v[1]);
+    const t = angle / half;
+    out[id] = { angle, inFrame: Math.abs(angle) <= half, side: t < -0.12 ? 'left' : t > 0.12 ? 'right' : 'center' };
+  }
+  return out;
+}
+/** Which side of the line between two people a camera stands on: 1, -1, or 0 when it cannot tell. */
+export function topViewAxisSide(tv, between, at) {
+  const a = tv?.positions?.[between?.[0]]?.at, b = tv?.positions?.[between?.[1]]?.at;
+  if (!isPoint(a) || !isPoint(b) || !isPoint(at, TOP_VIEW_MARGIN)) return 0;
+  return Math.sign((b[0] - a[0]) * (at[1] - a[1]) - (b[1] - a[1]) * (at[0] - a[0]));
+}
+/** The people a segment marks, in the order the legend colours them (first appearance in the cuts). */
+export function topViewPeople(seg) {
+  const ids = [];
+  for (const c of seg?.cuts || []) for (const id of c.characters || []) if (!ids.includes(id)) ids.push(id);
+  for (const id of Object.keys(seg?.topView?.positions || {})) if (!ids.includes(id)) ids.push(id);
+  return ids;
+}
+/** The phrase each shot carries so the model knows which camera mark it is: gated verbatim. */
+export function topViewCameraPhrase(n, label, lang = 'en') {
+  return lang === 'zh' ? `机位：${label} 上的 ${n} 号机` : `from camera ${n} on ${label}`;
+}
 
 // ── screenplay craft (from the w-short-drama-editor / character-creator / dialogue-editor method) ──
 
@@ -2155,6 +2230,8 @@ export const GATES = [
     if (!REFERENCE_MODES.includes(params.references)) out.push(`params.references must be one of ${REFERENCE_MODES.join(' / ')}`);
     if (!DURATION_MODES.includes(params.videoDuration)) out.push(`params.videoDuration must be one of ${DURATION_MODES.join(' / ')}`);
     if (!VIDEO_REFERENCE_MODES.includes(params.videoReferences)) out.push(`params.videoReferences must be one of ${VIDEO_REFERENCE_MODES.join(' / ')}`);
+    if (!TOP_VIEW_MODES.includes(params.topView)) out.push(`params.topView must be one of ${TOP_VIEW_MODES.join(' / ')}`);
+    else if (params.topView === 'on' && params.references !== 'sheets') out.push('params.topView = on needs params.references = sheets — in keyframes mode the keyframes already fix where everyone is');
     const mode = videoModel(params);
     if (params.videoDuration === 'auto' && !mode.autoDuration) out.push(`${mode.model} has no auto duration \u2014 set params.videoDuration = fixed and give every segment a whole-second total`);
     if (!(Number(params.minSegmentSeconds) >= mode.minSegmentSeconds && Number(params.maxSegmentSeconds) <= mode.maxSegmentSeconds && params.minSegmentSeconds <= params.maxSegmentSeconds)) {
@@ -4304,6 +4381,75 @@ export const GATES = [
     }
     return out;
   }),
+  gate('top-view', 'storyboard', 'top-view plan (params.topView on): every person marked and facing, a camera mark per cut that sees everyone in the cut on the side placement says, cameras on one side of the axis across the scene, positions carried between segments, each shot names its camera', (ctx) => {
+    const { project, params } = ctx;
+    const out = [];
+    if (params.topView !== 'on' || params.references !== 'sheets') return out;
+    const lang = videoModel(params).promptLang === 'zh' ? 'zh' : 'en';
+    const near = (a, b) => Math.abs(a[0] - b[0]) <= 0.02 && Math.abs(a[1] - b[1]) <= 0.02;
+    for (const [, e] of ctx.episodes) {
+      const segs = e.storyboard?.segments || [];
+      segs.forEach((seg, si) => {
+        const tv = seg.topView;
+        const cuts = seg.cuts || [];
+        if (!isObject(tv)) { out.push(`${seg.id}: topView { positions, cameras } is required while params.topView is on — mark everyone on the scene's top-view sheet and a camera for every cut`); return; }
+        const positions = isObject(tv.positions) ? tv.positions : {};
+        for (const id of topViewPeople(seg)) {
+          const pt = positions[id];
+          if (!isObject(pt)) { out.push(`${seg.id}: topView.positions.${id} is missing — everyone in the segment's cuts is marked`); continue; }
+          if (!isPoint(pt.at)) out.push(`${seg.id}: topView.positions.${id}.at must be [x, y], fractions 0–1 of the top-view sheet (origin top left)`);
+          if (!(typeof pt.facing === 'number' && Number.isFinite(pt.facing))) out.push(`${seg.id}: topView.positions.${id}.facing must be degrees (0 = image right, 90 = image down)`);
+        }
+        const cams = asList(tv.cameras);
+        const sides = [];
+        cuts.forEach((c, k) => {
+          const where = `${seg.id} cut ${k + 1}`;
+          const cam = cams.find((x) => Number(x?.cut) === k + 1);
+          if (!cam) { out.push(`${where}: no camera in topView.cameras (cut: ${k + 1}, at: [x, y], aim: [x, y] or a person id)`); return; }
+          if (!isPoint(cam.at, TOP_VIEW_MARGIN)) { out.push(`${where}: camera at must be [x, y] within ${TOP_VIEW_MARGIN} of the sheet`); return; }
+          if (cam.to !== undefined && !isPoint(cam.to, TOP_VIEW_MARGIN)) out.push(`${where}: camera to (where a move ends) must be [x, y]`);
+          const seen = topViewSees(tv, cam, focalOf(c));
+          if (!seen) { out.push(`${where}: camera aim must be [x, y] or the id of a marked person`); return; }
+          for (const id of c.characters || []) {
+            if (!seen[id] || id === c.ots) continue;
+            if (!seen[id].inFrame) out.push(`${where}: ${id} is outside camera ${k + 1}'s view on the top view (${focalOf(c) || '35mm'}) — move the camera, aim it, or take ${id} out of the cut`);
+            const want = isObject(c.placement) && c.placement[id] ? parsePlacement(c.placement[id]).side : null;
+            if (want && want !== 'center' && seen[id].side !== 'center' && want !== seen[id].side) out.push(`${where}: placement puts ${id} ${want}, but from camera ${k + 1} they are screen ${seen[id].side} — fix the mark or the placement`);
+          }
+          const axis = isObject(seg.axis) ? asList(seg.axis.between) : [];
+          if (axis.length === 2 && c.axisSide !== 'cross') { const side = topViewAxisSide(tv, axis, cam.at); if (side) sides.push([k + 1, side, axis.join('-')]); }
+        });
+        // One side of the axis inside the segment …
+        if (sides.length && sides.some((x) => x[1] !== sides[0][1])) out.push(`${seg.id}: cameras ${sides.filter((x) => x[1] !== sides[0][1]).map((x) => x[0]).join(', ')} stand on the other side of the ${sides[0][2]} axis from camera ${sides[0][0]} — mark the cut axisSide "cross" with a note, or move the camera`);
+        // … and across the scene: the previous segment's cameras and marks carry over.
+        const prev = segs[si - 1];
+        if (prev && Number(prev.sceneIndex) === Number(seg.sceneIndex) && isObject(prev.topView)) {
+          const moved = asList(tv.moved);
+          for (const [id, pt] of Object.entries(positions)) {
+            const was = prev.topView.positions?.[id]?.at;
+            if (isPoint(was) && isPoint(pt?.at) && !near(was, pt.at) && !moved.includes(id)) out.push(`${seg.id}: ${id} is marked at [${pt.at}] but ${prev.id} left them at [${was}] — same scene, the mark carries over (list them in topView.moved when the script moves them)`);
+          }
+          const axis = isObject(seg.axis) ? asList(seg.axis.between) : [];
+          if (axis.length === 2 && sides.length && !cuts.some((c) => c.axisSide === 'cross')) {
+            const prevSide = asList(prev.topView.cameras).map((cam) => topViewAxisSide(prev.topView, axis, cam?.at)).find(Boolean);
+            if (prevSide && prevSide !== sides[0][1]) out.push(`${seg.id}: its cameras stand on the other side of the ${axis.join('-')} axis from ${prev.id}'s — screen left and right flip between the clips; keep the side or cross on purpose (axisSide "cross" with a note)`);
+          }
+        }
+        // The prompt names each camera mark.
+        const prompt = String(seg.prompt || '');
+        const label = segmentReferences(project, e, seg).find((r) => r.asset === 'topview' && r.role === 'layout')?.label;
+        if (prompt.trim() && label) {
+          const texts = shotTexts(prompt, videoModel(params).family, params.references);
+          cuts.forEach((c, k) => {
+            const phrase = topViewCameraPhrase(k + 1, label, lang);
+            const text = texts.get(k + 1);
+            if (text && !text.includes(phrase)) out.push(`${seg.id} cut ${k + 1}: the shot must name its camera mark — paste "${phrase}"`);
+          });
+        }
+      });
+    }
+    return out;
+  }),
   gate('idle-motion', 'storyboard', 'sheets mode: in a cut with two or more visible faces, everyone but the one carrying the action has a small motion of their own, written into the shot', (ctx) => {
     const { project, params } = ctx;
     const out = [];
@@ -5197,6 +5343,13 @@ export function imagePrompt(project, id, asset) {
     throw new Error(`a character has --asset headshot | sheet, not ${kind}`);
   }
   if (kind === 'sheet') return out(String(img.sheet || ''), '16:9', null);
+  // The top-view sheet (top-view-plan.md): the same set photographed from straight above, so the
+  // segment overlays can mark seats and cameras on the real furniture rather than on a diagram.
+  if (sc && kind === 'topview') {
+    return out(zh
+      ? `${t('@image1 是同一个空间。从正上方垂直俯拍整个场景，像建筑俯视照片，没有透视倾斜，所有家具都在 @image1 中的位置。场景：')}${img.sheet || ''}${t('。空场景，没有任何人，照片写实')}`
+      : `@image1 is this exact space. Photograph the same set from directly overhead: a straight-down 90-degree top view of the whole room, like an architectural overhead photo, no perspective tilt, every piece of furniture where @image1 has it. The set: ${img.sheet || ''}. Empty scene, no people, photoreal`, '16:9', 'sheet');
+  }
   if (sc && kind.startsWith('lighting:')) {
     const state = kind.slice('lighting:'.length);
     const l = (sc.lighting || []).find((x) => x.state === state);
@@ -5213,7 +5366,7 @@ export function imagePrompt(project, id, asset) {
       ? `${t('@image1 是要完全还原的同一件道具。')}${st.prompt}${t('。纯白背景，没有人，没有手')}`
       : `@image1 is the prop to reproduce exactly. ${st.prompt}, pure white background, no people, no hands`, '16:9', 'sheet');
   }
-  throw new Error(sc ? `a scene has --asset sheet | lighting:<state>` : `a prop has --asset sheet | state:<state>`);
+  throw new Error(sc ? `a scene has --asset sheet | lighting:<state> | topview` : `a prop has --asset sheet | state:<state>`);
 }
 
 export function voiceSamplePrompt(character, params = {}) {
@@ -5276,6 +5429,10 @@ export function segmentReferences(project, episode, seg) {
     for (const c of seg.cuts || []) for (const id of c.props || []) if (!seen.has(id)) { seen.add(id); refs.push({ entity: id, asset: 'sheet', role: 'prop', why: `prop ${propById(project, id)?.name || id}`, use: sheetUse({ entity: id, asset: 'sheet' }, project), zh: sheetZh({ entity: id, asset: 'sheet' }, project) }); }
     refs.forEach((r) => (r.kind = 'image'));
   }
+  // The top-view overlay goes last among the pictures; its legend is written once the labels exist.
+  if (params.topView === 'on' && params.references === 'sheets' && isObject(seg.topView)) {
+    refs.push({ entity: seg.id, asset: 'topview', role: 'layout', kind: 'image', why: `top-view plan of ${seg.id}` });
+  }
   // The clip before this one, when the project asks for it: the cheapest continuity there is — the
   // model sees what the last generation actually produced, not a description of it.
   if (params.videoReferences === 'previous') {
@@ -5305,6 +5462,15 @@ export function segmentReferences(project, episode, seg) {
   // connected, otherwise by their name-free identity.
   // Only in sheets mode do the @imageN labels belong to the sheets; in keyframes mode they are the
   // keyframes, so a voice must be tied to its person by description instead.
+  const topRef = refs.find((r) => r.asset === 'topview' && r.role === 'layout');
+  if (topRef) {
+    const sheetLabel = new Map(refs.filter((r) => r.kind === 'image' && r.role === 'character').map((r) => [r.entity, r.label]));
+    const dots = topViewPeople(seg).map((id, k) => ({ id, color: TOP_VIEW_COLORS[k % TOP_VIEW_COLORS.length] }));
+    const whoEn = (id) => sheetLabel.get(id) || identityOf(characterById(project, id));
+    const whoZh = (id) => (sheetLabel.get(id) ? `${sheetLabel.get(id)}中人物` : (characterById(project, id)?.profile?.identity || identityOf(characterById(project, id))));
+    topRef.use = `a photo of this same room taken from directly above, with markers drawn on it, and it alone decides where everyone sits and where each camera stands: ${dots.map((d) => `the ${d.color.en} dot is ${whoEn(d.id)}`).join(', ')}; each dot's arrow is the way that person faces; each numbered black box is the camera for that shot and its white wedge is exactly what that camera sees. Follow it for every position and camera angle; never show the overhead view, its dots, arrows, labels or numbers`;
+    topRef.zh = `同一个空间的正上方俯拍照片，上面画了标记，人物站位与机位只看它：${dots.map((d) => `${d.color.zh}点是${whoZh(d.id)}`).join('，')}；点上的箭头是此人面朝的方向；带编号的黑框是该镜头的机位，白色扇形就是那台机看到的范围。所有站位和机位都照它；画面里绝不出现这张俯视图、它的点、箭头、文字或编号`;
+  }
   for (const r of refs) {
     if (r.kind !== 'video') continue;
     r.use = `the clip immediately before this one — continue its look, wardrobe, lighting and camera language, and pick up where it left off; do not repeat its action`;
@@ -5422,6 +5588,9 @@ export function promptSkeleton(project, episode, segmentId) {
   const framingLang = videoModel(params).promptLang === 'zh' ? 'zh' : 'en';
   const idleOf = (c) => (params.references === 'sheets' ? idleSentence(c, whoOf, framingLang) : '');
   const framingOf = (c) => (params.references === 'sheets' ? shotFraming(c, seg, whoOf, framingLang) : '');
+  // Top-view plan: every shot names the camera mark it is shot from (gated verbatim by `top-view`).
+  const topLabel = allRefs.find((r) => r.asset === 'topview' && r.role === 'layout')?.label;
+  const topViewOf = (k, lang = framingLang) => (topLabel ? `${topViewCameraPhrase(k + 1, topLabel, lang)}${lang === 'zh' ? '；' : '. '}` : '');
   // Keyframes mode: the picture already holds everyone, but the clip still loses a figure the text
   // never mentions, so the shot counts them too (by identity — the @imageN labels are frames).
   const rosterOf = (c) => { const r = rosterPhrase(c, whoOf, framingLang, cutInstant(cuts, cuts.indexOf(c))); return r ? `${r} ` : ''; };
@@ -5459,7 +5628,7 @@ export function promptSkeleton(project, episode, segmentId) {
       // In sheets mode the cut's own `frame` goes into the prompt and already carries the lens, the
       // light and the foreground (gated there), so only the shot size and camera move are added.
       const body = sheets
-        ? `${framingOf(c)}${c.frame || '…'} ${SIZES[c.size] || c.size}, ${c.camera}. ${propOf(c, framingLang)}`
+        ? `${topViewOf(k)}${framingOf(c)}${c.frame || '…'} ${SIZES[c.size] || c.size}, ${c.camera}. ${propOf(c, framingLang)}`
         : `… anchor on @image${k + 1} · ${rosterOf(c)}${SIZES[c.size] || c.size}, ${c.camera}, ${cameraPhrase(c, params)}. ${lightPhrase(c)}.${foregroundPhrase(c)}`;
       return `${head}${body} ${motionSentence(c)} ${idleOf(c)}${cameraClause(c)} ${d}${lips}`.replace(/\s+/g, ' ').trim();
     });
@@ -5477,7 +5646,7 @@ export function promptSkeleton(project, episode, segmentId) {
       // Wan's prompt is Chinese: the lens and the light direction translate, the note and the
       // foreground are the author's English prose, so they are left as blanks to write in Chinese.
       const shot = `${cameraPhrase(c, params, 'zh')}。${LIGHT_DIRECTIONS_ZH[c.light?.direction] || '…'}，…。前景：${c.foreground ? '…（虚化）' : '无'}。`;
-      return [`${wanShotHeader(cuts, k)}${framingOf(c)}…${shot}${motionSentence(c, 'zh')}${idleOf(c)}${propOf(c, 'zh')}${cameraClause(c, 'zh')}`, ...talk].join('\n');
+      return [`${wanShotHeader(cuts, k)}${params.references === 'sheets' ? topViewOf(k, 'zh') : ''}${framingOf(c)}…${shot}${motionSentence(c, 'zh')}${idleOf(c)}${propOf(c, 'zh')}${cameraClause(c, 'zh')}`, ...talk].join('\n');
     });
     const sfxAll = cuts.map((c, k) => (sfxOf(k) ? `镜头${k + 1}：${sfxOf(k)}` : '')).filter(Boolean).join('；');
     video = [
@@ -5499,7 +5668,7 @@ export function promptSkeleton(project, episode, segmentId) {
         return `${base} while ${others.join(' and ')} ${others.length > 1 ? 'do' : 'does'} not speak, ${LIPS_CLOSED}`;
       }).join(' ');
       // The frame already carries the lens, the light and the foreground — do not repeat them.
-      return `Shot ${k + 1} (${starts[k].toFixed(1)}–${(starts[k] + Number(c.seconds)).toFixed(1)} s, ${SIZES[c.size] || c.size}, ${c.camera}): ${framingOf(c)}${c.frame || '…'} ${motionSentence(c)} ${idleOf(c)}${propOf(c, framingLang)}${cameraClause(c)} ${talk}`.replace(/\s+/g, ' ').trim();
+      return `Shot ${k + 1} (${starts[k].toFixed(1)}–${(starts[k] + Number(c.seconds)).toFixed(1)} s, ${SIZES[c.size] || c.size}, ${c.camera}): ${topViewOf(k)}${framingOf(c)}${c.frame || '…'} ${motionSentence(c)} ${idleOf(c)}${propOf(c, framingLang)}${cameraClause(c)} ${talk}`.replace(/\s+/g, ' ').trim();
     });
     const sfxAll = cuts.map((c, k) => (sfxOf(k) ? `shot ${k + 1}: ${sfxOf(k)}` : '')).filter(Boolean).join('; ');
     video = [...legend, '', ...shots, '', ...actionLine, `Look: ${lookOf()}. Maintain continuity in character identities, clothing, prop ownership, scene layout and the camera axis across every shot.`, `Sound: ${sound.ambience || '…'}${sfxAll ? `; ${sfxAll}` : ''}.${accent && dialogue.flat().length ? ` All dialogue in ${accent}.` : ''}${clipMusic ? ` Music: ${clipMusic}.` : ' No music.'}${params.subtitles ? '' : ` ${NO_SUBTITLES.en[0].toUpperCase()}${NO_SUBTITLES.en.slice(1)}.`}`].join('\n');
@@ -6042,6 +6211,11 @@ export function manifest(project, episodes, opts = {}) {
       if (!sw.datasetId) add('art', s.id, `scenes.${s.id}.wji.datasetId`, `wji dataset new <location> "${s.name}" -t location`);
       if (!sw.nodes?.sheet) add('art', s.id, `scenes.${s.id}.wji.nodes.sheet`, `wji canvas add image -c <scenes> -n "${s.id} sheet" -r 16:9`);
       else if (!sw.assets?.sheet) add('art', s.id, `scenes.${s.id}.wji.assets.sheet`, `wji canvas gen ${sw.nodes.sheet} → asset`);
+      // Top-view plan: the overhead sheet, made from the scene sheet once that exists.
+      if (paramsOf(project).topView === 'on' && sw.assets?.sheet) {
+        if (!sw.nodes?.topview) add('art', s.id, `scenes.${s.id}.wji.nodes.topview`, `wji canvas add image -c <scenes> -n "${s.id} topview" -r 16:9 --from <${s.id} sheet node> --prompt-file <prompt image ${s.id} --asset topview>`);
+        else if (!sw.assets?.topview) add('art', s.id, `scenes.${s.id}.wji.assets.topview`, `wji canvas gen ${sw.nodes.topview} → asset (check it is straight overhead, empty, furniture where the sheet has it)`);
+      }
     }
     for (const p of project.props || []) {
       const pw = p.wji || {};
@@ -6077,6 +6251,12 @@ export function manifest(project, episodes, opts = {}) {
     for (const seg of segs) {
       const sw = seg.wji || {};
       const n = (seg.cuts || []).length;
+      // Top-view plan: the overlay is drawn locally over the scene's top-view sheet, then uploaded and shown on the canvas.
+      if (paramsOf(project).topView === 'on' && paramsOf(project).references === 'sheets' && isObject(seg.topView)) {
+        const sid = ((e.scenes || [])[Number(seg.sceneIndex) - 1] || {}).sceneId;
+        if (!sw.assets?.topview) add('storyboard', seg.id, `storyboard.segments.${seg.id}.wji.assets.topview`, `wji asset download <${sid} topview asset> → topview <project> segment ${seg.id} --image <that file> → wji asset upload topview/${seg.id}.png`);
+        else if (!ew.displayNodes?.[`${seg.id}:topview`]) add('storyboard', E, `wji.displayNodes.${seg.id}:topview`, `wji canvas add image -c <${E}> --asset ${sw.assets.topview} -n "${seg.id} topview"`);
+      }
       if (!sw.datasetId) add('storyboard', seg.id, `storyboard.segments.${seg.id}.wji.datasetId`, `wji dataset new <shot/${E}> "${seg.id}" -t shot`);
       for (let k = 0; k < (paramsOf(project).references === 'sheets' ? 0 : n); k++) {
         if (!sw.nodes?.keyframes?.[k]) add('storyboard', seg.id, `storyboard.segments.${seg.id}.wji.nodes.keyframes.${k}`, `wji canvas add image -c <${E}> -n "${seg.id} f${k + 1}" --from <display nodes>`);
@@ -6142,6 +6322,7 @@ export function initProject(opts) {
   if (opts.composition && !Object.hasOwn(COMPOSITION_STYLES, opts.composition)) throw new Error(`--composition must be one of ${Object.keys(COMPOSITION_STYLES).join(' / ')}`);
   if (opts.comedy && !Object.hasOwn(COMEDY_STYLES, opts.comedy)) throw new Error(`--comedy must be one of ${Object.keys(COMEDY_STYLES).join(' / ')}`);
   if (opts.footage && !['cinema', 'dv'].includes(opts.footage)) throw new Error('--footage must be cinema or dv');
+  if (opts.topView && !TOP_VIEW_MODES.includes(opts.topView)) throw new Error(`--top-view must be one of ${TOP_VIEW_MODES.join(' / ')}`);
   if (opts.horrorStyle && !Object.hasOwn(HORROR_STYLES, opts.horrorStyle)) throw new Error(`--horror-style must be one of ${Object.keys(HORROR_STYLES).join(' / ')}`);
   const horrorGenre = HORROR_GENRE_RE.test(String(opts.genre || ''));
   const market = opts.market || DEFAULT_PARAMS.market;
@@ -6161,6 +6342,8 @@ export function initProject(opts) {
       videoResolution: nearestResolution(mode, opts.resolution || DEFAULT_PARAMS.videoResolution),
       speechAccent: opts.accent || DEFAULT_PARAMS.speechAccent,
       references: opts.references || DEFAULT_PARAMS.references,
+      // Off unless asked for at setup: one overhead sheet per scene and one overlay per segment.
+      topView: opts.topView || DEFAULT_PARAMS.topView,
       // `auto` unless this model has no autoDuration parameter.
       videoDuration: opts.duration || (mode.autoDuration ? DEFAULT_PARAMS.videoDuration : 'fixed'),
       lookPhrase: opts.look || (dv ? DV_LOOK : DEFAULT_PARAMS.lookPhrase),
@@ -6218,6 +6401,96 @@ export function readJsonFile(path) {
 export function writeJsonFile(path, data) {
   mkdirSync(dirname(path), { recursive: true });
   writeFileSync(path, `${JSON.stringify(data, null, 2)}\n`, 'utf8');
+}
+
+// ── top-view overlay ────────────────────────────────────────────────────────
+
+/** Pixel size of a PNG or JPEG from its header, or null. */
+export function imageSize(buf) {
+  if (buf.length > 24 && buf.readUInt32BE(0) === 0x89504e47) return { width: buf.readUInt32BE(16), height: buf.readUInt32BE(20), mime: 'image/png' };
+  if (buf[0] === 0xff && buf[1] === 0xd8) {
+    let i = 2;
+    while (i + 9 < buf.length) {
+      if (buf[i] !== 0xff) { i++; continue; }
+      const marker = buf[i + 1], len = buf.readUInt16BE(i + 2);
+      if (marker >= 0xc0 && marker <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(marker)) return { width: buf.readUInt16BE(i + 7), height: buf.readUInt16BE(i + 5), mime: 'image/jpeg' };
+      i += 2 + len;
+    }
+  }
+  return null;
+}
+
+/**
+ * The overlay for one segment: the scene's top-view sheet with a coloured dot and facing arrow per
+ * person (colours in TOP_VIEW_COLORS order — the prompt legend names them), and per cut a numbered
+ * camera box with its lens wedge (and a dashed arrow where the camera moves). A small legend on the
+ * right repeats the shot list; dots carry no names. 1280×720, the video ratio's reference size.
+ */
+export function topViewSvg(project, episode, segId, image) {
+  const seg = (episode.storyboard?.segments || []).find((s) => s.id === segId);
+  if (!seg) throw new Error(`no segment ${segId}`);
+  const tv = seg.topView;
+  if (!isObject(tv)) throw new Error(`${segId} has no topView`);
+  const W = 1280, H = 720, IW = 816, IH = image?.width && image?.height ? Math.round((816 * image.height) / image.width) : 459, X0 = 24, Y0 = 16;
+  const P = ([x, y]) => [X0 + x * IW, Y0 + y * IH];
+  const esc = (v) => String(v).replace(/&/g, '&amp;').replace(/</g, '&lt;');
+  const people = topViewPeople(seg);
+  const colorOf = (id) => TOP_VIEW_COLORS[people.indexOf(id) % TOP_VIEW_COLORS.length];
+  const camGlyph = (cam, focal, n, ghost) => {
+    const aim = typeof cam.aim === 'string' ? tv.positions?.[cam.aim]?.at : cam.aim;
+    const [cx, cy] = P(cam.at), [ax, ay] = P(aim);
+    const a = Math.atan2(ay - cy, ax - cx), half = topViewFov(focal) / 2, L = Math.hypot(ax - cx, ay - cy) + 40;
+    const p1 = [cx + L * Math.cos(a - half), cy + L * Math.sin(a - half)], p2 = [cx + L * Math.cos(a + half), cy + L * Math.sin(a + half)];
+    const body = [[-20, -13], [14, -13], [14, 13], [-20, 13]].map(([u, w]) => [cx + u * Math.cos(a) - w * Math.sin(a), cy + u * Math.sin(a) + w * Math.cos(a)]);
+    const bx = cx + 42 * Math.sin(a), by = cy - 42 * Math.cos(a);
+    return `<polygon points="${cx},${cy} ${p1} ${p2}" fill="#fff" fill-opacity="${ghost ? 0.08 : 0.22}" stroke="#fff" stroke-width="1.5"${ghost ? ' stroke-dasharray="5 4"' : ''}/>
+<polygon points="${body.map((q) => q.join(',')).join(' ')}" fill="${ghost ? 'none' : '#111'}" stroke="#fff" stroke-width="2"/>${ghost ? '' : `
+<circle cx="${bx}" cy="${by}" r="16" fill="#fff" stroke="#111" stroke-width="2"/><text x="${bx}" y="${by + 6}" font-size="19" font-weight="700" text-anchor="middle" fill="#111">${n}</text>`}`;
+  };
+  let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" font-family="Helvetica, Arial, sans-serif">
+<defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M1 1L9 5L1 9z" fill="context-stroke"/></marker></defs>
+<rect width="${W}" height="${H}" fill="#2a211b"/>
+${image?.dataUrl ? `<image href="${image.dataUrl}" x="${X0}" y="${Y0}" width="${IW}" height="${IH}"/>` : `<rect x="${X0}" y="${Y0}" width="${IW}" height="${IH}" fill="#5a4636"/>`}`;
+  const axis = isObject(seg.axis) ? asList(seg.axis.between) : [];
+  const A = tv.positions?.[axis[0]]?.at, B = tv.positions?.[axis[1]]?.at;
+  if (isPoint(A) && isPoint(B)) {
+    const dx = B[0] - A[0], dy = B[1] - A[1], l = Math.hypot(dx, dy) || 1, e = 0.12;
+    const [x1, y1] = P([A[0] - (dx / l) * e, A[1] - (dy / l) * e]), [x2, y2] = P([B[0] + (dx / l) * e, B[1] + (dy / l) * e]);
+    svg += `\n<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#ff5a4a" stroke-width="2.5" stroke-dasharray="12 7"/>`;
+  }
+  (seg.cuts || []).forEach((c, k) => {
+    const cam = asList(tv.cameras).find((x) => Number(x?.cut) === k + 1);
+    if (!cam || !isPoint(cam.at, TOP_VIEW_MARGIN)) return;
+    if (isPoint(cam.to, TOP_VIEW_MARGIN)) {
+      svg += `\n${camGlyph({ ...cam, at: cam.to }, focalOf(c), k + 1, true)}`;
+      const [x1, y1] = P(cam.at), [x2, y2] = P(cam.to);
+      svg += `\n<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#fff" stroke-width="3" stroke-dasharray="7 5" marker-end="url(#ar)"/>`;
+    }
+    svg += `\n${camGlyph(cam, focalOf(c), k + 1, false)}`;
+  });
+  for (const id of people) {
+    const pt = tv.positions?.[id];
+    if (!isPoint(pt?.at)) continue;
+    const [x, y] = P(pt.at), f = ((Number(pt.facing) || 0) * Math.PI) / 180, col = colorOf(id).hex;
+    svg += `\n<circle cx="${x}" cy="${y}" r="20" fill="${col}" stroke="#fff" stroke-width="3"/>
+<line x1="${x + 22 * Math.cos(f)}" y1="${y + 22 * Math.sin(f)}" x2="${x + 50 * Math.cos(f)}" y2="${y + 50 * Math.sin(f)}" stroke="${col}" stroke-width="6" marker-end="url(#ar)"/>`;
+  }
+  const lx = X0 + IW + 28;
+  let ly = 46;
+  svg += `\n<text x="${lx}" y="${ly}" font-size="22" font-weight="700" fill="#fff">View from above</text>`;
+  ly += 40;
+  (seg.cuts || []).forEach((c, k) => {
+    svg += `\n<circle cx="${lx + 14}" cy="${ly - 6}" r="14" fill="#fff"/><text x="${lx + 14}" y="${ly}" font-size="16" font-weight="700" text-anchor="middle" fill="#111">${k + 1}</text><text x="${lx + 36}" y="${ly}" font-size="15" fill="#fff">Shot ${k + 1} · ${esc(SIZES[c.size] || c.size || '')}${focalOf(c) ? `, ${esc(focalOf(c))}` : ''}</text>`;
+    ly += 34;
+  });
+  if (isPoint(A) && isPoint(B)) svg += `\n<line x1="${lx}" y1="${ly + 4}" x2="${lx + 26}" y2="${ly + 4}" stroke="#ff5a4a" stroke-width="2.5" stroke-dasharray="12 7"/><text x="${lx + 36}" y="${ly + 9}" font-size="14" fill="#cbb">Axis · cameras stay on one side</text>`;
+  return `${svg}\n</svg>\n`;
+}
+
+/** A Chrome / Chromium binary for turning the overlay into a PNG, or null. */
+export function findChrome() {
+  const candidates = [process.env.CHROME_PATH, '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', '/Applications/Chromium.app/Contents/MacOS/Chromium', '/usr/bin/google-chrome', '/usr/bin/chromium', '/usr/bin/chromium-browser'].filter(Boolean);
+  return candidates.find((c) => existsSync(c)) || null;
 }
 
 export function loadProject(input, opts = {}) {
@@ -6328,7 +6601,7 @@ function main(argv) {
       resolution: flag(rest, '--resolution'), accent: flag(rest, '--accent'),
       references: flag(rest, '--references'), duration: flag(rest, '--duration'), look: flag(rest, '--look'),
       register: flag(rest, '--register'), imageLang: flag(rest, '--image-lang'), foreground: flag(rest, '--foreground'),
-      cinematography: flag(rest, '--cinematography'), action: flag(rest, '--action'), violence: flag(rest, '--violence'), grammar: flag(rest, '--grammar'), comedy: flag(rest, '--comedy'), composition: flag(rest, '--composition'), story: flag(rest, '--story'), market: flag(rest, '--market'), format: flag(rest, '--format'), footage: flag(rest, '--footage'), horrorStyle: flag(rest, '--horror-style'),
+      cinematography: flag(rest, '--cinematography'), action: flag(rest, '--action'), violence: flag(rest, '--violence'), grammar: flag(rest, '--grammar'), comedy: flag(rest, '--comedy'), composition: flag(rest, '--composition'), story: flag(rest, '--story'), market: flag(rest, '--market'), format: flag(rest, '--format'), footage: flag(rest, '--footage'), horrorStyle: flag(rest, '--horror-style'), topView: flag(rest, '--top-view'),
       source: flag(rest, '--source'), sourcePath: flag(rest, '--source-path'),
     });
     const paths = projectPaths(dir);
@@ -6483,7 +6756,7 @@ function main(argv) {
 
   if (cmd === 'prompt' && pos[1] === 'image') {
     const { project } = loadProject(input);
-    if (!pos[2]) throw new Error('usage: prompt <project> image C01|S01|P01 [--asset headshot|sheet|lighting:<state>|state:<state>] [--json]');
+    if (!pos[2]) throw new Error('usage: prompt <project> image C01|S01|P01 [--asset headshot|sheet|lighting:<state>|state:<state>|topview] [--json]');
     const out = imagePrompt(project, pos[2], flag(rest, '--asset') || 'sheet');
     if (flag(rest, '--json')) console.log(JSON.stringify(out, null, 2));
     else console.log(out.prompt);
@@ -6495,6 +6768,33 @@ function main(argv) {
     const c = characterById(project, pos[2]);
     if (!c) throw new Error(`no character ${pos[2]}`);
     console.log(voiceSamplePrompt(c, paramsOf(project)));
+    return 0;
+  }
+
+  if (cmd === 'topview') {
+    const id = pos[2];
+    const ep = Number((id || '').match(/^E(\d+)-/)?.[1]);
+    const { paths, project, episodes } = loadProject(input);
+    if (pos[1] !== 'segment' || !ep || !episodes[ep]) throw new Error('usage: topview <project> segment E01-01 [--image <top-view sheet file>] [--out <file.png>]');
+    const imgPath = flag(rest, '--image');
+    let image = null;
+    if (imgPath) {
+      const buf = readFileSync(imgPath);
+      const size = imageSize(buf);
+      if (!size) throw new Error(`${imgPath}: not a PNG or JPEG`);
+      image = { ...size, dataUrl: `data:${size.mime};base64,${buf.toString('base64')}` };
+    }
+    const svg = topViewSvg(project, episodes[ep], id, image);
+    const out = flag(rest, '--out') || join(paths.dir, 'topview', `${id}.png`);
+    mkdirSync(dirname(out), { recursive: true });
+    const svgPath = out.replace(/\.png$/i, '') + '.svg';
+    writeFileSync(svgPath, svg);
+    const chrome = findChrome();
+    if (!chrome) { console.log(`✓ ${svgPath}\n  no Chrome / Chromium found for the PNG — set CHROME_PATH, or convert the SVG to a 1280×720 PNG yourself`); return 0; }
+    const html = svgPath.replace(/\.svg$/, '.html');
+    writeFileSync(html, `<!doctype html><html><body style="margin:0">${svg}</body></html>`);
+    execFileSync(chrome, ['--headless=new', '--disable-gpu', '--hide-scrollbars', '--window-size=1280,720', `--screenshot=${resolve(out)}`, `file://${resolve(html)}`], { stdio: 'ignore' });
+    console.log(`✓ ${out}${image ? '' : '  (no --image: drawn on a plain backdrop — pass the scene’s top-view sheet before uploading)'}`);
     return 0;
   }
 

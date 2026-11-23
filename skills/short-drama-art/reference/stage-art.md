@@ -59,6 +59,10 @@ environment reference cannot be washed out later), one consistent space across p
 geometry. Attach: `fs set <dataset> --add-images <sheet> [<states…>] --icon <sheet>`; bind
 `wji.nodes.sheet`, `wji.assets.sheet`, `wji.assets.lighting.<state>` / `wji.assets.states.<state>`.
 
+With `params.topView: on`, each scene also gets a **top-view sheet**: `prompt <project> image S01
+--asset topview`, one node `--from` the sheet. It must be straight overhead and empty, with the furniture
+where the sheet has it. Bind `wji.nodes.topview` / `wji.assets.topview`. See `top-view-plan.md` §2.
+
 ## Gates
 
 `scene-design` · `scene-prompts` · `prop-design`.
