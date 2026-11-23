@@ -22,7 +22,8 @@ $SD <cmd> {project} …
 | `apply` | `short-drama.mjs apply {project} dialogue --ep N` — the reviewed lines (and deliveries) back into the script |
 | `render` | `short-drama.mjs render {project} outline \| guideline \| character C01 \| scene S01 \| prop P01 \| script --ep N \| dialogue --ep N \| segment E01-01` |
 | `dashboard` | `short-drama.mjs dashboard {project} [--output dashboard.html] [--force]` — if `dashboard.html` is missing beside `project.json`, copy the static page there; if it is already there, leave it (`--force` replaces it). The page loads `project.json` itself. Asset ids are resolved with `POST /assets/check-status` (same `url` as `GET /assets/list/:id`); images are not downloaded. Canvas and dataset ids link to `https://app.wji.ai/app/workspace/<workspaceId>` |
-| `prompt` | `short-drama.mjs prompt {project} segment E01-01 [--json]` · `… prompt {project} audio E01-01 [--full\|--bed]` · `… prompt {project} score E01 [--fps 24] [--json]` (post soundtrack spotting sheet) · `… prompt {project} voice C01` · `… prompt {project} image C01\|S01\|P01 [--asset headshot\|sheet\|lighting:<state>\|state:<state>] [--json]` |
+| `prompt` | `short-drama.mjs prompt {project} segment E01-01 [--json]` · `… prompt {project} audio E01-01 [--full\|--bed]` · `… prompt {project} score E01 [--fps 24] [--json]` (post soundtrack spotting sheet) · `… prompt {project} voice C01` · `… prompt {project} image C01\|S01\|P01 [--asset headshot\|sheet\|lighting:<state>\|state:<state>\|topview] [--json]` |
+| `topview` | `short-drama.mjs topview {project} segment E01-01 --image <top-view sheet> [--out <png>]` — the top-view overlay (`params.topView: on`), drawn over the scene's top-view sheet through headless Chrome (`CHROME_PATH`) |
 | `manifest` | `short-drama.mjs manifest {project} [--stage <stage>] [--ep N] [--json]` — exit 2 while anything is unbound |
 | `bind` | `short-drama.mjs bind {project} [--ep N] <path> <value>` — record a WJI id in the JSON |
 

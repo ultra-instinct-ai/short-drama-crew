@@ -20,6 +20,7 @@ import {
   audioPrompt, musicOf, cueSeconds, AUDIO_MODEL, AUDIO_MAX_CHARS, AUDIO_MAX_SECONDS, scoreSheet, smpte,
   VIDEO_MODELS, VIDEO_MODES, DEFAULT_PARAMS, videoModel, videoResolutionFor, nearestResolution, segmentPlan, videoReferences,
   formatGates, displayName, imagePrompt, imagePromptKit, foldZh, IMAGE_PROMPT_LANGS,
+  TOP_VIEW_MODES, TOP_VIEW_COLORS, topViewFov, topViewSees, topViewAxisSide, topViewPeople, topViewCameraPhrase, topViewSvg, imageSize,
   HORROR, HORROR_RULES, SCARE_CUTS, THREAT_RUNGS, maxCutFor, DV_KIT, DV_LOOK, DV_RE, HORROR_STYLES, horrorStyleForGenre, horrorStyleOf, THREAT_KINDS, isHorrorLook,
 } from './short-drama.mjs';
 import { spawnSync } from 'node:child_process';
@@ -963,6 +964,101 @@ const breaks = (gateId, project, episode, needle) => {
   const offScreen = build({ C03: 'taps a finger' });
   ok(only(failures('idle-motion', p, offScreen.ep)).some((m) => m.includes('not on screen')), 'an idle for someone off screen fails');
   eq(failures('idle-motion', PROJECT, E01).length, 0, 'keyframes mode is exempt');
+}
+
+{
+  // Top-view plan (params.topView on): marks on an overhead photo of the set drive the blocking.
+  eq(DEFAULT_PARAMS.topView, 'off', 'the top-view plan is off by default');
+  eq(paramsOf(PROJECT).topView, 'off', 'an old project reads as off');
+  eq(failures('top-view', PROJECT, E01).length, 0, 'off: the gate stays out of the way');
+  const init = (extra = {}) => initProject({ title: 't', episodes: 1, minutes: 1, genre: '都市', ...extra });
+  eq(init().params.topView, 'off', 'init leaves it off');
+  eq(init({ topView: 'on' }).params.topView, 'on', 'init --top-view on');
+  assert.throws(() => init({ topView: 'yes' }), /--top-view must be one of/); passed += 1;
+  const kf = clone(PROJECT); kf.params.topView = 'on'; kf.params.references = 'keyframes';
+  ok(failures('params', kf, E01).some((m) => m.includes('params.topView = on needs params.references = sheets')), 'keyframes mode refuses the top view');
+  ok(Math.abs(topViewFov('50mm') - 2 * Math.atan(36.7 / 100)) < 1e-9 && topViewFov('') === topViewFov('35mm'), 'the wedge follows the focal (35 mm when unread)');
+  ok(imagePrompt(PROJECT, 'S01', 'topview').prompt.includes('directly overhead') && imagePrompt(PROJECT, 'S01', 'topview').from === 'sheet', 'the top-view sheet is drawn from the scene sheet, straight overhead');
+  assert.throws(() => imagePrompt(PROJECT, 'C01', 'topview')); passed += 1;
+
+  const p = clone(PROJECT); p.params.references = 'sheets'; p.params.topView = 'on';
+  // E01-02: C02 holds screen left, C01 screen right, cameras on the customer side (bottom of the sheet).
+  const marks = () => ({
+    positions: { C01: { at: [0.65, 0.4], facing: 180 }, C02: { at: [0.35, 0.4], facing: 0 } },
+    cameras: [
+      { cut: 1, at: [0.45, 0.85], aim: 'C01' }, { cut: 2, at: [0.55, 0.9], aim: 'C02' }, { cut: 3, at: [0.5, 1.3], aim: [0.5, 0.4] },
+      { cut: 4, at: [0.6, 0.8], aim: 'C02' }, { cut: 5, at: [0.6, 0.8], aim: 'C02', to: [0.55, 0.65] },
+    ],
+  });
+  const planned = (edit) => {
+    const ep = clone(E01);
+    const seg = ep.storyboard.segments.find((s) => s.id === 'E01-02');
+    seg.topView = marks();
+    if (edit) edit(seg, ep);
+    seg.prompt = promptSkeleton(p, ep, seg.id).video.prompt;
+    return { ep, seg };
+  };
+  const only = (f) => f.filter((m) => m.startsWith('E01-02'));
+  const { ep: okEp, seg: okSeg } = planned();
+  eq(only(failures('top-view', p, okEp)).length, 0, 'a full plan passes');
+  ok(failures('top-view', p, okEp).some((m) => m.startsWith('E01-03') && m.includes('topView { positions, cameras } is required')), 'every segment needs a plan while it is on');
+  const refs = segmentReferences(p, okEp, okSeg).filter((r) => r.kind === 'image');
+  const top = refs[refs.length - 1];
+  ok(top.asset === 'topview' && top.role === 'layout', 'the overlay is the last picture');
+  ok(top.use.includes('the blue dot is') && top.use.includes('never show the overhead view'), 'its legend ties each colour to a sheet and keeps the plan off screen');
+  ok(okSeg.prompt.includes(`${top.label} is a photo of this same room taken from directly above`), 'the legend line is in the prompt');
+  ok(okSeg.prompt.includes(topViewCameraPhrase(1, top.label)) && okSeg.prompt.includes(topViewCameraPhrase(5, top.label)), 'every shot names its camera mark');
+  eq(topViewCameraPhrase(2, '@image5', 'zh'), '机位：@image5 上的 2 号机', 'the Chinese camera phrase');
+  eq(segmentReferences(PROJECT, okEp, okSeg).filter((r) => r.asset === 'topview').length, 0, 'off: no overlay reference');
+  eq(topViewPeople(okSeg).join(), 'C01,C02', 'dots are coloured in order of appearance');
+  const seen = topViewSees(okSeg.topView, okSeg.topView.cameras[2], '40mm');
+  ok(seen.C02.side === 'left' && seen.C01.side === 'right' && seen.C01.inFrame && seen.C02.inFrame, 'the two-shot camera sees C02 left and C01 right');
+  ok(topViewAxisSide(okSeg.topView, ['C01', 'C02'], [0.5, 0.9]) === -topViewAxisSide(okSeg.topView, ['C01', 'C02'], [0.5, 0.1]), 'the axis has two sides');
+
+  const unmarked = planned((s) => { delete s.topView.positions.C01; });
+  ok(only(failures('top-view', p, unmarked.ep)).some((m) => m.includes('topView.positions.C01 is missing')), 'everyone in the cuts is marked');
+  const noFacing = planned((s) => { delete s.topView.positions.C02.facing; });
+  ok(only(failures('top-view', p, noFacing.ep)).some((m) => m.includes('facing must be degrees')), 'a mark has a facing');
+  const noCam = planned((s) => { s.topView.cameras = s.topView.cameras.filter((c) => c.cut !== 4); });
+  ok(only(failures('top-view', p, noCam.ep)).some((m) => m.includes('cut 4: no camera')), 'every cut has a camera');
+  const blind = planned((s) => { s.topView.cameras[0].aim = [0.05, 0.85]; });
+  ok(only(failures('top-view', p, blind.ep)).some((m) => m.includes("C01 is outside camera 1's view")), 'a camera that cannot see its person is caught');
+  const against = planned((s) => { s.topView.cameras[2] = { cut: 3, at: [0.5, -0.4], aim: [0.5, 0.4] }; });
+  ok(only(failures('top-view', p, against.ep)).some((m) => m.includes('placement puts')), 'a camera that flips the placement is caught');
+  ok(only(failures('top-view', p, against.ep)).some((m) => m.includes('other side of the C01-C02 axis')), 'a camera across the axis is caught');
+  const crossed = planned((s) => { s.topView.cameras[2] = { cut: 3, at: [0.5, -0.4], aim: [0.5, 0.4] }; s.cuts[2].axisSide = 'cross'; s.cuts[2].note = 'a deliberate reverse'; delete s.cuts[2].placement; });
+  ok(!only(failures('top-view', p, crossed.ep)).some((m) => m.includes('axis')), 'a cut marked cross may stand on the other side');
+  const unnamed = planned(); unnamed.seg.prompt = unnamed.seg.prompt.replace(topViewCameraPhrase(2, top.label), '');
+  ok(only(failures('top-view', p, unnamed.ep)).some((m) => m.includes('cut 2: the shot must name its camera mark')), 'a shot that drops its camera phrase fails');
+
+  // Across a scene: the next segment keeps the marks and the side of the axis.
+  const carry = (edit) => {
+    const { ep } = planned();
+    const s3 = ep.storyboard.segments.find((s) => s.id === 'E01-03');
+    s3.topView = { positions: { C01: { at: [0.65, 0.4], facing: 180 }, C02: { at: [0.35, 0.4], facing: 0 } }, cameras: s3.cuts.map((c, k) => ((c.characters || []).length === 1 ? { cut: k + 1, at: [0.5, 1.3], aim: c.characters[0] } : { cut: k + 1, at: [0.5, 1.5], aim: [0.5, 0.4] })) };
+    if (edit) edit(s3);
+    s3.prompt = promptSkeleton(p, ep, s3.id).video.prompt;
+    return ep;
+  };
+  const only3 = (f) => f.filter((m) => m.startsWith('E01-03'));
+  eq(only3(failures('top-view', p, carry())).length, 0, 'the next segment of the scene carries the marks');
+  ok(only3(failures('top-view', p, carry((s) => { s.topView.positions.C01.at = [0.75, 0.4]; }))).some((m) => m.includes('left them at')), 'a mark that jumps between segments is caught');
+  eq(only3(failures('top-view', p, carry((s) => { s.topView.positions.C01.at = [0.75, 0.4]; s.topView.moved = ['C01']; s.topView.cameras.forEach((c) => { if (Array.isArray(c.aim)) c.aim = [0.55, 0.4]; }); s.cuts[2].focal = '35mm'; }))).length, 0, 'a move the script makes is listed (the two-shot widens to hold it)');
+  ok(only3(failures('top-view', p, carry((s) => { s.topView.cameras = s.cuts.map((c, k) => ({ cut: k + 1, at: [0.5, -0.5], aim: (c.characters || []).length === 1 ? c.characters[0] : [0.5, 0.4] })); }))).some((m) => m.includes("other side of the C01-C02 axis from E01-02's")), 'cameras that flip sides between segments are caught');
+
+  // Manifest: the overhead sheet after the scene sheet; the overlay per segment.
+  const bound = clone(p); bound.scenes.find((s) => s.id === 'S01').wji.assets.sheet = 'asset-s01';
+  ok(manifest(bound, { 1: okEp }).some((i) => i.item === 'scenes.S01.wji.nodes.topview'), 'the manifest asks for the top-view sheet');
+  ok(!manifest(PROJECT, { 1: okEp }).some((i) => i.item.includes('topview')), 'off: the manifest never mentions it');
+  ok(manifest(p, { 1: okEp }).some((i) => i.item === 'storyboard.segments.E01-02.wji.assets.topview'), 'the manifest asks for the overlay upload');
+
+  // The overlay drawing.
+  const svg = topViewSvg(p, okEp, 'E01-02', null);
+  ok(svg.startsWith('<svg') && (svg.match(/<circle [^>]*r="20"/g) || []).length === 2, 'one dot per person');
+  ok((svg.match(/<circle [^>]*r="16"/g) || []).length === 5 && svg.includes('stroke-dasharray="7 5"'), 'a numbered camera per cut and a dashed move');
+  ok(svg.includes(TOP_VIEW_COLORS[0].hex) && !svg.includes('C01') && !svg.includes('C02'), 'dots are colours, never ids or names');
+  const png = Buffer.alloc(33); png.writeUInt32BE(0x89504e47, 0); png.writeUInt32BE(1088, 16); png.writeUInt32BE(608, 20);
+  eq(JSON.stringify(imageSize(png)), JSON.stringify({ width: 1088, height: 608, mime: 'image/png' }), 'the PNG size is read from its header');
 }
 
 {
@@ -2880,8 +2976,8 @@ const breaks = (gateId, project, episode, needle) => {
 
 // ── gate inventory (crew engine) ────────────────────────────────────────────
 {
-  eq(GATES.length, 75, 'gate count');
-  eq(GATES.filter((g) => !g.advisory).length, 68, 'hard gate count');
+  eq(GATES.length, 76, 'gate count');
+  eq(GATES.filter((g) => !g.advisory).length, 69, 'hard gate count');
   eq(GATES.filter((g) => g.advisory).length, 7, 'advisory gate count');
   ok(!GATES.find((g) => g.id === 'boundary-contrast').advisory, 'boundary-contrast is hard');
   ok(GATES.find((g) => g.id === 'boundary-contrast-episode').advisory, 'boundary-contrast-episode is advisory');
@@ -3003,8 +3099,8 @@ const breaks = (gateId, project, episode, needle) => {
   const results = runGates(makeContext(PROJECT, { 1: E01 }));
   const rep = formatGates(results);
   eq(Object.keys(rep).sort().join(','), 'advisory,failed,hard,lines,notes,summary,text', 'formatGates shape');
-  eq(rep.summary, '✓ 68 gate(s) passed, 7 advisory (1 note)', 'fixture summary');
-  eq(rep.failed, 0, 'nothing failed'); eq(rep.hard, 68, 'hard count'); eq(rep.advisory, 7, 'advisory count');
+  eq(rep.summary, '✓ 69 gate(s) passed, 7 advisory (1 note)', 'fixture summary');
+  eq(rep.failed, 0, 'nothing failed'); eq(rep.hard, 69, 'hard count'); eq(rep.advisory, 7, 'advisory count');
   // The fixture now raises one advisory (E01-03 carries the 爽点 and is not cut as faceslap),
   // exactly as it does in the wji-cli copy — advisory lines print, failures still must not.
   eq(rep.lines.filter((l) => l.includes('✗')).length, 0, 'a green run prints no failed gates');

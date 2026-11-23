@@ -100,6 +100,11 @@ cinematography preset's guide (`../short-drama-core/reference/cinematography-<pr
 - **`refOverride`**: a segment may pin its own image reference list (`{entity, asset, faceOf}`)
   when the derived set is wrong — `faceOf` says whose face a headshot supplies so the prompt
   binds that character to it instead of a body sheet.
+- **Top-view plan** (`params.topView: on`): each segment carries `topView { positions, cameras,
+  moved }`, with marks and a camera per cut on the scene's top-view sheet. `$SD topview <project>
+  segment E0N-01 --image <sheet file>` draws the overlay. It is connected as the **last picture**,
+  and every shot says `from camera k on @imageN` (`prompt segment` writes both; gate `top-view`).
+  See [top-view plan](../short-drama-core/reference/top-view-plan.md).
 - Default **sheets** mode: no storyboard stills. Never switch a project to `keyframes` unless
   the user asks.
 

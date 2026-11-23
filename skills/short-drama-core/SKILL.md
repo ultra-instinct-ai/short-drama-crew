@@ -97,7 +97,12 @@ validate, then quote, then generate.
    model speaks), ratio (default 9:16 for short, 16:9 for medium and movie). Offer the defaults you
    will use unless told otherwise:
    `video: h3` (MiniMax H3 ref), `style: realistic`, **`references: sheets`** (no storyboard
-   images) and **`videoDuration: auto`**. That message is a gate. If the user left something out —
+   images) and **`videoDuration: auto`**. In the same message ask one yes/no: **the top-view
+   plan** (off by default) — *"Keep everyone's position steadier across segments with a top-view
+   plan? It adds one overhead photo per scene and one marked-up overlay per segment as an extra
+   reference (sheets mode only)."* Yes → `init … --top-view on`; read
+   `reference/top-view-plan.md`. Recommend it for scenes with three or more people or a scene split
+   over several segments. That message is a gate. If the user left something out —
    no video model, no episode count, no genre, no 语体 — ask for it, or name the default you would
    use, in the same message. Do not `init`, and do not start Stage 1, until they confirm the set.
    A default is a proposal, not a decision. A resumed `project.json` that already has these params
@@ -183,7 +188,7 @@ validate, then quote, then generate.
    `params.violence` is `blood` (default) or `implied`.
 4. **Locate or create the project directory** (the user's choice, else next to the source):
    ```bash
-   $SD init <dir> --title "<title>" --episodes N --minutes M --genre "<genre>" --register 台湾国语 [--adapt 抽核] [--ratio 9:16] [--video h3|seedance|seedance2|seedance2fast|wan] [--resolution 480P|…] [--accent "台湾口音国语"] [--style photoreal|realistic|ghibli] [--references sheets|keyframes] [--duration auto|fixed] [--look "<lens phrase>"] [--cinematography low-key|sweet-romance|period-nostalgia|costume-idol|costume-dark|scifi-hard|scifi-soft|horror|costume-horror|apocalypse|none] [--action gun-fu|hk-kungfu|wuxia-fantasy|historical-realist|bullet-time|superhero|street-brawl|car-chase|horror-struggle|zombie-horde|none] [--violence blood|implied] [--grammar drama|action|faceslap|comedy|horror] [--footage cinema|dv] [--horror-style dread|jump] [--comedy slapstick|deadpan|romcom|none] [--composition standard|art-first] [--story revenge,sweet,…] [--market mainland|overseas] [--format short|medium|movie] [--lang zh] [--image-lang en|zh]
+   $SD init <dir> --title "<title>" --episodes N --minutes M --genre "<genre>" --register 台湾国语 [--adapt 抽核] [--ratio 9:16] [--video h3|seedance|seedance2|seedance2fast|wan] [--resolution 480P|…] [--accent "台湾口音国语"] [--style photoreal|realistic|ghibli] [--references sheets|keyframes] [--duration auto|fixed] [--look "<lens phrase>"] [--cinematography low-key|sweet-romance|period-nostalgia|costume-idol|costume-dark|scifi-hard|scifi-soft|horror|costume-horror|apocalypse|none] [--action gun-fu|hk-kungfu|wuxia-fantasy|historical-realist|bullet-time|superhero|street-brawl|car-chase|horror-struggle|zombie-horde|none] [--violence blood|implied] [--grammar drama|action|faceslap|comedy|horror] [--footage cinema|dv] [--horror-style dread|jump] [--top-view off|on] [--comedy slapstick|deadpan|romcom|none] [--composition standard|art-first] [--story revenge,sweet,…] [--market mainland|overseas] [--format short|medium|movie] [--lang zh] [--image-lang en|zh]
    # --image-lang zh: character / scene / prop image prompts in Chinese (the default is English)
    # --foreground low|medium|high: the most cuts that may shoot past a foreground, ~20/40/60 %, a ceiling not a quota (default medium; high for 唯美 / 美感优先)
    # params.camera (body / lens / aperture) is edited in project.json

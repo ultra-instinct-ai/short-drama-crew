@@ -568,4 +568,4 @@ $SD manifest <project> --ep 1                 # must be clean before the episode
 
 `segments` · `timing` (durations, the speech lead-in **and** the reference caps) · `cut-content` ·
 `photography` · `video-prompt` · `shot-purpose` · `boundary-contrast` · `framing-axis` · `continuity` · `motion` · `sound`
-· `visual-plan` · `text-policy` · `prompt-hygiene` · `ref-binding` · `audio-track` · `boundary-contrast-episode` (advisory) · `storyboard-advice` (advisory).
+· `visual-plan` · `text-policy` · `prompt-hygiene` · `ref-binding` · `top-view` (only with `params.topView: on`, `top-view-plan.md`) · `audio-track` · `boundary-contrast-episode` (advisory) · `storyboard-advice` (advisory).

@@ -37,6 +37,10 @@ cinematography preset's guide (`../short-drama-core/reference/cinematography-<pr
 4. Generate, then **inspect before approving**: no people in an empty scene, no hands on a prop,
    one consistent space across every panel. Attach the approved sheet as `icon`, bind node and
    asset ids.
+5. *`params.topView: on`:* per scene a **top-view sheet** — `$SD prompt <project> image S01
+   --asset topview`, one node `--from` the scene sheet. Approve it only if it is straight overhead,
+   empty, and has the furniture where the sheet has it. Bind `scenes.S01.wji.assets.topview`
+   ([top-view plan](../short-drama-core/reference/top-view-plan.md) §2).
 
 ## Hand-off
 
