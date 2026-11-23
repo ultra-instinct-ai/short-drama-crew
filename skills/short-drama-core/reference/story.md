@@ -113,8 +113,8 @@ waive them only for a release where they do not apply, and say so.)
 | family | the `period-nostalgia` look for 年代家庭; `grammar: faceslap` on the 寿宴 vindication; `comedy` for 《太奶奶》-style warmth |
 | palace | the `costume-dark` or `costume-idol` look; `register: 古装`; `grammar: faceslap` on the reveals; `historical-realist` fights |
 | cultivation | `costume-idol` (修仙) or `scifi-soft` (都市异能); `wuxia-fantasy` or `superhero` fights; a fixed visual signature per realm |
-| scifi | the `scifi-hard` / `scifi-soft` look; `bullet-time` / `superhero` fights; the countdown as a HUD prop |
-| horror | the `low-key` look; `composition: art-first` for dread in empty space; `mystery` alongside for the clues |
+| scifi | the `scifi-hard` / `scifi-soft` look (`apocalypse` for 末日 / 末世 / 废土); `bullet-time` / `superhero` fights; the countdown as a HUD prop |
+| horror | the `horror` look and grammar (`cinematography-horror.md`, `grammar-horror.md`): the scare cycle, the reveal ladder, `scares` from the outline marked as `scare` / `reveal` cuts; `horror-struggle` fights; `init --footage dv` for found footage; `horrorStyle: jump` for 惊吓 / 鬼屋; `costume-horror` for 古代 / 聊斋 / 僵尸; `threat.kind: horde` + `zombie-horde` for 丧尸; `mystery` alongside for the clues |
 | comedy | `grammar: comedy` (the default for a comedy genre) with its `gag` cuts in the storyboard; the story's punchline beats become `gag: punchline` cuts |
 
 ## Sources

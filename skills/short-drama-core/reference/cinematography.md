@@ -14,10 +14,19 @@ covers the whole drama, the same way one style does.
 | `costume-dark` | 古装写实 · 权谋 · 武侠 · 宫斗 · 复仇 | history lit by fire: candles, torches and lattice windows, faces carved from shadow, smoke, earthy texture | `cinematography-costume-dark.md` |
 | `scifi-hard` | 硬科幻 · 太空 · 工程写实 | the future as engineering: instrument panels, work lamps and one harsh sun, cold neutral palette, no magic or floating holograms | `cinematography-scifi-hard.md` |
 | `scifi-soft` | 软科幻 · 赛博朋克 · 未来都市 · 科幻 | the future as feeling: holograms and neon, dual-tone colour light, haze and reflections | `cinematography-scifi-soft.md` |
+| `costume-horror` | 古代恐怖 · 古装灵异 · 聊斋志怪 · 僵尸 | the horror look lit only by fire and the sky: one candle, lantern or moonlight through lattice; nothing electric | `cinematography-costume-horror.md` |
+| `apocalypse` | 末日 · 末世 · 废土 · 丧尸末日 · 末世囤货 | the world after the fall: ruins, dust and ash, harsh sun or firelight, only what survivors keep burning, the city dead | `cinematography-apocalypse.md` |
+| `horror` | 恐怖 · 灵异 · 怪谈 · 规则怪谈 · 丧尸 · 惊吓 · 伪纪录片 | darkness is the subject: 60–70 % of the frame black, one hard moving or failing source, cold desaturated, faces partly lit from the side, below or behind, the threat in shadow or out of focus | `cinematography-horror.md` |
 | `none` | projects created before the presets, or a look the user describes that fits neither | only the base `photography` rules | — |
 
-**Choosing.** `init` picks from `--genre` (`cinematographyForGenre`), costume and period first:
+**Choosing.** `init` picks from `--genre` (`cinematographyForGenre`), horror, then costume and period:
 
+0. 末日 / 末世 / 废土 / 核战 / 天灾 / apocalypse → `apocalypse`, zombies or not. Then 恐怖 / 灵异 /
+   怪谈 / 诡异 / 鬼 / 驱魔 / 丧尸 / 僵尸 / 惊吓 / 志怪 / 伪纪录 / horror → `horror`, or `costume-horror`
+   when the genre is also 古代 / 古装 / 聊斋 / 志怪 / 僵尸 / 宫廷 / 江湖 / 武侠 / 仙侠 (a 民国 ghost story
+   is plain `horror`, not `period-nostalgia`). A bare 惊悚 stays `low-key` — a thriller
+   is not a horror film; ask when it is unclear. `init --footage dv` sets up found footage
+   (`cinematography-horror.md` §8).
 1. 古装 / 古偶 / 仙侠 / 宫廷 / 武侠 / 权谋… → `costume-idol` when the genre also says 古偶, 仙侠,
    玄幻 or romance; `costume-dark` when it says 暗黑, 写实, 权谋, 武侠, 江湖, 宫斗, 悬疑, 复仇 or
    历史; a bare `古装` gets `costume-idol` — **confirm that one with the user**, the two looks are
@@ -59,6 +68,9 @@ storyboard (stage 5).
 | `costume-dark` | `low-key firelit period lighting` | `frontal`, `ambient` | `side-*`, `back-*`, `backlight` | default (T1.5) | T2.8 | every segment steps back (a `wide` / `extreme-wide`; on 9:16 a `medium-wide` / `medium`) with a frame that says `negative space` | anything electric |
 | `scifi-hard` | `grounded hard science fiction lighting` | `frontal`, `ambient` | `side-*`, `back-left`, `back-right`, `top` | default (T1.5) | T2.8 | — | magic, holograms, force fields, energy glows |
 | `scifi-soft` | `luminous soft science fiction lighting` | `frontal`, `ambient` | `side-*`, `back-*`, `backlight` | default (T1.5) | T2.8 | — | — |
+| `costume-horror` | `period horror lighting, most of the frame in darkness` | `frontal`, `ambient` | as `horror` (**≥ 60 %**) | default (T1.5) | T2.8 | as `horror` | anything electric |
+| `apocalypse` | `post-apocalyptic survival lighting` | `frontal` | `side-*`, `back-*`, `backlight`, `top` | default (T1.5) | **T4** | — | neon, holograms, street lights, billboards, shop windows, city lights, working screens |
+| `horror` | `horror low-key lighting, most of the frame in darkness` | `frontal`, `ambient` | `side-*`, `back-*`, `backlight`, `underlight`, `top` (**≥ 60 %**) | default (T1.5); `--footage dv`: the camcorder | T2.8 | frames may not say `golden` / `bokeh` / `beautiful` / `painterly` / `soft fill`; a supernatural source says what it `lights only`; the `horror` grammar's gates (`grammar-horror.md`) | — |
 
 "Refused sources" is checked against `light.source` only: a frame may still say what is *not*
 there.

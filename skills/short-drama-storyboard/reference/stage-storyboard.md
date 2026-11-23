@@ -170,8 +170,9 @@ tables are in `../../short-drama-core/reference/cinematography.md` and the prese
 `../../short-drama-core/reference/grammar.md`): `action` segments open on a wide, take one move per cut and answer every impact
 (`../../short-drama-core/reference/action.md`); `faceslap` segments show the proof and a cascade of reactions
 (`../../short-drama-core/reference/grammar-faceslap.md`); `comedy` segments set up every punchline and give it laugh room
-(`../../short-drama-core/reference/grammar-comedy.md`). Each grammar adds its line to the prompt (`Action:` / `Payoff:` /
-`Comedy:`).
+(`../../short-drama-core/reference/grammar-comedy.md`); `horror` segments hold ≥ 4 s before every scare, keep the camera
+still on a reveal, average ≥ 4 s a cut and climb the reveal ladder (`../../short-drama-core/reference/grammar-horror.md`). Each grammar adds its line to the
+prompt (`Action:` / `Payoff:` / `Comedy:` / `Horror:`).
 
 ### Foreground
 

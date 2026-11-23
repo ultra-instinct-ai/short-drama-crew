@@ -19,9 +19,11 @@ Talk segments keep the ordinary storyboard rules. The old `action: true` still w
 | `superhero` | 超级英雄 | 超能力、英雄 | power reveals, low-angle hero framing, landings, spectacle | `none` | `action-superhero.md` |
 | `street-brawl` | 写实街头格斗 | 黑帮、复仇、犯罪 | raw handheld close-quarters fighting in cramped spaces | `low-key` | `action-street-brawl.md` |
 | `car-chase` | 飞车追逐 | 犯罪、特工、复仇 | low tracking alongside, the driver inside vs the cars outside, near misses, a crash | `none` / `low-key` | `action-car-chase.md` |
+| `zombie-horde` | 丧尸围城 | 丧尸动作、末日求生 | the horde as one mass, choke points and barricades, blunt makeshift weapons, the bite shown by its consequence | `horror` / `apocalypse` | `action-zombie-horde.md` |
+| `horror-struggle` | 恐怖搏斗 | 恐怖、驱魔、灵异求生 | outmatched in the dark, short ugly confused moves, the threat half-seen, ritual tools physical | `horror` (never with `wuxia-fantasy` / `superhero`) | `action-horror-struggle.md` |
 
 **Choosing.** `init` sets `params.action` only when the genre names a style outright (功夫, 枪战,
-杀手, 冷兵器, 超级英雄, 飞车, 街头格斗, 仙侠 + 动作…); otherwise it stays `none`. When the story has
+杀手, 冷兵器, 超级英雄, 飞车, 街头格斗, 仙侠 + 动作, 驱魔 / 捉鬼 / 恐怖 + 动作, 丧尸 + 动作 / 求生 / 末日…); otherwise it stays `none`. When the story has
 fights and the style is `none`, **ask the user** which one, with the table above. One style per
 drama; a drama with both a sword fight and a car chase picks the dominant one, and the other
 segments may deviate through the exceptions below.

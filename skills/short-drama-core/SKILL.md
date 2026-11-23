@@ -143,7 +143,12 @@ validate, then quote, then generate.
    (film grain, warm faded colour, window sun and bare bulbs); `scifi-hard` for 硬科幻 (instrument
    panels, work lamps, one harsh sun, no magic or floating holograms) and `scifi-soft` for 软科幻 /
    科幻 / 赛博朋克 / 未来 (holograms, neon, dual-tone colour, haze) — a bare 科幻 gets `scifi-soft`,
-   confirm it; `sweet-romance` for 甜宠 / 恋爱 / 韩风唯美 (bright soft light, a warm halo in the hair,
+   confirm it; `horror` for 恐怖 / 灵异 / 怪谈 / 驱魔 / 丧尸 / 惊吓 / 伪纪录 (most of the frame black, one
+   hard source, faces partly lit from the side, below or behind, the threat unseen — a bare 惊悚
+   stays `low-key`; `--footage dv` for found footage on a camcorder; `--horror-style jump` for a
+   jump-scare film, read from 惊吓 / 鬼屋); `costume-horror` for 古代恐怖 / 聊斋 / 志怪 / 僵尸 (the
+   same, lit only by fire and moon); `apocalypse` for 末日 / 末世 / 废土, zombies or not (ruins,
+   dust, harsh sun or fire, the city dead); `sweet-romance` for 甜宠 / 恋爱 / 韩风唯美 (bright soft light, a warm halo in the hair,
    pastel); `low-key` for everything else (the scene's own practicals, people in shadow, side /
    back / rim light). The costume and period presets refuse light sources their era did not have,
    and `scifi-hard` refuses magic and floating holograms. The preset is gated from the scene
@@ -156,9 +161,9 @@ validate, then quote, then generate.
 
    **Genre is composed, not picked.** Besides the look, a drama has an action style
    (`params.action`: `gun-fu` · `hk-kungfu` · `wuxia-fantasy` · `historical-realist` ·
-   `bullet-time` · `superhero` · `street-brawl` · `car-chase`), a comedy style (`params.comedy`:
+   `bullet-time` · `superhero` · `street-brawl` · `car-chase` · `horror-struggle` · `zombie-horde`), a comedy style (`params.comedy`:
    `slapstick` · `deadpan` · `romcom`), and a default **grammar** (`params.grammar`: `drama` ·
-   `action` · `faceslap` · `comedy`) for segments that do not name their own. `init` reads all of
+   `action` · `faceslap` · `comedy` · `horror`) for segments that do not name their own. `init` reads all of
    them from the genre (古装喜剧 → `costume-idol` + `comedy` + `slapstick`; 未来动作 → `low-key` +
    `bullet-time`). Confirm the composition with the user; when the story has fights or gags and
    the style is `none`, ask. The recipes table is in `reference/grammar.md`.
@@ -178,7 +183,7 @@ validate, then quote, then generate.
    `params.violence` is `blood` (default) or `implied`.
 4. **Locate or create the project directory** (the user's choice, else next to the source):
    ```bash
-   $SD init <dir> --title "<title>" --episodes N --minutes M --genre "<genre>" --register 台湾国语 [--adapt 抽核] [--ratio 9:16] [--video h3|seedance|seedance2|seedance2fast|wan] [--resolution 480P|…] [--accent "台湾口音国语"] [--style photoreal|realistic|ghibli] [--references sheets|keyframes] [--duration auto|fixed] [--look "<lens phrase>"] [--cinematography low-key|sweet-romance|period-nostalgia|costume-idol|costume-dark|scifi-hard|scifi-soft|none] [--action gun-fu|hk-kungfu|wuxia-fantasy|historical-realist|bullet-time|superhero|street-brawl|car-chase|none] [--violence blood|implied] [--grammar drama|action|faceslap|comedy] [--comedy slapstick|deadpan|romcom|none] [--composition standard|art-first] [--story revenge,sweet,…] [--market mainland|overseas] [--format short|medium|movie] [--lang zh] [--image-lang en|zh]
+   $SD init <dir> --title "<title>" --episodes N --minutes M --genre "<genre>" --register 台湾国语 [--adapt 抽核] [--ratio 9:16] [--video h3|seedance|seedance2|seedance2fast|wan] [--resolution 480P|…] [--accent "台湾口音国语"] [--style photoreal|realistic|ghibli] [--references sheets|keyframes] [--duration auto|fixed] [--look "<lens phrase>"] [--cinematography low-key|sweet-romance|period-nostalgia|costume-idol|costume-dark|scifi-hard|scifi-soft|horror|costume-horror|apocalypse|none] [--action gun-fu|hk-kungfu|wuxia-fantasy|historical-realist|bullet-time|superhero|street-brawl|car-chase|horror-struggle|zombie-horde|none] [--violence blood|implied] [--grammar drama|action|faceslap|comedy|horror] [--footage cinema|dv] [--horror-style dread|jump] [--comedy slapstick|deadpan|romcom|none] [--composition standard|art-first] [--story revenge,sweet,…] [--market mainland|overseas] [--format short|medium|movie] [--lang zh] [--image-lang en|zh]
    # --image-lang zh: character / scene / prop image prompts in Chinese (the default is English)
    # --foreground low|medium|high: the most cuts that may shoot past a foreground, ~20/40/60 %, a ceiling not a quota (default medium; high for 唯美 / 美感优先)
    # params.camera (body / lens / aperture) is edited in project.json

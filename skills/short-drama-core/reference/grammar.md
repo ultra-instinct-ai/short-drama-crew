@@ -9,12 +9,12 @@ works, and never needs a preset per genre.
 | axis | param | what it decides | values | guide |
 | --- | --- | --- | --- | --- |
 | render | `style` | how the picture is drawn | `photoreal` · `realistic` · `ghibli` · `soft3d` · `disney3d` | stage-characters |
-| look | `cinematography` | light, colour, the world | `low-key` · `sweet-romance` · `period-nostalgia` · `costume-idol` · `costume-dark` · `scifi-hard` · `scifi-soft` · `none` | `cinematography.md` |
+| look | `cinematography` | light, colour, the world | `low-key` · `sweet-romance` · `period-nostalgia` · `costume-idol` · `costume-dark` · `scifi-hard` · `scifi-soft` · `horror` · `costume-horror` · `apocalypse` · `none` | `cinematography.md` |
 | framing | `composition` | what the frame is built for, in any genre (a segment may override it) | `standard` · `art-first` (艺术优先: negative space, symmetry, monumental scale) | `composition-art-first.md` |
 | lines | `register` | how dialogue is written and spoken | `粤语` · `大陆普通话` · `台湾国语` · `港式普通话` · `古装` · `年代` · `英文美式` · `英文英式` | dialogue-craft |
-| fights | `action` | how a fight is cut | `gun-fu` · `hk-kungfu` · `wuxia-fantasy` · `historical-realist` · `bullet-time` · `superhero` · `street-brawl` · `car-chase` · `none` | `action.md` |
+| fights | `action` | how a fight is cut | `gun-fu` · `hk-kungfu` · `wuxia-fantasy` · `historical-realist` · `bullet-time` · `superhero` · `street-brawl` · `car-chase` · `horror-struggle` · `zombie-horde` · `none` | `action.md` |
 | laughs | `comedy` | how a gag is cut | `slapstick` · `deadpan` · `romcom` · `none` | `grammar-comedy.md` |
-| default cutting | `grammar` | the grammar of a segment that does not name its own | `drama` · `action` · `faceslap` · `comedy` | this file |
+| default cutting | `grammar` | the grammar of a segment that does not name its own | `drama` · `action` · `faceslap` · `comedy` · `horror` | this file |
 
 ## 2. The segment's grammar (per storyboard segment)
 
@@ -27,14 +27,19 @@ Each segment is cut in one or more grammars: `segment.grammar` (a string or an a
 | `action` | fights, chases, power battles | open wide, one move per cut, a reaction after every impact, in `params.action`'s style | `action.md` |
 | `faceslap` | the 打脸 payoff: 身份揭露, 智商碾压, 复仇 reversals | the proof on screen, a cascade of ≥ 2 reactions | `grammar-faceslap.md` |
 | `comedy` | gags | a setup before every punchline, laugh room after it, in `params.comedy`'s style | `grammar-comedy.md` |
+| `horror` | dread, scares, reveals | the scare cycle: a hold of ≥ 4 s before every scare, the camera still on a reveal, dread averaging ≥ 4 s a cut (holds to 10 s), about one real scare per 20 s, the threat up the reveal ladder (sound → trace → shape → part → full once, late, ≤ 3 s) | `grammar-horror.md` |
 
 **Grammars combine.** `"grammar": ["action", "comedy"]` is a comic fight (a 港式功夫喜剧 brawl):
 every hard rule of both applies, and the prompt carries both lines. `["faceslap", "comedy"]` is a
 comic 打脸 (the villain's jaw literally drops). `["action", "faceslap"]` is the fight in which the
 underdog wins and the room turns.
 
+`["horror", "action"]` is a struggle in the dark with `params.action: horror-struggle`: the fight
+rules and the scare rules both apply, and the dread pace is lifted for it.
+
 **The prompt says how it is cut.** `prompt segment` writes one labelled line per grammar,
-gated verbatim: `Action: …`, `Payoff: …`, `Comedy: …` (for `wan`: `动作：`, `爽点：`, `喜剧：`).
+gated verbatim: `Action: …`, `Payoff: …`, `Comedy: …`, `Horror: …` (for `wan`: `动作：`, `爽点：`,
+`喜剧：`, `恐怖：`).
 
 ## 3. Recipes — common 短剧 genres as combinations
 
@@ -58,6 +63,15 @@ result with the user and override any axis with its flag; a value in *italics* b
 | 年代喜剧 | `period-nostalgia` | 年代 | `comedy` | — | *`deadpan`* | — |
 | 甜宠喜剧 | `sweet-romance` | any | `comedy` | — | `romcom` | — |
 | 都市悬疑 | `low-key` | any | `drama` | — | — | — |
+| 恐怖 / 灵异 / 规则怪谈 / 民俗恐怖 | `horror` | any | `horror` | `horror-struggle` if it fights (驱魔 / 捉鬼 read it) | — | — |
+| 伪纪录片 / 手持DV恐怖 | `horror` + `init --footage dv` | any | `horror` | — | — | — |
+| 恐怖喜剧 | `horror` | any | `comedy` (horror segments set `grammar: horror`) | — | *`deadpan`* | — |
+| 惊吓 / 鬼屋 / 密室恐怖 | `horror` · `horrorStyle: jump` | any | `horror` | — | — | — |
+| 古代恐怖 / 古装灵异 / 聊斋志怪 | `costume-horror` | 古装 | `horror` | `horror-struggle` if it fights | — | — |
+| 港式僵尸喜剧 | `costume-horror` | 粤语 | `comedy` (scares set `grammar: horror`) | *`hk-kungfu`* or `horror-struggle` | `slapstick` | — |
+| 丧尸 / 感染者 | `horror` · `threat.kind: horde` | any | `horror` | `zombie-horde` once it fights | — | — |
+| 丧尸动作 / 末日丧尸 | `horror` or `apocalypse` · `threat.kind: horde` · `violence: implied` (mainland) | any | `horror` | `zombie-horde` | — | — |
+| 末日 / 末世 / 废土 / 末世囤货 | `apocalypse` | any | `drama` | *`street-brawl` / `gun-fu`* for the raiders | — | on the 爽点 (囤货) |
 
 `init` also reads `composition: art-first` when the genre says 艺术 / 文艺 / arthouse; for any other
 genre, pass `--composition art-first` when the user asks for art-first framing.
@@ -78,7 +92,8 @@ How to read a mixed genre:
 Every hard grammar rule can be waived for one segment when **the user asks for it**:
 `"exceptions": [{ "rule": "<rule>", "reason": "user: <what they asked>" }]`. The rules:
 `open-wide` · `one-move` · `impact-reaction` · `no-graphic` (action), `reveal-insert` ·
-`reaction-chain` (faceslap), `punchline-reaction` · `setup-first` (comedy), `composition-device` ·
+`reaction-chain` (faceslap), `punchline-reaction` · `setup-first` (comedy), `horror-hold` ·
+`still-reveal` · `dread-pace` · `scare-ration` · `reveal-ladder` (horror), `composition-device` ·
 `signature-share` · `art-wide` (art-first). Never add an exception
 yourself to turn a gate green. The old `actionExceptions` key and `action: true` still work.
 
@@ -90,6 +105,9 @@ yourself to turn a gate green. The old `actionExceptions` key and `action: true`
 | `action` | the fight rules (`action.md`) |
 | `faceslap` | the proof on screen; ≥ 2 reactions after it (this segment and the next one in the scene) |
 | `comedy` | a setup before every punchline (in the scene); laugh room after it |
+| `horror` | the scare cycle and the reveal ladder (`grammar-horror.md`); `timing` lets its cuts hold to 10 s |
+| `horror-advice` | promised scares, darkness named, handheld only for fear, prompt length (advisory) |
+| `dv-consistency` | a found-footage look shot on the camcorder kit, never `cinematic film still` |
 | `action-advice` · `grammar-advice` | rhythm, signature shots, 打脸 craft, comedy craft, the 爽点 link (advisory) |
 | `composition` | art-first: every cut's devices named and in the frame, ≥ 50 % negative space / symmetry / monumental scale, a cut per segment that steps back (a wide; on 9:16 a medium-wide or medium) |
 | `no-ip-names` | no film, franchise or performer names anywhere |
@@ -98,6 +116,6 @@ yourself to turn a gate green. The old `actionExceptions` key and `action: true`
 
 A new **style of an existing grammar** (a fourth comedy style, a ninth action style) is an entry
 in `COMEDY_STYLES` / `ACTION_STYLES` with its phrases, rhythm and signature shots, plus a section
-in its guide. A new **grammar** (suspense, horror, melodrama…) is a name in `GRAMMARS`, its hard
+in its guide. A new **grammar** (suspense, melodrama…) is a name in `GRAMMARS`, its hard
 rules in a gate, its advisory craft in `grammar-advice`, a line in `grammarLines`, and a guide
 `grammar-<name>.md` in the same shape as the two here.

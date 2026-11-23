@@ -37,16 +37,23 @@ cinematography preset's guide (`../short-drama-core/reference/cinematography-<pr
   `costume-idol`, shoot the 甜宠 set pieces (心动对视, 回眸, 共伞…) as
   `../short-drama-core/reference/cinematography-sweet-romance.md` §6 lays out.
 - **Each segment is cut in its grammar.** Set `grammar` on a segment whose kind differs from the
-  drama's default (`"action"`, `"faceslap"`, `"comedy"`, `"drama"`, or several:
+  drama's default (`"action"`, `"faceslap"`, `"comedy"`, `"horror"`, `"drama"`, or several:
   `["action", "comedy"]`) and read the guide of each grammar used before cutting it:
   `action` (`action.md`, `action-<style>.md`) breaks the fight into moves (拆招) — one move per cut
   (`move: { kind, impact }`), open on a wide (on 9:16 a full-body medium-wide), a reaction or consequence after every impact;
   `faceslap` (`grammar-faceslap.md`) is pressure, the calm, the entrance, **the proof on screen**,
   **a cascade of at least two reactions** — the 爽点 of a 打脸 / 身份揭露 / 智商碾压 / 复仇 episode is
   cut this way; `comedy` (`grammar-comedy.md`) needs **a setup before every punchline** (`gag`) and
-  **laugh room after it**, in the comedy style's rhythm. The bold rules are gated. Waive one for a
+  **laugh room after it**, in the comedy style's rhythm; `horror`
+  (`../short-drama-core/reference/grammar-horror.md`, with `cinematography-horror.md`) needs **a hold
+  of 4 s or more before every scare** (`scare: false-alarm / scare / reveal` on the cut), **the
+  camera still on the reveal**, **dread averaging 4 s a cut** (holds may run to 10 s), **about one
+  real scare per 20 s** (`horrorStyle: jump`: per 12 s, two fake-outs per scare) and **the threat up
+  the reveal ladder** (`threat: sound / trace / shape / part / full`) — shown in full once, late and
+  in 3 s or less (a zombie horde, `threat.kind: horde`, is free on screen after the outbreak). The
+  bold rules are gated. Waive one for a
   segment (`exceptions: [{ rule, reason }]`) only when the user asks, never to turn a gate green.
-  `$SD prompt <project> segment` writes each grammar's line (`Action:` / `Payoff:` / `Comedy:`).
+  `$SD prompt <project> segment` writes each grammar's line (`Action:` / `Payoff:` / `Comedy:` / `Horror:`).
   No film, franchise or performer names in any prompt (gated).
 - With `params.composition: art-first` every cut names its devices (`composition: [...]`); a
   segment may override it back to `standard` for a chaotic fight
