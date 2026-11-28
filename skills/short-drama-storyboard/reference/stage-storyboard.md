@@ -299,6 +299,40 @@ On the canvas the previous segment's **video node** is connected directly — it
 clip, so there is no display node to make. It means segment k cannot be built until k−1 has
 generated, which is the order `manifest` prints anyway.
 
+### Extend — Seedance 2.5 continues the clip itself (`params.videoExtend: on`)
+
+A `@video1` reference only *suggests* continuity; Seedance 2.5's **extend** task makes the next clip
+start on the previous clip's last frame, so where everyone stands, the props, the room and the
+camera carry over by construction. With `videoExtend: on`, a segment extends the one before it when
+both play in the **same scene**, or both carry the same **`sequence`** tag (one continuous action
+that crosses scenes — a chase from the corridor into the stairwell). `extend: false` on a segment
+breaks the chain (a time jump inside a scene); `extend: true` forces it.
+
+- The video node: the sheets (and the storyboard grid) as usual, then **the previous segment's video
+  node** as `@video1`, then the voices; `--set taskMode=extend --set outputFormat=mp4`. The ratio is
+  locked to the source clip; the duration is the new part's (auto, or `-d` in fixed mode).
+- The prompt (Seedance form, `prompt segment` writes it): the legend says `@video1 is the source
+  video to extend forward …`; right after the legend
+  `Extend @video1 forward. The first frame of the extended segment directly continues from the final frame of @video1: maintain continuity in where everyone stands and faces, the props' positions, the room and its layout, the camera position and composition, the lighting, the ambience and the motion in progress.`;
+  then the shots of **this** segment only (the output is the new part, not the source again); and
+  before the Look line `The same people and props remain the same continuous objects throughout, without duplication or splitting; the pictures define who they are but must not replace the boundary frame of @video1.`
+  Gate `video-extend` holds all three verbatim.
+- **Generate in order**: segment k only after k−1's clip exists (and is accepted — regenerating k−1
+  invalidates every extension after it). The first segment of a scene is a normal generation.
+- Shot 1 should pick up the motion the source ends on — do not open the extension with a hard cut
+  to a new angle; let the first cut continue, then cut.
+- The extension writes only the new seconds; the edit lays the clips end to end.
+
+### Edit — fix one thing in a generated clip (Seedance 2.5 `taskMode: edit`)
+
+When a clip is right except for one thing (a prop that came out wrong, a stray person, a sign),
+edit it instead of regenerating: `prompt <project> edit E01-01 --change "<what, to what>"
+[--ref "<what picture k supplies>"]` writes the prompt — `Edit @video1, changing only …`, the clip
+as the sole editing master, and a closing scope line that keeps everything else. A new video node
+`--from` the clip's video node (then any picture of the new content) with `--set taskMode=edit`; the
+ratio and length follow the clip (≈ ±0.3 s) and the output is `.mov`. Best on clips ≤ 20 s. One
+change per edit; to change and then continue, edit first, then extend the edited clip.
+
 ### Dialogue points at the voice
 
 The character's voice sample from stage 2 is connected to the video node, so every line they speak

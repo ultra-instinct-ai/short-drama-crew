@@ -166,6 +166,13 @@ wji gen audio -m <modelName> -p "rain on a tin roof" --wait
 - `wji models get` prints the model's own parameter list with defaults and
   allowed values. Only `--set` keys listed there take effect; anything else is
   ignored silently.
+- **Seedance 2.5 Ref task modes** (`seedance-2.5-ref`, `--set taskMode=…`, default `auto`):
+  `extend` continues a connected / `--ref-video` clip forward (first frame = its last frame; the
+  output is the new part only; ratio locked to the source, duration auto or `-d`; add
+  `--set outputFormat=mp4`, default is mov); `edit` changes only what the prompt names in that
+  clip and keeps the rest (ratio and length follow it, output mov, best ≤ 20 s). Both need exactly
+  one source video; write the prompt per the `sd25-pe` / `seedance-25` extension and editing
+  templates. `generate` is not a valid value (the provider refuses it).
 - Billing inputs are server-owned and stripped from `--set` / `--values`:
   `num_images`, `referenceImageCount`, `referenceVideoTotalDuration`,
   `output_resolution` and every `*Info` field. Use `-n` for the count and the
@@ -487,11 +494,16 @@ wji npc doc apply @mika @mika.md --dry-run     # see the diff, then without --dr
 - `npc create` needs NPC City spawn permission on the account (a 403 says so);
   only an admin can grant it. Admin actions — spawn permission, featured / hero
   slider, moderation — are not in `wji`.
+- Handles are 2–32 of a-z 0-9 . _ -; NPC City reserves system and brand names (admin, official,
+  npccity, wji, backreel, …) anywhere in the handle — `wji npc handle <h>` says why one is refused.
+  An NPC created without `--image` has no avatar (NPC City shows its initials).
 - `npc transfer send <npc> --to <email>` offers the NPC to someone; they
   `npc transfer accept <id>` within 7 days. You lose it on acceptance.
 
 **Backreel posts** are your film / project pages. `create` always makes a
-draft; publishing needs a cover, media or an episode.
+draft; publishing needs a cover, media or an episode. Job Plaza jobs and
+enquiries (`wji br job …`) and crowdfunding contracts (`wji br contract …`) are
+covered by the `backreel` skill.
 
 ```bash
 wji backreel list                              # yours, drafts included; --all for published posts

@@ -6,7 +6,7 @@
 //   init <dir> --title … --episodes N --minutes M --genre G [--ratio 9:16]
 //            [--video h3|seedance|seedance2|seedance2fast|wan]   (decides the segment length — see VIDEO_MODELS)
 //            [--resolution 480P|…] [--accent "台灣口音國語"] [--style photoreal|realistic|ghibli]
-//            [--references sheets|storyboard|keyframes] [--storyboard-style sketch|photo] [--storyboard-faces block|show] [--keyframe-chain previous|none] [--duration auto|fixed] [--look "shallow depth of field"] [--lang zh] [--adapt 原創]
+//            [--references sheets|storyboard|keyframes] [--storyboard-style sketch|photo] [--storyboard-faces block|show] [--keyframe-chain previous|none] [--extend off|on] [--duration auto|fixed] [--look "shallow depth of field"] [--lang zh] [--adapt 原創]
 //            [--cinematography low-key|sweet-romance|period-nostalgia|costume-idol|costume-dark|scifi-hard|scifi-soft|horror|costume-horror|apocalypse|none]
 //                                                                      (lighting & composition — see CINEMATOGRAPHY_PRESETS; picked from the genre when omitted)
 //            [--action gun-fu|hk-kungfu|wuxia-fantasy|historical-realist|bullet-time|superhero|street-brawl|car-chase|horror-struggle|zombie-horde|none]
@@ -32,6 +32,7 @@
 //   seed     <project> storyboard --ep N [--force]    beat worksheet, visual-plan worksheet + empty segments from the script
 //   render   <project> outline | guideline | character C01 | scene S01 | prop P01 | script --ep N | dialogue --ep N | segment E01-01
 //   prompt   <project> segment E01-01                 derived video-prompt skeleton + keyframe / storyboard-grid reference plan
+//   prompt   <project> edit E01-01 --change "…"     Seedance 2.5 edit prompt for a generated clip
 //   topview  <project> segment E01-01 [--image <top-view sheet>] [--out <png>]
 //                                                      the top-view overlay (params.topView on): marks + cameras over the sheet, via headless Chrome
 //   prompt   <project> voice C01                       the acted sample text for the voice node
@@ -79,6 +80,9 @@ export const DEFAULT_PARAMS = Object.freeze({
   storyboardStyle: 'sketch',
   // Keyframes mode: each keyframe also references the one before it (continuity of people and blocking).
   keyframeChain: 'previous',
+  // Seedance 2.5 extend: a segment that continues the previous one (same scene or same sequence) is
+  // generated as an extension of the previous clip instead of from scratch.
+  videoExtend: 'off',
   // Faces in the storyboard grid: covered by a flat grey box (identity comes only from the sheets) or shown.
   storyboardFaces: 'block',
   videoResolution: '720P',
@@ -159,6 +163,8 @@ export const VIDEO_MODELS = {
     model: 'seedance-2.5-ref', family: 'seedance', promptLang: 'en',
     minSegmentSeconds: 4, maxSegmentSeconds: 30, maxRefs: 30, maxAudioRefs: 10, maxVideoRefs: 10, maxRefVideoSeconds: 30, autoDuration: true,
     resolutions: ['480p', '720p', '1080p'],
+    // Seedance 2.5 Ref task modes (`taskMode`): extend continues a reference video, edit changes one.
+    taskModes: ['auto', 'edit', 'extend'],
   },
   seedance2: {
     model: 'seedance-2.0-ref', family: 'seedance', promptLang: 'en',
@@ -224,6 +230,48 @@ export const STORYBOARD_STYLES = ['sketch', 'photo'];
  * keyframes are then generated in order. `none`: sheets only, every keyframe independent.
  */
 export const KEYFRAME_CHAIN_MODES = ['previous', 'none'];
+/**
+ * Seedance 2.5 extend (`params.videoExtend`). `on`: a segment whose previous segment plays in the
+ * same scene — or carries the same `sequence` tag — is generated as a forward extension of that
+ * clip (`taskMode: extend`, the previous clip as `@video1`): its first frame continues the previous
+ * clip's last frame, so the room, the people and where they stand carry over. `seg.extend: false`
+ * breaks the chain (a time jump inside a scene); `seg.extend: true` forces it. Needs a model with
+ * the extend task mode, the sheets or storyboard references, and the clips generated in order.
+ */
+export const VIDEO_EXTEND_MODES = ['off', 'on'];
+/** The segment this one extends, or null. */
+export function extendSource(project, episode, seg) {
+  const params = paramsOf(project);
+  if (params.videoExtend !== 'on' || seg?.extend === false) return null;
+  const all = episode?.storyboard?.segments || [];
+  const prev = all[all.findIndex((x) => x.id === seg.id) - 1];
+  if (!prev) return null;
+  if (seg.extend === true) return prev;
+  const sameScene = Number(prev.sceneIndex) === Number(seg.sceneIndex);
+  const sameSequence = !!seg.sequence && String(prev.sequence || '') === String(seg.sequence);
+  return sameScene || sameSequence ? prev : null;
+}
+/** The fixed sentences an extension prompt carries (gated verbatim). */
+export function extendLines(label) {
+  return {
+    open: `Extend ${label} forward. The first frame of the extended segment directly continues from the final frame of ${label}: maintain continuity in where everyone stands and faces, the props' positions, the room and its layout, the camera position and composition, the lighting, the ambience and the motion in progress.`,
+    close: `The same people and props remain the same continuous objects throughout, without duplication or splitting; the pictures define who they are but must not replace the boundary frame of ${label}.`,
+  };
+}
+/**
+ * Seedance 2.5 edit: a prompt that changes only `change` in a generated clip and keeps the rest.
+ * The clip is `@video1`, the sole editing master; `refs` (optional pictures) supply the new content.
+ */
+export function editPrompt(change, refs = []) {
+  const pics = refs.map((r, i) => `@image${i + 1} is ${r}.`);
+  return [
+    `Edit @video1, changing only ${String(change || '<what to change>').trim().replace(/\.$/, '')}.`,
+    ...pics,
+    '@video1 is the sole editing master and governs the original scene, the people, the camera position, the camera movement, the action, the occlusion and the event order.',
+    'Everything not named above stays exactly as it is in @video1: the other people, their faces, clothes and positions, the props, the room, the light, the camera and the sound.',
+    'Keep every other object in @video1 unchanged; do not add, remove or replace anything else.',
+  ].join('\n');
+}
 /**
  * Faces in the storyboard grid. `block` (the default): every face is covered by a flat grey box, so
  * the clip can only take identity from the character sheets and never a panel's redrawn face; the
@@ -2303,6 +2351,12 @@ export const GATES = [
     if (!DURATION_MODES.includes(params.videoDuration)) out.push(`params.videoDuration must be one of ${DURATION_MODES.join(' / ')}`);
     if (!VIDEO_REFERENCE_MODES.includes(params.videoReferences)) out.push(`params.videoReferences must be one of ${VIDEO_REFERENCE_MODES.join(' / ')}`);
     if (!STORYBOARD_STYLES.includes(params.storyboardStyle)) out.push(`params.storyboardStyle must be one of ${STORYBOARD_STYLES.join(' / ')}`);
+    if (!VIDEO_EXTEND_MODES.includes(params.videoExtend)) out.push(`params.videoExtend must be one of ${VIDEO_EXTEND_MODES.join(' / ')}`);
+    else if (params.videoExtend === 'on') {
+      const m = videoModel(params);
+      if (!(m.taskModes || []).includes('extend')) out.push(`params.videoExtend = on needs a model with the extend task mode (seedance = ${VIDEO_MODELS.seedance.model}) — ${m.model} has none`);
+      if (!sheetsLike(params)) out.push('params.videoExtend = on needs params.references = sheets or storyboard — an extension continues the previous clip, a keyframe would fight its boundary frame');
+    }
     if (!KEYFRAME_CHAIN_MODES.includes(params.keyframeChain)) out.push(`params.keyframeChain must be one of ${KEYFRAME_CHAIN_MODES.join(' / ')}`);
     if (!STORYBOARD_FACES.includes(params.storyboardFaces)) out.push(`params.storyboardFaces must be one of ${STORYBOARD_FACES.join(' / ')}`);
     if (!TOP_VIEW_MODES.includes(params.topView)) out.push(`params.topView must be one of ${TOP_VIEW_MODES.join(' / ')}`);
@@ -4458,6 +4512,26 @@ export const GATES = [
     }
     return out;
   }),
+  gate('video-extend', 'storyboard', 'Seedance 2.5 extend (params.videoExtend on): a segment continuing the previous one in the same scene or sequence is prompted as a forward extension of that clip', (ctx) => {
+    const { project, params } = ctx;
+    const out = [];
+    if (params.videoExtend !== 'on') return out;
+    for (const [, e] of ctx.episodes) {
+      for (const seg of e.storyboard?.segments || []) {
+        if (seg.extend !== undefined && typeof seg.extend !== 'boolean') out.push(`${seg.id}: extend must be true or false`);
+        const from = extendSource(project, e, seg);
+        if (!from) continue;
+        const prompt = String(seg.prompt || '');
+        if (!prompt.trim()) continue;
+        const label = segmentReferences(project, e, seg).find((r) => r.role === 'extend')?.label;
+        const { open, close } = extendLines(label);
+        if (!prompt.includes(open)) out.push(`${seg.id}: extends ${from.id} — the prompt must carry verbatim "${open}"`);
+        if (!prompt.includes(close)) out.push(`${seg.id}: extends ${from.id} — the prompt must carry verbatim "${close}"`);
+        if (!prompt.includes(`${label} is the source video to extend forward`)) out.push(`${seg.id}: the legend must say ${label} is the source video to extend forward`);
+      }
+    }
+    return out;
+  }),
   gate('storyboard-panels', 'storyboard', 'storyboard mode: one sketch grid per segment, at most 12 panels, and every shot names the panel it is composed from', (ctx) => {
     const { project, params } = ctx;
     const out = [];
@@ -5538,7 +5612,11 @@ export function segmentReferences(project, episode, seg) {
   }
   // The clip before this one, when the project asks for it: the cheapest continuity there is — the
   // model sees what the last generation actually produced, not a description of it.
-  if (params.videoReferences === 'previous') {
+  // Extend: the previous clip is the source this segment continues (and replaces `previous`).
+  const extendFrom = extendSource(project, episode, seg);
+  if (extendFrom) {
+    refs.push({ entity: extendFrom.id, asset: 'video', kind: 'video', role: 'extend', why: `the clip this one extends (${extendFrom.id})` });
+  } else if (params.videoReferences === 'previous') {
     const all = episode.storyboard?.segments || [];
     const at = all.findIndex((x) => x.id === seg.id);
     const prev = at > 0 ? all[at - 1] : null;
@@ -5599,6 +5677,11 @@ export function segmentReferences(project, episode, seg) {
   }
   for (const r of refs) {
     if (r.kind !== 'video') continue;
+    if (r.role === 'extend') {
+      r.use = 'the source video to extend forward — the clip right before this one in the same scene';
+      r.zh = '要向后延长的源视频——同一场戏的上一段';
+      continue;
+    }
     r.use = `the clip immediately before this one — continue its look, wardrobe, lighting and camera language, and pick up where it left off; do not repeat its action`;
     r.zh = `\u4e0a\u4e00\u6bb5\u7684\u6210\u7247\uff0c\u5ef6\u7eed\u5b83\u7684\u8d28\u611f\u3001\u670d\u88c5\u3001\u5149\u7ebf\u4e0e\u955c\u5934\u8bed\u8a00\uff0c\u63a5\u7740\u5b83\u5f80\u4e0b\u6f14\uff0c\u4e0d\u8981\u91cd\u590d\u5b83\u7684\u52a8\u4f5c`;
   }
@@ -5801,7 +5884,9 @@ export function promptSkeleton(project, episode, segmentId) {
       return `Shot ${k + 1} (${starts[k].toFixed(1)}–${(starts[k] + Number(c.seconds)).toFixed(1)} s, ${SIZES[c.size] || c.size}, ${c.camera}): ${topViewOf(k)}${framingOf(c)}${c.frame || '…'} ${motionSentence(c)} ${idleOf(c)}${propOf(c, framingLang)}${cameraClause(c)} ${talk}`.replace(/\s+/g, ' ').trim();
     });
     const sfxAll = cuts.map((c, k) => (sfxOf(k) ? `shot ${k + 1}: ${sfxOf(k)}` : '')).filter(Boolean).join('; ');
-    video = [...legend, '', ...shots, '', ...actionLine, `Look: ${lookOf()}. Maintain continuity in character identities, clothing, prop ownership, scene layout and the camera axis across every shot.`, `Sound: ${sound.ambience || '…'}${sfxAll ? `; ${sfxAll}` : ''}.${accent && dialogue.flat().length ? ` All dialogue in ${accent}.` : ''}${clipMusic ? ` Music: ${clipMusic}.` : ' No music.'}${params.subtitles ? '' : ` ${NO_SUBTITLES.en[0].toUpperCase()}${NO_SUBTITLES.en.slice(1)}.`}`].join('\n');
+    const extendLabel = allRefs.find((r) => r.role === 'extend')?.label;
+    const ext = extendLabel ? extendLines(extendLabel) : null;
+    video = [...legend, ...(ext ? ['', ext.open] : []), '', ...shots, '', ...actionLine, ...(ext ? [ext.close] : []), `Look: ${lookOf()}. Maintain continuity in character identities, clothing, prop ownership, scene layout and the camera axis across every shot.`, `Sound: ${sound.ambience || '…'}${sfxAll ? `; ${sfxAll}` : ''}.${accent && dialogue.flat().length ? ` All dialogue in ${accent}.` : ''}${clipMusic ? ` Music: ${clipMusic}.` : ' No music.'}${params.subtitles ? '' : ` ${NO_SUBTITLES.en[0].toUpperCase()}${NO_SUBTITLES.en.slice(1)}.`}`].join('\n');
   } else {
     const anchors = [...seedanceAnchors(cuts.length), ...allRefs.filter((r) => r.kind !== 'image').map((r) => `${r.label} is ${r.use}.`)];
     const shotOf = (c) => `${SIZES[c.size] || c.size}, ${c.camera}, ${cameraPhrase(c, params)}; ${lightPhrase(c)}${foregroundPhrase(c)}`;
@@ -5906,11 +5991,14 @@ export function promptSkeleton(project, episode, segmentId) {
     storyboard = { name: `${seg.id} storyboard`, style: photo ? 'photo' : 'sketch', faces: params.storyboardFaces, ratio: g.ratio, grid: g, references: refs, prompt };
   }
 
+  const extendFrom = extendSource(project, episode, seg);
   return {
     segment: seg.id,
     storyboard,
     video: {
       model: mode.model, ratio: params.ratio,
+      // Extend: the backend locks the ratio to the source clip and writes mp4 when asked.
+      ...(extendFrom ? { taskMode: 'extend', extends: extendFrom.id, values: { taskMode: 'extend', outputFormat: 'mp4' } } : {}),
       duration: params.videoDuration === 'auto' ? null : total, plannedSeconds: total,
       resolution: videoResolutionFor(mode, params.videoResolution) || params.videoResolution,
       // keyframes (or sheets) first, then the voices — the order the video node must be connected in.
@@ -6468,7 +6556,7 @@ export function manifest(project, episodes, opts = {}) {
         if (!sw.nodes?.track) add('storyboard', seg.id, `storyboard.segments.${seg.id}.wji.nodes.track`, `wji canvas add audio -c <${E}> -n "${seg.id} track" -m ${AUDIO_MODEL}${full ? ' --from <voice display nodes, speaking order>' : ''} --prompt-file <prompt audio ${seg.id}>`);
         else if (!sw.assets?.track) add('storyboard', seg.id, `storyboard.segments.${seg.id}.wji.assets.track`, `wji canvas gen ${sw.nodes.track} → asset → fs set <shot dataset> --add-images <asset>`);
       }
-      if (!sw.nodes?.video) add('storyboard', seg.id, `storyboard.segments.${seg.id}.wji.nodes.video`, `wji canvas add video -c <${E}> -n "${seg.id}" --from <${paramsOf(project).references === 'storyboard' ? 'sheet display nodes, then the storyboard node' : sheetsLike(paramsOf(project)) ? 'sheet display nodes' : 'keyframes'}>`);
+      if (!sw.nodes?.video) add('storyboard', seg.id, `storyboard.segments.${seg.id}.wji.nodes.video`, `wji canvas add video -c <${E}> -n "${seg.id}" --from <${paramsOf(project).references === 'storyboard' ? 'sheet display nodes, then the storyboard node' : sheetsLike(paramsOf(project)) ? 'sheet display nodes' : 'keyframes'}${extendSource(project, e, seg) ? `, then the ${extendSource(project, e, seg).id} video node` : ''}>${extendSource(project, e, seg) ? ` --set taskMode=extend --set outputFormat=mp4 (after ${extendSource(project, e, seg).id} is generated)` : ''}`);
       else if (!sw.assets?.video) add('storyboard', seg.id, `storyboard.segments.${seg.id}.wji.assets.video`, `wji canvas gen ${sw.nodes.video} (video — ask first) → asset`);
     }
     // Post soundtrack: once every clip exists, the episode is edited, then scored and mixed as one.
@@ -6523,6 +6611,7 @@ export function initProject(opts) {
   if (opts.composition && !Object.hasOwn(COMPOSITION_STYLES, opts.composition)) throw new Error(`--composition must be one of ${Object.keys(COMPOSITION_STYLES).join(' / ')}`);
   if (opts.comedy && !Object.hasOwn(COMEDY_STYLES, opts.comedy)) throw new Error(`--comedy must be one of ${Object.keys(COMEDY_STYLES).join(' / ')}`);
   if (opts.footage && !['cinema', 'dv'].includes(opts.footage)) throw new Error('--footage must be cinema or dv');
+  if (opts.videoExtend && !VIDEO_EXTEND_MODES.includes(opts.videoExtend)) throw new Error(`--extend must be one of ${VIDEO_EXTEND_MODES.join(' / ')}`);
   if (opts.keyframeChain && !KEYFRAME_CHAIN_MODES.includes(opts.keyframeChain)) throw new Error(`--keyframe-chain must be one of ${KEYFRAME_CHAIN_MODES.join(' / ')}`);
   if (opts.storyboardFaces && !STORYBOARD_FACES.includes(opts.storyboardFaces)) throw new Error(`--storyboard-faces must be one of ${STORYBOARD_FACES.join(' / ')}`);
   if (opts.storyboardStyle && !STORYBOARD_STYLES.includes(opts.storyboardStyle)) throw new Error(`--storyboard-style must be one of ${STORYBOARD_STYLES.join(' / ')}`);
@@ -6551,6 +6640,7 @@ export function initProject(opts) {
       storyboardStyle: opts.storyboardStyle || DEFAULT_PARAMS.storyboardStyle,
       storyboardFaces: opts.storyboardFaces || DEFAULT_PARAMS.storyboardFaces,
       keyframeChain: opts.keyframeChain || DEFAULT_PARAMS.keyframeChain,
+      videoExtend: opts.videoExtend || DEFAULT_PARAMS.videoExtend,
       // `auto` unless this model has no autoDuration parameter.
       videoDuration: opts.duration || (mode.autoDuration ? DEFAULT_PARAMS.videoDuration : 'fixed'),
       lookPhrase: opts.look || (dv ? DV_LOOK : DEFAULT_PARAMS.lookPhrase),
@@ -6808,7 +6898,7 @@ function main(argv) {
       resolution: flag(rest, '--resolution'), accent: flag(rest, '--accent'),
       references: flag(rest, '--references'), duration: flag(rest, '--duration'), look: flag(rest, '--look'),
       register: flag(rest, '--register'), imageLang: flag(rest, '--image-lang'), foreground: flag(rest, '--foreground'),
-      cinematography: flag(rest, '--cinematography'), action: flag(rest, '--action'), violence: flag(rest, '--violence'), grammar: flag(rest, '--grammar'), comedy: flag(rest, '--comedy'), composition: flag(rest, '--composition'), story: flag(rest, '--story'), market: flag(rest, '--market'), format: flag(rest, '--format'), footage: flag(rest, '--footage'), horrorStyle: flag(rest, '--horror-style'), topView: flag(rest, '--top-view'), storyboardStyle: flag(rest, '--storyboard-style'), storyboardFaces: flag(rest, '--storyboard-faces'), keyframeChain: flag(rest, '--keyframe-chain'),
+      cinematography: flag(rest, '--cinematography'), action: flag(rest, '--action'), violence: flag(rest, '--violence'), grammar: flag(rest, '--grammar'), comedy: flag(rest, '--comedy'), composition: flag(rest, '--composition'), story: flag(rest, '--story'), market: flag(rest, '--market'), format: flag(rest, '--format'), footage: flag(rest, '--footage'), horrorStyle: flag(rest, '--horror-style'), topView: flag(rest, '--top-view'), storyboardStyle: flag(rest, '--storyboard-style'), storyboardFaces: flag(rest, '--storyboard-faces'), keyframeChain: flag(rest, '--keyframe-chain'), videoExtend: flag(rest, '--extend'),
       source: flag(rest, '--source'), sourcePath: flag(rest, '--source-path'),
     });
     const paths = projectPaths(dir);
@@ -7009,13 +7099,22 @@ function main(argv) {
     const id = pos[2];
     const ep = Number((id || '').match(/^E(\d+)-/)?.[1]);
     const { project, episodes } = loadProject(input);
-    if (pos[1] !== 'segment' || !ep || !episodes[ep]) throw new Error('usage: prompt <project> segment E01-01');
+    if (pos[1] === 'edit') {
+      // Seedance 2.5 edit: change one thing in a generated clip, keep the rest.
+      if (!ep || !episodes[ep]) throw new Error('usage: prompt <project> edit E01-01 --change "<what to change, to what>" [--ref "<what picture k supplies>"]…');
+      const refs = rest.flatMap((a, i) => (a === '--ref' ? [rest[i + 1]] : [])).filter(Boolean);
+      console.log(`# ${id} · edit · seedance-2.5-ref · --set taskMode=edit (ratio and length follow the clip; output mov) · --from <${id} video node>${refs.length ? ', then the picture node(s)' : ''}`);
+      console.log('');
+      console.log(editPrompt(flag(rest, '--change'), refs));
+      return 0;
+    }
+    if (pos[1] !== 'segment' || !ep || !episodes[ep]) throw new Error('usage: prompt <project> segment|edit E01-01');
     const out = promptSkeleton(project, episodes[ep], id);
     if (flag(rest, '--json')) console.log(JSON.stringify(out, null, 2));
     else {
       // `duration: null` means auto — say so, and say what the clip was planned at.
       const dur = out.video.duration == null ? `auto (planned ${out.video.plannedSeconds}s — pass no -d)` : `${out.video.duration}s`;
-      console.log(`# ${out.segment} · video ${out.video.model} · ${out.video.ratio} · ${out.video.resolution} · ${dur} · refs: ${out.video.references.join(', ')}`);
+      console.log(`# ${out.segment} · video ${out.video.model} · ${out.video.ratio} · ${out.video.resolution} · ${dur}${out.video.taskMode ? ` · ${out.video.taskMode} ${out.video.extends} (--set taskMode=extend --set outputFormat=mp4, after ${out.video.extends} is generated)` : ''} · refs: ${out.video.references.join(', ')}`);
       console.log('');
       console.log(out.video.prompt);
       console.log('');

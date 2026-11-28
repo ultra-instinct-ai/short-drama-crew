@@ -117,6 +117,21 @@ wji canvas gen VID1                 # prints the cost and refuses → tell the u
 legend says; fix with disconnect/connect if it does not. With `videoDuration: auto` (the default)
 there is no `-d`; `minimax-h3-ref` has no auto duration, so h3 projects pass `-d` = Σ cut seconds.
 
+**With `params.videoExtend: on`** — a segment that continues the one before (same scene / same
+`sequence`) extends that clip; build it only after the previous clip exists:
+
+```bash
+wji canvas add video -c E1 -n "E01-02" --from D_S02 D_C01 D_C03 VID1 D_C01v -m seedance-2.5-ref -r 9:16 \
+  --resolution 720p --set taskMode=extend --set outputFormat=mp4 --prompt-file /tmp/E01-02-prompt.txt --json | jq -r .id   # VID1 = E01-01's video node → @video1
+```
+
+**Fix one thing in a clip (Seedance 2.5 edit)** — `prompt <project> edit E01-01 --change "…"` writes the prompt:
+
+```bash
+wji canvas add video -c E1 -n "E01-01 edit" --from VID1 [D_newProp] -m seedance-2.5-ref --set taskMode=edit \
+  --prompt-file /tmp/E01-01-edit.txt --json | jq -r .id     # ratio + length follow VID1, output .mov
+```
+
 **Only with `params.references: storyboard`** — the sheets as above plus one sketch grid per segment,
 connected after the sheets (it is the last `@image`):
 

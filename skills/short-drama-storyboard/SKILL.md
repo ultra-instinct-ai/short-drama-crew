@@ -112,7 +112,12 @@ cinematography preset's guide (`../short-drama-core/reference/cinematography-<pr
   connected as the last `@image`. `prompt segment` prints the grid prompt and ratio under
   `## storyboard`; every shot says `composed as panel k of @imageN` (gate `storyboard-panels`).
   `storyboardStyle`: `sketch` (default, composition only) or `photo` (finished frames in the
-  project's style — composition plus light and colour). `storyboardFaces`: `block` (default, a
+  project's style — composition plus light and colour).
+- `videoExtend: on` (Seedance 2.5, opt-in): a segment in the same scene (or the same `sequence`
+  tag) as the one before extends that clip (`taskMode: extend`, `@video1` = the previous clip,
+  gate `video-extend`); fix one thing in a clip with `prompt <project> edit E0N-0k --change "…"`.
+  See [stage-storyboard](reference/stage-storyboard.md) §Extend / §Edit.
+  `storyboardFaces`: `block` (default, a
   grey box over every face — identity only from the sheets) or `show`.
   See [stage-storyboard](reference/stage-storyboard.md) §Storyboard grid.
 
