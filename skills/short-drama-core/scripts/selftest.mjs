@@ -20,7 +20,7 @@ import {
   audioPrompt, musicOf, cueSeconds, AUDIO_MODEL, AUDIO_MAX_CHARS, AUDIO_MAX_SECONDS, scoreSheet, smpte,
   VIDEO_MODELS, VIDEO_MODES, DEFAULT_PARAMS, videoModel, videoResolutionFor, nearestResolution, segmentPlan, videoReferences,
   formatGates, displayName, imagePrompt, imagePromptKit, foldZh, IMAGE_PROMPT_LANGS,
-  REFERENCE_MODES, STORYBOARD_STYLES, STORYBOARD_FACES, STORYBOARD_FACE_BOX, sheetsLike, storyboardGrid, storyboardPanelPhrase, STORYBOARD_MAX_PANELS, STORYBOARD_SKETCH,
+  REFERENCE_MODES, KEYFRAME_CHAIN_MODES, STORYBOARD_STYLES, STORYBOARD_FACES, STORYBOARD_FACE_BOX, sheetsLike, storyboardGrid, storyboardPanelPhrase, STORYBOARD_MAX_PANELS, STORYBOARD_SKETCH,
   TOP_VIEW_MODES, TOP_VIEW_COLORS, topViewFov, topViewSees, topViewAxisSide, topViewPeople, topViewCameraPhrase, topViewSvg, imageSize,
   HORROR, HORROR_RULES, SCARE_CUTS, THREAT_RUNGS, maxCutFor, DV_KIT, DV_LOOK, DV_RE, HORROR_STYLES, horrorStyleForGenre, horrorStyleOf, THREAT_KINDS, isHorrorLook,
 } from './short-drama.mjs';
@@ -3092,6 +3092,41 @@ const breaks = (gateId, project, episode, needle) => {
   ok(!GATES.find((g) => g.id === 'params').run(makeContext(sdOk, { 1: E01 })).some((m) => m.includes('storyboard')), 'with the real-person permission a photo grid passes');
   sd.params.storyboardStyle = 'sketch';
   ok(!GATES.find((g) => g.id === 'params').run(makeContext(sd, { 1: E01 })).some((m) => m.includes('storyboard')), 'a sketch grid passes the real-person check');
+}
+
+{
+  // Keyframe chain: each keyframe also references the one before it.
+  eq(DEFAULT_PARAMS.keyframeChain, 'previous', 'keyframes chain by default');
+  ok(KEYFRAME_CHAIN_MODES.includes('none'), 'chaining can be turned off');
+  const p = clone(PROJECT); p.params.references = 'keyframes';
+  const e = clone(E01);
+  const segs = e.storyboard.segments;
+  const i = segs.findIndex((s, j) => j > 0 && Number(s.sceneIndex) === Number(segs[j - 1].sceneIndex));
+  const seg = segs[i >= 0 ? i : 1];
+  const kf = promptSkeleton(p, e, seg.id).keyframes;
+  kf.forEach((k, j) => {
+    if (j === 0) return;
+    const last = k.references[k.references.length - 1];
+    eq(last.entity, `${seg.id} f${j}`, `f${j + 1} references f${j} last`);
+    ok(/same people/.test(last.use) && /not its framing/.test(last.use), `f${j + 1}: continuity only, not framing`);
+    eq(k.after, `${seg.id} f${j}`, `f${j + 1} is generated after f${j}`);
+    ok(k.prompt.includes(`${last.label} is the shot just before`), `f${j + 1} prompt names the previous keyframe`);
+  });
+  if (i >= 0) {
+    const prev = segs[i - 1];
+    eq(kf[0].after, `${prev.id} f${prev.cuts.length}`, 'a segment opens on the last keyframe of the segment before in the same scene');
+  }
+  const off = clone(p); off.params.keyframeChain = 'none';
+  ok(promptSkeleton(off, e, seg.id).keyframes.every((k) => !k.after && !k.references.some((r) => r.asset === 'keyframe')), 'none: sheets only');
+  // refOverride looks reach the keyframes
+  const e2 = clone(E01); const s2 = e2.storyboard.segments[3];
+  const who = s2.cuts.flatMap((c) => c.characters || [])[0];
+  s2.refOverride = [{ entity: e2.scenes[Number(s2.sceneIndex) - 1].sceneId, asset: 'sheet' }, { entity: who, asset: 'look:work', faceOf: who }];
+  ok(promptSkeleton(p, e2, s2.id).keyframes.flatMap((k) => k.references).filter((r) => r.entity === who).every((r) => r.asset === 'look:work'), 'keyframes take the look the segment pins');
+  const bad = clone(p); bad.params.keyframeChain = 'all';
+  breaks('params', bad, E01, 'keyframeChain');
+  const m = manifest(p, { 1: e }, { ep: 1 });
+  ok(m.some((it) => /keyframe before it \(generate in order\)/.test(it.hint)), 'manifest says to chain and generate in order');
 }
 
 // ── gate inventory (crew engine) ────────────────────────────────────────────

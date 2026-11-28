@@ -512,8 +512,17 @@ with the plan's prefix in front of the frame prompt (`@image1 is the environment
 character sheet of one person in this frame …`). Never reference a dataset node — `canvas gen`
 refuses it; reference the image display node that shows the sheet asset.
 
-Chain references when a face still drifts: use the best generated keyframe of that character as an
-extra `--from` on the later keyframes (`the SAME face and clothes as @imageN`). Anything large
+**Chained by default** (`keyframeChain: previous`): every keyframe after the first references the
+keyframe before it as its last `@image` — "the shot just before this one in the same scene — keep
+exactly the same people, room, props and positions; continuity only, not its framing". A segment's
+first keyframe chains to the previous segment's last one when they share a scene. So generate the
+keyframes **in order**, each after the one it references (`prompt segment` prints "after …" on
+each). Measured on 穿越戰神 E01-01 (gpt-image-2.6, 6 × 18.3): unchained, the man wore a suit in f1/f6,
+an apron in f2 and a waistcoat in f5, f3 showed a man's hands and f4 a vessel instead of the tally;
+chained, the man kept his suit, glasses and tie in every frame, she kept her face and apron, the
+tally stayed the same object from f3 on and the phone he picked up in f5 was still in his hand in
+f6. The chain only carries forward — a bad f1 propagates, so check f1 before generating f2.
+Keyframes take the look the segment's `refOverride` pins (e.g. `C01:look:工作裝`), not the base sheet. Anything large
 that enters the frame (a boat, a car, a gate) needs its own sheet reference or it is reinvented
 every frame.
 
