@@ -26,7 +26,7 @@ cinematography preset's guide (`../short-drama-core/reference/cinematography-<pr
 
 1. Scenes: `summary`, 3–5 `anchors`, `lighting` states derived from the episodes the scene
    appears in (in the preset's look, lit by named sources), empty-scene `image.*`; variants via `variantOf` + `changes`. Props (narrative ones
-   only): `scale`, `anchors`, `states`, white-background `image.*`.
+   only): `scale`, real `size` (handheld / tabletop), `anchors`, `states`, white-background `image.*`.
    `$SD validate <project> --stage art`.
 2. Sync to `location/` and `prop/` datasets (Operator): content = `$SD render <project> scene S01`
    / `prop P01`, `image_prompt` = the sheet prompt.
@@ -41,6 +41,13 @@ cinematography preset's guide (`../short-drama-core/reference/cinematography-<pr
    --asset topview`, one node `--from` the scene sheet. Approve it only if it is straight overhead,
    empty, and has the furniture where the sheet has it. Bind `scenes.S01.wji.assets.topview`
    ([top-view plan](../short-drama-core/reference/top-view-plan.md) §2).
+6. **Scale and views** ([stage-art](reference/stage-art.md)): every `handheld` / `tabletop` prop
+   gets a **scale picture** `--from` its sheet (`$SD prompt <project> image P01 --asset scale` — in
+   one hand, or beside its `scaleObject`), so the clips paint it the right size. A scene gets an
+   extra **view** when the storyboard needs one: `reverse` for shot / reverse shot or anything that
+   faces the side the sheet never shows, `high` for high / top cuts and blocking across the room
+   (`views: [...]`, `--asset view:reverse|view:high`). The advisory `art-scale-views` points at
+   the gaps.
 
 ## Hand-off
 

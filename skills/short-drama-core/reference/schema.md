@@ -213,8 +213,8 @@ id or list) and `gag` (`setup` / `build` / `punchline`) with `runningGag`.
   "summary": "设计意图…", "condition": "lived-in", "conditionReason": "这家店每晚都在营业，是用旧了而不是残破", "anchors": [{ "name": "闪烁的关东煮灯箱", "desc": "…" }],
   "lighting": [{ "state": "凌晨冷白光", "prompt": "…" }],
   "image": { "prompt": "…", "negativePrompt": "…", "sheet": "…", "tags": [] },
-  "variantOf": "", "changes": "",
-  "wji": { "datasetId": "", "nodes": { "sheet": "", "lighting": {} }, "assets": { "sheet": "", "lighting": {} } }
+  "variantOf": "", "changes": "", "views": ["reverse", "high"],
+  "wji": { "datasetId": "", "nodes": { "sheet": "", "lighting": {}, "views": {} }, "assets": { "sheet": "", "lighting": {}, "views": {} } }
 }
 ```
 
@@ -224,6 +224,10 @@ paintable and checkable), `lighting` (≥1, prompts in `imagePromptLang`, derive
 episodes it appears in), `image.*` (`imagePromptLang`, **empty scene — negative prompt
 must ban people**), `variantOf` + `changes` for variants of a parent scene.
 `wji.nodes.lighting` / `wji.assets.lighting` are keyed by lighting `state`.
+`views` (optional) lists the extra views the storyboard needs, made from the sheet: `reverse`
+(the opposite side of the room — what stands behind the master view's camera) and `high` (a
+high-angle overview from a top corner). Keyed `wji.nodes.views.<view>` / `wji.assets.views.<view>`;
+see `stage-art.md` § Extra views.
 `condition` is `new`, `lived-in` or `worn`, and `conditionReason` says why the story gives it
 that condition — the same two fields are required on every prop. Realism is materials, light and
 detail, not wear. A luxury interior, a set just built, a prop the organisers have just issued,
@@ -237,11 +241,11 @@ torn, frayed, peeling, stain, 殘舊, 生鏽, 褪色 or 剝落.
 ```json
 {
   "id": "P01", "name": "旧监控硬盘", "function": "全剧悬念核心：里面到底录了什么",
-  "beatIds": ["B02"], "scale": "handheld", "summary": "…", "condition": "worn", "conditionReason": "三年前的硬盘，标签撕掉、接口生锈",
+  "beatIds": ["B02"], "scale": "handheld", "size": "about 14.7 cm long and 10 cm wide, a little bigger than a palm", "scaleRef": "hand", "scaleObject": "", "summary": "…", "condition": "worn", "conditionReason": "三年前的硬盘，标签撕掉、接口生锈",
   "anchors": [{ "name": "…", "desc": "…" }], "states": [{ "state": "封在防静电袋里", "prompt": "…" }],
   "relatedScenes": ["S01"], "carriedBy": ["林小夏"],
   "image": { "prompt": "…", "negativePrompt": "…", "sheet": "…", "tags": [] },
-  "wji": { "datasetId": "", "nodes": { "sheet": "", "states": {} }, "assets": { "sheet": "", "states": {} } }
+  "wji": { "datasetId": "", "nodes": { "sheet": "", "states": {}, "scale": "" }, "assets": { "sheet": "", "states": {}, "scale": "" } }
 }
 ```
 
@@ -251,6 +255,12 @@ if you cannot fill it, it is set dressing, not a prop), `beatIds`. Art stage:
 `handheld scale` etc. must appear in `image.prompt` and `image.sheet`),
 `anchors` 3–5, `states` ≥1, `image.*` (**white background, no people, negative
 prompt bans hands**). At most `thresholds.maxProps` (8).
+`size` — the real size in words ("about 9 cm long, fits in a palm"), expected for `handheld` and
+`tabletop` props (advisory `art-scale-views`). `scaleRef` — what the **scale picture** sets it
+against: `hand` (default for handheld), `object` (default for tabletop; needs `scaleObject`, a
+familiar thing of known size — a coffee mug, a smartphone, an A4 sheet) or `none` (default for
+furniture). The scale picture is `prompt image P01 --asset scale`, made `--from` the sheet; the
+sheet itself stays hand-free.
 
 ### wji (project level)
 
@@ -335,6 +345,7 @@ Duration: `Σ lines (chars ÷ charsPerSecond) + Σ actions × actionSeconds`.
 | `move` | fight segments only: `{ kind, impact }` — `kind` ∈ `strike kick shot slash stab block dodge throw grapple fall leap draw reload power stance chase swerve crash none`; `impact: true` when it lands, and then the next cut is a `reaction` / `consequence` (or this cut is a `consequence`) — gate `action` |
 | `purpose` | `{ kind, change }` — `kind` ∈ `establish / reveal / evidence / reaction / pressure / decision / consequence / performance / transition`; `change` says what the audience knows or who holds power when the cut ends (gate `shot-purpose`) |
 | `angle` / `height` / `axisSide` | `front / three-quarter / profile / rear-three-quarter / back` · `ground / low / eye / high / top` · `working / cross / neutral` (`cross` needs `note`) — gate `framing-axis` |
+| `cuts[].view` | optional: `reverse` (the camera faces the side of the room the scene sheet never shows) or `high`; the scene must list it in `views`. A `high` / `top` cut takes `high` on its own when the scene has it. Once the view is generated it is connected after the environment and the shot names it (`Facing the reverse side of the room, its background as in @imageK.`) — gate `framing-axis` |
 | `start` / `end` | boundaries `{ positions: {C01: …}, facing: {C01: screen-left\|screen-right\|camera\|away}, gaze, hands, heldProps: {C01: [P01]}, state: [] }` for every person on screen; `start` only on a segment's first cut (later cuts inherit the previous `end`); a prop changes hands only on an action beat; `state` items that exist only in `end` may not appear in `frame` — gate `continuity` |
 | `motion` | `{ trigger, action, result }` — cue, one visible state chain, landing (or `hold`); English unless the prompt language is Chinese; no names, no inferred states, ≤ 3 hand verbs — gate `motion` |
 | `cameraNote` | `{ motivation, trigger, path, endFraming }` on any move (`motivation` ∈ `reveal / pressure / alignment / relationship / transition / stillness`), `{ hold }` on a `Static Shot` — gate `motion` |

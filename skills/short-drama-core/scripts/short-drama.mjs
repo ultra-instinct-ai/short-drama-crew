@@ -36,7 +36,7 @@
 //   topview  <project> segment E01-01 [--image <top-view sheet>] [--out <png>]
 //                                                      the top-view overlay (params.topView on): marks + cameras over the sheet, via headless Chrome
 //   prompt   <project> voice C01                       the acted sample text for the voice node
-//   prompt   <project> image C01|S01|P01 [--asset headshot|sheet|lighting:<state>|state:<state>] [--json]
+//   prompt   <project> image C01|S01|P01 [--asset headshot|sheet|lighting:<state>|view:reverse|view:high|topview|state:<state>|scale] [--json]
 //                                                      the image node's prompt, in params.imagePromptLang (+ negative, ratio, reference)
 //   prompt   <project> audio E01-01 [--full]          the segment's Seed Audio soundtrack prompt (timecoded ambience / sfx / music, + lines with --full)
 //   prompt   <project> score E01 [--fps 24]           the episode's spotting sheet for the post soundtrack (audioTrack post): planned
@@ -562,6 +562,28 @@ export const LIPS_CLOSED = 'lips remain completely closed';
 export const WARNINGS = ['雨戏', '肢体接触', '人群', '手部特写'];
 export const PROP_SCALES = { handheld: 'handheld scale', tabletop: 'tabletop scale', furniture: 'furniture scale' };
 export const PROP_SCALES_ZH = { handheld: '手持尺寸', tabletop: '桌面尺寸', furniture: '大件尺寸' };
+/**
+ * A prop alone on white has no size: the model paints a ring like a dinner plate. The scale picture
+ * (`--asset scale`, made from the sheet) shows the same prop at its real `size` in one plain hand
+ * (`hand`) or beside a familiar object (`object` + `scaleObject`). The sheet itself stays hand-free.
+ * Default by `scale`: handheld → hand, tabletop → object, furniture → none (a room already scales it).
+ */
+export const PROP_SCALE_REFS = ['hand', 'object', 'none'];
+const DEFAULT_SCALE_REF = { handheld: 'hand', tabletop: 'object', furniture: 'none' };
+export const scaleRefOf = (p) => (PROP_SCALE_REFS.includes(p?.scaleRef) ? p.scaleRef : DEFAULT_SCALE_REF[p?.scale] || 'none');
+/**
+ * Extra views of a scene, generated from its sheet when the storyboard needs them:
+ * `reverse` — the opposite side of the room (what is behind the master view's camera), for shots that
+ * face that way, e.g. the reverse half of a shot / reverse shot; `high` — a high-angle overview from a
+ * top corner, for high or top shots, crowds and blocking that spans the room. A cut picks one with
+ * `view`; a high / top cut takes `high` on its own when the scene has it.
+ */
+export const SCENE_VIEWS = ['reverse', 'high'];
+export const cutView = (c, sceneEntity) => {
+  if (SCENE_VIEWS.includes(c?.view)) return c.view;
+  if ((c?.height === 'high' || c?.height === 'top') && asList(sceneEntity?.views).includes('high')) return 'high';
+  return null;
+};
 export const SIZES = {
   'extreme-wide': 'extreme wide shot',
   wide: 'wide shot',
@@ -885,7 +907,7 @@ export function identityZh(character) {
 function plainPhrase(text, maxWords = 10) {
   const s = String(text || '').trim();
   if (!s || /[\u4e00-\u9fff]/.test(s)) return '';
-  const head = s.replace(/^(product photograph of|a|an|the)\s+/i, '').split(/[,.;(]/)[0].trim();
+  const head = s.replace(/^(product photograph of|a|an|the)\s+/i, '').split(/[,;(]|\.(?!\d)/)[0].trim();
   return head.split(/\s+/).filter(Boolean).slice(0, maxWords).join(' ');
 }
 
@@ -895,8 +917,11 @@ export function sheetUse(ref, project) {
   const pr = propById(project, id);
   const sc = sceneById(project, id);
   if (ref.asset && /^lighting:/.test(ref.asset)) return 'the same environment in the lighting state to use \u2014 take only its light ratios, contrast and colour temperature, never its composition or its people';
+  if (ref.asset === 'view:reverse') return 'the same environment seen from the opposite side \u2014 the walls, doors and furniture behind the main view, the background of every shot that faces that way; match its layout, materials and condition exactly; take no person from it';
+  if (ref.asset === 'view:high') return 'the same environment from a high angle \u2014 where the walls, doors and every piece of furniture stand on the floor; keep the space and where things stand exactly as it shows; take no person from it';
+  if (ref.asset === 'scale' && pr) return `the same prop at its real size${pr.size ? ` (${pr.size})` : ''}, ${scaleRefOf(pr) === 'hand' ? 'held in a hand' : `beside ${pr.scaleObject || 'a familiar object'}`} \u2014 take only its size, never its ${scaleRefOf(pr) === 'hand' ? 'hand' : 'second object'} or its white background`;
   if (/^C\d/.test(id) && ch) return `the character sheet of ${identityOf(ch)} \u2014 match face, hair and clothes exactly, and nothing else in the frame`;
-  if (/^P\d/.test(id) && pr) return `the prop to reproduce exactly${plainPhrase(pr.image?.prompt || pr.states?.[0]?.prompt) ? `: ${plainPhrase(pr.image?.prompt || pr.states?.[0]?.prompt)}` : ''} \u2014 only this object, not the surface it sits on`;
+  if (/^P\d/.test(id) && pr) return `the prop to reproduce exactly${plainPhrase(pr.image?.prompt || pr.states?.[0]?.prompt) ? `: ${plainPhrase(pr.image?.prompt || pr.states?.[0]?.prompt)}` : ''}${pr.size ? `, real size ${pr.size}` : ''} \u2014 only this object, not the surface it sits on`;
   if (sc) return `the environment${plainPhrase(sc.lighting?.[0]?.prompt) ? `: ${plainPhrase(sc.lighting[0].prompt)}` : ''} \u2014 match its layout, materials and wear exactly; take no person from it, not ever`;
   if (ref.asset === 'headshot') return 'the headshot that supplies one person\u2019s face \u2014 match face and hair only';
   return 'a reference image for this segment';
@@ -907,8 +932,11 @@ export function sheetZh(ref, project) {
   const pr = propById(project, id);
   const sc = sceneById(project, id);
   if (ref.asset && /^lighting:/.test(ref.asset)) return '同一场景的光线状态：只照它的光比、反差与色温，不要照它的构图与人物';
+  if (ref.asset === 'view:reverse') return '同一场景的反向视角：主视角背后的墙、门与家具，朝那一面拍的镜头背景照它；严格还原布局、材质与状态，不要照它的人物';
+  if (ref.asset === 'view:high') return '同一场景的高角度俯视：墙、门与每件家具在地面上的位置；空间与摆位严格照它，不要照它的人物';
+  if (ref.asset === 'scale' && pr) return `同一件道具的实际大小${CJK_RE.test(String(pr.size || '')) ? `（${pr.size}）` : ''}，${scaleRefOf(pr) === 'hand' ? '拿在手里' : `放在${pr.scaleObject || '常见物件'}旁边`}：只照它有多大，不要照${scaleRefOf(pr) === 'hand' ? '那只手' : '那件参照物'}或白色背景`;
   if (/^C\d/.test(id) && ch) return `人物三视图（${identityZh(ch)}）：严格还原面容、发型与服装`;
-  if (/^P\d/.test(id) && pr) return `需要严格还原的道具：${pr.name || id}`;
+  if (/^P\d/.test(id) && pr) return `需要严格还原的道具：${pr.name || id}${CJK_RE.test(String(pr.size || '')) ? `，实际大小${pr.size}` : ''}`;
   if (sc) return `环境（${sc.name || id}），严格还原布局、材质与旧痕；这张图里没有人，不要照它的人物`;
   if (ref.asset === 'headshot') return '一张人头特写，只照面容与发型';
   return '本段参考图';
@@ -2360,7 +2388,7 @@ function sheetLabelsOf(images) {
   for (const r of images) if (r.asset === 'sheet' || r.asset === 'headshot') if (!m.has(r.entity)) m.set(r.entity, r.label);
   return m;
 }
-const NEGATIVE_REF = /not its|never its|only its|no person|take no person|not the composition|只照|唔照|不要照|只取|这张图里没有人|不要照它的人物/i;
+const NEGATIVE_REF = /not its|never its|only its|only this object|no person|take no person|not the composition|只照|唔照|不要照|只取|这张图里没有人|不要照它的人物/i;
 
 export const GATES = [
   // ── outline ───────────────────────────────────────────────────────────
@@ -3446,6 +3474,9 @@ export const GATES = [
         else if (!kit.inLang(l.prompt)) out.push(`${s.id}: lighting "${l.state}" prompt must be ${kit.label}`);
         else if (look && !l.prompt.toLowerCase().includes(look.framePhrase)) out.push(`${s.id}: lighting "${l.state}" prompt must contain "${look.framePhrase}" and name the practical sources that light the space (params.cinematography ${params.cinematography})`);
       }
+      const views = asList(s.views);
+      for (const v of views) if (!SCENE_VIEWS.includes(v)) out.push(`${s.id}: views may hold ${SCENE_VIEWS.join(' / ')}, not "${v}"`);
+      if (new Set(views).size !== views.length) out.push(`${s.id}: views lists a view twice`);
       if (s.variantOf) {
         if (!sceneById(project, s.variantOf)) out.push(`${s.id}: variantOf ${s.variantOf} does not exist`);
         if (!String(s.changes || '').trim()) out.push(`${s.id}: variantOf needs changes (what differs from the parent)`);
@@ -3478,6 +3509,8 @@ export const GATES = [
     const kit = imagePromptKit(params);
     for (const p of project.props || []) {
       if (!PROP_SCALES[p.scale]) out.push(`${p.id}: scale must be one of ${Object.keys(PROP_SCALES).join(' / ')}`);
+      if (p.scaleRef != null && !PROP_SCALE_REFS.includes(p.scaleRef)) out.push(`${p.id}: scaleRef must be one of ${PROP_SCALE_REFS.join(' / ')}`);
+      if (p.scaleRef === 'object' && !String(p.scaleObject || '').trim()) out.push(`${p.id}: scaleRef object needs scaleObject — a familiar object of known size to stand beside it (a coffee mug, a smartphone, an A4 sheet)`);
       if (!String(p.summary || '').trim()) out.push(`${p.id}: summary (dramatic function) is empty`);
       out.push(...assetConditionFailures(p, propConditionTexts(p)));
       const anchors = p.anchors || [];
@@ -3507,6 +3540,35 @@ export const GATES = [
     }
     return out;
   }),
+  gate('art-scale-views', 'art', 'small props state their real size and get a scale picture; a scene shot from its other side or from above gets that view', (ctx) => {
+    const out = [];
+    const { project } = ctx;
+    for (const p of project.props || []) {
+      if (scaleRefOf(p) === 'none') continue;
+      if (scaleRefOf(p) === 'object' && !String(p.scaleObject || '').trim()) out.push(`${p.id}: a ${p.scale} prop is scaled against a familiar object by default — set scaleObject (a coffee mug, a smartphone, an A4 sheet), or scaleRef hand / none`);
+      if (!String(p.size || '').trim()) out.push(`${p.id}: a ${p.scale} prop with no size — state its real size ("about 9 cm long, fits in a palm") so the scale picture and the clips paint it that big`);
+      if (p.wji?.assets?.sheet && !p.wji?.assets?.scale) out.push(`${p.id}: no scale picture yet — prompt image ${p.id} --asset scale (${scaleRefOf(p) === 'hand' ? 'the prop in one plain hand' : `beside ${p.scaleObject || 'a familiar object'}`}), --from the sheet`);
+    }
+    // What the storyboard actually shoots: reverse shot pairs and high / top cuts, per scene.
+    const need = new Map();
+    for (const [, e] of ctx.episodes || []) for (const seg of e.storyboard?.segments || []) {
+      const sid = ((e.scenes || [])[Number(seg.sceneIndex) - 1] || {}).sceneId;
+      if (!sid) continue;
+      const n = need.get(sid) || { reverse: [], high: [] };
+      const axis = isObject(seg.axis) ? seg.axis : null;
+      if (axis?.screenLeft && axis?.screenRight && (seg.cuts || []).length >= 2) n.reverse.push(seg.id);
+      if ((seg.cuts || []).some((c) => c.height === 'high' || c.height === 'top')) n.high.push(seg.id);
+      need.set(sid, n);
+    }
+    for (const s of project.scenes || []) {
+      const n = need.get(s.id);
+      if (!n) continue;
+      const views = asList(s.views);
+      if (n.reverse.length && !views.includes('reverse')) out.push(`${s.id}: ${n.reverse.slice(0, 3).join(', ')}${n.reverse.length > 3 ? '…' : ''} cut between two people facing each other — the reverse shots look at the side of the room the sheet never shows; add views: ["reverse"] and give those cuts view: reverse`);
+      if (n.high.length && !views.includes('high')) out.push(`${s.id}: ${n.high.slice(0, 3).join(', ')}${n.high.length > 3 ? '…' : ''} shoot from high / top — add views: ["high"] so the floor and furniture seen from above are the designed ones`);
+    }
+    return out;
+  }, { advisory: true }),
 
   // ── script (per episode) ──────────────────────────────────────────────
   gate('script-shape', 'script', 'episode file shape and upstream references', (ctx) => {
@@ -4137,6 +4199,10 @@ export const GATES = [
           if (!ANGLES.includes(c.angle)) out.push(`${where}: angle must be one of ${ANGLES.join(' / ')} (horizontal — how much face the audience reads)`);
           if (!HEIGHTS.includes(c.height)) out.push(`${where}: height must be one of ${HEIGHTS.join(' / ')} (eye is a choice, not an unset field)`);
           if (!AXIS_SIDES.includes(c.axisSide)) out.push(`${where}: axisSide must be one of ${AXIS_SIDES.join(' / ')}`);
+          if (c.view != null) {
+            if (!SCENE_VIEWS.includes(c.view)) out.push(`${where}: view must be one of ${SCENE_VIEWS.join(' / ')}`);
+            else if (!asList(sceneById(ctx.project, scene.sceneId)?.views).includes(c.view)) out.push(`${where}: view ${c.view} — add "${c.view}" to ${scene.sceneId}.views so the art stage makes that view`);
+          }
           if (c.axisSide === 'cross' && !String(c.note || '').trim()) out.push(`${where}: crossing the axis needs a note — the neutral shot, the in-shot crossing or the re-established geography`);
         });
         const people = segmentCharacters(seg);
@@ -4441,7 +4507,7 @@ export const GATES = [
         // 5. a picture connected but never used outside the legend earns nothing
         const body = shotStart < 0 ? prompt : prompt.slice(shotStart);
         for (const r of images) {
-          if (r.role === 'environment' || r.role === 'lighting') continue;
+          if (r.role === 'environment' || r.role === 'lighting' || r.role === 'scale') continue;
           if (!body.includes(r.label)) out.push(`${seg.id}: ${r.label} (${r.why}) is connected but used in no shot — that is a picture the model will not look at`);
         }
       }
@@ -5550,6 +5616,24 @@ export function imagePrompt(project, id, asset) {
       ? `${t('@image1 是同一个空间。从正上方垂直俯拍整个场景，像建筑俯视照片，没有透视倾斜，所有家具都在 @image1 中的位置。场景：')}${img.sheet || ''}${t('。空场景，没有任何人，照片写实')}`
       : `@image1 is this exact space. Photograph the same set from directly overhead: a straight-down 90-degree top view of the whole room, like an architectural overhead photo, no perspective tilt, every piece of furniture where @image1 has it. The set: ${img.sheet || ''}. Empty scene, no people, photoreal`, '16:9', 'sheet');
   }
+  // Extra views (SCENE_VIEWS): the same set from the other side, or from high in a corner, so a shot
+  // that looks that way is filmed in the designed room instead of one the video model invents.
+  if (sc && kind.startsWith('view:')) {
+    const view = kind.slice('view:'.length);
+    if (!SCENE_VIEWS.includes(view)) throw new Error(`a scene view is one of ${SCENE_VIEWS.join(' / ')}, not ${view}`);
+    if (!asList(sc.views).includes(view)) throw new Error(`${id} does not list "${view}" in views (${asList(sc.views).join(' / ') || 'none'})`);
+    const en = {
+      reverse: 'Show the same set from the opposite side: the camera stands at the far side of the room in @image1 and looks back toward where @image1 was taken from, so the wall, doorway and furniture behind that viewpoint are seen; what @image1 shows keeps its place, size and look, and what it does not show is designed to belong to the same room',
+      high: 'Show the same set from a high angle: the camera is high in one top corner of the room looking down at about 45 degrees, the whole floor visible with every piece of furniture where @image1 has it, the walls, doors and windows in their places',
+    }[view];
+    const zhText = {
+      reverse: '从反方向看同一个空间：机位在 @image1 的房间对面，回头看向 @image1 拍摄的位置，拍出那个视角背后的墙、门和家具；@image1 里已有的东西位置、大小和样子不变，它没拍到的部分按同一个房间设计',
+      high: '从高角度看同一个空间：机位在房间一个上角，约45度向下俯拍，整个地面可见，每件家具都在 @image1 中的位置，墙、门、窗位置不变',
+    }[view];
+    return out(zh
+      ? `${t('@image1 是同一个空间；结构、材质、状态与光线完全一致。')}${t(zhText)}${t(`。空场景，没有任何人，${kit.framePhrase}`)}`
+      : `@image1 is this exact space; keep structure, materials, condition and lighting identical. ${en}. Empty scene, no people, ${kit.framePhrase}`, '16:9', 'sheet');
+  }
   if (sc && kind.startsWith('lighting:')) {
     const state = kind.slice('lighting:'.length);
     const l = (sc.lighting || []).find((x) => x.state === state);
@@ -5566,7 +5650,26 @@ export function imagePrompt(project, id, asset) {
       ? `${t('@image1 是要完全还原的同一件道具。')}${st.prompt}${t('。纯白背景，没有人，没有手')}`
       : `@image1 is the prop to reproduce exactly. ${st.prompt}, pure white background, no people, no hands`, '16:9', 'sheet');
   }
-  throw new Error(sc ? `a scene has --asset sheet | lighting:<state> | topview` : `a prop has --asset sheet | state:<state>`);
+  // The scale picture: the sheet's prop again, at its real size against a hand or a familiar object.
+  if (pr && kind === 'scale') {
+    const ref = scaleRefOf(pr);
+    if (ref === 'none') throw new Error(`${id} has scaleRef none (${pr.scale}) — set scaleRef hand or object to make a scale picture`);
+    if (ref === 'object' && !String(pr.scaleObject || '').trim()) throw new Error(`${id}: scaleRef object needs scaleObject (a familiar object of known size: a coffee mug, a smartphone, an A4 sheet)`);
+    const size = String(pr.size || '').trim();
+    const phrase = kit.scalePhrase(pr.scale);
+    if (ref === 'hand') {
+      // The one picture of the prop that shows a hand: lift the hand ban from its negative prompt.
+      const sep = zh ? '，' : ', ';
+      const negative = String(img.negativePrompt || '').split(/[,，、;；]/).map((x) => x.trim()).filter((x) => x && !/(hand|finger|手)/i.test(x)).join(sep);
+      return { ...out(zh
+        ? `${t('@image1 是要完全还原的同一件道具。同一件道具按实际大小')}${size ? `（${size}）` : ''}${t(`拿在一只普通成年人的手里，${phrase}，手在手腕处出画，看得出它和手掌的大小比例，纯白背景，没有脸，没有身体，没有其他物件`)}`
+        : `@image1 is the prop to reproduce exactly. The same prop at its real size${size ? ` (${size})` : ''}, ${phrase}, held in one plain hand cropped at the wrist, so its size against the palm and fingers reads at a glance; pure white background, no face, no body, nothing else`, '16:9', 'sheet'), negative };
+    }
+    return out(zh
+      ? `${t('@image1 是要完全还原的同一件道具。同一件道具按实际大小')}${size ? `（${size}）` : ''}${t(`放在${pr.scaleObject}旁边作比例参照，${phrase}，两者并排在同一平面、同一距离，纯白背景，没有人，没有手`)}`
+      : `@image1 is the prop to reproduce exactly. The same prop at its real size${size ? ` (${size})` : ''}, ${phrase}, standing beside ${pr.scaleObject} for scale, both on the same surface at the same distance from the camera; pure white background, no people, no hands`, '16:9', 'sheet');
+  }
+  throw new Error(sc ? `a scene has --asset sheet | lighting:<state> | view:reverse | view:high | topview` : `a prop has --asset sheet | state:<state> | scale`);
 }
 
 export function voiceSamplePrompt(character, params = {}) {
@@ -5624,9 +5727,19 @@ export function segmentReferences(project, episode, seg) {
   } else {
     refs.push({ entity: scene.sceneId, asset: 'sheet', role: 'environment', why: `environment: ${sceneEntity.name || scene.sceneId}${scene.lighting ? ` (${scene.lighting})` : ''}`, use: sheetUse({ entity: scene.sceneId, asset: 'sheet' }, project), zh: sheetZh({ entity: scene.sceneId, asset: 'sheet' }, project) });
     if (scene.lighting && sceneEntity.wji?.assets?.lighting?.[scene.lighting]) refs.push({ entity: scene.sceneId, asset: `lighting:${scene.lighting}`, role: 'lighting', why: `lighting state ${scene.lighting}`, use: sheetUse({ entity: scene.sceneId, asset: `lighting:${scene.lighting}` }, project), zh: sheetZh({ entity: scene.sceneId, asset: `lighting:${scene.lighting}` }, project) });
+    // An extra view of the room for the cuts that look that way (reverse) or down on it (high).
+    const views = [];
+    for (const c of seg.cuts || []) { const v = cutView(c, sceneEntity); if (v && !views.includes(v) && sceneEntity.wji?.assets?.views?.[v]) views.push(v); }
+    for (const v of views) refs.push({ entity: scene.sceneId, asset: `view:${v}`, role: 'view', why: `${v} view of ${sceneEntity.name || scene.sceneId}`, use: sheetUse({ entity: scene.sceneId, asset: `view:${v}` }, project), zh: sheetZh({ entity: scene.sceneId, asset: `view:${v}` }, project) });
     const seen = new Set();
     if (params.humanReferences !== false) for (const c of seg.cuts || []) for (const id of c.characters || []) if (!seen.has(id)) { seen.add(id); refs.push({ entity: id, asset: 'sheet', role: 'character', why: `face and clothes of ${characterById(project, id)?.name || id}`, use: sheetUse({ entity: id, asset: 'sheet' }, project), zh: sheetZh({ entity: id, asset: 'sheet' }, project) }); }
-    for (const c of seg.cuts || []) for (const id of c.props || []) if (!seen.has(id)) { seen.add(id); refs.push({ entity: id, asset: 'sheet', role: 'prop', why: `prop ${propById(project, id)?.name || id}`, use: sheetUse({ entity: id, asset: 'sheet' }, project), zh: sheetZh({ entity: id, asset: 'sheet' }, project) }); }
+    for (const c of seg.cuts || []) for (const id of c.props || []) if (!seen.has(id)) {
+      seen.add(id);
+      const pr = propById(project, id);
+      refs.push({ entity: id, asset: 'sheet', role: 'prop', why: `prop ${pr?.name || id}`, use: sheetUse({ entity: id, asset: 'sheet' }, project), zh: sheetZh({ entity: id, asset: 'sheet' }, project) });
+      // Its scale picture, once made: the sheet alone on white gives the clip no size to go by.
+      if (pr && scaleRefOf(pr) !== 'none' && pr.wji?.assets?.scale) refs.push({ entity: id, asset: 'scale', role: 'scale', why: `real size of ${pr.name || id}`, use: sheetUse({ entity: id, asset: 'scale' }, project), zh: sheetZh({ entity: id, asset: 'scale' }, project) });
+    }
     refs.forEach((r) => (r.kind = 'image'));
   }
   // The top-view overlay goes last among the pictures; its legend is written once the labels exist.
@@ -5830,7 +5943,17 @@ export function promptSkeleton(project, episode, segmentId) {
   // Storyboard mode: every shot names the panel it is composed from (gated verbatim by `storyboard-panels`).
   const boardLabel = allRefs.find((r) => r.asset === 'storyboard' && r.role === 'storyboard')?.label;
   const panelOf = (k, lang = framingLang) => (boardLabel ? `${storyboardPanelPhrase(k + 1, boardLabel, lang)}${lang === 'zh' ? '；' : '. '}` : '');
-  const topViewOf = (k, lang = framingLang) => `${topViewOf0(k, lang)}${panelOf(k, lang)}`;
+  // Scene views: a cut that faces the reverse side of the room, or looks down on it, names its view.
+  const sceneOfSeg = sceneById(project, scene.sceneId) || {};
+  const viewLabels = new Map(allRefs.filter((r) => r.kind === 'image' && r.role === 'view').map((r) => [String(r.asset).slice('view:'.length), r.label]));
+  const viewOf = (k, lang = framingLang) => {
+    const v = cutView(cuts[k], sceneOfSeg);
+    const label = sheetsLike(params) && v && viewLabels.get(v);
+    if (!label) return '';
+    if (lang === 'zh') return v === 'reverse' ? `朝房间反方向拍，背景照 ${label}；` : `高角度俯拍，空间照 ${label}；`;
+    return v === 'reverse' ? `Facing the reverse side of the room, its background as in ${label}. ` : `From high above the floor, the space as in ${label}. `;
+  };
+  const topViewOf = (k, lang = framingLang) => `${topViewOf0(k, lang)}${panelOf(k, lang)}${viewOf(k, lang)}`;
   // Keyframes mode: the picture already holds everyone, but the clip still loses a figure the text
   // never mentions, so the shot counts them too (by identity — the @imageN labels are frames).
   const rosterOf = (c) => { const r = rosterPhrase(c, whoOf, framingLang, cutInstant(cuts, cuts.indexOf(c))); return r ? `${r} ` : ''; };
@@ -5842,8 +5965,13 @@ export function promptSkeleton(project, episode, segmentId) {
   const othersOnScreen = (c, speaker) => (c.characters || []).filter((id) => id !== speaker && id !== c.ots).map((id) => (sheetsLike(params) && sheetLabels.get(id) ? `the person in ${sheetLabels.get(id)}` : identityOf(characterById(project, id))));
   // A prop on screen is bound by its label INSIDE that shot — a prop named only in the legend is a
   // prop the model designs itself the moment it appears. Same rule people already had.
-  const propOf = (c, lang = 'en') => (c.props || []).map((id) => sheetLabels.get(id)).filter(Boolean)
-    .map((label) => (lang === 'zh' ? `道具严格照 ${label}；` : `the prop is ${label}, reproduced exactly; `)).join('');
+  const scaleLabels = new Map(allRefs.filter((r) => r.kind === 'image' && r.role === 'scale').map((r) => [r.entity, r.label]));
+  const propOf = (c, lang = 'en') => (c.props || []).filter((id) => sheetLabels.get(id))
+    .map((id) => {
+      const label = sheetLabels.get(id), size = scaleLabels.get(id);
+      if (lang === 'zh') return `道具严格照 ${label}${size ? `，大小照 ${size}` : ''}；`;
+      return `the prop is ${label}, reproduced exactly${size ? `, at the size ${size} shows` : ''}; `;
+    }).join('');
   // The environment is one picture for the whole segment: say once that it does not change, so the
   // model does not re-invent the room between shots.
   const sceneLine = (lang = 'en') => {
@@ -5948,6 +6076,8 @@ export function promptSkeleton(project, episode, segmentId) {
     const refs = [];
     refs.push({ entity: scene.sceneId, asset: 'sheet', why: `environment: ${sceneEntity.name || scene.sceneId}${scene.lighting ? ` (${scene.lighting})` : ''}`, use: 'the environment — match its layout, materials and wear exactly', zh: '环境，严格还原布局、材质与旧痕' });
     if (scene.lighting && sceneEntity.wji?.assets?.lighting?.[scene.lighting]) refs.push({ entity: scene.sceneId, asset: `lighting:${scene.lighting}`, why: `lighting state ${scene.lighting}`, use: 'the same environment in the lighting state to use', zh: '同一场景的光线状态' });
+    const view = cutView(c, sceneEntity);
+    if (view && sceneEntity.wji?.assets?.views?.[view]) refs.push({ entity: scene.sceneId, asset: `view:${view}`, role: 'view', why: `${view} view of ${sceneEntity.name || scene.sceneId}`, use: sheetUse({ entity: scene.sceneId, asset: `view:${view}` }, project), zh: sheetZh({ entity: scene.sceneId, asset: `view:${view}` }, project) });
     const instant = cutInstant(cuts, k);
     const many = (c.characters || []).length >= 2 && !c.ots;
     for (const id of c.characters || []) {
@@ -5957,7 +6087,11 @@ export function promptSkeleton(project, episode, segmentId) {
       const at = [place, where].filter(Boolean).join(', ');
       refs.push({ entity: id, asset: pinnedAsset.get(id) || 'sheet', role: 'character', why: `face and clothes of ${characterById(project, id)?.name || id}`, use: `the character sheet of ${at ? `the person ${at}` : 'one person in this frame'} — match face, hair and clothes exactly`, zh: '人物三视图，严格还原面容、发型与服装' });
     }
-    for (const id of c.props || []) refs.push({ entity: id, asset: pinnedAsset.get(id) || 'sheet', role: 'prop', why: `prop ${propById(project, id)?.name || id}`, use: 'the prop to reproduce exactly', zh: '需要严格还原的道具' });
+    for (const id of c.props || []) {
+      const pr = propById(project, id);
+      refs.push({ entity: id, asset: pinnedAsset.get(id) || 'sheet', role: 'prop', why: `prop ${pr?.name || id}`, use: `the prop to reproduce exactly${pr?.size ? `, real size ${pr.size}` : ''}`, zh: '需要严格还原的道具' });
+      if (pr && scaleRefOf(pr) !== 'none' && pr.wji?.assets?.scale) refs.push({ entity: id, asset: 'scale', role: 'scale', why: `real size of ${pr.name || id}`, use: sheetUse({ entity: id, asset: 'scale' }, project), zh: sheetZh({ entity: id, asset: 'scale' }, project) });
+    }
     // The keyframe before this one, last: it carries what the sheets cannot — this scene's people as
     // already drawn, the props where they lie, and where everyone stands.
     const prevName = params.keyframeChain === 'previous' ? (k > 0 ? `${seg.id} f${k}` : prevSegLast) : null;
@@ -6365,6 +6499,8 @@ export function renderScene(project, id) {
   lines.push('## 一致性锚点', '', ...(s.anchors || []).map((a) => `- **${a.name}**：${a.desc}`), '');
   lines.push('## 光照状态', '', mdTable(['状态', 'Prompt'], (s.lighting || []).map((l) => [l.state, l.prompt])), '');
   if (s.reusePlan) lines.push(`复用方案：${s.reusePlan}`, '');
+  const VIEW_ZH = { reverse: '反向视角（主视角背后的一面）', high: '高角度俯视（一角约45度向下）' };
+  if (asList(s.views).length) lines.push(`附加视角：${asList(s.views).map((v) => VIEW_ZH[v] || v).join('、')}`, '');
   lines.push('## 出图提示词', '', '**Master view (empty scene)**', '', '```', s.image?.prompt || '', '```', '', '**Negative**', '', '```', s.image?.negativePrompt || '', '```', '', '**Environment sheet (16:9)**', '', '```', s.image?.sheet || '', '```', '');
   return lines.join('\n');
 }
@@ -6376,6 +6512,7 @@ export function renderProp(project, id) {
   lines.push('## 锚点', '', ...(p.anchors || []).map((a) => `- **${a.name}**：${a.desc}`), '');
   lines.push('## 状态变体', '', mdTable(['状态', 'Prompt'], (p.states || []).map((s) => [s.state, s.prompt])), '');
   if ((p.relatedScenes || []).length) lines.push(`场景：${p.relatedScenes.join('、')}`, '');
+  if (scaleRefOf(p) !== 'none' || p.size) lines.push(`实际大小：${p.size || '—'}${scaleRefOf(p) === 'hand' ? ' · 比例图：拿在手里' : scaleRefOf(p) === 'object' ? ` · 比例图：放在${p.scaleObject || '—'}旁边` : ''}`, '');
   lines.push('## 出图提示词', '', '**Master view (white background)**', '', '```', p.image?.prompt || '', '```', '', '**Negative**', '', '```', p.image?.negativePrompt || '', '```', '', '**Prop sheet (16:9)**', '', '```', p.image?.sheet || '', '```', '');
   return lines.join('\n');
 }
@@ -6525,12 +6662,22 @@ export function manifest(project, episodes, opts = {}) {
         if (!sw.nodes?.topview) add('art', s.id, `scenes.${s.id}.wji.nodes.topview`, `wji canvas add image -c <scenes> -n "${s.id} topview" -r 16:9 --from <${s.id} sheet node> --prompt-file <prompt image ${s.id} --asset topview>`);
         else if (!sw.assets?.topview) add('art', s.id, `scenes.${s.id}.wji.assets.topview`, `wji canvas gen ${sw.nodes.topview} → asset (check it is straight overhead, empty, furniture where the sheet has it)`);
       }
+      // Extra views (reverse / high), each from the sheet.
+      if (sw.assets?.sheet) for (const v of asList(s.views).filter((x) => SCENE_VIEWS.includes(x))) {
+        if (!sw.nodes?.views?.[v]) add('art', s.id, `scenes.${s.id}.wji.nodes.views.${v}`, `wji canvas add image -c <scenes> -n "${s.id} ${v}" -r 16:9 --from <${s.id} sheet node> --prompt-file <prompt image ${s.id} --asset view:${v}>`);
+        else if (!sw.assets?.views?.[v]) add('art', s.id, `scenes.${s.id}.wji.assets.views.${v}`, `wji canvas gen ${sw.nodes.views[v]} → asset (check: empty, the same room — ${v === 'reverse' ? 'seen from its other side, nothing from the sheet moved' : 'from high in a corner, every piece of furniture where the sheet has it'})`);
+      }
     }
     for (const p of project.props || []) {
       const pw = p.wji || {};
       if (!pw.datasetId) add('art', p.id, `props.${p.id}.wji.datasetId`, `wji dataset new <prop> "${p.name}" -t prop`);
       if (!pw.nodes?.sheet) add('art', p.id, `props.${p.id}.wji.nodes.sheet`, `wji canvas add image -c <props> -n "${p.id} sheet" -r 16:9`);
       else if (!pw.assets?.sheet) add('art', p.id, `props.${p.id}.wji.assets.sheet`, `wji canvas gen ${pw.nodes.sheet} → asset`);
+      // Scale picture: the same prop at its real size in a hand or beside a familiar object.
+      if (pw.assets?.sheet && scaleRefOf(p) !== 'none') {
+        if (!pw.nodes?.scale) add('art', p.id, `props.${p.id}.wji.nodes.scale`, `wji canvas add image -c <props> -n "${p.id} scale" -r 16:9 --from <${p.id} sheet node> --prompt-file <prompt image ${p.id} --asset scale>`);
+        else if (!pw.assets?.scale) add('art', p.id, `props.${p.id}.wji.assets.scale`, `wji canvas gen ${pw.nodes.scale} → asset (check: the same prop, ${scaleRefOf(p) === 'hand' ? 'one hand only, cropped at the wrist, no face' : `beside ${p.scaleObject || 'its scale object'}`}, the size it should be${p.size ? ` — ${p.size}` : ''})`);
+      }
     }
   }
   for (const [ep, e] of Object.entries(episodes || {})) {
@@ -6548,9 +6695,16 @@ export function manifest(project, episodes, opts = {}) {
     for (const seg of segs) {
       const scene = (e.scenes || [])[Number(seg.sceneIndex) - 1] || {};
       needed.add(`${scene.sceneId}:sheet`);
+      const sceneEnt = sceneById(project, scene.sceneId) || {};
       for (const c of seg.cuts || []) {
         for (const id of c.characters || []) needed.add(`${id}:sheet`);
-        for (const id of c.props || []) needed.add(`${id}:sheet`);
+        for (const id of c.props || []) {
+          needed.add(`${id}:sheet`);
+          const pr = propById(project, id);
+          if (pr && scaleRefOf(pr) !== 'none' && pr.wji?.assets?.scale) needed.add(`${id}:scale`);
+        }
+        const v = cutView(c, sceneEnt);
+        if (v && sceneEnt.wji?.assets?.views?.[v]) needed.add(`${scene.sceneId}:view:${v}`);
       }
       // Whoever speaks needs their voice on the canvas: it is the `@audioN` the prompt points at.
       for (const r of audioReferences(project, e, seg)) voices.add(`${r.entity}:voice`);
@@ -7080,7 +7234,7 @@ function main(argv) {
 
   if (cmd === 'prompt' && pos[1] === 'image') {
     const { project } = loadProject(input);
-    if (!pos[2]) throw new Error('usage: prompt <project> image C01|S01|P01 [--asset headshot|sheet|lighting:<state>|state:<state>|topview] [--json]');
+    if (!pos[2]) throw new Error('usage: prompt <project> image C01|S01|P01 [--asset headshot|sheet|lighting:<state>|view:reverse|view:high|topview|state:<state>|scale] [--json]');
     const out = imagePrompt(project, pos[2], flag(rest, '--asset') || 'sheet');
     if (flag(rest, '--json')) console.log(JSON.stringify(out, null, 2));
     else console.log(out.prompt);

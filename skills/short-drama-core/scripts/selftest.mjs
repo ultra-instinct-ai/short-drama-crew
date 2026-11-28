@@ -19,7 +19,7 @@ import {
   cutStart, segmentCharacters, keyScenes, shotTexts, motionSentence, cameraClause, PURPOSE_KINDS, ANGLES, HEIGHTS, NO_SUBTITLES, LIPS_CLOSED,
   audioPrompt, musicOf, cueSeconds, AUDIO_MODEL, AUDIO_MAX_CHARS, AUDIO_MAX_SECONDS, scoreSheet, smpte,
   VIDEO_MODELS, VIDEO_MODES, DEFAULT_PARAMS, videoModel, videoResolutionFor, nearestResolution, segmentPlan, videoReferences,
-  formatGates, displayName, imagePrompt, imagePromptKit, foldZh, IMAGE_PROMPT_LANGS,
+  formatGates, displayName, imagePrompt, imagePromptKit, foldZh, IMAGE_PROMPT_LANGS, SCENE_VIEWS, PROP_SCALE_REFS, scaleRefOf, cutView,
   REFERENCE_MODES, KEYFRAME_CHAIN_MODES, VIDEO_EXTEND_MODES, extendSource, extendLines, editPrompt, videoShotFrame, cameraPackageLine, STORYBOARD_STYLES, STORYBOARD_FACES, STORYBOARD_FACE_BOX, sheetsLike, storyboardGrid, storyboardPanelPhrase, STORYBOARD_MAX_PANELS, STORYBOARD_SKETCH,
   TOP_VIEW_MODES, TOP_VIEW_COLORS, topViewFov, topViewSees, topViewAxisSide, topViewPeople, topViewCameraPhrase, topViewSvg, imageSize,
   HORROR, HORROR_RULES, SCARE_CUTS, THREAT_RUNGS, maxCutFor, DV_KIT, DV_LOOK, DV_RE, HORROR_STYLES, horrorStyleForGenre, horrorStyleOf, THREAT_KINDS, isHorrorLook,
@@ -3200,9 +3200,9 @@ const breaks = (gateId, project, episode, needle) => {
 
 // ── gate inventory (crew engine) ────────────────────────────────────────────
 {
-  eq(GATES.length, 78, 'gate count');
+  eq(GATES.length, 79, 'gate count');
   eq(GATES.filter((g) => !g.advisory).length, 71, 'hard gate count');
-  eq(GATES.filter((g) => g.advisory).length, 7, 'advisory gate count');
+  eq(GATES.filter((g) => g.advisory).length, 8, 'advisory gate count');
   ok(!GATES.find((g) => g.id === 'boundary-contrast').advisory, 'boundary-contrast is hard');
   ok(GATES.find((g) => g.id === 'boundary-contrast-episode').advisory, 'boundary-contrast-episode is advisory');
   eq(DEFAULT_PARAMS.boundaryContrastCuts, 2, 'boundaryContrastCuts default');
@@ -3323,8 +3323,8 @@ const breaks = (gateId, project, episode, needle) => {
   const results = runGates(makeContext(PROJECT, { 1: E01 }));
   const rep = formatGates(results);
   eq(Object.keys(rep).sort().join(','), 'advisory,failed,hard,lines,notes,summary,text', 'formatGates shape');
-  eq(rep.summary, '✓ 71 gate(s) passed, 7 advisory (1 note)', 'fixture summary');
-  eq(rep.failed, 0, 'nothing failed'); eq(rep.hard, 71, 'hard count'); eq(rep.advisory, 7, 'advisory count');
+  eq(rep.summary, '✓ 71 gate(s) passed, 8 advisory (1 note)', 'fixture summary');
+  eq(rep.failed, 0, 'nothing failed'); eq(rep.hard, 71, 'hard count'); eq(rep.advisory, 8, 'advisory count');
   // The fixture now raises one advisory (E01-03 carries the 爽点 and is not cut as faceslap),
   // exactly as it does in the wji-cli copy — advisory lines print, failures still must not.
   eq(rep.lines.filter((l) => l.includes('✗')).length, 0, 'a green run prints no failed gates');
@@ -3473,6 +3473,82 @@ const breaks = (gateId, project, episode, needle) => {
   assert.throws(() => imagePrompt(zh, 'S01', 'lighting:白天'), /no lighting state/, 'unknown lighting state refused');
   assert.throws(() => imagePrompt(zh, 'C01', 'lighting:x'), /headshot \| sheet/, 'a character has no lighting');
   assert.throws(() => imagePrompt(zh, 'X9'), /no character/, 'unknown id refused');
+}
+
+// ── art: prop scale pictures and scene views ────────────────────────────────
+{
+  eq(SCENE_VIEWS.join(','), 'reverse,high', 'scene views');
+  eq(PROP_SCALE_REFS.join(','), 'hand,object,none', 'scale refs');
+  eq(scaleRefOf({ scale: 'handheld' }), 'hand', 'handheld → hand');
+  eq(scaleRefOf({ scale: 'tabletop' }), 'object', 'tabletop → object');
+  eq(scaleRefOf({ scale: 'furniture' }), 'none', 'furniture → none');
+  eq(scaleRefOf({ scale: 'handheld', scaleRef: 'object' }), 'object', 'scaleRef wins');
+  // scale picture prompts
+  const hand = imagePrompt(PROJECT, 'P01', 'scale');
+  ok(hand.prompt.startsWith('@image1 is the prop to reproduce exactly. The same prop at its real size (about 14.7 cm') && hand.prompt.includes('handheld scale') && hand.prompt.includes('held in one plain hand cropped at the wrist') && hand.from === 'sheet' && hand.ratio === '16:9', 'hand scale prompt');
+  ok(!/hand|finger/i.test(hand.negative) && /people|person/i.test(hand.negative), 'the hand scale picture lifts only the hand ban');
+  const obj = clone(PROJECT); obj.props[0].scaleRef = 'object'; obj.props[0].scaleObject = 'a standard coffee mug';
+  const op = imagePrompt(obj, 'P01', 'scale');
+  ok(op.prompt.includes('standing beside a standard coffee mug for scale') && op.prompt.endsWith('no people, no hands') && op.negative === PROJECT.props[0].image.negativePrompt, 'object scale prompt keeps the hand ban');
+  const none = clone(PROJECT); none.props[0].scaleRef = 'none';
+  assert.throws(() => imagePrompt(none, 'P01', 'scale'), /scaleRef none/, 'no scale picture for scaleRef none');
+  // gates
+  const badRef = clone(PROJECT); badRef.props[0].scaleRef = 'ruler';
+  breaks('prop-design', badRef, null, 'scaleRef must be one of');
+  const noObj = clone(PROJECT); noObj.props[0].scaleRef = 'object';
+  breaks('prop-design', noObj, null, 'needs scaleObject');
+  const noSize = clone(PROJECT); delete noSize.props[0].size;
+  ok(failures('art-scale-views', noSize).some((m) => m.includes('P01: a handheld prop with no size')), 'advisory asks for a real size');
+  const noViews = clone(PROJECT); delete noViews.scenes[0].views;
+  ok(failures('art-scale-views', noViews).some((m) => m.includes('S01:') && m.includes('views: ["reverse"]')), 'advisory asks for a reverse view behind shot / reverse shot');
+  ok(failures('art-scale-views', noViews).some((m) => m.includes('S01:') && m.includes('views: ["high"]')), 'advisory asks for a high view for high cuts');
+  ok(GATES.find((g) => g.id === 'art-scale-views').advisory, 'art-scale-views never fails validate');
+  const badView = clone(PROJECT); badView.scenes[0].views = ['side'];
+  breaks('scene-design', badView, null, 'views may hold');
+  const cutBad = clone(E01); cutBad.storyboard.segments[1].cuts[0].view = 'reverse';
+  const noRev = clone(PROJECT); noRev.scenes[0].views = ['high'];
+  breaks('framing-axis', noRev, cutBad, 'add "reverse" to S01.views');
+  passes('framing-axis', PROJECT, cutBad);
+  // view prompts
+  const rev = imagePrompt(PROJECT, 'S01', 'view:reverse');
+  ok(rev.prompt.startsWith('@image1 is this exact space; keep structure, materials, condition and lighting identical. Show the same set from the opposite side') && rev.prompt.endsWith('Empty scene, no people, cinematic film still') && rev.from === 'sheet', 'reverse view prompt');
+  ok(imagePrompt(PROJECT, 'S01', 'view:high').prompt.includes('high in one top corner of the room looking down at about 45 degrees'), 'high view prompt');
+  assert.throws(() => imagePrompt(noRev, 'S01', 'view:reverse'), /does not list "reverse"/, 'a view the scene does not list is refused');
+  // cutView
+  eq(cutView({ view: 'reverse', height: 'high' }, PROJECT.scenes[0]), 'reverse', 'an explicit view wins');
+  eq(cutView({ height: 'high' }, PROJECT.scenes[0]), 'high', 'a high cut takes the high view');
+  eq(cutView({ height: 'high' }, noRev.scenes[0]), 'high', 'still high with only high listed');
+  eq(cutView({ height: 'high' }, { views: ['reverse'] }), null, 'no high view, no view');
+  eq(cutView({ height: 'eye' }, PROJECT.scenes[0]), null, 'an eye-level cut has no view');
+  // references, once the pictures are bound
+  const bound = clone(PROJECT);
+  bound.scenes[0].wji = { ...(bound.scenes[0].wji || {}), assets: { ...(bound.scenes[0].wji?.assets || {}), sheet: 'a-s01', views: { reverse: 'a-rev', high: 'a-high' } } };
+  bound.props[0].wji = { ...(bound.props[0].wji || {}), assets: { ...(bound.props[0].wji?.assets || {}), sheet: 'a-p01', scale: 'a-scale' } };
+  bound.params.references = 'sheets'; bound.params.video = 'seedance';
+  const ep = clone(E01); ep.storyboard.segments[1].cuts[1].view = 'reverse';
+  const seg = ep.storyboard.segments[1];
+  const refs = segmentReferences(bound, ep, seg);
+  const order = refs.filter((r) => r.kind === 'image').map((r) => `${r.entity}:${r.asset}`);
+  eq(order.slice(0, 3).join(','), 'S01:sheet,S01:view:reverse,S01:view:high', 'views follow the environment, in cut order');
+  ok(order.indexOf('P01:scale') === order.indexOf('P01:sheet') + 1, 'the scale picture follows its prop sheet');
+  const sk = promptSkeleton(bound, ep, seg.id);
+  const revLabel = refs.find((r) => r.asset === 'view:reverse').label, highLabel = refs.find((r) => r.asset === 'view:high').label, scaleLabel = refs.find((r) => r.asset === 'scale').label;
+  ok(sk.video.prompt.includes(`Facing the reverse side of the room, its background as in ${revLabel}.`), 'a reverse cut names its view');
+  ok(sk.video.prompt.includes(`From high above the floor, the space as in ${highLabel}.`), 'a high cut names the high view');
+  ok(sk.video.prompt.includes(`at the size ${scaleLabel} shows`), 'a prop cut names the scale picture');
+  const wrote = clone(ep); wrote.storyboard.segments[1].prompt = sk.video.prompt;
+  ok(failures('ref-binding', bound, wrote).filter((m) => m.startsWith(`${seg.id}:`)).every((m) => !m.includes(`${revLabel} (`) && !m.includes(`${highLabel} (`) && !m.includes(`${scaleLabel} (`)), 'no "connected but unused" for views or scale');
+  const items = manifest(bound, { 1: ep }, { ep: 1 }).map((i) => i.item);
+  ok(items.includes('scenes.S01.wji.nodes.views.reverse') && items.includes('props.P01.wji.nodes.scale'), 'the manifest asks for the view and scale nodes');
+  ok(items.includes('wji.displayNodes.S01:view:reverse') && items.includes('wji.displayNodes.P01:scale'), 'the manifest puts them on the episode canvas');
+  ok(!manifest(PROJECT, { 1: E01 }, { ep: 1 }).some((i) => /views\.|:view:|P01:scale/.test(i.item)), 'nothing before the sheets exist');
+  // keyframes take the view and the scale picture too
+  const kf = clone(bound); kf.params.references = 'keyframes';
+  const ks = promptSkeleton(kf, ep, seg.id);
+  ok(ks.keyframes[1].references.some((r) => r.asset === 'view:reverse'), 'a reverse keyframe takes the reverse view');
+  ok(ks.keyframes[4].references.some((r) => r.asset === 'view:high'), 'a high keyframe takes the high view');
+  ok(ks.keyframes[0].references.some((r) => r.asset === 'scale'), 'a prop keyframe takes the scale picture');
+  ok(!String(promptSkeleton(kf, ep, seg.id).video?.prompt || '').includes('Facing the reverse side'), 'keyframes mode clips do not name sheet views');
 }
 
 // ── the CLI entry point survives a symlink (realpath isMain) ──────────────────

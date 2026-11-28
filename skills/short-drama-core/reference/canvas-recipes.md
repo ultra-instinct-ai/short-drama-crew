@@ -68,9 +68,17 @@ wji canvas add image -c SC -n "S01 lighting 监控回放绿" --from SS1 -m "<ima
 Variants: `--from` the parent scene's sheet node, prompt = parent master view + `changes` +
 `keep the structure, materials and condition identical to @image1`.
 
-After generation: inspect (no people, one space across panels), attach
+Extra views (`views: ["reverse", "high"]`, when the storyboard needs them):
+
+```bash
+wji canvas add image -c SC -n "S01 reverse" --from SS1 -m "<image model>" -r 16:9 --prompt-file <($SD prompt <project> image S01 --asset view:reverse)
+wji canvas add image -c SC -n "S01 high" --from SS1 -m "<image model>" -r 16:9 --prompt-file <($SD prompt <project> image S01 --asset view:high)
+```
+
+After generation: inspect (no people, one space across panels, a view is the same room), attach
 (`--add-images <sheet> <variants…> --icon <sheet>`), bind `scenes.S01.wji.nodes.sheet`,
-`scenes.S01.wji.assets.sheet`, `scenes.S01.wji.assets.lighting.<state>`.
+`scenes.S01.wji.assets.sheet`, `scenes.S01.wji.assets.lighting.<state>`,
+`scenes.S01.wji.assets.views.<view>`.
 
 ## 2b. `props` canvas — one row per prop
 
@@ -86,10 +94,20 @@ wji canvas add image -c PC -n "P01 sheet" -m "<image model>" -r 16:9 --at 400,0 
 wji canvas add image -c PC -n "P01 state 接在主机上" --from PS1 -m "<image model>" -r 16:9 --prompt-file /tmp/P01-plugged.txt
 ```
 
-Inspect (no hands, no people, the same object in every panel), attach
+Small props (`handheld` / `tabletop`) get a **scale picture** too — the same prop at its real
+`size` in one hand or beside its `scaleObject`:
+
+```bash
+wji canvas add image -c PC -n "P01 scale" --from PS1 -m "<image model>" -r 16:9 --prompt-file <($SD prompt <project> image P01 --asset scale)
+```
+
+Inspect the sheet and states (no hands, no people, the same object in every panel; the scale picture:
+one hand only, no face, the right size), attach
 (`--add-images <sheet> <states…> --icon <sheet>`), bind `props.P01.wji.nodes.sheet`,
-`props.P01.wji.assets.sheet`, `props.P01.wji.assets.states.<state>`. On the episode canvas the
-prop's sheet becomes a display node like any other (`wji.displayNodes["P01:sheet"]`).
+`props.P01.wji.assets.sheet`, `props.P01.wji.assets.states.<state>`, `props.P01.wji.assets.scale`.
+On the episode canvas the prop's sheet becomes a display node like any other
+(`wji.displayNodes["P01:sheet"]`), and so do its scale picture (`"P01:scale"`) and a scene's views
+(`"S01:view:reverse"`) when a segment uses them.
 
 ## 3. `E01` canvas
 
