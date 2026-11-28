@@ -137,7 +137,10 @@ validate, then quote, then generate.
    either on your own. The grid is a `sketch` by default; `storyboardStyle: photo` draws the panels
    as finished frames in the project's style, pinning light and colour too. Faces in the grid are
    grey boxes by default (`storyboardFaces: block`; `show` to draw them), so identity comes only
-   from the sheets. Storyboard is the cheap middle: one image per segment instead of one per
+   from the sheets. With Seedance 2.5, `videoExtend: on` (`--extend on`) makes a segment that continues the one
+   before it (same scene, or the same `sequence` tag) an **extension** of that clip, so positions and
+   people carry over — clips are then generated in order; a clip that is right but for one thing is
+   fixed with an **edit** (`prompt <project> edit E01-01 --change "…"`). Storyboard is the cheap middle: one image per segment instead of one per
    cut, a sketch that carries composition only, and every sheets-mode gate still applies. **Duration** (default
    `auto`): the model matches the clip to the prompt; `fixed` sends `-d` = Σ cuts and is forced on
    models without an auto duration.
@@ -194,7 +197,7 @@ validate, then quote, then generate.
    `params.violence` is `blood` (default) or `implied`.
 4. **Locate or create the project directory** (the user's choice, else next to the source):
    ```bash
-   $SD init <dir> --title "<title>" --episodes N --minutes M --genre "<genre>" --register 台湾国语 [--adapt 抽核] [--ratio 9:16] [--video h3|seedance|seedance2|seedance2fast|wan] [--resolution 480P|…] [--accent "台湾口音国语"] [--style photoreal|realistic|ghibli] [--references sheets|storyboard|keyframes] [--storyboard-style sketch|photo] [--storyboard-faces block|show] [--keyframe-chain previous|none] [--duration auto|fixed] [--look "<lens phrase>"] [--cinematography low-key|sweet-romance|period-nostalgia|costume-idol|costume-dark|scifi-hard|scifi-soft|horror|costume-horror|apocalypse|none] [--action gun-fu|hk-kungfu|wuxia-fantasy|historical-realist|bullet-time|superhero|street-brawl|car-chase|horror-struggle|zombie-horde|none] [--violence blood|implied] [--grammar drama|action|faceslap|comedy|horror] [--footage cinema|dv] [--horror-style dread|jump] [--top-view off|on] [--comedy slapstick|deadpan|romcom|none] [--composition standard|art-first] [--story revenge,sweet,…] [--market mainland|overseas] [--format short|medium|movie] [--lang zh] [--image-lang en|zh]
+   $SD init <dir> --title "<title>" --episodes N --minutes M --genre "<genre>" --register 台湾国语 [--adapt 抽核] [--ratio 9:16] [--video h3|seedance|seedance2|seedance2fast|wan] [--resolution 480P|…] [--accent "台湾口音国语"] [--style photoreal|realistic|ghibli] [--references sheets|storyboard|keyframes] [--storyboard-style sketch|photo] [--storyboard-faces block|show] [--keyframe-chain previous|none] [--extend off|on] [--duration auto|fixed] [--look "<lens phrase>"] [--cinematography low-key|sweet-romance|period-nostalgia|costume-idol|costume-dark|scifi-hard|scifi-soft|horror|costume-horror|apocalypse|none] [--action gun-fu|hk-kungfu|wuxia-fantasy|historical-realist|bullet-time|superhero|street-brawl|car-chase|horror-struggle|zombie-horde|none] [--violence blood|implied] [--grammar drama|action|faceslap|comedy|horror] [--footage cinema|dv] [--horror-style dread|jump] [--top-view off|on] [--comedy slapstick|deadpan|romcom|none] [--composition standard|art-first] [--story revenge,sweet,…] [--market mainland|overseas] [--format short|medium|movie] [--lang zh] [--image-lang en|zh]
    # --image-lang zh: character / scene / prop image prompts in Chinese (the default is English)
    # --foreground low|medium|high: the most cuts that may shoot past a foreground, ~20/40/60 %, a ceiling not a quota (default medium; high for 唯美 / 美感优先)
    # params.camera (body / lens / aperture) is edited in project.json

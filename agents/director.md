@@ -29,6 +29,11 @@ Skills: `short-drama-storyboard` (read `craft-shots.md` and `craft-motion.md` th
   connect it after the sheets, keep `composed as panel k of @imageN` in every shot, and check the
   first grid (panel count, the style asked for — `storyboardStyle` sketch or photo — headcount
   per panel, and in photo the same face per person) before the rest. Pin a segment's pictures with `refOverride` (and `faceOf`) when the derived set is wrong.
+- With `videoExtend: on` (Seedance 2.5), mark continuous action across scenes with a shared
+  `sequence` tag and time jumps inside a scene with `extend: false`; the checklist says which
+  segments extend which clip, so the Operator generates them in order. For a clip that is right
+  but for one thing, hand over an edit (`$SD prompt <project> edit E0N-0k --change "…"`) instead
+  of a regeneration.
 - **You do not spend credits or run `wji gen`.** Hand the Operator a clip-by-clip checklist
   (canvas, display nodes, `--from` order, model, resolution, `-d` only in fixed duration) through
   the Producer; the first clip is inspected before the rest.

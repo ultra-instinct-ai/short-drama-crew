@@ -33,6 +33,11 @@ govern every call). `short-drama-core` for `workspace-layout.md`, `operations-cl
   `manifest` asks for the episode's `wji.assets.edit` (the locked cut, `wji asset upload`), then
   `wji.assets.mix` — the Sound Designer's ≤120 s Seed Audio section prompts as `E0N score K`
   nodes on the episode canvas, mixed under the edit at their offsets (recipe in `canvas-recipes.md`).
+- Seedance 2.5 task modes go through `--set`: an **extend** segment (`manifest` says
+  `--set taskMode=extend --set outputFormat=mp4 (after E0N-0k is generated)`) takes the previous
+  segment's video node in `--from` and is submitted only once that clip exists — never in
+  parallel with it; an **edit** node takes the clip's video node and `--set taskMode=edit`
+  (ratio and length follow the clip, output `.mov`).
 - Queue under the platform limits; never resubmit a node whose status is `generating`; download
   and hand over the first clip / sheet for inspection before the rest.
 - **Do not** write story, art bible or storyboard creatively — execute what the Producer,

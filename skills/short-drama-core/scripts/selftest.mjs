@@ -20,7 +20,7 @@ import {
   audioPrompt, musicOf, cueSeconds, AUDIO_MODEL, AUDIO_MAX_CHARS, AUDIO_MAX_SECONDS, scoreSheet, smpte,
   VIDEO_MODELS, VIDEO_MODES, DEFAULT_PARAMS, videoModel, videoResolutionFor, nearestResolution, segmentPlan, videoReferences,
   formatGates, displayName, imagePrompt, imagePromptKit, foldZh, IMAGE_PROMPT_LANGS,
-  REFERENCE_MODES, KEYFRAME_CHAIN_MODES, STORYBOARD_STYLES, STORYBOARD_FACES, STORYBOARD_FACE_BOX, sheetsLike, storyboardGrid, storyboardPanelPhrase, STORYBOARD_MAX_PANELS, STORYBOARD_SKETCH,
+  REFERENCE_MODES, KEYFRAME_CHAIN_MODES, VIDEO_EXTEND_MODES, extendSource, extendLines, editPrompt, STORYBOARD_STYLES, STORYBOARD_FACES, STORYBOARD_FACE_BOX, sheetsLike, storyboardGrid, storyboardPanelPhrase, STORYBOARD_MAX_PANELS, STORYBOARD_SKETCH,
   TOP_VIEW_MODES, TOP_VIEW_COLORS, topViewFov, topViewSees, topViewAxisSide, topViewPeople, topViewCameraPhrase, topViewSvg, imageSize,
   HORROR, HORROR_RULES, SCARE_CUTS, THREAT_RUNGS, maxCutFor, DV_KIT, DV_LOOK, DV_RE, HORROR_STYLES, horrorStyleForGenre, horrorStyleOf, THREAT_KINDS, isHorrorLook,
 } from './short-drama.mjs';
@@ -3129,10 +3129,60 @@ const breaks = (gateId, project, episode, needle) => {
   ok(m.some((it) => /keyframe before it \(generate in order\)/.test(it.hint)), 'manifest says to chain and generate in order');
 }
 
+{
+  // Seedance 2.5 extend: a segment continuing the previous one (same scene / same sequence) extends its clip.
+  eq(DEFAULT_PARAMS.videoExtend, 'off', 'extend is opt-in');
+  ok(VIDEO_EXTEND_MODES.includes('on'), 'extend can be turned on');
+  ok(VIDEO_MODELS.seedance.taskModes.includes('extend') && VIDEO_MODELS.seedance.taskModes.includes('edit'), 'seedance 2.5 has extend and edit');
+  const p = clone(PROJECT); p.params.video = 'seedance'; p.params.videoResolution = '720p'; p.params.videoDuration = 'auto'; p.params.references = 'sheets'; p.params.videoExtend = 'on';
+  const e = clone(E01); const segs = e.storyboard.segments;
+  const j = segs.findIndex((s, i) => i > 0 && Number(s.sceneIndex) === Number(segs[i - 1].sceneIndex));
+  ok(j > 0, 'fixture has two segments in one scene');
+  const seg = segs[j], prev = segs[j - 1];
+  eq(extendSource(p, e, seg)?.id, prev.id, 'same scene: extends the segment before');
+  eq(extendSource(p, e, segs[0]), null, 'the first segment extends nothing');
+  const off = clone(p); off.params.videoExtend = 'off';
+  eq(extendSource(off, e, seg), null, 'off: nothing extends');
+  { const e2 = clone(e); e2.storyboard.segments[j].extend = false; eq(extendSource(p, e2, e2.storyboard.segments[j]), null, 'extend: false breaks the chain'); }
+  {
+    const k = segs.findIndex((s, i) => i > 0 && Number(s.sceneIndex) !== Number(segs[i - 1].sceneIndex));
+    if (k > 0) {
+      eq(extendSource(p, e, segs[k]), null, 'a new scene starts fresh');
+      const e3 = clone(e); e3.storyboard.segments[k].sequence = 'chase'; e3.storyboard.segments[k - 1].sequence = 'chase';
+      eq(extendSource(p, e3, e3.storyboard.segments[k])?.id, segs[k - 1].id, 'same sequence across scenes: extends');
+    }
+  }
+  const refs = segmentReferences(p, e, seg);
+  const v = refs.filter((r) => r.kind === 'video');
+  eq(v.length, 1, 'one clip reference');
+  eq(v[0].role, 'extend', 'it is the extend source'); eq(v[0].entity, prev.id, 'the previous clip');
+  ok(v[0].use.startsWith('the source video to extend forward'), 'legend names it the source to extend');
+  const withPrev = clone(p); withPrev.params.videoReferences = 'previous';
+  eq(segmentReferences(withPrev, e, seg).filter((r) => r.kind === 'video').length, 1, 'extend replaces the previous-clip reference, never both');
+  const sk = promptSkeleton(p, e, seg.id);
+  eq(sk.video.taskMode, 'extend', 'skeleton says extend'); eq(sk.video.extends, prev.id, 'and from which clip');
+  eq(sk.video.values.taskMode, 'extend', 'values carry taskMode'); eq(sk.video.values.outputFormat, 'mp4', 'and mp4 output');
+  const { open, close } = extendLines(v[0].label);
+  ok(sk.video.prompt.includes(open) && sk.video.prompt.includes(close), 'prompt opens and closes as an extension');
+  ok(!promptSkeleton(p, e, segs[0].id).video.taskMode, 'the first segment is a normal generation');
+  seg.prompt = sk.video.prompt;
+  ok(GATES.find((g) => g.id === 'video-extend').run(makeContext(p, { 1: e })).filter((m) => m.startsWith(seg.id)).length === 0, 'skeleton passes video-extend');
+  const bad = clone(e); bad.storyboard.segments[j].prompt = sk.video.prompt.replace(open, '');
+  breaks('video-extend', p, bad, 'Extend @video1 forward');
+  const m = manifest(p, { 1: e }, { ep: 1 });
+  ok(m.some((it) => it.hint.includes('--set taskMode=extend') && it.hint.includes(`after ${prev.id} is generated`)), 'manifest: extend flags and order');
+  const h3 = clone(p); h3.params.video = 'h3'; h3.params.videoResolution = '768P'; h3.params.videoDuration = 'fixed';
+  breaks('params', h3, E01, 'extend task mode');
+  const kf = clone(p); kf.params.references = 'keyframes';
+  breaks('params', kf, E01, 'sheets or storyboard');
+  const ed = editPrompt('the red cup on the counter to a white paper cup', ['the white paper cup to use']);
+  ok(ed.startsWith('Edit @video1, changing only the red cup') && ed.includes('@image1 is the white paper cup to use.') && /sole editing master/.test(ed) && /do not add, remove or replace anything else/.test(ed), 'edit prompt: one change, one master, the rest kept');
+}
+
 // ── gate inventory (crew engine) ────────────────────────────────────────────
 {
-  eq(GATES.length, 77, 'gate count');
-  eq(GATES.filter((g) => !g.advisory).length, 70, 'hard gate count');
+  eq(GATES.length, 78, 'gate count');
+  eq(GATES.filter((g) => !g.advisory).length, 71, 'hard gate count');
   eq(GATES.filter((g) => g.advisory).length, 7, 'advisory gate count');
   ok(!GATES.find((g) => g.id === 'boundary-contrast').advisory, 'boundary-contrast is hard');
   ok(GATES.find((g) => g.id === 'boundary-contrast-episode').advisory, 'boundary-contrast-episode is advisory');
@@ -3254,8 +3304,8 @@ const breaks = (gateId, project, episode, needle) => {
   const results = runGates(makeContext(PROJECT, { 1: E01 }));
   const rep = formatGates(results);
   eq(Object.keys(rep).sort().join(','), 'advisory,failed,hard,lines,notes,summary,text', 'formatGates shape');
-  eq(rep.summary, '✓ 70 gate(s) passed, 7 advisory (1 note)', 'fixture summary');
-  eq(rep.failed, 0, 'nothing failed'); eq(rep.hard, 70, 'hard count'); eq(rep.advisory, 7, 'advisory count');
+  eq(rep.summary, '✓ 71 gate(s) passed, 7 advisory (1 note)', 'fixture summary');
+  eq(rep.failed, 0, 'nothing failed'); eq(rep.hard, 71, 'hard count'); eq(rep.advisory, 7, 'advisory count');
   // The fixture now raises one advisory (E01-03 carries the 爽点 and is not cut as faceslap),
   // exactly as it does in the wji-cli copy — advisory lines print, failures still must not.
   eq(rep.lines.filter((l) => l.includes('✗')).length, 0, 'a green run prints no failed gates');
