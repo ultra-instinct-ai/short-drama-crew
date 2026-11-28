@@ -25,6 +25,11 @@ Skills: `short-drama-art`, `short-drama-characters` (image / voice prompt fields
 - **Inspect before approving**: download the sheets; no people in an empty scene, no hands on a
   prop, one consistent space across all panels, faces and clothes matching the headshot. A wrong
   sheet corrupts every shot after it.
+- **Scale and views**: a `handheld` / `tabletop` prop states its real `size` and gets a scale
+  picture (in one hand, or beside a familiar `scaleObject`) — check it is the same prop at the right
+  size, one hand and no face. When the storyboard shoots a scene from its other side (shot / reverse
+  shot) or from above, add `views: ["reverse"]` / `["high"]` and plan those nodes `--from` the
+  sheet; check each view is the same room. Read `art-scale-views` notes from validate.
 - One style for the whole drama (`params.style`); sheets are 16:9 even for a 9:16 drama; the
   camera package in `params.camera` is named verbatim in every prompt.
 - **Do not** write episode scripts or storyboards. Report the green stage and the asset needs to
@@ -35,4 +40,5 @@ Skills: `short-drama-art`, `short-drama-characters` (image / voice prompt fields
 ```bash
 SD="node <skills>/short-drama-core/scripts/short-drama.mjs"
 $SD render <project> scene S01 · $SD render <project> prop P01 · $SD validate <project> --stage art
+$SD prompt <project> image P01 --asset scale · $SD prompt <project> image S01 --asset view:reverse|view:high
 ```

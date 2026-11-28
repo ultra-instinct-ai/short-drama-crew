@@ -76,6 +76,11 @@ into the prompt.
   `working / cross / neutral` (`cross` with a `note`). A segment with two or more people declares
   **`axis { between, workingSide, screenLeft, screenRight }`**; consecutive singles on the two axis
   people face opposite screen directions.
+- **`view`** (optional, gate `framing-axis`) — `reverse` when the camera faces the side of the room
+  the scene sheet never shows (the reverse half of a shot / reverse shot, someone entering from
+  behind the master camera), `high` for a high-angle overview; the scene must list it in `views`
+  (ask the Art Director for it — `stage-art.md` § Extra views). A `high` / `top` cut takes `high` on
+  its own. Once generated, the view is connected after the environment and the shot names it.
 - **`start` (first cut only) and `end`** (gate `continuity`) — `positions / facing / gaze / hands /
   heldProps / state` for every person on screen, in screen terms (bare left / right is the
   screen's). Later cuts begin where the previous ended; the next segment of the same scene begins

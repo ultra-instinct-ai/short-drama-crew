@@ -641,7 +641,11 @@
           "sheet": "",
           "lighting": {}
         }
-      }
+      },
+      "views": [
+        "reverse",
+        "high"
+      ]
     },
     {
       "id": "S02",
@@ -698,7 +702,11 @@
           "sheet": "",
           "lighting": {}
         }
-      }
+      },
+      "views": [
+        "reverse",
+        "high"
+      ]
     }
   ],
   "props": [
@@ -768,7 +776,8 @@
           "sheet": "",
           "states": {}
         }
-      }
+      },
+      "size": "about 14.7 cm long and 10 cm wide, a little bigger than a palm"
     }
   ],
   "wji": {

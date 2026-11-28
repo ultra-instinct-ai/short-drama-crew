@@ -34,6 +34,10 @@ Skills: `short-drama-storyboard` (read `craft-shots.md` and `craft-motion.md` th
   segments extend which clip, so the Operator generates them in order. For a clip that is right
   but for one thing, hand over an edit (`$SD prompt <project> edit E0N-0k --change "…"`) instead
   of a regeneration.
+- A cut that faces the side of the room the scene sheet never shows (the reverse half of a shot /
+  reverse shot) gets `view: reverse`; high / top cuts use the scene's `high` view. Ask the Art
+  Director, through the Producer, for the scene's `views` when it lacks one — the shot then names
+  the view and the clip stops inventing the wall behind the master camera.
 - **You do not spend credits or run `wji gen`.** Hand the Operator a clip-by-clip checklist
   (canvas, display nodes, `--from` order, model, resolution, `-d` only in fixed duration) through
   the Producer; the first clip is inspected before the rest.
