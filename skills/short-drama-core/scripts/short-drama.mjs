@@ -163,6 +163,7 @@ export const VIDEO_MODELS = {
     model: 'seedance-2.5-ref', family: 'seedance', promptLang: 'en',
     minSegmentSeconds: 4, maxSegmentSeconds: 30, maxRefs: 30, maxAudioRefs: 10, maxVideoRefs: 10, maxRefVideoSeconds: 30, autoDuration: true,
     resolutions: ['480p', '720p', '1080p'],
+    maxPromptChars: 10000,
     // Seedance 2.5 Ref task modes (`taskMode`): extend continues a reference video, edit changes one.
     taskModes: ['auto', 'edit', 'extend'],
   },
@@ -254,8 +255,8 @@ export function extendSource(project, episode, seg) {
 /** The fixed sentences an extension prompt carries (gated verbatim). */
 export function extendLines(label) {
   return {
-    open: `Extend ${label} forward. The first frame of the extended segment directly continues from the final frame of ${label}: maintain continuity in where everyone stands and faces, the props' positions, the room and its layout, the camera position and composition, the lighting, the ambience and the motion in progress.`,
-    close: `The same people and props remain the same continuous objects throughout, without duplication or splitting; the pictures define who they are but must not replace the boundary frame of ${label}.`,
+    open: `Extend ${label} forward: the first frame continues its final frame — same positions and facing, props, room, camera, light, ambience and motion in progress.`,
+    close: `Everyone and every prop stays one continuous instance, never duplicated or split; the pictures set identity but never replace the boundary frame of ${label}.`,
   };
 }
 /**
@@ -634,6 +635,32 @@ export function cameraPhrase(cut, params, lang = 'en') {
   const stop = String(cut?.aperture || kit.aperture || '').trim();
   if (lang === 'zh') return `${kit.body} \u914d ${kit.lens} ${focal}\uff0c${stop} \u5149\u5708`;
   return `shot on ${article(kit.body)} ${kit.body} with ${article(kit.lens)} ${kit.lens} ${focal} at ${stop}`;
+}
+
+/**
+ * A cut's `frame` as a video-prompt shot (sheets / storyboard modes). The frame is written as a still
+ * for an image model: it names the whole camera package and ends on the style's "… film still" and
+ * the ratio. A video prompt says the package once (the Look line) and is not a still, so each shot
+ * keeps only its focal length and stop and drops the still tag — about 150 characters a shot,
+ * which is what keeps a six-cut segment (and an extension's extra lines) under the model's cap.
+ */
+export function videoShotFrame(cut, params) {
+  let f = String(cut?.frame || '').trim();
+  if (!f) return '…';
+  const kit = (params && params.camera) || DEFAULT_PARAMS.camera;
+  const focal = focalOf(cut);
+  const stop = String(cut?.aperture || kit.aperture || '').trim();
+  const full = cameraPhrase(cut, params);
+  if (f.includes(full)) f = f.replace(full, `${focal}, ${stop}`);
+  // "… out of focus. photorealistic cinematic film still, 21:9 anamorphic widescreen frame" /
+  // "… 9:16 vertical, cinematic film still" — the trailing still + ratio tag, in either order.
+  f = f.replace(/[.,]?\s*(?:\d+:\d+[^.,]*,\s*)?[a-z0-9 -]*film still(?:,\s*\d+:\d+[^.]*)?\.?\s*$/i, '').trim();
+  return f.endsWith('.') ? f : `${f}.`;
+}
+/** The camera package, said once in a video prompt's Look line. */
+export function cameraPackageLine(params) {
+  const kit = (params && params.camera) || DEFAULT_PARAMS.camera;
+  return `Shot on ${article(kit.body)} ${kit.body} with ${kit.lens} lenses.`;
 }
 
 function article(word) {
@@ -5841,7 +5868,7 @@ export function promptSkeleton(project, episode, segmentId) {
       // In sheets mode the cut's own `frame` goes into the prompt and already carries the lens, the
       // light and the foreground (gated there), so only the shot size and camera move are added.
       const body = sheets
-        ? `${topViewOf(k)}${framingOf(c)}${c.frame || '…'} ${SIZES[c.size] || c.size}, ${c.camera}. ${propOf(c, framingLang)}`
+        ? `${topViewOf(k)}${framingOf(c)}${videoShotFrame(c, params)} ${SIZES[c.size] || c.size}, ${c.camera}. ${propOf(c, framingLang)}`
         : `… anchor on @image${k + 1} · ${rosterOf(c)}${SIZES[c.size] || c.size}, ${c.camera}, ${cameraPhrase(c, params)}. ${lightPhrase(c)}.${foregroundPhrase(c)}`;
       return `${head}${body} ${motionSentence(c)} ${idleOf(c)}${cameraClause(c)} ${d}${lips}`.replace(/\s+/g, ' ').trim();
     });
@@ -5850,7 +5877,7 @@ export function promptSkeleton(project, episode, segmentId) {
     const lead = sheets
       ? [...allRefs.map((r) => `${r.label} is ${r.use}.`), ...[sceneLine(framingLang)].filter(Boolean), ...sidesOf()]
       : [h3AlignmentLine(cuts), ...voiceLegend];
-    const look = sheets ? [`Look: ${lookOf()}.`, ''] : [];
+    const look = sheets ? [`Look: ${lookOf()}. ${cameraPackageLine(params)}`, ''] : [];
     const soundscape = [sound.ambience || '…', ...cuts.map((c, k) => (sfxOf(k) ? `at [Shot ${k + 1}] ${sfxOf(k)}` : '')).filter(Boolean)].join('; ');
     video = [...lead, '', ...look, ...actionLine, 'integrated_multimodal_description:', ...shots, '', `overall_soundscape: ${soundscape}.${accent && dialogue.flat().length ? ` All dialogue in ${accent}.` : ''}${params.subtitles ? '' : ` ${NO_SUBTITLES.en[0].toUpperCase()}${NO_SUBTITLES.en.slice(1)}.`}`, '', `non_diegetic_music: ${clipMusic || 'N/A'}`].join('\n');
   } else if (mode.family === 'wan') {
@@ -5881,12 +5908,12 @@ export function promptSkeleton(project, episode, segmentId) {
         return `${base} while ${others.join(' and ')} ${others.length > 1 ? 'do' : 'does'} not speak, ${LIPS_CLOSED}`;
       }).join(' ');
       // The frame already carries the lens, the light and the foreground — do not repeat them.
-      return `Shot ${k + 1} (${starts[k].toFixed(1)}–${(starts[k] + Number(c.seconds)).toFixed(1)} s, ${SIZES[c.size] || c.size}, ${c.camera}): ${topViewOf(k)}${framingOf(c)}${c.frame || '…'} ${motionSentence(c)} ${idleOf(c)}${propOf(c, framingLang)}${cameraClause(c)} ${talk}`.replace(/\s+/g, ' ').trim();
+      return `Shot ${k + 1} (${starts[k].toFixed(1)}–${(starts[k] + Number(c.seconds)).toFixed(1)} s, ${SIZES[c.size] || c.size}, ${c.camera}): ${topViewOf(k)}${framingOf(c)}${videoShotFrame(c, params)} ${motionSentence(c)} ${idleOf(c)}${propOf(c, framingLang)}${cameraClause(c)} ${talk}`.replace(/\s+/g, ' ').trim();
     });
     const sfxAll = cuts.map((c, k) => (sfxOf(k) ? `shot ${k + 1}: ${sfxOf(k)}` : '')).filter(Boolean).join('; ');
     const extendLabel = allRefs.find((r) => r.role === 'extend')?.label;
     const ext = extendLabel ? extendLines(extendLabel) : null;
-    video = [...legend, ...(ext ? ['', ext.open] : []), '', ...shots, '', ...actionLine, ...(ext ? [ext.close] : []), `Look: ${lookOf()}. Maintain continuity in character identities, clothing, prop ownership, scene layout and the camera axis across every shot.`, `Sound: ${sound.ambience || '…'}${sfxAll ? `; ${sfxAll}` : ''}.${accent && dialogue.flat().length ? ` All dialogue in ${accent}.` : ''}${clipMusic ? ` Music: ${clipMusic}.` : ' No music.'}${params.subtitles ? '' : ` ${NO_SUBTITLES.en[0].toUpperCase()}${NO_SUBTITLES.en.slice(1)}.`}`].join('\n');
+    video = [...legend, ...(ext ? ['', ext.open] : []), '', ...shots, '', ...actionLine, ...(ext ? [ext.close] : []), `Look: ${lookOf()}. ${cameraPackageLine(params)}${ext ? '' : ' Maintain continuity in character identities, clothing, prop ownership, scene layout and the camera axis across every shot.'}`, `Sound: ${sound.ambience || '…'}${sfxAll ? `; ${sfxAll}` : ''}.${accent && dialogue.flat().length ? ` All dialogue in ${accent}.` : ''}${clipMusic ? ` Music: ${clipMusic}.` : ' No music.'}${params.subtitles ? '' : ` ${NO_SUBTITLES.en[0].toUpperCase()}${NO_SUBTITLES.en.slice(1)}.`}`].join('\n');
   } else {
     const anchors = [...seedanceAnchors(cuts.length), ...allRefs.filter((r) => r.kind !== 'image').map((r) => `${r.label} is ${r.use}.`)];
     const shotOf = (c) => `${SIZES[c.size] || c.size}, ${c.camera}, ${cameraPhrase(c, params)}; ${lightPhrase(c)}${foregroundPhrase(c)}`;
@@ -7114,7 +7141,10 @@ function main(argv) {
     else {
       // `duration: null` means auto — say so, and say what the clip was planned at.
       const dur = out.video.duration == null ? `auto (planned ${out.video.plannedSeconds}s — pass no -d)` : `${out.video.duration}s`;
-      console.log(`# ${out.segment} · video ${out.video.model} · ${out.video.ratio} · ${out.video.resolution} · ${dur}${out.video.taskMode ? ` · ${out.video.taskMode} ${out.video.extends} (--set taskMode=extend --set outputFormat=mp4, after ${out.video.extends} is generated)` : ''} · refs: ${out.video.references.join(', ')}`);
+      // The skeleton still has "…" to fill, so the count is a floor; seedance refuses over 10,000.
+      const cap = out.video.model.startsWith('seedance') ? 10000 : out.video.model.startsWith('wan') ? 20000 : 0;
+      const size = cap ? ` · ${out.video.prompt.length} / ${cap.toLocaleString('en')} chars${out.video.prompt.length > cap * 0.95 ? ' — near the cap: cut a cut or shorten the frames' : ''}` : '';
+      console.log(`# ${out.segment} · video ${out.video.model} · ${out.video.ratio} · ${out.video.resolution} · ${dur}${size}${out.video.taskMode ? ` · ${out.video.taskMode} ${out.video.extends} (--set taskMode=extend --set outputFormat=mp4, after ${out.video.extends} is generated)` : ''} · refs: ${out.video.references.join(', ')}`);
       console.log('');
       console.log(out.video.prompt);
       console.log('');
