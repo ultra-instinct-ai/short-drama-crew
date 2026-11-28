@@ -105,8 +105,16 @@ cinematography preset's guide (`../short-drama-core/reference/cinematography-<pr
   segment E0N-01 --image <sheet file>` draws the overlay. It is connected as the **last picture**,
   and every shot says `from camera k on @imageN` (`prompt segment` writes both; gate `top-view`).
   See [top-view plan](../short-drama-core/reference/top-view-plan.md).
-- Default **sheets** mode: no storyboard stills. Never switch a project to `keyframes` unless
-  the user asks.
+- Default **sheets** mode: no storyboard stills. Never switch a project to `storyboard` or
+  `keyframes` unless the user asks.
+- **Storyboard mode** (`references: storyboard`, opt-in): sheets mode plus one rough pencil-sketch
+  grid per segment, a panel per cut (≤ 12), generated from the same sheet display nodes and
+  connected as the last `@image`. `prompt segment` prints the grid prompt and ratio under
+  `## storyboard`; every shot says `composed as panel k of @imageN` (gate `storyboard-panels`).
+  `storyboardStyle`: `sketch` (default, composition only) or `photo` (finished frames in the
+  project's style — composition plus light and colour). `storyboardFaces`: `block` (default, a
+  grey box over every face — identity only from the sheets) or `show`.
+  See [stage-storyboard](reference/stage-storyboard.md) §Storyboard grid.
 
 ## Steps
 

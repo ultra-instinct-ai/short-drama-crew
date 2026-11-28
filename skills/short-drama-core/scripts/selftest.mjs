@@ -20,6 +20,7 @@ import {
   audioPrompt, musicOf, cueSeconds, AUDIO_MODEL, AUDIO_MAX_CHARS, AUDIO_MAX_SECONDS, scoreSheet, smpte,
   VIDEO_MODELS, VIDEO_MODES, DEFAULT_PARAMS, videoModel, videoResolutionFor, nearestResolution, segmentPlan, videoReferences,
   formatGates, displayName, imagePrompt, imagePromptKit, foldZh, IMAGE_PROMPT_LANGS,
+  REFERENCE_MODES, STORYBOARD_STYLES, STORYBOARD_FACES, STORYBOARD_FACE_BOX, sheetsLike, storyboardGrid, storyboardPanelPhrase, STORYBOARD_MAX_PANELS, STORYBOARD_SKETCH,
   TOP_VIEW_MODES, TOP_VIEW_COLORS, topViewFov, topViewSees, topViewAxisSide, topViewPeople, topViewCameraPhrase, topViewSvg, imageSize,
   HORROR, HORROR_RULES, SCARE_CUTS, THREAT_RUNGS, maxCutFor, DV_KIT, DV_LOOK, DV_RE, HORROR_STYLES, horrorStyleForGenre, horrorStyleOf, THREAT_KINDS, isHorrorLook,
 } from './short-drama.mjs';
@@ -2974,10 +2975,129 @@ const breaks = (gateId, project, episode, needle) => {
   breaks('ref-binding', p, unused, 'used in no shot');
 }
 
+{
+  // Storyboard mode: the sheets plus ONE rough-sketch grid per segment, a panel per cut.
+  ok(REFERENCE_MODES.includes('storyboard'), 'storyboard is a reference mode');
+  ok(sheetsLike({ references: 'storyboard' }) && sheetsLike({ references: 'sheets' }) && !sheetsLike({ references: 'keyframes' }), 'storyboard follows the sheets rules');
+  const g5 = storyboardGrid(5, '9:16');
+  eq(`${g5.cols}x${g5.rows}:${g5.ratio}`, '3x2:3:4', '5 vertical panels: 3 × 2 on a 3:4 sheet');
+  const g4 = storyboardGrid(4, '16:9');
+  eq(`${g4.cols}x${g4.rows}:${g4.ratio}`, '2x2:16:9', '4 landscape panels: 2 × 2 on a 16:9 sheet');
+  const g1 = storyboardGrid(1, '9:16');
+  eq(`${g1.cols}x${g1.rows}:${g1.ratio}`, '1x1:9:16', 'one panel is one frame');
+  eq(storyboardGrid(6, '21:9').ratio, '16:9', '6 scope panels (2 × 3) land on 16:9, not 3:2');
+  ok([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].every((n) => ['9:16', '16:9', '21:9', '1:1', '3:4'].every((r) => ['1:1', '4:3', '3:4', '16:9', '9:16'].includes(storyboardGrid(n, r).ratio))), 'every grid ratio is one gpt-image takes');
+  ok(storyboardGrid(12, '9:16').rows <= 4 && storyboardGrid(12, '16:9').rows <= 4, '12 panels fit the grid');
+  ok(/no colour/.test(STORYBOARD_SKETCH) && /pencil/.test(STORYBOARD_SKETCH), 'the grid is a simple pencil sketch');
+
+  for (const video of ['h3', 'seedance', 'wan']) {
+    const p = clone(PROJECT); p.params.references = 'storyboard'; p.params.video = video;
+    p.params.videoResolution = video === 'seedance' ? '720p' : video === 'wan' ? '720P' : '768P';
+    p.params.videoDuration = video === 'h3' ? 'fixed' : 'auto';
+    const e = clone(E01);
+    const seg = e.storyboard.segments[3];
+    const refs = segmentReferences(p, e, seg);
+    const images = refs.filter((r) => r.kind === 'image');
+    const board = images[images.length - 1];
+    eq(board.asset, 'storyboard', `${video}: the grid is the last picture`);
+    ok(/never its/.test(board.use) && /panel k is Shot k|this shot/.test(board.use), `${video}: the grid says panel k is Shot k and what not to copy`);
+    ok(board.zh && board.zh.includes('不要照'), `${video}: the grid has a Chinese legend`);
+    eq(images[0].role, 'environment', `${video}: the sheets still come first`);
+    const sk = promptSkeleton(p, e, seg.id);
+    eq(sk.keyframes.length, 0, `${video}: storyboard mode makes no keyframes`);
+    ok(sk.storyboard && sk.storyboard.grid.panels === seg.cuts.length, `${video}: one grid with a panel per cut`);
+    ok(sk.storyboard.prompt.includes(STORYBOARD_SKETCH), `${video}: the grid prompt carries the sketch style`);
+    ok(!/shot on an ARRI|cinematic film still/.test(sk.storyboard.prompt), `${video}: no camera package or film-still tag in a sketch`);
+    seg.cuts.forEach((_, k) => ok(sk.storyboard.prompt.includes(`Panel ${k + 1}:`), `${video}: panel ${k + 1} described`));
+    ok(!sk.storyboard.references.some((r) => r.asset === 'storyboard'), `${video}: the grid does not reference itself`);
+    ok(!sk.storyboard.references.some((r) => String(r.asset).startsWith('lighting:')), `${video}: no lighting state in a sketch`);
+    {
+      // A refOverride has no roles: the grid still tells a person from the room.
+      const e2 = clone(e); const s2 = e2.storyboard.segments[3];
+      s2.refOverride = [{ entity: e2.scenes[Number(s2.sceneIndex) - 1].sceneId, asset: 'sheet' }, ...[...new Set(s2.cuts.flatMap((c) => c.characters || []))].map((id) => ({ entity: id, asset: 'sheet' }))];
+      const b2 = promptSkeleton(p, e2, s2.id).storyboard;
+      ok(b2.references.filter((r) => /^C\d/.test(r.entity)).every((r) => /one figure/.test(b2.prompt.split('\n').find((l) => l.startsWith(r.label)))), `${video}: refOverride people are figures, not rooms`);
+    }
+    eq(sk.video.references.filter((r) => r === `${seg.id} storyboard`).length, 1, `${video}: the video node takes the grid`);
+    const lang = video === 'wan' ? 'zh' : 'en';
+    seg.cuts.forEach((_, k) => ok(sk.video.prompt.includes(storyboardPanelPhrase(k + 1, board.label, lang)), `${video}: shot ${k + 1} names its panel`));
+    seg.prompt = sk.video.prompt;
+    const ep = { 1: e };
+    const pass = GATES.find((g) => g.id === 'storyboard-panels').run(makeContext(p, ep)).filter((m) => m.startsWith(seg.id));
+    ok(pass.length === 0, `${video}: skeleton passes storyboard-panels: ${pass.join(' | ')}`);
+    const bad = clone(e); bad.storyboard.segments[3].prompt = sk.video.prompt.replace(storyboardPanelPhrase(2, board.label, lang), '');
+    breaks('storyboard-panels', p, bad, 'storyboard panel');
+    const m = manifest(p, ep, { ep: 1 });
+    ok(m.some((it) => it.item === `storyboard.segments.${seg.id}.wji.nodes.storyboard` && it.hint.includes(`-r ${sk.storyboard.ratio}`)), `${video}: manifest adds the grid node at its ratio`);
+    ok(m.some((it) => it.hint.includes('then the storyboard node')), `${video}: the video node is connected to the grid after the sheets`);
+    ok(!m.some((it) => it.item.includes('keyframes')), `${video}: manifest lists no keyframes`);
+  }
+  {
+    const p = clone(PROJECT); p.params.references = 'storyboard';
+    const e = clone(E01);
+    const seg = e.storyboard.segments[3];
+    seg.cuts = Array.from({ length: STORYBOARD_MAX_PANELS + 1 }, () => clone(seg.cuts[0]));
+    breaks('storyboard-panels', p, e, 'at most 12');
+    const p2 = clone(PROJECT); p2.params.references = 'storyboard'; p2.params.topView = 'on';
+    breaks('params', p2, E01, 'storyboard panels');
+    const p3 = clone(PROJECT); p3.params.references = 'sheets';
+    ok(GATES.find((g) => g.id === 'storyboard-panels').run(makeContext(p3, { 1: E01 })).length === 0, 'storyboard-panels is silent outside storyboard mode');
+    ok(!segmentReferences(p3, E01, E01.storyboard.segments[3]).some((r) => r.asset === 'storyboard'), 'no grid outside storyboard mode');
+  }
+}
+
+{
+  // Storyboard style: sketch (default) or photo — finished frames that also pin the light.
+  eq(DEFAULT_PARAMS.storyboardStyle, 'sketch', 'the grid is a sketch by default');
+  ok(STORYBOARD_STYLES.includes('photo'), 'photo is a storyboard style');
+  const p = clone(PROJECT); p.params.references = 'storyboard'; p.params.storyboardStyle = 'photo';
+  const e = clone(E01); const seg = e.storyboard.segments[3];
+  const sk = promptSkeleton(p, e, seg.id);
+  eq(sk.storyboard.style, 'photo', 'skeleton says which style');
+  ok(!sk.storyboard.prompt.includes(STORYBOARD_SKETCH), 'a photo grid is not told to sketch');
+  ok(sk.storyboard.prompt.includes(STYLE_PRESETS[paramsOf(p).style].framePhrase), 'a photo grid is drawn in the project style');
+  ok(/same light, colour grade/.test(sk.storyboard.prompt), 'one look across the panels');
+  {
+    const shown = clone(p); shown.params.storyboardFaces = 'show';
+    ok(promptSkeleton(shown, e, seg.id).storyboard.prompt.includes('match face, hair and clothes exactly'), 'faces shown: photo panels keep the faces of the sheets');
+    ok(!promptSkeleton(shown, e, seg.id).storyboard.prompt.includes(STORYBOARD_FACE_BOX), 'faces shown: no grey box');
+    ok(!/grey box/.test(segmentReferences(shown, e, seg).find((r) => r.asset === 'storyboard').use), 'faces shown: the clip legend says nothing of boxes');
+  }
+  // Faces blocked (the default): a grey box over every face, in both styles, and the clip is told it is a placeholder.
+  eq(DEFAULT_PARAMS.storyboardFaces, 'block', 'faces are blocked by default');
+  ok(STORYBOARD_FACES.includes('show'), 'faces can be shown');
+  ok(sk.storyboard.prompt.toLowerCase().includes(STORYBOARD_FACE_BOX.toLowerCase()), 'photo grid covers every face with a grey box');
+  ok(!sk.storyboard.prompt.includes('match face, hair and clothes exactly'), 'a blocked photo grid does not ask for the faces');
+  eq(sk.storyboard.faces, 'block', 'skeleton says faces are blocked');
+  {
+    const sp = clone(p); sp.params.storyboardStyle = 'sketch';
+    ok(promptSkeleton(sp, e, seg.id).storyboard.prompt.includes(STORYBOARD_FACE_BOX), 'sketch grid gets the grey box too');
+  }
+  const blockedUse = segmentReferences(p, e, seg).find((r) => r.asset === 'storyboard');
+  ok(/grey box — that box is only a placeholder/.test(blockedUse.use) && /never show a grey box/.test(blockedUse.use), 'the clip legend says the box is a placeholder, never filmed');
+  ok(blockedUse.zh.includes('灰色方块'), 'Chinese legend says it too');
+  { const bf = clone(p); bf.params.storyboardFaces = 'blur'; breaks('params', bf, E01, 'storyboardFaces'); }
+  ok(/no borders, numbers, captions or text/.test(sk.storyboard.prompt), 'no text in a photo grid');
+  seg.cuts.forEach((c, k) => ok(sk.storyboard.prompt.includes(String(c.frame).trim().replace(/\.$/, '')), `photo panel ${k + 1} keeps the whole frame`));
+  const board = segmentReferences(p, e, seg).find((r) => r.asset === 'storyboard');
+  ok(/its light and its colour/.test(board.use) && /never show the grid/.test(board.use), 'the clip legend takes light from a photo grid, never the grid');
+  ok(board.zh.includes('光线和色调'), 'Chinese legend too');
+  const sketch = segmentReferences({ ...clone(PROJECT), params: { ...PROJECT.params, references: 'storyboard' } }, e, seg).find((r) => r.asset === 'storyboard');
+  ok(/never its sketch lines/.test(sketch.use), 'a sketch grid still says take composition only');
+  const bad = clone(p); bad.params.storyboardStyle = 'painting';
+  breaks('params', bad, E01, 'storyboardStyle');
+  const sd = clone(p); sd.params.video = 'seedance'; sd.params.videoResolution = '720p'; sd.params.style = 'photoreal'; sd.params.humanReferences = false;
+  breaks('params', sd, E01, 'photo storyboard');
+  const sdOk = clone(sd); sdOk.params.humanReferences = true;
+  ok(!GATES.find((g) => g.id === 'params').run(makeContext(sdOk, { 1: E01 })).some((m) => m.includes('storyboard')), 'with the real-person permission a photo grid passes');
+  sd.params.storyboardStyle = 'sketch';
+  ok(!GATES.find((g) => g.id === 'params').run(makeContext(sd, { 1: E01 })).some((m) => m.includes('storyboard')), 'a sketch grid passes the real-person check');
+}
+
 // ── gate inventory (crew engine) ────────────────────────────────────────────
 {
-  eq(GATES.length, 76, 'gate count');
-  eq(GATES.filter((g) => !g.advisory).length, 69, 'hard gate count');
+  eq(GATES.length, 77, 'gate count');
+  eq(GATES.filter((g) => !g.advisory).length, 70, 'hard gate count');
   eq(GATES.filter((g) => g.advisory).length, 7, 'advisory gate count');
   ok(!GATES.find((g) => g.id === 'boundary-contrast').advisory, 'boundary-contrast is hard');
   ok(GATES.find((g) => g.id === 'boundary-contrast-episode').advisory, 'boundary-contrast-episode is advisory');
@@ -3099,8 +3219,8 @@ const breaks = (gateId, project, episode, needle) => {
   const results = runGates(makeContext(PROJECT, { 1: E01 }));
   const rep = formatGates(results);
   eq(Object.keys(rep).sort().join(','), 'advisory,failed,hard,lines,notes,summary,text', 'formatGates shape');
-  eq(rep.summary, '✓ 69 gate(s) passed, 7 advisory (1 note)', 'fixture summary');
-  eq(rep.failed, 0, 'nothing failed'); eq(rep.hard, 69, 'hard count'); eq(rep.advisory, 7, 'advisory count');
+  eq(rep.summary, '✓ 70 gate(s) passed, 7 advisory (1 note)', 'fixture summary');
+  eq(rep.failed, 0, 'nothing failed'); eq(rep.hard, 70, 'hard count'); eq(rep.advisory, 7, 'advisory count');
   // The fixture now raises one advisory (E01-03 carries the 爽点 and is not cut as faceslap),
   // exactly as it does in the wji-cli copy — advisory lines print, failures still must not.
   eq(rep.lines.filter((l) => l.includes('✗')).length, 0, 'a green run prints no failed gates');
