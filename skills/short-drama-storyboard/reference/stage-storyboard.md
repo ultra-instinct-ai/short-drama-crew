@@ -313,15 +313,22 @@ breaks the chain (a time jump inside a scene); `extend: true` forces it.
   locked to the source clip; the duration is the new part's (auto, or `-d` in fixed mode).
 - The prompt (Seedance form, `prompt segment` writes it): the legend says `@video1 is the source
   video to extend forward …`; right after the legend
-  `Extend @video1 forward. The first frame of the extended segment directly continues from the final frame of @video1: maintain continuity in where everyone stands and faces, the props' positions, the room and its layout, the camera position and composition, the lighting, the ambience and the motion in progress.`;
+  `Extend @video1 forward: the first frame continues its final frame — same positions and facing, props, room, camera, light, ambience and motion in progress.`;
   then the shots of **this** segment only (the output is the new part, not the source again); and
-  before the Look line `The same people and props remain the same continuous objects throughout, without duplication or splitting; the pictures define who they are but must not replace the boundary frame of @video1.`
+  before the Look line `Everyone and every prop stays one continuous instance, never duplicated or split; the pictures set identity but never replace the boundary frame of @video1.`
   Gate `video-extend` holds all three verbatim.
 - **Generate in order**: segment k only after k−1's clip exists (and is accepted — regenerating k−1
   invalidates every extension after it). The first segment of a scene is a normal generation.
 - Shot 1 should pick up the motion the source ends on — do not open the extension with a hard cut
   to a new angle; let the first cut continue, then cut.
 - The extension writes only the new seconds; the edit lays the clips end to end.
+
+**Prompt length.** In sheets and storyboard modes each shot carries the cut's `frame` **without** the
+still's camera package and "… film still, <ratio>" tag (`videoShotFrame`: the focal length and stop
+stay, e.g. `40mm, T1.5`); the Look line names the package once. Seedance refuses a prompt over
+10,000 characters, and an extension's own lines take room — `prompt segment` prints the count
+against the cap and warns past 95 %. Measured on 穿越戰神 E01: a six-cut extension went from
+10,178 to 9,154 characters; eight-cut ones sit near 9,600 — past eight cuts, split the segment.
 
 ### Edit — fix one thing in a generated clip (Seedance 2.5 `taskMode: edit`)
 

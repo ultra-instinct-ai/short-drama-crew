@@ -20,7 +20,7 @@ import {
   audioPrompt, musicOf, cueSeconds, AUDIO_MODEL, AUDIO_MAX_CHARS, AUDIO_MAX_SECONDS, scoreSheet, smpte,
   VIDEO_MODELS, VIDEO_MODES, DEFAULT_PARAMS, videoModel, videoResolutionFor, nearestResolution, segmentPlan, videoReferences,
   formatGates, displayName, imagePrompt, imagePromptKit, foldZh, IMAGE_PROMPT_LANGS,
-  REFERENCE_MODES, KEYFRAME_CHAIN_MODES, VIDEO_EXTEND_MODES, extendSource, extendLines, editPrompt, STORYBOARD_STYLES, STORYBOARD_FACES, STORYBOARD_FACE_BOX, sheetsLike, storyboardGrid, storyboardPanelPhrase, STORYBOARD_MAX_PANELS, STORYBOARD_SKETCH,
+  REFERENCE_MODES, KEYFRAME_CHAIN_MODES, VIDEO_EXTEND_MODES, extendSource, extendLines, editPrompt, videoShotFrame, cameraPackageLine, STORYBOARD_STYLES, STORYBOARD_FACES, STORYBOARD_FACE_BOX, sheetsLike, storyboardGrid, storyboardPanelPhrase, STORYBOARD_MAX_PANELS, STORYBOARD_SKETCH,
   TOP_VIEW_MODES, TOP_VIEW_COLORS, topViewFov, topViewSees, topViewAxisSide, topViewPeople, topViewCameraPhrase, topViewSvg, imageSize,
   HORROR, HORROR_RULES, SCARE_CUTS, THREAT_RUNGS, maxCutFor, DV_KIT, DV_LOOK, DV_RE, HORROR_STYLES, horrorStyleForGenre, horrorStyleOf, THREAT_KINDS, isHorrorLook,
 } from './short-drama.mjs';
@@ -3177,6 +3177,25 @@ const breaks = (gateId, project, episode, needle) => {
   breaks('params', kf, E01, 'sheets or storyboard');
   const ed = editPrompt('the red cup on the counter to a white paper cup', ['the white paper cup to use']);
   ok(ed.startsWith('Edit @video1, changing only the red cup') && ed.includes('@image1 is the white paper cup to use.') && /sole editing master/.test(ed) && /do not add, remove or replace anything else/.test(ed), 'edit prompt: one change, one master, the rest kept');
+}
+
+{
+  // Video prompts carry a cut's frame without the still's camera package and "film still" tag.
+  const params = { camera: { body: 'ARRI ALEXA Mini LF', lens: 'Zeiss Supreme Prime', aperture: 'T1.5' } };
+  const a = videoShotFrame({ focal: '40mm', frame: 'medium shot under an awning, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 40mm at T1.5, rim-lit from behind. the awning edge in the foreground, thrown well out of focus. 9:16 vertical, cinematic film still' }, params);
+  eq(a, 'medium shot under an awning, 40mm, T1.5, rim-lit from behind. the awning edge in the foreground, thrown well out of focus.', 'ratio-first still tag and package dropped, lens kept');
+  const b = videoShotFrame({ focal: '75mm', frame: 'close-up of her face, shot on an ARRI ALEXA Mini LF with a Zeiss Supreme Prime 75mm at T1.5, lit from below. photorealistic cinematic film still, 21:9 anamorphic widescreen frame' }, params);
+  eq(b, 'close-up of her face, 75mm, T1.5, lit from below.', 'style-first still tag dropped');
+  eq(cameraPackageLine(params), 'Shot on an ARRI ALEXA Mini LF with Zeiss Supreme Prime lenses.', 'the package is said once');
+  const p = clone(PROJECT); p.params.video = 'seedance'; p.params.videoResolution = '720p'; p.params.references = 'sheets';
+  const sk = promptSkeleton(p, E01, E01.storyboard.segments[3].id).video.prompt;
+  const shotLines = sk.split('\n').filter((l) => /^Shot \d/.test(l));
+  ok(shotLines.length > 0 && shotLines.every((l) => !/film still/.test(l) && !/shot on an? /i.test(l)), 'no still tag or camera package inside any shot');
+  ok(!/film still/.test(sk), 'no still tag anywhere in a video prompt');
+  ok(sk.includes(cameraPackageLine(paramsOf(p))), 'the Look line names the package');
+  eq(VIDEO_MODELS.seedance.maxPromptChars, 10000, 'seedance prompt cap recorded');
+  const { open, close } = extendLines('@video1');
+  ok(open.length < 180 && close.length < 170, `extend sentences stay short (${open.length} / ${close.length})`);
 }
 
 // ── gate inventory (crew engine) ────────────────────────────────────────────
