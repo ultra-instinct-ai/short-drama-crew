@@ -6,7 +6,7 @@
 //   init <dir> --title … --episodes N --minutes M --genre G [--ratio 9:16]
 //            [--video h3|seedance|seedance2|seedance2fast|wan]   (decides the segment length — see VIDEO_MODELS)
 //            [--resolution 480P|…] [--accent "台灣口音國語"] [--style photoreal|realistic|ghibli]
-//            [--references sheets|storyboard|keyframes] [--storyboard-style sketch|photo] [--storyboard-faces block|show] [--duration auto|fixed] [--look "shallow depth of field"] [--lang zh] [--adapt 原創]
+//            [--references sheets|storyboard|keyframes] [--storyboard-style sketch|photo] [--storyboard-faces block|show] [--keyframe-chain previous|none] [--duration auto|fixed] [--look "shallow depth of field"] [--lang zh] [--adapt 原創]
 //            [--cinematography low-key|sweet-romance|period-nostalgia|costume-idol|costume-dark|scifi-hard|scifi-soft|horror|costume-horror|apocalypse|none]
 //                                                                      (lighting & composition — see CINEMATOGRAPHY_PRESETS; picked from the genre when omitted)
 //            [--action gun-fu|hk-kungfu|wuxia-fantasy|historical-realist|bullet-time|superhero|street-brawl|car-chase|horror-struggle|zombie-horde|none]
@@ -77,6 +77,8 @@ export const DEFAULT_PARAMS = Object.freeze({
   topView: 'off',
   // What the storyboard grid is drawn as (references: storyboard): a pencil `sketch` or finished `photo` frames.
   storyboardStyle: 'sketch',
+  // Keyframes mode: each keyframe also references the one before it (continuity of people and blocking).
+  keyframeChain: 'previous',
   // Faces in the storyboard grid: covered by a flat grey box (identity comes only from the sheets) or shown.
   storyboardFaces: 'block',
   videoResolution: '720P',
@@ -214,6 +216,14 @@ export function sheetsLike(params) {
  * photoreal) that pin composition AND light, colour and look — a keyframe per cut, in one image.
  */
 export const STORYBOARD_STYLES = ['sketch', 'photo'];
+/**
+ * Keyframes mode: what each keyframe references besides the sheets. `previous` (the default): the
+ * keyframe before it — the cut before in the segment, or for a segment's first keyframe the last
+ * keyframe of the segment before when it plays in the same scene — so faces, clothes, props and
+ * where everyone stands carry over instead of being redrawn from the sheets each time; the
+ * keyframes are then generated in order. `none`: sheets only, every keyframe independent.
+ */
+export const KEYFRAME_CHAIN_MODES = ['previous', 'none'];
 /**
  * Faces in the storyboard grid. `block` (the default): every face is covered by a flat grey box, so
  * the clip can only take identity from the character sheets and never a panel's redrawn face; the
@@ -2293,6 +2303,7 @@ export const GATES = [
     if (!DURATION_MODES.includes(params.videoDuration)) out.push(`params.videoDuration must be one of ${DURATION_MODES.join(' / ')}`);
     if (!VIDEO_REFERENCE_MODES.includes(params.videoReferences)) out.push(`params.videoReferences must be one of ${VIDEO_REFERENCE_MODES.join(' / ')}`);
     if (!STORYBOARD_STYLES.includes(params.storyboardStyle)) out.push(`params.storyboardStyle must be one of ${STORYBOARD_STYLES.join(' / ')}`);
+    if (!KEYFRAME_CHAIN_MODES.includes(params.keyframeChain)) out.push(`params.keyframeChain must be one of ${KEYFRAME_CHAIN_MODES.join(' / ')}`);
     if (!STORYBOARD_FACES.includes(params.storyboardFaces)) out.push(`params.storyboardFaces must be one of ${STORYBOARD_FACES.join(' / ')}`);
     if (!TOP_VIEW_MODES.includes(params.topView)) out.push(`params.topView must be one of ${TOP_VIEW_MODES.join(' / ')}`);
     else if (params.topView === 'on' && params.references !== 'sheets') out.push(`params.topView = on needs params.references = sheets — in ${params.references} mode the ${params.references === 'storyboard' ? 'storyboard panels' : 'keyframes'} already fix where everyone is`);
@@ -5810,6 +5821,16 @@ export function promptSkeleton(project, episode, segmentId) {
   }
 
   const sceneEntity = sceneById(project, scene.sceneId) || {};
+  // A segment's refOverride can pin a look (C01:look:工作裝) or another asset for a person or prop;
+  // the keyframes take the same picture the segment does, not the base sheet.
+  const pinnedAsset = new Map((Array.isArray(seg.refOverride) ? seg.refOverride : [])
+    .filter((r) => /^[CP]\d/.test(String(r.entity)) && r.asset && r.asset !== 'sheet' && (!r.faceOf || r.faceOf === r.entity))
+    .map((r) => [r.entity, r.asset]));
+  // The keyframe before the first one: the last keyframe of the previous segment, in the same scene.
+  const allSegs = episode.storyboard?.segments || [];
+  const prevSeg = allSegs[allSegs.findIndex((x) => x.id === seg.id) - 1];
+  const prevSegLast = prevSeg && Number(prevSeg.sceneIndex) === Number(seg.sceneIndex) && (prevSeg.cuts || []).length
+    ? `${prevSeg.id} f${prevSeg.cuts.length}` : null;
   const keyframes = sheetsLike(params) ? [] : cuts.map((c, k) => {
     // `why` is for people (may carry names); `use` goes into the prompt and must stay generic.
     const refs = [];
@@ -5822,14 +5843,19 @@ export function promptSkeleton(project, episode, segmentId) {
       const place = many && c.placement?.[id] ? placementWords(c.placement[id]) : '';
       const where = many ? String(instant.positions?.[id] || '').trim() : '';
       const at = [place, where].filter(Boolean).join(', ');
-      refs.push({ entity: id, asset: 'sheet', why: `face and clothes of ${characterById(project, id)?.name || id}`, use: `the character sheet of ${at ? `the person ${at}` : 'one person in this frame'} — match face, hair and clothes exactly`, zh: '人物三视图，严格还原面容、发型与服装' });
+      refs.push({ entity: id, asset: pinnedAsset.get(id) || 'sheet', role: 'character', why: `face and clothes of ${characterById(project, id)?.name || id}`, use: `the character sheet of ${at ? `the person ${at}` : 'one person in this frame'} — match face, hair and clothes exactly`, zh: '人物三视图，严格还原面容、发型与服装' });
     }
-    for (const id of c.props || []) refs.push({ entity: id, asset: 'sheet', why: `prop ${propById(project, id)?.name || id}`, use: 'the prop to reproduce exactly', zh: '需要严格还原的道具' });
+    for (const id of c.props || []) refs.push({ entity: id, asset: pinnedAsset.get(id) || 'sheet', role: 'prop', why: `prop ${propById(project, id)?.name || id}`, use: 'the prop to reproduce exactly', zh: '需要严格还原的道具' });
+    // The keyframe before this one, last: it carries what the sheets cannot — this scene's people as
+    // already drawn, the props where they lie, and where everyone stands.
+    const prevName = params.keyframeChain === 'previous' ? (k > 0 ? `${seg.id} f${k}` : prevSegLast) : null;
+    if (prevName) refs.push({ entity: prevName, asset: 'keyframe', role: 'previous', why: `the keyframe before (${prevName})`,
+      use: 'the shot just before this one in the same scene — keep exactly the same people (faces, hair, clothes), the same room, the props where they lie and where everyone stands and faces; take continuity only, not its framing, its shot size or its camera angle — this shot is framed as written below', zh: '同一场戏的上一个镜头：人物（面容、发型、服装）、场景、道具位置和人物站位朝向保持一致；只取连贯性，不照它的构图、景别或机位' });
     refs.forEach((r, i) => (r.label = `@image${i + 1}`));
     const prefix = refs.map((r) => `${r.label} is ${r.use}`).join('; ');
-    const labelOf = new Map(refs.filter((r) => r.asset === 'sheet' && (c.characters || []).includes(r.entity)).map((r) => [r.entity, `the person in ${r.label}`]));
+    const labelOf = new Map(refs.filter((r) => r.role === 'character' && (c.characters || []).includes(r.entity)).map((r) => [r.entity, `the person in ${r.label}`]));
     const roster = rosterPhrase(c, (id) => labelOf.get(id) || id, 'en', instant);
-    return { cut: k + 1, name: `${seg.id} f${k + 1}`, ratio: params.ratio, references: refs, prompt: `${prefix}. ${roster ? `${roster} ` : ''}${c.frame}` };
+    return { cut: k + 1, name: `${seg.id} f${k + 1}`, ratio: params.ratio, after: prevName || null, references: refs, prompt: `${prefix}. ${roster ? `${roster} ` : ''}${c.frame}` };
   });
 
   // Storyboard mode: one grid image for the whole segment, drawn from the same sheets the clip uses,
@@ -6433,7 +6459,8 @@ export function manifest(project, episodes, opts = {}) {
         else if (!sw.assets?.storyboard) add('storyboard', seg.id, `storyboard.segments.${seg.id}.wji.assets.storyboard`, `wji canvas gen ${sw.nodes.storyboard} → asset (check: ${g.panels} panel(s), ${g.cols}×${g.rows}, sketch only, the right headcount per panel)`);
       }
       for (let k = 0; k < (sheetsLike(paramsOf(project)) ? 0 : n); k++) {
-        if (!sw.nodes?.keyframes?.[k]) add('storyboard', seg.id, `storyboard.segments.${seg.id}.wji.nodes.keyframes.${k}`, `wji canvas add image -c <${E}> -n "${seg.id} f${k + 1}" --from <display nodes>`);
+        const chained = paramsOf(project).keyframeChain === 'previous';
+        if (!sw.nodes?.keyframes?.[k]) add('storyboard', seg.id, `storyboard.segments.${seg.id}.wji.nodes.keyframes.${k}`, `wji canvas add image -c <${E}> -n "${seg.id} f${k + 1}" --from <display nodes${chained ? ', then the keyframe before it (generate in order)' : ''}>`);
         else if (!sw.assets?.keyframes?.[k]) add('storyboard', seg.id, `storyboard.segments.${seg.id}.wji.assets.keyframes.${k}`, `wji canvas gen ${sw.nodes.keyframes[k]} → asset`);
       }
       if (!NO_SEGMENT_TRACK.includes(paramsOf(project).audioTrack) && isObject(seg.sound)) {
@@ -6496,6 +6523,7 @@ export function initProject(opts) {
   if (opts.composition && !Object.hasOwn(COMPOSITION_STYLES, opts.composition)) throw new Error(`--composition must be one of ${Object.keys(COMPOSITION_STYLES).join(' / ')}`);
   if (opts.comedy && !Object.hasOwn(COMEDY_STYLES, opts.comedy)) throw new Error(`--comedy must be one of ${Object.keys(COMEDY_STYLES).join(' / ')}`);
   if (opts.footage && !['cinema', 'dv'].includes(opts.footage)) throw new Error('--footage must be cinema or dv');
+  if (opts.keyframeChain && !KEYFRAME_CHAIN_MODES.includes(opts.keyframeChain)) throw new Error(`--keyframe-chain must be one of ${KEYFRAME_CHAIN_MODES.join(' / ')}`);
   if (opts.storyboardFaces && !STORYBOARD_FACES.includes(opts.storyboardFaces)) throw new Error(`--storyboard-faces must be one of ${STORYBOARD_FACES.join(' / ')}`);
   if (opts.storyboardStyle && !STORYBOARD_STYLES.includes(opts.storyboardStyle)) throw new Error(`--storyboard-style must be one of ${STORYBOARD_STYLES.join(' / ')}`);
   if (opts.topView && !TOP_VIEW_MODES.includes(opts.topView)) throw new Error(`--top-view must be one of ${TOP_VIEW_MODES.join(' / ')}`);
@@ -6522,6 +6550,7 @@ export function initProject(opts) {
       topView: opts.topView || DEFAULT_PARAMS.topView,
       storyboardStyle: opts.storyboardStyle || DEFAULT_PARAMS.storyboardStyle,
       storyboardFaces: opts.storyboardFaces || DEFAULT_PARAMS.storyboardFaces,
+      keyframeChain: opts.keyframeChain || DEFAULT_PARAMS.keyframeChain,
       // `auto` unless this model has no autoDuration parameter.
       videoDuration: opts.duration || (mode.autoDuration ? DEFAULT_PARAMS.videoDuration : 'fixed'),
       lookPhrase: opts.look || (dv ? DV_LOOK : DEFAULT_PARAMS.lookPhrase),
@@ -6779,7 +6808,7 @@ function main(argv) {
       resolution: flag(rest, '--resolution'), accent: flag(rest, '--accent'),
       references: flag(rest, '--references'), duration: flag(rest, '--duration'), look: flag(rest, '--look'),
       register: flag(rest, '--register'), imageLang: flag(rest, '--image-lang'), foreground: flag(rest, '--foreground'),
-      cinematography: flag(rest, '--cinematography'), action: flag(rest, '--action'), violence: flag(rest, '--violence'), grammar: flag(rest, '--grammar'), comedy: flag(rest, '--comedy'), composition: flag(rest, '--composition'), story: flag(rest, '--story'), market: flag(rest, '--market'), format: flag(rest, '--format'), footage: flag(rest, '--footage'), horrorStyle: flag(rest, '--horror-style'), topView: flag(rest, '--top-view'), storyboardStyle: flag(rest, '--storyboard-style'), storyboardFaces: flag(rest, '--storyboard-faces'),
+      cinematography: flag(rest, '--cinematography'), action: flag(rest, '--action'), violence: flag(rest, '--violence'), grammar: flag(rest, '--grammar'), comedy: flag(rest, '--comedy'), composition: flag(rest, '--composition'), story: flag(rest, '--story'), market: flag(rest, '--market'), format: flag(rest, '--format'), footage: flag(rest, '--footage'), horrorStyle: flag(rest, '--horror-style'), topView: flag(rest, '--top-view'), storyboardStyle: flag(rest, '--storyboard-style'), storyboardFaces: flag(rest, '--storyboard-faces'), keyframeChain: flag(rest, '--keyframe-chain'),
       source: flag(rest, '--source'), sourcePath: flag(rest, '--source-path'),
     });
     const paths = projectPaths(dir);
@@ -6998,7 +7027,7 @@ function main(argv) {
         console.log('');
       }
       for (const k of out.keyframes) {
-        console.log(`## keyframe ${k.name} (${k.ratio})`);
+        console.log(`## keyframe ${k.name} (${k.ratio})${k.after ? ` — after ${k.after} is generated` : ''}`);
         for (const r of k.references) console.log(`   ${r.label} ← ${r.entity}:${r.asset}  (${r.why})`);
         console.log(`   ${k.prompt}`);
         console.log('');

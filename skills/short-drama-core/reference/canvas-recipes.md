@@ -139,6 +139,8 @@ wji canvas add image -c E1 -n "E01-01 f1" --from D_S02 D_C01 D_C03 D_P01 -m "<im
   --prompt-file /tmp/E01-01-f1.txt                                                                    # → K1 … K5  (prompt = plan prefix + cut.frame)
 SD bind <project> --ep 1 storyboard.segments.E01-01.wji.nodes.keyframes.0 K1
 wji canvas gen K1 --yes --wait      # first segment: generate, download, inspect, fix, then the rest
+# keyframeChain: previous (default) — K2 adds K1 as its LAST reference, generated after K1, and so on
+wji canvas add image -c E1 -n "E01-01 f2" --from D_S02 D_C01 D_C03 K1 -m "<image model>" -r 9:16 --prompt-file /tmp/E01-01-f2.txt   # → K2
 wji canvas add video -c E1 -n "E01-01" --from K1 K2 K3 K4 K5 D_C03v D_C01v -m minimax-h3-ref -r 9:16 -d 15 \
   --resolution 768P --prompt-file /tmp/E01-01-prompt.txt --json | jq -r .id                          # → VID1
 ```
