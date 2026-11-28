@@ -117,6 +117,19 @@ wji canvas gen VID1                 # prints the cost and refuses → tell the u
 legend says; fix with disconnect/connect if it does not. With `videoDuration: auto` (the default)
 there is no `-d`; `minimax-h3-ref` has no auto duration, so h3 projects pass `-d` = Σ cut seconds.
 
+**Only with `params.references: storyboard`** — the sheets as above plus one sketch grid per segment,
+connected after the sheets (it is the last `@image`):
+
+```bash
+wji canvas add image -c E1 -n "E01-01 storyboard" --from D_S02 D_C01 D_C03 D_P01 -m "<image model>" -r 3:4 --at 400,700 \
+  --prompt-file /tmp/E01-01-storyboard.txt                                       # → SB1  (prompt + -r from `prompt segment` → ## storyboard)
+SD bind <project> --ep 1 storyboard.segments.E01-01.wji.nodes.storyboard SB1
+wji canvas gen SB1 --yes --wait      # first segment: check panel count, sketch only, headcount per panel
+SD bind <project> --ep 1 storyboard.segments.E01-01.wji.assets.storyboard <asset id>
+wji canvas add video -c E1 -n "E01-01" --from D_S02 D_C01 D_C03 D_P01 SB1 D_C03v D_C01v -m minimax-h3-ref -r 9:16 -d 15 \
+  --resolution 768P --prompt-file /tmp/E01-01-prompt.txt --json | jq -r .id     # → VID1
+```
+
 **Only with `params.references: keyframes`** — one generated image per cut, referenced by the video
 node instead of the sheets (an opt-in for shots that must be composed exactly; twice the images to
 pay for and approve):

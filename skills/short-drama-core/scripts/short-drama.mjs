@@ -6,7 +6,7 @@
 //   init <dir> --title … --episodes N --minutes M --genre G [--ratio 9:16]
 //            [--video h3|seedance|seedance2|seedance2fast|wan]   (decides the segment length — see VIDEO_MODELS)
 //            [--resolution 480P|…] [--accent "台灣口音國語"] [--style photoreal|realistic|ghibli]
-//            [--references sheets|keyframes] [--duration auto|fixed] [--look "shallow depth of field"] [--lang zh] [--adapt 原創]
+//            [--references sheets|storyboard|keyframes] [--storyboard-style sketch|photo] [--storyboard-faces block|show] [--duration auto|fixed] [--look "shallow depth of field"] [--lang zh] [--adapt 原創]
 //            [--cinematography low-key|sweet-romance|period-nostalgia|costume-idol|costume-dark|scifi-hard|scifi-soft|horror|costume-horror|apocalypse|none]
 //                                                                      (lighting & composition — see CINEMATOGRAPHY_PRESETS; picked from the genre when omitted)
 //            [--action gun-fu|hk-kungfu|wuxia-fantasy|historical-realist|bullet-time|superhero|street-brawl|car-chase|horror-struggle|zombie-horde|none]
@@ -31,7 +31,7 @@
 //   apply    <project> dialogue --ep N               write the reviewed lines (and deliveries) back into the script
 //   seed     <project> storyboard --ep N [--force]    beat worksheet, visual-plan worksheet + empty segments from the script
 //   render   <project> outline | guideline | character C01 | scene S01 | prop P01 | script --ep N | dialogue --ep N | segment E01-01
-//   prompt   <project> segment E01-01                 derived video-prompt skeleton + keyframe reference plan
+//   prompt   <project> segment E01-01                 derived video-prompt skeleton + keyframe / storyboard-grid reference plan
 //   topview  <project> segment E01-01 [--image <top-view sheet>] [--out <png>]
 //                                                      the top-view overlay (params.topView on): marks + cameras over the sheet, via headless Chrome
 //   prompt   <project> voice C01                       the acted sample text for the voice node
@@ -75,6 +75,10 @@ export const DEFAULT_PARAMS = Object.freeze({
   videoReferences: 'none',
   // The top-view plan (top-view-plan.md): off unless the project turns it on at setup.
   topView: 'off',
+  // What the storyboard grid is drawn as (references: storyboard): a pencil `sketch` or finished `photo` frames.
+  storyboardStyle: 'sketch',
+  // Faces in the storyboard grid: covered by a flat grey box (identity comes only from the sheets) or shown.
+  storyboardFaces: 'block',
   videoResolution: '720P',
   speechAccent: '',
   // The production's camera package. Every frame prompt names it, so two shots cut together.
@@ -194,8 +198,66 @@ export function nearestResolution(mode, wanted) {
   if (!numeric.length || !Number.isFinite(want)) return (mode.resolutions || [])[0];
   return numeric.reduce((best, r) => (Math.abs(height(r) - want) < Math.abs(height(best) - want) ? r : best));
 }
-/** What the video node references: one generated keyframe per cut, or the sheets themselves (no keyframe images). */
-export const REFERENCE_MODES = ['keyframes', 'sheets'];
+/**
+ * What the video node references: one generated keyframe per cut, the sheets themselves (no keyframe
+ * images), or the sheets plus ONE storyboard image per segment — a grid of rough pencil panels, one per
+ * cut, that pins the composition while the sheets keep carrying faces, clothes, the room and the props.
+ */
+export const REFERENCE_MODES = ['keyframes', 'sheets', 'storyboard'];
+/** Sheets and storyboard both reference the sheets directly; every sheets-mode rule holds in both. */
+export function sheetsLike(params) {
+  return params?.references === 'sheets' || params?.references === 'storyboard';
+}
+/**
+ * What the storyboard grid is drawn as. `sketch` (the default): flat pencil thumbnails that pin
+ * composition only. `photo`: finished film frames in the project's style (photographic for
+ * photoreal) that pin composition AND light, colour and look — a keyframe per cut, in one image.
+ */
+export const STORYBOARD_STYLES = ['sketch', 'photo'];
+/**
+ * Faces in the storyboard grid. `block` (the default): every face is covered by a flat grey box, so
+ * the clip can only take identity from the character sheets and never a panel's redrawn face; the
+ * head's turn and the hair outline still read. `show`: faces drawn as the style draws them.
+ */
+export const STORYBOARD_FACES = ['block', 'show'];
+/** The grid instruction for `storyboardFaces: block`. */
+export const STORYBOARD_FACE_BOX = "every person's face is covered by a solid flat mid-grey box, head-sized, hiding the eyes, nose and mouth completely — the hair outline, the head's turn and the body still read; a head seen from behind gets no box; no face is visible in any panel";
+/** The most panels one storyboard grid holds and stays readable (4 × 3). */
+export const STORYBOARD_MAX_PANELS = 12;
+/**
+ * Ratios to snap the grid's overall shape to, as [w, h]: only the ones every image model takes
+ * (gpt-image has no 3:2 / 2:3, so a grid at 3:2 is refused at gen time).
+ */
+const IMAGE_RATIOS = [[1, 1], [4, 3], [3, 4], [16, 9], [9, 16]];
+/**
+ * The grid a segment's storyboard is drawn in: columns × rows for `n` panels of `ratio`, and the
+ * image ratio closest to the whole sheet. Landscape panels stack in fewer columns, portrait in more.
+ */
+export function storyboardGrid(n, ratio = '9:16') {
+  const [w, h] = String(ratio).split(':').map(Number);
+  const panel = w > 0 && h > 0 ? w / h : 9 / 16;
+  const count = Math.max(1, Number(n) || 1);
+  let best = null;
+  for (let cols = 1; cols <= Math.min(count, 4); cols++) {
+    const rows = Math.ceil(count / cols);
+    if (rows > 4) continue;
+    const empty = cols * rows - count;
+    const shape = (cols * panel) / rows;
+    // Prefer the grid whose shape an image ratio fits best (panels stay undistorted), with no empty
+    // cells, leaning slightly toward square so the panels stay large.
+    const fit = Math.min(...IMAGE_RATIOS.map((r) => Math.abs(Math.log(r[0] / r[1] / shape))));
+    const score = fit + empty * 0.35 + Math.abs(Math.log(shape)) * 0.1;
+    if (!best || score < best.score) best = { cols, rows, shape, score };
+  }
+  const near = IMAGE_RATIOS.reduce((a, r) => (Math.abs(Math.log(r[0] / r[1] / best.shape)) < Math.abs(Math.log(a[0] / a[1] / best.shape)) ? r : a));
+  return { cols: best.cols, rows: best.rows, panels: count, ratio: `${near[0]}:${near[1]}` };
+}
+/** The phrase each shot carries so the model knows which panel it is drawn from: gated verbatim. */
+export function storyboardPanelPhrase(n, label, lang = 'en') {
+  return lang === 'zh' ? `构图照 ${label} 第 ${n} 格` : `composed as panel ${n} of ${label}`;
+}
+/** The sketch look every storyboard grid is drawn in — never a finished picture the clip could copy. */
+export const STORYBOARD_SKETCH = 'very simple rough storyboard thumbnails: quick loose black pencil outlines on plain white paper, each figure a few strokes with a blank oval face and no features, the room reduced to a few outline shapes, flat line art only — no shading, no hatching, no grey tones, no texture, no detail, no colour, no text, no speech bubbles, no arrows';
 /** TTS model for the character voice sample; it takes the headshot as its one reference image. */
 export const VOICE_MODEL = 'seed-audio-1.0';
 /**
@@ -1944,7 +2006,7 @@ export function shotTexts(prompt, family, references) {
   let re;
   if (family === 'h3') return shotParagraphs(prompt);
   if (family === 'wan') re = /镜头(\d+)（[\s\S]*?(?=\n镜头\d+（|\n\s*\n|$)/g;
-  else if (references === 'sheets') re = /^Shot (\d+) \(([\s\S]*?)(?=\nShot \d+ \(|\n\s*\n|$)/gm;
+  else if (references === 'sheets' || references === 'storyboard') re = /^Shot (\d+) \(([\s\S]*?)(?=\nShot \d+ \(|\n\s*\n|$)/gm;
   else return map;
   let m;
   while ((m = re.exec(prompt))) map.set(Number(m[1]), m[0].trim());
@@ -2230,8 +2292,10 @@ export const GATES = [
     if (!REFERENCE_MODES.includes(params.references)) out.push(`params.references must be one of ${REFERENCE_MODES.join(' / ')}`);
     if (!DURATION_MODES.includes(params.videoDuration)) out.push(`params.videoDuration must be one of ${DURATION_MODES.join(' / ')}`);
     if (!VIDEO_REFERENCE_MODES.includes(params.videoReferences)) out.push(`params.videoReferences must be one of ${VIDEO_REFERENCE_MODES.join(' / ')}`);
+    if (!STORYBOARD_STYLES.includes(params.storyboardStyle)) out.push(`params.storyboardStyle must be one of ${STORYBOARD_STYLES.join(' / ')}`);
+    if (!STORYBOARD_FACES.includes(params.storyboardFaces)) out.push(`params.storyboardFaces must be one of ${STORYBOARD_FACES.join(' / ')}`);
     if (!TOP_VIEW_MODES.includes(params.topView)) out.push(`params.topView must be one of ${TOP_VIEW_MODES.join(' / ')}`);
-    else if (params.topView === 'on' && params.references !== 'sheets') out.push('params.topView = on needs params.references = sheets — in keyframes mode the keyframes already fix where everyone is');
+    else if (params.topView === 'on' && params.references !== 'sheets') out.push(`params.topView = on needs params.references = sheets — in ${params.references} mode the ${params.references === 'storyboard' ? 'storyboard panels' : 'keyframes'} already fix where everyone is`);
     const mode = videoModel(params);
     if (params.videoDuration === 'auto' && !mode.autoDuration) out.push(`${mode.model} has no auto duration \u2014 set params.videoDuration = fixed and give every segment a whole-second total`);
     if (!(Number(params.minSegmentSeconds) >= mode.minSegmentSeconds && Number(params.maxSegmentSeconds) <= mode.maxSegmentSeconds && params.minSegmentSeconds <= params.maxSegmentSeconds)) {
@@ -2239,7 +2303,9 @@ export const GATES = [
     }
     if (mode.family === 'seedance' && params.style === 'photoreal') {
       // BytePlus rejects photorealistic people in reference images ("input image may contain real person", HTTP 400).
-      if (params.references !== 'sheets') out.push(`${mode.model} + photoreal: keyframes (photoreal people) are refused by the provider's real-person check \u2014 set params.references = sheets`);
+      if (!sheetsLike(params)) out.push(`${mode.model} + photoreal: keyframes (photoreal people) are refused by the provider's real-person check \u2014 set params.references = sheets`);
+      // A photo grid shows photoreal people, so it passes only where the sheets do: with the permission.
+      if (params.references === 'storyboard' && params.storyboardStyle === 'photo' && project.params?.humanReferences !== true) out.push(`${mode.model} + photoreal: a photo storyboard (photoreal people) is refused by the provider's real-person check unless the account has the real-person permission \u2014 set params.storyboardStyle = sketch, or params.humanReferences = true once it is enabled`);
       if (project.params?.humanReferences === undefined) out.push(`${mode.model} + photoreal: the provider's real-person check refuses character sheets unless the account has the real-person permission \u2014 set params.humanReferences explicitly (false: describe people in the prompt; true: the permission is enabled)`);
     }
     if (params.videoResolution && !videoResolutionFor(mode, params.videoResolution)) out.push(`params.videoResolution ${params.videoResolution} is not a tier of ${mode.model} \u2014 it takes ${mode.resolutions.join(' / ')}`);
@@ -3852,11 +3918,11 @@ export const GATES = [
         const look = String(videoModel(params).promptLang === 'zh' ? params.lookPhraseZh || '' : params.lookPhrase || '').trim();
         if (look && !prompt.toLowerCase().includes(look.toLowerCase())) out.push(`${seg.id}: prompt must carry the look phrase "${look}" (params.${videoModel(params).promptLang === 'zh' ? 'lookPhraseZh' : 'lookPhrase'})`);
         const cine = cinematographyOf(params);
-        if (cine && params.references === 'sheets') {
+        if (cine && sheetsLike(params)) {
           const phrase = videoModel(params).promptLang === 'zh' ? cine.videoPhraseZh : cine.videoPhrase;
           if (!prompt.toLowerCase().includes(phrase.toLowerCase())) out.push(`${seg.id}: prompt must carry the cinematography phrase "${phrase}" (params.cinematography ${params.cinematography})`);
         }
-        if (params.references === 'sheets' && params.video !== 'wan') {
+        if (sheetsLike(params) && params.video !== 'wan') {
           const preset = STYLE_PRESETS[params.style] || STYLE_PRESETS.realistic;
           if (!prompt.toLowerCase().includes(preset.videoPhrase)) out.push(`${seg.id}: prompt must contain "${preset.videoPhrase}" (style ${params.style}) — there are no keyframes to carry the style`);
         }
@@ -4196,7 +4262,7 @@ export const GATES = [
         }
         const texts = shotTexts(prompt, mode.family, params.references);
         const refs = segmentReferences(project, e, seg);
-        const sheetOf = params.references === 'sheets'
+        const sheetOf = sheetsLike(params)
           ? (() => {
               const m = new Map();
               for (const r of refs.filter((x) => x.kind === 'image')) {
@@ -4229,7 +4295,7 @@ export const GATES = [
   gate('ref-binding', 'storyboard', '参考图绑定: every picture says in the legend WHAT it is (and what not to copy from it), everyone and everything on screen is bound by its @imageK inside that shot, and no connected picture goes unused', (ctx) => {
     const { project, params } = ctx;
     const out = [];
-    if (params.references !== 'sheets') return out;
+    if (!sheetsLike(params)) return out;
     const mode = videoModel(params);
     for (const [, e] of ctx.episodes) {
       for (const seg of e.storyboard?.segments || []) {
@@ -4293,7 +4359,7 @@ export const GATES = [
   gate('two-person-framing', 'storyboard', 'sheets mode, two-person segments: a single names only its person, every look has a screen direction toward the other, the sides are locked, over-the-shoulder is said', (ctx) => {
     const { project, params } = ctx;
     const out = [];
-    if (params.references !== 'sheets') return out;
+    if (!sheetsLike(params)) return out;
     const lang = videoModel(params).promptLang === 'zh' ? 'zh' : 'en';
     for (const [, e] of ctx.episodes) {
       for (const seg of e.storyboard?.segments || []) {
@@ -4351,7 +4417,7 @@ export const GATES = [
       for (const seg of e.storyboard?.segments || []) {
         const cuts = seg.cuts || [];
         const axis = isObject(seg.axis) ? seg.axis : null;
-        const labels = params.references === 'sheets' ? characterLabels(segmentReferences(project, e, seg)) : new Map();
+        const labels = sheetsLike(params) ? characterLabels(segmentReferences(project, e, seg)) : new Map();
         const whoOf = (id) => labels.get(id) || identityOf(characterById(project, id));
         const prompt = String(seg.prompt || '');
         const texts = prompt.trim() ? shotTexts(prompt, family, params.references) : new Map();
@@ -4381,10 +4447,32 @@ export const GATES = [
     }
     return out;
   }),
+  gate('storyboard-panels', 'storyboard', 'storyboard mode: one sketch grid per segment, at most 12 panels, and every shot names the panel it is composed from', (ctx) => {
+    const { project, params } = ctx;
+    const out = [];
+    if (params.references !== 'storyboard') return out;
+    const lang = videoModel(params).promptLang === 'zh' ? 'zh' : 'en';
+    for (const [, e] of ctx.episodes) {
+      for (const seg of e.storyboard?.segments || []) {
+        const cuts = seg.cuts || [];
+        if (cuts.length > STORYBOARD_MAX_PANELS) out.push(`${seg.id}: ${cuts.length} cuts, but one storyboard grid holds at most ${STORYBOARD_MAX_PANELS} readable panels — split the segment`);
+        const prompt = String(seg.prompt || '');
+        const label = segmentReferences(project, e, seg).find((r) => r.asset === 'storyboard')?.label;
+        if (!prompt.trim() || !label) continue;
+        const texts = shotTexts(prompt, videoModel(params).family, params.references);
+        cuts.forEach((c, k) => {
+          const phrase = storyboardPanelPhrase(k + 1, label, lang);
+          const text = texts.get(k + 1);
+          if (text && !text.includes(phrase)) out.push(`${seg.id} cut ${k + 1}: the shot must name its storyboard panel — paste "${phrase}"`);
+        });
+      }
+    }
+    return out;
+  }),
   gate('top-view', 'storyboard', 'top-view plan (params.topView on): every person marked and facing, a camera mark per cut that sees everyone in the cut on the side placement says, cameras on one side of the axis across the scene, positions carried between segments, each shot names its camera', (ctx) => {
     const { project, params } = ctx;
     const out = [];
-    if (params.topView !== 'on' || params.references !== 'sheets') return out;
+    if (params.topView !== 'on' || !sheetsLike(params)) return out;
     const lang = videoModel(params).promptLang === 'zh' ? 'zh' : 'en';
     const near = (a, b) => Math.abs(a[0] - b[0]) <= 0.02 && Math.abs(a[1] - b[1]) <= 0.02;
     for (const [, e] of ctx.episodes) {
@@ -4453,7 +4541,7 @@ export const GATES = [
   gate('idle-motion', 'storyboard', 'sheets mode: in a cut with two or more visible faces, everyone but the one carrying the action has a small motion of their own, written into the shot', (ctx) => {
     const { project, params } = ctx;
     const out = [];
-    if (params.references !== 'sheets') return out;
+    if (!sheetsLike(params)) return out;
     const lang = videoModel(params).promptLang === 'zh' ? 'zh' : 'en';
     for (const [, e] of ctx.episodes) {
       for (const seg of e.storyboard?.segments || []) {
@@ -4949,7 +5037,7 @@ function checkH3Prompt(seg, prompt, lines, project, names, params = {}, sheetCou
   const out = [];
   const cuts = seg.cuts;
   const firstLine = prompt.split('\n')[0].trim();
-  if (params.references === 'sheets') {
+  if (sheetsLike(params)) {
     // H3 ref addresses its references as "Image 1 / Image 2"; there are no keyframes to align.
     const imageNs = [...prompt.matchAll(/@image(\d+)/g)].map((m) => Number(m[1]));
     for (let k = 1; k <= sheetCount; k++) if (!imageNs.includes(k)) out.push(`${seg.id}: @image${k} (a sheet this segment references) is never mentioned — say what it is`);
@@ -4973,7 +5061,7 @@ function checkH3Prompt(seg, prompt, lines, project, names, params = {}, sheetCou
     }
     if (c.camera && !para.toLowerCase().includes(String(c.camera).toLowerCase())) out.push(`${seg.id}: [Shot ${k + 1}] must mention its camera move "${c.camera}"`);
     // Keyframe k belongs to shot k: the alignment line says so, and the paragraph has to use it.
-    if (params.references !== 'sheets' && !para.includes(`@image${k + 1}`)) out.push(`${seg.id}: [Shot ${k + 1}] must anchor on @image${k + 1} — that is the keyframe aligned to it`);
+    if (!sheetsLike(params) && !para.includes(`@image${k + 1}`)) out.push(`${seg.id}: [Shot ${k + 1}] must anchor on @image${k + 1} — that is the keyframe aligned to it`);
   });
   const tag = langTag(project.lang);
   for (const l of lines) {
@@ -5095,8 +5183,8 @@ function checkWanPrompt(seg, prompt, lines, names, params, project, sheetRefs = 
   const out = [];
   const cuts = seg.cuts;
   const firstLine = prompt.split('\n')[0].trim();
-  const expected = params.references === 'sheets' ? wanSheetLegendLine(sheetRefs) : wanLegendLine(cuts, sheetRefs);
-  if (firstLine !== expected) out.push(`${seg.id}: first line must be the reference legend derived from the ${params.references === 'sheets' ? 'sheets' : 'cuts'}:\n      ${expected}`);
+  const expected = sheetsLike(params) ? wanSheetLegendLine(sheetRefs) : wanLegendLine(cuts, sheetRefs);
+  if (firstLine !== expected) out.push(`${seg.id}: first line must be the reference legend derived from the ${sheetsLike(params) ? 'sheets' : 'cuts'}:\n      ${expected}`);
   cuts.forEach((c, k) => {
     const head = wanShotHeader(cuts, k);
     if (!prompt.includes(head)) out.push(`${seg.id}: prompt must contain verbatim "${head}"`);
@@ -5115,7 +5203,7 @@ function checkWanPrompt(seg, prompt, lines, names, params, project, sheetRefs = 
 
 function checkSeedancePrompt(seg, prompt, lines, names, params = {}, sheetCount = 0, project = {}, refs = []) {
   const out = [];
-  const sheets = params.references === 'sheets';
+  const sheets = sheetsLike(params);
   const n = sheets ? sheetCount : seg.cuts.length;
   const imageNs = [...prompt.matchAll(/@image(\d+)/g)].map((m) => Number(m[1]));
   if (sheets) {
@@ -5430,8 +5518,12 @@ export function segmentReferences(project, episode, seg) {
     refs.forEach((r) => (r.kind = 'image'));
   }
   // The top-view overlay goes last among the pictures; its legend is written once the labels exist.
-  if (params.topView === 'on' && params.references === 'sheets' && isObject(seg.topView)) {
+  if (params.topView === 'on' && sheetsLike(params) && isObject(seg.topView)) {
     refs.push({ entity: seg.id, asset: 'topview', role: 'layout', kind: 'image', why: `top-view plan of ${seg.id}` });
+  }
+  // Storyboard mode: one sketch grid per segment, after the sheets — it pins composition only.
+  if (params.references === 'storyboard') {
+    refs.push({ entity: seg.id, asset: 'storyboard', role: 'storyboard', kind: 'image', why: `storyboard grid of ${seg.id}` });
   }
   // The clip before this one, when the project asks for it: the cheapest continuity there is — the
   // model sees what the last generation actually produced, not a description of it.
@@ -5471,12 +5563,35 @@ export function segmentReferences(project, episode, seg) {
     topRef.use = `a photo of this same room taken from directly above, with markers drawn on it, and it alone decides where everyone sits and where each camera stands: ${dots.map((d) => `the ${d.color.en} dot is ${whoEn(d.id)}`).join(', ')}; each dot's arrow is the way that person faces; each numbered black box is the camera for that shot and its white wedge is exactly what that camera sees. Follow it for every position and camera angle; never show the overhead view, its dots, arrows, labels or numbers`;
     topRef.zh = `同一个空间的正上方俯拍照片，上面画了标记，人物站位与机位只看它：${dots.map((d) => `${d.color.zh}点是${whoZh(d.id)}`).join('，')}；点上的箭头是此人面朝的方向；带编号的黑框是该镜头的机位，白色扇形就是那台机看到的范围。所有站位和机位都照它；画面里绝不出现这张俯视图、它的点、箭头、文字或编号`;
   }
+  const boardRef = refs.find((r) => r.asset === 'storyboard' && r.role === 'storyboard');
+  if (boardRef) {
+    const g = storyboardGrid((seg.cuts || []).length, params.ratio);
+    const n = g.panels;
+    if (params.storyboardStyle === 'photo') {
+      boardRef.use = n === 1
+        ? `the storyboard frame of this shot — follow its framing, shot size, camera angle, where each person stands and faces, its light and its colour; faces, hair, clothes, the room and the props stay exactly as the other pictures show them, never as this frame redraws them`
+        : `the storyboard of this segment, ${n} film frames in a ${g.cols} × ${g.rows} grid read left to right, top to bottom — panel k is Shot k: follow each panel's framing, shot size, camera angle, where each person stands and faces, its light and its colour; faces, hair, clothes, the room and the props stay exactly as the other pictures show them, never as a panel redraws them; never show the grid, its gutters or two frames at once — every shot is one full frame`;
+      boardRef.zh = n === 1
+        ? `这个镜头的分镜画面：照它的构图、景别、机位角度、人物站位朝向、光线和色调；面容、发型、服装、场景和道具都以其他参考图为准，不要照这张图的重画`
+        : `本段的分镜，${n} 格电影画面，${g.cols} 列 × ${g.rows} 行，从左到右、从上到下读——第 k 格就是镜头k：照每格的构图、景别、机位角度、人物站位朝向、光线和色调；面容、发型、服装、场景和道具都以其他参考图为准，不要照格子里的重画；画面里绝不出现网格、格间白边或同时两个画面——每个镜头都是一个完整画面`;
+    } else boardRef.use = n === 1
+      ? `a rough pencil storyboard sketch of this shot — follow only its framing, shot size, camera angle and where each person stands and faces; take faces, hair, clothes, the room, the light and the props from the other pictures, never its sketch lines, grey tones, paper or border`
+      : `a rough pencil storyboard of this segment, ${n} panels in a ${g.cols} × ${g.rows} grid read left to right, top to bottom — panel k is Shot k: follow only each panel's framing, shot size, camera angle and where each person stands and faces; take faces, hair, clothes, the room, the light and the props from the other pictures, never its sketch lines, grey tones, panel borders or the grid itself — every shot is one full frame`;
+    if (params.storyboardStyle !== 'photo') boardRef.zh = n === 1
+      ? `这个镜头的铅笔分镜草图：只照它的构图、景别、机位角度和人物站位朝向；面容、发型、服装、场景、光线和道具都看其他参考图，不要照它的线条、灰调、纸面或边框`
+      : `本段的铅笔分镜，${n} 格，${g.cols} 列 × ${g.rows} 行，从左到右、从上到下读——第 k 格就是镜头k：只照每格的构图、景别、机位角度和人物站位朝向；面容、发型、服装、场景、光线和道具都看其他参考图，不要照它的线条、灰调、格子边框或网格本身——每个镜头都是一个完整画面`;
+  }
+  // Blocked faces: the grey box is a placeholder, not something to film.
+  if (boardRef && params.storyboardFaces === 'block') {
+    boardRef.use += `; every face in it is hidden under a grey box — that box is only a placeholder for the face in that person's character sheet; never show a grey box or a hidden face`;
+    boardRef.zh += `；图中每张脸都被灰色方块遮住——方块只是占位，脸照该人物的三视图；画面里绝不出现灰色方块或被遮住的脸`;
+  }
   for (const r of refs) {
     if (r.kind !== 'video') continue;
     r.use = `the clip immediately before this one — continue its look, wardrobe, lighting and camera language, and pick up where it left off; do not repeat its action`;
     r.zh = `\u4e0a\u4e00\u6bb5\u7684\u6210\u7247\uff0c\u5ef6\u7eed\u5b83\u7684\u8d28\u611f\u3001\u670d\u88c5\u3001\u5149\u7ebf\u4e0e\u955c\u5934\u8bed\u8a00\uff0c\u63a5\u7740\u5b83\u5f80\u4e0b\u6f14\uff0c\u4e0d\u8981\u91cd\u590d\u5b83\u7684\u52a8\u4f5c`;
   }
-  const sheetOf = params.references === 'sheets'
+  const sheetOf = sheetsLike(params)
     ? (() => {
         const m = new Map();
         for (const r of refs.filter((x) => x.kind === 'image')) {
@@ -5542,7 +5657,7 @@ export function promptSkeleton(project, episode, segmentId) {
   const dialogue = cuts.map((c, k) => claimedLines(scene, [c]).map((l) => {
     const ch = characterById(project, l.speaker);
     const voice = voiceLabels.get(l.speaker);
-    const sheet = params.references === 'sheets' ? sheetLabels.get(l.speaker) : undefined;
+    const sheet = sheetsLike(params) ? sheetLabels.get(l.speaker) : undefined;
     // The full voice description goes on this character's FIRST line in the segment; after that the
     // @audioN label carries it, and only the beat's own delivery is added. Repeating 60 characters of
     // timbre on every line buys nothing and lengthens a prompt the content filter judges by length.
@@ -5586,20 +5701,24 @@ export function promptSkeleton(project, episode, segmentId) {
   const framingLabels = characterLabels(allRefs);
   const whoOf = (id) => framingLabels.get(id) || identityOf(characterById(project, id));
   const framingLang = videoModel(params).promptLang === 'zh' ? 'zh' : 'en';
-  const idleOf = (c) => (params.references === 'sheets' ? idleSentence(c, whoOf, framingLang) : '');
-  const framingOf = (c) => (params.references === 'sheets' ? shotFraming(c, seg, whoOf, framingLang) : '');
+  const idleOf = (c) => (sheetsLike(params) ? idleSentence(c, whoOf, framingLang) : '');
+  const framingOf = (c) => (sheetsLike(params) ? shotFraming(c, seg, whoOf, framingLang) : '');
   // Top-view plan: every shot names the camera mark it is shot from (gated verbatim by `top-view`).
   const topLabel = allRefs.find((r) => r.asset === 'topview' && r.role === 'layout')?.label;
-  const topViewOf = (k, lang = framingLang) => (topLabel ? `${topViewCameraPhrase(k + 1, topLabel, lang)}${lang === 'zh' ? '；' : '. '}` : '');
+  const topViewOf0 = (k, lang = framingLang) => (topLabel ? `${topViewCameraPhrase(k + 1, topLabel, lang)}${lang === 'zh' ? '；' : '. '}` : '');
+  // Storyboard mode: every shot names the panel it is composed from (gated verbatim by `storyboard-panels`).
+  const boardLabel = allRefs.find((r) => r.asset === 'storyboard' && r.role === 'storyboard')?.label;
+  const panelOf = (k, lang = framingLang) => (boardLabel ? `${storyboardPanelPhrase(k + 1, boardLabel, lang)}${lang === 'zh' ? '；' : '. '}` : '');
+  const topViewOf = (k, lang = framingLang) => `${topViewOf0(k, lang)}${panelOf(k, lang)}`;
   // Keyframes mode: the picture already holds everyone, but the clip still loses a figure the text
   // never mentions, so the shot counts them too (by identity — the @imageN labels are frames).
   const rosterOf = (c) => { const r = rosterPhrase(c, whoOf, framingLang, cutInstant(cuts, cuts.indexOf(c))); return r ? `${r} ` : ''; };
   const sidesOf = () => {
     const axis = isObject(seg.axis) ? seg.axis : null;
-    if (params.references !== 'sheets' || !axis?.screenLeft || !axis?.screenRight || cuts.some((c) => c.axisSide === 'cross')) return [];
+    if (!sheetsLike(params) || !axis?.screenLeft || !axis?.screenRight || cuts.some((c) => c.axisSide === 'cross')) return [];
     return [sidesLine(axis, whoOf, framingLang)];
   };
-  const othersOnScreen = (c, speaker) => (c.characters || []).filter((id) => id !== speaker && id !== c.ots).map((id) => (params.references === 'sheets' && sheetLabels.get(id) ? `the person in ${sheetLabels.get(id)}` : identityOf(characterById(project, id))));
+  const othersOnScreen = (c, speaker) => (c.characters || []).filter((id) => id !== speaker && id !== c.ots).map((id) => (sheetsLike(params) && sheetLabels.get(id) ? `the person in ${sheetLabels.get(id)}` : identityOf(characterById(project, id))));
   // A prop on screen is bound by its label INSIDE that shot — a prop named only in the legend is a
   // prop the model designs itself the moment it appears. Same rule people already had.
   const propOf = (c, lang = 'en') => (c.props || []).map((id) => sheetLabels.get(id)).filter(Boolean)
@@ -5608,14 +5727,14 @@ export function promptSkeleton(project, episode, segmentId) {
   // model does not re-invent the room between shots.
   const sceneLine = (lang = 'en') => {
     const label = sheetLabels.get(scene?.sceneId);
-    if (!label || params.references !== 'sheets') return '';
+    if (!label || !sheetsLike(params)) return '';
     return lang === 'zh'
       ? `整段都在 ${label} 的空间里：布局、材质与旧痕不变，不要重新设计场景。`
       : `Every shot stays inside ${label} \u2014 its layout, materials and wear do not change; do not redesign the room.`;
   };
   let video;
   if (mode.family === 'h3') {
-    const sheets = params.references === 'sheets';
+    const sheets = sheetsLike(params);
     const shots = cuts.map((c, k) => {
       // Every line names who else is on screen and keeps their lips closed — measured on H3: without
       // it the lip-sync lands on the more visible face.
@@ -5646,17 +5765,17 @@ export function promptSkeleton(project, episode, segmentId) {
       // Wan's prompt is Chinese: the lens and the light direction translate, the note and the
       // foreground are the author's English prose, so they are left as blanks to write in Chinese.
       const shot = `${cameraPhrase(c, params, 'zh')}。${LIGHT_DIRECTIONS_ZH[c.light?.direction] || '…'}，…。前景：${c.foreground ? '…（虚化）' : '无'}。`;
-      return [`${wanShotHeader(cuts, k)}${params.references === 'sheets' ? topViewOf(k, 'zh') : ''}${framingOf(c)}…${shot}${motionSentence(c, 'zh')}${idleOf(c)}${propOf(c, 'zh')}${cameraClause(c, 'zh')}`, ...talk].join('\n');
+      return [`${wanShotHeader(cuts, k)}${sheetsLike(params) ? topViewOf(k, 'zh') : ''}${framingOf(c)}…${shot}${motionSentence(c, 'zh')}${idleOf(c)}${propOf(c, 'zh')}${cameraClause(c, 'zh')}`, ...talk].join('\n');
     });
     const sfxAll = cuts.map((c, k) => (sfxOf(k) ? `镜头${k + 1}：${sfxOf(k)}` : '')).filter(Boolean).join('；');
     video = [
-      params.references === 'sheets' ? wanSheetLegendLine(allRefs) : wanLegendLine(cuts, allRefs), ...[sceneLine('zh')].filter(Boolean), ...sidesOf(), '',
+      sheetsLike(params) ? wanSheetLegendLine(allRefs) : wanLegendLine(cuts, allRefs), ...[sceneLine('zh')].filter(Boolean), ...sidesOf(), '',
       ...blocks.flatMap((b) => [b, '']),
-      ...(cine && params.references === 'sheets' ? [`画面：${cine.videoPhraseZh}${params.lookPhraseZh ? `，${params.lookPhraseZh}` : ''}。`, ''] : []),
+      ...(cine && sheetsLike(params) ? [`画面：${cine.videoPhraseZh}${params.lookPhraseZh ? `，${params.lookPhraseZh}` : ''}。`, ''] : []),
       ...(grammarLines(seg, params, 'zh').length ? [...grammarLines(seg, params, 'zh'), ''] : []),
       `音频：对白为${accent || '…'}，环境音${sound.ambience || '…'}${sfxAll ? `；${sfxAll}` : ''}${clipMusic ? `；配乐：${clipMusic}` : params.audioTrack === 'post' ? '；无配乐' : ''}。${params.subtitles ? '' : `${NO_SUBTITLES.zh}。`}`,
     ].join('\n');
-  } else if (params.references === 'sheets') {
+  } else if (sheetsLike(params)) {
     const legend = [...allRefs.map((r) => `${r.label} is ${r.use}.`), ...[sceneLine(framingLang)].filter(Boolean), ...sidesOf()];
     const shots = cuts.map((c, k) => {
       const talk = dialogue[k].map((l) => {
@@ -5691,7 +5810,7 @@ export function promptSkeleton(project, episode, segmentId) {
   }
 
   const sceneEntity = sceneById(project, scene.sceneId) || {};
-  const keyframes = params.references === 'sheets' ? [] : cuts.map((c, k) => {
+  const keyframes = sheetsLike(params) ? [] : cuts.map((c, k) => {
     // `why` is for people (may carry names); `use` goes into the prompt and must stay generic.
     const refs = [];
     refs.push({ entity: scene.sceneId, asset: 'sheet', why: `environment: ${sceneEntity.name || scene.sceneId}${scene.lighting ? ` (${scene.lighting})` : ''}`, use: 'the environment — match its layout, materials and wear exactly', zh: '环境，严格还原布局、材质与旧痕' });
@@ -5713,15 +5832,64 @@ export function promptSkeleton(project, episode, segmentId) {
     return { cut: k + 1, name: `${seg.id} f${k + 1}`, ratio: params.ratio, references: refs, prompt: `${prefix}. ${roster ? `${roster} ` : ''}${c.frame}` };
   });
 
+  // Storyboard mode: one grid image for the whole segment, drawn from the same sheets the clip uses,
+  // so the sketch puts the right number of people in the right places.
+  let storyboard = null;
+  if (params.references === 'storyboard') {
+    const g = storyboardGrid(cuts.length, params.ratio);
+    // A refOverride carries no role, so the kind is read off the entity id too. A lighting state is
+    // left out: a sketch draws no light, and one less picture is one less thing to copy from.
+    const kindOf = (r) => (r.faceOf || r.role === 'character' || /^C\d/.test(String(r.entity)) ? 'character'
+      : r.role === 'prop' || /^P\d/.test(String(r.entity)) ? 'prop'
+      : r.role === 'lighting' || String(r.asset).startsWith('lighting:') ? 'lighting' : 'room');
+    const photo = params.storyboardStyle === 'photo';
+    // A photo grid keeps the lighting state: its panels are lit, and the clip copies that light.
+    const refs = allRefs.filter((r) => r.kind === 'image' && r.asset !== 'storyboard' && r.asset !== 'topview' && (photo || kindOf(r) !== 'lighting'))
+      .map((r, i) => ({ entity: r.entity, asset: r.asset, why: r.why, label: `@image${i + 1}`,
+        use: photo ? (kindOf(r) === 'character' ? (params.storyboardFaces === 'block' ? 'the character sheet of one person — match build, hair and clothes exactly; the face goes under a grey box' : 'the character sheet of one person — match face, hair and clothes exactly, and nothing else in it')
+          : kindOf(r) === 'prop' ? 'the prop to reproduce exactly — only this object, not the surface it sits on'
+          : kindOf(r) === 'lighting' ? 'the same room in the lighting to use — take only its light and colour, no person from it'
+          : 'the environment — match its layout, materials and wear exactly; take no person from it')
+        : kindOf(r) === 'character' ? `who one figure is — take only their build and the outline of hair and clothes, a few rough lines; never its face, shading or detail` : kindOf(r) === 'prop' ? 'the prop — take only its outline, a few rough lines; never its texture or detail' : 'the room — take only where the walls, doors, windows and main furniture are, as a few outline shapes; never its texture, light or detail' }));
+    const whoLabel = new Map(refs.filter((r) => /^C\d/.test(String(r.entity))).map((r) => [r.entity, photo ? `the person in ${r.label}` : `the figure from ${r.label}`]));
+    const panels = cuts.map((c, k) => {
+      const roster = rosterPhrase(c, (id) => whoLabel.get(id) || identityOf(characterById(project, id)), 'en', cutInstant(cuts, k));
+      // The frame's subject and staging only: the camera package, the light and the film-still tag are
+      // photography, which a pencil sketch must not try to draw.
+      // A photo panel keeps the whole frame — lens, light and foreground are what it is for.
+      const staging = photo ? String(c.frame || '…').trim().replace(/\.$/, '')
+        : String(c.frame || '…').split(/,?\s*shot on /i)[0].replace(/,?\s*\d+:\d+ (vertical|horizontal)?,?\s*cinematic film still\.?$/i, '').trim();
+      return `Panel ${k + 1}: ${SIZES[c.size] || c.size}, ${c.camera}${c.angle ? `, ${c.angle} view` : ''}. ${roster ? `${roster} ` : ''}${staging}.`.replace(/\.\.$/, '.');
+    });
+    const prompt = [
+      ...refs.map((r) => `${r.label} is ${r.use}.`),
+      ...(photo ? [
+        `A storyboard sheet: ${g.panels} film frame${g.panels > 1 ? 's' : ''} in a grid of ${g.cols} column${g.cols > 1 ? 's' : ''} by ${g.rows} row${g.rows > 1 ? 's' : ''}, read left to right, top to bottom; every panel is the same ${params.ratio} frame, separated by a thin white gutter${g.cols * g.rows > g.panels ? '; the leftover cells stay blank white' : ''}; no borders, numbers, captions or text.`,
+        `Style: every panel is a finished ${(STYLE_PRESETS[params.style] || STYLE_PRESETS.realistic).framePhrase}${params.lookPhrase ? `, ${params.lookPhrase}` : ''} — one continuous scene, the same light, colour grade and lens look in every panel.`,
+        params.storyboardFaces === 'block'
+          ? `The same person looks identical in every panel — same hair and clothes as their sheet. ${STORYBOARD_FACE_BOX[0].toUpperCase()}${STORYBOARD_FACE_BOX.slice(1)}. The number of people in each panel is exactly the number named for it.`
+          : `The same person looks identical in every panel — same face, hair and clothes as their sheet. The number of people in each panel is exactly the number named for it.`,
+      ] : [
+        `A storyboard sheet: ${g.panels} panel${g.panels > 1 ? 's' : ''} in a grid of ${g.cols} column${g.cols > 1 ? 's' : ''} by ${g.rows} row${g.rows > 1 ? 's' : ''}, read left to right, top to bottom; every panel is the same ${params.ratio} frame with a thin black border and a white gutter${g.cols * g.rows > g.panels ? '; the leftover cells stay blank white' : ''}.`,
+        `Style: ${STORYBOARD_SKETCH}${params.storyboardFaces === 'block' ? `; ${STORYBOARD_FACE_BOX}` : ''}.`,
+        `Each panel shows only the composition — shot size, camera angle, where each figure stands and faces, the main shapes of the room — like a director's quick thumbnail, not an illustration: no lighting, no mood, no faces. The number of figures in each panel is exactly the number named for it.`,
+      ]),
+      '',
+      ...panels,
+    ].join('\n');
+    storyboard = { name: `${seg.id} storyboard`, style: photo ? 'photo' : 'sketch', faces: params.storyboardFaces, ratio: g.ratio, grid: g, references: refs, prompt };
+  }
+
   return {
     segment: seg.id,
+    storyboard,
     video: {
       model: mode.model, ratio: params.ratio,
       duration: params.videoDuration === 'auto' ? null : total, plannedSeconds: total,
       resolution: videoResolutionFor(mode, params.videoResolution) || params.videoResolution,
       // keyframes (or sheets) first, then the voices — the order the video node must be connected in.
       references: [
-        ...(params.references === 'sheets' ? allRefs.filter((r) => r.kind === 'image').map((r) => `${r.entity}:${r.asset}`) : keyframes.map((k) => k.name)),
+        ...(sheetsLike(params) ? allRefs.filter((r) => r.kind === 'image').map((r) => (r.asset === 'storyboard' ? `${seg.id} storyboard` : `${r.entity}:${r.asset}`)) : keyframes.map((k) => k.name)),
         ...allRefs.filter((r) => r.kind === 'video').map((r) => `${r.entity}:${r.asset}`),
         ...allRefs.filter((r) => r.kind === 'audio').map((r) => `${r.entity}:${r.asset}`),
       ],
@@ -6252,13 +6420,19 @@ export function manifest(project, episodes, opts = {}) {
       const sw = seg.wji || {};
       const n = (seg.cuts || []).length;
       // Top-view plan: the overlay is drawn locally over the scene's top-view sheet, then uploaded and shown on the canvas.
-      if (paramsOf(project).topView === 'on' && paramsOf(project).references === 'sheets' && isObject(seg.topView)) {
+      if (paramsOf(project).topView === 'on' && sheetsLike(paramsOf(project)) && isObject(seg.topView)) {
         const sid = ((e.scenes || [])[Number(seg.sceneIndex) - 1] || {}).sceneId;
         if (!sw.assets?.topview) add('storyboard', seg.id, `storyboard.segments.${seg.id}.wji.assets.topview`, `wji asset download <${sid} topview asset> → topview <project> segment ${seg.id} --image <that file> → wji asset upload topview/${seg.id}.png`);
         else if (!ew.displayNodes?.[`${seg.id}:topview`]) add('storyboard', E, `wji.displayNodes.${seg.id}:topview`, `wji canvas add image -c <${E}> --asset ${sw.assets.topview} -n "${seg.id} topview"`);
       }
       if (!sw.datasetId) add('storyboard', seg.id, `storyboard.segments.${seg.id}.wji.datasetId`, `wji dataset new <shot/${E}> "${seg.id}" -t shot`);
-      for (let k = 0; k < (paramsOf(project).references === 'sheets' ? 0 : n); k++) {
+      // Storyboard mode: one sketch grid per segment, from the segment's sheet display nodes.
+      if (paramsOf(project).references === 'storyboard') {
+        const g = storyboardGrid(n, paramsOf(project).ratio);
+        if (!sw.nodes?.storyboard) add('storyboard', seg.id, `storyboard.segments.${seg.id}.wji.nodes.storyboard`, `wji canvas add image -c <${E}> -n "${seg.id} storyboard" -r ${g.ratio} --from <sheet display nodes, legend order> --prompt-file <prompt segment ${seg.id} → storyboard>`);
+        else if (!sw.assets?.storyboard) add('storyboard', seg.id, `storyboard.segments.${seg.id}.wji.assets.storyboard`, `wji canvas gen ${sw.nodes.storyboard} → asset (check: ${g.panels} panel(s), ${g.cols}×${g.rows}, sketch only, the right headcount per panel)`);
+      }
+      for (let k = 0; k < (sheetsLike(paramsOf(project)) ? 0 : n); k++) {
         if (!sw.nodes?.keyframes?.[k]) add('storyboard', seg.id, `storyboard.segments.${seg.id}.wji.nodes.keyframes.${k}`, `wji canvas add image -c <${E}> -n "${seg.id} f${k + 1}" --from <display nodes>`);
         else if (!sw.assets?.keyframes?.[k]) add('storyboard', seg.id, `storyboard.segments.${seg.id}.wji.assets.keyframes.${k}`, `wji canvas gen ${sw.nodes.keyframes[k]} → asset`);
       }
@@ -6267,7 +6441,7 @@ export function manifest(project, episodes, opts = {}) {
         if (!sw.nodes?.track) add('storyboard', seg.id, `storyboard.segments.${seg.id}.wji.nodes.track`, `wji canvas add audio -c <${E}> -n "${seg.id} track" -m ${AUDIO_MODEL}${full ? ' --from <voice display nodes, speaking order>' : ''} --prompt-file <prompt audio ${seg.id}>`);
         else if (!sw.assets?.track) add('storyboard', seg.id, `storyboard.segments.${seg.id}.wji.assets.track`, `wji canvas gen ${sw.nodes.track} → asset → fs set <shot dataset> --add-images <asset>`);
       }
-      if (!sw.nodes?.video) add('storyboard', seg.id, `storyboard.segments.${seg.id}.wji.nodes.video`, `wji canvas add video -c <${E}> -n "${seg.id}" --from <${paramsOf(project).references === 'sheets' ? 'sheet display nodes' : 'keyframes'}>`);
+      if (!sw.nodes?.video) add('storyboard', seg.id, `storyboard.segments.${seg.id}.wji.nodes.video`, `wji canvas add video -c <${E}> -n "${seg.id}" --from <${paramsOf(project).references === 'storyboard' ? 'sheet display nodes, then the storyboard node' : sheetsLike(paramsOf(project)) ? 'sheet display nodes' : 'keyframes'}>`);
       else if (!sw.assets?.video) add('storyboard', seg.id, `storyboard.segments.${seg.id}.wji.assets.video`, `wji canvas gen ${sw.nodes.video} (video — ask first) → asset`);
     }
     // Post soundtrack: once every clip exists, the episode is edited, then scored and mixed as one.
@@ -6322,6 +6496,8 @@ export function initProject(opts) {
   if (opts.composition && !Object.hasOwn(COMPOSITION_STYLES, opts.composition)) throw new Error(`--composition must be one of ${Object.keys(COMPOSITION_STYLES).join(' / ')}`);
   if (opts.comedy && !Object.hasOwn(COMEDY_STYLES, opts.comedy)) throw new Error(`--comedy must be one of ${Object.keys(COMEDY_STYLES).join(' / ')}`);
   if (opts.footage && !['cinema', 'dv'].includes(opts.footage)) throw new Error('--footage must be cinema or dv');
+  if (opts.storyboardFaces && !STORYBOARD_FACES.includes(opts.storyboardFaces)) throw new Error(`--storyboard-faces must be one of ${STORYBOARD_FACES.join(' / ')}`);
+  if (opts.storyboardStyle && !STORYBOARD_STYLES.includes(opts.storyboardStyle)) throw new Error(`--storyboard-style must be one of ${STORYBOARD_STYLES.join(' / ')}`);
   if (opts.topView && !TOP_VIEW_MODES.includes(opts.topView)) throw new Error(`--top-view must be one of ${TOP_VIEW_MODES.join(' / ')}`);
   if (opts.horrorStyle && !Object.hasOwn(HORROR_STYLES, opts.horrorStyle)) throw new Error(`--horror-style must be one of ${Object.keys(HORROR_STYLES).join(' / ')}`);
   const horrorGenre = HORROR_GENRE_RE.test(String(opts.genre || ''));
@@ -6344,6 +6520,8 @@ export function initProject(opts) {
       references: opts.references || DEFAULT_PARAMS.references,
       // Off unless asked for at setup: one overhead sheet per scene and one overlay per segment.
       topView: opts.topView || DEFAULT_PARAMS.topView,
+      storyboardStyle: opts.storyboardStyle || DEFAULT_PARAMS.storyboardStyle,
+      storyboardFaces: opts.storyboardFaces || DEFAULT_PARAMS.storyboardFaces,
       // `auto` unless this model has no autoDuration parameter.
       videoDuration: opts.duration || (mode.autoDuration ? DEFAULT_PARAMS.videoDuration : 'fixed'),
       lookPhrase: opts.look || (dv ? DV_LOOK : DEFAULT_PARAMS.lookPhrase),
@@ -6601,7 +6779,7 @@ function main(argv) {
       resolution: flag(rest, '--resolution'), accent: flag(rest, '--accent'),
       references: flag(rest, '--references'), duration: flag(rest, '--duration'), look: flag(rest, '--look'),
       register: flag(rest, '--register'), imageLang: flag(rest, '--image-lang'), foreground: flag(rest, '--foreground'),
-      cinematography: flag(rest, '--cinematography'), action: flag(rest, '--action'), violence: flag(rest, '--violence'), grammar: flag(rest, '--grammar'), comedy: flag(rest, '--comedy'), composition: flag(rest, '--composition'), story: flag(rest, '--story'), market: flag(rest, '--market'), format: flag(rest, '--format'), footage: flag(rest, '--footage'), horrorStyle: flag(rest, '--horror-style'), topView: flag(rest, '--top-view'),
+      cinematography: flag(rest, '--cinematography'), action: flag(rest, '--action'), violence: flag(rest, '--violence'), grammar: flag(rest, '--grammar'), comedy: flag(rest, '--comedy'), composition: flag(rest, '--composition'), story: flag(rest, '--story'), market: flag(rest, '--market'), format: flag(rest, '--format'), footage: flag(rest, '--footage'), horrorStyle: flag(rest, '--horror-style'), topView: flag(rest, '--top-view'), storyboardStyle: flag(rest, '--storyboard-style'), storyboardFaces: flag(rest, '--storyboard-faces'),
       source: flag(rest, '--source'), sourcePath: flag(rest, '--source-path'),
     });
     const paths = projectPaths(dir);
@@ -6812,6 +6990,13 @@ function main(argv) {
       console.log('');
       console.log(out.video.prompt);
       console.log('');
+      if (out.storyboard) {
+        const b = out.storyboard;
+        console.log(`## storyboard ${b.name} (${b.style} · faces ${b.faces} · ${b.ratio} · ${b.grid.cols}×${b.grid.rows} · ${b.grid.panels} panel(s))`);
+        for (const r of b.references) console.log(`   ${r.label} ← ${r.entity}:${r.asset}  (${r.why})`);
+        console.log(b.prompt.split('\n').map((l) => (l ? `   ${l}` : '')).join('\n'));
+        console.log('');
+      }
       for (const k of out.keyframes) {
         console.log(`## keyframe ${k.name} (${k.ratio})`);
         for (const r of k.references) console.log(`   ${r.label} ← ${r.entity}:${r.asset}  (${r.why})`);

@@ -23,8 +23,12 @@ Skills: `short-drama-storyboard` (read `craft-shots.md` and `craft-motion.md` th
   `note: match-cut`).
 - Prompts are delivery text: no ids, files or notes; references only as `@imageN` / `@audioN` /
   `@videoN` in connection order; every spoken line names its `@audioN`.
-- Default reference mode is **sheets**; never switch a project to `keyframes` unless the user
-  asked. Pin a segment's pictures with `refOverride` (and `faceOf`) when the derived set is wrong.
+- Default reference mode is **sheets**; never switch a project to `storyboard` or `keyframes`
+  unless the user asked. In **storyboard** mode, also hand the Operator one grid image per segment
+  (prompt + ratio from `prompt segment` → `## storyboard`, `--from` the same sheet display nodes),
+  connect it after the sheets, keep `composed as panel k of @imageN` in every shot, and check the
+  first grid (panel count, the style asked for — `storyboardStyle` sketch or photo — headcount
+  per panel, and in photo the same face per person) before the rest. Pin a segment's pictures with `refOverride` (and `faceOf`) when the derived set is wrong.
 - **You do not spend credits or run `wji gen`.** Hand the Operator a clip-by-clip checklist
   (canvas, display nodes, `--from` order, model, resolution, `-d` only in fixed duration) through
   the Producer; the first clip is inspected before the rest.

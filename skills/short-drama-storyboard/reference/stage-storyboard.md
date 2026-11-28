@@ -435,6 +435,73 @@ sheets, put the people in a `Cast:` line of the prompt; the face will drift betw
 A look that must hold across every clip — lens, depth of field, foreground blur — goes in
 `params.lookPhrase`, which every segment prompt must carry verbatim.
 
+## Storyboard grid — only with `params.references: storyboard`
+
+Not the default. Sheets mode plus **one image per segment**: a storyboard sheet of rough pencil
+panels, one per cut, read left to right and top to bottom. It sits between sheets (no picture of the
+shot at all) and keyframes (a finished picture per cut): it fixes what text alone keeps losing —
+the framing, the shot size, the angle, who stands where and faces which way — for one generation
+per segment, and because it is a sketch the clip has nothing in it to copy a face, a colour or a
+light from. Everything else is sheets mode: the sheets come first in the legend and carry identity,
+the room and the props; every sheets-mode gate (`ref-binding`, `idle-motion`, `two-person-framing`,
+`headcount`) holds.
+
+- **The grid.** `prompt segment E0N-0k` prints it under `## storyboard`: its references (the same
+  scene / character / prop display nodes as the clip, each described as *draw it as a sketch*), the
+  grid (`storyboardGrid`: up to 4 columns × 4 rows, picked so the sheet fits one of 1:1 / 4:3 / 3:4 /
+  16:9 / 9:16 — the ratios every image model takes; gpt-image has no 3:2 — 5 vertical panels are 3 × 2
+  on 3:4, 4 landscape ones 2 × 2 on 16:9, 6 scope (21:9) ones 2 × 3 on 16:9), the sketch style
+  (`STORYBOARD_SKETCH`: flat loose black pencil outlines on white, figures of a few strokes with blank
+  oval faces, the room as a few outline shapes, no shading, hatching or grey tones, no colour, no
+  text, no arrows — a director's thumbnail, not an illustration; measured: without "no shading / no
+  grey tones" gpt-image draws a fully rendered pencil illustration) and one `Panel k:` line per cut — size,
+  camera, angle, the roster and the frame's subject and staging with the camera package, the light
+  and the film-still tag stripped (photography a sketch must not try to draw).
+- **In the clip prompt** the grid is the last `@image`, after the sheets; its legend line says
+  panel k is Shot k and to take only framing, size, angle and placement from it — never its lines,
+  grey tones, borders or the grid. Each shot opens with `composed as panel k of @imageN`
+  (`构图照 @imageN 第 k 格` in a Wan prompt), gated verbatim by `storyboard-panels`.
+- **At most 12 cuts** per segment (`STORYBOARD_MAX_PANELS`); more panels stop being readable — split
+  the segment.
+- **Check the first grid** before the rest: the panel count, a sketch and not a render, nobody
+  extra and nobody missing in each panel, everyone where `placement` puts them. A wrong panel is
+  regenerated before the clip is made — the clip follows the drawing.
+- Not with `topView: on`: the panels already place everyone.
+- **`storyboardStyle: photo`** (default `sketch`): the panels are finished film frames in the
+  project's `style` instead of pencil — the grid takes the lighting state too, each panel keeps
+  the cut's whole `frame` (lens, light, foreground), the sheet is told "one continuous scene, the
+  same light, colour grade and lens look in every panel" and "the same person looks identical in
+  every panel", and the clip's legend follows each panel's light and colour as well as its
+  composition. Pick it when the look itself must be approved before the clip (a lighting-heavy
+  scene, a client sign-off); keep `sketch` when only blocking matters — a sketch gives the clip
+  nothing to copy a face from. Measured on 穿越戰神 E01-01 (gpt-image-2.5-sunburst, 16:9, 18.3
+  credits each): both styles kept all six panels in order with the right sizes, OTS directions and
+  sides; the photo grid held one face per person and one grade across the panels. Seedance +
+  `photoreal` + `photo` needs `humanReferences: true`.
+- **`storyboardFaces: block`** (the default): every visible face in the grid, sketch or photo, is
+  a flat mid-grey box — a panel never offers the clip a second, redrawn version of a face, so
+  identity comes from the character sheets alone; the clip's legend calls the box a placeholder
+  for the sheet's face and says never to show one. Measured on E01-01 (photo): every visible face
+  boxed, backs of heads left alone, light and placement unchanged. `show` draws the faces (a photo
+  grid then also matches them to the sheets). Whether a boxed photoreal grid passes Seedance's
+  real-person check is not measured, so the `humanReferences` rule above still applies.
+
+**Which image model draws the grid** (measured Nov 28 on E01-01, both styles, faces blocked, 16:9,
+same five references): use **`gpt-image-2.6-sunburst`** (or 2.5, 18.3 credits). It was the only one
+that got all six panels right in both styles — headcount, sides, OTS direction, flat line art for
+sketch, one grade for photo, and a box that fully covers every visible face and only those.
+`nano-banana-2.1` (13.5): good composition and clean boxes, but in sketch it boxed the backs of
+heads and drew the tally as a cartoon sticker, and in photo it dropped the woman from panel 5 —
+check headcount panel by panel. `bytedance-seedream-5.5` (20.1 sketch / 22.5 photo): ignores the
+box (dark silhouette faces in sketch, half-faces with the mouth showing in photo), shades the
+sketch in grey, drops the second person from panels 1 and 4 and redesigns the staging — do not use
+it for grids.
+`nano-banana-pro` (40.2, the dearest): the most faithful tally (the real half-tally shape), but it
+breaks both rules that matter — the sketch comes out grey-shaded with a coloured mat and prop, and in
+both styles the box misses the man's face (in photo it draws hollow outline frames over his visible
+face) or floats beside the back of her head; the photo grid also drops the woman from panel 5 and
+leaves white bars at the sides. Not for grids.
+
 ## Keyframes — only with `params.references: keyframes`
 
 Not the default. Read this section only when the user has chosen keyframes for a project.
